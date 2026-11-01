@@ -225,18 +225,106 @@ function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; c
 
 /* ---------- data ---------- */
 const KEY = "shiftboard.v1";
+/* Term schedule: ECPI Cohort 0727E, Night shift, term 10/12/26 – 01/09/27 (student calendar printed Oct 1, 2026).
+   Bump TERM_V whenever this block changes; the page swaps in the new term data and keeps everything you added yourself. */
+const TERM_V = 2;
+const ev = (id, title, type, courseId, date, start, end, location, extra = {}) =>
+  ({ id, title, type, courseId, date, start, end, location, repeat: false, until: "", skip: [], tentative: false, notes: "", ...extra });
+const weekly = (prefix, title, courseId, start, end, rows, extra = {}) =>
+  rows.map(([wk, date, topic, ch, more = {}]) => ev(`${prefix}-w${wk}`, title, "class", courseId, date, start, end, "",
+    { notes: `Week ${wk}: ${topic}${ch ? ` · Ch ${ch}` : ""}`, ...extra, ...more }));
+const TERM = {
+  courses: [
+    { id: "c-nur326", code: "NUR 326", name: "Medical-Surgical Nursing", prof: "Alex Marpole", meets: "Wed 0800–1100 & 1200–1600 · Fri clinical 0600–1830", color: COLORS[0] },
+    { id: "c-nur333", code: "NUR 333", name: "Pharmacological Applications", prof: "Instructor TBD", meets: "Thursdays · 0900–1100 per Aug schedule", color: COLORS[3] },
+    { id: "c-nur332", code: "NUR 332", name: "Nutrition (Topics in Nursing)", prof: "Instructor TBD", meets: "Thu 1200–1500", color: COLORS[1] },
+    { id: "c-nur328", code: "NUR 328", name: "Public Health", prof: "Nelson Jones (Aug schedule)", meets: "Mondays through Nov 30 · 0900–1200 per Aug schedule", color: COLORS[5] },
+    { id: "c-nur329", code: "NUR 329", name: "Community clinicals", prof: "Clinical instructor TBD", meets: "Select Tuesdays at community sites", color: COLORS[2] },
+    { id: "c-nur322", code: "NUR 322", name: "NUR 322 skills", prof: "Sharon Haylett", meets: "Skills lab Mon 1300–1700 (Oct 12–26)", color: COLORS[6] }
+  ],
+  events: [
+    /* NUR 326 Med-Surg */
+    ev("t-326-am", "Med-Surg lecture", "class", "c-nur326", "2026-10-14", "08:00", "11:00", "", { repeat: true, until: "2027-01-06", skip: ["2026-12-30"], notes: "Marpole" }),
+    ev("t-326-pm", "Med-Surg lecture", "class", "c-nur326", "2026-10-14", "12:00", "16:00", "", { repeat: true, until: "2027-01-06", skip: ["2026-12-30"], notes: "Marpole" }),
+    ev("t-326-cli", "Med-Surg clinical", "clinical", "c-nur326", "2026-10-16", "06:00", "18:30", "Orlando Health Lake Mary Hospital, 4th floor",
+      { repeat: true, until: "2027-01-08", skip: ["2026-11-27", "2026-12-25", "2027-01-01"], notes: "CLI-OR073 · Bindra / Brown" }),
+    ev("t-326-ormc", "Med-Surg clinical", "clinical", "c-nur326", "2027-01-09", "06:00", "18:30", "Orlando Health – Orlando Regional Medical Center", { notes: "CLI-OR034 · Brown" }),
+
+    /* NUR 329 community clinicals */
+    ev("t-329-1", "Community clinical: wound care", "clinical", "c-nur329", "2026-10-13", "07:45", "16:15", "Wound Care Center at Lucerne", { notes: "CLI-OR061" }),
+    ev("t-329-2", "Community clinical: DOH", "clinical", "c-nur329", "2026-10-27", "08:00", "16:30", "Florida DOH Seminole County", { notes: "CLI-OR045 · Green" }),
+    ev("t-329-3", "Community clinical: Right Choice", "clinical", "c-nur329", "2026-11-24", "08:00", "16:30", "Right Choice", { notes: "CLI-OR063" }),
+    ev("t-329-4", "Community clinical: hospice", "clinical", "c-nur329", "2026-12-22", "06:45", "15:15", "AdventHealth Hospice – Altamonte Springs", { notes: "CLI-OR004" }),
+
+    /* NUR 322 */
+    ev("t-322-ski", "Skills lab", "class", "c-nur322", "2026-10-12", "13:00", "17:00", "", { repeat: true, until: "2026-10-26", notes: "SKI-TBD" }),
+
+    /* NUR 328 Public Health */
+    ev("t-328-cls", "Public Health", "class", "c-nur328", "2026-10-12", "09:00", "12:00", "", { repeat: true, until: "2026-11-30", notes: "Time taken from the Aug schedule" }),
+    ev("t-328-ex2", "Public Health Exam 2", "exam", "c-nur328", "2026-11-02", "09:00", "", ""),
+    ev("t-328-ex3", "Public Health Exam 3", "exam", "c-nur328", "2026-11-16", "09:00", "", ""),
+    ev("t-328-fin", "Public Health Final (Exam 4)", "exam", "c-nur328", "2026-11-30", "09:00", "", ""),
+
+    /* NUR 333 Pharm Apps — weekly topics from the course outline */
+    ...weekly("t-333", "Pharm Apps", "c-nur333", "09:00", "11:00", [
+      [1, "2026-10-15", "Orientation, adrenergic, cholinergic, anesthesia & dosage calc", "11, 18–21"],
+      [2, "2026-10-22", "Neurology, mental health & dosage calc", "1, 4, 12–17"],
+      [3, "2026-10-29", "Respiratory & renal", "28–29, 36–37, 41"],
+      [4, "2026-11-05", "Cardiac", "22–25"],
+      [5, "2026-11-12", "GI & nutritional support", "7, 50–55"],
+      [6, "2026-11-19", "Mid-term exam", ""],
+      [8, "2026-12-03", "Antibiotics & pain", "10, 38–40, 42–44"],
+      [9, "2026-12-10", "Endocrine & other", "30–35, 56–58"],
+      [10, "2026-12-17", "ATI", ""],
+      [12, "2027-01-07", "Final exam week", ""]
+    ]),
+    ev("t-333-virt", "Pharm Apps virtual lecture", "other", "c-nur333", "2026-11-26", "", "", "", { notes: "Thanksgiving, no class on campus · Ch 7, 45–49" }),
+    ev("t-333-cs1", "Pharm Case Study 1", "assignment", "c-nur333", "2026-10-22", "", "", ""),
+    ev("t-333-dc", "Dosage Calculations Exam", "exam", "c-nur333", "2026-10-29", "", "", ""),
+    ev("t-333-cs2", "Pharm Case Study 2", "assignment", "c-nur333", "2026-11-12", "", "", ""),
+    ev("t-333-mid", "Pharm Apps Mid-Term Exam", "exam", "c-nur333", "2026-11-19", "", "", "", { notes: "Covers weeks 1–5" }),
+    ev("t-333-cs3", "Pharm Case Study 3", "assignment", "c-nur333", "2026-12-03", "", "", ""),
+    ev("t-333-atip", "Pharm ATI Practice Exam completed", "assignment", "c-nur333", "2026-12-10", "", "", ""),
+    ev("t-333-cs4", "Pharm Case Study 4", "assignment", "c-nur333", "2026-12-17", "", "", ""),
+    ev("t-333-atiex", "Pharm ATI Proctored Exam", "exam", "c-nur333", "2026-12-17", "", "", "", { notes: "ATI practice remediations due the same day" }),
+    ev("t-333-fin", "Pharm Apps Final Exam", "exam", "c-nur333", "2027-01-07", "", "", "", { notes: "Group project and proctored remediations also due" }),
+    ev("t-333-grp", "Pharm group project + proctored remediations", "assignment", "c-nur333", "2027-01-07", "", "", ""),
+
+    /* NUR 332 Nutrition — weekly readings from the course deck */
+    ...weekly("t-332", "Nutrition", "c-nur332", "12:00", "15:00", [
+      [1, "2026-10-15", "Wellness & community nutrition, health education", "1–2 · Hinkle Ch 3"],
+      [2, "2026-10-22", "Digestion, carbohydrates, fats", "3–5"],
+      [3, "2026-10-29", "Protein, vitamins", "6–7"],
+      [4, "2026-11-05", "Water & minerals; energy, weight & fitness", "8–9"],
+      [5, "2026-11-12", "Lifespan, nutritional assessment, food issues", "10–12"],
+      [6, "2026-11-19", "GI tract disorders", "13"],
+      [7, "2026-11-26", "Liver, gallbladder, pancreas; diabetes", "14–15", { tentative: true }],
+      [8, "2026-12-03", "Metabolic stress (burns, trauma, surgery); cardiopulmonary", "16–17"],
+      [9, "2026-12-10", "Kidney disease", "18"],
+      [10, "2026-12-17", "Neuro-psych; cancer & HIV/AIDS", "19–20"],
+      [12, "2027-01-07", "Cumulative final exam", ""]
+    ]),
+    ev("t-332-ex1", "Nutrition Exam 1", "exam", "c-nur332", "2026-10-29", "12:00", "", "", { notes: "Ch 1–5" }),
+    ev("t-332-gen", "Genetic Diet Teaching Plan due", "assignment", "c-nur332", "2026-11-19", "23:59", "", "", { notes: "12% of grade · APA narrative + teaching tool" }),
+    ev("t-332-ex2", "Nutrition Exam 2", "exam", "c-nur332", "2026-11-19", "12:00", "", "", { notes: "Ch 6–12 · Practice ATI opens" }),
+    ev("t-332-tfp", "Therapeutic Food Plan Presentation", "assignment", "c-nur332", "2026-11-26", "12:00", "", "", { tentative: true, notes: "Week 7 group presentation · 10% of grade · Nov 26 is Thanksgiving, confirm the day" }),
+    ev("t-332-atis", "Nutrition Practice ATI sitting", "other", "c-nur332", "2026-12-03", "12:00", "", ""),
+    ev("t-332-ex3", "Nutrition Exam 3", "exam", "c-nur332", "2026-12-10", "12:00", "", "", { notes: "Ch 13–17" }),
+    ev("t-332-bind", "Practice ATI remediation binder due", "assignment", "c-nur332", "2026-12-17", "11:59", "", "", { notes: "Collected before the proctored ATI. No late binders." }),
+    ev("t-332-ati", "Nutrition Proctored ATI", "exam", "c-nur332", "2026-12-17", "12:00", "", ""),
+    ev("t-332-prem", "Proctored ATI remediation due", "assignment", "c-nur332", "2026-12-24", "", "", "", { notes: "Due before final exams" }),
+    ev("t-332-fin", "Nutrition Cumulative Final Exam", "exam", "c-nur332", "2027-01-07", "12:00", "", "", { notes: "Need 77% class grade and 77% exam average" }),
+
+    /* Breaks */
+    ev("t-thx", "Thanksgiving", "other", "", "2026-11-26", "", "", ""),
+    ev("t-break", "Winter break begins", "other", "", "2026-12-25", "", "", "", { notes: "No class Dec 25 – Jan 4. Classes resume Wed Jan 6." }),
+    ev("t-hol-0110", "Holiday", "other", "", "2027-01-10", "", "", "")
+  ]
+};
 const seed = () => {
-  const ms = uid(), pa = uid(), nu = uid();
   return {
-    courses: [
-      { id: ms, code: "MED-SURG", name: "Medical-Surgical Nursing", prof: "", meets: "Add meeting days", color: COLORS[0] },
-      { id: pa, code: "PHARM APPS", name: "Pharmacology Applications", prof: "", meets: "Add meeting days", color: COLORS[3] },
-      { id: nu, code: "NUTRITION", name: "Nutrition", prof: "", meets: "Thu 1200–1500", color: COLORS[2] }
-    ],
-    events: [
-      { id: uid(), title: "Nutrition", type: "class", courseId: nu, date: "2026-10-29", start: "12:00", end: "15:00", location: "", repeat: true, until: "2026-12-17", tentative: false, notes: "" },
-      { id: uid(), title: "Pharm Apps Midterm", type: "exam", courseId: pa, date: "2026-11-16", start: "", end: "", location: "", repeat: false, until: "", tentative: true, notes: "Mid-November. Confirm the exact date with your syllabus." }
-    ],
+    courses: [],
+    events: [],
     links: [
       { id: uid(), label: "NotebookLM", url: "https://notebooklm.google.com/", group: "Study" },
       { id: uid(), label: "Notability (web)", url: "https://notability.com/", group: "Study" },
@@ -249,6 +337,22 @@ const seed = () => {
 let S;
 try { S = JSON.parse(localStorage.getItem(KEY)) || seed(); } catch { S = seed(); }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
+function applyTerm(){
+  if (S.termVersion === TERM_V) return;
+  if (!S.termVersion) { // retire the placeholder courses from the first version of the board
+    const old = S.courses.filter(c => ["MED-SURG", "PHARM APPS", "NUTRITION"].includes(c.code)).map(c => c.id);
+    S.courses = S.courses.filter(c => !old.includes(c.id));
+    S.events = S.events.filter(e => !(e.title === "Nutrition" && e.repeat && old.includes(e.courseId)));
+    S.events.forEach(e => { if (old.includes(e.courseId)) e.courseId = ""; });
+  }
+  S.events = S.events.filter(e => !(e.src !== "term" && e.title === "Pharm Apps Midterm" && e.date === "2026-11-16"));
+  S.courses = S.courses.filter(c => c.src !== "term");
+  S.events = S.events.filter(e => e.src !== "term");
+  S.courses.unshift(...TERM.courses.map(c => ({ ...c, src: "term" })));
+  S.events.push(...TERM.events.map(e => ({ ...e, src: "term" })));
+  S.termVersion = TERM_V;
+}
+applyTerm();
 save();
 const course = id => S.courses.find(c => c.id === id);
 
@@ -279,7 +383,7 @@ function occurrences(from, to){
     let d = parse(e.date);
     const end = e.repeat ? (e.until ? parse(e.until) : to) : d;
     if (e.repeat) while (d < from) d = addDays(d, 7);
-    for (; d <= to && d <= end; d = addDays(d, 7)) { if (d >= from) out.push({ ...e, on: new Date(d) }); if (!e.repeat) break; }
+    for (; d <= to && d <= end; d = addDays(d, 7)) { if (d >= from && !(e.skip || []).includes(ymd(d))) out.push({ ...e, on: new Date(d) }); if (!e.repeat) break; }
   }
   return out.sort((a, b) => a.on - b.on || (a.start || "99").localeCompare(b.start || "99"));
 }
@@ -429,7 +533,7 @@ V.links = () => {
   ${Object.entries(groups).map(([g, ls]) => `<section class="card"><div class="ch"><h3>${esc(g)}</h3></div><div class="links">${ls.map(l => `
     <div class="row" style="gap:6px;flex-wrap:nowrap;min-width:0"><a class="lnk" style="flex:1" href="${esc(l.url)}" target="_blank" rel="noopener"><strong>${esc(l.label)}</strong><small>${esc(l.url.replace(/^https?:\/\//, ""))}</small></a><button class="btn sm danger" data-dell="${l.id}" aria-label="Delete ${esc(l.label)}">×</button></div>`).join("")}</div></section>`).join("")}
   <section class="card yellow">
-    <div class="ch"><div style="flex:1;min-width:0"><h3>Backup &amp; move devices</h3><p>Schedule, courses and links live in this browser. Export a backup to move them, or commit it to your repo as <code>data.json</code> so every device starts with it.</p></div><span class="badge y">Backup</span></div>
+    <div class="ch"><div style="flex:1;min-width:0"><h3>Backup &amp; move devices</h3><p>Schedule, courses and links live in this browser. Your term schedule is built into the site, so every device starts with it. Export a backup to carry over the dates, courses and links you add yourself.</p></div><span class="badge y">Backup</span></div>
     <div class="row"><button class="btn" data-act="export">Export backup</button><label class="btn" for="impIn">Import backup</label><input type="file" id="impIn" accept=".json,application/json" hidden></div>
   </section>`;
 };
@@ -617,14 +721,7 @@ document.addEventListener("change", async e => {
 
 /* ---------- boot ---------- */
 setInterval(renderCounts, 60000);
-(async () => {
-  let done = null; try { done = localStorage.getItem(KEY + ".loaded"); } catch {}
-  if (!done && location.protocol.startsWith("http") && location.hostname.endsWith("github.io")) {
-    try { const r = await fetch("data.json", { cache: "no-store" }); if (r.ok) { const o = await r.json(); if (o.courses && o.events) { S = { links: [], ...o }; save(); } } } catch {}
-    try { localStorage.setItem(KEY + ".loaded", "1"); } catch {}
-  }
-  await refreshFiles(); render();
-})();
+(async () => { await refreshFiles(); render(); })();
 render();
 })();
 </script>
