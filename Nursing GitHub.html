@@ -1,0 +1,630 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fernide's Shift Board</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#0A1222">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one focused column — serif title, two countdown cards, pill tabs, search, then bordered study cards.
+   Palette: deliberate single dark "study mode": deep navy ground, focus blue, highlighter yellow. */
+:root{
+  color-scheme:dark;
+  --bg:#0A1222; --surface:#111C31; --raised:#16233C; --sunk:#0C1528; --line:#22324F;
+  --ink:#EAF0FA; --muted:#8C9BB8; --faint:#5C6C8A;
+  --blue:#5B9BFF; --blue-deep:#2156C9; --blue-wash:#13284D;
+  --yellow:#FFD34D; --yellow-deep:#E0A800; --yellow-wash:#2E2814;
+  --exam:#FFD34D; --class:#5B9BFF; --clinical:#4FD1A5; --assignment:#B9A2FF; --other:#8C9BB8; --alert:#FF7A6B;
+  --display:"DM Serif Display", Georgia, "Times New Roman", serif;
+  --body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:16px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 500px at 85% -10%, rgba(91,155,255,.10), transparent 60%),radial-gradient(700px 400px at -10% 10%, rgba(255,211,77,.05), transparent 60%);background-attachment:fixed}
+img{max-width:100%}
+a{color:var(--blue)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+::selection{background:var(--yellow);color:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+
+/* header */
+header{padding-block:36px 4px}
+h1{font:400 clamp(40px,8vw,56px)/1 var(--display);margin:0;color:var(--yellow);letter-spacing:-.01em}
+h1 span{color:var(--ink)}
+.sub{font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.sub b{color:var(--blue);font-weight:500}
+
+/* countdown cards */
+.counts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.cd{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;cursor:pointer;min-width:0;text-align:left}
+.cd.next{border-color:var(--yellow);background:linear-gradient(160deg,var(--yellow-wash),var(--surface) 75%);box-shadow:0 0 0 1px rgba(255,211,77,.15),0 10px 30px -12px rgba(255,211,77,.25)}
+.cd .k{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cd.next .k{color:var(--yellow)}
+.cd .t{font-weight:700;font-size:17px;margin-top:4px;line-height:1.25;overflow-wrap:anywhere}
+.cd .s{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cd .n{font:500 24px var(--mono);margin-top:8px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.cd.next .n{color:var(--yellow)}
+.cd.ghost{border-style:dashed;color:var(--muted);display:grid;place-items:center;text-align:center;font-weight:500}
+
+/* tabs */
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:6px;margin-top:22px;overflow-x:auto}
+.tabs a{text-align:center;text-decoration:none;color:var(--muted);font-weight:700;padding:11px 6px;border-radius:11px;white-space:nowrap;font-size:14.5px}
+.tabs a:hover{color:var(--ink)}
+.tabs a[aria-current="page"]{background:var(--blue-deep);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.search{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 16px;margin-top:14px}
+.search:focus-within{border-color:var(--blue)}
+.search svg{flex:none;color:var(--blue)}
+.search input{background:none;border:0;outline:0;padding:14px 0;width:100%;font-size:16px}
+.search input::placeholder{color:var(--faint)}
+main{padding-block:18px 110px}
+.view{display:grid;gap:14px}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;min-width:0}
+.card.blue{border-color:rgba(91,155,255,.55)}
+.card.yellow{border-color:rgba(255,211,77,.55)}
+.ch{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.ch h3{font:700 18px/1.3 var(--body);margin:0;flex:1;min-width:0}
+.ch p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.badge{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:7px;white-space:nowrap;background:var(--blue-wash);color:var(--blue)}
+.badge.y{background:var(--yellow-wash);color:var(--yellow)}
+.chip{display:inline-block;font:500 11px var(--mono);padding:2px 8px;border-radius:6px;background:var(--raised);color:var(--muted);margin-left:6px;vertical-align:2px}
+h2{font:400 30px/1.15 var(--display);margin:0}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+.muted{color:var(--muted)}
+.empty{padding:16px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center;font-size:14px}
+.btn{border:1px solid var(--line);background:var(--raised);padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:700;font-size:14px}
+.btn:hover{border-color:var(--blue)}
+.btn.primary{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff}
+.btn.yel{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+.btn.danger{color:var(--alert)}
+.btn.danger.armed{background:var(--alert);border-color:var(--alert);color:var(--bg)}
+.btn.sm{padding:5px 10px;font-size:13px;border-radius:8px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.f{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 13px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted)}
+.f[aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+input[type=text],input[type=url],input[type=date],input[type=time],select,textarea{background:var(--sunk);border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%;min-width:0}
+textarea{min-height:76px;resize:vertical}
+label.fl{display:grid;gap:5px;font-size:13px;font-weight:700;color:var(--muted)}
+
+/* event lines */
+.ev{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:12px;align-items:start;padding:10px 0;border-top:1px solid var(--line);cursor:pointer}
+.ev:first-child,.dh + .ev{border-top:0}
+.ev:hover .et{color:var(--yellow)}
+.etime{font:500 13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px}
+.et{font-weight:700}
+.es{font-size:13px;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:1px}
+.tp{font:500 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:6px;border:1px solid currentColor;white-space:nowrap}
+.t-exam{color:var(--exam)} .t-class{color:var(--class)} .t-clinical{color:var(--clinical)} .t-assignment{color:var(--assignment)} .t-other{color:var(--other)}
+.tent{color:var(--alert)}
+.dh{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 4px}
+.dh.today{color:var(--yellow)}
+
+/* week */
+.weekwrap{overflow-x:auto;margin-inline:-4px;padding:4px}
+.week{display:grid;grid-template-columns:repeat(7,minmax(118px,1fr));gap:8px;min-width:860px}
+.wd{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;min-height:150px;display:flex;flex-direction:column;gap:6px}
+.wd.today{border-color:var(--yellow)}
+.wh{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.wh b{display:block;font:400 24px/1.1 var(--display);color:var(--ink);letter-spacing:0}
+.wd.today .wh b{color:var(--yellow)}
+.blk{border-left:3px solid currentColor;background:var(--raised);border-radius:6px;padding:6px 8px;font-size:12.5px;line-height:1.3;cursor:pointer}
+.blk span{display:block;color:var(--ink);font-weight:700}
+.blk em{font:500 11px var(--mono);font-style:normal;color:var(--muted)}
+
+/* courses: collapsible rows */
+.crs{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.crs > button.head{all:unset;box-sizing:border-box;display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:12px;align-items:center;padding:16px 18px;width:100%;cursor:pointer}
+.crs > button.head:focus-visible{outline:2px solid var(--yellow);outline-offset:-2px}
+.tri{color:var(--muted);font-size:12px;transition:transform .15s}
+.crs.open .tri{transform:rotate(90deg);color:var(--yellow)}
+.cn{font-weight:700;font-size:16.5px}
+.cm{font-size:13px;color:var(--muted)}
+.cside{display:grid;justify-items:end;gap:4px}
+.cbody{padding:0 18px 16px 48px;border-top:1px solid var(--line)}
+.cbar{width:4px;align-self:stretch;border-radius:4px}
+
+/* library */
+.drop{display:block;border:2px dashed rgba(91,155,255,.45);border-radius:var(--r);padding:22px;text-align:center;background:var(--surface);cursor:pointer}
+.drop.over{border-color:var(--yellow);background:var(--yellow-wash)}
+.drop strong{font-size:16px}
+.file{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.file:first-child{border-top:0}
+.fi{width:42px;height:50px;border-radius:7px;display:grid;place-items:center;font:500 10px var(--mono);color:#0A1222;background:var(--kc,var(--other))}
+.fn{font-weight:700;overflow-wrap:anywhere}
+.fm{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.fm select{width:auto;padding:3px 7px;font-size:12px;border-radius:7px}
+.fa{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
+.k-book{--kc:var(--blue)} .k-notability{--kc:var(--yellow)} .k-notebooklm{--kc:var(--assignment)} .k-lecture{--kc:var(--clinical)} .k-other{--kc:var(--other)}
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.lnk{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--raised);text-decoration:none;color:var(--ink);min-width:0}
+.lnk:hover{border-color:var(--blue)}
+.lnk small{display:block;color:var(--muted);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* floating add */
+.fab{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:8;display:flex;gap:8px;background:rgba(17,28,49,.92);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:99px;padding:6px}
+.fab button{border:0;border-radius:99px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.fab .a{background:var(--yellow);color:#1A1405}
+.fab .b{background:var(--raised);color:var(--ink)}
+
+/* modal + toast */
+.scrim{position:fixed;inset:0;background:rgba(4,8,16,.72);z-index:20;display:grid;place-items:center;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.modal{background:var(--surface);border:1px solid var(--line);border-radius:18px;width:min(560px,100%);max-height:100%;overflow:auto;padding:22px;display:grid;gap:14px}
+.modal.wide{width:min(1000px,100%);height:100%;display:flex;flex-direction:column}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg .full{grid-column:1/-1}
+.viewer{width:100%;flex:1;min-height:60vh;border:1px solid var(--line);border-radius:10px;background:var(--sunk)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(80px + env(safe-area-inset-bottom,0px));background:var(--yellow);color:#1A1405;padding:9px 18px;border-radius:99px;font-weight:700;z-index:30;font-size:14px}
+@media (max-width:560px){
+  .counts{gap:10px}
+  .cd{padding:13px 14px}
+  .cd .n{font-size:20px}
+  .tabs{grid-template-columns:repeat(5,minmax(76px,1fr))}
+  .tabs a{font-size:13.5px;padding:10px 4px}
+  .fg{grid-template-columns:1fr}
+  .file{grid-template-columns:36px minmax(0,1fr)}
+  .fi{width:36px;height:44px}
+  .fa{grid-column:2;justify-content:flex-start}
+  .cbody{padding-left:18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Shift <span>Board</span></h1>
+    <div class="sub">Fernide · <b>ECPI BSN</b> · Cohort 38</div>
+    <div class="counts" id="counts"></div>
+    <nav class="tabs" id="nav" aria-label="Sections">
+      <a href="#today">Today</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#courses">Courses</a>
+      <a href="#library">Library</a>
+      <a href="#links">Links</a>
+    </nav>
+    <label class="search" for="gq">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="gq" placeholder="Search schedule, courses, books, notes…" autocomplete="off">
+    </label>
+  </header>
+  <main id="main"></main>
+</div>
+<div class="fab"><button class="a" data-act="add-event">+ Add date</button><button class="b" data-act="go-upload">Upload</button></div>
+<div id="modalRoot"></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+const pad = n => String(n).padStart(2, "0");
+const ymd = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+const monday = d => { const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); return addDays(x, -((x.getDay() + 6) % 7)); };
+const mil = t => t ? t.replace(":", "") : "";
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtDay = d => `${DOW[d.getDay()]} ${MON[d.getMonth()]} ${d.getDate()}`;
+const short = d => `${DOW[d.getDay()]}, ${d.getMonth() + 1}/${d.getDate()}`;
+const fmtSize = b => b > 1e9 ? (b/1e9).toFixed(1)+" GB" : b > 1e6 ? (b/1e6).toFixed(1)+" MB" : Math.max(1, Math.round(b/1e3))+" KB";
+const today = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
+const TYPES = { class:"Class", clinical:"Clinical", exam:"Exam", assignment:"Due", other:"Other" };
+const KINDS = { book:"Book", notability:"Notability", notebooklm:"NotebookLM", lecture:"Lecture / slides", other:"Other" };
+const COLORS = ["#5B9BFF","#FFD34D","#4FD1A5","#B9A2FF","#FF7A6B","#7FD3FF","#F5A3C7"];
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, 2200); }
+
+/* ---------- data ---------- */
+const KEY = "shiftboard.v1";
+const seed = () => {
+  const ms = uid(), pa = uid(), nu = uid();
+  return {
+    courses: [
+      { id: ms, code: "MED-SURG", name: "Medical-Surgical Nursing", prof: "", meets: "Add meeting days", color: COLORS[0] },
+      { id: pa, code: "PHARM APPS", name: "Pharmacology Applications", prof: "", meets: "Add meeting days", color: COLORS[3] },
+      { id: nu, code: "NUTRITION", name: "Nutrition", prof: "", meets: "Thu 1200–1500", color: COLORS[2] }
+    ],
+    events: [
+      { id: uid(), title: "Nutrition", type: "class", courseId: nu, date: "2026-10-29", start: "12:00", end: "15:00", location: "", repeat: true, until: "2026-12-17", tentative: false, notes: "" },
+      { id: uid(), title: "Pharm Apps Midterm", type: "exam", courseId: pa, date: "2026-11-16", start: "", end: "", location: "", repeat: false, until: "", tentative: true, notes: "Mid-November. Confirm the exact date with your syllabus." }
+    ],
+    links: [
+      { id: uid(), label: "NotebookLM", url: "https://notebooklm.google.com/", group: "Study" },
+      { id: uid(), label: "Notability (web)", url: "https://notability.com/", group: "Study" },
+      { id: uid(), label: "ATI", url: "https://www.atitesting.com/", group: "School" },
+      { id: uid(), label: "ECPI University", url: "https://www.ecpi.edu/", group: "School" },
+      { id: uid(), label: "GitHub", url: "https://github.com/", group: "GitHub" }
+    ]
+  };
+};
+let S;
+try { S = JSON.parse(localStorage.getItem(KEY)) || seed(); } catch { S = seed(); }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
+save();
+const course = id => S.courses.find(c => c.id === id);
+
+/* ---------- files (IndexedDB) ---------- */
+const mem = new Map(); let dbp = null;
+function db(){ if (dbp) return dbp; dbp = new Promise(res => { try { const r = indexedDB.open("shiftboard", 1); r.onupgradeneeded = () => r.result.createObjectStore("files", { keyPath: "id" }); r.onsuccess = () => res(r.result); r.onerror = () => res(null); } catch { res(null); } }); return dbp; }
+const F = {
+  async all(){ const d = await db(); if (!d) return [...mem.values()]; return new Promise(res => { const r = d.transaction("files").objectStore("files").getAll(); r.onsuccess = () => res(r.result || []); r.onerror = () => res([]); }); },
+  async put(o){ const d = await db(); if (!d) { mem.set(o.id, o); return; } return new Promise((res, rej) => { const t = d.transaction("files", "readwrite"); t.objectStore("files").put(o); t.oncomplete = res; t.onerror = () => rej(t.error); }); },
+  async del(id){ const d = await db(); if (!d) { mem.delete(id); return; } return new Promise((res, rej) => { const t = d.transaction("files", "readwrite"); t.objectStore("files").delete(id); t.oncomplete = res; t.onerror = () => rej(t.error); }); }
+};
+let FILES = [];
+async function refreshFiles(){ try { FILES = (await F.all()).sort((a, b) => b.added - a.added); } catch { FILES = [...mem.values()]; } }
+function guessKind(f){
+  const n = f.name.toLowerCase(), t = f.type || "";
+  if (t.startsWith("audio/") || /\.(m4a|mp3|wav|aac|ogg)$/.test(n)) return "notebooklm";
+  if (/\.note$/.test(n)) return "notability";
+  if (/\.(epub|mobi|azw3?|pdf)$/.test(n)) return "book";
+  if (/\.(pptx?|key)$/.test(n)) return "lecture";
+  return "other";
+}
+
+/* ---------- schedule ---------- */
+function occurrences(from, to){
+  const out = [];
+  for (const e of S.events) {
+    if (!e.date) continue;
+    let d = parse(e.date);
+    const end = e.repeat ? (e.until ? parse(e.until) : to) : d;
+    if (e.repeat) while (d < from) d = addDays(d, 7);
+    for (; d <= to && d <= end; d = addDays(d, 7)) { if (d >= from) out.push({ ...e, on: new Date(d) }); if (!e.repeat) break; }
+  }
+  return out.sort((a, b) => a.on - b.on || (a.start || "99").localeCompare(b.start || "99"));
+}
+function at(o){ const d = new Date(o.on); const [h, m] = (o.start || "08:00").split(":").map(Number); d.setHours(h, m); return d; }
+function until(o){ const ms = at(o) - new Date(); if (ms <= 0) return "now"; const d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5); return `${d}d ${h}h`; }
+
+function evLine(o){
+  const c = course(o.courseId);
+  return `<div class="ev" data-ev="${o.id}" tabindex="0" role="button">
+    <div class="etime">${o.start ? mil(o.start) : "ALL DAY"}${o.end ? `<br>${mil(o.end)}` : ""}</div>
+    <div><div class="et">${esc(o.title)}</div><div class="es">${c ? `<span class="dot" style="background:${esc(c.color)}"></span>${esc(c.code)}` : ""}${o.location ? ` · ${esc(o.location)}` : ""}${o.notes ? ` · ${esc(o.notes)}` : ""}</div></div>
+    <div class="row" style="gap:6px;justify-content:flex-end">${o.tentative ? `<span class="tp tent">Confirm</span>` : ""}<span class="tp t-${o.type}">${TYPES[o.type] || "Other"}</span></div>
+  </div>`;
+}
+function grouped(list){
+  if (!list.length) return `<div class="empty">Nothing scheduled.</div>`;
+  let h = "", last = "", t = ymd(today());
+  for (const o of list) { const k = ymd(o.on); if (k !== last) { h += `<div class="dh ${k === t ? "today" : ""}">${k === t ? "Today · " : ""}${fmtDay(o.on)}</div>`; last = k; } h += evLine(o); }
+  return h;
+}
+
+/* ---------- countdown header ---------- */
+function renderCounts(){
+  const t = today();
+  const big = occurrences(t, addDays(t, 240)).filter(o => (o.type === "exam" || o.type === "assignment") && at(o) > new Date()).slice(0, 2);
+  const card = (o, i) => {
+    const c = course(o.courseId);
+    return `<button class="cd ${i === 0 ? "next" : ""}" data-ev="${o.id}">
+      <div class="k">${i === 0 ? "Next up · " : ""}${short(o.on)}${o.tentative ? " · tbc" : ""}</div>
+      <div class="t">${esc(o.title)}</div>
+      <div class="s">${esc(o.notes || (c ? c.name : TYPES[o.type]))}</div>
+      <div class="n">${until(o)}</div></button>`;
+  };
+  $("#counts").innerHTML = big.map(card).join("") + (big.length < 2 ? `<button class="cd ghost" data-act="add-event" data-type="exam">+ Add ${big.length ? "another" : "an"} exam to start a countdown</button>` : "");
+}
+
+/* ---------- views ---------- */
+const V = {};
+V.today = () => {
+  const t = today(), wk = occurrences(t, addDays(t, 13));
+  const todays = wk.filter(o => ymd(o.on) === ymd(t)), rest = wk.filter(o => ymd(o.on) !== ymd(t));
+  const tbc = S.events.filter(e => e.tentative).length;
+  return `
+  <section class="card yellow">
+    <div class="ch"><div style="flex:1;min-width:0"><h3>Today · ${fmtDay(t)}</h3><p>${todays.length ? `${todays.length} thing${todays.length > 1 ? "s" : ""} on today's board.` : "Nothing scheduled. Good day for a study block."}</p></div><span class="badge y">Today</span></div>
+    ${todays.map(evLine).join("")}
+  </section>
+  <section class="card blue">
+    <div class="ch"><div style="flex:1;min-width:0"><h3>Next two weeks<span class="chip">${rest.length} items</span></h3><p>Classes, clinicals, exams and due dates in order.${tbc ? ` <span class="tent">${tbc} date${tbc > 1 ? "s" : ""} still need confirming.</span>` : ""}</p></div><span class="badge">Plan</span></div>
+    ${grouped(rest)}
+  </section>
+  <section class="card">
+    <div class="ch"><div style="flex:1;min-width:0"><h3>Recently added<span class="chip">${FILES.length} in library</span></h3><p>Books, Notability exports and NotebookLM audio.</p></div><span class="badge y">Library</span></div>
+    ${FILES.length ? FILES.slice(0, 4).map(fileRow).join("") : `<div class="empty">Nothing uploaded yet. <a href="#library">Open the library</a> to add your first book.</div>`}
+  </section>`;
+};
+
+let weekOffset = 0, typeFilter = "all";
+V.schedule = () => {
+  const start = addDays(monday(today()), weekOffset * 7), end = addDays(start, 6), occ = occurrences(start, end), t = ymd(today());
+  let cols = "";
+  for (let i = 0; i < 7; i++) {
+    const d = addDays(start, i), k = ymd(d);
+    const items = occ.filter(o => ymd(o.on) === k && (typeFilter === "all" || o.type === typeFilter));
+    cols += `<div class="wd ${k === t ? "today" : ""}"><div class="wh">${DOW[d.getDay()]} ${MON[d.getMonth()]}<b>${d.getDate()}</b></div>
+      ${items.map(o => `<div class="blk t-${o.type}" data-ev="${o.id}" tabindex="0" role="button"><span>${esc(o.title)}</span><em>${o.start ? mil(o.start) + (o.end ? "–" + mil(o.end) : "") : "All day"}${o.tentative ? " · tbc" : ""}</em></div>`).join("")}
+      <button class="btn sm" style="margin-top:auto" data-act="add-event" data-date="${k}" aria-label="Add on ${fmtDay(d)}">+</button></div>`;
+  }
+  const up = occurrences(today(), addDays(today(), 120)).filter(o => typeFilter === "all" || o.type === typeFilter);
+  const lbl = { all: "Everything", class: "Classes", clinical: "Clinicals", exam: "Exams", assignment: "Assignments", other: "Other" };
+  return `
+  <div class="filters">${Object.keys(lbl).map(k => `<button class="f" data-tf="${k}" aria-pressed="${typeFilter === k}">${lbl[k]}</button>`).join("")}</div>
+  <section class="card blue">
+    <div class="ch"><div style="flex:1;min-width:0"><h3>${fmtDay(start)} – ${fmtDay(end)}</h3></div><div class="row" style="gap:6px"><button class="btn sm" data-wk="-1" aria-label="Previous week">←</button>${weekOffset ? `<button class="btn sm" data-wk="0">This week</button>` : ""}<button class="btn sm" data-wk="1" aria-label="Next week">→</button></div></div>
+    <div class="weekwrap"><div class="week">${cols}</div></div>
+  </section>
+  <section class="card">
+    <div class="ch"><div style="flex:1;min-width:0"><h3>Upcoming<span class="chip">next 120 days</span></h3></div><span class="badge">List</span></div>
+    ${grouped(up.slice(0, 60))}
+  </section>`;
+};
+
+const openC = new Set();
+V.courses = () => {
+  const t = today();
+  return `
+  <div class="row"><h2>Courses</h2><span class="spacer"></span><button class="btn" data-act="add-course">+ Add course</button></div>
+  ${S.courses.map(c => {
+    const occ = occurrences(t, addDays(t, 150)).filter(o => o.courseId === c.id);
+    const nx = occ.find(o => o.type === "exam") || occ.find(o => o.type !== "class");
+    const nf = FILES.filter(f => f.courseId === c.id);
+    const open = openC.has(c.id);
+    return `<div class="crs ${open ? "open" : ""}">
+      <button class="head" data-act="toggle-course" data-id="${c.id}" aria-expanded="${open}">
+        <span class="tri">▶</span>
+        <span style="min-width:0"><span class="cn"><span class="dot" style="background:${esc(c.color)}"></span>${esc(c.name)}</span><br><span class="cm">${esc(c.code)}${c.prof ? " · " + esc(c.prof) : ""} · ${esc(c.meets || "")}</span></span>
+        <span class="cside">${nx ? `<span class="badge ${nx.type === "exam" ? "y" : ""}">${nx.type === "exam" ? "Exam" : "Due"} ${nx.on.getMonth() + 1}/${nx.on.getDate()}</span>` : ""}<span class="cm">${nf.length} files</span></span>
+      </button>
+      ${open ? `<div class="cbody">
+        <div class="row" style="margin-top:12px"><button class="btn sm" data-act="add-event" data-course="${c.id}" data-type="exam">+ Exam</button><button class="btn sm" data-act="add-event" data-course="${c.id}" data-type="assignment">+ Due date</button><button class="btn sm" data-act="add-event" data-course="${c.id}" data-type="class">+ Class</button><span class="spacer"></span><button class="btn sm" data-act="edit-course" data-id="${c.id}">Edit course</button></div>
+        ${grouped(occ.slice(0, 14))}
+        <div class="dh">Files</div>${nf.length ? nf.map(fileRow).join("") : `<div class="empty">No files tagged to this course yet.</div>`}
+      </div>` : ""}
+    </div>`; }).join("")}`;
+};
+
+let kindFilter = "all", libCourse = "all";
+function fileRow(f){
+  const ext = f.url ? "LINK" : (f.name.split(".").pop() || "").slice(0, 4).toUpperCase();
+  return `<div class="file k-${f.kind}">
+    <div class="fi">${esc(ext)}</div>
+    <div style="min-width:0"><div class="fn">${esc(f.name)}</div>
+      <div class="fm">
+        <select aria-label="Type" data-fk="${f.id}">${Object.entries(KINDS).map(([k, v]) => `<option value="${k}" ${f.kind === k ? "selected" : ""}>${v}</option>`).join("")}</select>
+        <select aria-label="Course" data-fc="${f.id}"><option value="">No course</option>${S.courses.map(x => `<option value="${x.id}" ${f.courseId === x.id ? "selected" : ""}>${esc(x.code)}</option>`).join("")}</select>
+        <span class="muted" style="font-size:12px">${f.url ? "link" : fmtSize(f.size)}</span>
+      </div></div>
+    <div class="fa"><button class="btn sm primary" data-open="${f.id}">Open</button><button class="btn sm danger" data-delf="${f.id}">Delete</button></div>
+  </div>`;
+}
+V.library = () => {
+  const list = FILES.filter(f => (kindFilter === "all" || f.kind === kindFilter) && (libCourse === "all" || f.courseId === libCourse));
+  const total = FILES.reduce((s, f) => s + (f.size || 0), 0);
+  return `
+  <label class="drop" id="drop" for="fileIn">
+    <strong>Drop files or tap to upload</strong>
+    <div class="muted" style="font-size:13px;margin-top:4px">Books (PDF, EPUB) · Notability exports · NotebookLM audio · lecture slides</div>
+    <div class="row" style="justify-content:center;margin-top:12px" onclick="event.preventDefault()">
+      <select id="upKind" style="width:auto"><option value="auto">Type: auto-detect</option>${Object.entries(KINDS).map(([k, v]) => `<option value="${k}">${v}</option>`).join("")}</select>
+      <select id="upCourse" style="width:auto"><option value="">No course</option>${S.courses.map(c => `<option value="${c.id}">${esc(c.code)}</option>`).join("")}</select>
+      <button class="btn yel" type="button" id="pick">Choose files</button>
+    </div>
+    <input type="file" id="fileIn" multiple hidden>
+  </label>
+  <div class="row"><div class="filters">${["all", ...Object.keys(KINDS)].map(k => `<button class="f" data-kf="${k}" aria-pressed="${kindFilter === k}">${k === "all" ? "All" : KINDS[k]} ${k === "all" ? FILES.length : FILES.filter(f => f.kind === k).length}</button>`).join("")}</div>
+    <span class="spacer"></span><select id="libC" style="width:auto"><option value="all">All courses</option>${S.courses.map(c => `<option value="${c.id}" ${libCourse === c.id ? "selected" : ""}>${esc(c.code)}</option>`).join("")}</select></div>
+  <section class="card">
+    <div class="ch"><div style="flex:1;min-width:0"><h3>Your library<span class="chip">${FILES.length} items · ${fmtSize(total)}</span></h3><p>Saved privately on this device. Nothing here goes to GitHub.</p></div><button class="btn sm" data-act="add-link-file">+ Share link</button></div>
+    ${list.length ? list.map(fileRow).join("") : `<div class="empty">${FILES.length ? "No files match these filters." : "Empty for now. Upload a textbook or a Notability PDF above."}</div>`}
+  </section>`;
+};
+
+V.links = () => {
+  const groups = {}; S.links.forEach(l => (groups[l.group || "Other"] ||= []).push(l));
+  return `
+  <div class="row"><h2>Links &amp; GitHub</h2><span class="spacer"></span><button class="btn" data-act="add-link">+ Add link</button></div>
+  ${Object.entries(groups).map(([g, ls]) => `<section class="card"><div class="ch"><h3>${esc(g)}</h3></div><div class="links">${ls.map(l => `
+    <div class="row" style="gap:6px;flex-wrap:nowrap;min-width:0"><a class="lnk" style="flex:1" href="${esc(l.url)}" target="_blank" rel="noopener"><strong>${esc(l.label)}</strong><small>${esc(l.url.replace(/^https?:\/\//, ""))}</small></a><button class="btn sm danger" data-dell="${l.id}" aria-label="Delete ${esc(l.label)}">×</button></div>`).join("")}</div></section>`).join("")}
+  <section class="card yellow">
+    <div class="ch"><div style="flex:1;min-width:0"><h3>Backup &amp; move devices</h3><p>Schedule, courses and links live in this browser. Export a backup to move them, or commit it to your repo as <code>data.json</code> so every device starts with it.</p></div><span class="badge y">Backup</span></div>
+    <div class="row"><button class="btn" data-act="export">Export backup</button><label class="btn" for="impIn">Import backup</label><input type="file" id="impIn" accept=".json,application/json" hidden></div>
+  </section>`;
+};
+
+V.search = term => {
+  const s = term.toLowerCase(), hit = x => String(x || "").toLowerCase().includes(s);
+  const t = today();
+  const ev = occurrences(addDays(t, -30), addDays(t, 200)).filter(o => hit(o.title) || hit(o.notes) || hit(o.location) || hit(course(o.courseId)?.code));
+  const seen = new Set(), evU = ev.filter(o => seen.has(o.id) ? false : seen.add(o.id));
+  const fs = FILES.filter(f => hit(f.name) || hit(KINDS[f.kind]) || hit(course(f.courseId)?.code));
+  const cs = S.courses.filter(c => hit(c.name) || hit(c.code) || hit(c.prof));
+  const ls = S.links.filter(l => hit(l.label) || hit(l.url));
+  const n = evU.length + fs.length + cs.length + ls.length;
+  return `<div class="muted">${n} result${n === 1 ? "" : "s"} for “${esc(term)}”</div>
+    ${cs.length ? `<section class="card"><div class="ch"><h3>Courses</h3></div>${cs.map(c => `<div class="ev" data-act="jump-course" data-id="${c.id}"><div class="etime">${esc(c.code.slice(0, 6))}</div><div><div class="et">${esc(c.name)}</div><div class="es">${esc(c.meets)}</div></div><span></span></div>`).join("")}</section>` : ""}
+    ${evU.length ? `<section class="card blue"><div class="ch"><h3>Schedule</h3></div>${grouped(evU.slice(0, 30))}</section>` : ""}
+    ${fs.length ? `<section class="card yellow"><div class="ch"><h3>Library</h3></div>${fs.map(fileRow).join("")}</section>` : ""}
+    ${ls.length ? `<section class="card"><div class="ch"><h3>Links</h3></div><div class="links">${ls.map(l => `<a class="lnk" href="${esc(l.url)}" target="_blank" rel="noopener"><strong>${esc(l.label)}</strong><small>${esc(l.url)}</small></a>`).join("")}</div></section>` : ""}
+    ${n ? "" : `<div class="empty">No matches. Try a course code, a chapter or a file name.</div>`}`;
+};
+
+/* ---------- router ---------- */
+const ROUTES = ["today", "schedule", "courses", "library", "links"];
+const route = () => { const h = location.hash.slice(1); return ROUTES.includes(h) ? h : "today"; };
+let gq = "";
+function render(){
+  const r = route();
+  document.querySelectorAll("#nav a").forEach(a => a.setAttribute("aria-current", !gq && a.getAttribute("href") === "#" + r ? "page" : "false"));
+  renderCounts();
+  $("#main").innerHTML = `<div class="view">${gq ? V.search(gq) : V[r]()}</div>`;
+  if (!gq && r === "library") wireLibrary();
+}
+window.addEventListener("hashchange", () => { gq = ""; $("#gq").value = ""; render(); });
+$("#gq").addEventListener("input", e => { gq = e.target.value.trim(); render(); });
+
+/* ---------- modals ---------- */
+function modal(html, wide){ $("#modalRoot").innerHTML = `<div class="scrim" id="scrim"><div class="modal ${wide ? "wide" : ""}" role="dialog" aria-modal="true">${html}</div></div>`; const f = $("#modalRoot input, #modalRoot select, #modalRoot button"); f && f.focus(); }
+function closeModal(){ const v = $("#modalRoot audio, #modalRoot video"); v && v.pause(); if (closeModal.url) { URL.revokeObjectURL(closeModal.url); closeModal.url = null; } $("#modalRoot").innerHTML = ""; }
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+const courseOpts = sel => `<option value="">No course</option>` + S.courses.map(c => `<option value="${c.id}" ${sel === c.id ? "selected" : ""}>${esc(c.code)} · ${esc(c.name)}</option>`).join("");
+function armed(btn, label){ if (btn.classList.contains("armed")) return true; btn.classList.add("armed"); btn.textContent = label; return false; }
+
+function eventForm(e){
+  const isNew = !e.id;
+  modal(`<form id="evF" class="fg">
+    <h2 class="full">${isNew ? "Add a date" : "Edit"}</h2>
+    <label class="fl full">Title<input type="text" id="ev_title" required value="${esc(e.title)}" placeholder="Med-Surg Exam 2, Clinical at the hospital…"></label>
+    <label class="fl">Type<select id="ev_type">${Object.entries(TYPES).map(([k, v]) => `<option value="${k}" ${e.type === k ? "selected" : ""}>${v === "Due" ? "Assignment due" : v}</option>`).join("")}</select></label>
+    <label class="fl">Course<select id="ev_course">${courseOpts(e.courseId)}</select></label>
+    <label class="fl">Date<input type="date" id="ev_date" required value="${esc(e.date)}"></label>
+    <label class="fl">Location<input type="text" id="ev_loc" value="${esc(e.location)}" placeholder="Room, unit or site"></label>
+    <label class="fl">Start<input type="time" id="ev_start" value="${esc(e.start)}"></label>
+    <label class="fl">End<input type="time" id="ev_end" value="${esc(e.end)}"></label>
+    <label class="row full"><input type="checkbox" id="ev_rep" ${e.repeat ? "checked" : ""}> Repeats every week</label>
+    <label class="fl full" id="untilW" ${e.repeat ? "" : "hidden"}>Last week<input type="date" id="ev_until" value="${esc(e.until)}"></label>
+    <label class="row full"><input type="checkbox" id="ev_tent" ${e.tentative ? "checked" : ""}> Date not confirmed yet</label>
+    <label class="fl full">Notes or chapters<textarea id="ev_notes" placeholder="Ch 53–56, ATI module, what to bring…">${esc(e.notes)}</textarea></label>
+    <div class="row full">${isNew ? "" : `<button type="button" class="btn danger" id="evDel">Delete</button>`}<span class="spacer"></span><button type="button" class="btn" data-close>Cancel</button><button class="btn yel">Save</button></div>
+  </form>`);
+  $("#ev_rep").onchange = ev => $("#untilW").hidden = !ev.target.checked;
+  $("#evF").onsubmit = ev => {
+    ev.preventDefault();
+    const o = { id: e.id || uid(), title: $("#ev_title").value.trim(), type: $("#ev_type").value, courseId: $("#ev_course").value, date: $("#ev_date").value, start: $("#ev_start").value, end: $("#ev_end").value,
+      location: $("#ev_loc").value.trim(), repeat: $("#ev_rep").checked, until: $("#ev_until").value, tentative: $("#ev_tent").checked, notes: $("#ev_notes").value.trim() };
+    const i = S.events.findIndex(x => x.id === o.id); i >= 0 ? S.events[i] = o : S.events.push(o);
+    save(); closeModal(); render(); toast(isNew ? "Added" : "Saved");
+  };
+  const del = $("#evDel"); if (del) del.onclick = () => { if (!armed(del, "Tap again to delete")) return; S.events = S.events.filter(x => x.id !== e.id); save(); closeModal(); render(); toast("Deleted"); };
+}
+function courseForm(c){
+  const isNew = !c.id;
+  modal(`<form id="cF" class="fg">
+    <h2 class="full">${isNew ? "Add course" : "Edit course"}</h2>
+    <label class="fl">Code<input type="text" id="c_code" required value="${esc(c.code)}" placeholder="NUR 4xx"></label>
+    <label class="fl">Color<select id="c_color">${COLORS.map(x => `<option value="${x}" ${c.color === x ? "selected" : ""} style="color:${x}">■ ${x}</option>`).join("")}</select></label>
+    <label class="fl full">Name<input type="text" id="c_name" required value="${esc(c.name)}"></label>
+    <label class="fl">Professor<input type="text" id="c_prof" value="${esc(c.prof)}"></label>
+    <label class="fl">Meets<input type="text" id="c_meets" value="${esc(c.meets)}" placeholder="Mon/Wed 0800–1100"></label>
+    <div class="row full">${isNew ? "" : `<button type="button" class="btn danger" id="cDel">Delete course</button>`}<span class="spacer"></span><button type="button" class="btn" data-close>Cancel</button><button class="btn yel">Save</button></div>
+  </form>`);
+  $("#cF").onsubmit = ev => {
+    ev.preventDefault();
+    const o = { id: c.id || uid(), code: $("#c_code").value.trim(), name: $("#c_name").value.trim(), prof: $("#c_prof").value.trim(), meets: $("#c_meets").value.trim(), color: $("#c_color").value };
+    const i = S.courses.findIndex(x => x.id === o.id); i >= 0 ? S.courses[i] = o : S.courses.push(o);
+    save(); closeModal(); render(); toast("Course saved");
+  };
+  const del = $("#cDel"); if (del) del.onclick = () => { if (!armed(del, "Tap again (files stay)")) return; S.courses = S.courses.filter(x => x.id !== c.id); S.events.forEach(e => { if (e.courseId === c.id) e.courseId = ""; }); save(); closeModal(); render(); toast("Course removed"); };
+}
+function linkForm(fileMode){
+  modal(`<form id="lF" class="fg">
+    <h2 class="full">${fileMode ? "Add a share link" : "Add link"}</h2>
+    <label class="fl full">Name<input type="text" id="l_label" required placeholder="${fileMode ? "Cardiac notebook" : "Canvas, ATI, my GitHub repo"}"></label>
+    <label class="fl full">URL<input type="url" id="l_url" required placeholder="https://"></label>
+    ${fileMode ? `<label class="fl">Type<select id="l_kind"><option value="notebooklm">NotebookLM</option><option value="notability">Notability</option><option value="other">Other</option></select></label><label class="fl">Course<select id="l_course">${courseOpts("")}</select></label>
+      <p class="muted full" style="margin:0;font-size:13px">Copy the link from the Share button in NotebookLM or Notability. For offline study, export a PDF or audio file and upload it instead.</p>`
+    : `<label class="fl full">Group<input type="text" id="l_group" value="School" list="grps"><datalist id="grps">${[...new Set(S.links.map(l => l.group))].map(g => `<option value="${esc(g)}">`).join("")}</datalist></label>`}
+    <div class="row full"><span class="spacer"></span><button type="button" class="btn" data-close>Cancel</button><button class="btn yel">Save</button></div>
+  </form>`);
+  $("#lF").onsubmit = async ev => {
+    ev.preventDefault();
+    const label = $("#l_label").value.trim(), url = $("#l_url").value.trim();
+    if (fileMode) { await F.put({ id: uid(), name: label, url, kind: $("#l_kind").value, courseId: $("#l_course").value, size: 0, added: Date.now() }); await refreshFiles(); }
+    else { S.links.push({ id: uid(), label, url, group: $("#l_group").value.trim() || "Other" }); save(); }
+    closeModal(); render(); toast("Link added");
+  };
+}
+async function openFile(id){
+  const f = FILES.find(x => x.id === id); if (!f) return;
+  if (f.url) { modal(`<h3>${esc(f.name)}</h3><a class="lnk" href="${esc(f.url)}" target="_blank" rel="noopener"><strong>Open in ${KINDS[f.kind]}</strong><small>${esc(f.url)}</small></a><div class="row"><span class="spacer"></span><button class="btn" data-close>Close</button></div>`); return; }
+  const url = URL.createObjectURL(f.blob); closeModal.url = url;
+  const t = f.type || "", n = f.name.toLowerCase(), pdf = t === "application/pdf" || n.endsWith(".pdf");
+  let body;
+  if (pdf) body = `<iframe class="viewer" src="${url}" title="${esc(f.name)}"></iframe>`;
+  else if (t.startsWith("audio/") || /\.(m4a|mp3|wav|aac|ogg)$/.test(n)) body = `<audio controls src="${url}" style="width:100%"></audio>`;
+  else if (t.startsWith("video/")) body = `<video controls src="${url}" style="width:100%;border-radius:10px"></video>`;
+  else if (t.startsWith("image/")) body = `<img src="${url}" alt="${esc(f.name)}" style="border-radius:10px">`;
+  else if (t.startsWith("text/")) body = `<pre style="white-space:pre-wrap;background:var(--sunk);padding:12px;border-radius:10px;overflow:auto">${esc(await f.blob.text())}</pre>`;
+  else body = `<div class="empty">This file type opens in its own app. Use "Save a copy" to open it in Apple Books, Notability or PowerPoint.</div>`;
+  modal(`<div class="row"><h3 style="min-width:0;overflow-wrap:anywhere;flex:1;margin:0">${esc(f.name)}</h3><a class="btn sm" href="${url}" target="_blank" rel="noopener">New tab</a><a class="btn sm" href="${url}" download="${esc(f.name)}">Save a copy</a><button class="btn sm" data-close>Close</button></div>${body}`, pdf);
+}
+
+/* ---------- uploads ---------- */
+async function addFiles(list){
+  if (!list || !list.length) return;
+  const ks = $("#upKind")?.value || "auto", cs = $("#upCourse")?.value || "";
+  try { navigator.storage?.persist?.(); } catch {}
+  let n = 0;
+  for (const f of list) { try { await F.put({ id: uid(), name: f.name, type: f.type, size: f.size, kind: ks === "auto" ? guessKind(f) : ks, courseId: cs, added: Date.now(), blob: f }); n++; } catch { toast(`Couldn't save ${f.name}: browser storage is full or blocked`); } }
+  await refreshFiles(); render(); if (n) toast(`Added ${n} file${n > 1 ? "s" : ""}`);
+}
+function wireLibrary(){
+  const drop = $("#drop"), inp = $("#fileIn");
+  $("#pick").onclick = e => { e.preventDefault(); inp.click(); };
+  inp.onchange = () => addFiles(inp.files);
+  ["dragenter", "dragover"].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.add("over"); }));
+  ["dragleave", "drop"].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.remove("over"); }));
+  drop.addEventListener("drop", e => addFiles(e.dataTransfer.files));
+  $("#libC").onchange = e => { libCourse = e.target.value; render(); };
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", async e => {
+  const el = e.target.closest("[data-act],[data-ev],[data-wk],[data-tf],[data-kf],[data-open],[data-delf],[data-dell],[data-close]");
+  if (!el) { if (e.target.id === "scrim") closeModal(); return; }
+  const d = el.dataset;
+  if ("close" in d) return closeModal();
+  if (d.ev) { const ev = S.events.find(x => x.id === d.ev); return ev && eventForm(ev); }
+  if (d.wk !== undefined) { weekOffset = d.wk === "0" ? 0 : weekOffset + Number(d.wk); return render(); }
+  if (d.tf) { typeFilter = d.tf; return render(); }
+  if (d.kf) { kindFilter = d.kf; return render(); }
+  if (d.open) return openFile(d.open);
+  if (d.delf) {
+    if (!armed(el, "Confirm")) { setTimeout(() => { if (el.isConnected) { el.classList.remove("armed"); el.textContent = "Delete"; } }, 3000); return; }
+    await F.del(d.delf); await refreshFiles(); render(); return toast("File deleted");
+  }
+  if (d.dell) { if (!armed(el, "Delete?")) return; S.links = S.links.filter(l => l.id !== d.dell); save(); render(); return toast("Link removed"); }
+  switch (d.act) {
+    case "add-event": return eventForm({ title: "", type: d.type || "class", courseId: d.course || "", date: d.date || ymd(today()), start: "", end: "", location: "", repeat: false, until: "", tentative: false, notes: "" });
+    case "go-upload": gq = ""; $("#gq").value = ""; if (location.hash === "#library") render(); location.hash = "library"; setTimeout(() => $("#fileIn")?.click(), 60); return;
+    case "add-course": return courseForm({ code: "", name: "", prof: "", meets: "", color: COLORS[S.courses.length % COLORS.length] });
+    case "edit-course": return courseForm(course(d.id));
+    case "toggle-course": openC.has(d.id) ? openC.delete(d.id) : openC.add(d.id); return render();
+    case "jump-course": openC.add(d.id); gq = ""; $("#gq").value = ""; location.hash === "#courses" ? render() : (location.hash = "courses"); return;
+    case "add-link": return linkForm(false);
+    case "add-link-file": return linkForm(true);
+    case "export": {
+      const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 2)], { type: "application/json" })); a.download = `shift-board-backup-${ymd(today())}.json`;
+      document.body.appendChild(a); a.click(); a.remove(); return toast("Backup exported");
+    }
+  }
+});
+document.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-ev][role=button]")) { e.preventDefault(); e.target.click(); } });
+document.addEventListener("change", async e => {
+  const t = e.target;
+  if (t.dataset.fk || t.dataset.fc) {
+    const f = FILES.find(x => x.id === (t.dataset.fk || t.dataset.fc)); if (!f) return;
+    if (t.dataset.fk) f.kind = t.value; else f.courseId = t.value;
+    await F.put(f); await refreshFiles(); toast("Updated"); if (t.dataset.fk) render();
+  }
+  if (t.id === "impIn" && t.files[0]) {
+    try { const o = JSON.parse(await t.files[0].text()); if (!o.courses || !o.events) throw 0; S = { links: [], ...o }; save(); render(); toast("Backup imported"); }
+    catch { toast("That file isn't a Shift Board backup"); }
+  }
+});
+
+/* ---------- boot ---------- */
+setInterval(renderCounts, 60000);
+(async () => {
+  let done = null; try { done = localStorage.getItem(KEY + ".loaded"); } catch {}
+  if (!done && location.protocol.startsWith("http") && location.hostname.endsWith("github.io")) {
+    try { const r = await fetch("data.json", { cache: "no-store" }); if (r.ok) { const o = await r.json(); if (o.courses && o.events) { S = { links: [], ...o }; save(); } } } catch {}
+    try { localStorage.setItem(KEY + ".loaded", "1"); } catch {}
+  }
+  await refreshFiles(); render();
+})();
+render();
+})();
+</script>
