@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study Corner Quiz</title>
+<meta name="theme-color" content="#0A1222">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Same "study mode" palette as the Shift Board: navy ground, focus blue, highlighter yellow. */
+:root{
+  color-scheme:dark;
+  --bg:#0A1222; --surface:#111C31; --raised:#16233C; --sunk:#0C1528; --line:#22324F;
+  --ink:#EAF0FA; --muted:#8C9BB8; --faint:#5C6C8A;
+  --blue:#5B9BFF; --blue-deep:#2156C9; --blue-wash:#13284D;
+  --yellow:#FFD34D; --yellow-wash:#2E2814;
+  --good:#4FD1A5; --good-wash:#12302A; --bad:#FF7A6B; --bad-wash:#3A1E1D;
+  --display:"DM Serif Display", Georgia, serif;
+  --body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:16px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 500px at 85% -10%, rgba(91,155,255,.10), transparent 60%);background-attachment:fixed}
+a{color:var(--blue)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px)) 80px}
+header{padding-block:28px 6px}
+.crumbs{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--yellow)}
+h1{font:400 clamp(36px,7vw,50px)/1 var(--display);margin:10px 0 0;color:var(--yellow)}
+h1 span{color:var(--ink)}
+h2{font:400 26px/1.2 var(--display);margin:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-top:14px;min-width:0}
+.card.y{border-color:rgba(255,211,77,.55)}
+.muted{color:var(--muted)} .small{font-size:13px}
+.lbl{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--raised);border-radius:99px;padding:7px 13px;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+select{background:var(--sunk);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+.btn{border:1px solid var(--line);background:var(--raised);padding:10px 16px;border-radius:11px;cursor:pointer;font-weight:700;font-size:14.5px}
+.btn:hover{border-color:var(--blue)}
+.btn.primary{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff}
+.btn.yel{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+.btn.sm{padding:6px 11px;font-size:13px;border-radius:9px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+.stat{background:var(--raised);border:1px solid var(--line);border-radius:12px;padding:12px}
+.stat b{display:block;font:500 22px var(--mono);font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+.bar{height:8px;background:var(--sunk);border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;background:var(--blue)}
+.deckrow{display:grid;grid-template-columns:minmax(0,1fr) 120px auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.deckrow:first-of-type{border-top:0}
+.deckrow .n{font-weight:700;font-size:14px}
+.pct{font:500 13px var(--mono);color:var(--muted);text-align:right;min-width:44px;font-variant-numeric:tabular-nums}
+.hist{font-size:13.5px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px}
+.hist .s{font-family:var(--mono);font-variant-numeric:tabular-nums}
+/* quiz */
+.prog{display:flex;justify-content:space-between;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.qtag{display:inline-block;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--blue-wash);color:var(--blue);margin-right:6px}
+.qtag.y{background:var(--yellow-wash);color:var(--yellow)}
+.q{font-size:18px;font-weight:700;line-height:1.4;margin:12px 0 4px}
+.sata{font:500 12px var(--mono);color:var(--yellow);letter-spacing:.06em}
+.opts{display:grid;gap:8px;margin-top:14px}
+.opt{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;text-align:left;border:1px solid var(--line);background:var(--raised);border-radius:12px;padding:12px 14px;cursor:pointer;font-size:15px}
+.opt:hover{border-color:var(--blue)}
+.opt .k{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);display:grid;place-items:center;font:500 12px var(--mono);color:var(--muted)}
+.opt.multi .k{border-radius:6px}
+.opt[aria-pressed="true"]{border-color:var(--yellow);background:var(--yellow-wash)}
+.opt[aria-pressed="true"] .k{background:var(--yellow);color:#1A1405;border-color:var(--yellow)}
+.opt.right{border-color:var(--good);background:var(--good-wash)}
+.opt.right .k{background:var(--good);color:#0A1222;border-color:var(--good)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-wash)}
+.opt.wrong .k{background:var(--bad);color:#0A1222;border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--sunk)}
+.fb.ok{border-color:var(--good)} .fb.no{border-color:var(--bad)}
+.fb strong{display:block;margin-bottom:4px}
+.fb.ok strong{color:var(--good)} .fb.no strong{color:var(--bad)}
+.big{font:400 64px/1 var(--display);color:var(--yellow)}
+.miss{padding:12px 0;border-top:1px solid var(--line)}
+.miss:first-child{border-top:0}
+.miss .a{color:var(--good);font-weight:700;font-size:14px;margin-top:4px}
+.miss .w{color:var(--muted);font-size:13.5px;margin-top:4px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--yellow);color:#1A1405;padding:9px 18px;border-radius:99px;font-weight:700;z-index:30;font-size:14px}
+@media (max-width:560px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .deckrow{grid-template-columns:minmax(0,1fr) auto}
+  .deckrow .bar{grid-column:1/-1;order:3}
+  .q{font-size:17px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="crumbs"><a href="../">Shift Board</a> / <a href="./">Study</a> / Quiz</div>
+    <h1>Quiz <span>Room</span></h1>
+  </header>
+  <main id="main"></main>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script src="questions.js"></script>
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const DAY = 864e5;
+const DECKS = window.DECKS || [], BANK = window.QBANK || [];
+const deckOf = id => DECKS.find(d => d.id === id);
+const COURSES = [...new Set(DECKS.map(d => d.course))];
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, 2200); }
+
+/* ---------- progress (this browser only) ---------- */
+const KEY = "studycorner.quiz.v1";
+let P;
+try { P = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { P = {}; }
+P.q ||= {}; P.attempts ||= [];
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch {} };
+const st = id => P.q[id] ||= { seen: 0, right: 0, wrong: 0, box: 0, m: false, due: 0 };
+/* Mistake log: a miss puts the question in the log, due now. Each later correct answer moves it up a box
+   (due again in 1 day, then 3 days); the third correct answer in a row clears it. Any miss resets it. */
+const GAPS = [0, DAY, 3 * DAY];
+function record(id, ok){
+  const s = st(id); s.seen++; s.last = Date.now();
+  if (ok) { s.right++; if (s.m) { s.box++; if (s.box >= 3) { s.m = false; s.box = 0; s.cleared = (s.cleared || 0) + 1; } else s.due = Date.now() + GAPS[s.box]; } }
+  else { s.wrong++; s.m = true; s.box = 0; s.due = Date.now(); }
+  save();
+}
+const mistakes = () => BANK.filter(q => P.q[q.id]?.m);
+const dueMistakes = () => mistakes().filter(q => (P.q[q.id].due || 0) <= Date.now());
+
+/* ---------- setup state ---------- */
+const params = new URLSearchParams(location.search);
+let scope = params.get("deck") ? "deck:" + params.get("deck") : params.get("course") ? "course:" + params.get("course") : "all";
+let mode = params.get("mode") || "10";
+const inScope = q => scope === "all" ? true : scope.startsWith("deck:") ? q.deck === scope.slice(5) : deckOf(q.deck)?.course === scope.slice(7);
+const scopeName = () => scope === "all" ? "All courses" : scope.startsWith("deck:") ? (deckOf(scope.slice(5))?.name || "Deck") : scope.slice(7);
+
+function buildSet(){
+  const pool = BANK.filter(inScope);
+  if (mode === "mistakes") {
+    const m = pool.filter(q => P.q[q.id]?.m).sort((a, b) => (P.q[a.id].due || 0) - (P.q[b.id].due || 0));
+    return m.slice(0, 25);
+  }
+  if (mode === "all") return shuffle(pool);
+  const n = Math.min(+mode || 10, pool.length);
+  // Reinforce: up to 40% of a practice set comes from due mistakes, then unseen questions, then the rest.
+  const due = shuffle(pool.filter(q => P.q[q.id]?.m && (P.q[q.id].due || 0) <= Date.now())).slice(0, Math.ceil(n * .4));
+  const picked = new Set(due.map(q => q.id));
+  const unseen = shuffle(pool.filter(q => !picked.has(q.id) && !P.q[q.id]?.seen));
+  const rest = shuffle(pool.filter(q => !picked.has(q.id) && P.q[q.id]?.seen)).sort((a, b) => acc(a.id) - acc(b.id));
+  return shuffle([...due, ...unseen, ...rest].slice(0, n));
+}
+const acc = id => { const s = P.q[id]; return s && s.seen ? s.right / s.seen : 1; };
+
+/* ---------- home ---------- */
+function home(){
+  const all = BANK.length, seenQ = BANK.filter(q => P.q[q.id]?.seen).length;
+  const tot = BANK.reduce((a, q) => a + (P.q[q.id]?.seen || 0), 0), right = BANK.reduce((a, q) => a + (P.q[q.id]?.right || 0), 0);
+  const mis = mistakes().length, due = dueMistakes().length;
+  const scopeChips = [["all", "All"], ...COURSES.map(c => ["course:" + c, c])];
+  const pool = BANK.filter(inScope);
+  const poolMis = pool.filter(q => P.q[q.id]?.m).length;
+  $("#main").innerHTML = `
+  <section class="card y">
+    <h2>Start a quiz</h2>
+    <div class="lbl">Course</div>
+    <div class="chips" id="scopeChips">${scopeChips.map(([k, v]) => `<button class="chip" data-scope="${esc(k)}" aria-pressed="${scope === k}">${esc(v)}</button>`).join("")}</div>
+    <div class="lbl">Or one lecture deck</div>
+    <select id="deckSel"><option value="">Any deck in this course</option>${DECKS.map(d => `<option value="${d.id}" ${scope === "deck:" + d.id ? "selected" : ""}>${esc(d.course)} · ${esc(d.name)} (${BANK.filter(q => q.deck === d.id).length})</option>`).join("")}</select>
+    <div class="lbl">Mode</div>
+    <div class="chips" id="modeChips">
+      ${[["10", "10 questions"], ["20", "20 questions"], ["all", `Every question (${pool.length})`], ["mistakes", `My mistakes (${poolMis})`]].map(([k, v]) => `<button class="chip" data-mode="${k}" aria-pressed="${mode === k}">${v}</button>`).join("")}
+    </div>
+    <p class="small muted" style="margin:12px 0 0">${mode === "mistakes" ? "Questions you missed, the most overdue first. Three correct answers in a row clears one from the log." : "Missed questions come back at the end of the round, and due mistakes are mixed into new sets."}</p>
+    <div class="row" style="margin-top:14px"><span class="muted small">${esc(scopeName())}</span><span class="spacer"></span><button class="btn yel" id="go" ${mode === "mistakes" && !poolMis ? "disabled" : ""}>Start</button></div>
+  </section>
+
+  <section class="card">
+    <div class="row"><h2>Your progress</h2><span class="spacer"></span>${due ? `<button class="btn sm primary" data-act="review">Review ${due} due mistake${due > 1 ? "s" : ""}</button>` : ""}</div>
+    <div class="stats">
+      <div class="stat"><b>${tot ? Math.round(right / tot * 100) : 0}%</b><span>accuracy</span></div>
+      <div class="stat"><b>${seenQ}/${all}</b><span>questions tried</span></div>
+      <div class="stat"><b>${mis}</b><span>in mistake log</span></div>
+      <div class="stat"><b>${P.attempts.length}</b><span>quizzes taken</span></div>
+    </div>
+    <div class="lbl" style="margin-top:18px">By deck</div>
+    ${DECKS.map(d => {
+      const qs = BANK.filter(q => q.deck === d.id), s = qs.reduce((a, q) => a + (P.q[q.id]?.seen || 0), 0), r = qs.reduce((a, q) => a + (P.q[q.id]?.right || 0), 0);
+      const m = qs.filter(q => P.q[q.id]?.m).length, p = s ? Math.round(r / s * 100) : null;
+      return `<div class="deckrow"><div style="min-width:0"><div class="n">${esc(d.name)}</div><div class="small muted">${esc(d.course)} · ${qs.filter(q => P.q[q.id]?.seen).length}/${qs.length} tried${m ? ` · <span style="color:var(--bad)">${m} to fix</span>` : ""}</div></div>
+        <div class="bar" title="${p ?? 0}%"><i style="width:${p ?? 0}%;background:${p === null ? "var(--line)" : p >= 80 ? "var(--good)" : p >= 60 ? "var(--yellow)" : "var(--bad)"}"></i></div>
+        <div class="row" style="gap:8px;flex-wrap:nowrap"><span class="pct">${p === null ? "—" : p + "%"}</span><button class="btn sm" data-deck="${d.id}">Quiz</button></div></div>`;
+    }).join("")}
+  </section>
+
+  <section class="card">
+    <h2>Recent quizzes</h2>
+    ${P.attempts.length ? `<div class="hist" style="margin-top:10px">${P.attempts.slice(-8).reverse().map(a => `<span class="muted s">${new Date(a.at).toLocaleDateString(undefined, { month: "short", day: "numeric" })}</span><span>${esc(a.scope)}${a.mode === "mistakes" ? " · mistakes" : ""}</span><span class="s" style="color:${a.score / a.total >= .8 ? "var(--good)" : a.score / a.total >= .6 ? "var(--yellow)" : "var(--bad)"}">${a.score}/${a.total}</span>`).join("")}</div>` : `<p class="muted">No quizzes yet. Your scores will show up here.</p>`}
+  </section>
+
+  <section class="card">
+    <h2>Keep your progress</h2>
+    <p class="muted small">Scores and the mistake log are saved in this browser. To move them to your phone or another computer, export here and import there.</p>
+    <div class="row"><button class="btn sm" data-act="export">Export progress</button><label class="btn sm" for="imp">Import progress</label><input type="file" id="imp" accept=".json,application/json" hidden><span class="spacer"></span><button class="btn sm" data-act="reset" style="color:var(--bad)">Reset all</button></div>
+  </section>`;
+}
+
+/* ---------- quiz run ---------- */
+let R = null;
+function start(){
+  const set = buildSet();
+  if (!set.length) { toast(mode === "mistakes" ? "No mistakes here. Nice." : "No questions in this scope yet"); return; }
+  R = { queue: set.map(q => ({ q, retry: false })), i: 0, first: {}, missed: [], scope: scopeName(), mode, t0: Date.now() };
+  ask();
+}
+function ask(){
+  const item = R.queue[R.i], q = item.q, d = deckOf(q.deck), multi = q.answer.length > 1;
+  const order = shuffle(q.choices.map((_, k) => k));
+  item.order = order; item.sel = new Set();
+  const firstTotal = R.queue.filter(x => !x.retry).length, done = Object.keys(R.first).length;
+  $("#main").innerHTML = `
+  <section class="card">
+    <div class="prog"><span>${item.retry ? "Second look" : `Question ${Math.min(done + 1, firstTotal)} of ${firstTotal}`}</span><span>${Object.values(R.first).filter(Boolean).length} correct</span></div>
+    <div class="bar" style="margin-top:8px"><i style="width:${done / firstTotal * 100}%"></i></div>
+    <div style="margin-top:16px"><span class="qtag">${esc(d?.course || "")}</span><span class="qtag y">${esc(q.topic)}</span></div>
+    <div class="q">${esc(q.q)}</div>
+    ${multi ? `<div class="sata">SELECT ALL THAT APPLY</div>` : ""}
+    <div class="opts" id="opts">${order.map((k, n) => `<button class="opt ${multi ? "multi" : ""}" data-k="${k}" aria-pressed="false"><span class="k">${String.fromCharCode(65 + n)}</span><span>${esc(q.choices[k])}</span></button>`).join("")}</div>
+    <div id="fb"></div>
+    <div class="row" style="margin-top:14px"><button class="btn sm" data-act="quit">End quiz</button><span class="spacer"></span><button class="btn yel" id="check" disabled>Check answer</button></div>
+  </section>`;
+  window.scrollTo({ top: 0 });
+}
+function choose(k){
+  const item = R.queue[R.i], multi = item.q.answer.length > 1;
+  if (item.checked) return;
+  if (multi) item.sel.has(k) ? item.sel.delete(k) : item.sel.add(k); else { item.sel.clear(); item.sel.add(k); }
+  document.querySelectorAll("#opts .opt").forEach(b => b.setAttribute("aria-pressed", item.sel.has(+b.dataset.k)));
+  $("#check").disabled = !item.sel.size;
+}
+function check(){
+  const item = R.queue[R.i], q = item.q;
+  if (item.checked) { next(); return; }
+  item.checked = true;
+  const ans = new Set(q.answer), ok = ans.size === item.sel.size && [...ans].every(k => item.sel.has(k));
+  if (!item.retry) { R.first[q.id] = ok; record(q.id, ok); if (!ok) R.missed.push(q); }
+  else if (ok) record(q.id, true);
+  if (!ok && !item.retry) R.queue.push({ q, retry: true }); // reinforce: comes back once before the round ends
+  document.querySelectorAll("#opts .opt").forEach(b => {
+    const k = +b.dataset.k; b.disabled = true;
+    if (ans.has(k)) b.classList.add("right"); else if (item.sel.has(k)) b.classList.add("wrong");
+  });
+  $("#fb").innerHTML = `<div class="fb ${ok ? "ok" : "no"}"><strong>${ok ? "Correct" : item.q.answer.length > 1 ? "Not quite: the green options are all correct" : "Not quite"}</strong>${esc(q.why)}${!ok && !item.retry ? `<div class="small muted" style="margin-top:6px">This one comes back before the end of the round, and it's in your mistake log.</div>` : ""}</div>`;
+  const c = $("#check"); c.textContent = R.i + 1 < R.queue.length ? "Next" : "See results"; c.disabled = false; c.focus();
+}
+function next(){ R.i++; R.i < R.queue.length ? ask() : results(); }
+function results(){
+  const total = Object.keys(R.first).length, score = Object.values(R.first).filter(Boolean).length;
+  if (total) { P.attempts.push({ at: Date.now(), scope: R.scope, mode: R.mode, score, total }); if (P.attempts.length > 200) P.attempts = P.attempts.slice(-200); save(); }
+  const pct = total ? Math.round(score / total * 100) : 0, mins = Math.max(1, Math.round((Date.now() - R.t0) / 6e4));
+  const missed = R.missed;
+  $("#main").innerHTML = `
+  <section class="card y" style="text-align:center">
+    <div class="big">${score}/${total}</div>
+    <p style="margin:8px 0 0;font-weight:700">${pct}% on first try · ${mins} min</p>
+    <p class="muted small" style="margin:6px 0 0">${pct >= 90 ? "Exam-ready on this set." : pct >= 77 ? "Above the 77% line. Clear the misses to lock it in." : "Below the 77% line. Review the rationales below, then run your mistakes."}</p>
+    <div class="row" style="justify-content:center;margin-top:14px">${missed.length ? `<button class="btn yel" data-act="retry-missed">Drill these ${missed.length} again</button>` : ""}<button class="btn" data-act="home">Back to quizzes</button></div>
+  </section>
+  ${missed.length ? `<section class="card"><h2>What to review</h2>${missed.map(q => `<div class="miss"><div style="font-weight:700">${esc(q.q)}</div><div class="a">✓ ${q.answer.map(k => esc(q.choices[k])).join(" · ")}</div><div class="w">${esc(q.why)}</div></div>`).join("")}</section>` : ""}`;
+  window.scrollTo({ top: 0 });
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e => {
+  const t = e.target.closest("button, [data-scope], [data-mode]"); if (!t) return;
+  if (t.dataset.scope) { scope = t.dataset.scope; home(); return; }
+  if (t.dataset.mode) { mode = t.dataset.mode; home(); return; }
+  if (t.dataset.deck) { scope = "deck:" + t.dataset.deck; mode = "10"; start(); return; }
+  if (t.dataset.k !== undefined) { choose(+t.dataset.k); return; }
+  if (t.id === "go") { start(); return; }
+  if (t.id === "check") { check(); return; }
+  const a = t.dataset.act;
+  if (a === "review") { scope = "all"; mode = "mistakes"; start(); }
+  if (a === "quit") { if (Object.keys(R.first).length) results(); else { R = null; home(); } }
+  if (a === "home") { R = null; home(); }
+  if (a === "retry-missed") { const qs = R.missed; R = { queue: shuffle(qs).map(q => ({ q, retry: false })), i: 0, first: {}, missed: [], scope: R.scope + " · retry", mode: "mistakes", t0: Date.now() }; ask(); }
+  if (a === "export") {
+    const blob = new Blob([JSON.stringify(P)], { type: "application/json" }), u = URL.createObjectURL(blob), l = document.createElement("a");
+    l.href = u; l.download = `study-corner-progress-${new Date().toISOString().slice(0, 10)}.json`; l.click(); setTimeout(() => URL.revokeObjectURL(u), 1000);
+  }
+  if (a === "reset") { if (t.dataset.armed) { P = { q: {}, attempts: [] }; save(); home(); toast("Progress reset"); } else { t.dataset.armed = "1"; t.textContent = "Tap again to erase"; } }
+});
+document.addEventListener("change", e => {
+  if (e.target.id === "deckSel") { scope = e.target.value ? "deck:" + e.target.value : "all"; home(); }
+  if (e.target.id === "imp") {
+    const f = e.target.files[0]; if (!f) return;
+    f.text().then(t => { const o = JSON.parse(t); if (!o || typeof o.q !== "object") throw 0; P = { q: o.q, attempts: o.attempts || [] }; save(); home(); toast("Progress imported"); }).catch(() => toast("That file isn't a progress export"));
+  }
+});
+document.addEventListener("keydown", e => {
+  if (!R || !$("#opts")) return;
+  const n = "abcdefgh".indexOf(e.key.toLowerCase());
+  if (n >= 0 && R.queue[R.i].order && n < R.queue[R.i].order.length) choose(R.queue[R.i].order[n]);
+  if (e.key === "Enter" && !$("#check").disabled) { e.preventDefault(); check(); }
+});
+
+if (params.get("start") === "1") start(); else home();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study Corner</title>
+<meta name="theme-color" content="#0A1222">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0A1222; --surface:#111C31; --raised:#16233C; --sunk:#0C1528; --line:#22324F;
+  --ink:#EAF0FA; --muted:#8C9BB8; --faint:#5C6C8A;
+  --blue:#5B9BFF; --blue-deep:#2156C9; --blue-wash:#13284D;
+  --yellow:#FFD34D; --yellow-wash:#2E2814;
+  --good:#4FD1A5; --bad:#FF7A6B; --violet:#B9A2FF;
+  --display:"DM Serif Display", Georgia, serif;
+  --body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 500px at 85% -10%, rgba(91,155,255,.10), transparent 60%),radial-gradient(700px 400px at -10% 10%, rgba(255,211,77,.05), transparent 60%);background-attachment:fixed}
+a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px)) 80px}
+header{padding-block:28px 6px}
+.crumbs{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--yellow)}
+h1{font:400 clamp(40px,8vw,56px)/1 var(--display);margin:10px 0 0;color:var(--yellow)}
+h1 span{color:var(--ink)}
+.sub{color:var(--muted);margin-top:10px;max-width:60ch}
+h2{font:400 28px/1.15 var(--display);margin:32px 0 4px}
+h3{font:700 17px/1.3 var(--body);margin:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-top:14px;min-width:0}
+.card.y{border-color:rgba(255,211,77,.55);background:linear-gradient(160deg,var(--yellow-wash),var(--surface) 70%)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+.muted{color:var(--muted)} .small{font-size:13px}
+.btn{display:inline-block;border:1px solid var(--line);background:var(--raised);padding:9px 15px;border-radius:11px;font-weight:700;font-size:14px;text-decoration:none;color:var(--ink)}
+.btn:hover{border-color:var(--blue)}
+.btn.yel{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+.btn.sm{padding:6px 11px;font-size:13px;border-radius:9px}
+.nums{display:flex;gap:22px;flex-wrap:wrap;margin-top:12px}
+.nums b{display:block;font:500 24px var(--mono);font-variant-numeric:tabular-nums}
+.nums span{font-size:12px;color:var(--muted)}
+.course{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--blue-wash);color:var(--blue)}
+.item{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:0}
+.ic{width:42px;height:46px;border-radius:8px;display:grid;place-items:center;font:500 10px var(--mono);color:#0A1222}
+.ic.ppt{background:var(--yellow)} .ic.web{background:var(--blue)} .ic.aud{background:var(--violet)}
+.t{font-weight:700;overflow-wrap:anywhere}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.steps{margin:8px 0 0;padding-left:20px}
+.steps li{margin:6px 0}
+.note{border-left:3px solid var(--yellow);padding:6px 0 6px 12px;color:var(--muted);font-size:13.5px;margin-top:12px}
+@media (max-width:560px){
+  .item{grid-template-columns:36px minmax(0,1fr)}
+  .ic{width:36px;height:40px}
+  .acts{grid-column:2;justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="crumbs"><a href="../">Shift Board</a> / Study</div>
+    <h1>Study <span>Corner</span></h1>
+    <p class="sub">Lecture decks, study guides and practice sets for Cohort 38, plus quizzes that track your score and bring back what you missed.</p>
+  </header>
+
+  <section class="card y">
+    <div class="row"><h3>Quiz Room</h3><span class="spacer"></span><a class="btn yel" href="quiz.html">Open quizzes</a></div>
+    <div class="nums" id="nums"></div>
+    <div id="due"></div>
+  </section>
+
+  <div id="courses"></div>
+
+  <h2>Study guides &amp; practice sets</h2>
+  <p class="muted small">Interactive pages built during the semester. The practice sets keep their own scores in this browser.</p>
+  <div id="guides"></div>
+
+  <h2>Connect NotebookLM &amp; Notability</h2>
+  <section class="card">
+    <p style="margin-top:0">Neither app can push files straight into a website, and this site is public, so it shouldn't hold your personal notes anyway. This is the closest thing to real time:</p>
+    <h3 style="margin-top:14px">Notability → Google Drive (automatic)</h3>
+    <ol class="steps">
+      <li>In Notability, open <b>Settings → Auto-backup</b>, choose <b>Google Drive</b>, and set the format to <b>PDF</b>.</li>
+      <li>Every note you edit is re-exported to a <b>Notability</b> folder in Drive within a few minutes.</li>
+      <li>Open that Drive folder from <a href="#links-anchor">the link below</a>. Save it once with your folder's link and it's one tap from here.</li>
+    </ol>
+    <h3 style="margin-top:14px">NotebookLM ← the same Drive folder</h3>
+    <ol class="steps">
+      <li>In a NotebookLM notebook, <b>Add source → Google Drive</b>, and pick your Notability PDFs or Google Docs.</li>
+      <li>Drive sources don't refresh themselves. For Google Docs and Slides, open the source and press <b>Click to sync with Google Drive</b>. For a PDF, remove it and add the new copy.</li>
+      <li>Audio Overviews download as audio files. Drop them in the Shift Board's <a href="../#library">Library</a>, which keeps them private on your device.</li>
+    </ol>
+    <div class="note">Only uploaded slide decks and the study pages live on GitHub. Anything with your name, grades or clinical notes stays in Drive, Notability or the Library tab.</div>
+    <div class="row" style="margin-top:14px" id="links-anchor">
+      <a class="btn sm" id="driveLink" href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener">Open my Notability folder</a>
+      <a class="btn sm" href="https://notebooklm.google.com/" target="_blank" rel="noopener">NotebookLM</a>
+      <button class="btn sm" id="setDrive" type="button">Set folder link</button>
+    </div>
+  </section>
+</div>
+<script src="questions.js"></script>
+<script>
+(() => {
+"use strict";
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const DECKS = window.DECKS || [], BANK = window.QBANK || [];
+let P = {}; try { P = JSON.parse(localStorage.getItem("studycorner.quiz.v1")) || {}; } catch {}
+const Q = P.q || {};
+
+const tot = BANK.reduce((a, q) => a + (Q[q.id]?.seen || 0), 0), right = BANK.reduce((a, q) => a + (Q[q.id]?.right || 0), 0);
+const mis = BANK.filter(q => Q[q.id]?.m), due = mis.filter(q => (Q[q.id].due || 0) <= Date.now());
+$("#nums").innerHTML = `<div><b>${BANK.length}</b><span>questions</span></div><div><b>${tot ? Math.round(right / tot * 100) + "%" : "—"}</b><span>your accuracy</span></div><div><b>${mis.length}</b><span>in mistake log</span></div><div><b>${(P.attempts || []).length}</b><span>quizzes taken</span></div>`;
+if (due.length) $("#due").innerHTML = `<div class="row" style="margin-top:14px"><span class="muted small">${due.length} missed question${due.length > 1 ? "s are" : " is"} due for review.</span><span class="spacer"></span><a class="btn sm" href="quiz.html?mode=mistakes&start=1">Review now</a></div>`;
+
+const COURSES = [
+  { code: "NUR 326", name: "Medical-Surgical Nursing" },
+  { code: "NUR 333", name: "Pharmacological Applications" },
+  { code: "NUR 332", name: "Nutrition (Topics in Nursing)" }
+];
+const GUIDES = [
+  { term: "This term", items: [
+    ["NUR 326", "Med-Surg Exam Guide", "med-surg-exam-guide.html"],
+    ["NUR 326", "Neuro Practice Set", "neuro-practice-set.html"],
+    ["NUR 326", "Respiratory Practice Set", "respiratory-practice-set.html"],
+    ["NUR 333", "Pharm Apps Midterm Guide", "pharm-apps-midterm-guide.html"],
+    ["NUR 333", "Pharm Apps NGN Quiz", "pharm-apps-ngn-quiz.html"],
+    ["NUR 328", "Community Health Case Studies", "community-health-case-studies.html"],
+    ["Pharm", "Dosage Calculation Drill", "dosage-calculation-drill.html"]
+  ]},
+  { term: "Quarter 1 review", items: [
+    ["Q1", "Finals Review, Cohort 38 Quarter 1", "finals-review-q1.html"],
+    ["Q1", "Essentials Final Practice Exam", "essentials-final-practice-1.html"],
+    ["Q1", "Essentials Final Practice Exam, Set 2", "essentials-final-practice-2.html"],
+    ["Q1", "Head-to-Toe Assessment", "head-to-toe-assessment.html"],
+    ["NUR 312", "NUR 312 Pharm Guide", "nur312-pharm-guide.html"],
+    ["NUR 312", "NUR 312 Exam 3: Pharmacology Study Guide", "nur312-exam3-pharm-guide.html"],
+    ["NUR 312", "Levothyroxine Drug Card", "levothyroxine-drug-card.html"],
+    ["NUR 315", "NUR 315 Study Guide, Weeks 7, 8 & 10", "nur315-study-guide.html"],
+    ["NUR 315", "NUR 315 Practice Test, Weeks 7, 8 & 10", "nur315-practice-test.html"],
+    ["Patho", "Weeks 8–9 Pathophysiology: Renal, Endocrine, Reproductive", "weeks8-9-pathophysiology.html"],
+    ["Patho", "Weeks 8–9 Study Guide: Renal, Endocrine & Reproductive", "weeks8-9-renal-endocrine-repro.html"],
+    ["NUR 311", "Ch. 18 Urinary System Disorders", "ch18-urinary-disorders.html"]
+  ]}
+];
+
+$("#courses").innerHTML = COURSES.map(c => {
+  const ds = DECKS.filter(d => d.course === c.code);
+  return `<h2>${esc(c.name)}</h2><div class="row"><span class="course">${esc(c.code)}</span><span class="spacer"></span><a class="btn sm" href="quiz.html?course=${encodeURIComponent(c.code)}">Quiz the whole course</a></div>
+  <section class="card">${ds.map(d => {
+    const qs = BANK.filter(q => q.deck === d.id), s = qs.reduce((a, q) => a + (Q[q.id]?.seen || 0), 0), r = qs.reduce((a, q) => a + (Q[q.id]?.right || 0), 0);
+    return `<div class="item"><div class="ic ppt">PPTX</div>
+      <div style="min-width:0"><div class="t">${esc(d.name)}</div><div class="small muted">${esc(d.ch)} · ${qs.length} questions${s ? ` · ${Math.round(r / s * 100)}% so far` : ""}</div></div>
+      <div class="acts"><a class="btn sm yel" href="quiz.html?deck=${d.id}&start=1">Quiz</a><a class="btn sm" href="../decks/${encodeURI(d.file)}" download>Slides</a></div></div>`;
+  }).join("")}
+  ${c.code === "NUR 326" ? `<div class="item"><div class="ic aud">POD</div><div style="min-width:0"><div class="t">Med-Surg Weeks 1–2 Podcast: Maya &amp; Dee</div><div class="small muted">Opens on claude.ai, so only you can see it while signed in</div></div><div class="acts"><a class="btn sm" href="https://claude.ai/artifact/VgMtkakjW9LhWvLtSHBj4v" target="_blank" rel="noopener">Open</a></div></div>` : ""}
+  </section>`;
+}).join("");
+
+$("#guides").innerHTML = GUIDES.map(g => `<section class="card"><h3 style="margin-bottom:6px">${esc(g.term)}</h3>${g.items.map(([c, t, f]) => `
+  <div class="item"><div class="ic web">${esc(c.replace("NUR ", ""))}</div><div style="min-width:0"><div class="t">${esc(t)}</div><div class="small muted">${esc(c)}</div></div><div class="acts"><a class="btn sm" href="../guides/${f}">Open</a></div></div>`).join("")}</section>`).join("");
+
+/* Drive folder link is kept in this browser only, so a private folder URL never goes into the public repo. */
+const DK = "studycorner.driveFolder";
+try { const u = localStorage.getItem(DK); if (u) $("#driveLink").href = u; } catch {}
+$("#setDrive").onclick = () => {
+  const u = prompt("Paste the link to your Notability folder in Google Drive:");
+  if (u && /^https:\/\/drive\.google\.com\//.test(u.trim())) { try { localStorage.setItem(DK, u.trim()); } catch {} $("#driveLink").href = u.trim(); }
+  else if (u) alert("That doesn't look like a Google Drive link.");
+};
+})();
+</script>
+</body>
+</html>
