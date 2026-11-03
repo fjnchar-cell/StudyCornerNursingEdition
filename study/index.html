@@ -108,6 +108,7 @@ h3{font:700 17px/1.3 var(--body);margin:0}
   </section>
 </div>
 <script src="questions.js"></script>
+<script src="chapters.js"></script>
 <script>
 (() => {
 "use strict";
@@ -154,7 +155,9 @@ const GUIDES = [
 ];
 
 $("#courses").innerHTML = COURSES.map(c => {
-  const ds = DECKS.filter(d => d.course === c.code);
+  const ds = DECKS.filter(d => d.course === c.code && d.kind !== "chapter");
+  const chs = DECKS.filter(d => d.course === c.code && d.kind === "chapter");
+  const areas = [...new Set(chs.map(d => d.area))];
   return `<h2>${esc(c.name)}</h2><div class="row"><span class="course">${esc(c.code)}</span><span class="spacer"></span><a class="btn sm" href="quiz.html?course=${encodeURIComponent(c.code)}">Quiz the whole course</a></div>
   <section class="card">${ds.map(d => {
     const qs = BANK.filter(q => q.deck === d.id), s = qs.reduce((a, q) => a + (Q[q.id]?.seen || 0), 0), r = qs.reduce((a, q) => a + (Q[q.id]?.right || 0), 0);
@@ -163,7 +166,14 @@ $("#courses").innerHTML = COURSES.map(c => {
       <div class="acts"><a class="btn sm yel" href="quiz.html?deck=${d.id}&start=1">Quiz</a><a class="btn sm" href="../decks/${encodeURI(d.file)}" download>Slides</a></div></div>`;
   }).join("")}
   ${c.code === "NUR 326" ? `<div class="item"><div class="ic aud">POD</div><div style="min-width:0"><div class="t">Med-Surg Weeks 1–2 Podcast: Maya &amp; Dee</div><div class="small muted">Opens on claude.ai, so only you can see it while signed in</div></div><div class="acts"><a class="btn sm" href="https://claude.ai/artifact/VgMtkakjW9LhWvLtSHBj4v" target="_blank" rel="noopener">Open</a></div></div>` : ""}
-  </section>`;
+  </section>
+  ${chs.length ? `<section class="card"><div class="row"><h3>Textbook chapter quizzes</h3><span class="spacer"></span><span class="small muted">Hinkle chapters · review-book areas</span></div>
+    <p class="small muted" style="margin:6px 0 0">Your own copy of the book lives in the <a href="../#library">Library</a>, which keeps it on your device and off GitHub.</p>
+    ${areas.map(a => `<div class="lbl" style="font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:16px 0 4px">${esc(a)}</div>${chs.filter(d => d.area === a).map(d => {
+      const qs = BANK.filter(q => q.deck === d.id), s = qs.reduce((x, q) => x + (Q[q.id]?.seen || 0), 0), r = qs.reduce((x, q) => x + (Q[q.id]?.right || 0), 0);
+      return `<div class="item"><div class="ic web">${esc(d.id.slice(2))}</div><div style="min-width:0"><div class="t">${esc(d.name)}</div><div class="small muted">${qs.length} questions${s ? ` · ${Math.round(r / s * 100)}% so far` : ""}</div></div><div class="acts"><a class="btn sm yel" href="quiz.html?deck=${d.id}&start=1">Quiz</a></div></div>`;
+    }).join("")}`).join("")}
+  </section>` : ""}`;
 }).join("");
 
 $("#guides").innerHTML = GUIDES.map(g => `<section class="card"><h3 style="margin-bottom:6px">${esc(g.term)}</h3>${g.items.map(([c, t, f]) => `
