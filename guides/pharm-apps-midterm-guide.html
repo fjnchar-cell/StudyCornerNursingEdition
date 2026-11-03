@@ -1,0 +1,1274 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Pharm Apps Midterm Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: drug cards styled like pharmacy labels, grouped in color-coded unit sections, sticky search + filter bar on top. */
+:root{
+  --paper:#f3f6f7; --sheet:#ffffff; --ink:#14212b; --muted:#5b6b76; --rule:#d5dee3; --tint:#e8eff2;
+  --accent:#0f6f8a; --warn:#9a6a00; --warn-bg:#fff3d6; --mark:#f8e27a; --alert:#b4372c; --alert-bg:#fbe7e4;
+  --f-display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --L1:93%; --L2:28%; --S:62%;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0f1519; --sheet:#172027; --ink:#e4ecef; --muted:#93a4ae; --rule:#2a3741; --tint:#1d2932;
+  --accent:#4fb3cf; --warn:#f2c35a; --warn-bg:#352a0d; --mark:#7a6a1c; --alert:#ff8a7d; --alert-bg:#3a1c19; --L1:20%; --L2:82%; --S:40%; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f1519; --sheet:#172027; --ink:#e4ecef; --muted:#93a4ae; --rule:#2a3741; --tint:#1d2932;
+  --accent:#4fb3cf; --warn:#f2c35a; --warn-bg:#352a0d; --mark:#7a6a1c; --alert:#ff8a7d; --alert-bg:#3a1c19; --L1:20%; --L2:82%; --S:40%; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 60px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{padding-block:30px 14px;display:grid;gap:8px}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,4.4vw,42px);letter-spacing:-.015em;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:0;max-width:75ch}
+.sub a{color:var(--accent)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:10px;border-bottom:1px solid var(--rule);display:grid;gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.search{flex:1 1 260px;display:flex;align-items:center;gap:8px;border:1px solid var(--rule);background:var(--sheet);border-radius:8px;padding:0 12px}
+.search input{border:0;background:transparent;color:var(--ink);font:16px var(--f-body);padding:10px 0;width:100%;outline:none}
+.search:focus-within{outline:2px solid var(--accent);outline-offset:1px}
+.count{font:500 12px var(--f-mono);color:var(--muted);white-space:nowrap}
+.chip{font:600 13px/1 var(--f-mono);border:1px solid var(--rule);background:var(--sheet);color:var(--ink);border-radius:999px;padding:7px 11px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:hsl(var(--h) 60% 48%)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:focus-visible,.tog:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.tog{display:inline-flex;gap:6px;align-items:center;font:500 13px var(--f-mono);color:var(--ink);cursor:pointer;padding:6px 4px}
+.tog input{accent-color:var(--accent);width:16px;height:16px}
+section.unit{margin-top:36px;scroll-margin-top:130px}
+.uhead{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;border-bottom:3px solid hsl(var(--h) 60% 48%);padding-bottom:8px}
+.uhead h2{font-family:var(--f-display);font-weight:700;font-size:clamp(22px,3vw,28px);margin:0;text-wrap:balance}
+.src{font:500 12px var(--f-mono);color:var(--muted)}
+.nfs{font:600 11px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;padding:5px 8px;border-radius:5px;background:var(--warn-bg);color:var(--warn)}
+.intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px;margin-top:16px}
+@media (max-width:820px){.intro{grid-template-columns:minmax(0,1fr)}}
+.big{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:14px 18px}
+.big h3,.pearls h3{margin:0 0 6px;font:600 12px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.big ul,.pearls ul{margin:0;padding-left:18px;display:grid;gap:5px}
+.mnems{display:grid;gap:10px;align-content:start}
+.mn{background:hsl(var(--h) var(--S) var(--L1));border-radius:10px;padding:11px 14px}
+.mn b{display:block;font-family:var(--f-display);font-size:16px;color:hsl(var(--h) 60% var(--L2))}
+.mn span{font-size:14.5px}
+.mn::before{content:"MNEMONIC";display:block;font:600 10px var(--f-mono);letter-spacing:.14em;color:hsl(var(--h) 50% var(--L2));opacity:.8;margin-bottom:2px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:14px;margin-top:18px}
+.card{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card .lab{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;padding:11px 14px 9px;border-bottom:1px dashed var(--rule);background:hsl(var(--h) var(--S) var(--L1))}
+.card h4{margin:0;font-family:var(--f-display);font-size:17px;line-height:1.25}
+.card .cls{font:500 12px/1.35 var(--f-mono);color:hsl(var(--h) 50% var(--L2));margin-top:3px}
+.hy{flex:none;font:700 10px/1 var(--f-mono);letter-spacing:.08em;background:var(--ink);color:var(--paper);padding:5px 6px;border-radius:4px}
+.card dl{margin:0;padding:10px 14px 12px;display:grid;gap:7px}
+.card dt{font:600 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card dd{margin:0;font-size:14.5px}
+.card dd.anti{background:var(--alert-bg);color:var(--ink);border-left:3px solid var(--alert);padding:4px 8px;border-radius:0 4px 4px 0}
+.card dd.lab{font-family:var(--f-mono);font-size:13.5px}
+.pearls{margin-top:16px;background:var(--tint);border-radius:10px;padding:14px 18px}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
+.strat{margin-top:28px}
+.strat h2{font-family:var(--f-display);font-size:clamp(22px,3vw,28px);margin:0 0 4px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:10px;margin-top:12px}
+.sgrid div{background:var(--sheet);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px}
+.sgrid b{display:block;font-family:var(--f-display);font-size:15.5px}
+.sgrid span{font-size:14.5px}
+.lecbox{margin-top:16px;border:2px solid var(--accent);border-radius:10px;background:var(--sheet);padding:14px 18px}
+.lecbox h3{margin:0 0 8px;font:600 12px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.lecbox ul{margin:0;padding-left:18px;display:grid;gap:5px}
+.conf{margin-top:14px;overflow-x:auto}
+.conf table{min-width:480px}
+.conf th{font:600 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.conf td{font-weight:400 !important;font-size:14px}
+.conf td:last-child{background:var(--warn-bg)}
+.nolec{font:600 11px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;padding:5px 8px;border-radius:5px;background:var(--tint);color:var(--muted)}
+.lecwk{font:600 11px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;padding:5px 8px;border-radius:5px;background:var(--accent);color:var(--sheet)}
+.badges{display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex:none}
+.lb{font:700 10px/1 var(--f-mono);letter-spacing:.08em;background:var(--accent);color:var(--sheet);padding:5px 6px;border-radius:4px}
+.card.haslec{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card dd.said{background:var(--tint);border-left:3px solid var(--accent);padding:5px 8px;border-radius:0 4px 4px 0}
+.ref{margin-top:48px}
+.ref h2{font-family:var(--f-display);font-size:clamp(22px,3vw,28px);margin:0 0 4px}
+.refgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;margin-top:14px}
+.tblwrap{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:12px 14px;overflow-x:auto}
+.tblwrap h3{margin:0 0 8px;font:600 12px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+td,th{border-bottom:1px solid var(--rule);padding:6px 6px;text-align:left;vertical-align:top}
+td:first-child{font-weight:700}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.empty{margin-top:28px;color:var(--muted)}
+.jump{display:flex;flex-wrap:wrap;gap:6px}
+.jump a{font:500 12px var(--f-mono);color:var(--ink);text-decoration:none;border-bottom:2px solid hsl(var(--h) 60% 48%);padding:2px 1px}
+@media print{
+  .bar,.jump{display:none}
+  body{background:#fff;color:#000;padding:0;font-size:11pt}
+  .card,.big,.tblwrap{break-inside:avoid;border-color:#999}
+  section.unit{break-before:page;margin-top:0}
+  .cards{grid-template-columns:1fr 1fr}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Pharm Apps Midterm Guide</h1>
+    <p class="sub">Your NUR 312 slides combined with your Pharm Apps lectures (Weeks 1–3). Drugs your professor talked about carry a <b>LECTURE</b> tag and appear first in each unit, with what she said. Where the lecture and the slides disagree, both are shown; go with the slides on exams. Cardiac and GI haven't been lectured yet. Test yourself with the <a id="quizlink" href="#" target="_blank" rel="noopener">100-question NGN quiz</a>.</p>
+    <nav class="jump" id="jump" aria-label="Jump to unit"></nav>
+  </header>
+  <div class="bar">
+    <div class="row">
+      <label class="search" for="q"><span aria-hidden="true" class="count">⌕</span><input id="q" type="search" placeholder="Search drugs, effects, antidotes… (e.g. hyperkalemia, protamine, -pril)" autocomplete="off"></label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="row" id="chips"></div>
+    <div class="row">
+      <label class="tog"><input type="checkbox" id="lo"> Lecture topics only</label>
+      <label class="tog"><input type="checkbox" id="hy"> High-yield drugs only</label>
+      <label class="tog"><input type="checkbox" id="mn" checked> Mnemonics</label>
+      <label class="tog"><input type="checkbox" id="bi" checked> Big ideas &amp; pearls</label>
+    </div>
+  </div>
+  <section class="strat" id="strategy">
+    <h2>How your professor says to study</h2>
+    <p class="sub">Exam strategy and deadlines from the Pharm Apps lectures.</p>
+    <div class="sgrid" id="sgrid"></div>
+  </section>
+  <div id="units"></div>
+  <p class="empty" id="empty" hidden>No drugs match. Try a drug class, an adverse effect, or clear the search.</p>
+  <section class="ref" id="ref">
+    <h2>Quick reference</h2>
+    <p class="sub">The tables most likely to show up as exam distractors.</p>
+    <div class="refgrid" id="refgrid"></div>
+  </section>
+</div>
+
+<script>
+// Study guide content. Built from NUR 312 Cohort 38 slide decks (Weeks 1, 6, 7, 9, 10).
+// Renal unit is NOT from slides (deck not provided) and is flagged in the UI.
+const UNITS = [
+{
+  id: "adr", name: "Adrenergic Drugs", short: "Adrenergic", hue: 12,
+  src: "Week 1 · Ch. 18–19", fromSlides: true,
+  big: [
+    "Adrenergic = sympathomimetic = fight or flight. Mimics NE, EPI, dopamine.",
+    "Alpha-1 → vasoconstriction, mydriasis, bladder sphincter contraction (urinary retention), ejaculation.",
+    "Alpha-2 → presynaptic. Turns sympathetic outflow DOWN (clonidine, dexmedetomidine).",
+    "Beta-1 → heart: ↑ rate (chronotropic), ↑ force (inotropic), ↑ AV conduction (dromotropic).",
+    "Beta-2 → lungs: bronchodilation. Also uterine relaxation, glycogenolysis (↑ glucose).",
+    "Adrenergic blockers (sympatholytics) do the opposite: ↓ BP, ↓ HR, and nonselective ones can bronchoconstrict."
+  ],
+  mnemonics: [
+    {t: "1 heart, 2 lungs", d: "You have ONE heart (β1) and TWO lungs (β2)."},
+    {t: "β-blockers end in -LOL", d: "Metoprolol, propranolol, carvedilol, atenolol. Labetalol and carvedilol also block α1."},
+    {t: "Alpha blockers end in -ZOSIN", d: "Prazosin, terazosin, doxazosin, tamsulosin, alfuzosin. Think 'dozing' → first-dose syncope."},
+    {t: "Extravasation of a pressor → PHENTOLAMINE", d: "Phentolamine reverses NE or EPI vasoconstriction in the tissue and prevents necrosis."}
+  ],
+  cards: [
+    {n:"Epinephrine", c:"Nonselective α + β agonist (catecholamine)", hy:true,
+     moa:"Directly stimulates α and β receptors. Prototype nonselective adrenergic agonist.",
+     use:"Cardiac arrest (ACLS), anaphylaxis, severe bronchospasm, open-angle glaucoma, added to lidocaine. Also treats severe CV reactions or bronchoconstriction in cholinergic crisis.",
+     ae:"Tachycardia, palpitations, dysrhythmias, chest pain, HTN, tremor, restlessness, ↑ glucose.",
+     ci:"Known allergy, severe hypertension.",
+     nur:"Use an infusion pump. Monitor cardiac rhythm. Check IV site often for infiltration. Infuse slowly. Giving two adrenergic drugs together can cause severe tachycardia or HTN."},
+    {n:"Norepinephrine (Levophed)", c:"α + β1 agonist (vasopressor)", hy:true,
+     moa:"Strong α vasoconstriction plus β1 cardiac stimulation. NO β2 effect on the lungs.",
+     use:"Hypotension and shock. Given by continuous IV infusion.",
+     ae:"Severe HTN, reflex bradycardia, dysrhythmias, tissue necrosis if it extravasates.",
+     nur:"Large vein, infusion pump, clear IV solution. Check the site often. If it infiltrates: stop the infusion and give phentolamine to the site. Titrate to BP and urine output.",
+     anti:"Extravasation → phentolamine"},
+    {n:"Phenylephrine (Neo-Synephrine, Sudafed PE)", c:"Almost pure α1 agonist",
+     moa:"Works almost exclusively on α receptors → vasoconstriction.",
+     use:"Short-term BP support in shock, SVT control, vasoconstriction in regional anesthesia, eye drops, nasal decongestant.",
+     ae:"HTN, reflex bradycardia, headache, rebound nasal congestion with overuse.",
+     nur:"Teach: topical decongestants for no more than a few days (rebound congestion)."},
+    {n:"Dobutamine", c:"β1-selective inotrope", hy:true,
+     moa:"Stimulates β1 → stronger contraction (positive inotrope) → more cardiac output.",
+     use:"Cardiac failure and cardiogenic shock (short-term support).",
+     ae:"Tachycardia, dysrhythmias, BP changes.",
+     nur:"Continuous ECG and BP monitoring. Infusion pump only. Therapeutic effect: ↑ urine output, warmer skin, better LOC, less edema."},
+    {n:"Albuterol (and other β2 agonists)", c:"β2 agonist bronchodilator",
+     moa:"Relaxes bronchial smooth muscle. See Respiratory unit.",
+     use:"Acute bronchospasm (rescue).",
+     ae:"Tremor, nervousness, tachycardia, palpitations, ↑ glucose.",
+     nur:"Covered in detail under Respiratory."},
+    {n:"Mirabegron (Myrbetriq)", c:"β3 agonist (bladder)",
+     moa:"Relaxes the detrusor muscle during bladder filling → ↑ storage capacity.",
+     use:"Overactive bladder.",
+     nur:"Monitor BP (can raise it)."},
+    {n:"Tamsulosin (Flomax)", c:"α1 blocker (prostate-selective)", hy:true,
+     moa:"Blocks α1 in prostate and bladder neck → less resistance to urine outflow.",
+     use:"BPH. Used off-label in women to pass kidney stones. Not used for BP.",
+     ae:"Headache, abnormal ejaculation, rhinitis, orthostatic hypotension.",
+     ci:"Allergy. Concurrent ED drugs such as sildenafil (additive hypotension).",
+     nur:"Rise slowly. Take at the same time daily."},
+    {n:"Prazosin, terazosin, doxazosin", c:"α1 blockers",
+     moa:"Dilate arteries and veins → ↓ SVR and BP. Relax bladder neck.",
+     use:"Hypertension, BPH. Pheochromocytoma, Raynaud's.",
+     ae:"Orthostatic hypotension, FIRST-DOSE SYNCOPE, reflex tachycardia, dizziness, edema.",
+     ci:"Peripheral vascular disease, hepatic/renal disease, CAD, peptic ulcer, sepsis.",
+     nur:"Give first dose at bedtime. Change positions slowly. Avoid alcohol and hot tubs."},
+    {n:"Phentolamine", c:"α blocker", hy:true,
+     moa:"Blocks α receptors at the site.",
+     use:"Reverses extravasated norepinephrine or epinephrine. Restores blood flow and prevents necrosis. Pheochromocytoma.",
+     nur:"Inject into the infiltrated area as ordered."},
+    {n:"Metoprolol, atenolol", c:"Cardioselective β1 blockers", hy:true,
+     moa:"Block β1 → ↓ HR, ↓ contractility, slower AV conduction → ↓ myocardial O2 demand.",
+     use:"Angina, post-MI (cardioprotective), HTN, dysrhythmias (Class II), HF.",
+     ae:"Bradycardia, hypotension, heart block, fatigue, ↓ exercise tolerance, depression, sexual dysfunction.",
+     ci:"Uncompensated HF, cardiogenic shock, heart block, bradycardia, pregnancy, severe pulmonary disease, Raynaud's.",
+     nur:"Check apical pulse and BP before giving. Never stop abruptly → rebound HTN or chest pain. Report weight gain >2 lb/day or 5 lb/week, ankle edema, SOB, syncope.",
+     anti:"Overdose: atropine for bradycardia, pacing, vasopressors, hemodialysis"},
+    {n:"Propranolol", c:"Nonselective β1 + β2 blocker", hy:true,
+     moa:"Same cardiac effects as β1 blockers PLUS β2 block → bronchoconstriction.",
+     use:"HTN, angina, dysrhythmias, migraine prevention (lipophilic, enters CNS), glaucoma (topical forms of other β-blockers).",
+     ae:"Bronchospasm, bradycardia, masks hypoglycemia (tremor, tachycardia, nervousness hidden).",
+     ci:"Asthma/COPD, bradycardia, heart block, uncompensated HF.",
+     nur:"Use caution in diabetes: check glucose by meter, not symptoms. Avoid in asthma. Taper to stop."},
+    {n:"Carvedilol (Coreg), labetalol", c:"Combined α1 + β blockers", hy:true,
+     moa:"Block β1 and α1 → ↓ HR plus vasodilation → ↓ SVR.",
+     use:"HTN, mild–moderate HF (with digoxin, diuretics, ACE inhibitors).",
+     ae:"Orthostatic hypotension, bradycardia, dizziness. Less sexual dysfunction.",
+     ci:"Cardiogenic shock, severe bradycardia, decompensated HF, asthma, conduction problems.",
+     nur:"Taper over 1–2 weeks. Change positions slowly. Give with food."}
+  ],
+  pearls: [
+    "Toxicity of adrenergics: seizures and intracranial bleeding from extreme HTN. Treat with a fast-acting sympatholytic.",
+    "Therapeutic effects (CV use): ↓ edema, ↑ urine output, normal VS, better skin color/temp, ↑ LOC.",
+    "Encourage up to 3000 mL fluid/day in chronic lung disease when allowed. It thins secretions.",
+    "Adrenergic blockers interact with antacids, anticholinergics, diuretics, NM blockers, and oral hypoglycemics."
+  ]
+},
+{
+  id: "chol", name: "Cholinergic & Anticholinergic Drugs", short: "Cholinergic", hue: 160,
+  src: "Week 1 · Ch. 20–21", fromSlides: true,
+  big: [
+    "Cholinergic = parasympathomimetic = rest and digest. Mimics acetylcholine (ACh).",
+    "Direct-acting bind the receptor (bethanechol). Indirect-acting block acetylcholinesterase → more ACh (pyridostigmine, neostigmine, donepezil).",
+    "Effects: ↓ HR, vasodilation, bronchoconstriction, ↑ secretions, ↑ GI motility, ↑ urination, miosis, ↓ IOP.",
+    "Usual doses act on muscarinic receptors (desired). High doses hit nicotinic receptors (unwanted).",
+    "Anticholinergics block ACh at muscarinic receptors: the opposite effects."
+  ],
+  mnemonics: [
+    {t: "Cholinergic toxicity = SLUDGE", d: "Salivation, Lacrimation, Urinary incontinence, Diarrhea, GI cramps, Emesis. Plus bradycardia and bronchospasm."},
+    {t: "Anticholinergic = can't see, can't pee, can't spit, can't sh*t", d: "Blurred vision, urinary retention, dry mouth, constipation. Also hot, dry skin and tachycardia."},
+    {t: "Antidotes cross over", d: "Too much cholinergic → ATROPINE. Too much anticholinergic (atropine overdose) → PHYSOSTIGMINE."},
+    {t: "Myasthenia meds 30 minutes before meals", d: "Pyridostigmine before eating improves chewing and swallowing."}
+  ],
+  cards: [
+    {n:"Bethanechol (Urecholine)", c:"Direct-acting cholinergic agonist", hy:true,
+     moa:"Stimulates muscarinic receptors in bladder and GI tract.",
+     use:"Urinary retention / hypotonic bladder. Postoperative ↓ GI peristalsis.",
+     ae:"Bradycardia, hypotension, cramps, diarrhea, sweating, salivation, bronchospasm.",
+     ci:"GI or GU obstruction, bradycardia, conduction defects, hyperthyroidism, epilepsy, hypotension, COPD/asthma, Parkinson's, PUD, CAD.",
+     nur:"Expect urination within 60 minutes. Watch for bowel sounds, flatus, BM. Keep atropine available.",
+     anti:"Atropine"},
+    {n:"Pyridostigmine (Mestinon)", c:"Indirect-acting (cholinesterase inhibitor)", hy:true,
+     moa:"Inhibits acetylcholinesterase → more ACh at the neuromuscular junction.",
+     use:"Myasthenia gravis.",
+     ae:"SLUDGE, bradycardia, muscle weakness if overdosed (cholinergic crisis).",
+     nur:"Give 30 min before meals. Space doses evenly. Never stop abruptly. Don't self-adjust doses. Report muscle weakness, cramps, diarrhea, trouble breathing.",
+     anti:"Atropine"},
+    {n:"Edrophonium (Tensilon)", c:"Short-acting cholinesterase inhibitor",
+     moa:"Briefly increases ACh.",
+     use:"Diagnoses myasthenia gravis. Tells MG crisis (improves) from cholinergic crisis (worsens)."},
+    {n:"Neostigmine", c:"Cholinesterase inhibitor",
+     use:"Reverses nondepolarizing neuromuscular blockers (vecuronium, rocuronium) after surgery.",
+     nur:"Monitor respiratory status as paralysis wears off."},
+    {n:"Donepezil (Aricept)", c:"Cholinesterase inhibitor (CNS)",
+     use:"Alzheimer's disease symptoms.",
+     nur:"Be honest: manages symptoms, does not cure. Effects can take up to 6 weeks. Look for better mood, less confusion."},
+    {n:"Atropine", c:"Anticholinergic (antimuscarinic) prototype", hy:true,
+     moa:"Competes with ACh at muscarinic receptors.",
+     use:"Symptomatic bradycardia, asystole, antidote for cholinergic/cholinesterase inhibitor poisoning, pre-op to dry secretions. Early cholinergic crisis.",
+     ae:"Tachycardia, dry mouth, urinary retention, constipation, blurred vision, ↑ IOP, ↓ sweating, delirium.",
+     ci:"Angle-closure glaucoma, GI/GU obstruction (BPH), myasthenia gravis, acute asthma, acute CV instability, severe ulcerative colitis.",
+     nur:"Keep at bedside for patients on cholinergics.",
+     anti:"Physostigmine for overdose"},
+    {n:"Glycopyrrolate (Robinul)", c:"Synthetic antimuscarinic",
+     use:"Pre-op to reduce saliva and respiratory/GI secretions.",
+     ci:"Angle-closure glaucoma, MG, GI/GU obstruction, tachycardia, myocardial ischemia."},
+    {n:"Scopolamine", c:"Anticholinergic (patch)", hy:true,
+     use:"Motion sickness. Postop nausea and vomiting.",
+     ae:"Drowsiness, dry mouth, blurred vision.",
+     nur:"Apply patch behind the ear at least 4 hours before travel. Additive sedation with alcohol or CNS depressants."},
+    {n:"Oxybutynin (Ditropan), tolterodine (Detrol)", c:"Antimuscarinics (bladder)", hy:true,
+     use:"Overactive bladder, urge incontinence, neurogenic bladder (spinal cord injury, spina bifida).",
+     ae:"Dry mouth, constipation, blurred vision, urinary retention. Newer drugs (solifenacin, darifenacin) cause less dry mouth.",
+     ci:"Urinary or gastric retention, uncontrolled angle-closure glaucoma.",
+     nur:"Therapeutic effect: longer time between voids, better urinary pattern."},
+    {n:"Dicyclomine (Bentyl)", c:"Antispasmodic anticholinergic",
+     use:"Irritable bowel syndrome (GI motility problems). Also listed as an antidiarrheal.",
+     ci:"Angle-closure glaucoma, GI obstruction, MG, paralytic ileus, toxic megacolon."}
+  ],
+  pearls: [
+    "Cholinergic crisis: early phase → atropine. Severe CV reaction or bronchoconstriction → epinephrine.",
+    "Anticholinergic overdose: supportive care, continuous ECG, activated charcoal, treat shock, physostigmine.",
+    "Eye drops: press on the inner canthus to limit systemic absorption.",
+    "Older adults on anticholinergics are at risk for HEATSTROKE (they can't sweat). Limit exertion and heat; keep fluids and salt adequate.",
+    "Dry mouth relief: sugarless gum, hard candy, frequent mouth care. Sunglasses for light sensitivity. No driving with blurred vision."
+  ]
+},
+{
+  id: "anes", name: "Anesthesia & Neuromuscular Blockers", short: "Anesthesia", hue: 265,
+  src: "Week 1 · Ch. 11", fromSlides: true,
+  big: [
+    "General anesthesia: loss of consciousness, loss of reflexes, respiratory muscles paralyzed.",
+    "Local anesthesia: pain blocked in one area. No loss of consciousness or breathing.",
+    "Moderate (conscious) sedation: patient keeps own airway and answers commands. Benzo or propofol + opioid.",
+    "Neuromuscular blockers paralyze skeletal muscle. They do NOT sedate or relieve pain."
+  ],
+  mnemonics: [
+    {t: "Malignant hyperthermia → DANTROLENE", d: "Rising temp, rigidity, tachycardia after succinylcholine or inhaled anesthetic. Stop the trigger and give dantrolene."},
+    {t: "Succinylcholine = 'success-in-a-sec'", d: "Fast depolarizing paralysis. Watch K+ (hyperkalemia)."},
+    {t: "Propofol = 'milk of amnesia'", d: "White lipid emulsion. Monitor triglycerides, especially with TPN."}
+  ],
+  cards: [
+    {n:"Propofol (Diprivan)", c:"Parenteral general anesthetic", hy:true,
+     use:"Induction and maintenance of general anesthesia. ICU sedation on the ventilator. Low dose for moderate sedation.",
+     ae:"Hypotension, respiratory depression, ↑ triglycerides.",
+     nur:"Monitor triglycerides if on TPN. Some states don't allow nurses to give it."},
+    {n:"Dexmedetomidine (Precedex)", c:"α2 agonist sedative", hy:true,
+     moa:"Central α2 stimulation.",
+     use:"Procedural sedation, short surgeries, ICU sedation of ventilated patients.",
+     ae:"Bradycardia, hypotension.",
+     nur:"Sedation and analgesia WITHOUT respiratory depression. Short half-life: wakes quickly when stopped."},
+    {n:"Ketamine", c:"Dissociative anesthetic",
+     use:"General anesthesia and moderate sedation. IV, IM, or subcut. Rapid onset.",
+     ae:"Hallucinations and disturbing dreams (psychomimetic effects).",
+     nur:"Little effect on CV, respiratory, or bowel function. Quiet, low-stimulus recovery."},
+    {n:"Nitrous oxide", c:"Inhaled gas",
+     use:"Dental procedures or as a supplement. The only inhaled GAS used; the weakest general anesthetic."},
+    {n:"Midazolam (Versed) + fentanyl", c:"Moderate sedation combo",
+     use:"Diagnostic and minor procedures. Reduced anxiety and pain; patient doesn't recall procedure.",
+     nur:"Monitor airway, SpO2, RR, LOC. Have flumazenil and naloxone available.",
+     anti:"Flumazenil (benzo), naloxone (opioid)"},
+    {n:"Lidocaine", c:"Amide local anesthetic", hy:true,
+     use:"Infiltration, nerve block, topical. Most commonly used local. Also Class Ib antidysrhythmic.",
+     nur:"Can be mixed with epinephrine to prolong effect and reduce bleeding."},
+    {n:"Succinylcholine", c:"Depolarizing neuromuscular blocker", hy:true,
+     moa:"Mimics ACh → sustained depolarization. Metabolized slowly, so the muscle can't repolarize → flaccid paralysis.",
+     use:"Rapid intubation.",
+     ae:"Malignant hyperthermia, hyperkalemia, muscle pain, respiratory arrest.",
+     nur:"Ventilatory support required. Monitor temperature and K+.",
+     anti:"Malignant hyperthermia → dantrolene"},
+    {n:"Vecuronium, rocuronium, pancuronium", c:"Nondepolarizing neuromuscular blockers", hy:true,
+     moa:"Block ACh receptors → muscle relaxation.",
+     use:"Surgery, intubated patients (controls spontaneous breathing), seizure control.",
+     ae:"Respiratory arrest, hypotension.",
+     nur:"Patient must also receive sedation and analgesia. Ventilator required.",
+     anti:"Reversal: neostigmine"},
+    {n:"Baclofen, cyclobenzaprine, methocarbamol", c:"Centrally acting muscle relaxants",
+     use:"Skeletal muscle spasm pain.",
+     ae:"CNS depression, euphoria, lightheadedness, dizziness, fatigue, weakness.",
+     nur:"Check LOC, cognition, muscle reactivity, VS before and after. Short-term use only. No alcohol, driving, or benzos. Take with food or milk. Avoid sun. Not recommended for older adults. Methocarbamol and cyclobenzaprine can be used in pregnancy."}
+  ],
+  pearls: [
+    "Moderate sedation: rapid recovery and safer profile than general anesthesia.",
+    "General anesthetics are also used for electroconvulsive therapy.",
+    "Before muscle relaxants: ask about seizure disorders and get a full medication list."
+  ]
+},
+{
+  id: "neuro", name: "Neurological Drugs", short: "Neuro", hue: 220,
+  src: "Week 6 · Ch. 12–15", fromSlides: true,
+  big: [
+    "CNS depressants: sedatives calm, hypnotics cause sleep. Any sedative becomes a hypnotic at high dose.",
+    "Benzodiazepines: anxiety, sedation, acute seizures, alcohol withdrawal. Reversal is flumazenil. Taper to stop.",
+    "CNS stimulants: ADHD, narcolepsy, migraine (triptans), obesity (anorexiants).",
+    "Antiepileptics: lifelong therapy, serum levels, never stop abruptly, black box for suicidal ideation.",
+    "Parkinson's = too little dopamine vs. ACh. Drugs add dopamine or block ACh."
+  ],
+  mnemonics: [
+    {t: "Parkinson's = TRAP", d: "Tremor, Rigidity, Akinesia, Postural instability."},
+    {t: "Phenytoin 10–20", d: "Therapeutic 10–20 mcg/mL. Watch gums (gingival hyperplasia): soft brush, good oral care."},
+    {t: "Levodopa hates protein", d: "High-protein meals block absorption. Avoid MAOIs."},
+    {t: "Zolpidem: ladies get half", d: "5 mg women, 10 mg men. A 10 mg order for a woman → call the prescriber."},
+    {t: "Triptans abort, they don't prevent", d: "Sumatriptan is taken at the start of a migraine. Contraindicated in cardiovascular disease."}
+  ],
+  cards: [
+    {n:"Diazepam, lorazepam, midazolam, temazepam", c:"Benzodiazepines", hy:true,
+     moa:"Depress hypothalamic, thalamic, and limbic activity (enhance GABA).",
+     use:"Anxiety, sedation/sleep, ACUTE seizures/status epilepticus (lorazepam), alcohol withdrawal (drug of choice), moderate sedation (midazolam).",
+     ae:"Drowsiness, dizziness, headache, cognitive impairment, lethargy. Paradoxical excitement in older adults.",
+     ci:"Pregnancy. Use with alcohol or other CNS depressants.",
+     nur:"Check VS before PO and continuously with IV. Taper to stop. Rebound insomnia can last up to 4 weeks after stopping. Lower doses for older adults. Seizure precautions if used for seizures.",
+     anti:"Flumazenil (Romazicon)"},
+    {n:"Zolpidem (Ambien)", c:"Nonbenzodiazepine hypnotic", hy:true,
+     use:"Insomnia (short-acting). Less daytime sleepiness.",
+     ae:"BLACK BOX: complex sleep behaviors (sleep-walking, sleep-driving).",
+     nur:"Dose: 5 mg women, 10 mg men. No alcohol."},
+    {n:"Buspirone (BuSpar)", c:"Nonbenzodiazepine anxiolytic", hy:true,
+     moa:"Acts on serotonin and dopamine receptors. Exact mechanism unknown.",
+     use:"Generalized anxiety disorder. Daily maintenance only, NOT for acute anxiety.",
+     ae:"Dizziness, nausea, headache, lightheadedness, agitation, constipation, blurred vision. HIGH ALERT: suicidal ideation.",
+     ci:"MAOIs now or within 14 days (HTN crisis). Older adults. Liver/renal disease.",
+     nur:"Slow onset (weeks). Lower addiction risk. No sedation. Take with meals if GI upset; no grapefruit juice."},
+    {n:"Phenobarbital, pentobarbital", c:"Barbiturates",
+     moa:"Increase GABA effects in the brainstem.",
+     use:"Seizures and surgical procedures (high abuse risk limits use).",
+     ae:"Low therapeutic index. Highly addictive. ↓ REM sleep → agitation. Many drug interactions.",
+     nur:"Overdose: supportive care (no antidote)."},
+    {n:"Methylphenidate (Ritalin), amphetamine (Adderall)", c:"CNS stimulants", hy:true,
+     use:"ADHD, narcolepsy.",
+     ae:"Tachycardia, palpitations, HTN, insomnia, anorexia, nervousness, dry mouth.",
+     ci:"HTN, dysrhythmias, angina.",
+     nur:"Last dose 4–6 hours before bed. Take on an empty stomach. Track growth in children. Avoid caffeine. Check HR and BP when starting. Lisdexamfetamine (Vyvanse) has lower abuse risk."},
+    {n:"Modafinil (Provigil)", c:"Nonamphetamine stimulant", hy:true,
+     use:"Narcolepsy, shift-work sleep disorder. Improves wakefulness."},
+    {n:"Phentermine", c:"Anorexiant",
+     use:"Obesity diagnosed by BMI only.",
+     ci:"Cardiovascular disease, HTN, hyperthyroidism, eating disorders, MAOIs."},
+    {n:"Sumatriptan (Imitrex)", c:"Serotonin agonist (triptan)", hy:true,
+     moa:"Constricts cerebral arteries.",
+     use:"Aborts migraine. Not a preventive.",
+     ae:"Tingling, flushing, injection-site irritation, vasoconstriction.",
+     ci:"Cardiovascular disease (coronary vasoconstriction)."},
+    {n:"Phenytoin (Dilantin)", c:"Antiepileptic (first line)", hy:true,
+     use:"Generalized and focal seizures.",
+     ae:"Gingival hyperplasia. Long half-life. Many interactions.",
+     nur:"Therapeutic level 10–20 mcg/mL. Good oral hygiene. Monitor LFTs, CBC, levels. Same time daily. Also a Class Ib antidysrhythmic.",
+     lab:"10–20 mcg/mL"},
+    {n:"Levetiracetam (Keppra)", c:"Antiepileptic",
+     use:"Adjunct for partial seizures. Seizure prevention after head injury or brain bleed.",
+     ae:"Sedation (low side-effect profile).",
+     nur:"PO and IV. Few interactions."},
+    {n:"Valproic acid (Depakote)", c:"Antiepileptic / mood stabilizer", hy:true,
+     use:"Generalized and partial seizures. Bipolar disorder.",
+     ae:"HEPATOTOXICITY, PANCREATITIS, drowsiness, GI upset, tremor, weight gain, hair loss.",
+     nur:"Highly protein-bound. Monitor LFTs and amylase/lipase. Liquid and 'sprinkles' available."},
+    {n:"Lamotrigine (Lamictal)", c:"Antiepileptic / mood stabilizer",
+     use:"Partial seizures. Bipolar disorder.",
+     ae:"STEVENS-JOHNSON SYNDROME. Minor CNS and GI effects.",
+     nur:"Teach: report any rash right away."},
+    {n:"Carbidopa-levodopa (Sinemet)", c:"Dopamine replacement", hy:true,
+     moa:"Levodopa converts to dopamine in the brain. Carbidopa lets a lower levodopa dose work and reduces side effects.",
+     use:"Parkinson's. Works while nerve terminals still function (about 5–10 years).",
+     ae:"Confusion, involuntary movements (dyskinesia), GI distress, orthostatic hypotension, dysrhythmias.",
+     ci:"MAOIs.",
+     nur:"Best on an empty stomach (with food if GI upset). Avoid high-protein diets. 3 L water/day. Don't stop abruptly. Assess mental status and gait."},
+    {n:"Amantadine (Symmetrel)", c:"Dopamine modulator",
+     moa:"Releases stored dopamine and blocks its reuptake.",
+     use:"Early Parkinson's. Works for about 12 months.",
+     ae:"Dizziness, insomnia, nausea.",
+     nur:"Avoid with cholinergic drugs (cholinergic crisis risk)."},
+    {n:"Bromocriptine (Parlodel)", c:"Dopamine receptor agonist",
+     use:"With carbidopa-levodopa to lower the levodopa dose and extend its effect.",
+     ae:"GI upset, dyskinesias, insomnia.",
+     nur:"Avoid with adrenergic drugs."}
+  ],
+  pearls: [
+    "Status epilepticus (seizure lasting several minutes) → IV lorazepam.",
+    "Antiepileptics: same time daily. If NPO, do NOT just hold. Call the provider for an alternate route. Keep a seizure journal.",
+    "AED teaching red flag: 'I won't have seizures once my levels are normal.' Normal levels reduce, not eliminate, seizures.",
+    "Benzo overdose who is drowsy but responsive → flumazenil (not naloxone).",
+    "Older adult wide awake after a benzo = paradoxical reaction."
+  ]
+},
+{
+  id: "psych", name: "Mental Health & Substance Use", short: "Mental health", hue: 320,
+  src: "Week 6 · Ch. 16–17", fromSlides: true,
+  big: [
+    "SSRIs and SNRIs are first line for depression and anxiety. Effects take weeks.",
+    "Highest suicide risk is early in therapy, when energy returns before mood lifts (about 2–4 weeks in).",
+    "Never combine serotonergic drugs (SSRI + MAOI + TCA + St. John's wort) → serotonin syndrome.",
+    "MAOIs + tyramine foods → hypertensive crisis.",
+    "Lithium is a salt. Low sodium or dehydration → lithium toxicity.",
+    "First-gen antipsychotics → EPS. Atypicals → metabolic syndrome."
+  ],
+  mnemonics: [
+    {t: "Lithium ladder", d: "Goal 0.6–1.2. 1.3–1.5: GI upset, fine tremor, thirst, polyuria. 1.5–2.0: confusion, coarse tremor, sedation. 2.0–2.5: ataxia, seizures, tinnitus, blurred vision. >2.5: oliguria, coma, death."},
+    {t: "Tyramine = aged, cured, fermented", d: "Aged cheese (Swiss, cheddar), pepperoni/salami, draft beer, red wine, soy sauce, sauerkraut. Milk and OJ are fine."},
+    {t: "EPS: 4 types", d: "Acute dystonia (spasms, oculogyric crisis), akathisia (can't sit still), pseudoparkinsonism (shuffling, pill-rolling), tardive dyskinesia (lip smacking, tongue rolling; may be permanent)."},
+    {t: "Metabolic syndrome: 3 or more", d: "Abdominal obesity, ↑ triglycerides, ↓ HDL, ↑ BP, ↑ fasting glucose."}
+  ],
+  cards: [
+    {n:"Paroxetine (prototype), sertraline, fluoxetine, citalopram, escitalopram", c:"SSRIs", hy:true,
+     moa:"Block serotonin reuptake → more serotonin in the synapse.",
+     use:"Depression, GAD, panic, OCD, social anxiety, PTSD.",
+     ae:"Early (resolve): nausea, sweating, tremor, fatigue. Long-term: insomnia, headache, SEXUAL DYSFUNCTION (top reason people quit), weight gain, GI bleeding, bruxism, postural hypotension. Serotonin syndrome. Suicidal ideation.",
+     ci:"MAOIs, TCAs, St. John's wort. Antiplatelets/anticoagulants ↑ bleeding.",
+     nur:"Give with food, same time daily (morning). Up to a month or longer for effect. Taper (withdrawal syndrome). Rise slowly. Check before OTC drugs. Assess suicide risk."},
+    {n:"Venlafaxine (Effexor), duloxetine (Cymbalta)", c:"SNRIs", hy:true,
+     moa:"Block reuptake of serotonin AND norepinephrine.",
+     use:"Depression, GAD, panic, menopause symptoms. Pain adjuvant: fibromyalgia, diabetic neuropathy, OA, low back pain.",
+     ae:"Nausea, anorexia, weight loss, headache, insomnia, HTN, tachycardia, sexual dysfunction, serotonin syndrome, withdrawal.",
+     ci:"SSRIs, TCAs, MAOIs (2 weeks apart). Glaucoma. Alcohol. NSAIDs/anticoagulants ↑ bleeding.",
+     nur:"Monitor BP and HR. Suicide risk in children and teens. Taper."},
+    {n:"Amitriptyline, imipramine, nortriptyline, clomipramine", c:"Tricyclic antidepressants (TCAs)", hy:true,
+     moa:"Block reuptake of NE and serotonin.",
+     use:"Depression, neuropathic pain, fibromyalgia, insomnia (amitriptyline), childhood enuresis (imipramine), OCD (clomipramine).",
+     ae:"Anticholinergic effects, sedation, orthostatic hypotension, ↓ seizure threshold, sweating. TOXICITY: cardiac dysrhythmias, confusion, agitation → seizures and coma.",
+     ci:"Pregnancy risk D. Seizure disorder with recent MI. Caution: DM, CAD, BPH, hyperthyroidism, liver/kidney/respiratory disease.",
+     nur:"Effects in 14+ days. Very dangerous in overdose: give limited supplies to suicidal patients. Monitor suicidal ideation."},
+    {n:"Phenelzine (Nardil), isocarboxazid, tranylcypromine", c:"MAOIs", hy:true,
+     moa:"Block MAO enzymes → more NE, dopamine, serotonin, and tyramine.",
+     use:"Refractory depression, panic, bulimia, PTSD.",
+     ae:"HYPERTENSIVE CRISIS ('cheese effect'): severe headache, stiff neck, palpitations, very high BP.",
+     ci:"Interacts with almost everything: OTC cold/decongestant products, SSRIs (serotonin syndrome), TCAs (HTN crisis), vasopressors, meperidine, general anesthesia, levodopa, buspirone. Pheochromocytoma, CV/cerebrovascular disease.",
+     nur:"Strict tyramine-free diet. Up to 3 months for full effect. Assess suicide risk. Wait 14 days when switching to or from other antidepressants."},
+    {n:"Lithium carbonate", c:"Mood stabilizer", hy:true,
+     use:"Bipolar disorder.",
+     ae:"GI distress, polyuria, thirst, weight gain, goiter/hypothyroidism, bradydysrhythmia, hypotension, fine hand tremor.",
+     nur:"Therapeutic 0.6–1.2 mEq/L. Take with meals or milk. Keep normal sodium and 2–3 L fluid daily. Vomiting, diarrhea, sweating, or a low-salt diet → dehydration → toxicity. Check levels, thyroid, and kidney function.",
+     lab:"0.6–1.2 mEq/L"},
+    {n:"Haloperidol, chlorpromazine", c:"First-generation (typical) antipsychotics", hy:true,
+     use:"Schizophrenia, psychosis, Tourette's, intractable hiccups.",
+     ae:"Extrapyramidal symptoms (dystonia, akathisia, pseudoparkinsonism, tardive dyskinesia). Sedation, anticholinergic effects.",
+     nur:"Assess for EPS regularly. Black box: suicidal ideation in children (all antipsychotics)."},
+    {n:"Risperidone, olanzapine, quetiapine, clozapine", c:"Atypical antipsychotics", hy:true,
+     use:"Schizophrenia, bipolar mania, autism irritability, adjunct for depression.",
+     ae:"METABOLIC SYNDROME: weight gain, ↑ glucose, ↑ lipids, ↑ BP. Fewer EPS.",
+     nur:"Baseline and periodic weight, waist, glucose, lipids, BP."},
+    {n:"Alprazolam, lorazepam, diazepam", c:"Benzodiazepine anxiolytics",
+     use:"Short-term anxiety, panic. Alcohol withdrawal.",
+     nur:"See Neuro unit. Flumazenil reverses. Taper."},
+    {n:"Disulfiram (Antabuse)", c:"Alcohol deterrent", hy:true,
+     moa:"Blocks acetaldehyde breakdown → acetaldehyde syndrome if any alcohol is consumed.",
+     use:"Alcohol use disorder (with counseling).",
+     ae:"With alcohol: flushing, nausea, vomiting, headache, HYPOTENSION, chest pain, dyspnea.",
+     nur:"No alcohol for at least 3–4 days (up to 2 weeks) after the last dose. Avoid hidden alcohol: mouthwash, cough syrups, sauces, aftershave. It does not cure alcoholism."},
+    {n:"Naltrexone, acamprosate (Campral)", c:"Alcohol use disorder",
+     use:"Reduce cravings and support abstinence. Acamprosate is the newest."},
+    {n:"Nicotine patch, gum, inhaler, nasal spray; bupropion (Zyban); varenicline", c:"Smoking cessation", hy:true,
+     use:"Nicotine without the tobacco carcinogens.",
+     nur:"Patch: steady level, not quick craving relief. Gum: 'chew and park' (chew slowly, park between cheek and gum). Chewing fast releases a burst of nicotine and causes GI upset."}
+  ],
+  pearls: [
+    "Alcohol withdrawal: ↑ BP, ↑ HR, ↑ temp, tremors, insomnia, agitation → delirium tremens. Benzodiazepines are the treatment of choice. Use CIWA scoring.",
+    "Delirium tremens: expect TACHYCARDIA, not bradycardia or hypotension.",
+    "Chronic alcohol use: B-vitamin (thiamine) deficiency → Wernicke's encephalopathy, Korsakoff's psychosis. Also cirrhosis, cardiomyopathy, seizures.",
+    "Most dangerous withdrawal: CNS depressants (alcohol, benzodiazepines, barbiturates).",
+    "Serotonin syndrome: agitation, confusion, hyperthermia, diaphoresis, tachycardia, tremor, hyperreflexia.",
+    "At 4-week antidepressant follow-up, the priority assessment is suicidal ideation."
+  ]
+},
+{
+  id: "resp", name: "Respiratory Drugs", short: "Respiratory", hue: 195,
+  src: "Week 7 · Ch. 36–37, 41", fromSlides: true,
+  big: [
+    "Rescue = SABA (albuterol). Everything else (LABA, ICS, LTRA, theophylline, ipratropium) is maintenance.",
+    "Bronchodilator first, then steroid. Wait 1–2 min between puffs of the same drug, 2–5 min between different drugs.",
+    "Rinse the mouth after an inhaled corticosteroid (thrush).",
+    "Antitussives are for NONproductive coughs only. Expectorants (guaifenesin) thin secretions; push fluids.",
+    "TB: multiple drugs for 6–12 months. Adherence is everything."
+  ],
+  mnemonics: [
+    {t: "INH = Interferes, Neuropathy, Hepatotoxicity", d: "Give vitamin B6 (pyridoxine) to prevent neuropathy. Hold for jaundice, dark urine, ↑ AST/ALT. No alcohol."},
+    {t: "Rifampin = RED-fampin", d: "Orange-red urine, tears, sweat (normal). Stains soft contacts. Makes birth control pills ineffective."},
+    {t: "Ethambutol = EYE", d: "Optic neuritis: blurred vision, red-green color changes. Baseline and routine eye exams."},
+    {t: "Theophylline: same 10–20 as phenytoin", d: "Range 10–20 mcg/mL (many prefer 5–15). Smoking speeds its metabolism; charbroiled and high-protein foods interact."}
+  ],
+  cards: [
+    {n:"Albuterol (Proventil, Ventolin), levalbuterol", c:"SABA (β2 agonist)", hy:true,
+     moa:"Relaxes bronchial smooth muscle.",
+     use:"ACUTE bronchospasm. The 'rescue inhaler.' MDI or nebulizer.",
+     ae:"Tremor, tachycardia, palpitations, insomnia, restlessness, anxiety, ↑ glucose, angina. Overuse → loses β2 selectivity.",
+     ci:"Uncontrolled HTN, dysrhythmias, high stroke risk.",
+     nur:"Needing it more often = worsening disease → needs evaluation. Nonselective β-blockers blunt its effect. Monitor glucose in diabetes. Use a spacer."},
+    {n:"Salmeterol (Serevent), formoterol", c:"LABA (β2 agonist)", hy:true,
+     use:"Maintenance for asthma and COPD. NEVER for acute attacks.",
+     nur:"No more than twice daily. Used with an inhaled corticosteroid (e.g., fluticasone/salmeterol Advair). Ultra-LABAs: indacaterol, vilanterol."},
+    {n:"Ipratropium (Atrovent), tiotropium (Spiriva)", c:"Inhaled anticholinergics", hy:true,
+     moa:"Block ACh at bronchial receptors → prevent bronchoconstriction.",
+     use:"COPD maintenance. Reduces secretions. Not for acute symptoms.",
+     ae:"Dry mouth/throat, nasal congestion, palpitations, GI upset, headache, cough, anxiety."},
+    {n:"Theophylline, aminophylline", c:"Xanthine derivatives", hy:true,
+     moa:"Relax airway smooth muscle. Also stimulate CNS and heart.",
+     use:"Adjunct for asthma/COPD. IV aminophylline for status asthmaticus not responding to beta agonists. Not for acute attacks.",
+     ae:"Nausea, vomiting, GERD at night, sinus tachycardia, ventricular dysrhythmias, ↑ glucose, ↑ urination.",
+     nur:"Level 10–20 mcg/mL (5–15 preferred). Report nausea, vomiting, restlessness, insomnia, irritability, tremors (early toxicity). Smoking ↓ levels. Caution in cardiac patients.",
+     lab:"10–20 (5–15) mcg/mL"},
+    {n:"Caffeine", c:"Xanthine",
+     use:"Alertness. Bradycardia and apnea in infants (respiratory stimulant)."},
+    {n:"Montelukast (Singulair)", c:"Leukotriene receptor antagonist", hy:true,
+     moa:"Blocks leukotrienes → less inflammation, bronchoconstriction, and mucus.",
+     use:"Asthma prevention (age 12+ per slides), allergic rhinitis. Not for acute attacks.",
+     ae:"BLACK BOX: serious mood changes (neuropsychiatric).",
+     nur:"Take every evening, even when well. Improvement in about 1 week. Check LFTs."},
+    {n:"Fluticasone, budesonide, beclomethasone, mometasone", c:"Inhaled corticosteroids (ICS)", hy:true,
+     moa:"Reduce airway inflammation and boost β-agonist effect.",
+     use:"Persistent asthma, maintenance. Systemic (IV/PO) steroids for severe exacerbations.",
+     ae:"Oral candidiasis, pharyngeal irritation, cough, dry mouth, hyperglycemia.",
+     ci:"Sole therapy for acute attack. Candida-positive sputum. Systemic fungal infection.",
+     nur:"Several weeks for full effect. Rinse mouth and spit after use. Give bronchodilator first."},
+    {n:"Diphenhydramine, meclizine, promethazine", c:"First-generation (traditional) H1 antihistamines", hy:true,
+     use:"Allergies, allergic reactions, motion sickness, sleep, common cold.",
+     ae:"Drowsiness (most common), anticholinergic effects: dry mouth, urinary retention, constipation, vision changes.",
+     ci:"Narrow-angle glaucoma, BPH/urinary retention, cardiac disease/HTN, kidney disease, asthma/COPD, seizures.",
+     nur:"Assess for urinary retention history first. No driving. Avoid alcohol."},
+    {n:"Loratadine, cetirizine, fexofenadine", c:"Second-generation H1 antihistamines",
+     use:"Allergic rhinitis.",
+     nur:"Work peripherally. Less sedation. Longer duration."},
+    {n:"Oxymetazoline (Afrin), phenylephrine", c:"Topical nasal decongestants (α agonists)", hy:true,
+     use:"Nasal congestion. Can stop nosebleeds.",
+     ae:"Rebound congestion after several days. Nervousness, insomnia, palpitations, tremors, HTN.",
+     nur:"Limit to 3–5 days."},
+    {n:"Pseudoephedrine (Sudafed)", c:"Oral decongestant",
+     use:"Congestion. Slower onset, longer effect, no rebound.",
+     ae:"HTN, insomnia, palpitations.",
+     ci:"HTN, cardiac disease, MAOIs."},
+    {n:"Dextromethorphan, benzonatate, codeine", c:"Antitussives", hy:true,
+     use:"NONproductive cough only. Benzonatate: swallow whole.",
+     ae:"Sedation, dizziness.",
+     nur:"Best for patients where coughing is harmful (recent abdominal surgery). Report cough >1 week, fever, rash, persistent headache."},
+    {n:"Guaifenesin (Mucinex)", c:"Expectorant", hy:true,
+     moa:"Thins and loosens secretions.",
+     use:"Thick, hard-to-cough secretions.",
+     nur:"Increase fluids (dehydration risk). Caution in older adults and asthma."},
+    {n:"Isoniazid (INH)", c:"First-line antitubercular", hy:true,
+     use:"Active and latent TB.",
+     ae:"Peripheral neuropathy, HEPATOTOXICITY.",
+     nur:"Vitamin B6 25–50 mg/day. Baseline and periodic LFTs. Report numbness, tingling, jaundice, dark urine, fatigue. HOLD for ↑ AST/ALT. No alcohol."},
+    {n:"Rifampin", c:"First-line antitubercular", hy:true,
+     use:"TB. Also TB prophylaxis for contacts.",
+     ae:"Hepatitis. Red-orange urine, tears, sweat, stool.",
+     nur:"Glasses instead of soft contacts. Use a non-hormonal backup birth control. Monitor for jaundice."},
+    {n:"Ethambutol", c:"First-line antitubercular", hy:true,
+     ae:"Retrobulbar (optic) neuritis, blindness.",
+     nur:"Baseline and routine eye exams. Report blurred vision or color changes."}
+  ],
+  pearls: [
+    "TB diagnosis: Mantoux (PPD) → chest x-ray if positive → sputum culture/AFB smear. Positive PPD = INDURATION (not redness).",
+    "BCG vaccine can cause a false-positive PPD. It reduces severe TB but does not prevent infection.",
+    "Collect sputum for AFB in the EARLY MORNING.",
+    "Cough and infectiousness drop within about 2 weeks if the strain is drug-sensitive. Still having night sweats at 4 weeks → think nonadherence first.",
+    "MDR-TB resists INH and rifampin. Always start multiple drugs before sensitivity results.",
+    "Never share TB meds with family. Contacts see their own provider.",
+    "Therapeutic effects: ↓ dyspnea and wheezing, RR 12–20, ↓ work of breathing, better activity tolerance."
+  ]
+},
+{
+  id: "card", name: "Cardiac Drugs", short: "Cardiac", hue: 350,
+  src: "Week 9 · Ch. 22–27", fromSlides: true,
+  big: [
+    "BP = cardiac output × SVR. Antihypertensives lower one or both.",
+    "ACE inhibitors (-pril) and ARBs (-sartan) block RAAS. ACEi: cough and angioedema. Both: ↑ K+, no pregnancy.",
+    "Digoxin: narrow window (0.5–2 ng/mL). Hold if apical HR <60. Hypokalemia → toxicity.",
+    "Heparin → aPTT, antidote protamine. Warfarin → PT/INR, antidote vitamin K.",
+    "Nitrates + ED drugs (sildenafil, tadalafil) = profound hypotension. Never together.",
+    "Never stop antihypertensives (especially β-blockers, clonidine) abruptly → rebound HTN."
+  ],
+  mnemonics: [
+    {t: "-PRIL = cough, K+ up, angioedema", d: "Dry cough is common and stops when the drug stops. Angioedema (swollen lips/tongue) is an airway emergency."},
+    {t: "Digoxin toxicity: 'yellow halos, slow, and sick'", d: "Bradycardia, nausea/vomiting, anorexia, confusion, headache, dizziness, yellow-green halos. Antidote: digoxin immune Fab (Digibind)."},
+    {t: "Heparin → Protamine (two P's in a row: PTT, Protamine)", d: "1 mg protamine reverses 100 units heparin."},
+    {t: "Warfarin → vitamin K, watch the INR", d: "Keep vitamin K intake CONSISTENT (spinach, kale, broccoli). Don't binge or eliminate."},
+    {t: "Statin red flags: muscle pain and dark urine", d: "Rhabdomyolysis → myoglobinuria → kidney failure. Take at bedtime. Check LFTs and CK."}
+  ],
+  cards: [
+    {n:"Clonidine (Catapres)", c:"Central α2 agonist", hy:true,
+     moa:"Stimulates α2 in the brain → ↓ sympathetic outflow → ↓ BP.",
+     use:"Adjunct for HTN. Opioid withdrawal.",
+     ae:"Orthostatic hypotension, dry mouth, drowsiness, fatigue, constipation.",
+     nur:"Oral and patch. Never stop abruptly → REBOUND HYPERTENSION."},
+    {n:"Lisinopril, enalapril, captopril (-pril)", c:"ACE inhibitors", hy:true,
+     moa:"Block conversion of angiotensin I → II → vasodilation and less aldosterone (less Na/water retention).",
+     use:"HTN, HF (↓ mortality), post-MI (prevents ventricular remodeling), diabetic kidney protection (↓ proteinuria) even without HTN.",
+     ae:"Dry nonproductive cough, HYPERKALEMIA, ANGIOEDEMA, first-dose hypotension, dizziness, fatigue.",
+     ci:"Pregnancy. History of angioedema.",
+     nur:"Check K+ and creatinine. Avoid K supplements/salt substitutes. Captopril: shortest half-life, dosed several times daily. Enalapril: only IV ACEi (enalaprilat)."},
+    {n:"Losartan, valsartan, irbesartan (-sartan)", c:"ARBs", hy:true,
+     moa:"Block angiotensin II at its receptors → vasodilation, ↓ aldosterone.",
+     use:"HTN, HF adjunct. Good switch when ACEi cough is intolerable.",
+     ae:"Fewer coughs and less hyperkalemia than ACEi. Chest pain, fatigue, diarrhea, UTI, hypoglycemia.",
+     ci:"Pregnancy."},
+    {n:"Amlodipine, nifedipine (dihydropyridines)", c:"Calcium channel blockers", hy:true,
+     moa:"Block calcium in vascular smooth muscle → ↓ SVR. Little effect on HR.",
+     use:"HTN (amlodipine is first line), angina, Raynaud's, migraine, prevents cerebral vasospasm after SAH. Nifedipine is safe in pregnancy.",
+     ae:"Hypotension, reflex tachycardia, peripheral edema, headache, flushing, constipation."},
+    {n:"Diltiazem (Cardizem), verapamil (non-dihydropyridines)", c:"Calcium channel blockers / Class IV", hy:true,
+     moa:"Slow SA node and AV node conduction and ↓ contractility.",
+     use:"Rate control in A-fib/flutter, PSVT, angina, HTN.",
+     ae:"HYPOTENSION, bradycardia, dizziness, fatigue, constipation.",
+     nur:"Dizzy or tired on standing → check BP first."},
+    {n:"Hydralazine", c:"Direct vasodilator",
+     use:"PO for essential HTN; IV for hypertensive emergency. BiDil (with isosorbide) for HF in African-American patients.",
+     ae:"Reflex tachycardia, headache."},
+    {n:"Sodium nitroprusside (Nipride)", c:"Direct vasodilator (IV)", hy:true,
+     use:"Severe hypertensive emergency in ICU. Titrate by IV pump.",
+     ci:"Severe HF, inadequate cerebral perfusion.",
+     nur:"Continuous BP monitoring. Protect from light."},
+    {n:"Nitroglycerin, isosorbide", c:"Nitrates", hy:true,
+     moa:"Dilate veins and coronary arteries → more O2 to the heart, ↓ preload.",
+     use:"SL/IV for acute angina. Long-acting forms prevent angina.",
+     ae:"HEADACHE (fades with use), reflex tachycardia, postural hypotension, tolerance.",
+     ci:"ED drugs (sildenafil, tadalafil, vardenafil), hypotension, severe anemia, closed-angle glaucoma, severe head injury.",
+     nur:"SL: 1 tab every 5 min × 3; call 911 if pain not relieved after the first dose. Sit down. Alcohol and β-blockers add to hypotension. SL, IV, patch, ointment, and spray bypass first-pass."},
+    {n:"Dobutamine", c:"β1 positive inotrope",
+     use:"Acute HF/cardiogenic shock. More force → more output."},
+    {n:"Digoxin (Lanoxin)", c:"Cardiac glycoside", hy:true,
+     moa:"+ inotrope (stronger contraction), − chronotrope (slower HR), − dromotrope (slower AV conduction).",
+     use:"HF (improves symptoms, not mortality), A-fib rate control.",
+     ae:"Toxicity: bradycardia, nausea, vomiting, anorexia, headache, dizziness, confusion, yellow halos, dysrhythmias.",
+     nur:"Apical pulse 1 full minute; hold if <60. Level 0.5–2 ng/mL. Dose 0.125–0.25 mg daily. Low K+ or Mg++ (often from diuretics) and renal failure raise toxicity risk.",
+     anti:"Digoxin immune Fab (Digibind): life-threatening dysrhythmias, K+ >5, overdose >10 mg",
+     lab:"0.5–2 ng/mL"},
+    {n:"Amiodarone (Cordarone)", c:"Class III antidysrhythmic", hy:true,
+     moa:"Prolongs action potential and refractory period. Also blocks α and β.",
+     use:"Drug of choice for VT/VF (ACLS). Also supraventricular dysrhythmias.",
+     ae:"Pulmonary toxicity, corneal microdeposits (halos, photophobia, dry eyes), photosensitivity, thyroid changes, bradycardia.",
+     nur:"Baseline PFTs, CXR, thyroid, eye exam. Sunscreen."},
+    {n:"Adenosine", c:"Unclassified antidysrhythmic", hy:true,
+     use:"Converts PSVT.",
+     nur:"Rapid IV push followed by saline flush. Brief asystole (seconds) is EXPECTED and resolves on its own."},
+    {n:"Procainamide (Ia), lidocaine (Ib), flecainide (Ic)", c:"Class I sodium channel blockers",
+     use:"Ventricular dysrhythmias (procainamide, lidocaine)."},
+    {n:"Heparin", c:"Anticoagulant", hy:true,
+     moa:"Inhibits thrombin (IIa) and factor Xa. Prevents new clots; doesn't dissolve existing ones.",
+     use:"DVT prophylaxis (SQ), DVT/PE treatment (IV infusion), MI, A-fib.",
+     ae:"Bleeding, heparin-induced thrombocytopenia (HIT).",
+     nur:"IV: aPTT or anti-Xa every 6 h. SQ: deep fat, not within 2 inches of umbilicus, don't aspirate or massage, rotate sites. Bridges until warfarin is therapeutic (overlap ≥5 days).",
+     anti:"Protamine sulfate (1 mg per 100 units)",
+     lab:"aPTT / anti-Xa"},
+    {n:"Enoxaparin (Lovenox)", c:"Low-molecular-weight heparin", hy:true,
+     use:"DVT prophylaxis and treatment.",
+     ci:"Indwelling epidural catheter (epidural hematoma).",
+     nur:"No routine lab monitoring. Prefilled syringe: do NOT expel the air bubble."},
+    {n:"Warfarin (Coumadin)", c:"Oral anticoagulant (vitamin K antagonist)", hy:true,
+     use:"A-fib, mechanical valves, DVT/PE long-term.",
+     ae:"Bleeding. Many drug and herbal interactions.",
+     ci:"Pregnancy (strongly contraindicated). Active bleeding.",
+     nur:"Monitor PT/INR (therapeutic 2–3.5 per slides; normal ~1). Takes several days for full effect. Consistent vitamin K intake. Medical alert bracelet. Soft toothbrush, electric razor. Fall + head injury → evaluate for internal bleeding.",
+     anti:"Vitamin K (IV for life-threatening bleeding; anaphylaxis risk). Plasma/clotting factors for severe bleeding",
+     lab:"INR 2–3.5"},
+    {n:"Argatroban; dabigatran (Pradaxa)", c:"Direct thrombin inhibitors",
+     use:"Argatroban: IV only, treats HIT. Dabigatran: oral, stroke prevention in A-fib.",
+     nur:"Dabigatran needs no coagulation monitoring.",
+     anti:"Dabigatran → idarucizumab (Praxbind)"},
+    {n:"Rivaroxaban (Xarelto), apixaban (Eliquis), fondaparinux", c:"Factor Xa inhibitors", hy:true,
+     use:"Stroke prevention in A-fib, post-op ortho prophylaxis, DVT/PE treatment.",
+     ae:"Bleeding."},
+    {n:"Aspirin, clopidogrel (Plavix), eptifibatide", c:"Antiplatelets", hy:true,
+     use:"Prevent arterial clots (MI, stroke, TIA).",
+     ae:"Bleeding.",
+     nur:"Ginkgo, garlic, NSAIDs, and PPIs (with clopidogrel) raise bleeding risk or change effect."},
+    {n:"Alteplase (tPA), tenecteplase", c:"Thrombolytics", hy:true,
+     moa:"Convert plasminogen → plasmin → dissolves fibrin clot.",
+     use:"Acute MI, ischemic stroke, PE, DVT, clotted catheters (Cathflo).",
+     ae:"BLEEDING (intracranial, internal), hypotension, dysrhythmias, anaphylaxis.",
+     nur:"Alteplase: bolus + infusion, max 90 mg. Tenecteplase: bolus only. ICU monitoring ≥24 h. Watch for ↓ BP, ↑ HR, restlessness (internal bleeding)."},
+    {n:"Aminocaproic acid, tranexamic acid (TXA), desmopressin", c:"Antifibrinolytics / hemostatics",
+     use:"Excessive bleeding (surgery, trauma, postpartum). Desmopressin: hemophilia A, von Willebrand.",
+     nur:"TXA: hypotension with rapid IV push. Desmopressin: monitor sodium (hyponatremia)."},
+    {n:"Atorvastatin, simvastatin, rosuvastatin (-statin)", c:"HMG-CoA reductase inhibitors", hy:true,
+     use:"High LDL, CVD risk. Most potent LDL reducers.",
+     ae:"Myalgia, RHABDOMYOLYSIS, ↑ liver enzymes, headache, GI upset.",
+     nur:"Take at bedtime. Monitor LFTs, CK, lipid panel. Report muscle pain or brown urine at once. Diet still matters."}
+  ],
+  pearls: [
+    "HTN thresholds on slides: AHA/ACC >130/80. JNC 8: >150/90 if 60+, >140/90 if under 60 or with CKD/DM.",
+    "ACEi are the best choice for HTN with diabetes.",
+    "Antiplatelets prevent ARTERIAL clots; anticoagulants prevent VENOUS clots.",
+    "Antihypertensive teaching: change position slowly; avoid hot tubs and alcohol; report swelling, weight gain, SOB; impotence may occur (affects adherence).",
+    "Give oral antihypertensives with meals for steady absorption; IV forms by pump only."
+  ]
+},
+{
+  id: "renal", name: "Renal Drugs: Diuretics & Electrolytes", short: "Renal", hue: 45,
+  src: "Not from your slides · standard Lilley Ch. 28–29 content", fromSlides: false,
+  big: [
+    "Diuretics remove sodium and water → ↓ blood volume → ↓ preload and BP. Thiazides are first line for HTN.",
+    "Loop and thiazide diuretics WASTE potassium. Potassium-sparing diuretics RETAIN it.",
+    "Monitor every diuretic the same way: daily weight, I&O, BP (orthostatic), electrolytes, BUN/creatinine.",
+    "Give diuretics in the MORNING so the patient isn't up all night.",
+    "IV potassium is NEVER given IV push. Always diluted, on a pump."
+  ],
+  mnemonics: [
+    {t: "Loops LOSE a lot", d: "Furosemide is the most potent. Loses K+, Na+, Mg++, Ca++. Ototoxic with fast IV push or aminoglycosides."},
+    {t: "Thiazides raise the 'H's", d: "Hyperglycemia, Hyperuricemia (gout), Hypercalcemia, plus Hypokalemia. Don't work well if CrCl < 30 (except metolazone)."},
+    {t: "Spironolactone SPARES K+", d: "Hyperkalemia risk. No K supplements, salt substitutes, ACEi/ARB without monitoring. Gynecomastia."},
+    {t: "Daily weight: 1 kg = 1 L", d: "Gain of >2 lb/day or 5 lb/week = fluid retention. Report."}
+  ],
+  cards: [
+    {n:"Furosemide (Lasix), bumetanide, torsemide", c:"Loop diuretics", hy:true,
+     moa:"Block Na/Cl reabsorption in the loop of Henle. Most potent diuresis.",
+     use:"Edema from HF, cirrhosis, renal disease. Acute pulmonary edema. HTN.",
+     ae:"HYPOKALEMIA, hyponatremia, hypomagnesemia, dehydration, orthostatic hypotension, OTOTOXICITY, hyperglycemia, hyperuricemia.",
+     ci:"Anuria, severe electrolyte depletion, sulfa allergy (caution).",
+     nur:"Monitor K+ (watch for weakness, cramps, U waves). Hypokalemia + digoxin = toxicity. Push IV slowly. Morning dosing. Eat K-rich foods (bananas, oranges, potatoes) if not on K supplements."},
+    {n:"Hydrochlorothiazide (HCTZ), chlorthalidone, metolazone", c:"Thiazide / thiazide-like diuretics", hy:true,
+     moa:"Block Na/Cl reabsorption in the distal tubule.",
+     use:"First-line HTN. Edema. Metolazone works with poor kidney function.",
+     ae:"Hypokalemia, hyperglycemia, hyperuricemia (gout flare), HYPERcalcemia, hyponatremia, dizziness.",
+     ci:"Anuria. Ineffective when CrCl <30–50 (except metolazone).",
+     nur:"Monitor glucose in diabetes, uric acid in gout, K+. Sun protection."},
+    {n:"Spironolactone (Aldactone), eplerenone", c:"Potassium-sparing (aldosterone antagonists)", hy:true,
+     moa:"Block aldosterone → excrete Na and water, KEEP K+.",
+     use:"HF (↓ mortality), hyperaldosteronism, cirrhotic ascites, with a loop/thiazide to balance K+ loss.",
+     ae:"HYPERKALEMIA, gynecomastia, menstrual irregularities, hyponatremia.",
+     ci:"Hyperkalemia, severe renal failure.",
+     nur:"No potassium supplements or salt substitutes (KCl). Extra caution with ACEi/ARBs. Watch for peaked T waves, muscle weakness."},
+    {n:"Triamterene, amiloride", c:"Potassium-sparing (non-aldosterone)",
+     use:"Combined with HCTZ (Dyazide, Maxzide) to offset K+ loss.",
+     ae:"Hyperkalemia."},
+    {n:"Mannitol (Osmitrol)", c:"Osmotic diuretic", hy:true,
+     moa:"Pulls water into the filtrate (and out of the brain and eyes) by osmotic pressure.",
+     use:"↑ Intracranial pressure, ↑ intraocular pressure, early oliguric renal failure.",
+     ae:"Fluid and electrolyte imbalance, pulmonary edema/HF (fluid shift into vessels), headache.",
+     ci:"Severe HF, pulmonary edema, anuria, active intracranial bleeding.",
+     nur:"Crystals form: warm the vial and use an in-line filter. Monitor I&O, lung sounds, ICP, neuro checks."},
+    {n:"Acetazolamide (Diamox)", c:"Carbonic anhydrase inhibitor",
+     use:"Glaucoma, altitude sickness, edema, some seizures.",
+     ae:"Metabolic acidosis, hypokalemia, paresthesias, drowsiness.",
+     ci:"Sulfa allergy (caution)."},
+    {n:"Potassium chloride (KCl)", c:"Electrolyte replacement", hy:true,
+     use:"Hypokalemia (normal K+ 3.5–5.0 mEq/L), often with loop/thiazide diuretics.",
+     ae:"Hyperkalemia (dysrhythmias), GI irritation (oral), phlebitis and burning (IV).",
+     ci:"Hyperkalemia, severe renal failure, potassium-sparing diuretics.",
+     nur:"NEVER IV push. Always diluted, via pump; peripheral rate usually ≤10 mEq/h. Check urine output first (≥30 mL/h). Oral: with food and a full glass of water; don't crush ER tablets. Cardiac monitoring for higher rates.",
+     lab:"K+ 3.5–5.0 mEq/L"},
+    {n:"Sodium polystyrene sulfonate (Kayexalate)", c:"Potassium binder",
+     use:"Hyperkalemia. Exchanges sodium for potassium in the gut; K+ leaves in stool.",
+     ae:"Hypokalemia, sodium retention, constipation.",
+     nur:"PO or retention enema. Monitor K+."},
+    {n:"0.9% NaCl, lactated Ringer's, D5W, albumin", c:"IV fluids (crystalloids & colloids)",
+     use:"Isotonic crystalloids (NS, LR) expand volume. Hypotonic (0.45% NS, D5W once metabolized) hydrates cells. Colloids (albumin) pull fluid into vessels.",
+     nur:"Watch for fluid overload: crackles, JVD, edema, ↑ BP, SOB. Daily weights."}
+  ],
+  pearls: [
+    "Also relevant from your slides: bethanechol (urinary retention), oxybutynin/tolterodine (overactive bladder), tamsulosin (BPH, kidney stones), mirabegron (overactive bladder).",
+    "Antacids: magnesium and calcium accumulate in renal failure. Aluminum is the safer choice (from GI slides).",
+    "ACE inhibitors protect diabetic kidneys and reduce proteinuria (from cardiac slides).",
+    "Digoxin toxicity: renal failure is a common cause (from cardiac slides).",
+    "Check your renal slides against this unit before the exam."
+  ]
+},
+{
+  id: "gi", name: "GI Drugs & Anemia", short: "GI", hue: 95,
+  src: "Week 10 · Ch. 50–52, 54–55", fromSlides: true,
+  big: [
+    "Acid control: antacids neutralize, H2 blockers reduce, PPIs shut off the proton pump.",
+    "PPIs: 30–60 min before the first meal. Sucralfate: give other drugs 2 h before. Antacids: other drugs 1–2 h apart.",
+    "Antidiarrheals: adsorbents for mild, opiates/anticholinergics for severe, probiotics for antibiotic-induced.",
+    "Laxatives: all can cause dehydration and electrolyte imbalance. Bulk formers need lots of water.",
+    "Antiemetics for prevention: give 30–60 min before the trigger (chemo, surgery, travel)."
+  ],
+  mnemonics: [
+    {t: "Antacid bowel effects: Al and Ca constipate, Mg goes", d: "Aluminum and calcium → constipation. Magnesium → diarrhea. Combos balance them."},
+    {t: "Renal failure? Aluminum antacid", d: "Magnesium and calcium accumulate when kidneys fail."},
+    {t: "Iron: OJ yes, milk and antacids no", d: "Vitamin C boosts absorption. Eggs, corn, beans, cereal (phytates), milk, and antacids block it. Black stools are expected."},
+    {t: "Reglan → TD", d: "Metoclopramide black box: tardive dyskinesia with long-term use."},
+    {t: "Scopolamine patch: behind the ear, 4 hours early", d: "Apply at least 4 hours before travel."}
+  ],
+  cards: [
+    {n:"Aluminum hydroxide (AlternaGEL), aluminum carbonate", c:"Antacids – aluminum", hy:true,
+     ae:"Constipation.",
+     nur:"Preferred antacid in renal disease (easier to excrete). Often combined with Mg (Maalox, Mylanta, Gaviscon)."},
+    {n:"Magnesium hydroxide (Milk of Magnesia)", c:"Antacid / saline laxative", hy:true,
+     ae:"Diarrhea. Magnesium toxicity in renal failure.",
+     ci:"Renal failure."},
+    {n:"Calcium carbonate (Tums)", c:"Antacid – calcium",
+     ae:"Constipation, kidney stones, rebound hyperacidity.",
+     ci:"Renal disease.",
+     nur:"Often paired with simethicone to reduce gas."},
+    {n:"Sodium bicarbonate", c:"Antacid – sodium",
+     ae:"Metabolic alkalosis (can slow breathing). Sodium load.",
+     ci:"HF, HTN, renal insufficiency.",
+     nur:"Fast onset, short duration."},
+    {n:"Famotidine (Pepcid), cimetidine, nizatidine", c:"H2 receptor antagonists", hy:true,
+     moa:"Block H2 receptors on parietal cells → less acid → ↑ gastric pH.",
+     use:"GERD, PUD, erosive esophagitis, upper GI bleed adjunct, ICU stress-ulcer prophylaxis.",
+     ae:"CONFUSION and disorientation, especially older adults (cimetidine most).",
+     nur:"Assess renal and liver function. Caution in confused or older patients. Smoking reduces effect. Take 1–2 h before eating for best results."},
+    {n:"Omeprazole, pantoprazole, esomeprazole, lansoprazole (-prazole)", c:"Proton pump inhibitors", hy:true,
+     moa:"Irreversibly bind H+/K+ ATPase → blocks all acid secretion until new pumps are made.",
+     use:"GERD (first line), erosive esophagitis, duodenal/gastric ulcers, Zollinger-Ellison, NSAID ulcers, stress-ulcer prophylaxis, H. pylori (with antibiotics).",
+     ae:"C. difficile, pneumonia, osteoporosis/fractures (long-term), ↓ magnesium, possible dementia and lupus links.",
+     nur:"Take first thing in the morning on an empty stomach, 30–60 min before eating. Don't crush or chew delayed-release granules (may open capsule onto applesauce/apple juice). ↑ diazepam and phenytoin levels; ↑ bleeding with warfarin; ↓ absorption of ketoconazole, ampicillin, iron, digoxin. Sucralfate delays PPI absorption."},
+    {n:"Sucralfate (Carafate)", c:"Cytoprotective (mucosal protectant)", hy:true,
+     moa:"Forms a protective barrier over the ulcer base. Acts locally, not systemically.",
+     use:"Stress ulcers, PUD. Binds phosphate in renal failure.",
+     ae:"Constipation, nausea, dry mouth.",
+     nur:"Give other meds at least 2 hours BEFORE sucralfate. Don't give with other medications."},
+    {n:"Simethicone (Mylicon)", c:"Antiflatulent",
+     moa:"Breaks gas bubbles into smaller ones.",
+     use:"Gas pain. Added to calcium antacids to reduce the gas they cause."},
+    {n:"Bismuth subsalicylate (Pepto-Bismol), activated charcoal, cholestyramine", c:"Adsorbent antidiarrheals", hy:true,
+     use:"Mild, acute diarrhea. Bismuth is part of H. pylori quadruple therapy.",
+     ae:"Bleeding time ↑, constipation, confusion, tinnitus, metallic taste. Black tongue/stool (bismuth).",
+     nur:"Caution: older adults, recent surgery, clotting disorders, confusion (salicylate). Decreases absorption of digoxin and hypoglycemics."},
+    {n:"Loperamide (Imodium), diphenoxylate-atropine (Lomotil), opium tincture", c:"Antimotility antidiarrheals", hy:true,
+     use:"Severe diarrhea.",
+     ae:"Opiates: addiction, respiratory depression. Anticholinergic: dry mouth, retention, blurred vision.",
+     ci:"Narrow-angle glaucoma, GI obstruction, MG, paralytic ileus, toxic megacolon.",
+     nur:"Main adverse effect is constipation. Ensure fluids; check electrolytes before supplements."},
+    {n:"Lactobacillus (probiotics)", c:"Intestinal flora modifier", hy:true,
+     use:"Antibiotic-associated diarrhea."},
+    {n:"Psyllium (Metamucil), methylcellulose (Citrucel)", c:"Bulk-forming laxatives", hy:true,
+     use:"Acute/chronic constipation, IBS, diverticulosis.",
+     ae:"Impaction, ESOPHAGEAL obstruction, fluid overload (avoid in HF), electrolyte imbalance.",
+     nur:"Mix and take with a full glass of water, then more fluid."},
+    {n:"Docusate (Colace), mineral oil", c:"Emollient laxatives (stool softeners)",
+     use:"Prevent straining, fecal impaction.",
+     ae:"Mineral oil: lipid pneumonia (aspiration), ↓ fat-soluble vitamin absorption."},
+    {n:"Polyethylene glycol (MiraLAX, GoLytely), lactulose, sorbitol", c:"Hyperosmotic laxatives", hy:true,
+     use:"Chronic constipation. GoLytely: colonoscopy bowel prep. Lactulose also lowers ammonia.",
+     ae:"Bloating, electrolyte imbalance, rectal irritation."},
+    {n:"Magnesium citrate, magnesium hydroxide", c:"Saline laxatives",
+     use:"Constipation, bowel prep.",
+     ae:"Magnesium toxicity (renal failure), cramping, diarrhea, thirst."},
+    {n:"Senna (Senokot), bisacodyl (Dulcolax)", c:"Stimulant laxatives",
+     use:"Acute constipation, bowel prep.",
+     ae:"Malabsorption, discolored urine, cramping, dependence with long-term use.",
+     nur:"Swallow bisacodyl whole; no milk or antacids within 1 h (enteric coat)."},
+    {n:"Ondansetron (Zofran)", c:"Serotonin (5-HT3) blocker", hy:true,
+     use:"Chemo-induced and postop nausea/vomiting.",
+     nur:"IV, PO, ODT/SL. Give 30–60 min before chemo."},
+    {n:"Metoclopramide (Reglan)", c:"Prokinetic / dopamine blocker", hy:true,
+     use:"Gastroparesis, chemo nausea, PONV.",
+     ae:"BLACK BOX: tardive dyskinesia (long-term use). EPS, agitation (IV)."},
+    {n:"Prochlorperazine (Compazine), promethazine (Phenergan)", c:"Antidopaminergic antiemetics",
+     moa:"Block dopamine in the CTZ.",
+     ae:"Sedation, EPS, hypotension. Promethazine is a tissue irritant IV."},
+    {n:"Meclizine (Antivert), dimenhydrinate (Dramamine)", c:"Antihistamine antiemetics", hy:true,
+     use:"Motion sickness and VERTIGO.",
+     ae:"Drowsiness, anticholinergic effects."},
+    {n:"Dronabinol (THC)", c:"Tetrahydrocannabinoid",
+     use:"Chemo nausea, appetite stimulation (acts on cerebral cortex)."},
+    {n:"Ferrous sulfate, gluconate, fumarate; iron dextran/sucrose", c:"Iron", hy:true,
+     use:"Iron-deficiency anemia.",
+     ae:"N/V, constipation, cramps, BLACK TARRY STOOLS (expected), teeth staining (liquid). Pediatric poisoning.",
+     ci:"Oral ferrous salts in GI disorders.",
+     nur:"Between meals with juice (OJ). With food only if GI upset. Stay upright 15–30 min. Liquid through a straw. IV forms need a test dose. Keep away from children."},
+    {n:"Folic acid", c:"B vitamin",
+     use:"Folate deficiency. Prevents neural tube defects.",
+     nur:"Start at least 1 month before conception and continue through early pregnancy. Sulfa drugs reduce folate."},
+    {n:"Cyanocobalamin (vitamin B12)", c:"Vitamin", hy:true,
+     use:"Pernicious anemia (lacks intrinsic factor).",
+     nur:"Pernicious anemia requires IM (or intranasal) B12 for life; oral is not absorbed."},
+    {n:"Epoetin alfa (Epogen)", c:"Erythropoiesis-stimulating agent",
+     use:"Anemia (CKD, chemo). Option for patients who refuse blood products.",
+     nur:"Needs adequate iron stores and bone marrow. Monitor Hgb and BP."}
+  ],
+  pearls: [
+    "H. pylori: 10–14 days of PPI + clarithromycin + amoxicillin or metronidazole, OR PPI + bismuth + tetracycline + metronidazole.",
+    "Antacids: chew tablets thoroughly, shake liquids, give with 8 oz water. They dissolve enteric coatings early.",
+    "Long-term antacid self-treatment can mask GI bleeding or cancer.",
+    "Don't take a laxative with nausea, vomiting, or abdominal pain (possible obstruction/appendicitis).",
+    "TPN stopped suddenly + cold, clammy, tachycardic, dizzy → check blood glucose (hypoglycemia).",
+    "Enteral feeding risks: aspiration, diarrhea, infection, hypo/hyperglycemia."
+  ]
+}
+];
+
+const QUICK = {
+  antidotes: [
+    ["Benzodiazepines", "Flumazenil (Romazicon)"],
+    ["Opioids", "Naloxone"],
+    ["Cholinergics / cholinesterase inhibitors", "Atropine"],
+    ["Atropine / anticholinergics", "Physostigmine"],
+    ["Nondepolarizing NM blockers", "Neostigmine"],
+    ["Malignant hyperthermia", "Dantrolene"],
+    ["Extravasated norepinephrine/epinephrine", "Phentolamine"],
+    ["β-blocker overdose (bradycardia)", "Atropine, pacing, vasopressors"],
+    ["Digoxin", "Digoxin immune Fab (Digibind)"],
+    ["Heparin", "Protamine sulfate"],
+    ["Warfarin", "Vitamin K"],
+    ["Dabigatran", "Idarucizumab (Praxbind)"],
+    ["HIT", "Argatroban (stop heparin)"],
+    ["Cholinergic crisis with severe bronchospasm/CV collapse", "Epinephrine"]
+  ],
+  levels: [
+    ["Digoxin", "0.5–2 ng/mL", "Hold if apical HR <60"],
+    ["Lithium", "0.6–1.2 mEq/L", "Toxicity starts ~1.5"],
+    ["Phenytoin", "10–20 mcg/mL", "Gingival hyperplasia"],
+    ["Theophylline", "10–20 mcg/mL (5–15 preferred)", "Smoking ↓ level"],
+    ["Warfarin", "INR 2–3.5 (slides)", "Normal ~1"],
+    ["Heparin (IV)", "aPTT or anti-Xa q6h", "Enoxaparin: no routine labs"],
+    ["Potassium", "3.5–5.0 mEq/L", "Low K+ → digoxin toxicity"]
+  ],
+  timing: [
+    ["PPIs", "Empty stomach, 30–60 min before first meal"],
+    ["H2 blockers", "1–2 h before eating"],
+    ["Sucralfate", "Other meds ≥2 h before; give alone"],
+    ["Antacids", "Separate other meds by 1–2 h"],
+    ["Oral iron", "Between meals with OJ; upright 15–30 min"],
+    ["Pyridostigmine", "30 min before meals"],
+    ["Antiemetic (prevention)", "30–60 min before trigger"],
+    ["Scopolamine patch", "Behind ear ≥4 h before travel"],
+    ["Statins", "Bedtime"],
+    ["Montelukast", "Every evening"],
+    ["Stimulants (ADHD)", "Last dose 4–6 h before bed; empty stomach"],
+    ["SSRIs", "With food, mornings"],
+    ["Lithium", "With meals or milk"],
+    ["Diuretics", "Morning"],
+    ["α1 blockers (first dose)", "Bedtime (first-dose syncope)"],
+    ["Inhalers", "Bronchodilator before steroid; 1–2 min same drug, 2–5 min different drugs"],
+    ["Carbidopa-levodopa", "Empty stomach; avoid high-protein meals"],
+    ["Bethanechol", "Expect voiding within 60 min"]
+  ],
+  boxed: [
+    ["Antiepileptics", "Suicidal ideation"],
+    ["Antidepressants & antipsychotics", "Suicidal ideation in children/young adults"],
+    ["Zolpidem", "Complex sleep behaviors"],
+    ["Montelukast", "Serious mood/neuropsychiatric changes"],
+    ["Metoclopramide", "Tardive dyskinesia"],
+    ["Buspirone (slides: 'high alert')", "Suicidal ideation"]
+  ]
+};
+// Lecture emphasis from NUR 333 Pharm Apps lectures (Weeks 1–3 transcripts).
+const STRATEGY = [
+  ["ATI and NCLEX are safety tests", "Expect questions on indication, effectiveness, when to hold, and teaching, more than lists of side effects."],
+  ["Study by class, then the differences", "Any drug with a class ending (-lol, -zosin, -pam, -stigmine) is fair game on her exam. For anticholinergics, she only uses the ones named in class."],
+  ["Spot the buzzwords", "\"New prescription\" means teaching and lowest dose. \"Oral\" changes an albuterol question. \"Suspected\" toxicity means assess before you reverse."],
+  ["Cross out two first", "There are usually two choices you can eliminate quickly."],
+  ["Food or alcohol answers are a fallback", "\"Take with food\" or \"avoid alcohol\" is true for most drugs. Pick it only if no choice is more specific."],
+  ["Stuck between two?", "Ask whether one choice belongs to a different drug class, e.g., bedtime dosing fits antipsychotics, morning dosing fits antidepressants."],
+  ["Trust the lab in a question", "Don't pick \"repeat the lab.\" Assume it's accurate; repeating delays treatment."],
+  ["Know the reversals", "Benzos → flumazenil (not Narcan). Cholinergic crisis → atropine, then epinephrine. Beta-blocker bradycardia → atropine or glucagon. Anticholinergic overdose → physostigmine."],
+  ["Deadlines", "ATI practice remediations are due before the proctored exam. A student said the proctor is December 17; confirm on Canvas."]
+];
+
+const UNIT_LEC = {
+  adr: {wk:"Lecture Week 1",
+    emph:[
+      "Start here: almost every drug class traces back to adrenergic vs. cholinergic. Know which side of the chart a drug acts on and you can predict its side effects.",
+      "Beta blockers MASK hypoglycemia. They block the tachycardia and shakiness that warn the patient their sugar is low.",
+      "Direct-acting drugs work faster. Indirect-acting drugs need a working nerve, so they won't work in a brain-dead patient.",
+      "Pressors: blood pressure and perfusion (MAP) matter more than heart rate.",
+      "Blockers PREVENT vasoconstriction. They don't actively dilate, so they won't open a narrowed PAD vessel.",
+      "Trauma: a bleeding patient on a beta blocker can't raise their heart rate to compensate, so they stay hypotensive.",
+      "PRN orders for high BP: choose by HEART RATE. High HR → metoprolol. Normal HR → labetalol.",
+      "Flomax doesn't shrink the prostate. It helps the patient void. Also used in women to pass kidney stones.",
+      "Beta blockers and lungs: the concern is true bronchoconstriction (asthma, COPD), not fast compensatory breathing.",
+      "If a patient takes a beta blocker at home, ask the provider to restart it (rebound hypertension)."
+    ],
+    conf:[
+      ["Atropine reverses beta blockers because it's an \"agonist.\"","Atropine is an ANTICHOLINERGIC that blocks vagal slowing. Glucagon is the other reversal."],
+      ["Pheochromocytoma raises steroid production.","It secretes catecholamines (epinephrine and norepinephrine)."],
+      ["Phentolamine is used a little for weight loss.","That's phentermine. Phentolamine reverses pressor extravasation."]
+    ]},
+  chol: {wk:"Lecture Week 1",
+    emph:[
+      "Cholinergic = rest and digest. Mimics ACh: contracts smooth muscle, increases secretions, slows the heart, constricts bronchi.",
+      "GI/GU obstruction is a contraindication. Take it one step further: the real danger is PERFORATION. A kidney stone counts as an obstruction.",
+      "Cholinergic crisis = SLUDGE. Early phase: atropine. Late phase: epinephrine. You treat what kills (bradycardia, hypotension, bronchoconstriction), not the secretions.",
+      "Avoid cholinergics with anticholinergics, antihistamines, and sympathomimetics.",
+      "\"If you learn nothing else: anyone with myasthenia gravis will be on pyridostigmine.\" Cholinergic names often end in -stigmine.",
+      "Anticholinergics dry the patient up. They have no shared ending, so memorize: atropine, Bentyl, Robinul, oxybutynin, scopolamine, Detrol.",
+      "ATI commonly asks about oxybutynin, Detrol, and Bentyl.",
+      "Anticholinergic overdose: supportive care and activated charcoal."
+    ],
+    conf:[
+      ["Myasthenia gravis is \"tightening of the joints\"; pyridostigmine adds fluid around joints.","MG is an autoimmune loss of ACh receptors → MUSCLE WEAKNESS. Pyridostigmine increases ACh."],
+      ["Oxybutynin treats stress incontinence.","Slides: overactive bladder, urge incontinence, neurogenic bladder."],
+      ["Anticholinergics also bind alpha and beta receptors.","They block muscarinic (ACh) receptors."],
+      ["Cholinergic drugs are called cholinesterase inhibitors.","Only the indirect-acting ones are. Bethanechol binds the receptor directly."]
+    ]},
+  anes: {wk:"Lecture Week 1",
+    emph:[
+      "Anesthesia shuts down both sympathetic and parasympathetic activity, so nurses support the body's functions.",
+      "ANS drugs follow you here: Precedex is an α2 agonist that lowers adrenaline.",
+      "ALWAYS sedate before paralyzing. It's unethical to give a paralytic alone.",
+      "Ketamine is liked because it doesn't drop BP or depress breathing. The cost is hallucinations.",
+      "Propofol is a white lipid emulsion. Watch triglycerides and cholesterol.",
+      "Lidocaine + epinephrine: epi vasoconstricts, so lidocaine stays in place longer in vascular areas like the face.",
+      "Muscle relaxers: check vital signs (the heart is a muscle) and LOC before and after."
+    ],
+    conf:[
+      ["Lidocaine can replace epinephrine in a code.","Not interchangeable. Lidocaine is a Class Ib antidysrhythmic; epinephrine is a vasopressor."]
+    ]},
+  neuro: {wk:"Lecture Week 2",
+    emph:[
+      "Check the INDICATION before giving. Off-label use is common (e.g., propranolol for anxiety, antiepileptics for pain).",
+      "Benzos act on GABA. Names end in -pam or -lam. Reversal is FLUMAZENIL; Narcan does nothing for benzos (common ATI question).",
+      "Suspected benzo toxicity: ASSESS LOC first. Reverse only for real harm (low LOC, seizures, breathing problems, low HR or BP).",
+      "Continue a home benzo in the hospital, often at a lower dose if the patient is also on opioids. Benzos + grapefruit = interaction.",
+      "Buspirone is for daily anxiety, not acute. Less sedating. 14-day washout when switching to or from other serotonergic drugs.",
+      "Avoid zolpidem in older adults (pill mix-ups, falls).",
+      "Stimulants make everything \"hyper\": ↑ HR, BP, RR, insomnia, dilated pupils, dry mouth. Last dose before 6 p.m., empty stomach, track growth, no extra caffeine.",
+      "ER tip: beta blockers are OK for meth-induced tachycardia but dangerous with cocaine.",
+      "Phenytoin: \"the only thing I need to teach you is the range, 10–20.\"",
+      "Antiepileptics: check CBC (low platelets and WBCs). Valproic acid labs: platelets, amylase, LFTs.",
+      "Parkinson's is the one place dopaminergic receptors come up. Carbidopa-levodopa doesn't cure; it works about 5–10 years.",
+      "Mannitol was taught this week too. It's in the Renal unit."
+    ],
+    conf:[
+      ["Triptans are daily preventives and aren't good for acute migraine.","Slides: sumatriptan is ABORTIVE, NOT preventive. Contraindicated in cardiovascular disease."],
+      ["Once levodopa stops working, take the patient off it.","Slides: don't stop antiparkinson drugs abruptly. The provider decides and tapers."]
+    ]},
+  psych: {wk:"Lecture Week 2",
+    emph:[
+      "\"There is ALWAYS a lithium question on ATI.\"",
+      "Lithium: range 0.6–1.2, toxicity starts ~1.5. Keep sodium CONSISTENT (don't restrict). Drink plenty of fluids. Limit activity in hot weather.",
+      "A coarse tremor = lithium toxicity. Lithium causes HYPOtension, not hypertension.",
+      "Lithium 2.1 in a question: don't repeat the lab. Dialysis is for the severe end (coma, seizures).",
+      "Patients stop lithium when they feel flat or miss mania, so adherence teaching matters. It also causes hypothyroidism.",
+      "Learn antidepressants in order: SSRI (1 transmitter) → SNRI (2) → TCA → MAOI (4).",
+      "One antidepressant class at a time. Wait 14 days to switch.",
+      "What ATI asks: serotonin syndrome, sexual dysfunction, tapering, time to effect (a month or more).",
+      "Suicide: THOUGHTS can start an antidepressant; an active PLAN → hold it.",
+      "Antidepressants in the morning. Bedtime dosing fits sedating antipsychotics.",
+      "Antipsychotics: sedation and BP changes. Seroquel is used for sleep (common in ICU). IM Zyprexa for aggression.",
+      "MAOI foods: \"everything on a charcuterie board.\""
+    ],
+    conf:[
+      ["Extrapyramidal symptoms are reversible.","TARDIVE DYSKINESIA can be permanent."],
+      ["There's no extended-release lithium; dose every 6 hours.","ER lithium exists. Slides: take with meals or milk."],
+      ["Patients with anxiety shouldn't take SNRIs.","Slides list SNRIs as treatments FOR GAD, social anxiety, and panic."],
+      ["TCAs were mainly used for bipolar.","Slides: depression, neuropathic pain, fibromyalgia, insomnia, enuresis."],
+      ["Tyramine foods are dangerous because they're salty.","Tyramine triggers a massive norepinephrine release."]
+    ]},
+  resp: {wk:"Lecture Week 3",
+    emph:[
+      "On her exams: SALMETEROL = long-acting (LABA). ALBUTEROL and LEVALBUTEROL = short-acting (SABA).",
+      "If the question says the drug is for DAILY PREVENTION → long-acting.",
+      "Anxious, tachycardic, hypertensive patient who needs a bronchodilator → ipratropium over albuterol.",
+      "Thrush comes from the STEROID part of any inhaler. Rinse the mouth after steroids.",
+      "Albuterol FIRST, then the steroid.",
+      "Clean the steroid inhaler daily. Other inhalers 1–2 times a week. \"Clean it daily\" for a non-steroid is an ATI distractor.",
+      "MDI without a spacer: START inhaling before you press. Spacers for kids, older adults, even pets.",
+      "Steroid onset: IV fastest, then inhaled, then oral. Oral and IV are systemic (↑ glucose); avoid in diabetics if possible.",
+      "Oral albuterol still causes tremors. It won't abort an acute attack.",
+      "TB has three separate ideas: chest x-ray = drug is WORKING. Culture & sensitivity = still effective (no resistance). Cough improved ~2 weeks = safe to DISCHARGE.",
+      "Multiple TB drugs prevent resistance. Treat TB before hepatitis (public health). Small LFT rise → continue and notify; jaundice → concerning.",
+      "\"Don't operate heavy machinery\" means don't drive a car.",
+      "Claritin-D: the D is the decongestant (tachycardia, HTN).",
+      "Expectorants and decongestants both dehydrate. Take with an 8-ounce glass of water.",
+      "Cough from a daily ACE inhibitor: switch the drug instead of adding an antitussive."
+    ],
+    conf:[
+      ["Take montelukast only during allergy season, not year-round.","Slides: for asthma, take it EVERY NIGHT continuously, even when symptoms improve."],
+      ["INH neuropathy is prevented with vitamin D.","It's VITAMIN B6 (pyridoxine)."],
+      ["Antitussives are for a DRY cough, not \"nonproductive.\"","Exam wording: NONPRODUCTIVE cough only."],
+      ["Oral decongestants don't delay onset.","Slides: DELAYED onset, prolonged effect, no rebound."],
+      ["Some TB drugs are antivirals.","TB is bacterial (Mycobacterium tuberculosis)."]
+    ]},
+  renal: {wk:"Lecture Week 2 (mannitol only)",
+    emph:[
+      "Mannitol is the only renal drug covered in lecture so far.",
+      "It's a last-ditch option, not first-line.",
+      "Avoid with TOO MUCH vascular fluid (heart failure, pulmonary edema) AND with TOO LITTLE (dehydration, hypotension). That takes clinical reasoning."
+    ], conf:[]},
+  card: null,
+  gi: null
+};
+
+const CARD_LEC = {
+  "Norepinephrine (Levophed)":"Most common ICU pressor for shock and hypotension. Watch MAP and perfusion more than heart rate. Large vein or central line, on a pump; check for infiltration.",
+  "Phenylephrine (Neo-Synephrine, Sudafed PE)":"Alpha only: raises BP without stimulating the heart. Pseudoephedrine (also alpha) can be misused for a high.",
+  "Mirabegron (Myrbetriq)":"Increases bladder storage capacity.",
+  "Tamsulosin (Flomax)":"Most common alpha blocker. Helps BPH patients void with less hesitancy but does NOT shrink the prostate (only surgery does). Women: helps pass kidney stones.",
+  "Prazosin, terazosin, doxazosin":"The \"-zosins\" relax the urethra and bladder neck. Contraindicated: PVD, Raynaud's, CAD, liver disease, PUD, sepsis.",
+  "Metoprolol, atenolol":"Metoprolol (Lopressor) is the common hospital beta blocker. Hold if HR <60. Choose it over labetalol when BP AND heart rate are high.",
+  "Propranolol":"Also used for anxiety and anxiety-driven tachycardia (blocks adrenaline in the CNS). Downside: the patient can't compensate if they start bleeding.",
+  "Carvedilol (Coreg), labetalol":"Labetalol (IV, common in the hospital) is mainly for BP. Use it for high BP with a normal HR; it won't fix a HR in the 130s. Carvedilol is common PO. Overdose reversal: atropine or glucagon.",
+  "Pyridostigmine (Mestinon)":"\"Anyone with myasthenia gravis will be on pyridostigmine.\"",
+  "Atropine":"Reverses beta-blocker bradycardia and early cholinergic crisis. It's an anticholinergic.",
+  "Glycopyrrolate (Robinul)":"Used at end of life for the \"death rattle\" (comfort for the family) and in intubated patients with heavy secretions. Given IV.",
+  "Scopolamine":"Patch behind the ear for motion sickness and nausea/vomiting. Dries excess fluid in the inner ear.",
+  "Oxybutynin (Ditropan), tolterodine (Detrol)":"ATI favorites. Reduce urinary frequency and incontinence.",
+  "Dicyclomine (Bentyl)":"ATI favorite. Antispasmodic for IBS/IBD: less cramping, pain, diarrhea.",
+  "Propofol (Diprivan)":"White, milky lipid. Caution with high cholesterol or triglycerides. Main general anesthetic; ICU sedation.",
+  "Dexmedetomidine (Precedex)":"Used for agitated ER patients (on meth, intoxicated) without intubating. Calms by lowering adrenaline.",
+  "Ketamine":"Doesn't drop BP. Hallucinations (\"K-hole\"); monitor closely. Bedside procedures with the patient talking. Low-dose ketamine clinics treat depression.",
+  "Nitrous oxide":"Given with oxygen.",
+  "Lidocaine":"Epinephrine keeps it from being absorbed away in vascular areas like the face, so numbing lasts longer. Forms: IV, patch, cream, mouthwash, urethral gel for Foleys.",
+  "Vecuronium, rocuronium, pancuronium":"Unethical to paralyze without sedation. Used for intubation and uncontrolled seizures. High doses → respiratory or cardiac arrest.",
+  "Succinylcholine":"Listed with the paralytics. Always sedate first.",
+  "Baclofen, cyclobenzaprine, methocarbamol":"Robaxin is the most common. Check VS and LOC. Baclofen and Flexeril cause withdrawal if skipped, so ask to restart the home dose. Taper to stop. Reassess ~1 h after PO, 15–30 min after IV.",
+  "Diazepam, lorazepam, midazolam, temazepam":"Reversal is FLUMAZENIL, not Narcan. Suspected toxicity → assess LOC first. Continue home benzos at a lower dose with opioids. No grapefruit.",
+  "Zolpidem (Ambien)":"Avoid in older adults: they may mistake it for another pill.",
+  "Buspirone (BuSpar)":"For daily anxiety, not acute. Less sedating than benzos, so patients can live a normal routine. 14-day washout from SSRIs, SNRIs, TCAs, MAOIs.",
+  "Phenobarbital, pentobarbital":"Common in ICU for seizures and alcohol withdrawal. Enhance GABA like benzos. Caution with other sedating drugs.",
+  "Methylphenidate (Ritalin), amphetamine (Adderall)":"Methylphenidate has lower abuse potential, so it's preferred. Treats ADHD symptoms, doesn't cure. Last dose before 6 p.m. Monitor HR, BP, height, and weight.",
+  "Modafinil (Provigil)":"Used in neuro ICU to stimulate patients with low brain activity.",
+  "Phentermine":"Still an amphetamine; used for weight loss.",
+  "Sumatriptan (Imitrex)":"Lecture called triptans daily preventives. Your slides say ABORTIVE. Go with the slides. Never combine with other serotonergic drugs (serotonin syndrome).",
+  "Phenytoin (Dilantin)":"\"The only thing to add is the range: 10–20.\"",
+  "Valproic acid (Depakote)":"ATI question: monitor platelets, amylase, and LFTs (not glucose or potassium). The most common anti-seizure drug.",
+  "Lamotrigine (Lamictal)":"Mentioned with valproic acid for seizure prevention.",
+  "Carbidopa-levodopa (Sinemet)":"Carbidopa extends levodopa's short half-life. Works about 5–10 years. Family asks \"Will it cure?\" → No, it manages symptoms. Empty stomach; often 3–4 times a day.",
+  "Amantadine (Symmetrel)":"Releases dopamine and blocks its reuptake. AEs: dizziness, insomnia, nausea. Avoid cholinergics (cholinergic crisis).",
+  "Bromocriptine (Parlodel)":"Lowers the levodopa dose needed and prolongs its effect.",
+  "Paroxetine (prototype), sertraline, fluoxetine, citalopram, escitalopram":"Most common AEs she named: weight gain, flat affect, ↓ sex drive, trouble sleeping. Escitalopram: don't crush. Fluoxetine: take in the MORNING. Serotonin syndrome is the big safety question.",
+  "Venlafaxine (Effexor), duloxetine (Cymbalta)":"Norepinephrine = adrenaline: expect HTN, tachycardia, insomnia, anxiety. Patients are more alert than on an SSRI.",
+  "Amitriptyline, imipramine, nortriptyline, clomipramine":"More sedating than SNRIs. 14+ days to work. Avoid in liver or kidney failure. Amitriptyline teaching: rise slowly; sugarless gum for dry mouth.",
+  "Phenelzine (Nardil), isocarboxazid, tranylcypromine":"Rarely used today. Hypertensive crisis risk; no grapefruit; up to 3 months for full effect. ATI phenelzine adverse effect: think orthostatic hypotension.",
+  "Lithium carbonate":"ALWAYS on ATI. Consistent sodium, plenty of fluids, limit hot weather activity. Coarse tremor = toxicity. Hypothyroidism. Not in pregnancy.",
+  "Haloperidol, chlorpromazine":"Haldol is the main first-generation drug.",
+  "Risperidone, olanzapine, quetiapine, clozapine":"Seroquel is used as a sleep aid (common in ICU). IM Zyprexa for aggressive patients, sometimes with Benadryl.",
+  "Albuterol (Proventil, Ventolin), levalbuterol":"Gold-standard SABA. Overuse → tolerance and rebound. Nebulizer in the hospital, MDI at home. Oral form still causes tremors.",
+  "Salmeterol (Serevent), formoterol":"Salmeterol is the LABA she uses on exams. Daily prevention = long-acting.",
+  "Ipratropium (Atrovent), tiotropium (Spiriva)":"DuoNeb = ipratropium + albuterol. Better than albuterol for an anxious, tachycardic, hypertensive patient. Dry mouth, hoarseness.",
+  "Montelukast (Singulair)":"Lecture: start a few days before allergy season or a pet visit; takes ~1 week; can cause nightmares, headache, diarrhea. Slides (asthma): take EVERY NIGHT, even when well. Go with the slides.",
+  "Fluticasone, budesonide, beclomethasone, mometasone":"Albuterol first. Rinse mouth (thrush). Clean this inhaler DAILY. Inhaled = not systemic. ATI: beclomethasone → \"rinse your mouth after each use.\"",
+  "Diphenhydramine, meclizine, promethazine":"\"Heavy machinery\" = don't drive a car, e-bike, or moped. Contraindicated with narrow-angle glaucoma, BPH, HTN.",
+  "Oxymetazoline (Afrin), phenylephrine":"Rebound congestion after prolonged use. Sometimes misused for a high.",
+  "Pseudoephedrine (Sudafed)":"Claritin-D: the \"D\" is the decongestant that causes tachycardia and HTN.",
+  "Dextromethorphan, benzonatate, codeine":"Opioid antitussives (codeine, hydrocodone) work best but need a prescription; cause drowsiness and constipation. Don't suppress a cough that's clearing secretions.",
+  "Guaifenesin (Mucinex)":"Pulls fluid into mucus → dehydration risk. Take with an 8-ounce glass of water. Not a substitute for CF therapy.",
+  "Isoniazid (INH)":"Peripheral neuropathy + hepatotoxicity. Prevent neuropathy with vitamin B6 (lecture audio said \"D\"; it's B6). Small LFT rise → continue and notify. Jaundice → concerning.",
+  "Rifampin":"Red-orange fluids are a harmless stain and go away when stopped. Oral contraceptives fail → non-hormonal backup. Hepatitis risk.",
+  "Ethambutol":"\"Ethambutol = eyes.\" Optic neuritis.",
+  "Mannitol (Osmitrol)":"Taught in Week 2. True \"water\" diuretic; a sugar that's only given IV (push or piggyback). Can't cross the blood-brain barrier, so it pulls water out of the brain. Last-ditch, not first-line."
+};
+
+const NEW_CARDS = {
+  resp: [
+    {n:"Nasal corticosteroids (e.g., fluticasone nasal)", c:"Intranasal corticosteroid", hy:false,
+     use:"Common cold, rhinitis, sinusitis, hay fever, other allergies.",
+     moa:"Anti-inflammatory; dries the nasal cavity.",
+     ae:"Epistaxis (nosebleeds) from drying. No systemic effects like oral steroids (no hyperglycemia).",
+     lec:"Covered in lecture, not on your slides."}
+  ]
+};
+
+const QUIZ_URL="https://claude.ai/artifact/8ZrysEoD7rBFBkFuv84613";
+if(QUIZ_URL.startsWith("http"))document.getElementById("quizlink").href=QUIZ_URL;else document.getElementById("quizlink").removeAttribute("href");
+// Merge lecture emphasis into the slide-based data
+UNITS.forEach(u=>{(NEW_CARDS[u.id]||[]).forEach(c=>u.cards.push(c));u.cards.forEach(c=>{if(CARD_LEC[c.n])c.lec=CARD_LEC[c.n]});u.lec=UNIT_LEC[u.id]||null;
+  u.cards.sort((a,b)=>(b.lec?1:0)-(a.lec?1:0))});
+const FIELDS=[["lec","In lecture"],["moa","How it works"],["use","Used for"],["ae","Adverse effects"],["ci","Avoid / contraindicated"],["nur","Nursing & teaching"],["anti","Antidote / reversal"],["lab","Level / lab"]];
+let st={u:"all",q:"",hy:false,lo:false,mn:true,bi:true};
+try{const s=JSON.parse(localStorage.getItem("pharm-guide-v1")||"{}");st=Object.assign(st,s);st.q=""}catch(e){}
+function save(){try{localStorage.setItem("pharm-guide-v1",JSON.stringify({u:st.u,hy:st.hy,lo:st.lo,mn:st.mn,bi:st.bi}))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function hl(s){s=esc(s);if(!st.q)return s;const t=st.q.trim().replace(/[.*+?^${}()|[\]\\]/g,"\\$&");if(!t)return s;return s.replace(new RegExp("("+t+")","gi"),"<mark>$1</mark>")}
+function match(card,u){if(!st.q.trim())return true;const t=st.q.trim().toLowerCase();return [card.n,card.c,card.lec,card.moa,card.use,card.ae,card.ci,card.nur,card.anti,card.lab,u.name].filter(Boolean).join(" ").toLowerCase().includes(t)}
+function chips(){
+  const c=document.getElementById("chips");
+  c.innerHTML=[["all","All units",null]].concat(UNITS.map(u=>[u.id,u.short,u.hue])).map(([k,l,h])=>`<button type="button" class="chip" aria-pressed="${st.u===k}" data-u="${k}" ${h!=null?`style="--h:${h}"`:""}>${h!=null?'<span class="dot"></span>':""}${l}</button>`).join("");
+  c.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{st.u=b.dataset.u;save();render()});
+  document.getElementById("jump").innerHTML=UNITS.map(u=>`<a href="#u-${u.id}" style="--h:${u.hue}">${u.short}</a>`).join("")+`<a href="#ref" style="--h:200">Quick reference</a>`;
+}
+function render(){
+  chips();
+  let shown=0;const searching=!!st.q.trim();
+  const html=UNITS.filter(u=>st.u==="all"||st.u===u.id).map(u=>{
+    const cards=u.cards.filter(c=>(!st.hy||c.hy)&&(!st.lo||c.lec)&&match(c,u));
+    if(!cards.length&&(searching||st.hy||st.lo))return "";
+    shown+=cards.length;
+    const showIntro=!searching;
+    const L=u.lec;
+    return `<section class="unit" id="u-${u.id}" style="--h:${u.hue}">
+      <div class="uhead"><h2>${u.name}</h2><span class="src">${u.src}</span>${L?`<span class="lecwk">${L.wk}</span>`:'<span class="nolec">Not covered in lecture yet</span>'}${u.fromSlides?"":'<span class="nfs">Not from your slides — verify with renal deck</span>'}</div>
+      ${showIntro&&L?`<div class="lecbox"><h3>What your professor stressed</h3><ul>${L.emph.map(e=>`<li>${esc(e)}</li>`).join("")}</ul>${L.conf.length?`<div class="conf"><table><thead><tr><th>Lecture said</th><th>Slides / ATI say (use this)</th></tr></thead><tbody>${L.conf.map(c=>`<tr><td>${esc(c[0])}</td><td>${esc(c[1])}</td></tr>`).join("")}</tbody></table></div>`:""}</div>`:""}
+      ${showIntro&&(st.bi||st.mn)&&!st.lo?`<div class="intro">${st.bi?`<div class="big"><h3>Big ideas</h3><ul>${u.big.map(b=>`<li>${esc(b)}</li>`).join("")}</ul></div>`:""}${st.mn?`<div class="mnems">${u.mnemonics.map(m=>`<div class="mn"><b>${esc(m.t)}</b><span>${esc(m.d)}</span></div>`).join("")}</div>`:""}</div>`:""}
+      <div class="cards">${cards.map(c=>`<article class="card ${c.lec?"haslec":""}"><div class="lab"><div><h4>${hl(c.n)}</h4><div class="cls">${hl(c.c)}</div></div><div class="badges">${c.lec?'<span class="lb">LECTURE</span>':""}${c.hy?'<span class="hy" title="High-yield">HIGH YIELD</span>':""}</div></div><dl>${FIELDS.filter(([k])=>c[k]).map(([k,l])=>`<div><dt>${l}</dt><dd class="${k==="anti"?"anti":k==="lab"?"lab":k==="lec"?"said":""}">${hl(c[k])}</dd></div>`).join("")}</dl></article>`).join("")}</div>
+      ${showIntro&&st.bi&&!st.lo?`<div class="pearls"><h3>Clinical pearls</h3><ul>${u.pearls.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>`:""}
+    </section>`}).join("");
+  document.getElementById("units").innerHTML=html;
+  document.getElementById("empty").hidden=shown>0;
+  const total=UNITS.reduce((s,u)=>s+u.cards.length,0);
+  document.getElementById("count").textContent=`${shown} of ${total} drug cards`;
+  document.getElementById("hy").checked=st.hy;document.getElementById("lo").checked=st.lo;document.getElementById("mn").checked=st.mn;document.getElementById("bi").checked=st.bi;
+}
+function refs(){
+  const t=(title,head,rows,numCol)=>`<div class="tblwrap"><h3>${title}</h3><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td class="${i===numCol?"num":""}">${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  document.getElementById("refgrid").innerHTML=
+    t("Antidotes & reversal agents",["Problem","Give"],QUICK.antidotes)+
+    t("Therapeutic levels & labs",["Drug","Range","Watch"],QUICK.levels,1)+
+    t("Timing & administration rules",["Drug","Rule"],QUICK.timing)+
+    t("Black box & high-alert warnings",["Drug","Warning"],QUICK.boxed);
+}
+let tmr;document.getElementById("q").addEventListener("input",e=>{clearTimeout(tmr);tmr=setTimeout(()=>{st.q=e.target.value;render()},120)});
+document.getElementById("hy").onchange=e=>{st.hy=e.target.checked;save();render()};
+document.getElementById("lo").onchange=e=>{st.lo=e.target.checked;save();render()};
+document.getElementById("sgrid").innerHTML=STRATEGY.map(([t,d])=>`<div><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join("");
+document.getElementById("mn").onchange=e=>{st.mn=e.target.checked;save();render()};
+document.getElementById("bi").onchange=e=>{st.bi=e.target.checked;save();render()};
+refs();render();
+</script>
+
+</body></html>

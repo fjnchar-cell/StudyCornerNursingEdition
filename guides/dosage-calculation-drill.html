@@ -1,0 +1,122 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Dosage Calculation Drill</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: sticky score bar, category filter chips, single column of problem cards with answer field and worked solution. */
+:root{
+  --bg:#f3f6f6; --surface:#ffffff; --fg:#14262b; --muted:#5a6f74; --line:#d5e0e1;
+  --accent:#0d7c86; --accent-fg:#ffffff; --good:#1c7a45; --good-bg:#e3f4ea; --bad:#a83a2b; --bad-bg:#fbe9e5;
+  --font:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1b1e; --surface:#172a2e; --fg:#e4eeef; --muted:#93aaae; --line:#294146;
+  --accent:#4fc1c9; --accent-fg:#0f1b1e; --good:#6fd39a; --good-bg:#173a29; --bad:#f19b8b; --bad-bg:#3d201b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1b1e; --surface:#172a2e; --fg:#e4eeef; --muted:#93aaae; --line:#294146;
+  --accent:#4fc1c9; --accent-fg:#0f1b1e; --good:#6fd39a; --good-bg:#173a29; --bad:#f19b8b; --bad-bg:#3d201b; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:720px;margin-inline:auto}
+header{padding-block:24px 8px}
+h1{font-size:1.6rem;line-height:1.2;margin:0 0 6px;font-weight:600;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:60ch}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.score{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;font-family:var(--mono);font-size:.85rem;font-variant-numeric:tabular-nums}
+.score b{font-size:1.1rem}
+.meter{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:.82rem;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:5px 11px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.chip:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+ol{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+li.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+li.card.right{border-color:var(--good)}
+li.card.wrong{border-color:var(--bad)}
+.head{display:flex;justify-content:space-between;gap:8px;font-family:var(--mono);font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.q{margin:0;max-width:65ch}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input{font:inherit;font-family:var(--mono);width:9.5em;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font-variant-numeric:tabular-nums}
+.unit{font-family:var(--mono);color:var(--muted);font-size:.9rem}
+button{font:inherit;font-size:.88rem;padding:7px 14px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);cursor:pointer}
+button.ghost{background:transparent;color:var(--accent)}
+.fb{font-size:.9rem;min-height:1.2em;margin:0}
+.right .fb{color:var(--good)} .wrong .fb{color:var(--bad)}
+.sol{border-top:1px dashed var(--line);padding-top:8px;font-family:var(--mono);font-size:.85rem}
+.sol div{padding-block:2px}
+.sol .final{font-weight:500;color:var(--accent)}
+.foot{margin-top:24px;color:var(--muted);font-size:.85rem;max-width:65ch}
+.reset{margin-top:16px}
+</style>
+<div class="wrap">
+<header>
+  <h1>Dosage Calculation Drill</h1>
+  <p>50 problems built from your NUR 312 and NUR 313 work: oral doses, injections, weight-based orders, IV rates and drips. Enter a number, check it, then open the worked solution.</p>
+</header>
+<div class="bar">
+  <div class="score" id="score"></div>
+  <div class="meter"><i id="meter"></i></div>
+  <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+</div>
+<ol id="list"></ol>
+<button class="ghost reset" id="reset" type="button">Reset all answers</button>
+<p class="foot">Practice values only. Follow your Ogden method and check every real order against your facility's drug reference. Each problem states its rounding rule; enter the number without units.</p>
+</div>
+<script>
+const P=[{"cat": "Oral", "q": "Ordered: metoprolol 75 mg PO. Available: 50 mg tablets. How many tablets?", "unit": "tablets", "ans": 1.5, "steps": ["75 mg ÷ 50 mg/tab = 1.5 tab"]}, {"cat": "Oral", "q": "Ordered: propranolol 20 mg PO. Available: 10 mg tablets. How many tablets?", "unit": "tablets", "ans": 2, "steps": ["20 mg ÷ 10 mg/tab = 2 tab"]}, {"cat": "Oral", "q": "Ordered: amoxicillin 500 mg PO. Available: 250 mg/5 mL suspension. How many mL?", "unit": "mL", "ans": 10, "steps": ["500 mg × 5 mL/250 mg = 10 mL"]}, {"cat": "Oral", "q": "Ordered: fluconazole 150 mg PO. Available: 100 mg/5 mL suspension. How many mL?", "unit": "mL", "ans": 7.5, "steps": ["150 mg × 5 mL/100 mg = 7.5 mL"]}, {"cat": "Oral", "q": "Ordered: acetaminophen 0.65 g PO. Available: 325 mg tablets. How many tablets?", "unit": "tablets", "ans": 2, "steps": ["Convert: 0.65 g × 1,000 mg/g = 650 mg", "650 mg ÷ 325 mg/tab = 2 tab"]}, {"cat": "Oral", "q": "Ordered: digoxin 0.125 mg PO. Available: 250 mcg tablets. How many tablets?", "unit": "tablets", "ans": 0.5, "steps": ["Convert: 0.125 mg × 1,000 mcg/mg = 125 mcg", "125 mcg ÷ 250 mcg/tab = 0.5 tab"]}, {"cat": "Oral", "q": "Ordered: pilocarpine 7.5 mg PO. Available: 5 mg tablets. How many tablets?", "unit": "tablets", "ans": 1.5, "steps": ["7.5 mg ÷ 5 mg/tab = 1.5 tab"]}, {"cat": "Oral", "q": "Ordered: prednisone 40 mg PO. Available: 20 mg tablets. How many tablets?", "unit": "tablets", "ans": 2, "steps": ["40 mg ÷ 20 mg/tab = 2 tab"]}, {"cat": "Oral", "q": "Ordered: cefuroxime 375 mg PO. Available: 125 mg/5 mL suspension. How many mL?", "unit": "mL", "ans": 15, "steps": ["375 mg × 5 mL/125 mg = 15 mL"]}, {"cat": "Oral", "q": "Ordered: morphine oral solution 15 mg PO. Available: 10 mg/5 mL. How many mL?", "unit": "mL", "ans": 7.5, "steps": ["15 mg × 5 mL/10 mg = 7.5 mL"]}, {"cat": "Parenteral", "q": "Ordered: ondansetron 4 mg IV push. Available: 2 mg/mL. How many mL?", "unit": "mL", "ans": 2, "steps": ["4 mg ÷ 2 mg/mL = 2 mL"]}, {"cat": "Parenteral", "q": "Ordered: morphine 6 mg IM. Available: 10 mg/mL. How many mL?", "unit": "mL", "ans": 0.6, "steps": ["6 mg ÷ 10 mg/mL = 0.6 mL"]}, {"cat": "Parenteral", "q": "Ordered: atropine 0.4 mg IM. Available: 1 mg/mL. How many mL?", "unit": "mL", "ans": 0.4, "steps": ["0.4 mg ÷ 1 mg/mL = 0.4 mL"]}, {"cat": "Parenteral", "q": "Ordered: neostigmine 1.5 mg IV. Available: 0.5 mg/mL. How many mL?", "unit": "mL", "ans": 3, "steps": ["1.5 mg ÷ 0.5 mg/mL = 3 mL"]}, {"cat": "Parenteral", "q": "Ordered: epinephrine 0.3 mg IM. Available: 1 mg/mL. How many mL?", "unit": "mL", "ans": 0.3, "steps": ["0.3 mg ÷ 1 mg/mL = 0.3 mL"]}, {"cat": "Parenteral", "q": "Ordered: gentamicin 80 mg IM. Available: 40 mg/mL. How many mL?", "unit": "mL", "ans": 2, "steps": ["80 mg ÷ 40 mg/mL = 2 mL"]}, {"cat": "Parenteral", "q": "Ordered: ampicillin 750 mg IM. Label: 1 g vial, add 3.5 mL diluent to yield 250 mg/mL. How many mL?", "unit": "mL", "ans": 3, "steps": ["Concentration after mixing: 250 mg/mL", "750 mg ÷ 250 mg/mL = 3 mL"]}, {"cat": "Parenteral", "q": "Ordered: furosemide 30 mg IV. Available: 10 mg/mL. How many mL?", "unit": "mL", "ans": 3, "steps": ["30 mg ÷ 10 mg/mL = 3 mL"]}, {"cat": "Parenteral", "q": "Ordered: naloxone 0.2 mg IV. Available: 0.4 mg/mL. How many mL?", "unit": "mL", "ans": 0.5, "steps": ["0.2 mg ÷ 0.4 mg/mL = 0.5 mL"]}, {"cat": "Parenteral", "q": "Ordered: ketorolac 15 mg IV. Available: 30 mg/mL. How many mL?", "unit": "mL", "ans": 0.5, "steps": ["15 mg ÷ 30 mg/mL = 0.5 mL"]}, {"cat": "Weight-based", "q": "Ordered: gentamicin 5 mg/kg IV. The patient weighs 154 lb. How many mg is one dose?", "unit": "mg", "ans": 350, "steps": ["154 lb ÷ 2.2 lb/kg = 70 kg", "70 kg × 5 mg/kg = 350 mg"]}, {"cat": "Weight-based", "q": "Ordered: acetaminophen 15 mg/kg PO. The child weighs 22 lb. Available: 160 mg/5 mL. How many mL? Round to the nearest tenth.", "unit": "mL", "ans": 4.7, "steps": ["22 lb ÷ 2.2 lb/kg = 10 kg", "10 kg × 15 mg/kg = 150 mg", "150 mg × 5 mL/160 mg = 4.6875 mL", "Round: 4.7 mL"]}, {"cat": "Weight-based", "q": "Ordered: amoxicillin 40 mg/kg/day PO divided every 8 hours. The child weighs 33 lb. How many mg per dose?", "unit": "mg", "ans": 200, "steps": ["33 lb ÷ 2.2 lb/kg = 15 kg", "15 kg × 40 mg/kg/day = 600 mg/day", "Every 8 h = 3 doses/day", "600 mg ÷ 3 = 200 mg/dose"]}, {"cat": "Weight-based", "q": "Ordered: vancomycin 15 mg/kg IV. The patient weighs 82 kg. How many mg is one dose?", "unit": "mg", "ans": 1230, "steps": ["82 kg × 15 mg/kg = 1,230 mg"]}, {"cat": "Weight-based", "q": "Ordered: ibuprofen 10 mg/kg PO. The child weighs 18 kg. Available: 100 mg/5 mL. How many mL?", "unit": "mL", "ans": 9, "steps": ["18 kg × 10 mg/kg = 180 mg", "180 mg × 5 mL/100 mg = 9 mL"]}, {"cat": "Weight-based", "q": "A child weighs 12 kg. Ordered: amoxicillin 300 mg PO every 8 hours. What is the daily dose in mg/kg/day? (Safe range for this drug: 25 to 90 mg/kg/day.)", "unit": "mg/kg/day", "ans": 75, "steps": ["300 mg × 3 doses = 900 mg/day", "900 mg ÷ 12 kg = 75 mg/kg/day", "75 is inside 25 to 90, so the dose is safe"]}, {"cat": "Weight-based", "q": "Ordered: ondansetron 0.15 mg/kg IV. The child weighs 20 kg. Available: 2 mg/mL. How many mL?", "unit": "mL", "ans": 1.5, "steps": ["20 kg × 0.15 mg/kg = 3 mg", "3 mg ÷ 2 mg/mL = 1.5 mL"]}, {"cat": "Weight-based", "q": "Ordered: heparin bolus 80 units/kg IV. The patient weighs 75 kg. How many units?", "unit": "units", "ans": 6000, "steps": ["75 kg × 80 units/kg = 6,000 units"]}, {"cat": "Weight-based", "q": "Ordered: morphine 0.1 mg/kg IV. The infant weighs 8 kg. Available: 1 mg/mL. How many mL?", "unit": "mL", "ans": 0.8, "steps": ["8 kg × 0.1 mg/kg = 0.8 mg", "0.8 mg ÷ 1 mg/mL = 0.8 mL"]}, {"cat": "Weight-based", "q": "Ordered: fluconazole 6 mg/kg IV. The newborn weighs 3,250 g. How many mg?", "unit": "mg", "ans": 19.5, "steps": ["3,250 g ÷ 1,000 g/kg = 3.25 kg", "3.25 kg × 6 mg/kg = 19.5 mg"]}, {"cat": "IV rates", "q": "Infuse 1,000 mL of NS over 8 hours by pump. What is the rate in mL/h?", "unit": "mL/h", "ans": 125, "steps": ["1,000 mL ÷ 8 h = 125 mL/h"]}, {"cat": "IV rates", "q": "Infuse 500 mL over 4 hours by gravity. Drop factor: 15 gtt/mL. What is the rate in gtt/min? Round to a whole number.", "unit": "gtt/min", "ans": 31, "steps": ["4 h × 60 = 240 min", "500 mL × 15 gtt/mL ÷ 240 min = 31.25", "Round: 31 gtt/min"]}, {"cat": "IV rates", "q": "Infuse 250 mL over 90 minutes by gravity. Drop factor: 20 gtt/mL. What is the rate in gtt/min? Round to a whole number.", "unit": "gtt/min", "ans": 56, "steps": ["250 mL × 20 gtt/mL ÷ 90 min = 55.56", "Round: 56 gtt/min"]}, {"cat": "IV rates", "q": "Infuse 100 mL of antibiotic over 30 minutes by pump. What is the rate in mL/h?", "unit": "mL/h", "ans": 200, "steps": ["100 mL ÷ 30 min = 3.33 mL/min", "3.33 mL/min × 60 = 200 mL/h", "Shortcut: 100 mL × 60 ÷ 30 = 200 mL/h"]}, {"cat": "IV rates", "q": "D5W 1,000 mL is ordered at 125 mL/h. How many hours will it take?", "unit": "hours", "ans": 8, "steps": ["1,000 mL ÷ 125 mL/h = 8 h"]}, {"cat": "IV rates", "q": "NS 750 mL is ordered at 100 mL/h. How many hours will it take? Give the answer in hours as a decimal.", "unit": "hours", "ans": 7.5, "steps": ["750 mL ÷ 100 mL/h = 7.5 h (7 h 30 min)"]}, {"cat": "IV rates", "q": "Infuse 2 L of NS over 12 hours by pump. What is the rate in mL/h? Round to a whole number.", "unit": "mL/h", "ans": 167, "steps": ["2 L × 1,000 = 2,000 mL", "2,000 mL ÷ 12 h = 166.67", "Round: 167 mL/h"]}, {"cat": "IV rates", "q": "The pump is set at 125 mL/h. Tubing drop factor: 10 gtt/mL. What is the equivalent rate in gtt/min? Round to a whole number.", "unit": "gtt/min", "ans": 21, "steps": ["125 mL × 10 gtt/mL ÷ 60 min = 20.83", "Round: 21 gtt/min"]}, {"cat": "IV rates", "q": "A 1,000 mL bag runs at 125 mL/h. After 6 hours, how many mL remain in the bag?", "unit": "mL", "ans": 250, "steps": ["125 mL/h × 6 h = 750 mL infused", "1,000 − 750 = 250 mL remain"]}, {"cat": "IV rates", "q": "Infuse vancomycin 1 g in 250 mL over 90 minutes by pump. What is the rate in mL/h? Round to a whole number.", "unit": "mL/h", "ans": 167, "steps": ["250 mL ÷ 90 min × 60 = 166.67", "Round: 167 mL/h"]}, {"cat": "High-alert and drips", "q": "Heparin infusion: 25,000 units in 500 mL. Ordered: 1,000 units/h. What is the pump rate in mL/h?", "unit": "mL/h", "ans": 20, "steps": ["25,000 units ÷ 500 mL = 50 units/mL", "1,000 units/h ÷ 50 units/mL = 20 mL/h"]}, {"cat": "High-alert and drips", "q": "Ordered: heparin 5,000 units subcutaneous. Available: 10,000 units/mL. How many mL?", "unit": "mL", "ans": 0.5, "steps": ["5,000 units ÷ 10,000 units/mL = 0.5 mL"]}, {"cat": "High-alert and drips", "q": "You mix 8 units of regular insulin and 20 units of NPH in one syringe. What is the total volume in units to draw up? (U-100 insulin.)", "unit": "units", "ans": 28, "steps": ["Draw regular first (clear before cloudy)", "8 + 20 = 28 units total"]}, {"cat": "High-alert and drips", "q": "Insulin infusion: 100 units in 100 mL NS. Ordered: 6 units/h. What is the pump rate in mL/h?", "unit": "mL/h", "ans": 6, "steps": ["100 units ÷ 100 mL = 1 unit/mL", "6 units/h ÷ 1 unit/mL = 6 mL/h"]}, {"cat": "High-alert and drips", "q": "Epinephrine infusion: 1 mg in 250 mL. Ordered: 4 mcg/min. What is the pump rate in mL/h?", "unit": "mL/h", "ans": 60, "steps": ["1 mg = 1,000 mcg", "1,000 mcg ÷ 250 mL = 4 mcg/mL", "4 mcg/min ÷ 4 mcg/mL = 1 mL/min", "1 mL/min × 60 = 60 mL/h"]}, {"cat": "High-alert and drips", "q": "Norepinephrine infusion: 8 mg in 250 mL. Ordered: 8 mcg/min. What is the pump rate in mL/h?", "unit": "mL/h", "ans": 15, "steps": ["8 mg = 8,000 mcg", "8,000 mcg ÷ 250 mL = 32 mcg/mL", "8 mcg/min ÷ 32 mcg/mL = 0.25 mL/min", "0.25 mL/min × 60 = 15 mL/h"]}, {"cat": "High-alert and drips", "q": "Dopamine infusion: 400 mg in 250 mL. Ordered: 5 mcg/kg/min. The patient weighs 80 kg. What is the pump rate in mL/h?", "unit": "mL/h", "ans": 15, "steps": ["5 mcg/kg/min × 80 kg = 400 mcg/min", "400 mg = 400,000 mcg; 400,000 ÷ 250 mL = 1,600 mcg/mL", "400 mcg/min ÷ 1,600 mcg/mL = 0.25 mL/min", "0.25 mL/min × 60 = 15 mL/h"]}, {"cat": "High-alert and drips", "q": "Dobutamine infusion: 250 mg in 250 mL. Ordered: 5 mcg/kg/min. The patient weighs 70 kg. What is the pump rate in mL/h?", "unit": "mL/h", "ans": 21, "steps": ["5 mcg/kg/min × 70 kg = 350 mcg/min", "250 mg = 250,000 mcg; 250,000 ÷ 250 mL = 1,000 mcg/mL", "350 mcg/min ÷ 1,000 mcg/mL = 0.35 mL/min", "0.35 mL/min × 60 = 21 mL/h"]}, {"cat": "High-alert and drips", "q": "Ordered: albuterol 2.5 mg by nebulizer. Available: 0.5% solution. How many mL? (0.5% = 5 mg/mL.)", "unit": "mL", "ans": 0.5, "steps": ["0.5% = 0.5 g/100 mL = 500 mg/100 mL = 5 mg/mL", "2.5 mg ÷ 5 mg/mL = 0.5 mL"]}, {"cat": "High-alert and drips", "q": "How many mg of lidocaine are in 20 mL of a 2% solution?", "unit": "mg", "ans": 400, "steps": ["2% = 2 g/100 mL = 20 mg/mL", "20 mL × 20 mg/mL = 400 mg"]}];
+const cats=["All",...Array.from(new Set(P.map(p=>p.cat)))];
+let filter="All";
+const S={}; // index -> {val, ok}
+try{Object.assign(S,JSON.parse(localStorage.getItem("dosage-drill-v1")||"{}"))}catch(e){}
+function save(){try{localStorage.setItem("dosage-drill-v1",JSON.stringify(S))}catch(e){}}
+const $=id=>document.getElementById(id);
+function fmt(n){return Number(n).toLocaleString("en-US",{maximumFractionDigits:4})}
+function check(i){
+  const raw=$("in"+i).value.trim().replace(/,/g,"");
+  const v=parseFloat(raw);
+  if(raw===""||isNaN(v)){$("fb"+i).textContent="Enter a number first.";return}
+  S[i]={val:raw,ok:Math.abs(v-P[i].ans)<1e-6};
+  save();render();
+}
+function render(){
+  const list=$("list");list.innerHTML="";
+  P.forEach((p,i)=>{
+    if(filter!=="All"&&p.cat!==filter)return;
+    const s=S[i];
+    const li=document.createElement("li");
+    li.className="card"+(s?(s.ok?" right":" wrong"):"");
+    li.innerHTML=`<div class="head"><span>Problem ${i+1}</span><span>${p.cat}</span></div>
+      <p class="q"></p>
+      <div class="row"><input id="in${i}" inputmode="decimal" autocomplete="off" aria-label="Answer for problem ${i+1}"><span class="unit"></span>
+      <button type="button" data-c="${i}">Check</button><button type="button" class="ghost" data-s="${i}">Solution</button></div>
+      <p class="fb" id="fb${i}" aria-live="polite"></p><div class="sol" id="sol${i}" hidden></div>`;
+    li.querySelector(".q").textContent=p.q;
+    li.querySelector(".unit").textContent=p.unit;
+    const inp=li.querySelector("input");
+    if(s)inp.value=s.val;
+    if(s)li.querySelector(".fb").textContent=s.ok?"Correct.":"Not quite. Recheck units and rounding, or open the solution.";
+    const sol=li.querySelector(".sol");
+    sol.innerHTML=p.steps.map(t=>`<div>${t.replace(/&/g,"&amp;").replace(/</g,"&lt;")}</div>`).join("")+`<div class="final">Answer: ${fmt(p.ans)} ${p.unit}</div>`;
+    inp.addEventListener("keydown",e=>{if(e.key==="Enter")check(i)});
+    list.appendChild(li);
+  });
+  const done=Object.keys(S).length,ok=Object.values(S).filter(x=>x.ok).length;
+  $("score").innerHTML=`<span><b>${ok}</b> correct</span><span>${done} of ${P.length} tried</span><span>${done?Math.round(ok/done*100):0}% accuracy</span>`;
+  $("meter").style.width=(done/P.length*100)+"%";
+}
+document.addEventListener("click",e=>{
+  const c=e.target.closest("[data-c]"),s=e.target.closest("[data-s]");
+  if(c)check(+c.dataset.c);
+  if(s){const el=$("sol"+s.dataset.s);el.hidden=!el.hidden}
+});
+$("chips").innerHTML=cats.map(c=>`<button class="chip" type="button" aria-pressed="${c===filter}" data-f="${c}">${c}</button>`).join("");
+$("chips").addEventListener("click",e=>{
+  const b=e.target.closest("[data-f]");if(!b)return;
+  filter=b.dataset.f;
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.f===filter));
+  render();
+});
+$("reset").addEventListener("click",()=>{for(const k in S)delete S[k];save();render()});
+render();
+</script>
+
+</body></html>

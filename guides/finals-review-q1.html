@@ -1,0 +1,1588 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finals Review — Cohort 38, Quarter 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f6f8; --surface:#ffffff; --ink:#15202e; --muted:#5c6775;
+    --line:#e2e7ec; --line2:#eef1f4;
+    --patho:#0f766e; --patho-bg:#e7f3f1;
+    --pharm:#6d28d9; --pharm-bg:#efe9fb;
+    --fund:#b45309; --fund-bg:#f8eede;
+    --assess:#be123c; --assess-bg:#fbe6ea;
+    --link:#0369a1; --link-bg:#e5f0f7;
+    --good:#15803d;
+    --shadow:0 1px 2px rgba(21,32,46,.06),0 4px 14px rgba(21,32,46,.05);
+    --radius:12px;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#111823; --surface:#18212e; --ink:#e8edf2; --muted:#9aa7b5;
+      --line:#26313f; --line2:#212a37;
+      --patho-bg:#0e2b28; --pharm-bg:#241a3d; --fund-bg:#2f2410; --assess-bg:#301017; --link-bg:#0d2434;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#111823; --surface:#18212e; --ink:#e8edf2; --muted:#9aa7b5;
+    --line:#26313f; --line2:#212a37;
+    --patho-bg:#0e2b28; --pharm-bg:#241a3d; --fund-bg:#2f2410; --assess-bg:#301017; --link-bg:#0d2434;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+  /* ---------- command bar ---------- */
+  .bar{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .bar-inner{max-width:1120px;margin:0 auto;padding:16px 20px 12px}
+  .bar-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .title{font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0}
+  .title span{color:var(--muted);font-weight:500}
+  .countdown{font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .countdown b{color:var(--assess);font-weight:600}
+
+  .progress-wrap{margin:12px 0 4px;display:flex;align-items:center;gap:14px}
+  .progress-track{flex:1;height:12px;background:var(--line2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+  .progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--patho),var(--pharm) 40%,var(--fund) 70%,var(--good));border-radius:99px;transition:width .35s ease}
+  .progress-label{font-family:var(--mono);font-size:13px;font-weight:600;white-space:nowrap}
+  .progress-label small{color:var(--muted);font-weight:400}
+
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+  .search{flex:1;min-width:200px;position:relative}
+  .search input{width:100%;padding:10px 12px 10px 36px;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px}
+  .search input:focus{outline:2px solid var(--link);outline-offset:1px;border-color:var(--link)}
+  .search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.5}
+  .btn{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer}
+  .btn:hover{border-color:var(--muted)}
+  .btn:focus-visible{outline:2px solid var(--link);outline-offset:1px}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .chip{font-size:13px;font-weight:500;padding:7px 13px;border-radius:99px;border:1.5px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+  .chip .dot{width:9px;height:9px;border-radius:99px;background:var(--c)}
+  .chip[aria-pressed="true"]{color:var(--c);border-color:var(--c);background:var(--c-bg)}
+  .chip .n{font-family:var(--mono);font-size:11px;opacity:.7}
+  .chip:focus-visible{outline:2px solid var(--link);outline-offset:1px}
+
+  /* ---------- content ---------- */
+  main{max-width:1120px;margin:0 auto;padding:22px 20px 80px}
+  .course{margin-bottom:34px;scroll-margin-top:180px}
+  .course-head{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--c-bg);border-left:5px solid var(--c);margin-bottom:16px}
+  .course-code{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--c);background:var(--surface);padding:3px 8px;border-radius:6px;border:1px solid var(--c)}
+  .course-name{font-weight:700;font-size:17px;margin:0;color:var(--ink)}
+  .course-prof{font-size:12px;color:var(--muted);margin-left:auto}
+  .course-mini{font-family:var(--mono);font-size:11px;color:var(--c);font-weight:600}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+  .card{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:var(--radius);padding:16px 17px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card.done{opacity:.62}
+  .card-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+  .card-head h3{margin:0;font-size:15.5px;font-weight:600;flex:1;line-height:1.3}
+  .wk{flex-shrink:0;font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--c);background:var(--c-bg);border:1px solid var(--c);border-radius:6px;padding:2px 6px;margin-top:1px}
+  .chk{appearance:none;width:20px;height:20px;border:2px solid var(--line);border-radius:6px;cursor:pointer;flex-shrink:0;margin-top:1px;position:relative;background:var(--surface)}
+  .chk:checked{background:var(--c);border-color:var(--c)}
+  .chk:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .chk:focus-visible{outline:2px solid var(--link);outline-offset:1px}
+  ul.facts{margin:0 0 4px;padding-left:0;list-style:none}
+  ul.facts li{position:relative;padding-left:15px;margin-bottom:6px;font-size:13.5px}
+  ul.facts li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:99px;background:var(--c);opacity:.65}
+  ul.facts li b{font-weight:600}
+  .num{font-family:var(--mono);font-size:.92em}
+
+  .mnem{margin-top:10px;background:var(--c-bg);border-radius:9px;padding:9px 11px;font-size:12.5px}
+  .mnem .tag{font-weight:700;color:var(--c);font-size:11px;margin-right:6px}
+  .mnem b{font-weight:600}
+
+  .links{margin-top:auto;padding-top:11px;display:flex;flex-wrap:wrap;gap:6px}
+  .xlink{font-size:11px;color:var(--link);background:var(--link-bg);border:1px solid transparent;border-radius:7px;padding:3px 8px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-weight:500}
+  .xlink:hover{border-color:var(--link)}
+  .xlink:focus-visible{outline:2px solid var(--link);outline-offset:1px}
+  .xlink svg{opacity:.7}
+
+  .empty{text-align:center;color:var(--muted);padding:60px 20px;font-size:15px}
+  .flash{animation:flash 1.1s ease}
+  @keyframes flash{0%,100%{box-shadow:var(--shadow)}25%{box-shadow:0 0 0 3px var(--c)}}
+
+  footer{max-width:1120px;margin:0 auto;padding:0 20px 60px;color:var(--muted);font-size:12px;line-height:1.6}
+
+  /* ---------- print ---------- */
+  @media print{
+    body{background:#fff}
+    .bar,.chips,.controls,.links,.chk,.course-mini{display:none!important}
+    .bar-inner{padding:0}
+    .card{break-inside:avoid;box-shadow:none;border:1px solid #ccc;opacity:1!important}
+    .course{break-inside:avoid}
+    .grid{display:block}
+    .card{margin-bottom:10px}
+    .mnem{background:#f3f3f3!important}
+    .course-head{background:#f3f3f3!important}
+  }
+  @media (max-width:520px){
+    .grid{grid-template-columns:1fr}
+    .title{font-size:18px}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <div class="bar-top">
+      <h1 class="title">Finals Review <span>· Cohort 38 · Q1</span></h1>
+      <div class="countdown">4 exams · <b>finals week</b></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="fill"></div></div>
+      <div class="progress-label"><span id="pct">0%</span> <small>reviewed</small></div>
+    </div>
+
+    <div class="controls">
+      <label class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="Search topics, drugs, mnemonics…" aria-label="Search study topics">
+      </label>
+      <button class="btn" id="expand">Show reviewed</button>
+      <button class="btn" id="print">Print / PDF</button>
+      <button class="btn" id="theme">Toggle theme</button>
+      <button class="btn" id="reset">Reset progress</button>
+    </div>
+
+    <div class="chips" id="chips"></div>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<footer>
+  <p>High-yield review across NUR 311, 312, 313, 315. Content is a study aid, not a clinical reference — always verify against your ATI resources, textbooks, and instructor materials. Upload your recent lecture decks and I can extend any section or turn it into quizzes and NotebookLM podcast prompts.</p>
+</footer>
+
+<script>
+const COURSES = {
+  patho:  {code:"NUR 311", name:"Pathophysiology",        prof:"Prof. Marpole", var:"--patho", bg:"--patho-bg"},
+  pharm:  {code:"NUR 312", name:"Pharmacology",           prof:"Prof. Haylett", var:"--pharm", bg:"--pharm-bg"},
+  fund:   {code:"NUR 313", name:"Fundamentals / Essentials", prof:"Prof. Haylett", var:"--fund",  bg:"--fund-bg"},
+  assess: {code:"NUR 315", name:"Health Assessment",      prof:"Prof. Marpole", var:"--assess",bg:"--assess-bg"},
+};
+
+const TOPICS = [
+  /* ================= PATHOPHYSIOLOGY ================= */
+  {c:"patho", id:"cell", t:"Cellular Adaptation & Injury", facts:[
+    "<b>Atrophy</b> = smaller cells. <b>Hypertrophy</b> = bigger cells. <b>Hyperplasia</b> = more cells.",
+    "<b>Metaplasia</b> = one mature cell type swapped for another. <b>Dysplasia</b> = disordered growth (precancerous). <b>Anaplasia</b> = undifferentiated (cancer). <b>Neoplasia</b> = new growth/tumor.",
+    "<b>Hypoxia</b> (reduced tissue O₂) is the most common cause of cell injury; free radicals injure membranes by lipid peroxidation.",
+    "<b>Apoptosis</b> = programmed, orderly cell death. <b>Necrosis</b> = disorderly death that spills cell contents and inflames nearby tissue.",
+    "Necrosis types: liquefactive (brain), coagulative (kidney/MI), caseous (“cheesy,” TB), fat (pancreas).",
+    "<b>Infarction</b> = tissue death from lost blood supply. <b>Gangrene</b> = necrotic tissue invaded by bacteria."],
+    mnem:{tag:"Growth", txt:"Size → number → type → chaos: <b>A</b>trophy, <b>H</b>ypertrophy (size), <b>H</b>yperplasia (number), <b>M</b>etaplasia (type), <b>D</b>ysplasia (disordered)."},
+    links:["inflam","healing","mi"]},
+
+  {c:"patho", id:"inflam", t:"Inflammation", facts:[
+    "5 cardinal signs: redness, heat, swelling, pain, loss of function.",
+    "Chemical mediators: <b>bradykinin</b> triggers pain; <b>histamine</b> (from mast cells) drives vasodilation + permeability.",
+    "<b>Acute</b>: rapid onset, <b>neutrophils</b> respond first. <b>Chronic</b>: macrophages/lymphocytes, granulomas, more scar tissue.",
+    "Vascular response: vasodilation → ↑permeability → exudate into tissue.",
+    "Exudate types: serous (watery), fibrinous (sticky), purulent (pus/bacterial), hemorrhagic (bloody); an abscess is walled-off pus.",
+    "Systemic signs: fever (pyrogens), malaise, fatigue, leukocytosis, elevated ESR."],
+    mnem:{tag:"5 Signs", txt:"<b>\"Red Hot, Swollen, Painful Parts\"</b> — rubor, calor, tumor, dolor, functio laesa."},
+    links:["cell","healing","immun"]},
+
+  {c:"patho", id:"fluid", t:"Fluids, Electrolytes & Acid–Base", facts:[
+    "<b>Na⁺</b> <span class='num'>135–145</span>: low → confusion/seizures; high → thirst, dry membranes.",
+    "<b>K⁺</b> <span class='num'>3.5–5.0</span>: low → flat T + U waves, weakness; high → peaked T, wide QRS, arrest.",
+    "<b>Ca²⁺</b> <span class='num'>9–10.5</span>: low → tetany, Trousseau + Chvostek; high → stones, bones, groans.",
+    "<b>Mg²⁺</b> <span class='num'>1.5–2.5</span>: low → tremors/Torsades; high → ↓reflexes, resp. depression.",
+    "ABGs: pH <span class='num'>7.35–7.45</span>, PaCO₂ <span class='num'>35–45</span>, HCO₃ <span class='num'>22–26</span>."],
+    mnem:{tag:"ABGs", txt:"<b>ROME</b>: <b>R</b>espiratory = pH & CO₂ move <b>O</b>pposite; <b>M</b>etabolic = pH & HCO₃ move <b>E</b>qual (same direction)."},
+    links:["dig","vitals","resp-assess"]},
+
+  {c:"patho", id:"immun", t:"Infection & Immunity", facts:[
+    "<b>Innate</b> (nonspecific): skin, mucosa, neutrophils, macrophages, fever — present at birth.",
+    "<b>Adaptive</b> (specific): B cells (antibodies/humoral) + T cells (cell-mediated); has memory.",
+    "Antibodies: <b>IgG</b> most abundant, crosses placenta; <b>IgM</b> first + largest; <b>IgA</b> mucosa/secretions; <b>IgE</b> allergy/parasites; <b>IgD</b> B-cell surface.",
+    "Hypersensitivity: I anaphylaxis (IgE) · II cytotoxic (transfusion rxn) · III immune complex (SLE) · IV delayed (PPD, contact dermatitis)."],
+    mnem:{tag:"Hypersens.", txt:"<b>ACID</b> — <b>A</b>llergic/anaphylaxis (I), <b>C</b>ytotoxic (II), <b>I</b>mmune complex (III), <b>D</b>elayed (IV)."},
+    links:["abx","precautions"]},
+
+  {c:"patho", id:"resp-patho", t:"COPD & Asthma (Obstructive)", facts:[
+    "<b>Obstructive</b> = ↑resistance to airflow, air trapping (COPD, asthma). <b>Restrictive</b> = ↓lung expansion.",
+    "<b>Asthma</b>: reversible hyperreactive airway; leukotrienes → bronchoconstriction, histamine → inflammation; wheeze, prolonged expiration. <b>Status asthmaticus</b> = severe, unrelieved — can be fatal.",
+    "<b>Chronic bronchitis</b> “<b>blue bloater</b>”: mucus + cough ≥3 mo/yr for 2 yrs, cyanosis; hard to get air <b>in</b>.",
+    "<b>Emphysema</b> “<b>pink puffer</b>”: alveolar overdistention, air trapping, barrel chest; hard to get air <b>out</b>.",
+    "<b>Hypoxic drive</b>: with chronic CO₂ retention (COPD), low O₂ — not CO₂ — drives breathing, so give oxygen cautiously.",
+    "<b>Hypoxemia</b> = low O₂ in blood; <b>hypoxia</b> = low O₂ at the tissue. V/Q mismatch: shunt (no ventilation) vs dead space (no perfusion)."],
+    mnem:{tag:"COPD", txt:"<b>B</b>lue <b>B</b>loater = chronic <b>B</b>ronchitis (air <b>in</b>). <b>P</b>ink <b>P</b>uffer = emphysema (air <b>out</b>)."},
+    links:["resp-assess","lowerresp","fluid","hf"]},
+
+  {c:"patho", id:"neuro-msk", t:"Motor Neurons & Increased ICP", facts:[
+    "<b>Upper motor neuron</b> lesion → spastic paralysis, hyperreflexia. <b>Lower motor neuron</b> → flaccid paralysis, hyporeflexia.",
+    "Earliest sign of ↑ICP is a change in <b>level of consciousness</b>; also headache, projectile vomiting, papilledema, sluggish pupils.",
+    "<b>↑ICP — Cushing’s triad</b> (late): hypertension with <b>widening pulse pressure</b>, bradycardia, irregular respirations.",
+    "The skull is rigid — added mass or fluid raises pressure → ischemia → <b>herniation</b> → death."],
+    mnem:{tag:"ICP", txt:"Cushing’s triad is a <b>late</b> sign — by then it’s an emergency. LOC change comes first."},
+    links:["vitals","stroke","tbisci"]},
+
+  /* ---- Week 1: Intro, Inflammation & Healing ---- */
+  {c:"patho", id:"disease", t:"Disease Concepts & Terminology", facts:[
+    "<b>Etiology</b> = cause. <b>Idiopathic</b> = unknown cause. <b>Iatrogenic</b> = caused by a treatment or procedure.",
+    "<b>Signs</b> are objective (measurable); <b>symptoms</b> are subjective (patient-reported).",
+    "<b>Acute</b> = sudden, short. <b>Chronic</b> = gradual, long, with remissions (subside) and exacerbations (worsen).",
+    "<b>Incidence</b> = new cases; <b>prevalence</b> = all existing cases in a period.",
+    "<b>Epidemic</b> = local surge; <b>pandemic</b> = across many regions. <b>Morbidity</b> = disease rate; <b>mortality</b> = death rate."],
+    mnem:{tag:"Signs vs Sx", txt:"<b>Sign = Seen</b> (objective). <b>Symptom = Stated</b> (subjective)."},
+    links:["cell"]},
+
+  {c:"patho", id:"healing", t:"Wound Healing & Repair", facts:[
+    "<b>Resolution</b>: minimal damage, returns to normal. <b>Regeneration</b>: replaced with functional cells. <b>Replacement</b>: scar tissue (loss of function).",
+    "<b>First intention</b>: clean, approximated edges (surgical incision). <b>Second intention</b>: open wound fills with granulation, more scarring.",
+    "Healing needs protein/nutrition, oxygenation, and circulation; diabetes, steroids, and aging slow it.",
+    "Complications: <b>keloid</b>/hypertrophic scar, <b>contractures</b> (nonelastic scar limits motion), <b>adhesions</b>.",
+    "Fresh injury care: <b>RICE</b> — Rest, Ice, Compression, Elevation."],
+    mnem:{tag:"Care", txt:"<b>RICE</b> a fresh injury: <b>R</b>est, <b>I</b>ce, <b>C</b>ompression, <b>E</b>levation."},
+    links:["inflam","wound","cell"]},
+
+  {c:"patho", id:"burns", t:"Burns", facts:[
+    "<b>Superficial (1st degree)</b>: epidermis only, red, no blisters.",
+    "<b>Partial-thickness (2nd degree)</b>: epidermis + part of dermis, blisters, very painful.",
+    "<b>Full-thickness (3rd/4th degree)</b>: all skin layers ± underlying tissue; may be painless (nerves destroyed).",
+    "Body surface area estimated with the <b>Rule of Nines</b>.",
+    "Systemic effects: fluid loss/dehydration, shock, infection risk, and hypermetabolism during healing."],
+    mnem:{tag:"Depth", txt:"<b>1st</b> red, <b>2nd</b> blisters, <b>3rd/4th</b> through the skin — deeper burns can hurt less."},
+    links:["fluidbalance","wound"]},
+
+  /* ---- Week 2: Infection & Immunity ---- */
+  {c:"patho", id:"microbes", t:"Microorganisms & Pathogens", facts:[
+    "<b>Bacteria</b>: prokaryotes; gram stain guides antibiotics. <b>Exotoxins</b> (secreted, gram-positive) vs <b>endotoxins</b> (gram-negative cell wall, released at death → septic shock).",
+    "<b>Viruses</b>: obligate intracellular parasites (DNA or RNA); hijack host cells and mutate quickly.",
+    "<b>Fungi</b>: eukaryotes; often opportunistic (Candida → thrush, vaginitis).",
+    "<b>Protozoa</b>: unicellular parasites (malaria, trichomonas). <b>Helminths</b>: worms (pinworm, tapeworm).",
+    "<b>Prions</b>: misfolded proteins → fatal neurodegeneration.",
+    "<b>Bactericidal</b> drugs kill bacteria; <b>bacteriostatic</b> drugs inhibit their growth."],
+    mnem:{tag:"Toxins", txt:"<b>ExO</b>toxins are <b>O</b>ut (secreted); <b>ENDO</b>toxins are <b>IN</b> the wall (gram-negative), freed at death."},
+    links:["immun","abx","precautions"]},
+
+  {c:"patho", id:"immunity", t:"Immunity Types & Vaccines", facts:[
+    "<b>Innate</b> (nonspecific, present at birth) vs <b>adaptive</b> (specific, with memory).",
+    "<b>Humoral</b> immunity = B cells → antibodies. <b>Cell-mediated</b> = T cells (cytotoxic, helper, memory).",
+    "<b>Active</b> immunity: you make your own antibodies (infection or vaccine) — long-lasting.",
+    "<b>Passive</b> immunity: you receive ready-made antibodies (placenta, breast milk, immunoglobulin) — short-lived.",
+    "<b>Primary response</b>: first exposure, IgM first, slow. <b>Secondary</b>: memory cells → rapid IgG.",
+    "Vaccines expose you to antigen to build memory cells <b>without</b> the disease; herd immunity protects a population."],
+    mnem:{tag:"Active vs Passive", txt:"<b>Active = you Act</b> (make antibodies, lasts). <b>Passive = you're given</b> them (borrowed, fades)."},
+    links:["immun","microbes"]},
+
+  {c:"patho", id:"hypersens", t:"Anaphylaxis, Autoimmunity & Immunodeficiency", facts:[
+    "Hypersensitivity types (ACID): I allergy/anaphylaxis, II cytotoxic, III immune complex, IV delayed.",
+    "<b>Anaphylaxis</b> (Type I): histamine release → ↓BP, airway swelling, hypoxia; treat with <b>epinephrine</b> (EpiPen) first — emergency.",
+    "<b>Autoimmunity</b>: loss of self-tolerance → antibodies attack self (Hashimoto's, RA, myasthenia gravis).",
+    "<b>SLE (lupus)</b>: chronic multi-organ autoimmune disease; classic <b>butterfly rash</b>; mostly young women.",
+    "<b>Immunodeficiency</b>: primary (developmental) or secondary (chemo, HIV, steroids) → opportunistic infections."],
+    mnem:{tag:"Anaphylaxis", txt:"Type I emergency = <b>Epi first</b>. Epinephrine opens the airway and raises BP before anything else."},
+    links:["immun","hiv"]},
+
+  {c:"patho", id:"hiv", t:"HIV / AIDS", facts:[
+    "HIV is a retrovirus that infects and destroys <b>CD4 (T-helper) cells</b>.",
+    "Three stages: acute → chronic (latent) → <b>AIDS</b> (severe immunosuppression).",
+    "Transmitted in blood, semen, vaginal fluids, and breast milk.",
+    "AIDS-defining problems: opportunistic infections (Pneumocystis pneumonia, candida, TB) and cancers (Kaposi sarcoma).",
+    "Treated with antiretroviral combinations (reverse transcriptase, protease, and integrase inhibitors)."],
+    mnem:{tag:"Target", txt:"HIV hunts <b>CD4</b> helper cells — knock out the coordinator and the whole immune response falls."},
+    links:["immun","hypersens"]},
+
+  /* ---- Week 3: Fluid/Electrolytes, Acid-Base & Lymphatics ---- */
+  {c:"patho", id:"fluidbalance", t:"Fluid Balance: Edema & Dehydration", facts:[
+    "<b>Hydrostatic pressure</b> pushes fluid out of vessels; <b>osmotic pressure</b> (albumin) pulls it back in.",
+    "<b>Edema</b> causes: ↑hydrostatic pressure, ↓plasma proteins (low albumin), lymphatic obstruction, ↑capillary permeability (inflammation).",
+    "<b>Dehydration/hypovolemia</b>: thirst, dry mucous membranes, ↓skin turgor, ↓BP, weak pulse, ↑hematocrit, ↓urine output.",
+    "<b>Third spacing</b>: fluid shifts into a cavity/tissue and leaves the vasculature — can be fluid-overloaded yet intravascularly dry.",
+    "<b>Water intoxication</b>: excess water → low sodium → cells swell (cerebral edema)."],
+    mnem:{tag:"Pressures", txt:"<b>Hydrostatic pushes Out, Osmotic pulls In</b>. Lose albumin and fluid stays out = edema."},
+    links:["fluid","hf","liver"]},
+
+  {c:"patho", id:"acidbase", t:"Acid–Base & ABG Interpretation", facts:[
+    "Normal: pH <span class='num'>7.35–7.45</span>, CO₂ <span class='num'>35–45</span> (respiratory), HCO₃ <span class='num'>22–26</span> (metabolic).",
+    "<b>Respiratory acidosis</b>: ↑CO₂ (hypoventilation — COPD, oversedation). <b>Respiratory alkalosis</b>: ↓CO₂ (hyperventilation — anxiety, PE).",
+    "<b>Metabolic acidosis</b>: ↓HCO₃ (DKA, diarrhea, renal failure). <b>Metabolic alkalosis</b>: ↑HCO₃ (vomiting, NG suction, diuretics).",
+    "Steps: read pH (acidotic/alkalotic) → check CO₂ → check HCO₃ → match whichever moved with the pH.",
+    "Deep, rapid <b>Kussmaul respirations</b> blow off CO₂ to compensate for metabolic acidosis (e.g., DKA)."],
+    mnem:{tag:"ROME", txt:"<b>R</b>espiratory <b>O</b>pposite (pH vs CO₂), <b>M</b>etabolic <b>E</b>qual (pH vs HCO₃)."},
+    links:["fluid","dka","resp-patho"]},
+
+  {c:"patho", id:"lymphatic", t:"Lymphatic Disorders", facts:[
+    "The lymphatic system returns interstitial fluid to blood, filters pathogens, and absorbs GI fats.",
+    "<b>Lymphadenopathy</b>: enlarged/inflamed nodes from infection or cancer; often self-limiting.",
+    "<b>Hodgkin's lymphoma</b>: orderly single-node spread; hallmark <b>Reed-Sternberg cells</b>; painless enlarged node.",
+    "<b>Non-Hodgkin's lymphoma</b>: multiple scattered nodes, widespread; harder to treat; linked to HIV.",
+    "<b>Multiple myeloma</b>: malignant plasma cells in bone marrow → bone pain, fractures, anemia.",
+    "<b>Lymphedema</b>: blocked lymph vessels → limb swelling (elephantiasis if parasitic)."],
+    mnem:{tag:"Hodgkin's", txt:"<b>Reed-Sternberg = Hodgkin's</b>. One giveaway cell, orderly node-to-node spread."},
+    links:["immun","vascular"]},
+
+  /* ---- Week 4: Neurological ---- */
+  {c:"patho", id:"stroke", t:"Stroke (CVA) & TIA", facts:[
+    "<b>TIA</b>: temporary focal deficit from brief ischemia — a warning sign, no permanent damage.",
+    "<b>CVA (stroke)</b>: brain infarction. Ischemic (thrombus/embolus) or hemorrhagic (ruptured vessel, often from HTN).",
+    "~5 minutes of ischemia causes irreversible neuron damage.",
+    "Deficits depend on location: contralateral weakness/sensory loss; initially flaccid, later spastic paralysis.",
+    "Risk factors: HTN, atherosclerosis, diabetes, smoking, atrial fibrillation, prior TIAs.",
+    "Ischemic stroke may receive clot-busting (thrombolytic) therapy — act fast (NIH Stroke Scale)."],
+    mnem:{tag:"TIA", txt:"A <b>TIA is a warning shot</b> — stroke signs but temporary. Don't ignore it."},
+    links:["neuro-msk","vascular","htn"]},
+
+  {c:"patho", id:"cnsinfection", t:"CNS Infections", facts:[
+    "<b>Meningitis</b>: inflamed meninges, often bacterial (meningococcus spreads by droplets).",
+    "Meningitis signs: severe headache, fever, photophobia, <b>nuchal rigidity</b>, positive Kernig & Brudzinski signs.",
+    "Diagnosed by <b>lumbar puncture</b> (CSF analysis); treat aggressively with antimicrobials.",
+    "<b>Encephalitis</b>: inflammation of brain tissue, usually viral.",
+    "<b>Shingles</b> (herpes zoster): reactivated varicella along a dermatome; antivirals within 48 hr reduce pain.",
+    "<b>Guillain-Barré</b>: post-infection ascending flaccid paralysis — watch the respiratory muscles."],
+    mnem:{tag:"Meningitis", txt:"<b>Kernig + Brudzinski + stiff neck</b> = meningeal irritation. Confirm with a lumbar puncture."},
+    links:["immun","precautions"]},
+
+  {c:"patho", id:"seizures", t:"Seizures", facts:[
+    "A seizure is a sudden, excessive, uncontrolled discharge of neurons.",
+    "<b>Generalized</b>: whole brain (tonic-clonic, absence/petit mal, myoclonic). <b>Partial/focal</b>: one area, may keep awareness.",
+    "Many are idiopathic; triggers include flashing lights, stress, hypoglycemia, fever, and missed medications.",
+    "Phases: aura → tonic (stiff) → clonic (jerking) → postictal (confused, sleepy).",
+    "<b>Status epilepticus</b>: continuous seizures without recovery — a life-threatening emergency."],
+    mnem:{tag:"Phases", txt:"<b>Tonic = Tight</b>, <b>Clonic = Convulsing</b> jerks, then a drained <b>postictal</b> sleep."},
+    links:["neuro-msk"]},
+
+  {c:"patho", id:"neurodegen", t:"Neurodegenerative Disorders", facts:[
+    "<b>Multiple sclerosis (MS)</b>: autoimmune demyelination in the CNS; relapsing deficits (vision, weakness, numbness).",
+    "<b>Parkinson's</b>: loss of dopamine neurons in the basal ganglia → tremor, rigidity, bradykinesia, mask-like face.",
+    "<b>ALS (Lou Gehrig's)</b>: motor-neuron degeneration → progressive weakness; cognition intact; fatal respiratory failure.",
+    "<b>Myasthenia gravis</b>: autoantibodies to ACh receptors → weakness worse with use; watch swallowing/breathing.",
+    "<b>Huntington's</b>: autosomal-dominant → chorea + dementia after about age 40.",
+    "<b>Alzheimer's</b>: progressive cortical atrophy, plaques/tangles, ACh deficit → memory loss, dementia."],
+    mnem:{tag:"Dopamine", txt:"<b>Parkinson's = low dopamine</b> (slow, rigid, tremor). <b>MS = lost myelin</b> (scattered, relapsing)."},
+    links:["neuro-msk"]},
+
+  {c:"patho", id:"tbisci", t:"Brain & Spinal Cord Injury", facts:[
+    "<b>Concussion</b>: reversible interference with function. <b>Contusion</b>: bruised tissue with possible lasting damage.",
+    "<b>Epidural hematoma</b>: arterial, between skull and dura — rapid deterioration. <b>Subdural</b>: venous, slower onset.",
+    "<b>Basilar skull fracture</b>: CSF leak from ears/nose, <b>Battle sign</b> (bruised mastoid), <b>raccoon eyes</b>.",
+    "<b>Spinal shock</b>: temporary loss of all reflexes/function below the injury right after trauma.",
+    "<b>Tetraplegia</b> (quadriplegia) = all four limbs; <b>paraplegia</b> = lower body.",
+    "<b>Autonomic dysreflexia</b>: sudden severe HTN + bradycardia from a stimulus below the injury — emergency."],
+    mnem:{tag:"Hematoma", txt:"<b>Epidural = Emergency + Artery</b> (fast). <b>Subdural = Slow</b> venous ooze."},
+    links:["neuro-msk","vascular"]},
+
+  /* ---- Week 4: Musculoskeletal ---- */
+  {c:"patho", id:"fractures", t:"Fractures & Musculoskeletal Injury", facts:[
+    "Fracture healing: hematoma → fibrin/procallus → cartilage → bony callus → remodeling.",
+    "Healing needs good blood supply, close bone ends, and nutrition; slowed by age, infection, poor circulation.",
+    "<b>Compartment syndrome</b>: swelling within a fascial compartment → ischemia; a tight cast can cause it — emergency.",
+    "<b>Fat emboli</b> can follow long-bone fractures.",
+    "<b>Sprain</b> = torn ligament; <b>strain</b> = torn tendon; <b>dislocation</b> = bones out of a joint.",
+    "Reduction: closed (manual) vs open (surgical fixation)."],
+    mnem:{tag:"Sprain/Strain", txt:"<b>Sprain = ligament</b> (bone-to-bone). <b>STrain = Tendon</b> (muscle-to-bone)."},
+    links:["inflam","healing","pvascular"]},
+
+  {c:"patho", id:"bonedis", t:"Bone Disorders", facts:[
+    "<b>Osteoporosis</b>: ↓bone mass/density → fragile bones; risks = age, low estrogen, low calcium/vitamin D, steroids, smoking.",
+    "<b>Osteomalacia/rickets</b>: soft bones from vitamin D/phosphate deficiency (rickets in children).",
+    "<b>Paget's disease</b>: disorganized bone remodeling → deformity, fractures, nerve compression.",
+    "<b>Osteomyelitis</b>: bone infection (bacterial/fungal) → local pain, fever; needs antibiotics ± surgery.",
+    "<b>Osteosarcoma</b>: most common primary bone cancer; <b>bone pain at rest</b> is a warning sign."],
+    mnem:{tag:"Osteoporosis", txt:"<b>Porous = Osteoporosis</b> — less bone. Think post-menopausal, low calcium, steroids."},
+    links:["fractures","fluid"]},
+
+  {c:"patho", id:"jointdis", t:"Joint Disorders: OA, RA & Gout", facts:[
+    "<b>Osteoarthritis (OA)</b>: non-inflammatory “wear and tear” of cartilage in weight-bearing joints; pain worse with use.",
+    "<b>Rheumatoid arthritis (RA)</b>: autoimmune, symmetric, inflammatory; morning stiffness; starts in small joints (hands/wrists); systemic (fatigue, low fever).",
+    "RA process: synovitis → pannus → cartilage erosion → fibrosis → ankylosis (fusion).",
+    "<b>Gout</b>: uric acid crystals in a joint (classic big toe) → red, hot, painful; tophi form later.",
+    "<b>Ankylosing spondylitis</b>: chronic inflammation fusing spine/sacroiliac joints; young men, low back pain + morning stiffness."],
+    mnem:{tag:"OA vs RA", txt:"<b>OA = wear-and-tear</b>, worse with use, big joints. <b>RA = autoimmune</b>, symmetric, morning stiffness."},
+    links:["inflam","immun"]},
+
+  /* ---- Week 5: Respiratory infections & restrictive disease ---- */
+  {c:"patho", id:"airways", t:"Upper Respiratory & Airway Infections", facts:[
+    "<b>Rhinitis</b>: viral = red mucosa, yellow/green discharge; allergic = pale/gray mucosa, clear discharge, eosinophils.",
+    "<b>Pharyngitis</b>: usually viral; <b>“strep throat”</b> = group A strep → rapid antigen test, treat with antibiotics.",
+    "<b>Sinusitis</b>: headache, facial pain, purulent discharge; viral clears in days, bacterial lingers.",
+    "<b>Epiglottitis</b>: inflamed epiglottis can obstruct the airway — emergency; keep intubation/trach equipment ready.",
+    "<b>Croup</b> (children): laryngotracheobronchitis with a <b>barking cough</b>."],
+    mnem:{tag:"Airway", txt:"<b>Epiglottitis = emergency</b> — swelling can close the airway. Don't leave the bedside."},
+    links:["immun","abx","lowerresp"]},
+
+  {c:"patho", id:"lowerresp", t:"Lower Respiratory Infections & TB", facts:[
+    "<b>Acute bronchitis</b>: inflamed bronchi, persistent cough; sputum color doesn't distinguish viral from bacterial.",
+    "<b>Pneumonia</b>: alveoli fill with fluid; <b>crackles</b> are pathognomonic; fever, productive cough, dyspnea. Types: community, hospital, and ventilator-associated.",
+    "Pneumonia exam: dullness to percussion, ↑fremitus, egophony (“e”→“a”), bronchophony, whispered pectoriloquy.",
+    "<b>Aspiration</b> risk is highest in the <b>right</b> lung (straighter bronchus).",
+    "<b>TB</b> (M. tuberculosis): airborne; latent (dormant, noninfectious) vs active; PPD/Mantoux screens, confirm with chest x-ray + acid-fast sputum; needs airborne isolation + months of combination antibiotics.",
+    "<b>Lung abscess</b>: localized pus/necrosis; key sign is foul-smelling sputum."],
+    mnem:{tag:"Pneumonia", txt:"<b>Crackles = fluid in alveoli</b>. Say “e,” hear “a” (egophony) = consolidation."},
+    links:["resp-assess","abx","precautions","resp-patho"]},
+
+  {c:"patho", id:"restrictive", t:"Restrictive & Pleural Disorders", facts:[
+    "<b>Restrictive</b> disease = reduced lung expansion / total lung capacity.",
+    "<b>Atelectasis</b>: alveolar collapse (common post-op); prevent with an <b>incentive spirometer</b>.",
+    "<b>Pneumothorax</b>: air in the pleural space collapses the lung. <b>Tension pneumothorax</b> compresses the heart — needle-decompression emergency.",
+    "<b>Pleural effusion</b>: fluid in the pleural cavity → dyspnea, dullness, diminished breath sounds; drained by thoracentesis.",
+    "<b>ARDS</b>: diffuse alveolar injury in critically ill patients → severe refractory hypoxemia; high mortality.",
+    "<b>Pulmonary fibrosis</b>: scarred, stiff lungs → dyspnea and crackles."],
+    mnem:{tag:"Tension PTX", txt:"<b>Tension pneumothorax</b> shoves the heart over (tracheal deviation) — <b>needle decompress now</b>."},
+    links:["resp-assess","resp-patho","pe"]},
+
+  {c:"patho", id:"pe", t:"Pulmonary Embolism", facts:[
+    "A PE is a clot or mass obstructing a pulmonary artery — most originate from a leg <b>DVT</b>.",
+    "Sudden dyspnea, pleuritic chest pain, tachypnea, tachycardia, anxiety; large emboli can cause sudden death.",
+    "A common cause of V/Q mismatch (ventilation without perfusion = dead space).",
+    "Prevent with early mobility, compression stockings, and anticoagulants.",
+    "Diagnose with lung scan/CT angiography; treat with heparin/thrombolytics ± a vena cava filter."],
+    mnem:{tag:"Source", txt:"<b>Most PEs are DVTs that broke loose</b> — prevent the leg clot, prevent the PE."},
+    links:["vascular","resp-patho","fluid"]},
+
+  /* ---- Week 6: Cardiac ---- */
+  {c:"patho", id:"angina", t:"Coronary Artery Disease: Angina & ACS", facts:[
+    "<b>Acute coronary syndrome (ACS)</b> spans unstable angina, NSTEMI, and STEMI.",
+    "<b>Stable angina</b>: predictable, brought on by exertion, relieved by rest or nitroglycerin.",
+    "<b>Unstable angina</b>: new or worsening, occurs at rest, <b>not</b> relieved — a medical emergency.",
+    "Chest pain (Levine's sign — clenched fist over sternum) radiates to jaw, shoulder, left arm.",
+    "<b>Anginal equivalents</b> (dyspnea, epigastric pain, faintness) are common in women, elderly, diabetics.",
+    "Treat: oxygen if SaO₂ <span class='num'>&lt;95%</span>, nitrates (vasodilate), aspirin (↓platelet adhesion)."],
+    mnem:{tag:"Stable vs Not", txt:"Relieved by rest = <b>stable</b>. Pain at rest that won't quit = <b>unstable</b> → emergency."},
+    links:["cardiac","auto-assess","adren"]},
+
+  {c:"patho", id:"mi", t:"Myocardial Infarction (MI)", facts:[
+    "Prolonged ischemia → <b>irreversible</b> myocardial necrosis.",
+    "<b>STEMI</b>: full-thickness, ST-segment elevation. <b>NSTEMI</b>: subendocardial, no ST elevation.",
+    "ECG alone <b>cannot confirm</b> an MI — confirm with cardiac biomarkers first, then classify.",
+    "<b>Troponin</b> (hs-cTn) is highly specific for cardiac necrosis; CK-MB rises ~4 hr, subsides 3–4 days.",
+    "“Silent MI” (no classic pain) can occur, especially in diabetics.",
+    "Treat: antiplatelets, beta-blockers, nitrates, morphine, thrombolytics, PCI. Watch for dysrhythmias, cardiogenic shock."],
+    mnem:{tag:"Biomarker", txt:"<b>Troponin is the truth-teller</b> — rises early, stays elevated ~days, and is specific to heart muscle."},
+    links:["cardiac","vitals","painconcepts"]},
+
+  {c:"patho", id:"hf", t:"Heart Failure", facts:[
+    "Normal LVEF <span class='num'>50–70%</span>. <b>HFrEF</b> (&lt;40%, systolic) vs <b>HFpEF</b> (&gt;50%, diastolic).",
+    "<b>Left-sided</b> = <b>lung</b> congestion: dyspnea, orthopnea, PND, crackles, pulmonary edema.",
+    "<b>Right-sided</b> = systemic congestion: JVD, peripheral/sacral edema, ascites, hepatomegaly.",
+    "<b>Cor pulmonale</b> = right HF caused by lung disease (COPD, hypoxia → pulmonary vasoconstriction).",
+    "<b>BNP</b> is elevated (marker of ventricular stretch). CO = HR × stroke volume.",
+    "Treat: diuretics, ACE inhibitors (cornerstone), low-sodium diet."],
+    mnem:{tag:"Sidedness", txt:"<b>Left = Lungs</b> (fluid backs up into lungs). <b>Right = Rest of body</b> (edema, JVD, ascites)."},
+    links:["dig","fluid","resp-patho","vitals"]},
+
+  {c:"patho", id:"valves", t:"Valve Disorders & Endocarditis", facts:[
+    "<b>Stenosis</b> = narrowed, won't open fully (↑workload). <b>Regurgitation/insufficiency</b> = won't close, backflow.",
+    "S1 (“lub”) = AV valves (mitral/tricuspid) close → start of systole.",
+    "S2 (“dub”) = semilunar valves (aortic/pulmonic) close → start of diastole.",
+    "Murmurs = turbulent flow, graded <span class='num'>1–6</span>; timed as systolic or diastolic.",
+    "<b>Infective endocarditis</b>: usually S. aureus; vegetations → septic emboli; a <b>new murmur</b> is a key sign; IV drug use is a risk."],
+    mnem:{tag:"Direction", txt:"<b>Stenosis Squeezes</b> (narrow); <b>Regurg Returns</b> blood backward."},
+    links:["cardiac"]},
+
+  {c:"patho", id:"htn", t:"Hypertension", facts:[
+    "The “silent killer.” Criteria: SBP <span class='num'>≥130</span> or DBP <span class='num'>≥80</span> on repeat readings.",
+    "<b>Primary</b> (~95%, no identifiable cause) vs <b>secondary</b> (~5%, from an underlying disease).",
+    "Target-organ damage: LV hypertrophy, retinopathy, kidney damage (proteinuria), bruits.",
+    "Lifestyle: DASH diet, low sodium (~1,500 mg), exercise, smoking cessation.",
+    "Meds: diuretics, ACE inhibitors, ARBs, calcium channel blockers, beta-blockers."],
+    mnem:{tag:"Silent", txt:"Often <b>no symptoms</b> — damage shows up in the eyes, heart, and kidneys before the patient feels it."},
+    links:["adren","vitals","fluid","kidney"]},
+
+  {c:"patho", id:"vascular", t:"Vascular: Atherosclerosis, PAD, Aneurysm, DVT", facts:[
+    "<b>Arteriosclerosis</b> = hardening/narrowing; <b>atherosclerosis</b> = plaque from endothelial injury → foam cells.",
+    "<b>PAD</b>: intermittent claudication (pain with exertion, relieved by rest); assessed with ankle-brachial index.",
+    "<b>AAA</b>: do <b>not</b> deeply palpate a pulsatile mass. <b>Aortic dissection</b>: sudden “ripping/tearing” pain.",
+    "<b>Virchow's triad</b> → DVT risk: venous stasis, vessel injury, hypercoagulability.",
+    "DVT: unilateral leg pain, edema, warmth; D-dimer screens; a clot can travel → <b>PE</b>.",
+    "Venous insufficiency: brown hemosiderin staining, medial-ankle ulcers, edema relieved by elevation."],
+    mnem:{tag:"Clot risk", txt:"<b>Virchow's triad</b> — <b>S</b>tasis, <b>S</b>urface (vessel) injury, <b>S</b>ludgy (hypercoagulable) blood."},
+    links:["pvascular","inflam","fluid"]},
+
+  /* ---- Week 7: Gastrointestinal ---- */
+  {c:"patho", id:"upgi", t:"Upper GI: GERD, Gastritis, PUD", facts:[
+    "<b>GERD</b>: weak LES tone → acid reflux, heartburn, regurgitation. Chronic reflux → <b>Barrett's esophagus</b> (metaplasia, precancerous).",
+    "<b>Acute gastritis</b>: NSAIDs, aspirin, alcohol, stress.",
+    "<b>Chronic gastritis</b>: <b>H. pylori</b> → atrophic lining → ↓intrinsic factor → B12 deficiency.",
+    "<b>PUD</b>: erosion of stomach/duodenum (duodenal more common); causes are H. pylori + NSAIDs.",
+    "NSAIDs block prostaglandins → ↓protective mucus. Ulcer pain often occurs between meals.",
+    "Treat with PPIs and H2 blockers; treat H. pylori with antibiotics."],
+    mnem:{tag:"Cause", txt:"Two big ulcer culprits: <b>H. pylori</b> and <b>NSAIDs</b> (no mucus, no protection)."},
+    links:["abx","gibleed"]},
+
+  {c:"patho", id:"gibleed", t:"GI Bleeding & Esophageal Varices", facts:[
+    "<b>Melena</b> = dark, tarry stool (digested blood). <b>Hematemesis</b> = vomiting blood.",
+    "<b>“Coffee-ground” emesis</b> means blood has mixed with stomach acid (upper GI bleed).",
+    "Chronic slow bleeds → iron-deficiency anemia; occult blood on FOBT.",
+    "<b>Esophageal varices</b>: engorged veins from portal hypertension (often alcoholic liver disease).",
+    "Ruptured varices are a surgical emergency."],
+    mnem:{tag:"Color", txt:"<b>Coffee grounds = old blood</b> (acid-exposed). Bright red = fresh, higher up or brisk."},
+    links:["liver"]},
+
+  {c:"patho", id:"lowgi", t:"Lower GI: IBD, IBS, Appendicitis, Diverticular", facts:[
+    "<b>Crohn's</b>: mouth-to-anus, <b>transmural</b>, skip lesions, cobblestone/granulomas.",
+    "<b>Ulcerative colitis</b>: large intestine only, starts at rectum & moves up, continuous, not transmural, pseudopolyps.",
+    "<b>IBS</b>: pain + altered bowel habits with <b>no</b> structural/pathological change.",
+    "<b>Appendicitis</b>: periumbilical pain → localizes to RLQ, rebound tenderness, positive psoas/obturator signs. Withhold opioids until diagnosed.",
+    "<b>Diverticulitis</b>: LLQ pain; low-fiber diet is a major risk factor."],
+    mnem:{tag:"IBD", txt:"<b>Crohn's = Cobblestones + skip lesions, whole wall</b>. <b>UC = Continuous, Colon only, rectum up</b>."},
+    links:["abx","painconcepts"]},
+
+  {c:"patho", id:"liver", t:"Liver: Cirrhosis, Portal HTN & Hepatitis", facts:[
+    "Liver makes albumin + clotting factors, detoxifies drugs, conjugates bilirubin, and deaminates protein (→ ammonia).",
+    "<b>Cirrhosis</b> (irreversible scarring) → portal hypertension → esophageal varices, ascites.",
+    "Failing liver: ↓albumin (edema), ↓clotting (bleeding), ↑ammonia (hepatic encephalopathy, asterixis), jaundice.",
+    "Jaundice: <b>prehepatic</b> (hemolysis), <b>intrahepatic</b> (hepatocellular), <b>posthepatic</b> (obstruction).",
+    "Hepatitis: <b>A</b> fecal-oral; <b>B</b> blood/sexual; <b>C</b> blood → chronic → cirrhosis/HCC.",
+    "Liver enzymes AST & ALT rise with hepatocyte injury."],
+    mnem:{tag:"Hepatitis", txt:"<b>A</b> = <b>A</b>nus (fecal-oral). <b>B</b> = <b>B</b>lood/<b>B</b>ody fluids. <b>C</b> = <b>C</b>hronic (leads to cirrhosis)."},
+    links:["fluid","pk"]},
+
+  {c:"patho", id:"gallpanc", t:"Gallbladder & Pancreas", facts:[
+    "<b>Cholelithiasis</b> = gallstones; <b>cholecystitis</b> = gallbladder inflammation (stones are the usual cause).",
+    "Classic risks: female, forties, obese, fertile. Colicky RUQ pain after a fatty meal, positive <b>Murphy's sign</b>.",
+    "Morphine and codeine are avoided in gallbladder pain (spasm of the sphincter of Oddi).",
+    "<b>Acute pancreatitis</b>: elevated serum <b>amylase and lipase</b> (lipase is the key marker).",
+    "Causes: gallstones and alcohol. Severe epigastric pain radiating to the back; keep patient NPO.",
+    "<b>Cullen sign</b> (periumbilical bruising) and <b>Grey Turner sign</b> (flank bruising) signal hemorrhage."],
+    mnem:{tag:"Gallstones", txt:"The <b>4 F's</b>: <b>F</b>emale, <b>F</b>orty, <b>F</b>at, <b>F</b>ertile."},
+    links:["painconcepts"]},
+
+  /* ---- Week 8: Urinary ---- */
+  {c:"patho", id:"kidney", t:"Kidney Function & Urinalysis", facts:[
+    "Kidneys clear wastes, balance fluid/electrolytes/acid-base, and regulate BP via the renin-angiotensin-aldosterone system.",
+    "They also secrete <b>erythropoietin</b> (RBC production) and <b>activate vitamin D</b> (calcium).",
+    "<b>Nephron</b> = functional unit; glomerular filtration rate (GFR) reflects kidney function.",
+    "Urinary <b>casts</b> indicate renal tubule inflammation.",
+    "Abnormal urine: hematuria (blood), proteinuria (glomerular leak), bacteriuria (infection), glucose/ketones (uncontrolled diabetes)."],
+    mnem:{tag:"Jobs", txt:"<b>A WET BED</b> shortcut — kidneys handle <b>A</b>cid-base, <b>W</b>aste, <b>E</b>lectrolytes, and make ery<b>T</b>hropoietin + activate vit D for <b>BED</b> (blood, bone)."},
+    links:["fluid","htn"]},
+
+  {c:"patho", id:"uti", t:"UTIs & Pyelonephritis", facts:[
+    "<b>E. coli</b> is the most common cause. More common in women (short urethra, close to anus).",
+    "<b>Cystitis</b> (bladder): dysuria, urgency, frequency, nocturia; cloudy/odorous urine.",
+    "<b>Urethritis</b>: inflammation of the urethra.",
+    "<b>Pyelonephritis</b> (kidney): flank/back pain + fever + systemic signs; urinary casts present.",
+    "Untreated upper UTI can scar the kidney and progress to chronic renal failure."],
+    mnem:{tag:"Location", txt:"Lower (bladder) = burning + frequency. Upper (kidney) = <b>flank pain + fever + casts</b>."},
+    links:["abx","precautions"]},
+
+  {c:"patho", id:"glomerular", t:"Glomerulonephritis vs Nephrotic Syndrome", facts:[
+    "<b>Glomerulonephritis</b>: often post-streptococcal (ASO antibodies, immune-complex). Inflammatory.",
+    "GN findings: hematuria, <b>RBC casts</b>, proteinuria, hypertension, periorbital edema, ↓GFR.",
+    "<b>Nephrotic syndrome</b>: massive glomerular permeability → heavy <b>proteinuria</b>.",
+    "Nephrotic findings: hypoalbuminemia → generalized (massive) edema, lipiduria, high cholesterol.",
+    "Both treated with glucocorticoids; ACE inhibitors reduce protein loss in nephrotic syndrome."],
+    mnem:{tag:"Tell them apart", txt:"<b>Nephr-O-tic = prOtein + edema</b>. <b>Glomerulonephr-I-tis = Inflammation + hematuria (RBC casts)</b>."},
+    links:["immun"]},
+
+  {c:"patho", id:"renalfailure", t:"Acute & Chronic Renal Failure", facts:[
+    "<b>Acute</b>: sudden onset (shock, nephrotoxins, obstruction). Often reversible if the cause is treated.",
+    "<b>Chronic</b>: gradual, irreversible loss over time; silent early.",
+    "Lab hallmarks: ↑BUN & creatinine, metabolic acidosis, <b>hyperkalemia</b>.",
+    "Later electrolytes: hyponatremia, hyperkalemia, hypocalcemia, hyperphosphatemia.",
+    "End-stage “three A's”: <b>A</b>zotemia, <b>A</b>nemia (↓erythropoietin), <b>A</b>cidosis. Needs dialysis or transplant."],
+    mnem:{tag:"End-stage", txt:"The <b>3 A's</b> of end-stage renal failure: <b>A</b>zotemia, <b>A</b>nemia, <b>A</b>cidosis."},
+    links:["fluid","dig"]},
+
+  {c:"patho", id:"stones", t:"Urolithiasis & Obstruction", facts:[
+    "<b>Insufficient fluid intake</b> is the major factor in stone formation.",
+    "<b>Calcium stones</b> are most common; uric acid stones form in acidic urine (gout).",
+    "<b>Renal colic</b>: intense, spasmodic flank pain radiating to the groin until the stone passes.",
+    "Small stones may pass; others treated with lithotripsy (ESWL/laser) or surgery.",
+    "Obstruction can back urine up → <b>hydronephrosis</b> → renal damage."],
+    mnem:{tag:"Prevent", txt:"<b>Fluids flush stones</b> — the single biggest modifiable factor is drinking enough water."},
+    links:["painconcepts"]},
+
+  /* ---- Week 9: Endocrine & Reproductive ---- */
+  {c:"patho", id:"pituitary", t:"Pituitary: DI vs SIADH", facts:[
+    "<b>Diabetes insipidus (DI)</b>: too little ADH (or kidneys don't respond) → large volume of <b>dilute</b> urine.",
+    "DI labs: high serum osmolality (&gt;300), low urine osmolality; thirst, dehydration.",
+    "<b>SIADH</b>: too much ADH → water retention → <b>concentrated</b> urine, dilute plasma, hypervolemia.",
+    "SIADH danger: acute <b>hyponatremia</b> → cerebral edema; treat with fluid restriction.",
+    "Small-cell lung cancer can secrete an ADH-like substance (causing SIADH)."],
+    mnem:{tag:"Opposites", txt:"<b>DI = Dilute + Dehydrated</b> (pees too much). <b>SIADH = Soaked</b> (holds water, low sodium)."},
+    links:["fluid"]},
+
+  {c:"patho", id:"thyroid", t:"Thyroid: Hypo vs Hyper", facts:[
+    "<b>Hypothyroidism</b> (often Hashimoto's): cold intolerance, weight gain, fatigue, constipation, bradycardia, dry skin.",
+    "<b>Hyperthyroidism</b> (often Graves'): heat intolerance, weight loss, tachycardia/atrial fibrillation, nervousness, insomnia.",
+    "<b>Exophthalmos</b> (bulging eyes) is classic for Graves' disease.",
+    "<b>Thyroid storm</b> (thyrotoxic crisis): high fever, tachycardia, agitation — a medical emergency, often after surgery/trauma.",
+    "T3/T4 need iodine; the thyroid regulates metabolism."],
+    mnem:{tag:"Speed", txt:"<b>Hypo = slow</b> (cold, tired, gaining). <b>Hyper = fast</b> (hot, wired, losing)."},
+    links:["vitals","adren"]},
+
+  {c:"patho", id:"adrenal", t:"Adrenal: Addison's vs Cushing's", facts:[
+    "<b>Addison's (adrenal insufficiency)</b>: ↓cortisol → weakness, hypotension, hyponatremia, <b>hyperkalemia</b>, hypoglycemia, bronze/tanned skin.",
+    "Do <b>not</b> stop chronic steroids abruptly — the adrenals can't respond to stress (risk of crisis).",
+    "<b>Cushing's</b>: ↑cortisol → moon face, buffalo hump, central obesity, purple striae, thin skin, easy bruising.",
+    "Cushing's also causes hyperglycemia, hypertension, immunosuppression, osteoporosis.",
+    "Exogenous steroids are the most common cause of Cushing's.",
+    "<b>Pheochromocytoma</b>: adrenal medulla tumor → catecholamines → HTN; triad of palpitations, headache, sweating."],
+    mnem:{tag:"High vs Low", txt:"<b>Add-i-son = Add nothing</b> (low cortisol). <b>Cushing = Cushion</b> (too much — moon face, buffalo hump)."},
+    links:["fluid","adren"]},
+
+  {c:"patho", id:"dm", t:"Diabetes Mellitus: Overview", facts:[
+    "<b>Type 1</b>: autoimmune beta-cell destruction → no insulin; insulin required; can present in DKA.",
+    "<b>Type 2</b> (~90%): insulin resistance; associated with metabolic syndrome/obesity.",
+    "Classic signs: <b>polyuria, polydipsia, polyphagia</b> (the three P's).",
+    "Diagnosis: fasting BG <span class='num'>≥126</span>, A1C, or oral glucose tolerance test. Normal fasting <span class='num'>70–100</span>.",
+    "A1C reflects average glucose over ~3 months.",
+    "Long-term damage: retinopathy, nephropathy, neuropathy, atherosclerosis, poor wound healing → amputation."],
+    mnem:{tag:"Three P's", txt:"<b>Poly</b>uria, <b>poly</b>dipsia, <b>poly</b>phagia — pee a lot, drink a lot, eat a lot."},
+    links:["dka","kidney","pvascular"]},
+
+  {c:"patho", id:"dka", t:"DKA vs HHS", facts:[
+    "<b>DKA</b> (mostly Type 1): no insulin → ketones → <b>metabolic acidosis</b>.",
+    "DKA labs: BG <span class='num'>&gt;250</span>, pH <span class='num'>&lt;7.3</span>, HCO₃ low; <b>Kussmaul respirations</b> and fruity/acetone breath.",
+    "<b>HHS</b> (mostly Type 2): severe hyperglycemia, <b>no significant ketones</b> (some insulin present).",
+    "HHS labs: BG <span class='num'>&gt;600</span>, high plasma osmolarity; profound dehydration, confusion.",
+    "Both: give <b>fluids first</b>, then insulin.",
+    "<b>Somogyi</b> = nighttime hypoglycemia rebounds to morning highs; <b>dawn</b> = morning highs without the nighttime low."],
+    mnem:{tag:"Ketones", txt:"<b>DKA = Definitely Ketones + Acidosis</b> (Type 1). <b>HHS = Hyperglycemia, no ketones</b> (Type 2)."},
+    links:["fluid","dm"]},
+
+  {c:"patho", id:"repro", t:"Reproductive Highlights", facts:[
+    "<b>BPH</b>: prostate enlarges with age → compresses urethra → weak stream, frequency, incomplete emptying. PSA can't diagnose cancer alone.",
+    "<b>PCOS</b>: androgen excess + anovulation → infertility; linked to insulin resistance/metabolic syndrome.",
+    "<b>Testicular torsion</b>: sudden severe unilateral pain — a urological emergency; detorsion within ~6 hr saves the testicle.",
+    "<b>Erectile dysfunction</b> drugs (sildenafil) are contraindicated with nitrates (dangerous hypotension).",
+    "<b>PID</b>: ascending infection → infertility risk; <b>chandelier sign</b> (extreme cervical motion tenderness)."],
+    mnem:{tag:"Emergency", txt:"<b>Torsion = time</b> — sudden unilateral testicular pain is a 6-hour surgical clock."},
+    links:["kidney","sti"]},
+
+  {c:"patho", id:"sti", t:"Sexually Transmitted Infections", facts:[
+    "<b>Chlamydia</b>: most common; often asymptomatic; untreated → PID and infertility.",
+    "<b>Gonorrhea</b> (N. gonorrhoeae): purulent discharge; growing antibiotic resistance.",
+    "<b>Syphilis</b> (T. pallidum): primary (chancre) → secondary (rash) → latent → tertiary (neuro).",
+    "<b>HPV</b>: most common STI; oncogenic types cause cervical cancer — vaccinate before exposure.",
+    "<b>Herpes (HSV)</b>: no cure; acyclovir reduces symptoms. <b>Trichomonas</b>: treat with metronidazole (treat partners too)."],
+    mnem:{tag:"Syphilis", txt:"Stages march in order: <b>Chancre → Rash → Latent → neuro</b>. First is painless and easy to miss."},
+    links:["abx","immun","precautions"]},
+
+  /* ---- Week 10: Pain ---- */
+  {c:"patho", id:"paintypes", t:"Pain: Types, Fibers & Pathways", facts:[
+    "<b>Acute</b>: short, resolves with healing. <b>Chronic</b>: outlasts healing, no protective purpose. <b>Neuropathic</b>: nerve injury → burning, tingling, paresthesia.",
+    "<b>Somatic</b> pain: skin/bone/muscle, well localized. <b>Visceral</b>: organs, poorly localized, may refer.",
+    "<b>A-delta fibers</b>: myelinated, fast → sharp, acute, localized. <b>C fibers</b>: unmyelinated, slow → dull, burning, chronic.",
+    "Ascending: nociceptors → <b>spinothalamic tract</b> → brain (perception). Descending: brain → <b>endogenous opioids</b> (endorphins, enkephalins, dynorphins) block pain fibers.",
+    "Nociceptors fire from thermal, chemical (bradykinin, histamine, prostaglandin), or physical stimuli.",
+    "<b>Pain threshold</b> is fairly constant; <b>pain tolerance</b> varies and is culturally influenced."],
+    mnem:{tag:"Fibers", txt:"<b>A-delta = A-sharp/Acute</b> (fast, myelinated). <b>C = Chronic + slow</b> (dull, burning)."},
+    links:["pain","pqrstu","painsyndromes"]},
+
+  {c:"patho", id:"painconcepts", t:"Pain: Gate Control & Neurochemistry", facts:[
+    "<b>Gate control theory</b>: spinal “gates” open (pain passes) or close (pain reduced); explains why pain isn't proportional to injury.",
+    "4 steps: <b>transduction</b> (stimulus → signal) → <b>transmission</b> (signal travels) → <b>modulation</b> (the gate) → <b>perception</b> (conscious awareness).",
+    "Amplify pain: substance P, glutamate, prostaglandins, bradykinin. Inhibit pain: endorphins/enkephalins, serotonin, norepinephrine, GABA.",
+    "<b>Serotonin</b> is diminished in migraine — several migraine drugs work by raising it.",
+    "<b>Referred pain</b>: felt away from the source (MI → jaw/left arm). <b>Phantom pain</b>: in an amputated limb.",
+    "<b>Acute</b> pain drives a stress response (↑HR, ↑BP, ↑RR, cool/moist skin); <b>chronic</b> brings fatigue and depression."],
+    mnem:{tag:"Gate steps", txt:"<b>“Tell The Model, Please”</b> — Transduction, Transmission, Modulation (the gate), Perception."},
+    links:["pain","mi","painsyndromes"]},
+
+  {c:"patho", id:"painmgmt", t:"Pain Assessment & Management", facts:[
+    "Pain is <b>subjective</b> — rate it with a reliable scale and characterize it with <b>OLDCART</b> (Onset, Location, Duration, Character, Aggravating, Relieving, Treatment).",
+    "<b>WHO analgesic ladder</b>: Step 1 non-opioids (acetaminophen, NSAIDs) → Step 2 mild opioids (codeine) → Step 3 strong opioids (morphine); moved in either direction.",
+    "<b>Multimodal analgesia</b>: combine agents with different mechanisms (± non-drug) for better control and fewer side effects.",
+    "<b>PCA (patient-controlled analgesia)</b> for severe pain lowers total opioid use.",
+    "<b>Intractable pain</b> may need nerve blocks or surgery (rhizotomy, cordotomy).",
+    "Non-drug options: TENS, spinal cord stimulation, trigger-point injections, PT/OT."],
+    mnem:{tag:"Ladder", txt:"WHO ladder climbs with severity: <b>non-opioid → mild opioid → strong opioid</b>, adding adjuvants as needed."},
+    links:["pain","dosecalc","pqrstu"]},
+
+  {c:"patho", id:"painsyndromes", t:"Neuropathic & Chronic Pain Syndromes", facts:[
+    "<b>Diabetic peripheral neuropathy</b>: high glucose damages nerves → lost protective sensation → unnoticed foot wounds; always check the feet.",
+    "<b>Postherpetic neuralgia</b>: lingering nerve pain after shingles (reactivated varicella zoster).",
+    "<b>Trigeminal neuralgia</b>: brief, severe stabbing facial pain triggered by touch/chewing; treated with anticonvulsants.",
+    "<b>Fibromyalgia</b>: widespread pain at specific tender points (classically 11 of 18), fatigue, poor sleep; joints not affected; more common in women.",
+    "<b>Complex regional pain syndrome (CRPS)</b>: severe pain, swelling, and skin/color changes from autonomic dysfunction after an injury.",
+    "<b>Radiculopathy</b>: pinched spinal nerve — lumbosacral (<b>sciatica</b>, radiating leg pain) or cervical (hand/finger numbness)."],
+    mnem:{tag:"Neuropathic", txt:"Nerve pain <b>burns, tingles, and shoots</b> — unlike the dull ache of tissue pain, and it needs different drugs."},
+    links:["pain","dm","cnsinfection"]},
+
+  /* ================= PHARMACOLOGY ================= */
+  /* ---- Foundations (earlier weeks / dosage) ---- */
+  {c:"pharm", id:"pk", t:"Pharmacokinetics (ADME)", facts:[
+    "<b>A</b>bsorption → <b>D</b>istribution → <b>M</b>etabolism → <b>E</b>xcretion.",
+    "<b>First-pass effect</b>: oral drugs partly metabolized by the liver before reaching circulation.",
+    "Metabolism mostly <b>liver</b> (CYP450); excretion mostly <b>kidneys</b> — impaired organs → drug builds up.",
+    "<b>Half-life</b> = time to eliminate 50%; steady state ≈ 4–5 half-lives.",
+    "<b>Narrow therapeutic index</b> drugs need level monitoring: digoxin, warfarin, lithium, phenytoin."],
+    mnem:{tag:"Kinetics", txt:"<b>ADME</b> — what the <b>body does to the drug</b>. (Pharmaco<i>dynamics</i> = what the drug does to the body.)"},
+    links:["dig","abx"]},
+
+  {c:"pharm", id:"dosecalc", t:"Dosage Calculations", facts:[
+    "Oral/parenteral dose: <b>(Desired ÷ Have) × Quantity</b>.",
+    "IV flow rate <span class='num'>mL/hr = total volume ÷ total hours</span>.",
+    "Drip rate <span class='num'>gtt/min = (volume × drop factor) ÷ time in minutes</span>.",
+    "Cancel your units — the label you keep should match the answer you need.",
+    "Verify against the rights of medication administration before giving."],
+    mnem:{tag:"Formula", txt:"<b>D / H × Q</b> — <b>“Desire over Have, times Quantity.”</b>"},
+    links:["ivcalc","medadmin"]},
+
+  {c:"pharm", id:"abx", t:"Antimicrobials", facts:[
+    "<b>Penicillins</b> (“-cillin”) & <b>cephalosporins</b> (“cef-”): cell wall; check allergy (cross-reactivity).",
+    "<b>Macrolides</b> (“-thromycin”) & <b>fluoroquinolones</b> (“-floxacin”): QT prolongation; floxacins add tendon-rupture risk.",
+    "<b>Aminoglycosides</b> (gentamicin): oto- + nephrotoxic → monitor peak/trough.",
+    "<b>Tetracyclines</b> (“-cycline”): avoid in pregnancy/children (teeth), no dairy/antacids, photosensitivity.",
+    "<b>Vancomycin</b>: infuse slowly (red man syndrome), monitor trough, nephrotoxic.",
+    "Always culture <b>before</b> the first dose; teach patients to finish the full course."],
+    mnem:{tag:"Toxicity", txt:"<b>Amino</b>glycosides hit the <b>ears + kidneys</b>. <b>Vanco</b> too fast = <b>red man</b>."},
+    links:["immun","precautions","pk"]},
+
+  {c:"pharm", id:"antifung", t:"Antifungals", facts:[
+    "<b>Amphotericin B</b> (“ampho-terrible”): fever/chills on infusion, nephrotoxic → premedicate + monitor.",
+    "<b>Azoles</b> (“-azole,” fluconazole): hepatotoxic, many drug interactions.",
+    "<b>Nystatin</b>: oral thrush → swish and swallow."],
+    mnem:{tag:"Amp B", txt:"<b>“Ampho-terrible”</b> — expect infusion reactions and watch the kidneys."},
+    links:["abx"]},
+
+  /* ---- Week 3: Pain, Analgesics, Anesthetics ---- */
+  {c:"pharm", id:"analgesics", wk:"W3", t:"Opioid & Non-Opioid Analgesics", facts:[
+    "<b>Opioids</b> bind opiate receptors: mild (codeine, hydrocodone) vs strong (<b>morphine</b> — the prototype, hydromorphone/Dilaudid, fentanyl, oxycodone, methadone). Hydromorphone is ~7× morphine.",
+    "Opioid adverse effects: <b>respiratory depression</b> (the big one — assess RR), sedation, <b>constipation</b> (give a bowel regimen), miosis, nausea, urinary retention. Antidote: <b>naloxone (Narcan)</b>.",
+    "Tolerance and physical dependence are expected with long-term use — <b>not</b> the same as addiction; treat reported pain.",
+    "<b>Acetaminophen (Tylenol)</b>: analgesic/antipyretic, no anti-inflammatory action; max ~3 g/day (2 g with liver disease/alcohol); overdose → <b>hepatotoxicity</b>, antidote <b>acetylcysteine</b>.",
+    "<b>Tramadol</b>: dual-action, caution with SSRIs/MAOIs (serotonin syndrome). <b>Meperidine</b>: avoid long-term/renal patients (seizure-causing metabolite).",
+    "WHO ladder: non-opioid → mild opioid → strong opioid; PCA lets the patient self-dose safely."],
+    mnem:{tag:"Opioids", txt:"Opioid triad to watch: <b>respiration down, pupils pinpoint, bowels stop</b>. Reverse with naloxone."},
+    links:["painmgmt","paintypes","pk"]},
+
+  {c:"pharm", id:"nsaid", wk:"W3", t:"NSAIDs, Aspirin & Antigout", facts:[
+    "NSAIDs block <b>COX</b> → analgesic, anti-inflammatory, antipyretic. COX-1 protects GI mucosa; COX-2 drives inflammation.",
+    "Big risks: <b>GI bleeding/ulcers</b> (take with food; misoprostol protects) and <b>renal impairment</b> (check BUN/creatinine). Black box: CV thrombotic events (except aspirin).",
+    "<b>Aspirin</b>: irreversibly inhibits platelets → low-dose (81 mg) cardioprotection; give at first sign of MI.",
+    "<b>Aspirin + children/viral illness → Reye's syndrome</b> — avoid. Salicylate toxicity: tinnitus, hyperventilation, confusion.",
+    "<b>Ketorolac (Toradol)</b>: potent, but max 5 days (renal/GI risk). <b>Celecoxib (COX-2)</b>: easier on the stomach, avoid with sulfa allergy.",
+    "<b>Gout</b>: <b>allopurinol</b> (lowers uric acid production — watch for Stevens-Johnson), colchicine, probenecid."],
+    mnem:{tag:"Aspirin", txt:"<b>No aspirin for kids</b> (Reye's). NSAID watch-outs: <b>GI bleed + kidneys</b>."},
+    links:["jointdis","gibleed","upgi"]},
+
+  {c:"pharm", id:"anesthetic", wk:"W3", t:"Anesthetics", facts:[
+    "<b>General anesthesia</b>: total loss of consciousness + reflexes (inhaled like nitrous oxide, IV like propofol, ketamine, etomidate). Balanced anesthesia = small doses of several agents.",
+    "<b>Regional</b> (epidural/spinal) blocks a region without loss of consciousness; spinal can cause a <b>spinal headache</b> (treat with bed rest, fluids, blood patch).",
+    "<b>Local</b> (“-caine”: lidocaine, bupivacaine) numbs tissue; epinephrine added to prolong effect/limit bleeding.",
+    "<b>Moderate (conscious) sedation</b>: midazolam + an opioid; patient keeps the airway and reflexes.",
+    "<b>Malignant hyperthermia</b>: rare inherited reaction → tachycardia, rigidity, rising CO₂; <b>temperature rise is a late sign</b>; antidote is <b>dantrolene</b>.",
+    "Neuromuscular blockers (succinylcholine, rocuronium) paralyze — the patient is awake-but-can't-move unless sedated; a ventilator is essential."],
+    mnem:{tag:"MH", txt:"Malignant hyperthermia: rigid, racing, rising CO₂ → <b>dantrolene</b>. Temp spike comes late."},
+    links:["analgesics","neuro-msk"]},
+
+  /* ---- Week 4: EENT/Derm, Fluids, Diuretics, Chemo ---- */
+  {c:"pharm", id:"eent", wk:"W4", t:"EENT & Dermatologic Drugs", facts:[
+    "<b>Eye — pupil</b>: <b>Mydriatics</b> dilate (atropine), <b>miotics</b> constrict (pilocarpine, used in glaucoma to drain aqueous humor), <b>cycloplegics</b> paralyze.",
+    "Eye-drop technique: drops in the <b>conjunctival sac</b> of the lower lid; apply punctal pressure at the inner canthus to stop systemic absorption.",
+    "<b>Ear</b>: warm drops before instilling (cold drops → dizziness/vomiting); a perforated eardrum contraindicates most drops.",
+    "<b>Skin</b>: silver sulfadiazine (Silvadene) for burns; Dakin's solution (dilute bleach) reduces wound bacteria; most topicals increase sun sensitivity — wear gloves to apply."],
+    mnem:{tag:"Pupil", txt:"<b>M</b>ydriatic = <b>M</b>ake big (dilate). <b>Mi</b>otic = make tiny (constrict, helps glaucoma drain)."},
+    links:["skin","burns"]},
+
+  {c:"pharm", id:"fluidsiv", wk:"W4", t:"IV Fluids & Electrolyte Drugs", facts:[
+    "<b>Crystalloids</b> (NS 0.9%, Lactated Ringers) treat dehydration; <b>colloids</b> (albumin) pull fluid into the vasculature.",
+    "Blood products given when ≥25% blood volume is lost.",
+    "<b>Potassium (K⁺ 3.5–5.0)</b>: NEVER IV push — fatal; give ≤10 mEq/hr, on a pump, with cardiac monitoring. High-K drugs: albuterol, insulin/dextrose, calcium, Kayexalate.",
+    "<b>Sodium (135–145)</b> controls water distribution.",
+    "Check an ECG before giving potassium; hyperkalemia risks ventricular fibrillation."],
+    mnem:{tag:"Potassium", txt:"<b>K⁺ is never IV push</b> — slow, diluted, on a pump, on a monitor. Pushing it stops the heart."},
+    links:["fluid","renalfailure","acidbase"]},
+
+  {c:"pharm", id:"diuretics", wk:"W4", t:"Diuretics", facts:[
+    "<b>Loop</b> (furosemide/Lasix): most potent; for HF edema + HTN; lose fluid/K⁺/Na⁺ → watch hypotension, ototoxicity, hypokalemia.",
+    "<b>Thiazide</b> (hydrochlorothiazide): first-line for HTN; caution in diabetes (raises glucose); needs working kidneys.",
+    "<b>Potassium-sparing</b> (spironolactone): watch <b>hyperkalemia</b>; can cause gynecomastia.",
+    "<b>Osmotic</b> (mannitol): for ↑ICP/cerebral edema; IV only, use a filter.",
+    "<b>Carbonic anhydrase inhibitors</b> (acetazolamide): open-angle glaucoma; sulfa allergy is a contraindication.",
+    "Give in the morning; monitor K⁺; teach potassium-rich foods except with K-sparing drugs."],
+    mnem:{tag:"Potassium", txt:"<b>Loops & thiazides waste K⁺; spironolactone spares it</b>. Opposite potassium problems."},
+    links:["htn","hf","fluid","dig"]},
+
+  {c:"pharm", id:"chemo", wk:"W4", t:"Chemotherapy & Antineoplastics", facts:[
+    "Narrow therapeutic index; combination therapy prevents resistance and is synergistic. Harms all <b>rapidly dividing cells</b> (marrow, GI mucosa, hair follicles).",
+    "<b>Bone marrow suppression</b>: neutropenia (infection — report fever), thrombocytopenia (bleeding — report bruising/blood), anemia (fatigue).",
+    "GI: stomatitis, nausea/vomiting — give antiemetics <b>30–60 min before</b> chemo. Also alopecia, hyperuricemia.",
+    "<b>Extravasation</b>: stop the infusion, leave the catheter in, call the prescriber. <b>Tumor lysis syndrome</b>: ↑K⁺/↑phosphate/↑uric acid/↓Ca²⁺ → kidney injury.",
+    "<b>Tamoxifen</b> = breast cancer (estrogen blocker, clot risk); <b>doxorubicin</b> = heart failure risk. Wear PPE to handle.",
+    "<b>DMARDs</b> (methotrexate, Humira) treat RA at lower doses; monitor CBC + liver."],
+    mnem:{tag:"Marrow", txt:"Chemo kills fast-dividing cells: <b>marrow (infection/bleed/anemia), GI (sores), hair (loss)</b>."},
+    links:["immun","jointdis","lymphatic"]},
+
+  /* ---- Week 5: Autonomic drugs ---- */
+  {c:"pharm", id:"adren", wk:"W5", t:"Adrenergic Agonists (Sympathomimetics)", facts:[
+    "Mimic the SNS (“fight or flight”). <b>Alpha-1</b> → vasoconstriction, mydriasis, bladder-sphincter constriction. <b>Beta-1</b> → ↑HR, ↑contractility. <b>Beta-2</b> → bronchodilation, glycogenolysis.",
+    "<b>Epinephrine</b>: low dose anaphylaxis, high dose ACLS code. <b>Norepinephrine (Levophed)</b>: vasopressor for shock (central line).",
+    "<b>Dopamine</b>: dose-dependent — low dilates renal vessels, higher ↑contractility, highest vasoconstricts. <b>Dobutamine</b>: β1 → ↑cardiac output in heart failure.",
+    "<b>Albuterol</b> (β2) = rescue bronchodilator; <b>phenylephrine</b> (α1) = pressor/decongestant; <b>midodrine</b> = orthostatic hypotension.",
+    "IV vasopressors: watch the site for <b>extravasation</b> — swollen/cool/painful → stop infusion, antidote is phentolamine."],
+    mnem:{tag:"Receptors", txt:"<b>“1 heart, 2 lungs”</b> — Beta-<b>1</b> = heart (rate/force), Beta-<b>2</b> = lungs (breathe)."},
+    links:["auto-assess","vitals","adrenblock"]},
+
+  {c:"pharm", id:"adrenblock", wk:"W5", t:"Adrenergic Blockers", facts:[
+    "<b>Alpha blockers</b> (“-osin”: tamsulosin/Flomax, prazosin): vasodilate → treat HTN & BPH. <b>First-dose effect</b>: sudden severe orthostatic hypotension/syncope.",
+    "<b>Phentolamine</b>: reverses vasopressor extravasation; diagnoses pheochromocytoma.",
+    "<b>Beta blockers</b> (“-olol”): ↓HR, ↓BP, ↓myocardial O₂ demand — angina, post-MI cardioprotection, dysrhythmias, HF, migraine prevention.",
+    "<b>Cardioselective</b> (metoprolol, atenolol, esmolol) hit β1; <b>nonselective</b> (propranolol, carvedilol) also block β2 → avoid in asthma.",
+    "Can <b>mask hypoglycemia</b> signs (tremor, tachycardia) — caution in diabetes. <b>Black box: never stop abruptly</b> — taper over 1–2 weeks (rebound HTN/angina)."],
+    mnem:{tag:"Blockers", txt:"<b>“-osin” relaxes</b> (alpha, BPH + first-dose drop). <b>“-olol” slows</b> (beta, heart)."},
+    links:["adren","htn","angina","mi","repro"]},
+
+  {c:"pharm", id:"chol", wk:"W5", t:"Cholinergic Drugs", facts:[
+    "Stimulate the PNS (“rest & digest”) by mimicking or preserving acetylcholine.",
+    "<b>Bethanechol</b>: ↑bladder tone (urinary retention). <b>Donepezil</b> (cholinesterase inhibitor): mild–moderate Alzheimer's — symptom control, not a cure (up to 6 wk).",
+    "<b>Myasthenia gravis</b>: cholinesterase inhibitors — take 30 min before meals to aid chewing/swallowing.",
+    "Overstimulation = <b>SLUDGE</b>: Salivation, Lacrimation, Urination, Defecation, GI cramps, Emesis — plus bradycardia.",
+    "<b>Cholinergic crisis</b>: early (cramps, salivation, flushing) → atropine; late (collapse, bradycardia) → epinephrine."],
+    mnem:{tag:"Effects", txt:"Cholinergic = <b>SLUDGE</b> (everything wet + slow heart). Antidote is <b>atropine</b>."},
+    links:["anticholinergic","neurodegen","auto-assess"]},
+
+  {c:"pharm", id:"anticholinergic", wk:"W5", t:"Anticholinergics (Cholinergic Blockers)", facts:[
+    "Block ACh at muscarinic receptors → opposite of SLUDGE: <b>dry, fast, dilated</b>.",
+    "<b>Atropine</b>: ↑HR (bradycardia, cholinergic crisis). <b>Ipratropium</b> (Atrovent): bronchodilation. <b>Scopolamine</b>: motion sickness/PONV.",
+    "<b>Oxybutynin, tolterodine (Detrol), solifenacin</b>: overactive bladder. <b>Dicyclomine (Bentyl)</b>: IBS spasm. <b>Glycopyrrolate</b>: dries pre-op secretions.",
+    "Effects: ↑HR, mydriasis/blurred vision, dry mouth, constipation, urinary retention, ↓sweating.",
+    "Contraindicated in <b>glaucoma</b>, BPH/urinary retention, GI obstruction. Overdose antidote: physostigmine."],
+    mnem:{tag:"Classic", txt:"<b>“Can't see, can't pee, can't spit, can't poop”</b> + hot & fast. Think atropine."},
+    links:["chol","lowgi","malerepro"]},
+
+  /* ---- Week 6: Neuro / Psych drugs ---- */
+  {c:"pharm", id:"cnsdepress", wk:"W6", t:"CNS Depressants & Muscle Relaxants", facts:[
+    "<b>Sedatives</b> calm; <b>hypnotics</b> induce sleep (any sedative becomes hypnotic at a high dose).",
+    "<b>Benzodiazepines</b> (diazepam, midazolam, lorazepam): anxiety, sedation, acute seizures; unsafe in pregnancy; <b>taper</b> to stop. Antidote: <b>flumazenil</b>.",
+    "<b>Zolpidem</b> (Ambien): nonbenzo hypnotic; black box for complex sleep behaviors (sleep-driving); lower dose for women.",
+    "<b>Barbiturates</b> (phenobarbital): low therapeutic index, highly addictive; mainly seizures/anesthesia.",
+    "<b>Muscle relaxants</b> (baclofen, cyclobenzaprine, methocarbamol): CNS depression — avoid alcohol; elderly may have a paradoxical reaction."],
+    mnem:{tag:"Antidote", txt:"<b>Benzo overdose → flumazenil</b> (romazicon). (Opioid overdose → naloxone — don't mix them up.)"},
+    links:["seizures","substance","painmgmt"]},
+
+  {c:"pharm", id:"cnsstim", wk:"W6", t:"CNS Stimulants", facts:[
+    "<b>ADHD/narcolepsy</b>: methylphenidate (Ritalin), amphetamines (Adderall); contraindicated with cardiac disease (HTN, arrhythmia). Modafinil for shift-work/narcolepsy.",
+    "<b>Anorexiants</b> (phentermine): appetite suppression for obesity by BMI.",
+    "Adverse effects: palpitations/tachycardia/HTN, nervousness/insomnia, dry mouth, ↓appetite.",
+    "<b>Triptans</b> (sumatriptan/Imitrex): serotonin agonist, <b>aborts</b> a migraine by vasoconstriction — not preventive; contraindicated in cardiovascular disease."],
+    mnem:{tag:"Triptan", txt:"Triptans <b>abort, not prevent</b> — and they vasoconstrict, so not for heart-disease patients."},
+    links:["painsyndromes","neuro-msk"]},
+
+  {c:"pharm", id:"antiepileptic", wk:"W6", t:"Antiepileptic (Anticonvulsant) Drugs", facts:[
+    "Goal: control seizures lifelong; <b>monitor serum drug levels</b>; never stop abruptly; black box for suicidal ideation.",
+    "<b>Phenytoin (Dilantin)</b>: level <span class='num'>10–20 mcg/mL</span>; causes <b>gingival hyperplasia</b> (good oral care).",
+    "<b>Levetiracetam (Keppra)</b>: partial seizures + head-injury prophylaxis; few interactions.",
+    "<b>Valproic acid (Depakote)</b>: also bipolar; hepatotoxic, weight gain, tremor.",
+    "<b>Lamotrigine (Lamictal)</b>: watch for Stevens-Johnson syndrome. Acute status epilepticus → IV <b>lorazepam</b>.",
+    "Give at the same time daily; keep a seizure journal; monitor liver + CBC."],
+    mnem:{tag:"Phenytoin", txt:"Phenytoin grows gums — <b>gingival hyperplasia</b>. Keep the level 10–20."},
+    links:["seizures","cnsdepress"]},
+
+  {c:"pharm", id:"antiparkinson", wk:"W6", t:"Antiparkinson Drugs", facts:[
+    "Parkinson's = too little dopamine, too much ACh. Symptoms = <b>TRAP</b> (Tremor, Rigidity, Akinesia, Postural instability).",
+    "<b>Carbidopa-levodopa (Sinemet)</b>: replaces dopamine; carbidopa lets more levodopa reach the brain and cuts GI/cardiac side effects.",
+    "Take on an empty stomach; <b>avoid high-protein meals</b> (block absorption) and MAOIs.",
+    "<b>Amantadine</b> boosts dopamine release; <b>bromocriptine</b> is a dopamine agonist.",
+    "Don't stop abruptly; encourage fluids; assess gait/mobility."],
+    mnem:{tag:"Symptoms", txt:"Parkinson's springs a <b>TRAP</b>: Tremor, Rigidity, Akinesia, Postural instability."},
+    links:["neurodegen"]},
+
+  {c:"pharm", id:"antidepressant", wk:"W6", t:"Antidepressants & Mood Stabilizers", facts:[
+    "<b>SSRIs</b> (sertraline, fluoxetine, paroxetine, escitalopram): first-line; take 4–6 wk; watch <b>serotonin syndrome</b>, suicidal ideation, bleeding; taper to stop; avoid St. John's wort.",
+    "<b>SNRIs</b> (venlafaxine, duloxetine): depression + neuropathic/fibromyalgia pain.",
+    "<b>TCAs</b> (amitriptyline): neuropathic pain, insomnia; anticholinergic + cardiotoxic in overdose.",
+    "<b>MAOIs</b> (phenelzine): <b>interact with everything</b>; tyramine foods (aged cheese, cured meats) → hypertensive crisis (“cheese effect”).",
+    "<b>Lithium</b> (bipolar): level <span class='num'>0.6–1.2</span>; it's a salt, so dehydration/low sodium → toxicity; monitor thyroid.",
+    "<b>Buspirone</b>: anxiety without sedation. Antipsychotics: first-gen → EPS, atypical → metabolic syndrome."],
+    mnem:{tag:"Lithium", txt:"Lithium rides with sodium — <b>dehydration or low Na⁺ drives lithium toxicity</b>. Keep it 0.6–1.2."},
+    links:["mentalstatus","substance"]},
+
+  /* ---- Week 7: Respiratory drugs ---- */
+  {c:"pharm", id:"bronchodilator", wk:"W7", t:"Bronchodilators", facts:[
+    "<b>Short-acting beta agonist (SABA) — albuterol</b>: the <b>rescue inhaler</b> for acute bronchospasm; overuse loses β2 selectivity (tremor, tachycardia).",
+    "<b>Long-acting beta agonist (LABA) — salmeterol</b>: maintenance only, <b>never for acute attacks</b>; always paired with an inhaled corticosteroid.",
+    "<b>Anticholinergics — ipratropium (Atrovent), tiotropium (Spiriva)</b>: maintenance for COPD; reduce secretions; not for acute symptoms.",
+    "<b>Xanthines — theophylline</b>: narrow range <span class='num'>10–20 mcg/mL</span>; many interactions; rarely used now.",
+    "If both a bronchodilator and a steroid inhaler are ordered, <b>give the bronchodilator first</b> (opens airways so the steroid reaches deeper)."],
+    mnem:{tag:"Rescue vs maint.", txt:"<b>Albuterol = rescue</b> (acute). <b>Salmeterol = maintenance</b> (never rescue). Bronchodilator before steroid."},
+    links:["resp-patho","adren","anticholinergic","respinflam"]},
+
+  {c:"pharm", id:"respinflam", wk:"W7", t:"Anti-Inflammatory Respiratory Drugs", facts:[
+    "<b>Inhaled corticosteroids (ICS)</b> (fluticasone, budesonide): control <b>chronic</b> asthma — not for acute attacks; take weeks for full effect.",
+    "ICS adverse effects: <b>oral thrush</b> — rinse mouth after use; possible ↑blood glucose.",
+    "<b>Leukotriene receptor antagonists (LTRAs) — montelukast (Singulair)</b>: prevent leukotriene-driven inflammation/bronchoconstriction; <b>prophylaxis only</b>, improvement in ~1 week; black box for mood changes.",
+    "Also treats allergic rhinitis; take nightly on a continuous schedule even when well.",
+    "None of these abort an acute attack — that's albuterol's job."],
+    mnem:{tag:"Thrush", txt:"<b>Rinse after steroid inhalers</b> to prevent thrush. Singulair + ICS = prevention, not rescue."},
+    links:["bronchodilator","corticosteroid","resp-patho"]},
+
+  {c:"pharm", id:"colddrug", wk:"W7", t:"Cold & Allergy Drugs", facts:[
+    "<b>Antihistamines (H1 blockers)</b>: traditional (diphenhydramine/Benadryl — sedating, anticholinergic) vs newer (loratadine/Claritin, cetirizine/Zyrtec, fexofenadine/Allegra — non-sedating). Caution with BPH, glaucoma.",
+    "<b>Decongestants</b> (pseudoephedrine, oxymetazoline/Afrin): α-adrenergic vasoconstriction → ↑BP; topical sprays cause <b>rebound congestion</b> after a few days.",
+    "<b>Antitussives</b> (dextromethorphan; codeine): suppress a <b>nonproductive</b> cough only.",
+    "<b>Expectorant — guaifenesin (Mucinex)</b>: thins/loosens mucus for a productive cough; push fluids.",
+    "Cold treatment is symptomatic, not curative."],
+    mnem:{tag:"Cough", txt:"<b>Antitussive = quiet a dry cough; expectorant = loosen a wet one</b>. Afrin &gt;3 days → rebound stuffiness."},
+    links:["airways","anticholinergic"]},
+
+  {c:"pharm", id:"tbdrug", wk:"W7", t:"Antitubercular Drugs", facts:[
+    "TB needs <b>multiple drugs for 6–12 months</b>; culture first, then start combination therapy to prevent resistance (MDR-TB).",
+    "First-line (<b>RIPE</b>): <b>R</b>ifampin, <b>I</b>soniazid (INH), <b>P</b>yrazinamide, <b>E</b>thambutol.",
+    "<b>Isoniazid (INH)</b>: give <b>vitamin B6 (pyridoxine)</b> to prevent peripheral neuropathy; watch hepatotoxicity.",
+    "<b>Rifampin</b>: turns body fluids <b>red-orange</b> (harmless) and weakens oral contraceptives.",
+    "Adherence is everything — nonadherence breeds resistance; check liver function during therapy.",
+    "<b>PPD/Mantoux</b>: positive = induration (not redness); BCG vaccine can cause a false-positive."],
+    mnem:{tag:"RIPE", txt:"TB first-line = <b>RIPE</b>. INH needs <b>B6</b>; rifampin turns everything <b>red-orange</b>."},
+    links:["lowerresp","abx","precautions"]},
+
+  /* ---- Week 8: Endocrine drugs ---- */
+  {c:"pharm", id:"pituitarydrug", wk:"W8", t:"Pituitary & ADH Drugs", facts:[
+    "<b>Somatropin</b> (growth hormone): for GH deficiency/pediatric growth failure; watch hyperglycemia; rotate IM/SQ sites.",
+    "<b>ADH drugs — vasopressin, desmopressin (DDAVP)</b>: treat <b>diabetes insipidus</b> by promoting water reabsorption.",
+    "Main ADH risk is <b>water intoxication / fluid overload</b> — headache, drowsiness, hyponatremia.",
+    "Weigh daily, monitor BP, sodium, and kidney function.",
+    "Therapeutic sign in DI: urine output normalizes and thirst resolves."],
+    mnem:{tag:"ADH", txt:"<b>ADH Adds water back</b> — treats DI, but too much = fluid overload + low sodium."},
+    links:["pituitary","fluid"]},
+
+  {c:"pharm", id:"thyroiddrug", wk:"W8", t:"Thyroid & Antithyroid Drugs", facts:[
+    "<b>Hypothyroid → levothyroxine (Synthroid)</b> (T4): take on an <b>empty stomach</b> in the morning; full effect 6–8 wk; lifelong; recheck TSH in 3–6 mo; not for weight loss.",
+    "Too much thyroid replacement → thyrotoxicosis (palpitations, dysrhythmias) — monitor cardiac function; caution post-MI.",
+    "<b>Hyperthyroid → thionamides: methimazole (MMZ), PTU</b> block hormone synthesis; treat Graves'; can cause <b>agranulocytosis</b> (report sore throat/fever) and liver injury.",
+    "PTU is preferred in the first trimester; MMZ in the 2nd/3rd.",
+    "Beta blockers added to control heart rate; full thionamide effect up to 12 wk."],
+    mnem:{tag:"Synthroid", txt:"Levothyroxine: <b>empty stomach, morning, lifelong, slow (weeks)</b>. Don't expect fast results."},
+    links:["thyroid","adrenblock"]},
+
+  {c:"pharm", id:"insulin", wk:"W8", t:"Insulins", facts:[
+    "<b>Rapid</b> (lispro/Humalog, aspart/NovoLog): onset 15–30 min — must eat right after. <b>Short</b> (regular/Humulin R): the <b>only IV</b> insulin.",
+    "<b>Intermediate</b> (NPH): cloudy, onset 1–2 hr, peak 6–14 hr. <b>Long</b> (glargine/Lantus, detemir): clear, basal, no peak, once daily — <b>never mix</b>.",
+    "When mixing in one syringe, draw up <b>clear before cloudy</b> (regular/rapid before NPH).",
+    "Roll vials (don't shake); use insulin syringes; second-nurse check; rotate sites; check glucose before dosing.",
+    "<b>Hypoglycemia</b> (<70): “cold & clammy needs candy” — confusion, tremor, sweating; severe → IV D50W or glucagon."],
+    mnem:{tag:"Mixing", txt:"<b>Clear before cloudy</b> — draw the regular/rapid up before the NPH. Only <b>regular goes IV</b>."},
+    links:["dm","dka","oralantidiabetic","fluidsiv"]},
+
+  {c:"pharm", id:"oralantidiabetic", wk:"W8", t:"Oral & Non-Insulin Antidiabetics", facts:[
+    "<b>Metformin (biguanide)</b>: first-line T2DM; lowers hepatic glucose, doesn't cause hypoglycemia; GI upset; hold around <b>contrast dye</b>; rare lactic acidosis.",
+    "<b>Sulfonylureas</b> (glipizide, glyburide) & <b>meglitinides</b>: ↑insulin secretion → can cause <b>hypoglycemia</b>.",
+    "<b>Glitazones</b> (pioglitazone): ↑insulin sensitivity; heart-failure risk. <b>Alpha-glucosidase inhibitors</b> (acarbose): take with first bite.",
+    "<b>DPP-4 (“-gliptins”)</b> and <b>GLP-1 agonists</b> (Trulicity, Ozempic — injectable): incretin mimetics; GLP-1s cause weight loss + pancreatitis risk.",
+    "<b>SGLT2 (“-gliflozins”)</b>: renal glucose excretion → genital yeast infections.",
+    "Gestational diabetes = <b>insulin only</b>, no oral agents. Give oral agents ~30 min before meals."],
+    mnem:{tag:"Metformin", txt:"Metformin: first-line, no hypoglycemia, but <b>hold it for contrast dye</b> (lactic-acidosis risk)."},
+    links:["dm","insulin"]},
+
+  {c:"pharm", id:"corticosteroid", wk:"W8", t:"Corticosteroids (Adrenal Drugs)", facts:[
+    "<b>Glucocorticoids</b> (prednisone, dexamethasone, hydrocortisone, methylprednisolone): anti-inflammatory + adrenal replacement. <b>Mineralocorticoid</b>: fludrocortisone.",
+    "Effects/adverse: <b>hyperglycemia, hypokalemia, sodium/fluid retention</b>, osteoporosis, ulcers, Cushing's-like features, infection masking.",
+    "<b>Never stop abruptly — taper</b> (adrenal suppression → crisis). Take in the <b>morning</b> to mimic natural cortisol.",
+    "Don't give with an active infection; monitor weight, BP, and glucose.",
+    "This ties to patho: exogenous steroids are the top cause of Cushing's syndrome."],
+    mnem:{tag:"Taper", txt:"Steroids: <b>morning dose, taper off, watch sugar + infection</b>. Abrupt stop → adrenal crisis."},
+    links:["adrenal","dm"]},
+
+  /* ---- Week 9: Cardiac drugs ---- */
+  {c:"pharm", id:"aceiarb", wk:"W9", t:"ACE Inhibitors & ARBs", facts:[
+    "<b>ACE inhibitors (“-pril”: lisinopril, enalapril, captopril)</b>: block angiotensin I→II → vasodilation, ↓aldosterone. First-line for HTN + HF; <b>best for diabetics</b> (renal protection, ↓proteinuria).",
+    "ACE hallmark adverse effects: <b>dry cough</b>, hyperkalemia, and rare but fatal <b>angioedema</b>; check potassium.",
+    "<b>ARBs (“-sartan”: losartan, valsartan)</b>: block the angiotensin II receptor — same benefits, <b>no dry cough</b>.",
+    "Both are <b>contraindicated in pregnancy</b> and cardioprotective after MI (stop ventricular remodeling).",
+    "Teach slow position changes; don't stop abruptly (rebound)."],
+    mnem:{tag:"ACE cough", txt:"<b>“-pril” → persistent cough + potassium up</b>. Switch to a “-sartan” to lose the cough."},
+    links:["htn","hf","mi","kidney"]},
+
+  {c:"pharm", id:"ccbvaso", wk:"W9", t:"CCBs, Vasodilators & Other Antihypertensives", facts:[
+    "<b>Calcium channel blockers</b> (amlodipine/Norvasc — first-line HTN; diltiazem — rate control in A-fib): relax smooth muscle → ↓BP; also angina, Raynaud's. Nifedipine is safe in pregnancy.",
+    "<b>Central alpha-2 agonists</b> (clonidine): ↓sympathetic outflow; don't stop abruptly (rebound HTN); also treats opioid withdrawal.",
+    "<b>Direct vasodilators</b>: hydralazine (oral HTN / BiDil in HF for Black patients); <b>nitroprusside (Nipride)</b> IV for hypertensive emergencies in ICU.",
+    "Seven antihypertensive classes: diuretics, adrenergics, vasodilators, ACE inhibitors, ARBs, CCBs, direct renin inhibitors.",
+    "Teach: don't stop abruptly, rise slowly, limit sodium, monitor BP at home."],
+    mnem:{tag:"First-line", txt:"HTN first-liners: a <b>thiazide, an ACE/ARB, or amlodipine (CCB)</b>. Clonidine is a backup — never stop it cold."},
+    links:["htn","angina","aceiarb","diuretics"]},
+
+  {c:"pharm", id:"nitrates", wk:"W9", t:"Antianginal Drugs (Nitrates)", facts:[
+    "<b>Nitrates (nitroglycerin)</b> vasodilate → more O₂ to ischemic myocardium; treat all angina types.",
+    "<b>Rapid</b> (sublingual, IV) treats an acute attack; <b>long-acting</b> (patch, oral) prevents attacks.",
+    "Sublingual SOP: one tab every 5 min ×3; call 911 if pain persists after the first.",
+    "Adverse: throbbing <b>headache</b> (expected, fades), reflex tachycardia, orthostatic hypotension; tolerance develops (use a patch-free interval).",
+    "<b>Contraindicated with erectile-dysfunction drugs</b> (sildenafil/Viagra) → fatal hypotension."],
+    mnem:{tag:"Nitro + ED", txt:"<b>Nitrates + Viagra = bottoms-out BP</b>. Never combine. Headache with nitro is expected."},
+    links:["angina","mi","ccbvaso"]},
+
+  {c:"pharm", id:"dig", wk:"W9", t:"Heart-Failure Drugs: Digoxin", facts:[
+    "<b>Digoxin</b>: positive inotrope (↑force), negative chronotrope (↓rate) — improves symptoms in HF and controls A-fib rate.",
+    "Narrow therapeutic index: level <span class='num'>0.5–2.0 ng/mL</span>. Check <b>apical pulse a full minute</b>; hold if <span class='num'>&lt;60 bpm</span>.",
+    "<b>Hypokalemia increases digoxin toxicity</b> — watch loop/thiazide diuretics; renal failure is a common cause.",
+    "Toxicity: nausea, <b>yellow-green visual halos</b>, bradycardia, dysrhythmias. Antidote: <b>digoxin immune Fab (Digibind)</b>.",
+    "HF also treated with ACE/ARBs, beta blockers, and diuretics."],
+    mnem:{tag:"Link", txt:"Low <b>K⁺</b> → high <b>dig</b> toxicity, with yellow halos. Hold for a pulse under 60."},
+    links:["hf","fluid","diuretics","aceiarb"]},
+
+  {c:"pharm", id:"antidysrhythmic", wk:"W9", t:"Antidysrhythmic Drugs", facts:[
+    "Vaughan-Williams: <b>I</b> sodium (lidocaine), <b>II</b> beta blockers, <b>III</b> potassium (amiodarone), <b>IV</b> calcium channel blockers.",
+    "<b>Amiodarone (Class III)</b>: drug of choice for ventricular dysrhythmias (ACLS); watch pulmonary toxicity, corneal deposits/visual halos, photosensitivity, thyroid effects.",
+    "<b>Diltiazem (Class IV)</b>: rate control in A-fib/flutter and PSVT; risk of hypotension.",
+    "Lidocaine here is the antiarrhythmic, not the local anesthetic.",
+    "Monitor rhythm, BP, and for proarrhythmia."],
+    mnem:{tag:"Classes", txt:"<b>“Some Block Potassium Channels”</b> — I Sodium, II Beta, III Potassium, IV Calcium."},
+    links:["hf","dig"]},
+
+  {c:"pharm", id:"anticoag", wk:"W9", t:"Anticoagulants, Antiplatelets & Thrombolytics", facts:[
+    "<b>Heparin</b> (IV/SQ): monitor <b>aPTT</b>; antidote <b>protamine</b>; watch HIT. Don't aspirate or massage SQ sites.",
+    "<b>Warfarin (Coumadin)</b>: oral; monitor <b>PT/INR</b> (goal 2–3); antidote <b>vitamin K</b>; keep vitamin-K foods (leafy greens) consistent; many interactions.",
+    "<b>Enoxaparin (Lovenox)</b>: LMWH, no routine labs, don't expel the syringe bubble. <b>DOACs</b>: dabigatran (antidote idarucizumab), rivaroxaban (factor Xa).",
+    "<b>Antiplatelets</b>: aspirin, clopidogrel (Plavix) — prevent clots; bleeding risk.",
+    "<b>Thrombolytics (“-plase”: alteplase/tPA)</b>: dissolve existing clots in acute MI/stroke/PE; major bleeding risk, ICU monitoring.",
+    "Heparin and warfarin overlap ~5 days when switching (warfarin takes days to work)."],
+    mnem:{tag:"Labs", txt:"<b>Heparin → aPTT → Protamine</b>. <b>Warfarin → PT/INR → vitamin K</b>. (“PT = Pro-Time = warfarin.”)"},
+    links:["pe","vascular","stroke","mi"]},
+
+  {c:"pharm", id:"antilipemic", wk:"W9", t:"Antilipemics (Statins)", facts:[
+    "<b>Statins (“-statin”: atorvastatin, simvastatin, rosuvastatin)</b>: most potent LDL reducers for high cholesterol / CVD risk.",
+    "Take at <b>bedtime</b>; monitor liver function and CK.",
+    "Serious risk: <b>rhabdomyolysis</b> — muscle breakdown → myoglobinuria → acute renal failure.",
+    "Teach: report muscle soreness/weakness or dark urine immediately; usually reversible if the statin is stopped early.",
+    "Other classes: bile-acid sequestrants, niacin, fibrates, ezetimibe (Zetia)."],
+    mnem:{tag:"Statin", txt:"Statins at night; <b>muscle pain + dark urine = rhabdo</b> — stop and report."},
+    links:["vascular","htn"]},
+
+  /* ---- Week 10: GI drugs ---- */
+  {c:"pharm", id:"aciddrug", wk:"W10", t:"Acid-Controlling Drugs", facts:[
+    "<b>Antacids</b> (Tums/calcium, Milk of Mag/magnesium, aluminum, sodium bicarb): neutralize acid. Aluminum → constipation, magnesium → diarrhea (often combined); give other meds 1–2 hr apart.",
+    "<b>H2 blockers (“-tidine”: famotidine)</b>: reduce acid secretion; cimetidine can cause confusion in elderly.",
+    "<b>PPIs (“-prazole”: omeprazole, pantoprazole)</b>: strongest — irreversibly block the proton pump; take 30–60 min <b>before</b> the first meal.",
+    "<b>Sucralfate (Carafate)</b>: coats the ulcer base; give on an empty stomach, 1 hr before other meds.",
+    "<b>H. pylori</b> ulcers: PPI + two antibiotics (clarithromycin + amoxicillin/metronidazole)."],
+    mnem:{tag:"PPI", txt:"<b>PPIs (“-prazole”) before breakfast</b>; antacids neutralize — space them from other drugs."},
+    links:["upgi","gibleed"]},
+
+  {c:"pharm", id:"bowel", wk:"W10", t:"Antidiarrheals & Laxatives", facts:[
+    "<b>Antidiarrheals</b>: adsorbents (bismuth/Pepto), antimotility (loperamide/Imodium, diphenoxylate-atropine/Lomotil), probiotics (for antibiotic-induced). Main adverse effect: constipation.",
+    "Avoid antimotility drugs in infectious diarrhea and with glaucoma/obstruction; replace fluids + electrolytes (Na⁺, K⁺, Mg²⁺).",
+    "<b>Laxatives</b>: bulk (psyllium/Metamucil), stool softener (docusate/Colace), osmotic (PEG/MiraLax, lactulose), saline (Milk of Mag), stimulant (senna, bisacodyl).",
+    "Push fluids with laxatives; long-term use causes dependency; don't use with nausea/vomiting/abdominal pain.",
+    "Lactulose also lowers ammonia in hepatic encephalopathy."],
+    mnem:{tag:"Opposite", txt:"<b>Antidiarrheals → constipation; laxatives → diarrhea/fluid loss</b>. Replace fluids either way."},
+    links:["lowgi","liver","fluid"]},
+
+  {c:"pharm", id:"antiemetic", wk:"W10", t:"Antiemetics & Antinausea Drugs", facts:[
+    "Work by blocking the vomiting center or chemoreceptor trigger zone (CTZ).",
+    "<b>Ondansetron (Zofran)</b>: serotonin blocker — chemo/post-op nausea. <b>Promethazine/prochlorperazine</b>: antidopaminergic.",
+    "<b>Metoclopramide (Reglan)</b>: prokinetic for gastroparesis; black box for <b>tardive dyskinesia</b> with long-term use.",
+    "<b>Scopolamine</b> & antihistamines (meclizine/Antivert, dimenhydrinate): motion sickness/vertigo.",
+    "Most cause drowsiness (caution in elderly, head injury); give 30–60 min <b>before</b> a known trigger; mostly pregnancy category B/C."],
+    mnem:{tag:"Timing", txt:"Give antiemetics <b>before</b> the trigger (chemo, travel) — prevention beats rescue. Zofran is the workhorse."},
+    links:["chemo","lowgi"]},
+
+  {c:"pharm", id:"anemia", wk:"W10", t:"Anemia Drugs", facts:[
+    "<b>Iron (ferrous sulfate)</b>: for iron-deficiency anemia; take between meals with <b>orange juice/vitamin C</b> (enhances absorption); stay upright 15–30 min; causes <b>black stools</b> + can stain teeth (use a straw).",
+    "<b>Vitamin B12 (cyanocobalamin)</b>: pernicious anemia — must give <b>IM</b> when intrinsic factor is missing.",
+    "<b>Folic acid</b>: folate-deficiency anemia; prevents neural tube defects — start before/early in pregnancy.",
+    "<b>Epoetin alfa (Epogen)</b>: stimulates RBC production; needs adequate iron stores; useful for patients refusing blood products.",
+    "Assess CBC and a vitamin panel at baseline."],
+    mnem:{tag:"Iron", txt:"Iron + <b>vitamin C</b> = better absorption; expect <b>black stools</b>. B12 for pernicious anemia goes <b>IM</b>."},
+    links:["lymphatic","renalfailure"]},
+
+  /* ================= FUNDAMENTALS ================= */
+  {c:"fund", id:"ethics", t:"Ethics & Legal", facts:[
+    "<b>Autonomy</b> (self-determination), <b>Beneficence</b> (do good), <b>Nonmaleficence</b> (do no harm).",
+    "<b>Justice</b> (fairness), <b>Fidelity</b> (keep promises), <b>Veracity</b> (truthfulness).",
+    "<b>Negligence</b> = failing to act as a reasonable person would. <b>Malpractice</b> = professional negligence.",
+    "Provider <b>obtains</b> informed consent; the nurse <b>witnesses the signature</b> and confirms understanding.",
+    "HIPAA protects patient privacy; advance directives include living will + durable POA."],
+    mnem:{tag:"Consent", txt:"Consent is the <b>provider’s</b> job to explain; the nurse only witnesses and clarifies."},
+    links:["therap"]},
+
+  {c:"fund", id:"vitals", t:"Vital Signs (Adult Normals)", facts:[
+    "Temp <span class='num'>97–99°F</span> (36.1–37.2°C). Pulse <span class='num'>60–100 bpm</span>.",
+    "Respirations <span class='num'>12–20/min</span>. BP <span class='num'>&lt;120/80</span>. O₂ sat <span class='num'>95–100%</span>.",
+    "Report trends and abnormals; recheck by hand if a machine reading looks off."],
+    mnem:{tag:"Ranges", txt:"Pulse <b>60–100</b>, Resp <b>12–20</b> — the two most-tested normals. Anchor everything else to these."},
+    links:["adren","dig","neuro-msk"]},
+
+  {c:"fund", id:"medadmin", t:"Medication Administration", facts:[
+    "Rights: right <b>patient, drug, dose, route, time</b> — plus documentation, reason, response, and right to refuse.",
+    "Verify the patient with <b>two identifiers</b> (name + DOB), never room number.",
+    "Common routes: PO, IV, IM, SubQ, topical, inhaled, rectal.",
+    "Do the three label checks: pulling, preparing, and returning/giving."],
+    mnem:{tag:"Safety", txt:"Two identifiers, three checks, and the rights <b>every single time</b> — no shortcuts."},
+    links:["dosecalc","ivcalc"]},
+
+  {c:"fund", id:"precautions", t:"Asepsis & Transmission Precautions", facts:[
+    "<b>Medical asepsis</b> = clean; <b>surgical asepsis</b> = sterile. Hand hygiene is #1 to prevent infection.",
+    "<b>Contact</b> (gown + gloves): MRSA, VRE, <b>C. diff</b> — wash with soap & water, not sanitizer.",
+    "<b>Droplet</b> (surgical mask): influenza, pertussis, meningitis, mumps, rubella.",
+    "<b>Airborne</b> (N95 + negative-pressure room): TB, measles, varicella, disseminated zoster.",
+    "Chain of infection: agent → reservoir → portal of exit → transmission → portal of entry → susceptible host."],
+    mnem:{tag:"Airborne", txt:"<b>“My Chicken Hez TB”</b> — <b>M</b>easles, <b>C</b>hickenpox (varicella), <b>H</b>erpes zoster, <b>TB</b> → N95."},
+    links:["immun","abx"]},
+
+  {c:"fund", id:"wound", t:"Skin Integrity & Wounds", facts:[
+    "<b>Stage 1</b>: intact skin, non-blanchable redness. <b>Stage 2</b>: partial-thickness, shallow/blister.",
+    "<b>Stage 3</b>: full-thickness, fat visible. <b>Stage 4</b>: muscle/bone/tendon exposed.",
+    "<b>Unstageable</b>: base hidden by slough/eschar. <b>Deep tissue injury</b>: intact purple/maroon area.",
+    "Healing: primary (edges approximated) · secondary (open, granulation) · tertiary (delayed closure).",
+    "Prevent with repositioning q2h, dry skin, and good nutrition/protein."],
+    mnem:{tag:"Stages", txt:"<b>1</b> red, <b>2</b> broken/blister, <b>3</b> fat, <b>4</b> floor (bone). Depth climbs with the number."},
+    links:["inflam"]},
+
+  {c:"fund", id:"pain", t:"Pain Assessment", facts:[
+    "Pain is the <b>5th vital sign</b> and is subjective — “whatever the patient says it is.”",
+    "Acute vs chronic; <b>nociceptive</b> (somatic/visceral) vs <b>neuropathic</b> (burning, tingling).",
+    "Scales: 0–10 numeric, Wong-Baker FACES (kids/limited verbal), FLACC (nonverbal/infants)."],
+    mnem:{tag:"Belief", txt:"Believe the patient’s report first — pain is <b>subjective</b>, not what the machine shows."},
+    links:["pqrstu"]},
+
+  {c:"fund", id:"therap", t:"Therapeutic Communication", facts:[
+    "Use open-ended questions, active listening, silence, reflection, and clarification.",
+    "<b>Avoid</b>: false reassurance (“everything will be fine”), “why” questions, giving advice, changing the subject.",
+    "Focus on the patient’s feelings; keep the door open for them to say more."],
+    mnem:{tag:"Traps", txt:"On NCLEX, the best answer usually <b>reflects feeling</b> and never shuts the patient down."},
+    links:["ethics","pqrstu"]},
+
+  {c:"fund", id:"ivcalc", t:"IV Flow & Drip Rates", facts:[
+    "Pump rate <span class='num'>mL/hr = total volume ÷ total hours</span>.",
+    "Manual drip <span class='num'>gtt/min = (volume × drop factor) ÷ minutes</span>.",
+    "Macrodrip sets: commonly 10, 15, or 20 gtt/mL. Microdrip: always 60 gtt/mL.",
+    "Round drops to a whole number — you can’t count a fraction of a drop."],
+    mnem:{tag:"Microdrip", txt:"Microdrip is <b>always 60</b> gtt/mL → with a 60-min hour, gtt/min = mL/hr. Handy shortcut."},
+    links:["dosecalc","medadmin"]},
+
+  /* ---- Taylor's chapters (NUR 313) ---- */
+  {c:"fund", id:"profnursing", wk:"Ch 1", t:"Professional Nursing", facts:[
+    "The <b>patient</b> is the central focus of every definition of nursing. Aims: promote health, prevent illness, restore health, facilitate coping with disability/death.",
+    "<b>QSEN competencies</b>: patient-centered care, teamwork/collaboration, quality improvement, safety, evidence-based practice, informatics.",
+    "Four blended competencies: cognitive, technical, interpersonal, ethical/legal.",
+    "Roles: communicator, teacher, counselor, leader, researcher, <b>advocate</b> (e.g., obtaining informed consent is advocacy), collaborator.",
+    "<b>Nurse Practice Acts</b> define the legal scope of practice and set education/licensure criteria (enforced by the state board of nursing).",
+    "Watch for burnout, compassion fatigue, and secondary traumatic stress — build resilience and self-care."],
+    mnem:{tag:"QSEN", txt:"Quality & safety competencies = <b>QSEN</b>. The patient is always the central focus."},
+    links:["ethics","ebp","therap"]},
+
+  {c:"fund", id:"ebp", wk:"Ch 2", t:"Theory, Research & EBP", facts:[
+    "Sources of knowledge: <b>traditional</b> (handed down), <b>authoritative</b> (expert), <b>scientific</b> (research — most reliable).",
+    "Nursing theory's core concepts: the <b>person</b> (central), environment, health, and nursing.",
+    "Reasoning: <b>deductive</b> (general → specific), <b>inductive</b> (specific → general).",
+    "Research: <b>quantitative</b> (numbers, variables, hypotheses) vs <b>qualitative</b> (meaning — phenomenology, grounded theory, ethnography).",
+    "<b>EBP</b> = best evidence + clinical expertise + patient values; frame the question with <b>PICOT</b> (Patient, Intervention, Comparison, Outcome, Time).",
+    "Informed consent and respect for subjects are pillars of ethical research."],
+    mnem:{tag:"PICOT", txt:"Build an EBP question with <b>PICOT</b>: Patient, Intervention, Comparison, Outcome, Time."},
+    links:["profnursing","nursingprocess"]},
+
+  {c:"fund", id:"asepsis", wk:"Ch 25", t:"Infection Cycle & Asepsis", facts:[
+    "<b>Chain of infection</b>: agent → reservoir → portal of exit → means of transmission → portal of entry → susceptible host. Break any link to stop spread.",
+    "Stages of infection: incubation → <b>prodromal (most contagious)</b> → full illness → convalescence.",
+    "<b>Medical asepsis</b> = clean (reduce pathogens); <b>surgical asepsis</b> = sterile (eliminate them, e.g., catheter/IV insertion).",
+    "<b>Hand hygiene</b> is #1; alcohol rubs beat soap in most situations — but use soap & water for <b>C. diff</b> and visible soil. WHO's 5 moments frame when.",
+    "Elevated <b>WBC (normal 5,000–10,000)</b> and ESR signal infection.",
+    "Common HAIs: CAUTI, CLABSI, SSI, MRSA, C. diff; MDROs include MRSA, VRE, CRE."],
+    mnem:{tag:"Chain", txt:"Break the <b>chain of infection</b> at any link. Most contagious in the <b>prodromal</b> stage."},
+    links:["precautions","microbes","immun"]},
+
+  {c:"fund", id:"hygiene", wk:"Ch 32", t:"Hygiene Care", facts:[
+    "Bathing cleanses, stimulates circulation, and is a chance to assess skin and build rapport.",
+    "Oral problems: <b>gingivitis</b> (gum inflammation) → <b>periodontitis</b> (adds bone/tissue loss); <b>cheilosis</b> (cracked lip corners, B-vitamin deficiency); stomatitis; glossitis.",
+    "Eye care: clean <b>inner → outer canthus</b>; artificial tears q4h if the blink reflex is absent.",
+    "Ears/nose: don't use cotton-tipped swabs in the canal; soften crusts with a warm compress.",
+    "Perineal care with plain soap and water — <b>douching is not recommended</b> (strips normal flora).",
+    "Use an <b>electric razor</b> for patients on anticoagulants; provide diabetic foot care carefully."],
+    mnem:{tag:"Eye care", txt:"Wipe the eye <b>inner to outer canthus</b>. Electric razor for anticoagulated patients."},
+    links:["skin","wound","nmt"]},
+
+  {c:"fund", id:"mobility", wk:"Ch 34", t:"Activity, Mobility & Body Mechanics", facts:[
+    "Exercise types: <b>isotonic</b> (movement + shortening — jogging), <b>isometric</b> (tension, no movement — quad sets), <b>isokinetic</b> (resistance).",
+    "<b>Immobility hazards</b> hit every system: atelectasis/pneumonia, DVT, muscle atrophy/contractures, pressure injuries, constipation, urinary stasis, bone loss.",
+    "Body mechanics: wide base, bend the <b>knees not the back</b>, hold loads close, push rather than lift; use gait belts and mechanical lifts (SPHM).",
+    "ROM exercises: <b>active</b> (patient does it) vs <b>passive</b> (nurse moves the joint).",
+    "Positions: Fowler's, supine, lateral, <b>Sims'</b>, prone; reposition at least q2h to protect skin.",
+    "Freely movable (synovial) joints: ball-and-socket, hinge, pivot, saddle, condyloid, gliding."],
+    mnem:{tag:"Lift safely", txt:"<b>Bend the knees, not the back</b>; load close; push don't lift. Reposition q2h to save skin."},
+    links:["mskassess","wound","fractures","pe"]},
+
+  /* ================= HEALTH ASSESSMENT ================= */
+  /* ---- Week 1: Foundations, interview, techniques, vitals ---- */
+  {c:"assess", id:"nursingprocess", wk:"W1", t:"Nursing Process & the Interview", facts:[
+    "<b>ADPIE</b>: Assessment → Diagnosis → Planning → Implementation → Evaluation. <b>Subjective</b> = what the patient says; <b>objective</b> = what you observe/measure.",
+    "<b>Evidence-based practice</b> = best research + clinical expertise + patient values.",
+    "Prioritize: <b>1st level</b> = emergent/life-threatening, <b>2nd</b> = urgent, <b>3rd</b> = important but can wait.",
+    "<b>Ten traps of interviewing</b>: false reassurance, unwanted advice, authority, avoidance language, distancing, jargon, leading questions, talking too much, interrupting, and “why” questions.",
+    "<b>SBAR</b> for provider hand-off: Situation, Background, Assessment, Recommendation."],
+    mnem:{tag:"Process", txt:"<b>ADPIE</b> drives care; <b>SBAR</b> hands it off. Both start with Assessment."},
+    links:["pqrstu","technique","ethics"]},
+
+  {c:"assess", id:"genvitals", wk:"W1", t:"General Survey & Vital Signs", facts:[
+    "General survey = whole-person impression: appearance, body structure, mobility, behavior.",
+    "Normals: Temp ~<span class='num'>98.6°F</span>, Pulse <span class='num'>60–100</span>, Resp <span class='num'>12–20</span>, BP <span class='num'>&lt;120/80</span>, SpO₂ <span class='num'>95–100%</span>. Pulse-to-resp ratio ≈ 4:1.",
+    "Count an irregular pulse for a <b>full minute</b>; don't tell the patient you're counting respirations. Pulse force 0–3+ (2+ normal).",
+    "<b>Korotkoff phase 1</b> = systolic (first tapping); disappearance = diastolic. A cuff too small or loose reads falsely high.",
+    "<b>Orthostatic vitals</b>: supine → standing; a drop of ≥20 systolic / 10 diastolic, or pulse rise of 15–30, = orthostatic hypotension.",
+    "Temp routes: rectal is most reliable (~1° higher than oral); axillary least accurate."],
+    mnem:{tag:"Ortho", txt:"Orthostatic drop = <b>20/10</b> (systolic/diastolic) on standing. Korotkoff phase 1 = systolic."},
+    links:["vitals","cardiac","auto-assess"]},
+
+  /* ---- Week 2: Neuro & Musculoskeletal assessment ---- */
+  {c:"assess", id:"neuroassess", wk:"W2", t:"Neurologic Assessment", facts:[
+    "Exam sequence: mental status → cranial nerves → motor → sensory → reflexes.",
+    "Lobes: <b>frontal</b> (personality, Broca's motor speech), <b>parietal</b> (sensation), <b>temporal</b> (hearing, Wernicke's comprehension), <b>occipital</b> (vision).",
+    "<b>Deep tendon reflexes</b> graded 0–4+ (2+ normal, 4+ = hyperactive with clonus). <b>Babinski</b> (fanning) is normal in infants, abnormal in adults.",
+    "Cerebellar/balance: Romberg, finger-to-nose, rapid alternating movements, tandem gait.",
+    "<b>Glasgow Coma Scale</b>: eye + verbal + motor. <b>FAST</b> for stroke: Face droop, Arm weakness, Speech difficulty, Time to call 911.",
+    "<b>Decorticate</b> = flexion toward the core (cortex); <b>decerebrate</b> = rigid extension (brainstem, worse)."],
+    mnem:{tag:"Posturing", txt:"<b>DeCORticate = arms to the CORe</b> (flex). Decerebrate = extended & worse (brainstem)."},
+    links:["neuro-msk","stroke","neurodegen","cnsinfection"]},
+
+  {c:"assess", id:"mskassess", wk:"W2", t:"Musculoskeletal Assessment", facts:[
+    "Order each joint: inspect → palpate → range of motion (active, then passive if limited) → muscle strength.",
+    "<b>Muscle strength graded 0–5</b> (5 = full strength against resistance, 3 = against gravity only, 0 = no contraction).",
+    "Spine curves: <b>kyphosis</b> (↑thoracic, aging), <b>lordosis</b> (↑lumbar), <b>scoliosis</b> (lateral S/C curve).",
+    "<b>Carpal tunnel</b>: Phalen (wrist flexion) and Tinel (median-nerve tapping) reproduce numbness/tingling.",
+    "<b>Straight-leg raise</b> reproducing sciatic pain suggests a herniated disc; <b>McMurray's</b> click suggests a meniscal tear.",
+    "Joints aren't normally tender; compare bilaterally."],
+    mnem:{tag:"Strength", txt:"Muscle strength <b>0–5</b>: 5 beats resistance, 3 only lifts against gravity, 0 is nothing."},
+    links:["jointdis","fractures","bonedis","neuro-msk"]},
+
+  /* ---- Week 3: HEENT assessment ---- */
+  {c:"assess", id:"headneck", wk:"W3", t:"Head, Neck, Thyroid & Lymph Nodes", facts:[
+    "Head: normocephalic, symmetric; palpate the temporal artery and TMJ. Face symmetry tests cranial nerve VII.",
+    "<b>Thyroid</b>: straddles the trachea; palpate (anterior or posterior) for enlargement/nodules; if enlarged, <b>auscultate for a bruit</b>.",
+    "Trachea should be midline — note any shift.",
+    "<b>Lymph nodes</b>: palpate the 10 groups in order with gentle circular motion; normal nodes are small (&lt;1 cm), movable, soft, nontender.",
+    "Node clues: acute infection = enlarged, tender, warm, movable; <b>cancerous = hard, &gt;3 cm, fixed, nontender</b>; Hodgkin's = rubbery.",
+    "Graves' (hyperthyroid): goiter + exophthalmos. Hypothyroid: puffy/edematous coarse face."],
+    mnem:{tag:"Nodes", txt:"Worry about a node that's <b>hard, fixed, nontender, and big (&gt;3 cm)</b> — that's the cancer pattern."},
+    links:["thyroid","lymphatic","immun"]},
+
+  {c:"assess", id:"eyesassess", wk:"W3", t:"Eye Assessment", facts:[
+    "<b>PERRLA</b>: Pupils Equal, Round, Reactive to Light and Accommodation; normal pupils 3–7 mm.",
+    "<b>Snellen chart</b> (distance vision, CN II) at 20 ft: 20/40 = you see at 20 ft what a normal eye sees at 40 ft. Near vision ≈ 14/14.",
+    "<b>Six cardinal fields of gaze</b> test extraocular muscles (CN III, IV, VI); nystagmus = jerky eye movement.",
+    "<b>Confrontation test</b> screens peripheral vision; <b>corneal light reflex</b> (Hirschberg) checks alignment.",
+    "Direct + consensual light reflex: light in one eye constricts both pupils.",
+    "Sclera should be white; PERRLA documented with pupil size in mm in acute care."],
+    mnem:{tag:"Snellen", txt:"<b>20/40 = you at 20 ft see what a normal eye sees at 40</b>. Bigger bottom number = worse vision."},
+    links:["anticholinergic","eent","neuroassess"]},
+
+  {c:"assess", id:"earsassess", wk:"W3", t:"Ear Assessment", facts:[
+    "<b>Otoscope</b>: pull pinna <b>up and back</b> in adults, <b>down</b> in children &lt;3; insert before testing hearing (cerumen mimics hearing loss).",
+    "Normal tympanic membrane: pearly-gray, shiny, translucent; light reflex at 5 o'clock (right) / 7 o'clock (left).",
+    "<b>Whispered voice test</b> screens hearing.",
+    "<b>Weber test</b> (fork on midline forehead): sound should be equal — lateralizes with a problem. <b>Rinne</b>: air conduction normally &gt; bone conduction.",
+    "Air conduction via the ear canal is normally the more sensitive route."],
+    mnem:{tag:"Pinna", txt:"<b>Adults up & back, kids down</b> to straighten the canal. Weber = midline fork, Rinne = air vs bone."},
+    links:["eent","neuroassess"]},
+
+  {c:"assess", id:"nmt", wk:"W3", t:"Nose, Mouth & Throat", facts:[
+    "Nose should be midline; inspect the septum for deviation/perforation; CN I (smell) not routinely tested.",
+    "Palpate frontal & maxillary sinuses for tenderness; transillumination if sinusitis suspected.",
+    "Mouth: check teeth/gums, tongue (oral cancers hide under the tongue — palpate any lesion), buccal mucosa.",
+    "Say “ahhh” → uvula and soft palate rise in the midline (tests CN X, vagus). Gag reflex tests CN IX & X.",
+    "Tonsils graded 1+ to 4+ (4+ = touching = “kissing”).",
+    "Watch for leukoplakia (precancerous white patch) vs candidiasis (white, scrapes off → raw)."],
+    mnem:{tag:"Uvula", txt:"“Ahhh” lifts the uvula <b>midline</b> = CN X intact. A deviated uvula is a red flag."},
+    links:["airways","immun","microbes"]},
+
+  /* ---- Week 6: ECG / conduction ---- */
+  {c:"assess", id:"ecg", wk:"W6", t:"ECG & Cardiac Conduction", facts:[
+    "Conduction path: <b>SA node (pacemaker)</b> → AV node → bundle of His → bundle branches → Purkinje fibers.",
+    "<b>P wave</b> = atrial depolarization; <b>QRS</b> = ventricular depolarization (&lt;0.12 s); <b>T wave</b> = ventricular repolarization.",
+    "PR interval <span class='num'>0.12–0.20 s</span> = SA-to-AV travel time.",
+    "A <b>U wave</b> suggests <b>hypokalemia</b> (ties to patho/pharm potassium).",
+    "Normal sinus rhythm vs sinus brady (&lt;60) / tachy (&gt;100) / arrhythmia.",
+    "Preload (Frank-Starling stretch), afterload (resistance), contractility set cardiac output = HR × stroke volume."],
+    mnem:{tag:"Waves", txt:"<b>P</b> atria, <b>QRS</b> ventricles contract, <b>T</b> ventricles reset. A <b>U wave = low K⁺</b>."},
+    links:["cardiac","antidysrhythmic","fluid","hf"]},
+
+  {c:"assess", id:"pqrstu", wk:"W1", t:"Health History & Interview", facts:[
+    "<b>PQRSTU</b>: Provocative/Palliative, Quality, Region/Radiation, Severity, Timing, Understanding.",
+    "<b>OLDCARTS</b>: Onset, Location, Duration, Character, Aggravating, Relieving, Timing, Severity.",
+    "<b>ROS</b> = Review of Systems: subjective, head-to-toe symptom check.",
+    "Genogram = 3-generation family health diagram; functional health patterns assess ADLs, roles, coping."],
+    mnem:{tag:"Symptom", txt:"Use <b>PQRSTU</b> or <b>OLDCARTS</b> to fully characterize any symptom the patient reports."},
+    links:["pain","therap"]},
+
+  {c:"assess", id:"technique", wk:"W1", t:"Assessment Techniques & Order", facts:[
+    "General order: <b>Inspect → Palpate → Percuss → Auscultate</b>.",
+    "<b>Abdomen is the exception</b>: Inspect → <b>Auscultate</b> → Percuss → Palpate (don’t alter bowel sounds).",
+    "Percussion sounds: resonance (normal lung), dullness (fluid/solid), tympany (air/gas), hyperresonance (trapped air), flatness (bone)."],
+    mnem:{tag:"Abdomen", txt:"Normal order <b>IPPA</b>; abdomen flips to <b>IAPP</b> — listen before you touch."},
+    links:["resp-assess","cardiac"]},
+
+  {c:"assess", id:"cardiac", wk:"W6", t:"Cardiac Assessment", facts:[
+    "Landmarks: <b>A</b>ortic (2nd R ICS), <b>P</b>ulmonic (2nd L ICS), <b>E</b>rb’s point (3rd L ICS), <b>T</b>ricuspid (4th L), <b>M</b>itral/apex (5th L, midclavicular).",
+    "<b>S1</b> (“lub”) = AV valves close, start of systole, loudest at apex.",
+    "<b>S2</b> (“dub”) = semilunar valves close, start of diastole, loudest at base.",
+    "<b>S3</b> “Kentucky” — early diastole (HF; normal in young/pregnant). <b>S4</b> “Tennessee” — stiff ventricle/HTN.",
+    "Murmurs = turbulent flow, graded I–VI."],
+    mnem:{tag:"Landmarks", txt:"<b>“APE To Man”</b> — Aortic, Pulmonic, Erb’s, Tricuspid, Mitral, top to bottom."},
+    links:["vitals","auto-assess"]},
+
+  {c:"assess", id:"pvascular", wk:"W6", t:"Peripheral Vascular Assessment", facts:[
+    "Pulses graded <span class='num'>0–4+</span> (0 absent, 2+ normal, 4+ bounding). Cap refill <span class='num'>&lt;3 sec</span>.",
+    "Edema graded <span class='num'>1+ to 4+</span> by depth/duration of the pit.",
+    "<b>Arterial insufficiency</b>: intermittent claudication, pale, cool, hairless, thick nails, <b>painful “punched-out” ulcers on toes</b>; worse with elevation.",
+    "<b>Venous insufficiency</b>: aching/heavy, edema, brown (hemosiderin) staining, warm, <b>irregular ulcers at medial ankle</b>; worse when dependent."],
+    mnem:{tag:"Ulcers", txt:"<b>A</b>rterial = <b>A</b>bsent pulses, pointy toes, painful. <b>V</b>enous = <b>V</b>alves fail, edema, medial-ankle ulcers."},
+    links:["cardiac"]},
+
+  {c:"assess", id:"resp-assess", wk:"W5", t:"Thoracic & Lung Assessment (Ch. 19)", facts:[
+    "Normal sounds: vesicular (periphery), bronchovesicular, bronchial (over trachea).",
+    "<b>Crackles/rales</b> = fluid (pneumonia, HF). <b>Wheezes</b> = narrowed airways (asthma).",
+    "<b>Rhonchi</b> = secretions (may clear with cough). <b>Stridor</b> = upper-airway obstruction — emergency.",
+    "Tactile fremitus: <b>increased</b> over consolidation, <b>decreased</b> over air/fluid."],
+    mnem:{tag:"Sounds", txt:"<b>Crackles = fluid, Wheeze = squeeze</b> (narrow airway), <b>Stridor = STAT</b>."},
+    links:["resp-patho","fluid","technique"]},
+
+  {c:"assess", id:"skin", wk:"W4", t:"Skin, Hair & Nails", facts:[
+    "Melanoma <b>ABCDE</b>: Asymmetry, Border irregular, Color varied, Diameter &gt;6 mm, Evolving.",
+    "<b>Clubbing</b> (nail angle &gt;180°) suggests chronic hypoxia.",
+    "Skin turgor checks hydration/elasticity; tenting = dehydration.",
+    "Color changes: central vs peripheral cyanosis, jaundice, pallor."],
+    mnem:{tag:"Melanoma", txt:"<b>ABCDE</b> — any evolving, asymmetric, multicolored lesion over 6 mm gets flagged."},
+    links:["wound"]},
+
+  {c:"assess", id:"auto-assess", t:"Autonomic Effects on the Exam", facts:[
+    "Sympathetic (“fight or flight”): ↑HR, ↑BP, dilated pupils, dry mouth, bronchodilation.",
+    "Parasympathetic (“rest & digest”): ↓HR, ↑GI motility, constricted pupils, ↑secretions.",
+    "Knowing this predicts what adrenergic/cholinergic drugs will do to your vital signs."],
+    mnem:{tag:"Bridge", txt:"Same wiring as pharmacology — assessment findings are just the autonomic drugs in action."},
+    links:["adren","chol","cardiac","vitals"]},
+
+  /* ---- HA Week 7: Abdomen & Breast ---- */
+  {c:"assess", id:"abdomen", wk:"W7", t:"Abdominal Assessment", facts:[
+    "Order is the exception: <b>Inspect → Auscultate → Percuss → Palpate</b> (touching first would alter bowel sounds).",
+    "Inspect contour (flat, rounded, scaphoid, protuberant), umbilicus (midline, inverted), and pulsations.",
+    "<b>Bowel sounds</b>: high-pitched gurgles ~5–30/min; hypoactive after surgery, hyperactive with ↑motility; call them absent only after listening 5 full minutes.",
+    "<b>Bruit</b> over aorta/renal/iliac/femoral arteries = turbulent flow (plaque, aneurysm) — don't press hard.",
+    "Percussion: tympany (gas) vs dullness (solid/fluid). Palpate light then deep; spleen isn't normally palpable and is friable — stop if you feel it.",
+    "<b>CVA tenderness</b> (fist percussion at the costovertebral angle) suggests kidney inflammation.",
+    "Appendicitis signs: <b>rebound tenderness</b>, McBurney's point (RLQ), plus positive psoas, obturator, and Rovsing's signs."],
+    mnem:{tag:"Order", txt:"The abdomen flips the usual order to <b>I-A-P-P</b> — listen before you touch."},
+    links:["technique","lowgi","gallpanc"]},
+
+  {c:"assess", id:"breast", wk:"W7", t:"Breast & Axillae Assessment", facts:[
+    "Most breast tumors arise in the <b>upper outer quadrant</b> and its axillary tail.",
+    "Inspect for symmetry, skin changes, and retraction; retraction signs = <b>dimpling</b>, nipple retraction, <b>peau d'orange</b> (edema), and fixation.",
+    "Palpate systematically (vertical-strip pattern preferred) across all quadrants and the tail; note any discharge.",
+    "Describe a lump by location, size, shape, consistency, mobility, and tenderness — hard, fixed, irregular is concerning.",
+    "Axillary nodes (central, pectoral, subscapular, lateral) drain the breast — check for enlarged/tender nodes.",
+    "<b>Gynecomastia</b>: benign male breast tissue — normal and temporary in puberty; also from steroids, meds, or cirrhosis."],
+    mnem:{tag:"Tumor site", txt:"<b>Upper outer quadrant</b> holds the most breast tissue — and the most tumors. Peau d'orange = orange-peel edema."},
+    links:["skin","lymphatic"]},
+
+  /* ---- HA Week 8: Reproductive ---- */
+  {c:"assess", id:"malerepro", wk:"W8", t:"Male GU, Prostate & Rectal Assessment", facts:[
+    "Testes are oval, suspended by the spermatic cord; the <b>left sits lower</b> (longer cord). The epididymis curves over the posterior testis.",
+    "<b>Testicular self-exam (TSE)</b> monthly from the teens on — <b>T</b>iming (monthly), <b>S</b>hower (warmth relaxes the scrotum), <b>E</b>xamine and report changes.",
+    "Digital rectal exam assesses the prostate: size, shape, surface, consistency — normal is smooth and rubbery.",
+    "<b>BPH</b>: smooth, firm, enlarged prostate → urinary obstruction. <b>Cancer</b>: hard, fixed nodule.",
+    "Screening: <b>PSA</b> for prostate; colonoscopy for colorectal cancer at 50 (FIT starting ~40); HPV vaccine for men under 26.",
+    "Anorectal findings: hemorrhoids, fissures, fistulas, pilonidal cyst."],
+    mnem:{tag:"TSE", txt:"<b>TSE</b> — <b>T</b>iming (monthly), <b>S</b>hower, <b>E</b>xamine. Smooth prostate = benign; hard nodule = worry."},
+    links:["repro","sti","kidney"]},
+
+  {c:"assess", id:"femalerepro", wk:"W8", t:"Female Reproductive Assessment", facts:[
+    "External: mons pubis, labia majora/minora, clitoris, vestibule, urethral meatus, Skene's & Bartholin's glands, vaginal orifice.",
+    "Internal: vagina, cervix (squamocolumnar junction), uterus, fallopian tubes; examined in the <b>lithotomy</b> position with draping.",
+    "Menstrual history: age at menarche, LMP, cycle length/duration, flow, pain, and any intermenstrual spotting.",
+    "<b>Pap smear</b> screens for <b>cervical</b> cancer — not endometrial or ovarian.",
+    "Pap prep: not during menses; no douching, intercourse, or intravaginal products for 24 hr; collect the Pap before other specimens.",
+    "<b>Tanner staging</b> rates sexual maturity (breast and pubic-hair development)."],
+    mnem:{tag:"Pap", txt:"The <b>Pap catches cervical cancer only</b> — it won't screen the ovaries or endometrium."},
+    links:["repro","sti","pqrstu"]},
+
+  /* ---- HA Week 10: Mental status, substance, violence, nutrition, culture ---- */
+  {c:"assess", id:"mentalstatus", wk:"W10", t:"Mental Status Assessment", facts:[
+    "Four components — <b>A-B-C-T</b>: Appearance, Behavior, Cognition, Thought process.",
+    "<b>Orientation</b>: person, place, time, situation. <b>Recent</b> memory = 24-hr recall; <b>remote</b> = long-past events.",
+    "The <b>Four Unrelated Words test</b> checks new learning; <b>aphasia</b> = impaired language, often after a stroke.",
+    "Screens: <b>GAD-7</b> for anxiety; <b>PHQ-2 → PHQ-9</b> for depression.",
+    "<b>MMSE</b> (24–30 = no impairment) and <b>MoCA</b> (≥26 normal, more sensitive to mild impairment) detect dementia and delirium.",
+    "If you note sadness or hopelessness, ask about safety directly and share concerns with a mental-health professional (in Florida, the Baker Act allows emergency evaluation)."],
+    mnem:{tag:"Components", txt:"<b>A-B-C-T</b>: Appearance, Behavior, Cognition, Thought. Orientation is often charted “A&O ×4.”"},
+    links:["neurodegen","pqrstu"]},
+
+  {c:"assess", id:"substance", wk:"W10", t:"Substance Use Screening", facts:[
+    "Alcohol effects are dose-related and often underdiagnosed until complications appear (DSM-5 defines the disorder).",
+    "<b>AUDIT</b> (and the shorter <b>AUDIT-C</b> for acute/critical care) screens general alcohol use.",
+    "<b>TWEAK</b> screens women, especially pregnant — Tolerance, Worry, Eye-opener, Amnesia, Kut down.",
+    "<b>SMAST-G</b> screens older adults (2+ “yes” = a problem).",
+    "<b>CIWA</b> measures alcohol-withdrawal severity (10 criteria + vitals); the score guides monitoring frequency.",
+    "Opioid overdose deaths now exceed motor-vehicle deaths — a major public-health focus."],
+    mnem:{tag:"Tools", txt:"<b>TWEAK = women</b>, <b>SMAST-G = seniors</b>, <b>AUDIT = general</b>, <b>CIWA = withdrawal</b>."},
+    links:["liver","ethics"]},
+
+  {c:"assess", id:"violence", wk:"W10", t:"Interpersonal Violence & Abuse", facts:[
+    "Nurses are <b>mandatory reporters</b> — know your state's requirements.",
+    "Intimate partner violence categories: physical, sexual, stalking, and psychological aggression.",
+    "Abuse types (child and elder): neglect, physical, sexual, emotional; elder abuse adds financial exploitation.",
+    "<b>Interview the person alone</b>, away from the suspected perpetrator; watch for injuries that don't match the story or bruises at different healing stages.",
+    "Screening: “Do you feel safe at home?”, plus tools like <b>HITS</b> and <b>STaT</b>.",
+    "A <b>SANE</b> (Sexual Assault Nurse Examiner) is specially trained to assess and collect evidence."],
+    mnem:{tag:"Interview", txt:"Always screen the patient <b>alone</b> — abuse is missed when the suspected abuser is in the room."},
+    links:["ethics","therap","pqrstu"]},
+
+  {c:"assess", id:"nutrition", wk:"W10", t:"Nutritional Assessment", facts:[
+    "Nutritional status = balance of intake and needs: optimal, <b>under</b>-nutrition (depleted reserves), or <b>over</b>-nutrition (excess calories/sodium/fat).",
+    "Screen with weight history, diet info, and labs; at-risk patients get a full assessment (diet history, exam, labs).",
+    "Dietary-intake tools: 24-hour recall, food-frequency questionnaire, and food diaries (usually 3 days).",
+    "<b>BMI</b> marks weight-for-height; <b>waist-to-hip ratio</b> and waist circumference gauge fat-distribution risk.",
+    "Clinical signs of deficiency appear first in fast-turnover tissue — skin, hair, mouth, lips, eyes."],
+    mnem:{tag:"Intake tools", txt:"Capture intake with a <b>24-hour recall</b> or a <b>3-day food diary</b>; BMI flags weight-for-height."},
+    links:["wound","pqrstu"]},
+
+  {c:"assess", id:"cultural", wk:"W10", t:"Cultural & Spiritual Assessment", facts:[
+    "<b>Ethnicity</b> = shared traits; <b>acculturation</b> = adopting the majority culture; <b>assimilation</b> = replacing one's own with the dominant culture.",
+    "<b>Social determinants of health (SDOH)</b> shape outcomes from before birth; poverty has the greatest influence on health status.",
+    "Competence ladder: culturally <b>sensitive</b> (has knowledge) → <b>appropriate</b> (applies it) → <b>competent</b> (applies it across all care).",
+    "Don't stereotype — listen and learn; assess domains like communication, personal space, time, social organization, and biologic variation.",
+    "A common spiritual-assessment framework is <b>FICA</b> (Faith, Importance, Community, Address in care)."],
+    mnem:{tag:"FICA", txt:"<b>FICA</b> spiritual assessment: <b>F</b>aith, <b>I</b>mportance, <b>C</b>ommunity, <b>A</b>ddress in care."},
+    links:["therap","ethics"]},
+];
+
+/* ---------- render ---------- */
+const main = document.getElementById('main');
+const chipsWrap = document.getElementById('chips');
+const STORE_KEY = 'nur-finals-progress-v1';
+let done = loadProgress();
+let activeCourses = new Set(Object.keys(COURSES));
+let showDone = false;
+let query = '';
+
+function loadProgress(){
+  try{ return new Set(JSON.parse(localStorage.getItem(STORE_KEY)||'[]')); }
+  catch(e){ return new Set(); }
+}
+function saveProgress(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify([...done])); }catch(e){}
+}
+
+function courseVars(c){ return `--c:var(${COURSES[c].var});--c-bg:var(${COURSES[c].bg})`; }
+
+// chips
+Object.entries(COURSES).forEach(([key,co])=>{
+  const count = TOPICS.filter(t=>t.c===key).length;
+  const b=document.createElement('button');
+  b.className='chip'; b.setAttribute('aria-pressed','true');
+  b.style.cssText=courseVars(key);
+  b.dataset.course=key;
+  b.innerHTML=`<span class="dot"></span>${co.code} · ${co.name} <span class="n">${count}</span>`;
+  b.onclick=()=>{
+    if(activeCourses.has(key)){activeCourses.delete(key);b.setAttribute('aria-pressed','false');}
+    else{activeCourses.add(key);b.setAttribute('aria-pressed','true');}
+    render();
+  };
+  chipsWrap.appendChild(b);
+});
+
+function topicHTML(t){
+  const co=COURSES[t.c];
+  const isDone=done.has(t.id);
+  const facts=t.facts.map(f=>`<li>${f}</li>`).join('');
+  const links=(t.links||[]).map(id=>{
+    const tt=TOPICS.find(x=>x.id===id); if(!tt) return '';
+    const lc=COURSES[tt.c];
+    return `<button class="xlink" data-goto="${id}" title="${lc.code} · ${tt.t}">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+      ${lc.code.split(' ')[1]} · ${tt.t.split(' ').slice(0,2).join(' ')}</button>`;
+  }).join('');
+  const mnem=t.mnem?`<div class="mnem"><span class="tag">${t.mnem.tag}</span>${t.mnem.txt}</div>`:'';
+  return `<article class="card ${isDone?'done':''}" id="topic-${t.id}" style="${courseVars(t.c)}">
+    <div class="card-head">
+      <input class="chk" type="checkbox" ${isDone?'checked':''} data-id="${t.id}" aria-label="Mark ${t.t} reviewed">
+      <h3>${t.t}</h3>
+      ${t.wk?`<span class="wk">${t.wk}</span>`:''}
+    </div>
+    <ul class="facts">${facts}</ul>
+    ${mnem}
+    ${links?`<div class="links">${links}</div>`:''}
+  </article>`;
+}
+
+function render(){
+  const q=query.trim().toLowerCase();
+  let html=''; let visibleTotal=0;
+  Object.keys(COURSES).forEach(key=>{
+    if(!activeCourses.has(key)) return;
+    let list=TOPICS.filter(t=>t.c===key);
+    if(q) list=list.filter(t=>((t.wk||'')+' '+t.t+' '+t.facts.join(' ')+' '+(t.mnem?t.mnem.txt:'')).toLowerCase().includes(q));
+    if(!showDone) list=list.filter(t=>!done.has(t.id));
+    if(!list.length) return;
+    visibleTotal+=list.length;
+    const co=COURSES[key];
+    const totalC=TOPICS.filter(t=>t.c===key).length;
+    const doneC=TOPICS.filter(t=>t.c===key&&done.has(t.id)).length;
+    html+=`<section class="course" id="course-${key}" style="${courseVars(key)}">
+      <div class="course-head">
+        <span class="course-code">${co.code}</span>
+        <h2 class="course-name">${co.name}</h2>
+        <span class="course-mini">${doneC}/${totalC} done</span>
+        <span class="course-prof">${co.prof}</span>
+      </div>
+      <div class="grid">${list.map(topicHTML).join('')}</div>
+    </section>`;
+  });
+  main.innerHTML = visibleTotal ? html :
+    `<div class="empty">${q?`No topics match “${query}.”`:'Nothing to show — turn a course chip back on, or use “Show reviewed.”'}</div>`;
+  bindCards();
+  updateProgress();
+}
+
+function bindCards(){
+  document.querySelectorAll('.chk').forEach(cb=>{
+    cb.onchange=()=>{
+      const id=cb.dataset.id;
+      if(cb.checked) done.add(id); else done.delete(id);
+      saveProgress();
+      const card=document.getElementById('topic-'+id);
+      if(card) card.classList.toggle('done',cb.checked);
+      if(!showDone && cb.checked){ setTimeout(render,180); }
+      updateProgress();
+    };
+  });
+  document.querySelectorAll('.xlink').forEach(l=>{
+    l.onclick=()=>{
+      const id=l.dataset.goto;
+      const tt=TOPICS.find(x=>x.id===id); if(!tt) return;
+      if(!activeCourses.has(tt.c)){
+        activeCourses.add(tt.c);
+        const chip=[...chipsWrap.children].find(c=>c.dataset.course===tt.c);
+        if(chip) chip.setAttribute('aria-pressed','true');
+      }
+      const wasHidden = !showDone && done.has(id);
+      if(wasHidden){ showDone=true; document.getElementById('expand').textContent='Hide reviewed'; }
+      render();
+      const el=document.getElementById('topic-'+id);
+      if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+    };
+  });
+}
+
+function updateProgress(){
+  const total=TOPICS.length, d=done.size;
+  const pct=Math.round(d/total*100);
+  document.getElementById('fill').style.width=pct+'%';
+  document.getElementById('pct').textContent=pct+'%';
+  document.querySelector('.progress-label small').textContent=` reviewed · ${d}/${total}`;
+}
+
+/* controls */
+document.getElementById('q').addEventListener('input',e=>{query=e.target.value;render();});
+document.getElementById('expand').onclick=e=>{showDone=!showDone;e.target.textContent=showDone?'Hide reviewed':'Show reviewed';render();};
+document.getElementById('print').onclick=()=>{const s=showDone;showDone=true;render();window.print();showDone=s;render();};
+document.getElementById('reset').onclick=()=>{if(confirm('Clear all review progress?')){done=new Set();saveProgress();showDone=false;document.getElementById('expand').textContent='Show reviewed';render();}};
+const themeBtn=document.getElementById('theme');
+themeBtn.onclick=()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?'light':(cur==='light'?'dark':(matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark'));
+  document.documentElement.setAttribute('data-theme',next);
+};
+
+render();
+</script>
+</body>
+</html>
+
+</body></html>

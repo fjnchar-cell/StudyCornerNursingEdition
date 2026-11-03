@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NUR 315 Study Guide — Weeks 7, 8 &amp; 10</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#ffffff; --ink:#1a1d24; --muted:#5b6472;
+    --line:#e2e6ec; --line-strong:#cfd5df;
+    --accent:#2f6f6b; --accent-ink:#12403d;
+    --hi:#fff6e0; --hi-line:#e6b93d; --hi-ink:#7a5b06;
+    --mnem:#eef4ff; --mnem-line:#3d6fd6; --mnem-ink:#1c3f8f;
+    --chip:#eef1f5; --chip-ink:#3a4351;
+    /* category accents */
+    --c-abdomen:#2f8f83; --c-rectum:#b5791f; --c-repro:#c04a76;
+    --c-breast:#7a52b3; --c-mental:#2f6bd6; --c-subst:#d1732b;
+    --c-violence:#c0392b; --c-nutrition:#5a9a2f; --c-culture:#4a55b0;
+  }
+  :root:not([data-theme="light"]){}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12151b; --surface:#1b1f27; --ink:#e9ecf1; --muted:#a6afbd;
+      --line:#2a2f3a; --line-strong:#3a4150;
+      --accent:#5bc4bb; --accent-ink:#bff0eb;
+      --hi:#3a3110; --hi-line:#c9a13a; --hi-ink:#f5dea0;
+      --mnem:#182541; --mnem-line:#5b87e0; --mnem-ink:#c3d6ff;
+      --chip:#252b36; --chip-ink:#c3ccd8;
+      --c-abdomen:#57c2b6; --c-rectum:#e0a94e; --c-repro:#e3799f;
+      --c-breast:#b08cec; --c-mental:#6b9bf0; --c-subst:#eda05c;
+      --c-violence:#e8776a; --c-nutrition:#8fc85c; --c-culture:#8b94e0;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12151b; --surface:#1b1f27; --ink:#e9ecf1; --muted:#a6afbd;
+    --line:#2a2f3a; --line-strong:#3a4150;
+    --accent:#5bc4bb; --accent-ink:#bff0eb;
+    --hi:#3a3110; --hi-line:#c9a13a; --hi-ink:#f5dea0;
+    --mnem:#182541; --mnem-line:#5b87e0; --mnem-ink:#c3d6ff;
+    --chip:#252b36; --chip-ink:#c3ccd8;
+    --c-abdomen:#57c2b6; --c-rectum:#e0a94e; --c-repro:#e3799f;
+    --c-breast:#b08cec; --c-mental:#6b9bf0; --c-subst:#eda05c;
+    --c-violence:#e8776a; --c-nutrition:#8fc85c; --c-culture:#8b94e0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5; font-size:16px;
+  }
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 18px 80px;}
+  header.top{padding:8px 0 4px;}
+  h1{font-size:1.55rem; margin:0 0 2px; letter-spacing:-0.01em;}
+  .sub{color:var(--muted); font-size:.95rem; margin:0 0 16px;}
+  .toolbar{
+    position:sticky; top:0; z-index:20; background:var(--bg);
+    padding:12px 0 10px; border-bottom:1px solid var(--line); margin-bottom:18px;
+  }
+  .search{
+    width:100%; padding:12px 14px; font-size:1rem; border-radius:10px;
+    border:1px solid var(--line-strong); background:var(--surface); color:var(--ink);
+  }
+  .search:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .filters{display:flex; flex-wrap:wrap; gap:7px; margin-top:11px;}
+  .filt{
+    border:1px solid var(--line-strong); background:var(--surface); color:var(--ink);
+    border-radius:999px; padding:6px 12px; font-size:.83rem; cursor:pointer;
+    display:inline-flex; align-items:center; gap:6px; user-select:none;
+  }
+  .filt .dot{width:10px;height:10px;border-radius:50%;background:var(--cc,#888);}
+  .filt[aria-pressed="false"]{opacity:.4; text-decoration:line-through;}
+  .filt.util{font-weight:600;}
+  .count{color:var(--muted); font-size:.82rem; margin-top:9px;}
+  .noresult{display:none; padding:30px 4px; color:var(--muted); text-align:center;}
+  section.grp{margin:26px 0 6px;}
+  .grp > h2{
+    font-size:1.12rem; margin:0 0 3px; padding-bottom:5px;
+    border-bottom:2px solid var(--cc); display:inline-block;
+  }
+  .grp .meta{color:var(--muted); font-size:.82rem; margin:0 0 12px;}
+  .card{
+    background:var(--surface); border:1px solid var(--line);
+    border-radius:12px; padding:15px 16px 14px; margin:11px 0;
+    box-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  .card h3{
+    font-size:1.02rem; margin:0 0 8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  }
+  .pill{
+    font-size:.68rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    color:#fff; background:var(--cc,#666); padding:2px 8px; border-radius:999px; white-space:nowrap;
+  }
+  .star{color:var(--hi-line); font-size:.72rem; font-weight:700; border:1px solid var(--hi-line);
+    padding:1px 7px; border-radius:999px; background:var(--hi); color:var(--hi-ink);}
+  .card ul{margin:6px 0 0; padding-left:20px;}
+  .card li{margin:3px 0;}
+  .card p{margin:6px 0;}
+  .term{font-weight:600;}
+  .mnem{
+    background:var(--mnem); border:1px solid var(--mnem-line); border-left-width:4px;
+    color:var(--mnem-ink); border-radius:8px; padding:9px 12px; margin:11px 0 2px; font-size:.93rem;
+  }
+  .mnem b{color:var(--mnem-ink);}
+  .mnem .lbl{display:block; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; opacity:.85; margin-bottom:3px;}
+  .clin{
+    background:var(--hi); border:1px solid var(--hi-line); border-left-width:4px;
+    color:var(--hi-ink); border-radius:8px; padding:9px 12px; margin:11px 0 2px; font-size:.9rem;
+  }
+  .clin .lbl{display:block; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; opacity:.85; margin-bottom:3px;}
+  table.mini{width:100%; border-collapse:collapse; margin:8px 0 2px; font-size:.9rem;}
+  table.mini th,table.mini td{border:1px solid var(--line); padding:5px 8px; text-align:left; vertical-align:top;}
+  table.mini th{background:var(--chip); color:var(--chip-ink); font-weight:600;}
+  .scrollx{overflow-x:auto;}
+  .themebtn{position:fixed; right:14px; bottom:14px; z-index:30; border:1px solid var(--line-strong);
+    background:var(--surface); color:var(--ink); border-radius:999px; padding:8px 14px; cursor:pointer; font-size:.85rem;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);}
+  mark{background:#ffe58a; color:#000; padding:0 1px; border-radius:2px;}
+  .foot{color:var(--muted); font-size:.8rem; margin-top:36px; border-top:1px solid var(--line); padding-top:14px;}
+
+  @media print{
+    .toolbar,.themebtn{display:none !important;}
+    body{background:#fff; color:#000; font-size:12px;}
+    .wrap{max-width:none; padding:0;}
+    .card{break-inside:avoid; box-shadow:none; border:1px solid #bbb;}
+    .grp > h2{border-bottom:2px solid #444;}
+    .mnem,.clin{border:1px solid #999; background:#f4f4f4; color:#000;}
+    .pill{background:#555 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    a{color:#000;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <h1>NUR 315 Health Assessment — Study Guide</h1>
+  <p class="sub">Weeks 7, 8 &amp; 10 · Prof. Marpole · Jarvis Ch. 2, 5–7, 12, 18, 22, 25–27 · ⭐ = instructor-emphasized / high-yield</p>
+</header>
+
+<div class="toolbar">
+  <input id="search" class="search" type="search" placeholder="Search everything — e.g. &quot;rebound&quot;, &quot;TWEAK&quot;, &quot;CVA&quot;, &quot;peau d'orange&quot;…" autocomplete="off">
+  <div class="filters" id="filters">
+    <button class="filt" data-cat="abdomen"   aria-pressed="true" style="--cc:var(--c-abdomen)"><span class="dot"></span>Abdomen / GI</button>
+    <button class="filt" data-cat="rectum"    aria-pressed="true" style="--cc:var(--c-rectum)"><span class="dot"></span>Rectum / Prostate</button>
+    <button class="filt" data-cat="repro"     aria-pressed="true" style="--cc:var(--c-repro)"><span class="dot"></span>Reproductive / Urinary</button>
+    <button class="filt" data-cat="breast"    aria-pressed="true" style="--cc:var(--c-breast)"><span class="dot"></span>Breast / Lymphatics</button>
+    <button class="filt" data-cat="mental"    aria-pressed="true" style="--cc:var(--c-mental)"><span class="dot"></span>Mental Status</button>
+    <button class="filt" data-cat="subst"     aria-pressed="true" style="--cc:var(--c-subst)"><span class="dot"></span>Substance Use</button>
+    <button class="filt" data-cat="violence"  aria-pressed="true" style="--cc:var(--c-violence)"><span class="dot"></span>Violence / Abuse</button>
+    <button class="filt" data-cat="nutrition" aria-pressed="true" style="--cc:var(--c-nutrition)"><span class="dot"></span>Nutrition</button>
+    <button class="filt" data-cat="culture"   aria-pressed="true" style="--cc:var(--c-culture)"><span class="dot"></span>Cultural / Spiritual</button>
+    <button class="filt util" id="hiOnly" data-util="hi" aria-pressed="false" style="--cc:var(--hi-line)"><span class="dot"></span>⭐ High-yield only</button>
+    <button class="filt util" id="allBtn">Select all</button>
+    <button class="filt util" id="noneBtn">Clear</button>
+    <button class="filt util" id="printBtn">🖨 Print</button>
+  </div>
+  <div class="count" id="count"></div>
+</div>
+
+<div class="noresult" id="noresult">No cards match your search and filters.</div>
+
+<!-- ===================== ABDOMEN / GI ===================== -->
+<section class="grp" data-cat="abdomen" style="--cc:var(--c-abdomen)">
+  <h2>Abdomen &amp; GI</h2>
+  <div class="meta">Week 7 · Jarvis Ch. 22</div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Internal anatomy &amp; viscera</h3>
+    <ul>
+      <li>All organs inside the abdominal cavity are called <span class="term">viscera</span>.</li>
+      <li>The <span class="term">peritoneum</span> lines the wall (parietal) and covers most organs (visceral).</li>
+      <li><span class="term">Solid viscera</span> keep a fixed shape: liver, pancreas, spleen, adrenal glands, kidneys, ovaries, uterus. They should not swell and shrink with meals.</li>
+      <li><span class="term">Hollow viscera</span> change shape with contents: stomach, gallbladder, small intestine, colon, bladder.</li>
+      <li>Midline organs: aorta, the uterus if enlarged, the bladder if distended.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic</span><b>Solid = SPLAKOU</b> (Spleen, Pancreas, Liver, Adrenals, Kidneys, Ovaries, Uterus). If it's <i>not</i> on that list, it's hollow.</div>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Four quadrants — what lives where <span class="star">⭐</span></h3>
+    <div class="scrollx"><table class="mini">
+      <tr><th>RUQ</th><th>LUQ</th></tr>
+      <tr><td>Liver, gallbladder, duodenum, head of pancreas, right kidney (upper), right adrenal, hepatic flexure</td>
+          <td>Left lobe of liver, stomach, spleen, body of pancreas, left kidney (upper), left adrenal, splenic flexure</td></tr>
+      <tr><th>RLQ</th><th>LLQ</th></tr>
+      <tr><td>Cecum, <span class="term">appendix</span>, right ovary/tube, right ureter, ascending colon, right kidney (lower)</td>
+          <td>Sigmoid colon, descending colon, left ovary/tube, left ureter, left kidney (lower)</td></tr>
+    </table></div>
+    <ul>
+      <li>Right/left are the <span class="term">patient's</span> right and left, so the image looks reversed to you.</li>
+      <li>Nine-region system (from two midclavicular + two horizontal planes): hypochondriac (below ribs), epigastric (above stomach), lumbar (low back), umbilical, iliac (iliac crest), hypogastric (below stomach). Four-quadrant is used more in practice; both show up on ATI/NCLEX.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Exam sequence — the big rule <span class="star">⭐</span></h3>
+    <ul>
+      <li>Abdomen breaks the usual order: <span class="term">Inspect → Auscultate → Percuss → Palpate</span>.</li>
+      <li>Auscultate <span class="term">before</span> touching so you don't stir up false bowel sounds.</li>
+      <li>Prep: supine and flat, empty bladder first, warm the stethoscope, expose only the abdomen, keep the patient relaxed, assess painful areas <span class="term">last</span>.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic</span><b>"I Always Percuss Patients"</b> = Inspect, Auscultate, Percuss, Palpate. (Everywhere else it's IPPA — the abdomen is the exception.)</div>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Marpole's required quadrant order <span class="star">⭐</span></h3>
+    <ul>
+      <li>Use <span class="term">RLQ → RUQ → LUQ → LLQ</span> for bowel sounds, percussion, and light palpation — even if a demo video shows another order.</li>
+      <li>Start in the RLQ (ileocecal valve): sounds are almost always present there.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic</span><b>"Run Right Up, then Left Low."</b> Begin low-right, go up the right, across to upper-left, down to lower-left.</div>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Inspection</h3>
+    <ul>
+      <li>Contour: flat, rounded, scaphoid, or protuberant/distended (view from the foot of the bed).</li>
+      <li>Umbilicus: normally midline and inverted; note discoloration, drainage, inflammation, or herniation.</li>
+      <li>Skin: color, scars, surgical scars, lesions, striae; healed vs. draining piercings.</li>
+      <li>Normal aortic pulsation may show in the epigastric area in thin, relaxed people.</li>
+      <li>Pubic hair: diamond shape in males, inverted triangle in females.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> 7 F's of distension <span class="star">⭐</span></h3>
+    <div class="mnem"><span class="lbl">Mnemonic — 7 F's</span><b>F</b>at · <b>F</b>luid · <b>F</b>latus · <b>F</b>eces · <b>F</b>etus · <b>F</b>ibroids · <b>F</b>atal growth (tumor).</div>
+    <ul>
+      <li>Obesity → tympany with scattered dullness.</li>
+      <li>Ascites → tympany on top, dullness in the dependent sides where fluid pools; dullness shifts when the patient rolls; a fluid wave supports ascites.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Auscultation — bowel sounds <span class="star">⭐</span></h3>
+    <ul>
+      <li>Use the <span class="term">diaphragm</span>; high-pitched, gurgling, irregular sounds.</li>
+      <li>Marpole's frequency categories: <span class="term">normoactive ≈ 5–30/min</span>, <span class="term">hypoactive &lt; 5/min</span>, <span class="term">hyperactive &gt; 30/min</span>. (Some texts say 5–34; follow the course convention on tests.)</li>
+      <li>Do <span class="term">not</span> chart "absent" until you've listened a full <span class="term">5 minutes</span> — absent sounds can be an emergency.</li>
+      <li><span class="term">Borborygmi</span> = loud rumbling/growling (hyperperistalsis).</li>
+      <li>Hypoactive can follow surgery or inflammation; hyperactive signals increased motility.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Auscultation — vascular sounds &amp; bruits <span class="star">⭐</span></h3>
+    <ul>
+      <li>Aorta: midline, just below the xiphoid (between xiphoid and umbilicus).</li>
+      <li>Renal arteries: lateral and slightly below the aorta. Iliac: ~1 inch below and 1 inch lateral to umbilicus. Femoral: over the femoral pulses.</li>
+      <li>Arteries sit deep — use slightly firmer pressure with the diaphragm.</li>
+      <li>A <span class="term">bruit</span> = blowing/turbulent sound from narrowing (plaque, stenosis, aneurysm) → report it.</li>
+    </ul>
+    <div class="clin"><span class="lbl">Do not do this</span>Never <b>palpate the aorta after hearing a bruit</b> or when an aneurysm is suspected — pressure can trigger rupture.</div>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Percussion</h3>
+    <ul>
+      <li>Percuss all four quadrants in Marpole's order.</li>
+      <li><span class="term">Tympany</span> over air-filled bowel; <span class="term">dullness</span> over solid organs, fluid, stool, or a mass.</li>
+      <li>One point per quadrant is enough for the abbreviated checkoff; the zigzag pattern is the fuller technique.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Palpation — light &amp; deep</h3>
+    <ul>
+      <li>Light first (finger pads, gentle rotary motion), then deep. Patient stays flat.</li>
+      <li>Watch for guarding, rigidity, facial grimacing; palpate a painful area <span class="term">last</span>.</li>
+      <li>Normally palpable: liver edge, aorta, some intestines, a full bladder; mild tenderness over the sigmoid is normal.</li>
+      <li>Document a mass by: location, size, shape, consistency, surface, mobility, pulsatility, tenderness.</li>
+      <li>Normal charting: "soft, nontender abdomen without masses."</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Organ palpation landmarks <span class="star">⭐</span></h3>
+    <ul>
+      <li><span class="term">Liver</span>: may bump your fingers just below the right costal margin on inspiration; a firm, regular ridge. Should not extend far below the ribs.</li>
+      <li><span class="term">Spleen</span>: normally <span class="term">not</span> palpable — must be ~3× enlarged to feel. If you feel it, <span class="term">stop</span> — it's friable and can rupture. Enlarged in mono, leukemia/lymphoma, portal HTN, HIV.</li>
+      <li><span class="term">Kidneys</span>: right may occasionally be palpable; left usually is not (it sits ~1 cm higher).</li>
+      <li><span class="term">Aorta</span>: normally <span class="term">2.5–4 cm</span> wide, pulsates anteriorly. Widened = possible AAA (pulsating mass left of midline, ± bruit).</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> CVA tenderness (kidneys) <span class="star">⭐</span></h3>
+    <ul>
+      <li>Find the angle between the spine and the 12th rib posteriorly.</li>
+      <li>Lay one hand flat over it; strike with the <span class="term">ulnar edge / closed fist</span> of the other (indirect fist percussion) — tissues vibrate rather than make sound.</li>
+      <li>Normal = a thud, no pain. Pain = kidney inflammation/irritation (infection, stones, chronic disease). Assess both sides and document.</li>
+      <li>Add this while you're already behind the patient during the posterior thoracic/lung exam.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Appendicitis &amp; special tests <span class="star">⭐</span></h3>
+    <div class="mnem"><span class="lbl">Mnemonic</span><b>"My Patient Órdered Rebound Rovsing"</b> → <b>M</b>cBurney, <b>P</b>soas, <b>O</b>bturator, <b>R</b>ebound, <b>R</b>ovsing.</div>
+    <ul>
+      <li><span class="term">McBurney's point</span> (memorize this one): RLQ, ~⅓ of the way from the anterior superior iliac spine toward the umbilicus. Tenderness → inflamed appendix.</li>
+      <li><span class="term">Psoas sign</span>: extend the right hip/leg backward → pain near an inflamed appendix.</li>
+      <li><span class="term">Obturator sign</span>: flex the right hip &amp; knee, then internally rotate → pelvic/appendiceal irritation.</li>
+      <li><span class="term">Rovsing's sign</span>: press-and-release the LLQ → pain felt in the <span class="term">RLQ</span> is positive. (Recording said "Roth" — the real name is Rovsing.)</li>
+      <li><span class="term">Rebound tenderness</span>: press slowly, release quickly → more pain on release = peritoneal irritation. Do it gently and only once.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Referred pain patterns <span class="star">⭐</span></h3>
+    <div class="scrollx"><table class="mini">
+      <tr><th>Organ</th><th>Where pain refers</th></tr>
+      <tr><td>Liver</td><td>RUQ, dull</td></tr>
+      <tr><td>Esophagus</td><td>Behind the sternum</td></tr>
+      <tr><td>Gastric ulcer</td><td>Shoulder</td></tr>
+      <tr><td>Gallbladder</td><td>RUQ, after meals</td></tr>
+      <tr><td>Appendix</td><td>RLQ</td></tr>
+      <tr><td>Pancreas</td><td>Mid-scapular, sharp/shooting</td></tr>
+      <tr><td>Kidneys</td><td>Flank, below the ribs</td></tr>
+      <tr><td>Small intestine</td><td>Diffuse</td></tr>
+      <tr><td>Colon</td><td>Cramping / colicky, bloating</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Hernias, ascites &amp; aging</h3>
+    <ul>
+      <li><span class="term">Hernia</span>: fat or intestine pushes through a weak spot in the abdominal wall (umbilical, epigastric, incisional, inguinal); may need surgery.</li>
+      <li>Aging: relaxed wall muscle, delayed gastric emptying, less gastric acid, more gallstones, impaired drug metabolism, frequent constipation.</li>
+      <li>Constipation drivers: low activity, low fluid, low fiber, meds (narcotics), IBS, obstruction, hypothyroidism, poor toileting access.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="abdomen">
+    <h3><span class="pill">Abdomen</span> Bristol Stool Scale <span class="star">⭐</span></h3>
+    <div class="mnem"><span class="lbl">Mnemonic</span><b>"1–2 hard as stone · 3–4–5 in the zone · 6–7 run for the throne."</b> Goal is types 3–5.</div>
+    <ul>
+      <li>Types 1–2: hard → too much water absorbed → constipation/dehydration.</li>
+      <li>Types 6–7: diarrhea → fluid &amp; electrolyte loss risk.</li>
+      <li>The <span class="term">RN</span> assesses/documents stool (an assessment task); the aide may only <span class="term">report</span> that a BM happened. Chart by Bristol number or descriptor per the EHR.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== RECTUM / PROSTATE ===================== -->
+<section class="grp" data-cat="rectum" style="--cc:var(--c-rectum)">
+  <h2>Rectum, Anus &amp; Prostate</h2>
+  <div class="meta">Week 8 · Jarvis Ch. 26</div>
+
+  <div class="card" data-cat="rectum">
+    <h3><span class="pill">Rectum</span> Structure</h3>
+    <ul>
+      <li>The <span class="term">anal canal</span> is the GI outlet, lined with modified skin (no hair/sebaceous glands), with mucus glands and internal + external sphincters.</li>
+      <li>Anal columns (columns of Morgagni) each hold an artery and vein.</li>
+      <li>The <span class="term">rectum</span> is the distal large intestine; the sigmoid connects to it and it ends at the anal canal. Interior has three valves of Houston.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="rectum">
+    <h3><span class="pill">Rectum</span> Nursing scope &amp; the DRE <span class="star">⭐</span></h3>
+    <ul>
+      <li>Nurses inspect the external area and may insert a <span class="term">rectal tube</span> — but do <span class="term">not</span> perform a digital rectal exam with their own finger.</li>
+      <li>A DRE assesses the prostate for: <span class="term">size, shape, surface, consistency, mobility, sensitivity</span>. Positions: left lateral, standing/bending, or lithotomy.</li>
+      <li>In trauma: rectal tone helps evaluate spinal cord injury; blood may signal internal injury.</li>
+      <li>Rectal tubes collect diarrhea, but prolonged pressure damages the rectum/sphincter and can cause incontinence.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic — DRE findings</span><b>"Some Shapes Sit Comfortably, Mostly Sensitive"</b> = Size, Shape, Surface, Consistency, Mobility, Sensitivity.</div>
+  </div>
+
+  <div class="card" data-cat="rectum">
+    <h3><span class="pill">Rectum</span> Anorectal abnormalities</h3>
+    <ul>
+      <li>A <span class="term">fissure/fistula</span> is a tract connecting the rectum to another structure or the outside; stool reaching the urinary tract can cause infection.</li>
+      <li><span class="term">Hemorrhoids</span> are internal or external — <span class="term">streaky red</span> stool suggests hemorrhoidal bleeding; bright/dark red throughout suggests a GI bleed.</li>
+      <li>Others: pilonidal cyst/sinus, pruritus ani, fecal impaction, abscess, rectal polyp, carcinoma.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="rectum">
+    <h3><span class="pill">Rectum</span> Prostate gland</h3>
+    <ul>
+      <li>Sits below the bladder and in front of the rectal wall; the urethra runs through it, so enlargement narrows the urethra and makes voiding harder.</li>
+      <li>Two seminal vesicles secrete fructose-rich fluid (nourishes sperm); Cowper's (bulbourethral) glands add clear mucus that neutralizes acidic urine.</li>
+      <li>Abnormalities: benign prostatic hypertrophy (BPH), prostatitis, carcinoma.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="rectum">
+    <h3><span class="pill">Rectum</span> Screening ages <span class="star">⭐</span></h3>
+    <div class="scrollx"><table class="mini">
+      <tr><th>Screen</th><th>Start</th></tr>
+      <tr><td>PSA (prostate)</td><td>Early-detection blood test</td></tr>
+      <tr><td>FIT (fecal immunochemical)</td><td>Age 40</td></tr>
+      <tr><td>Colonoscopy (colorectal)</td><td>Age 50</td></tr>
+      <tr><td>HPV vaccine (men)</td><td>Under age 26</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ===================== REPRODUCTIVE / URINARY ===================== -->
+<section class="grp" data-cat="repro" style="--cc:var(--c-repro)">
+  <h2>Reproductive &amp; Urinary</h2>
+  <div class="meta">Week 8 · Jarvis Ch. 25 (male) &amp; 27 (female)</div>
+
+  <div class="card" data-cat="repro">
+    <h3><span class="pill">Male</span> Anatomy</h3>
+    <ul>
+      <li>External: penis, scrotum. Internal: testes, epididymis, vas deferens. Accessory glands: prostate, seminal vesicles, bulbourethral.</li>
+      <li>The <span class="term">scrotum</span> keeps testes below body temperature — sperm develop best when cooler; the cremaster muscle adjusts scrotal size to temperature.</li>
+      <li>Left testis hangs lower (longer left spermatic cord).</li>
+      <li>The <span class="term">epididymis</span> stores sperm and links testis to the ducts; <span class="term">epididymitis</span> is an infection that can be sexually transmitted.</li>
+      <li>The male urethra serves both urinary and reproductive functions.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="repro">
+    <h3><span class="pill">Male</span> Testicular self-exam (TSE) <span class="star">⭐</span></h3>
+    <div class="mnem"><span class="lbl">Mnemonic — TSE</span><b>T</b> = Timing (monthly) · <b>S</b> = Shower (warm water relaxes the sac) · <b>E</b> = Examine &amp; report changes.</div>
+    <ul>
+      <li>Teach every male from ~13–14 through adulthood; roll each testis gently to find masses.</li>
+      <li>Early detection improves when he knows his own normal consistency.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="repro">
+    <h3><span class="pill">Female</span> Anatomy &amp; UTI risk</h3>
+    <ul>
+      <li>External: mons pubis, labia majora/minora, clitoris, vestibule, urethral meatus, Skene's glands, vaginal orifice, Bartholin's glands.</li>
+      <li>Internal: vagina, cervix, uterus, fallopian tubes, fornices.</li>
+      <li>The female urethra is <span class="term">shorter</span> than the male's → higher UTI risk.</li>
+      <li>The <span class="term">cervix</span> guards the vaginal canal from the uterus.</li>
+      <li>The <span class="term">uterus</span> supports fetal development; an <span class="term">ectopic pregnancy</span> implants outside the uterus and generally can't survive.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="repro">
+    <h3><span class="pill">Female</span> Pap smear &amp; pelvic exam <span class="star">⭐</span></h3>
+    <ul>
+      <li>A Pap collects <span class="term">cervical</span> cells to screen for <span class="term">cervical cancer</span> — not endometrial or ovarian, and not vaginal-canal cells.</li>
+      <li>Don't collect during menses or heavy infectious discharge; patient should avoid douching, intercourse, or inserting anything for 24 h before; obtain the Pap <span class="term">before</span> other specimens.</li>
+      <li><span class="term">Lithotomy</span> position gives access to the vaginal canal and rectum for exam/delivery.</li>
+      <li>Nurses don't assess the cervix directly. When a male clinician does a pelvic exam, a female staff member must be present and documented.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="repro">
+    <h3><span class="pill">Female</span> Menstrual history &amp; prevention levels <span class="star">⭐</span></h3>
+    <ul>
+      <li>Ask: age at first period, LMP, frequency/cycle/duration, flow (pads/tampons), clotting, pain &amp; impact on ADLs, spotting, associated symptoms — because blood loss raises <span class="term">anemia</span> risk.</li>
+      <li>Screening (like a Pap) is usually <span class="term">secondary prevention</span>; screening someone who already has the disease can be <span class="term">tertiary</span>.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic — prevention</span><b>1° = Prevent · 2° = Screen/detect early · 3° = Manage existing disease.</b></div>
+  </div>
+
+  <div class="card" data-cat="repro">
+    <h3><span class="pill">Urinary</span> Urinalysis &amp; urine color</h3>
+    <ul>
+      <li>Urinalysis can check specific gravity, glucose, ketones, protein, blood, WBCs, nitrates, electrolytes, drugs.</li>
+      <li><span class="term">Creatinine</span> is a stable marker of kidney function (muscle-metabolism end product); <span class="term">BUN</span> (protein-metabolism end product) varies with many factors.</li>
+      <li>Dark urine usually = more solutes, but <span class="term">bright yellow</span> can just be vitamins or energy drinks — not always dehydration. Color also shifts with meds, foods, contrast dye.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== BREAST / LYMPHATICS ===================== -->
+<section class="grp" data-cat="breast" style="--cc:var(--c-breast)">
+  <h2>Breasts, Axillae &amp; Lymphatics</h2>
+  <div class="meta">Weeks 7 &amp; 8 · Jarvis Ch. 18</div>
+
+  <div class="card" data-cat="breast">
+    <h3><span class="pill">Breast</span> Anatomy &amp; lymphatics <span class="star">⭐</span></h3>
+    <ul>
+      <li>The <span class="term">tail of Spence</span> (upper outer quadrant, toward the axilla) is the most common tumor site because of its lymphatic tissue.</li>
+      <li>Four axillary node groups: central, pectoral (anterior), subscapular (posterior), lateral → drain up to infraclavicular and supraclavicular nodes.</li>
+      <li>Breast cancer occurs in men and women.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic</span><b>"Spence is tense"</b> — the upper-outer tail of Spence catches most tumors.</div>
+  </div>
+
+  <div class="card" data-cat="breast">
+    <h3><span class="pill">Breast</span> Inspection findings</h3>
+    <ul>
+      <li>Assess size, shape, symmetry, skin, nipple position/discharge, retraction, dimpling, edema, fixation, masses, axillary nodes.</li>
+      <li>Slight asymmetry is normal; it's concerning when paired with fixation, dimpling, retraction, or a new change.</li>
+      <li>Nipples usually protrude; some are flat or inverted (normal if long-standing and can be everted). Note scaling, fissures, ulceration, bleeding, discharge. Supernumerary nipple is a normal variant.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="breast">
+    <h3><span class="pill">Breast</span> Palpation technique</h3>
+    <ul>
+      <li>Cover the whole breast and axilla with the <span class="term">finger pads</span>, using light, medium, and deep pressure.</li>
+      <li>Patterns: <span class="term">vertical strip</span> (preferred), spokes-on-a-wheel, or concentric circles.</li>
+      <li>If she found a lump herself, examine the <span class="term">unaffected</span> breast first to learn her normal.</li>
+      <li>Describe a lump by: location (clock face + cm from nipple), size (3 dimensions), shape, consistency, mobility, distinctness, nipple changes, overlying skin, tenderness, lymphadenopathy.</li>
+      <li>A new lump always needs physician evaluation — even if painless or seemingly hormonal.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="breast">
+    <h3><span class="pill">Breast</span> Self-exam (BSE) teaching</h3>
+    <ul>
+      <li>Still taught, though mammography/ultrasound have made it less effective as early screening.</li>
+      <li>Monthly, at the <span class="term">same point in the cycle</span>; postmenopausal patients pick the same day each month.</li>
+      <li>Teach in front of a mirror, then in the shower (soap aids gliding), then supine.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="breast">
+    <h3><span class="pill">Breast</span> Abnormal signs of retraction/inflammation <span class="star">⭐</span></h3>
+    <ul>
+      <li><span class="term">Dimpling</span>, <span class="term">nipple retraction</span>, <span class="term">edema (peau d'orange</span> — orange-peel skin), <span class="term">fixation</span>, irregular masses → all need evaluation.</li>
+      <li><span class="term">Gynecomastia</span> = benign male breast-tissue enlargement (a smooth, firm, movable disk) from hormonal imbalance; also seen with anabolic steroids, some meds, cirrhosis. Normal &amp; temporary in puberty.</li>
+      <li>Nipple discharge in a non-pregnant woman or in a man may be pathologic.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic — red flags</span><b>"DENR"</b> = <b>D</b>impling, <b>E</b>dema (peau d'orange), <b>N</b>ipple retraction, <b>R</b>etraction/fixation.</div>
+  </div>
+
+  <div class="card" data-cat="breast">
+    <h3><span class="pill">Breast</span> Post-mastectomy precautions <span class="star">⭐</span></h3>
+    <div class="clin"><span class="lbl">Nothing on that arm</span>After a unilateral mastectomy, avoid <b>BP cuffs, tourniquets, and IV/needle sticks</b> on the affected side — impaired lymph drainage worsens edema. (Guidance may differ after newer or bilateral procedures.)</div>
+  </div>
+</section>
+
+<!-- ===================== MENTAL STATUS ===================== -->
+<section class="grp" data-cat="mental" style="--cc:var(--c-mental)">
+  <h2>Mental Status Assessment</h2>
+  <div class="meta">Week 10 · Jarvis Ch. 5</div>
+
+  <div class="card" data-cat="mental">
+    <h3><span class="pill">Mental</span> What it is &amp; the ABCT frame <span class="star">⭐</span></h3>
+    <ul>
+      <li>Mental status = a person's emotional and cognitive functioning; it can't be measured directly like heart sounds — you infer it from <span class="term">behavior</span>.</li>
+      <li>Four headings: <span class="term">Appearance, Behavior, Cognition, Thought process (A-B-C-T)</span>.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic — ABCT</span><b>A</b>ppearance (posture, dress, grooming/hygiene) · <b>B</b>ehavior (LOC, facial expression, speech, mood/affect) · <b>C</b>ognition (orientation, attention, memory) · <b>T</b>hought process &amp; content.</div>
+  </div>
+
+  <div class="card" data-cat="mental">
+    <h3><span class="pill">Mental</span> Cognition &amp; orientation</h3>
+    <ul>
+      <li>Orientation ×4: <span class="term">time, place, person, situation</span>.</li>
+      <li><span class="term">Recent memory</span> = 24-hour recall; <span class="term">remote memory</span> = long-term (e.g., first job).</li>
+      <li>Watch attention span and flight of ideas.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="mental">
+    <h3><span class="pill">Mental</span> Four Unrelated Words Test</h3>
+    <ul>
+      <li>A sensitive, valid memory test that avoids unverifiable recall.</li>
+      <li>Pick 4 words with different sounds/meanings; have the patient repeat them to confirm understanding.</li>
+      <li>Ask for recall at <span class="term">5, 10, and 30 minutes</span>. Normal under age 60 = 3–4 words at each interval.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="mental">
+    <h3><span class="pill">Mental</span> Aphasia</h3>
+    <ul>
+      <li>Loss of the ability to speak/write coherently or understand language, often after a CVA (stroke).</li>
+      <li>Test comprehension (name objects), reading (mind education level), and writing (a made-up sentence — note coherence, spelling, parts of speech).</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="mental">
+    <h3><span class="pill">Mental</span> Anxiety &amp; depression screens <span class="star">⭐</span></h3>
+    <ul>
+      <li><span class="term">GAD-7</span>: 7-item anxiety scale; higher = greater likelihood; first 2 items are core anxiety; ≥3 suggests diagnosis.</li>
+      <li><span class="term">PHQ-2</span>: 2 questions (depressed mood + anhedonia) → gateway to the full <span class="term">PHQ-9</span> (9 items, higher = more impairment).</li>
+      <li>Anxiety and depression are the two most common mental-health disorders in patients seeking care.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic — match the tool</span><b>GAD = "Got Anxiety? 7." · PHQ-2 opens the door, PHQ-9 tells you more.</b></div>
+  </div>
+
+  <div class="card" data-cat="mental">
+    <h3><span class="pill">Mental</span> Suicide screening <span class="star">⭐</span></h3>
+    <ul>
+      <li>Screen if the person voices sadness, hopelessness, despair, or grief.</li>
+      <li>Start with general questions and go deeper on affirmative answers.</li>
+      <li>The risk of <span class="term">skipping</span> the question is far greater than asking — you may be the only professional to catch the cue. Share concerns with a mental-health professional.</li>
+    </ul>
+    <div class="clin"><span class="lbl">Note</span>This section covers screening as taught in class. If any of this is affecting you personally, it's worth reaching out to someone you trust or a professional — say the word and I can point you to support resources.</div>
+  </div>
+
+  <div class="card" data-cat="mental">
+    <h3><span class="pill">Mental</span> MMSE vs. MoCA <span class="star">⭐</span></h3>
+    <div class="scrollx"><table class="mini">
+      <tr><th></th><th>MMSE</th><th>MoCA</th></tr>
+      <tr><td>Focus</td><td>Cognition only</td><td>More cognitive domains</td></tr>
+      <tr><td>Items / time</td><td>11 items, 5–10 min</td><td>~10 min</td></tr>
+      <tr><td>Normal</td><td>Avg 27; 24–30 = no impairment</td><td>/30; ≥26 = normal</td></tr>
+      <tr><td>Best at</td><td>Dementia &amp; delirium, serial tracking</td><td>Mild cognitive impairment (more sensitive)</td></tr>
+    </table></div>
+    <div class="mnem"><span class="lbl">Mnemonic</span><b>"MoCA is more" — MoCA catches Mild impairment (≥26); MMSE ≥24 is the older standard.</b></div>
+  </div>
+
+  <div class="card" data-cat="mental">
+    <h3><span class="pill">Mental</span> Florida Baker Act</h3>
+    <ul>
+      <li>Florida law allowing involuntary examination/hold for someone who may be a danger to self or others due to mental illness.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== SUBSTANCE USE ===================== -->
+<section class="grp" data-cat="subst" style="--cc:var(--c-subst)">
+  <h2>Substance Use</h2>
+  <div class="meta">Week 10 · Jarvis Ch. 6</div>
+
+  <div class="card" data-cat="subst">
+    <h3><span class="pill">Substance</span> Alcohol &amp; drug basics</h3>
+    <ul>
+      <li>Alcohol has <span class="term">dose-related</span> effects — more drinking, more risk; many meds are alcohol-interactive.</li>
+      <li>Dependence raises risk of ED visits, ICU admissions, and sepsis; binge drinking adds risk.</li>
+      <li>Illicit categories: marijuana/hashish, cocaine, heroin, hallucinogens, inhalants, prescription drugs used non-medically.</li>
+      <li>Drug overdose deaths now exceed motor-vehicle deaths; opioid crisis drivers include more pain prescriptions, marketing, and downplayed addiction risk.</li>
+      <li>Diagnosis gold standard = <span class="term">DSM-5</span>; alcohol problems are widely underdiagnosed.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="subst">
+    <h3><span class="pill">Substance</span> Match the screen to the patient <span class="star">⭐</span></h3>
+    <div class="scrollx"><table class="mini">
+      <tr><th>Tool</th><th>Population</th><th>Key detail</th></tr>
+      <tr><td><b>AUDIT</b></td><td>General, adolescents, older adults</td><td>3 domains; max 40; low gender/culture bias</td></tr>
+      <tr><td><b>AUDIT-C</b></td><td>Acute / critical care</td><td>Shorter form; max 12</td></tr>
+      <tr><td><b>TWEAK</b></td><td>Women (esp. pregnant)</td><td>At-risk drinking</td></tr>
+      <tr><td><b>SMAST-G</b></td><td>Older adults</td><td>10 yes/no; ≥2 "yes" = problem</td></tr>
+      <tr><td><b>CIWA</b></td><td>Withdrawal severity</td><td>See card below</td></tr>
+    </table></div>
+    <div class="mnem"><span class="lbl">Mnemonic — who gets what</span><b>T</b>WEAK for <b>T</b>wo (pregnant women) · SMAST-<b>G</b> for <b>G</b>randparents (older adults) · AUDIT-<b>C</b> for <b>C</b>ritical care · CIWA for <b>C</b>oming off (withdrawal).</div>
+  </div>
+
+  <div class="card" data-cat="subst">
+    <h3><span class="pill">Substance</span> TWEAK questions <span class="star">⭐</span></h3>
+    <div class="mnem"><span class="lbl">Mnemonic — TWEAK</span><b>T</b>olerance (how many drinks?) · <b>W</b>orry (have others complained?) · <b>E</b>ye-opener (morning drink?) · <b>A</b>mnesia (blackouts?) · <b>K</b>ut down (feel the need to?).</div>
+  </div>
+
+  <div class="card" data-cat="subst">
+    <h3><span class="pill">Substance</span> CIWA (alcohol withdrawal) <span class="star">⭐</span></h3>
+    <ul>
+      <li>Most sensitive objective withdrawal scale; 10 measured criteria + a composite score (includes vital signs and O₂ sat).</li>
+      <li>Score <span class="term">0–7</span> → monitor every 4 hours. All scores under 8 for 72 hours → can discontinue.</li>
+      <li>Trended scores guide the level of monitoring.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== VIOLENCE / ABUSE ===================== -->
+<section class="grp" data-cat="violence" style="--cc:var(--c-violence)">
+  <h2>Violence &amp; Abuse</h2>
+  <div class="meta">Week 10 · Jarvis Ch. 7</div>
+
+  <div class="card" data-cat="violence">
+    <h3><span class="pill">Violence</span> Mandatory reporting</h3>
+    <ul>
+      <li>Nurses are <span class="term">mandatory reporters</span>; know your state's laws and reporting requirements.</li>
+      <li>A <span class="term">SANE</span> nurse (Sexual Assault Nurse Examiner) is specially trained to care for sexual-assault survivors.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="violence">
+    <h3><span class="pill">Violence</span> Intimate partner violence (IPV) — 4 categories <span class="star">⭐</span></h3>
+    <div class="mnem"><span class="lbl">Mnemonic — IPV types</span><b>"PSSP"</b> = <b>P</b>hysical · <b>S</b>exual · <b>S</b>talking · <b>P</b>sychological aggression. (Includes teen dating violence; sexting/cyber abuse can be a route.)</div>
+  </div>
+
+  <div class="card" data-cat="violence">
+    <h3><span class="pill">Violence</span> IPV assessment &amp; screening tools <span class="star">⭐</span></h3>
+    <ul>
+      <li>Use open-ended questions; interview the person <span class="term">separately</span> from the possible perpetrator.</li>
+      <li>Listen for cues or stories that don't match the injury.</li>
+      <li>Screens: a single question ("Do you feel safe at home?"), or standardized tools <span class="term">HITS</span> (4 items) and <span class="term">STaT</span> (3 items) — USPSTF prefers standardized tools.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="violence">
+    <h3><span class="pill">Violence</span> Child abuse &amp; neglect (CAPTA)</h3>
+    <ul>
+      <li>Defined by the Child Abuse Prevention and Treatment Act (now includes sex/human trafficking and protections for infants with Fetal Alcohol Spectrum Disorder).</li>
+      <li>Four types: <span class="term">Neglect, Physical, Sexual, Emotional</span>.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic — child abuse types</span><b>"NPSE"</b> = Neglect · Physical · Sexual · Emotional.</div>
+  </div>
+
+  <div class="card" data-cat="violence">
+    <h3><span class="pill">Violence</span> Older-adult abuse <span class="star">⭐</span></h3>
+    <ul>
+      <li>Underreported; about <span class="term">60%</span> is by a family member.</li>
+      <li>Five forms: <span class="term">Physical, Sexual, Psychological/Emotional, Neglect, Financial exploitation</span>.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic — elder abuse</span><b>"PSPNF"</b> = Physical · Sexual · Psychological · Neglect · Financial.</div>
+  </div>
+
+  <div class="card" data-cat="violence">
+    <h3><span class="pill">Violence</span> Objective data &amp; health effects</h3>
+    <ul>
+      <li>Full-body visual exam — abuse may hide under clothing; look for <span class="term">bruises in different stages of healing</span>, patterns shaped like objects, or significant injury in a non-mobile person.</li>
+      <li>Use consistent, accurate terminology; baseline labs: CBC w/ platelets, basic chemistries, LFTs, coagulation panel, UA.</li>
+      <li>Health effects: gynecologic/obstetric harm (preterm, low birth weight, perinatal death), depression, suicide, PTSD, substance use; abused children face lasting health and developmental impacts.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== NUTRITION ===================== -->
+<section class="grp" data-cat="nutrition" style="--cc:var(--c-nutrition)">
+  <h2>Nutritional Assessment</h2>
+  <div class="meta">Week 10 · Jarvis Ch. 12</div>
+
+  <div class="card" data-cat="nutrition">
+    <h3><span class="pill">Nutrition</span> Nutritional status <span class="star">⭐</span></h3>
+    <ul>
+      <li>Nutritional status = balance between nutrient <span class="term">intake</span> and <span class="term">requirements</span>.</li>
+      <li><span class="term">Optimal</span>: intake meets daily needs + extra demands (growth, pregnancy, illness).</li>
+      <li><span class="term">Under-nutrition</span>: reserves depleted / intake too low.</li>
+      <li><span class="term">Over-nutrition</span>: excess calories, sodium, fat.</li>
+      <li>Affected by physiologic, psychosocial, developmental, cultural, and economic factors.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="nutrition">
+    <h3><span class="pill">Nutrition</span> Screening vs. full assessment</h3>
+    <ul>
+      <li>Screening parameters: weight &amp; weight history, risk conditions, diet info, routine labs.</li>
+      <li>Anyone flagged gets a full assessment: dietary history + clinical info, physical exam (clinical signs + anthropometrics), and labs.</li>
+      <li>Clinical deficiency signs show up first where tissue turns over fast: <span class="term">skin, hair, mouth, lips, eyes</span> — but they're late signs, so labs confirm.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="nutrition">
+    <h3><span class="pill">Nutrition</span> Dietary intake tools</h3>
+    <div class="mnem"><span class="lbl">Mnemonic — the "R-F-D" recalls</span><b>R</b>ecall (24-hour) · <b>F</b>requency questionnaire · <b>D</b>iary/record (usually 3 days) · plus direct observation.</div>
+    <ul>
+      <li>Guideline references: ChooseMyPlate, Dietary Guidelines, Dietary Reference Intakes (DRIs).</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="nutrition">
+    <h3><span class="pill">Nutrition</span> Anthropometric measures <span class="star">⭐</span></h3>
+    <ul>
+      <li><span class="term">BMI</span>: practical marker of weight-for-height; flags obesity or protein-calorie malnutrition.</li>
+      <li><span class="term">Waist-to-hip ratio</span> &amp; <span class="term">waist circumference</span>: body-fat distribution / health risk (WC alone predicts risk).</li>
+      <li>Percent usual body weight (formula); arm span when height is hard to measure.</li>
+      <li>Serial measures weekly/biweekly/monthly per population.</li>
+      <li>General-appearance clues: obese, cachectic (fat + muscle wasting), or edematous.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== CULTURAL / SPIRITUAL ===================== -->
+<section class="grp" data-cat="culture" style="--cc:var(--c-culture)">
+  <h2>Cultural &amp; Spiritual Assessment</h2>
+  <div class="meta">Week 10 · Jarvis Ch. 2</div>
+
+  <div class="card" data-cat="culture">
+    <h3><span class="pill">Culture</span> Core concepts &amp; terms <span class="star">⭐</span></h3>
+    <ul>
+      <li><span class="term">Culture</span> = shared knowledge, beliefs, customs, skills; learned, shared, adaptive, and ever-changing.</li>
+      <li><span class="term">Ethnicity</span> = social group with shared traits; <span class="term">ethnic identity</span> = self-identifying with that group.</li>
+      <li><span class="term">Acculturation</span> = adopting the majority culture. <span class="term">Assimilation</span> = one-directional, more forced — losing most of one's own. <span class="term">Biculturalism/integration</span> = reciprocal change while keeping identity. <span class="term">Acculturative stress</span> = the health toll of adapting.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic</span><b>Acculturation = Add · Assimilation = Abandon · Biculturalism = Both.</b></div>
+  </div>
+
+  <div class="card" data-cat="culture">
+    <h3><span class="pill">Culture</span> Health disparities &amp; SDOH <span class="star">⭐</span></h3>
+    <ul>
+      <li><span class="term">Social Determinants of Health</span> affect a person from preconception to death.</li>
+      <li>Evidence says <span class="term">poverty has the greatest influence</span> on health status.</li>
+      <li>All racial/ethnic minority groups exceed the national poverty level; low education/income correlate with disability risk.</li>
+    </ul>
+  </div>
+
+  <div class="card" data-cat="culture">
+    <h3><span class="pill">Culture</span> Folk healers &amp; competence levels</h3>
+    <ul>
+      <li>Cultures have their own healers (e.g., curandero, shaman/medicine woman, herbalist, braucher). Healing isn't complete unless body and mind are healed.</li>
+      <li>Progression: culturally <span class="term">sensitive</span> (has knowledge) → <span class="term">appropriate</span> (applies it to outcomes) → <span class="term">competent</span> (applies it universally to all care contexts).</li>
+      <li>No single tool fits all — don't stereotype; listen and learn.</li>
+    </ul>
+    <div class="mnem"><span class="lbl">Mnemonic — competence ladder</span><b>Sensitive → Appropriate → Competent</b> ("Sense it, Apply it, Master it").</div>
+  </div>
+
+  <div class="card" data-cat="culture">
+    <h3><span class="pill">Culture</span> Spiritual assessment frameworks <span class="star">⭐</span></h3>
+    <ul>
+      <li><span class="term">Spirituality</span> = belief in something larger than oneself; <span class="term">religion</span> = an organized shared belief system. They overlap but don't have to co-exist.</li>
+    </ul>
+    <div class="scrollx"><table class="mini">
+      <tr><th>FICA</th><th>HOPE</th></tr>
+      <tr><td><b>F</b>aith/belief · <b>I</b>mportance · <b>C</b>ommunity · <b>A</b>ddress in care</td>
+          <td><b>H</b>ope/meaning sources · <b>O</b>rganized religion · <b>P</b>ersonal practice · <b>E</b>ffects on care/end-of-life</td></tr>
+    </table></div>
+    <div class="mnem"><span class="lbl">Mnemonic</span><b>FICA</b> for a quick faith check; <b>HOPE</b> when you need meaning + end-of-life; <b>SPIRIT</b> is the most detailed (adds rituals, restrictions, terminal planning).</div>
+  </div>
+</section>
+
+<p class="foot">Built from your Week 7, 8 &amp; 10 lecture decks and the abbreviated-assessment notes. Where Prof. Marpole gave a course-specific convention (quadrant order, bowel-sound ranges, clubbing/measurement notes), this guide uses <em>her</em> version — follow it on the exam. Not a substitute for the Jarvis text.</p>
+</div>
+
+<button class="themebtn" id="themebtn">◑ Theme</button>
+
+<script>
+(function(){
+  var search   = document.getElementById('search');
+  var filters  = document.getElementById('filters');
+  var cards    = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var groups   = Array.prototype.slice.call(document.querySelectorAll('section.grp'));
+  var catBtns  = Array.prototype.slice.call(document.querySelectorAll('.filt[data-cat]'));
+  var hiBtn    = document.getElementById('hiOnly');
+  var countEl  = document.getElementById('count');
+  var noresult = document.getElementById('noresult');
+
+  // store original HTML for highlight reset
+  cards.forEach(function(c){ c.dataset.html = c.innerHTML; c.dataset.text = c.textContent.toLowerCase(); });
+
+  function activeCats(){
+    var s = {};
+    catBtns.forEach(function(b){ s[b.dataset.cat] = b.getAttribute('aria-pressed') === 'true'; });
+    return s;
+  }
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  function highlight(card, q){
+    // reset first
+    card.innerHTML = card.dataset.html;
+    if(!q) return;
+    var rx = new RegExp('('+esc(q)+')','gi');
+    var walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT, null);
+    var nodes = [], n;
+    while((n = walker.nextNode())){ nodes.push(n); }
+    nodes.forEach(function(node){
+      if(node.parentNode && /SCRIPT|STYLE/.test(node.parentNode.nodeName)) return;
+      if(rx.test(node.nodeValue)){
+        var span = document.createElement('span');
+        span.innerHTML = node.nodeValue.replace(rx,'<mark>$1</mark>');
+        node.parentNode.replaceChild(span, node);
+      }
+    });
+  }
+
+  function apply(){
+    var q = search.value.trim().toLowerCase();
+    var cats = activeCats();
+    var hiOnly = hiBtn.getAttribute('aria-pressed') === 'true';
+    var shown = 0;
+
+    cards.forEach(function(card){
+      var cat = card.dataset.cat;
+      var matchCat = cats[cat];
+      var matchQ = !q || card.dataset.text.indexOf(q) !== -1;
+      var matchHi = !hiOnly || /⭐/.test(card.dataset.html);
+      var show = matchCat && matchQ && matchHi;
+      card.style.display = show ? '' : 'none';
+      if(show){ shown++; highlight(card, q); }
+      else { card.innerHTML = card.dataset.html; }
+    });
+
+    // hide empty groups
+    groups.forEach(function(g){
+      var any = g.querySelectorAll('.card:not([style*="display: none"])').length > 0;
+      // recompute robustly
+      var vis = Array.prototype.slice.call(g.querySelectorAll('.card')).some(function(c){ return c.style.display !== 'none'; });
+      g.style.display = vis ? '' : 'none';
+    });
+
+    noresult.style.display = shown === 0 ? 'block' : 'none';
+    countEl.textContent = shown + ' of ' + cards.length + ' cards shown';
+  }
+
+  search.addEventListener('input', apply);
+
+  catBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      apply();
+    });
+  });
+  hiBtn.addEventListener('click', function(){
+    hiBtn.setAttribute('aria-pressed', hiBtn.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+    apply();
+  });
+  document.getElementById('allBtn').addEventListener('click', function(){
+    catBtns.forEach(function(b){ b.setAttribute('aria-pressed','true'); });
+    hiBtn.setAttribute('aria-pressed','false');
+    apply();
+  });
+  document.getElementById('noneBtn').addEventListener('click', function(){
+    catBtns.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+    apply();
+  });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+
+  // theme toggle
+  var tb = document.getElementById('themebtn');
+  var order = ['auto','light','dark'];
+  var idx = 0;
+  tb.addEventListener('click', function(){
+    idx = (idx+1)%order.length;
+    var m = order[idx];
+    if(m === 'auto'){ document.documentElement.removeAttribute('data-theme'); tb.textContent='◑ Auto'; }
+    else { document.documentElement.setAttribute('data-theme', m); tb.textContent = m==='dark' ? '● Dark' : '○ Light'; }
+  });
+
+  apply();
+})();
+</script>
+</body>
+</html>

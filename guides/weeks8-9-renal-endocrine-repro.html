@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weeks 8–9 Study Guide · Renal, Endocrine & Reproductive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f7f9; --card:#ffffff; --ink:#15191e; --ink-soft:#4a545e;
+    --line:#e2e6ea; --line-strong:#cdd4da;
+    --shadow:0 1px 2px rgba(20,25,30,.04), 0 3px 10px rgba(20,25,30,.05);
+
+    --renal:#0e7c86;      --renal-tint:#e6f4f5;   --renal-ink:#0a5259;
+    --endo:#b26a00;       --endo-tint:#faf0dd;    --endo-ink:#7d4a00;
+    --repro:#b5305f;      --repro-tint:#fbe7ee;   --repro-ink:#842244;
+    --sti:#5b4fb0;        --sti-tint:#ece9f8;     --sti-ink:#413a80;
+
+    --emerg:#c0392b;      --emerg-tint:#fbe6e3;
+    --gold:#a5730a;       --gold-tint:#f7eecf;
+    --fund:#1f2937;       --fund-tint:#e7eaee;
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --paper:#0f1417; --card:#171d22; --ink:#e7ebee; --ink-soft:#a3adb6;
+      --line:#283037; --line-strong:#39434c;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.35);
+      --renal:#3fb9c4; --renal-tint:#11282b; --renal-ink:#8fe0e7;
+      --endo:#e0982f; --endo-tint:#2c2210; --endo-ink:#f2c374;
+      --repro:#e56794; --repro-tint:#2c1219; --repro-ink:#f5a5c1;
+      --sti:#9a8ee6; --sti-tint:#1b1830; --sti-ink:#c3bbf3;
+      --emerg:#ef6f61; --emerg-tint:#2e1512; --gold:#d7a53a; --gold-tint:#2a2410;
+      --fund:#c7ced6; --fund-tint:#20262c;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0f1417; --card:#171d22; --ink:#e7ebee; --ink-soft:#a3adb6;
+    --line:#283037; --line-strong:#39434c;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.35);
+    --renal:#3fb9c4; --renal-tint:#11282b; --renal-ink:#8fe0e7;
+    --endo:#e0982f; --endo-tint:#2c2210; --endo-ink:#f2c374;
+    --repro:#e56794; --repro-tint:#2c1219; --repro-ink:#f5a5c1;
+    --sti:#9a8ee6; --sti-tint:#1b1830; --sti-ink:#c3bbf3;
+    --emerg:#ef6f61; --emerg-tint:#2e1512; --gold:#d7a53a; --gold-tint:#2a2410;
+    --fund:#c7ced6; --fund-tint:#20262c;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Public Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+
+  /* ---------- Masthead ---------- */
+  header.mast{padding:44px 0 26px; border-bottom:1px solid var(--line)}
+  .kicker{font-size:.78rem; letter-spacing:.14em; color:var(--ink-soft); font-weight:600; text-transform:uppercase; margin:0 0 10px}
+  h1{
+    font-family:"Newsreader",Georgia,serif; font-weight:500;
+    font-size:clamp(2rem,5vw,3.1rem); line-height:1.05; letter-spacing:-.01em; margin:0 0 12px;
+  }
+  h1 em{font-style:italic; color:var(--renal)}
+  .sub{color:var(--ink-soft); max-width:64ch; margin:0; font-size:1.02rem}
+  .meta{margin-top:16px; display:flex; flex-wrap:wrap; gap:8px 18px; font-size:.86rem; color:var(--ink-soft)}
+  .meta b{color:var(--ink); font-weight:600}
+
+  /* ---------- Sticky control bar ---------- */
+  .controls{position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--paper) 88%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:12px 0}
+  .controls .wrap{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+  .search{flex:1 1 220px; position:relative; min-width:180px}
+  .search input{
+    width:100%; padding:9px 12px 9px 34px; font:inherit; font-size:.95rem;
+    background:var(--card); color:var(--ink); border:1px solid var(--line-strong);
+    border-radius:9px; outline:none;
+  }
+  .search input:focus{border-color:var(--renal); box-shadow:0 0 0 3px var(--renal-tint)}
+  .search svg{position:absolute; left:10px; top:50%; transform:translateY(-50%); width:16px; height:16px; color:var(--ink-soft)}
+  .chips{display:flex; flex-wrap:wrap; gap:6px}
+  .chip{
+    font:inherit; font-size:.82rem; font-weight:600; cursor:pointer; user-select:none;
+    padding:7px 12px; border-radius:999px; border:1px solid var(--line-strong);
+    background:var(--card); color:var(--ink-soft); transition:transform .08s ease;
+  }
+  .chip:active{transform:scale(.96)}
+  .chip .dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:middle; background:currentColor}
+  .chip[data-sys="renal"]{color:var(--renal-ink)} .chip[data-sys="endocrine"]{color:var(--endo-ink)}
+  .chip[data-sys="reproductive"]{color:var(--repro-ink)} .chip[data-sys="sti"]{color:var(--sti-ink)}
+  .chip.on[data-sys="renal"]{background:var(--renal); border-color:var(--renal); color:#fff}
+  .chip.on[data-sys="endocrine"]{background:var(--endo); border-color:var(--endo); color:#fff}
+  .chip.on[data-sys="reproductive"]{background:var(--repro); border-color:var(--repro); color:#fff}
+  .chip.on[data-sys="sti"]{background:var(--sti); border-color:var(--sti); color:#fff}
+  .chip.on .dot{background:#fff}
+  .chip.flag[data-flag="emergency"]{color:var(--emerg)} .chip.flag.on[data-flag="emergency"]{background:var(--emerg); border-color:var(--emerg); color:#fff}
+  .chip.flag[data-flag="highyield"]{color:var(--gold)} .chip.flag.on[data-flag="highyield"]{background:var(--gold); border-color:var(--gold); color:#fff}
+  .btn{font:inherit; font-size:.82rem; font-weight:600; cursor:pointer; padding:7px 12px; border-radius:9px; border:1px solid var(--line-strong); background:var(--card); color:var(--ink-soft)}
+  .count{font-size:.82rem; color:var(--ink-soft); margin-left:auto; white-space:nowrap}
+
+  /* ---------- Section ---------- */
+  section.sys{padding:34px 0 6px; scroll-margin-top:70px}
+  .sys-head{display:flex; align-items:baseline; gap:12px; margin-bottom:4px}
+  .sys-head h2{font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:1.9rem; margin:0; letter-spacing:-.01em}
+  .sys-head .tag{font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:3px 9px; border-radius:6px}
+  .sys-head .ref{color:var(--ink-soft); font-size:.85rem; margin-left:auto}
+  .sys-renal .sys-head h2{color:var(--renal-ink)} .sys-renal .tag{background:var(--renal-tint); color:var(--renal-ink)}
+  .sys-endocrine .sys-head h2{color:var(--endo-ink)} .sys-endocrine .tag{background:var(--endo-tint); color:var(--endo-ink)}
+  .sys-reproductive .sys-head h2{color:var(--repro-ink)} .sys-reproductive .tag{background:var(--repro-tint); color:var(--repro-ink)}
+  .sys-sti .sys-head h2{color:var(--sti-ink)} .sys-sti .tag{background:var(--sti-tint); color:var(--sti-ink)}
+  .sys-desc{color:var(--ink-soft); margin:2px 0 18px; font-size:.95rem; max-width:70ch}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:14px}
+
+  /* ---------- Topic card ---------- */
+  .topic{
+    background:var(--card); border:1px solid var(--line); border-left-width:4px;
+    border-radius:12px; padding:16px 18px; box-shadow:var(--shadow); position:relative;
+  }
+  .topic.renal{border-left-color:var(--renal)} .topic.endocrine{border-left-color:var(--endo)}
+  .topic.reproductive{border-left-color:var(--repro)} .topic.sti{border-left-color:var(--sti)}
+  .topic.span2{grid-column:1 / -1}
+  .t-head{display:flex; align-items:flex-start; gap:8px; margin-bottom:8px}
+  .t-head h3{font-size:1.06rem; font-weight:700; margin:0; line-height:1.25; flex:1}
+  .badges{display:flex; gap:5px; flex-wrap:wrap; margin:-1px 0 9px}
+  .badge{font-size:.66rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:2px 7px; border-radius:5px}
+  .badge.em{background:var(--emerg-tint); color:var(--emerg)}
+  .badge.hy{background:var(--gold-tint); color:var(--gold)}
+  .badge.fn{background:var(--fund-tint); color:var(--fund)}
+  .topic ul{margin:0; padding-left:18px}
+  .topic li{margin:0 0 5px}
+  .topic li::marker{color:var(--ink-soft)}
+  .topic p.lead{margin:0 0 9px; font-weight:600}
+  .k{font-weight:700}
+  .term{font-weight:700; color:var(--ink)}
+
+  /* mnemonic / call-out */
+  .cue{margin:11px 0 2px; padding:9px 12px; border-radius:9px; background:var(--gold-tint); border:1px dashed color-mix(in srgb,var(--gold) 45%, transparent); font-size:.9rem}
+  .cue b{color:var(--gold)}
+  .topic.renal .cue{background:var(--renal-tint); border-color:color-mix(in srgb,var(--renal) 40%, transparent)} .topic.renal .cue b{color:var(--renal)}
+  .topic.endocrine .cue{background:var(--endo-tint); border-color:color-mix(in srgb,var(--endo) 40%, transparent)} .topic.endocrine .cue b{color:var(--endo)}
+  .topic.reproductive .cue{background:var(--repro-tint); border-color:color-mix(in srgb,var(--repro) 40%, transparent)} .topic.reproductive .cue b{color:var(--repro)}
+  .topic.sti .cue{background:var(--sti-tint); border-color:color-mix(in srgb,var(--sti) 40%, transparent)} .topic.sti .cue b{color:var(--sti)}
+  .warn{margin:11px 0 2px; padding:9px 12px; border-radius:9px; background:var(--emerg-tint); border-left:3px solid var(--emerg); font-size:.9rem; font-weight:600; color:var(--ink)}
+
+  /* comparison table */
+  .tblwrap{overflow-x:auto; margin-top:6px; border-radius:8px}
+  table{border-collapse:collapse; width:100%; font-size:.9rem; min-width:420px}
+  th,td{text-align:left; padding:8px 11px; border-bottom:1px solid var(--line); vertical-align:top}
+  thead th{font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); border-bottom:1px solid var(--line-strong)}
+  tbody th{font-weight:600; color:var(--ink-soft); white-space:nowrap}
+  tbody tr:last-child td, tbody tr:last-child th{border-bottom:none}
+
+  /* empty state */
+  #empty{display:none; text-align:center; padding:60px 20px; color:var(--ink-soft)}
+  #empty.show{display:block}
+  #empty h3{font-family:"Newsreader",serif; font-weight:500; font-size:1.4rem; color:var(--ink); margin:0 0 6px}
+
+  footer{margin:44px 0; padding-top:20px; border-top:1px solid var(--line); color:var(--ink-soft); font-size:.85rem}
+
+  @media (max-width:560px){ .grid{grid-template-columns:1fr} .count{width:100%; margin:2px 0 0; text-align:left} }
+
+  /* ---------- Print ---------- */
+  @media print{
+    :root{--paper:#fff; --card:#fff; --shadow:none}
+    .controls, .toolbtns, .themebtn{display:none !important}
+    body{font-size:11pt}
+    .topic{break-inside:avoid; box-shadow:none; border:1px solid #ccc}
+    section.sys{padding-top:18px}
+    .grid{display:block}
+    .topic{margin-bottom:10px}
+    header.mast{padding-top:0}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="kicker">NUR 311 Pathophysiology · Cohort 38 · Weeks 8–9</p>
+    <h1>Renal, Endocrine &amp; <em>Reproductive</em> Systems</h1>
+    <p class="sub">A recognition-pattern study guide: connect each disorder to the affected organ or hormone, then separate it by its characteristic labs and symptoms. Search any term, filter by system, or narrow to the high-yield and emergency topics.</p>
+    <div class="meta">
+      <span><b>Ch. 18</b> Urinary/Renal</span>
+      <span><b>Ch. 16</b> Endocrine</span>
+      <span><b>Ch. 19</b> Reproductive &amp; STIs</span>
+      <span>Prof. Marpole</span>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="q" type="search" placeholder="Search topics, labs, symptoms…" autocomplete="off" aria-label="Search study guide">
+    </div>
+    <div class="chips" id="sysChips">
+      <button class="chip on" data-sys="renal"><span class="dot"></span>Renal</button>
+      <button class="chip on" data-sys="endocrine"><span class="dot"></span>Endocrine</button>
+      <button class="chip on" data-sys="reproductive"><span class="dot"></span>Reproductive</button>
+      <button class="chip on" data-sys="sti"><span class="dot"></span>STIs</button>
+    </div>
+    <div class="chips" id="flagChips">
+      <button class="chip flag" data-flag="highyield">★ High-yield</button>
+      <button class="chip flag" data-flag="emergency">⚠ Emergencies</button>
+    </div>
+    <span class="toolbtns"><button class="btn themebtn" id="theme">◐ Theme</button>
+    <button class="btn" id="print">⎙ Print</button></span>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main class="wrap" id="main">
+
+<!-- ============================= RENAL ============================= -->
+<section class="sys sys-renal" id="renal">
+  <div class="sys-head"><h2>Renal &amp; Urinary System</h2><span class="tag">Chapter 18</span><span class="ref">Week 8</span></div>
+  <p class="sys-desc">The kidneys filter waste, balance fluid/electrolytes and acid–base, and help control blood pressure. Read every disorder through three numbers: <b>creatinine</b>, <b>BUN</b>, and <b>GFR</b>, plus what shows up in the urine.</p>
+  <div class="grid">
+
+    <article class="topic renal span2" data-sys="renal" data-flags="fundamental">
+      <div class="t-head"><h3>Kidney function, anatomy &amp; urine formation</h3></div>
+      <div class="badges"><span class="badge fn">Foundational</span></div>
+      <ul>
+        <li>The kidneys remove metabolic waste, drugs, and hormones; regulate water, electrolytes, and acid–base; secrete erythropoietin; activate vitamin D; and control BP via the renin–angiotensin–aldosterone system.</li>
+        <li>Path of urine: <span class="k">kidneys → ureters → bladder → urethra</span>.</li>
+        <li>The <span class="term">nephron</span> is the functional unit. Each kidney has over a million.</li>
+        <li>Three steps: <span class="k">filtration</span> in the renal corpuscle (glomerulus + Bowman capsule), <span class="k">reabsorption</span> of water/nutrients/electrolytes into peritubular capillaries, and secretion.</li>
+        <li>Cells and proteins normally stay in the blood; wastes and dissolved substances pass into the filtrate.</li>
+      </ul>
+      <div class="cue"><b>Reabsorption hormones:</b> <b>ADH</b> (posterior pituitary) reabsorbs water; <b>aldosterone</b> (adrenal cortex) reabsorbs sodium in exchange for K⁺/H⁺; <b>atrial natriuretic hormone</b> (heart) reduces sodium and fluid reabsorption.</div>
+    </article>
+
+    <article class="topic renal" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>GFR &amp; its regulation</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li><span class="term">GFR</span> (glomerular filtration rate) estimates filtration capacity and is the main way chronic kidney disease is staged.</li>
+        <li>Constricting the <span class="k">afferent</span> arteriole lowers glomerular pressure → less filtrate. Constricting the <span class="k">efferent</span> arteriole raises pressure → more filtrate.</li>
+        <li>Controlled by autoregulation, the sympathetic nervous system, and <span class="k">renin</span> (released by juxtaglomerular cells when afferent blood flow drops).</li>
+      </ul>
+    </article>
+
+    <article class="topic renal" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Key labs: creatinine, BUN, GFR</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li><span class="term">Creatinine</span> is muscle waste normally filtered by the kidneys. Elevated serum creatinine is the single most useful indicator of reduced filtration.</li>
+        <li><span class="term">BUN</span> reflects nitrogenous waste in the blood.</li>
+        <li>Rising BUN and creatinine together suggest reduced clearance — interpret with urine findings, fluid status, and medications.</li>
+        <li>Diabetes, infection, dehydration, obstruction, contrast media, and nephrotoxic drugs can all alter kidney function.</li>
+      </ul>
+    </article>
+
+    <article class="topic renal" data-sys="renal">
+      <div class="t-head"><h3>Urinalysis findings</h3></div>
+      <ul>
+        <li>Normal urine is straw-colored with mild odor; specific gravity ~1.010–1.050.</li>
+        <li><span class="term">Proteinuria</span>: glomerular damage / increased permeability.</li>
+        <li><span class="term">Hematuria</span>: trauma, stones, inflammation, or glomerular disease.</li>
+        <li><span class="term">Pyuria</span> (WBCs/pus) and <span class="term">bacteriuria</span>: infection.</li>
+        <li><span class="term">Glucosuria</span>: high blood glucose — and sugar feeds bacteria.</li>
+        <li><span class="k">RBC casts</span> point to bleeding/inflammation in the nephron (glomerular disease).</li>
+        <li>Odor alone is not diagnostic.</li>
+      </ul>
+    </article>
+
+    <article class="topic renal" data-sys="renal">
+      <div class="t-head"><h3>Incontinence &amp; retention</h3></div>
+      <ul>
+        <li><span class="term">Stress incontinence</span> (more common in women): raised intra-abdominal pressure with coughing, lifting, laughing; linked to multiple pregnancies.</li>
+        <li><span class="term">Overflow incontinence</span>: weakened detrusor in older adults prevents complete emptying.</li>
+        <li><span class="term">Neurogenic bladder</span> (spastic or flaccid): spinal cord/brain injury interrupts bladder control.</li>
+        <li><span class="term">Retention</span>: inability to empty; may follow anesthesia or sacral cord injury.</li>
+        <li><span class="term">Enuresis</span>: involuntary urination in a child older than 4.</li>
+      </ul>
+    </article>
+
+    <article class="topic renal" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Urinary tract infections</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Infection anywhere in the system; most common organism is <span class="k">E. coli</span>. Urine is an excellent growth medium.</li>
+        <li>More common in women (shorter urethra, proximity to anus); in older men, prostatic hypertrophy causes retention.</li>
+        <li><span class="term">Urethritis</span> (urethra), <span class="term">cystitis</span> (bladder), <span class="term">ureteritis</span> (ureter), <span class="term">pyelonephritis</span> (kidney).</li>
+        <li>Symptoms: dysuria, urgency, frequency, nocturia, cloudy/odorous urine, hematuria. Systemic: fever, malaise, nausea, leukocytosis.</li>
+        <li>Older adults may present with new or worsening confusion.</li>
+        <li>Pyelonephritis adds flank pain and <span class="k">costovertebral angle tenderness</span>; urinary casts appear (tubule involvement).</li>
+        <li>Treat with antibiotics guided by culture &amp; sensitivity; hydrate and empty the bladder regularly.</li>
+      </ul>
+    </article>
+
+    <article class="topic renal" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Glomerulonephritis</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Inflammation of the glomeruli (often post-streptococcal, with ASO antibodies and antigen–antibody complexes activating complement).</li>
+        <li>Increased permeability lets protein and large numbers of RBCs leak into urine; GFR falls, so fluid and waste are retained.</li>
+        <li>Findings: <span class="k">hematuria</span> (dark/cloudy urine), proteinuria, <span class="k">RBC casts</span>, periorbital/facial then general edema, hypertension, flank pain, decreased output, elevated BUN/creatinine.</li>
+        <li>No infection signs (no fever/bacteriuria); complement levels drop.</li>
+        <li>Manage with sodium restriction, fluid/protein control, glucocorticoids, and antihypertensives.</li>
+      </ul>
+      <div class="cue"><b>Anchor:</b> Glomerulonephritis = <b>blood</b> (hematuria + RBC casts + hypertension). Nephrotic = <b>protein</b>.</div>
+    </article>
+
+    <article class="topic renal" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Nephrotic syndrome</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Marked glomerular permeability to <span class="k">protein</span> — massive amounts of plasma protein escape into urine.</li>
+        <li>Findings: heavy proteinuria, low serum albumin (<span class="term">hypoalbuminemia</span>), massive edema, lipiduria (milky urine), urinary casts.</li>
+        <li>Hypoalbuminemia lowers plasma osmotic pressure → generalized edema; aldosterone rises and worsens it.</li>
+        <li>Treat with glucocorticoids, ACE inhibitors (cut protein loss), antihypertensives, and sodium restriction.</li>
+      </ul>
+      <div class="cue"><b>Mnemonic — nephrotic is "PALE":</b> <b>P</b>roteinuria (massive), <b>A</b>lbumin low, <b>L</b>ipiduria, <b>E</b>dema (massive). Question says <i>low albumin</i> → nephrotic.</div>
+    </article>
+
+    <article class="topic renal span2" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Compare: Glomerulonephritis vs. Nephrotic syndrome</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Feature</th><th>Glomerulonephritis</th><th>Nephrotic syndrome</th></tr></thead>
+        <tbody>
+          <tr><th>Core problem</th><td>Inflammation of glomeruli</td><td>Massive protein permeability</td></tr>
+          <tr><th>Hematuria</th><td>Prominent</td><td>Not the defining feature</td></tr>
+          <tr><th>Proteinuria</th><td>Present</td><td>Severe / massive</td></tr>
+          <tr><th>Albumin</th><td>May be low</td><td>Specifically low (hypoalbuminemia)</td></tr>
+          <tr><th>Edema</th><td>Common</td><td>Often massive</td></tr>
+          <tr><th>Blood pressure</th><td>Often elevated</td><td>Variable with fluid status</td></tr>
+          <tr><th>Casts</th><td>RBC casts</td><td>Casts may occur</td></tr>
+        </tbody>
+      </table></div>
+    </article>
+
+    <article class="topic renal" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Kidney stones (urolithiasis)</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Also called renal calculi / nephrolithiasis. Most common composition is <span class="k">calcium</span>.</li>
+        <li>Insufficient fluid intake is the major factor; also uric acid (gout), struvite, cystine.</li>
+        <li>Symptoms appear with obstruction: severe flank pain / <span class="k">renal colic</span> radiating to the groin, hematuria, nausea, reduced flow, possible hydronephrosis and infection.</li>
+        <li>Nursing: <span class="k">strain all urine</span>; send recovered stones to the lab to identify type.</li>
+        <li>Treat with hydration, ESWL or laser lithotripsy, sometimes surgery; prevent by fluids and diet by stone type (individualize calcium restriction).</li>
+      </ul>
+    </article>
+
+    <article class="topic renal" data-sys="renal">
+      <div class="t-head"><h3>Hydronephrosis &amp; nephrosclerosis</h3></div>
+      <ul>
+        <li><span class="term">Hydronephrosis</span>: dilation/fluid buildup in the kidney from impaired drainage (stones, tumors, scar tissue, prostatic enlargement). Risks: impaired function and infection; often silent early.</li>
+        <li><span class="term">Nephrosclerosis</span>: thickening/hardening of small renal arteries — like atherosclerosis in the kidney. Cuts blood flow and filtration → ischemia; may be primary or secondary to hypertension. Treat with antihypertensives, diuretics, beta blockers, sodium restriction.</li>
+      </ul>
+    </article>
+
+    <article class="topic renal" data-sys="renal">
+      <div class="t-head"><h3>Congenital &amp; genetic disorders</h3></div>
+      <ul>
+        <li><span class="term">Vesicoureteral reflux</span>: urine flows backward from bladder toward the kidneys → ascending infection and damage.</li>
+        <li><span class="term">Agenesis</span> (one kidney fails to form), <span class="term">hypoplasia</span> (undersized), <span class="term">ectopic kidney</span> (abnormal position), <span class="term">horseshoe kidney</span> (fused).</li>
+        <li><span class="term">Autosomal dominant polycystic kidney disease</span>: gene on <span class="k">chromosome 16</span>; multiple cysts destroy tissue; usually shows around age 40; progresses to chronic renal failure and can't be reversed.</li>
+        <li><span class="term">Wilms tumor</span>: most common kidney tumor in children (chromosome 11 suppressor genes); usually unilateral — a renal mass in a child needs prompt evaluation.</li>
+      </ul>
+    </article>
+
+    <article class="topic renal" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Acute kidney injury (AKI / ARF)</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Sudden decline in kidney function that is <span class="k">potentially reversible</span> if the cause is treated.</li>
+        <li>Causes: low perfusion / shock, contrast, nephrotoxic drugs or overdose, obstruction (stones, clots, tumors), pyelonephritis, severe trauma.</li>
+        <li>Consequences: rising creatinine/BUN, fluid retention, <span class="k">hyperkalemia</span>, drug accumulation, metabolic acidosis.</li>
+        <li>Monitor urine output, creatinine, BUN, electrolytes, and pH.</li>
+      </ul>
+      <div class="cue"><b>Output terms:</b> <b>oliguria</b> = reduced output (lecture used &lt;30 mL/hr as concerning); <b>anuria</b> = essentially none. Always read a number in the patient's context.</div>
+    </article>
+
+    <article class="topic renal" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Chronic kidney disease (CKD)</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Gradual, usually <span class="k">irreversible</span> loss of nephrons; staged by GFR. Early disease is often silent.</li>
+        <li>Early output may rise (lost concentrating ability); later output falls to oliguria.</li>
+        <li>Findings: nausea, fatigue, anemia, weight loss, hypertension, dry/pruritic skin, easy bruising, fluid/electrolyte problems, metabolic acidosis; possible uremic frost.</li>
+        <li>Stage 3 is the key teaching point (diet, meds, avoid further injury); Stage 5 usually needs dialysis or transplant.</li>
+        <li>Restrict potassium, sodium, fluid, and protein; avoid nephrotoxins.</li>
+      </ul>
+      <div class="cue"><b>Mnemonic — the 3 A's of CKD:</b> <b>A</b>zotemia (nitrogen waste), <b>A</b>nemia (low erythropoietin), <b>A</b>cidosis.</div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Stage</th><th>GFR (mL/min)</th></tr></thead>
+        <tbody>
+          <tr><th>1</th><td>≥ 90</td></tr><tr><th>2</th><td>60–89</td></tr>
+          <tr><th>3</th><td>30–59</td></tr><tr><th>4</th><td>15–29</td></tr>
+          <tr><th>5</th><td>&lt; 15</td></tr>
+        </tbody>
+      </table></div>
+    </article>
+
+    <article class="topic renal span2" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Compare: AKI vs. CKD</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Feature</th><th>Acute kidney injury</th><th>Chronic kidney disease</th></tr></thead>
+        <tbody>
+          <tr><th>Onset</th><td>Sudden</td><td>Gradual, progressive</td></tr>
+          <tr><th>Reversible?</th><td>Potentially</td><td>Usually not</td></tr>
+          <tr><th>Common causes</th><td>Toxins, contrast, obstruction, infection, trauma, low perfusion</td><td>Progressive loss of nephrons</td></tr>
+          <tr><th>Main staging</th><td>Change in function &amp; labs</td><td>GFR</td></tr>
+          <tr><th>Dialysis</th><td>May be temporary</td><td>May become long-term</td></tr>
+        </tbody>
+      </table></div>
+    </article>
+
+    <article class="topic renal" data-sys="renal" data-flags="highyield">
+      <div class="t-head"><h3>Dialysis &amp; the AV fistula</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Dialysis replaces filtration/reabsorption — it is life-sustaining, <span class="k">not a cure</span>. May be temporary in AKI or ongoing in end-stage disease.</li>
+        <li><span class="term">Hemodialysis</span>: blood circulates through an external machine ~3–4 hours, several times a week; needs vascular access, often an AV fistula.</li>
+        <li>An <span class="term">AV fistula</span> connects an artery and vein into a durable vessel; may look enlarged or lumpy.</li>
+        <li>Assess for a <span class="k">thrill</span> (palpable vibration) and a <span class="k">bruit</span> (audible whoosh).</li>
+        <li><span class="term">Peritoneal dialysis</span> uses the peritoneal membrane; sterile fluid dwells then drains. Major risk is <span class="k">peritonitis</span>. Automated PD often runs overnight (~10 hrs).</li>
+      </ul>
+      <div class="warn">⚠ Never place a BP cuff, tourniquet, or IV/venipuncture on the arm with an AV fistula — damage can threaten the patient's dialysis and survival.</div>
+    </article>
+
+    <article class="topic renal" data-sys="renal">
+      <div class="t-head"><h3>Diuretics &amp; diagnostic tests</h3></div>
+      <ul>
+        <li><span class="term">Diuretics</span> increase water/sodium excretion for hypertension, edema, heart/renal/liver disease. Some are <span class="k">potassium-wasting</span>, some <span class="k">potassium-sparing</span>.</li>
+        <li><span class="term">Cystoscopy</span> uses a scope through the urethra to view the bladder ("cysto-" = bladder, "-oscopy" = scope); can biopsy or remove stones.</li>
+        <li>Culture &amp; sensitivity identifies the organism and effective antibiotic; imaging includes ultrasound, CT, and clearance tests for GFR.</li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================= ENDOCRINE ============================= -->
+<section class="sys sys-endocrine" id="endocrine">
+  <div class="sys-head"><h2>Endocrine System</h2><span class="tag">Chapter 16</span><span class="ref">Week 9</span></div>
+  <p class="sys-desc">Connect each disorder to its hormone or gland, then decide: <b>too little</b>, <b>too much</b>, or <b>resistance</b>. The general axis is hypothalamus → pituitary → end organ, tuned by negative feedback.</p>
+  <div class="grid">
+
+    <article class="topic endocrine span2" data-sys="endocrine" data-flags="fundamental">
+      <div class="t-head"><h3>Endocrine regulation &amp; the three failures</h3></div>
+      <div class="badges"><span class="badge fn">Foundational</span></div>
+      <ul>
+        <li>Glands release hormones into blood. Axis: <span class="k">hypothalamus → anterior/posterior pituitary → end organ</span>.</li>
+        <li><span class="term">Negative feedback</span>: the end-product hormone suppresses further stimulating signals.</li>
+        <li>Three problems: <span class="k">deficiency</span> (gland destroyed — autoimmune, infection, tumor), <span class="k">excess</span> (tumor, autoimmune, mutation), <span class="k">resistance</span> (usually genetic — missing/nonfunctional receptors).</li>
+        <li>Three levels: <span class="term">primary</span> = the gland itself; <span class="term">secondary</span> = the pituitary; <span class="term">tertiary</span> = the hypothalamus.</li>
+        <li>Receptors <span class="k">upregulate</span> (more/more-sensitive) or <span class="k">downregulate</span> (fewer/less-sensitive).</li>
+      </ul>
+      <div class="cue"><b>ACTH axis:</b> hypothalamus <b>CRH</b> → anterior pituitary <b>ACTH</b> → adrenal cortex <b>cortisol</b>. Check <b>morning serum cortisol (8–9 a.m.)</b> because cortisol is normally highest then.</div>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine">
+      <div class="t-head"><h3>Hypo- &amp; hyperpituitarism</h3></div>
+      <ul>
+        <li><span class="term">Hypopituitarism</span>: loss of one or more pituitary hormones (<span class="term">panhypopituitarism</span> = all). Causes: tumor, brain surgery, radiation, trauma, ischemia.</li>
+        <li>Signs are non-specific: weakness, weight change, hypotension, sluggishness, depression, excessive urination, dehydration — so hormone-level testing is required.</li>
+        <li>Most serious: adrenal insufficiency, hypothyroidism, diabetes insipidus. Tumor growth can compress the optic nerves (visual disturbances).</li>
+        <li><span class="term">Hyperpituitarism</span>: usually a pituitary adenoma; <span class="k">prolactinoma</span> is most common; large tumors cause headaches and visual problems.</li>
+      </ul>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>Diabetes insipidus (DI)</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li><span class="k">ADH deficiency or failure to respond</span> → large-volume, dilute urine.</li>
+        <li><span class="term">Central DI</span>: posterior pituitary doesn't release ADH. <span class="term">Nephrogenic DI</span>: kidneys don't respond to ADH.</li>
+        <li>Signs: polyuria, thirst, dehydration, disorientation.</li>
+        <li>Labs: serum osmolality <span class="k">&gt; 300</span> mOsm/kg, urine osmolality <span class="k">&lt; 300</span> mOsm/kg.</li>
+        <li>Give ADH (desmopressin/vasopressin): if the kidneys respond, it's central DI.</li>
+      </ul>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>SIADH</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li><span class="k">Excess ADH</span> → fluid retention, concentrated urine, diluted plasma, hypervolemia.</li>
+        <li>Danger: dilutional <span class="k">hyponatremia</span> with cerebral edema.</li>
+        <li>Associated with brain injury, neurosurgery, and <span class="k">small-cell lung cancer</span> (secretes an ADH-like substance).</li>
+        <li>Treat with fluid restriction, slow sodium correction, and possible ADH-receptor antagonists.</li>
+      </ul>
+    </article>
+
+    <article class="topic endocrine span2" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>Compare: DI vs. SIADH</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Feature</th><th>Diabetes insipidus</th><th>SIADH</th></tr></thead>
+        <tbody>
+          <tr><th>ADH</th><td>Too little / no response</td><td>Too much</td></tr>
+          <tr><th>Urine</th><td>Large volume, dilute</td><td>Low volume, concentrated</td></tr>
+          <tr><th>Serum sodium</th><td>Rises (dehydration)</td><td>Falls (hyponatremia)</td></tr>
+          <tr><th>Volume status</th><td>Dehydrated</td><td>Fluid overloaded</td></tr>
+          <tr><th>Danger</th><td>Dehydration</td><td>Cerebral edema</td></tr>
+        </tbody>
+      </table></div>
+      <div class="cue"><b>Mnemonic:</b> <b>DI</b> = "<b>D</b>ry <b>I</b>nside" (peeing it all out). <b>SIADH</b> = "<b>S</b>oaked" (holding water, dilute blood).</div>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>Thyroid basics &amp; goiter</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>T3 (triiodothyronine) and T4 (thyroxine) regulate metabolism; iodine is required to make them.</li>
+        <li>Classify thyroid disorders by <span class="k">T3 and T4</span>; in primary disease, <span class="k">TSH runs opposite</span> to T3/T4.</li>
+        <li><span class="term">Goiter</span> = enlarged thyroid; can occur with excess TSH, low iodine, or goitrogens — with or without dysfunction.</li>
+      </ul>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>Hypothyroidism</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Low metabolism — everything slows down.</li>
+        <li>Cold intolerance, weight gain, fatigue, lethargy, constipation, memory deficits, dry skin, hair loss, brittle nails, bradycardia, decreased fertility, puffy face.</li>
+        <li><span class="term">Hashimoto's thyroiditis</span> is the autoimmune cause (anti-thyroglobulin, anti-TPO antibodies). Congenital form = cretinism.</li>
+      </ul>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>Hyperthyroidism</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>High metabolism — everything speeds up.</li>
+        <li>Heat intolerance, weight loss, nervousness, insomnia, tachycardia, atrial fibrillation, diarrhea, sweating, increased sympathetic activity.</li>
+        <li><span class="term">Graves' disease</span> is the most common cause (thyroid-stimulating antibodies); may cause <span class="k">exophthalmos</span> (wide-eyed bulging stare) and a goiter.</li>
+      </ul>
+    </article>
+
+    <article class="topic endocrine span2" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>Compare: Hypo- vs. Hyperthyroidism</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Feature</th><th>Hypothyroidism</th><th>Hyperthyroidism</th></tr></thead>
+        <tbody>
+          <tr><th>Metabolism</th><td>Slow</td><td>Fast</td></tr>
+          <tr><th>Temperature</th><td>Cold intolerance</td><td>Heat intolerance</td></tr>
+          <tr><th>Weight</th><td>Gain</td><td>Loss</td></tr>
+          <tr><th>Heart rate</th><td>Bradycardia</td><td>Tachycardia / A-fib</td></tr>
+          <tr><th>GI</th><td>Constipation</td><td>Diarrhea</td></tr>
+          <tr><th>Mood/energy</th><td>Lethargy, memory loss</td><td>Nervousness, insomnia</td></tr>
+          <tr><th>Classic cause</th><td>Hashimoto's</td><td>Graves' (+ exophthalmos)</td></tr>
+        </tbody>
+      </table></div>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="emergency">
+      <div class="t-head"><h3>Thyrotoxic crisis (thyroid storm)</h3></div>
+      <div class="badges"><span class="badge em">Emergency</span></div>
+      <ul>
+        <li>Overwhelming release of thyroid hormone; free T4/T3 highly elevated, TSH usually undetectable.</li>
+        <li>High fever, tachycardia, agitation, possible psychosis; often precipitated by surgery or trauma.</li>
+        <li>Management: methimazole or PTU (stop synthesis), iodide (block release), beta blocker / calcium-channel blocker (slow the heart), IV glucocorticoids to support circulation.</li>
+      </ul>
+      <div class="cue"><b>Recognize it:</b> hyperthyroid signs turned extreme — <b>fever, fast, furious</b>.</div>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine">
+      <div class="t-head"><h3>Parathyroid disorders</h3></div>
+      <ul>
+        <li>Four glands on the back of the thyroid secrete <span class="term">PTH</span> when calcium is low; PTH raises calcium via bone resorption and intestinal absorption.</li>
+        <li><span class="term">Hypoparathyroidism</span>: often from inadvertent damage during thyroid surgery → <span class="k">hypocalcemia</span>. Treat with calcium and vitamin D.</li>
+        <li><span class="term">Hyperparathyroidism</span>: primary often from an adenoma → elevated PTH and calcium; may need parathyroidectomy and calcium-lowering treatment.</li>
+      </ul>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>Adrenal insufficiency (Addison's) &amp; steroid caution</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li><span class="term">Addison's</span> = primary adrenal insufficiency, most often autoimmune destruction of the adrenal cortex.</li>
+        <li>Signs: weakness, hypotension, fatigue, anorexia, <span class="k">hypoglycemia, hyponatremia, hyperkalemia</span>, hyperpigmentation (tanned look), amenorrhea, loss of pubic/axillary hair.</li>
+        <li>Hyperpigmentation happens because ACTH and MSH share a precursor.</li>
+      </ul>
+      <div class="warn">⚠ Never stop steroids abruptly — exogenous glucocorticoids suppress CRH/ACTH and cause adrenal atrophy; sudden withdrawal can trigger adrenal insufficiency. Use the smallest effective dose.</div>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>Hyperadrenalism (Cushing)</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li><span class="term">Cushing's disease</span>: elevated ACTH, usually a <span class="k">pituitary adenoma</span>. <span class="term">Cushing's syndrome</span>: excess cortisol from adrenal disease or (most commonly) <span class="k">exogenous steroids</span>.</li>
+        <li>Signs: weight gain with central fat, <span class="k">moon facies</span>, <span class="k">buffalo hump</span>, striae, easy bruising, poor wound healing, hypertension, hyperglycemia, osteoporosis, immune suppression; women get hirsutism and amenorrhea.</li>
+        <li>Diagnose with salivary/24-hr urine cortisol and the <span class="k">dexamethasone suppression test</span> — no suppression suggests Cushing's.</li>
+      </ul>
+      <div class="cue"><b>Direction check:</b> Addison = <b>too little</b> cortisol (hypotension, low Na, high K, low glucose). Cushing = <b>too much</b> (hypertension, high glucose, central obesity).</div>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine">
+      <div class="t-head"><h3>Pheochromocytoma</h3></div>
+      <ul>
+        <li>Adrenal <span class="k">medulla</span> tumor that secretes catecholamines (norepinephrine, epinephrine) → excessive sympathetic stimulation.</li>
+        <li>Hypertension, tremors, tachycardia, increased contractility, arrhythmias.</li>
+        <li><span class="k">Classic triad:</span> palpitations, headache, profuse sweating.</li>
+        <li>Diagnose with a 24-hour urine for catecholamine metabolites; treat with surgical removal and adrenergic blockers.</li>
+      </ul>
+    </article>
+
+    <article class="topic endocrine span2" data-sys="endocrine" data-flags="fundamental highyield">
+      <div class="t-head"><h3>Diabetes mellitus — types, values &amp; tests</h3></div>
+      <div class="badges"><span class="badge fn">Foundational</span><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li><span class="term">Type 1</span>: autoimmune destruction of beta cells → <span class="k">absent insulin</span>; needs lifelong insulin; often presents with DKA.</li>
+        <li><span class="term">Type 2</span> (~90%): <span class="k">insulin resistance</span> linked to obesity, inactivity, dyslipidemia, smoking, genetics; part of metabolic syndrome.</li>
+        <li><span class="term">Gestational</span>: pregnancy hormones raise resistance; risks macrosomia and later Type 2; screen with 2nd-trimester OGTT.</li>
+        <li><span class="k">Classic 3 P's:</span> polyuria, polydipsia, polyphagia. Also blurred vision, recurrent infection, weight change, electrolyte shifts.</li>
+        <li><span class="term">Metformin</span> lowers intestinal glucose absorption and hepatic glucose output and improves sensitivity — it does <span class="k">not</span> supply insulin, so it is not appropriate for Type 1.</li>
+      </ul>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Value</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><th>Normal fasting</th><td>70–100 mg/dL</td></tr>
+          <tr><th>Hypoglycemia</th><td>&lt; 70 mg/dL</td></tr>
+          <tr><th>Prediabetes (IGT)</th><td>Fasting 100–125 mg/dL</td></tr>
+          <tr><th>Diabetes — fasting</th><td>&gt; 126 mg/dL</td></tr>
+          <tr><th>Diabetes — random/postprandial</th><td>&gt; 200 mg/dL</td></tr>
+        </tbody>
+      </table></div>
+      <div class="cue"><b>Tests:</b> <b>A1c</b> = ~3-month average, best for <i>monitoring</i>. <b>OGTT</b> = 75 g glucose challenge. <b>C-peptide</b> tracks the body's own insulin and separates Type 1 from Type 2. Fasting glucose can diagnose but isn't enough to monitor treatment.</div>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine">
+      <div class="t-head"><h3>Hypoglycemia</h3></div>
+      <ul>
+        <li>Blood glucose &lt; 70 mg/dL; brain function is affected.</li>
+        <li>Causes: too much insulin, too little food, excess activity, infection/illness, drug interactions.</li>
+        <li>The body compensates with epinephrine, glucagon, and sympathetic activation to raise glucose.</li>
+      </ul>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="highyield">
+      <div class="t-head"><h3>Somogyi effect vs. dawn phenomenon</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Feature</th><th>Somogyi effect</th><th>Dawn phenomenon</th></tr></thead>
+        <tbody>
+          <tr><th>Morning glucose</th><td>High</td><td>High</td></tr>
+          <tr><th>Overnight low?</th><td>Yes — nocturnal hypoglycemia</td><td>No</td></tr>
+          <tr><th>Cause</th><td>Too much insulin at night → rebound</td><td>Nighttime growth-hormone rise</td></tr>
+          <tr><th>Fix</th><td>Reduce/adjust evening insulin</td><td>Adjust meds, exercise, eating</td></tr>
+        </tbody>
+      </table></div>
+      <div class="cue"><b>Tell them apart:</b> a <b>3 a.m. low</b> means Somogyi. No overnight low means dawn.</div>
+    </article>
+
+    <article class="topic endocrine" data-sys="endocrine" data-flags="emergency highyield">
+      <div class="t-head"><h3>DKA vs. HHS</h3></div>
+      <div class="badges"><span class="badge em">Emergency</span><span class="badge hy">High-yield</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>Feature</th><th>DKA</th><th>HHS</th></tr></thead>
+        <tbody>
+          <tr><th>More common in</th><td>Type 1</td><td>Type 2</td></tr>
+          <tr><th>Ketones / acidosis</th><td>Yes — metabolic acidosis</td><td>No (some insulin present)</td></tr>
+          <tr><th>Glucose</th><td>&gt; 250 mg/dL</td><td>&gt; 600 mg/dL (extreme)</td></tr>
+          <tr><th>Hallmark signs</th><td>Fruity breath, Kussmaul respirations, nausea/vomiting</td><td>Severe dehydration, confusion, coma</td></tr>
+          <tr><th>Also</th><td>Dehydration, hypotension, tachycardia</td><td>Poor turgor, thready pulse</td></tr>
+        </tbody>
+      </table></div>
+      <div class="cue"><b>Treatment order for both:</b> <b>fluids first</b>, then insulin — correct volume/osmolarity before dropping glucose too fast.</div>
+    </article>
+
+    <article class="topic endocrine span2" data-sys="endocrine">
+      <div class="t-head"><h3>Long-term complications of diabetes</h3></div>
+      <ul>
+        <li><span class="term">Atherosclerosis</span>: acute cardiac events are 2–4× more likely; hyperglycemia drives oxidative vascular damage.</li>
+        <li><span class="term">Peripheral neuropathy</span>: distal, symmetric; starts in the feet; burning/tingling with blunted pain sensation — injuries and even silent MI get missed; Charcot joint.</li>
+        <li><span class="term">Autonomic neuropathy</span>: tachycardia/hypotension, gastroparesis, UTIs, erectile dysfunction, reduced sweating, blunted hypoglycemia awareness.</li>
+        <li><span class="term">Nephropathy</span>: glomerular capillary damage, microalbuminuria, RAAS activation → renal failure.</li>
+        <li><span class="term">Retinopathy</span>: leading cause of adult blindness — microaneurysms, cotton-wool spots, fragile new vessels; needs regular fundoscopic exams.</li>
+        <li><span class="term">Infection &amp; amputation</span>: reduced WBC function, Candida overgrowth; diabetic foot disease is the top cause of nontraumatic lower-limb amputation.</li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================= REPRODUCTIVE ============================= -->
+<section class="sys sys-reproductive" id="reproductive">
+  <div class="sys-head"><h2>Reproductive System</h2><span class="tag">Chapter 19</span><span class="ref">Week 9</span></div>
+  <p class="sys-desc">Female and male reproductive disorders, plus prostate and infertility conditions. Watch the terminology closely — many exam items turn on one word.</p>
+  <div class="grid">
+
+    <article class="topic reproductive" data-sys="reproductive" data-flags="highyield">
+      <div class="t-head"><h3>Menstrual disorder terminology</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li><span class="term">Amenorrhea</span>: absence of menstruation — always rule out pregnancy in childbearing age. Primary = no menses before age 16.</li>
+        <li><span class="term">Dysmenorrhea</span>: painful menstruation.</li>
+        <li><span class="term">Menorrhagia</span>: excessive bleeding lasting &gt; 7 days.</li>
+        <li><span class="term">Metrorrhagia</span>: bleeding outside the normal period.</li>
+        <li><span class="term">Oligomenorrhea</span>: infrequent periods.</li>
+        <li><span class="term">Dyspareunia</span>: painful intercourse. <span class="term">Menopause</span>: cessation of cycles, average age 51.</li>
+      </ul>
+    </article>
+
+    <article class="topic reproductive" data-sys="reproductive">
+      <div class="t-head"><h3>Pregnancy terms &amp; dating</h3></div>
+      <ul>
+        <li>Dated in weeks from the first day of the LMP; childbirth is ~40 weeks after LMP.</li>
+        <li><span class="term">Naegele's rule</span>: add 1 year to the LMP, subtract 3 months, add 7 days.</li>
+        <li><span class="term">Nulliparous</span> (no pregnancies), <span class="term">multiparous</span> (several), <span class="term">primigravida</span> (first pregnancy), <span class="term">primiparous</span> (post first delivery).</li>
+        <li>Gravidity = pregnancies; parity = deliveries. G2P2 = 2 pregnancies, 2 deliveries.</li>
+      </ul>
+    </article>
+
+    <article class="topic reproductive" data-sys="reproductive">
+      <div class="t-head"><h3>Uterine &amp; organ prolapse</h3></div>
+      <ul>
+        <li><span class="term">Uterine prolapse</span>: uterus protrudes into the vagina; linked to multiparity, pelvic muscle/nerve injury, obesity, chronic constipation, connective-tissue disorders, and menopausal estrogen loss.</li>
+        <li>Managed with Kegel exercises, a <span class="k">pessary</span> (support device), native-tissue repair, or hysterectomy.</li>
+        <li><span class="term">Cystocele</span> = bladder into the vagina; <span class="term">rectocele</span> = rectum; <span class="term">enterocele</span> = intestine. Herniation is treated surgically.</li>
+      </ul>
+    </article>
+
+    <article class="topic reproductive" data-sys="reproductive">
+      <div class="t-head"><h3>Cervix, vagina &amp; ovarian cysts</h3></div>
+      <ul>
+        <li><span class="term">Cervicitis</span>: cervical inflammation from ascending vaginal infection.</li>
+        <li><span class="term">Vaginitis</span>: inflammation with discharge, burning, itching, painful urination/intercourse; bacterial, candidal, or trichomonal — identify the organism to treat.</li>
+        <li><span class="term">Follicular cyst</span>: failure to release the ovum; usually asymptomatic, resolves on its own.</li>
+        <li><span class="term">Corpus luteum cyst</span>: forms after ovulation; often symptomatic and may rupture (pelvic pain, amenorrhea, then irregular bleeding).</li>
+      </ul>
+    </article>
+
+    <article class="topic reproductive" data-sys="reproductive" data-flags="highyield">
+      <div class="t-head"><h3>Polycystic ovarian syndrome (PCOS)</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Most common endocrine disorder in young women and the leading U.S. cause of infertility.</li>
+        <li>Core features: <span class="k">androgen excess, anovulation, hyperinsulinemia</span>, follicular cysts.</li>
+        <li>Often part of metabolic syndrome; evaluate for insulin resistance and Type 2 diabetes.</li>
+        <li><span class="term">Metformin</span> can address the metabolic/insulin component.</li>
+      </ul>
+    </article>
+
+    <article class="topic reproductive" data-sys="reproductive">
+      <div class="t-head"><h3>Breast &amp; male anatomy notes</h3></div>
+      <ul>
+        <li><span class="term">Mastitis</span>: breast inflammation, most often during lactation. <span class="term">Galactorrhea</span>: milk in a non-lactating breast — may signal a prolactin-secreting tumor.</li>
+        <li><span class="term">Cryptorchidism</span>: undescended testes — needs surgical correction (sperm needs lower-than-body temperature).</li>
+        <li><span class="term">Phimosis</span> (foreskin too tight) vs. <span class="term">paraphimosis</span> (retracted and stuck).</li>
+        <li><span class="term">Priapism</span>: prolonged, painful erection — linked to sildenafil and sickle cell crisis.</li>
+      </ul>
+    </article>
+
+    <article class="topic reproductive" data-sys="reproductive" data-flags="highyield">
+      <div class="t-head"><h3>Benign prostatic hyperplasia (BPH)</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Testosterone-sensitive prostate enlargement with aging (80% of men ≥ 80) that encroaches on the urethra and obstructs outflow.</li>
+        <li>Lower urinary tract symptoms: hesitancy, frequency, small voids, incomplete emptying, retention.</li>
+        <li>Evaluate with a <span class="k">DRE</span>; <span class="k">PSA</span> helps assess for cancer but <span class="k">cannot diagnose cancer alone</span>.</li>
+      </ul>
+    </article>
+
+    <article class="topic reproductive" data-sys="reproductive" data-flags="highyield">
+      <div class="t-head"><h3>Erectile dysfunction</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Treated with oral <span class="k">PDE inhibitors</span> (sildenafil/Viagra, tadalafil/Cialis) that enhance nitric oxide and increase penile vasodilation.</li>
+      </ul>
+      <div class="warn">⚠ PDE inhibitors are contraindicated with nitrates — the combination can cause severe hypotension.</div>
+    </article>
+
+    <article class="topic reproductive" data-sys="reproductive" data-flags="emergency highyield">
+      <div class="t-head"><h3>Testicular torsion</h3></div>
+      <div class="badges"><span class="badge em">Emergency</span><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Twisting of the spermatic cord obstructs blood flow → ischemia and infarction; most common in adolescents.</li>
+        <li>Sudden, severe, <span class="k">unilateral</span> pain.</li>
+        <li>Urological emergency — surgical correction is required. Detorsion within ~6 hours limits complications; delay risks loss of the testicle.</li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================= STIs ============================= -->
+<section class="sys sys-sti" id="sti">
+  <div class="sys-head"><h2>Sexually Transmitted Infections</h2><span class="tag">Chapter 19</span><span class="ref">Week 9</span></div>
+  <p class="sys-desc">STIs may be bacterial, viral, fungal, or parasitic and are often asymptomatic. Untreated infection can cause pelvic inflammatory disease and infertility, so anyone with one STI should be tested for others.</p>
+  <div class="grid">
+
+    <article class="topic sti span2" data-sys="sti" data-flags="highyield">
+      <div class="t-head"><h3>STI basics &amp; the CDC Five P's</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Transmitted through sexual contact; some also via blood, pregnancy, childbirth, or breastfeeding.</li>
+        <li>About half of STIs occur in ages 15–24, with rising rates in older adults.</li>
+        <li>Presentation: women may have purulent discharge, bleeding, pelvic pain; men may have urethritis and penile discharge; both can have anogenital/oropharyngeal involvement.</li>
+      </ul>
+      <div class="cue"><b>CDC Five P's of the sexual history:</b> <b>P</b>artners, <b>P</b>ractices, <b>P</b>revention of STIs, <b>P</b>ast history of STIs, <b>P</b>revention of pregnancy.</div>
+    </article>
+
+    <article class="topic sti" data-sys="sti" data-flags="highyield">
+      <div class="t-head"><h3>Chlamydia</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>One of the most common STIs; often asymptomatic — can silently cause cervicitis, PID, and infertility.</li>
+        <li>Vaginal delivery can give a newborn pneumonia or conjunctivitis.</li>
+        <li>Diagnose by NAAT; treat with antibiotics — reinfection is likely if the partner isn't treated.</li>
+      </ul>
+    </article>
+
+    <article class="topic sti" data-sys="sti" data-flags="highyield">
+      <div class="t-head"><h3>Gonorrhea</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Organism: <span class="k">Neisseria gonorrhoeae</span>; 2nd most reported bacterial STI in the U.S.</li>
+        <li>Men: dysuria, purulent discharge, proctitis. Women: often asymptomatic — discharge, PID, cervicitis.</li>
+        <li>Can cause newborn eye infection; notable for antibiotic resistance.</li>
+      </ul>
+    </article>
+
+    <article class="topic sti" data-sys="sti" data-flags="highyield">
+      <div class="t-head"><h3>Syphilis</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Organism: <span class="k">Treponema pallidum</span>; treatable but never fully eradicated from the body.</li>
+        <li>Four phases: <span class="term">primary</span> (chancre), <span class="term">secondary</span> (whole-body rash, highly infectious), <span class="term">latent</span> (asymptomatic), <span class="term">tertiary</span> (neurosyphilis, gummas).</li>
+      </ul>
+    </article>
+
+    <article class="topic sti" data-sys="sti">
+      <div class="t-head"><h3>Bacterial vaginosis &amp; trichomoniasis</h3></div>
+      <ul>
+        <li><span class="term">Bacterial vaginosis</span> (Gardnerella): thin "fishy" discharge with <span class="k">clue cells</span>; from shifts in vaginal microbiota.</li>
+        <li><span class="term">Trichomoniasis</span> (Trichomonas vaginalis): most common nonviral STI; green-yellow discharge, pruritus, dysuria. Treat with <span class="k">metronidazole</span> — treat partners too.</li>
+      </ul>
+    </article>
+
+    <article class="topic sti" data-sys="sti" data-flags="highyield">
+      <div class="t-head"><h3>HPV &amp; HSV</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li><span class="term">HPV</span>: most common STI; types 6 &amp; 11 cause genital warts (condylomata acuminata); other types are oncogenic (cervix, vagina, vulva, penis, anus, throat). Vaccine ideally started before age 15.</li>
+        <li><span class="term">HSV</span> (genital herpes, HSV-1 or -2): recurrent painful vesicles preceded by burning/erythema; <span class="k">no cure</span> — acyclovir reduces symptoms. HSV ulcers increase HIV risk.</li>
+      </ul>
+    </article>
+
+    <article class="topic sti" data-sys="sti" data-flags="highyield">
+      <div class="t-head"><h3>Pelvic inflammatory disease (PID)</h3></div>
+      <div class="badges"><span class="badge hy">High-yield</span></div>
+      <ul>
+        <li>Ascending infection into the upper reproductive tract; a common cause is <span class="k">N. gonorrhoeae</span> (acute) or <span class="k">C. trachomatis</span> (often silent).</li>
+        <li>Pelvic pain, fever, cervical/vaginal discharge, elevated ESR/CRP.</li>
+        <li><span class="k">Chandelier sign</span>: exquisite cervical-motion tenderness on pelvic exam.</li>
+        <li>Highest risk with multiple partners, prior STIs, and IUD use; can lead to infertility.</li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
+<div id="empty">
+  <h3>No matches</h3>
+  <p>Try a different term, or turn the system filters back on.</p>
+</div>
+
+<footer class="wrap">
+  <p>Built from the Week 8 (Ch. 18) and Week 9 (Ch. 16 &amp; 19) lecture decks and the Week 8–9 review. Use the ★ and ⚠ filters before an exam to drill the highest-value material first. This is a study aid, not a clinical reference — always defer to your course materials and instructors.</p>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var topics = Array.prototype.slice.call(document.querySelectorAll('.topic'));
+  var sysChips = Array.prototype.slice.call(document.querySelectorAll('#sysChips .chip'));
+  var flagChips = Array.prototype.slice.call(document.querySelectorAll('#flagChips .chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sys'));
+  var countEl = document.getElementById('count');
+  var empty = document.getElementById('empty');
+
+  // pre-index searchable text
+  topics.forEach(function(t){ t._text = t.textContent.toLowerCase(); });
+
+  function activeSystems(){
+    var on = sysChips.filter(function(c){return c.classList.contains('on');})
+                     .map(function(c){return c.getAttribute('data-sys');});
+    return on;
+  }
+  function activeFlags(){
+    return flagChips.filter(function(c){return c.classList.contains('on');})
+                    .map(function(c){return c.getAttribute('data-flag');});
+  }
+
+  function apply(){
+    var term = q.value.trim().toLowerCase();
+    var sys = activeSystems();
+    var flags = activeFlags();
+    var shown = 0;
+
+    topics.forEach(function(t){
+      var okSys = sys.indexOf(t.getAttribute('data-sys')) !== -1;
+      var tf = (t.getAttribute('data-flags')||'');
+      var okFlag = flags.every(function(f){ return tf.indexOf(f) !== -1; });
+      var okText = !term || t._text.indexOf(term) !== -1;
+      var visible = okSys && okFlag && okText;
+      t.style.display = visible ? '' : 'none';
+      if(visible) shown++;
+    });
+
+    // hide sections with no visible cards
+    sections.forEach(function(sec){
+      var any = Array.prototype.slice.call(sec.querySelectorAll('.topic'))
+        .some(function(t){ return t.style.display !== 'none'; });
+      sec.style.display = any ? '' : 'none';
+    });
+
+    empty.classList.toggle('show', shown === 0);
+    countEl.textContent = shown + (shown === 1 ? ' topic' : ' topics');
+  }
+
+  q.addEventListener('input', apply);
+  sysChips.concat(flagChips).forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('on'); apply(); });
+  });
+
+  // theme toggle (respects system default until clicked)
+  var root = document.documentElement;
+  document.getElementById('theme').addEventListener('click', function(){
+    var cur = root.getAttribute('data-theme');
+    var next;
+    if(cur === 'dark') next = 'light';
+    else if(cur === 'light') next = 'dark';
+    else { // no explicit theme yet — flip away from the system setting
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      next = prefersDark ? 'light' : 'dark';
+    }
+    root.setAttribute('data-theme', next);
+  });
+
+  document.getElementById('print').addEventListener('click', function(){ window.print(); });
+
+  apply();
+})();
+</script>
+</body>
+</html>

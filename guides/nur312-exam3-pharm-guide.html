@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NUR312 Exam 3 — Pharmacology Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f6fb; --card:#ffffff; --ink:#141a2e; --muted:#5a6480;
+    --line:#e2e7f2; --shadow:0 1px 2px rgba(20,26,46,.06),0 8px 24px rgba(20,26,46,.06);
+    --moa-bg:#eef4ff; --moa-ink:#1f3d78; --moa-line:#c7dbff;
+    --pearl-bg:#fff8e6; --pearl-ink:#7a5600; --pearl-line:#ffe2a1;
+    --chip:#eef1f8; --chip-ink:#3a4260;
+    --accent:#3355ff;
+    /* category colors */
+    --c-cnsdep:#6d4bd8; --c-relax:#0e8f8f; --c-chemo:#c23b6b; --c-diuretic:#1f7fd6;
+    --c-resp:#0f9d58; --c-decong:#d9820b; --c-stim:#8a56d6; --c-epilepsy:#b5468f;
+    --c-parkinson:#4a6fa5; --c-psych:#2a7ab0; --c-sud:#8a6d3b; --c-tb:#607d8b;
+    --c-fluid:#2596be; --c-immune:#a34e2a; --c-endo:#c0562e;
+  }
+  :root:not([data-theme="light"]){}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1320; --card:#171d2e; --ink:#e8ecf6; --muted:#9aa4c0;
+      --line:#28304a; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+      --moa-bg:#182642; --moa-ink:#bcd4ff; --moa-line:#2c4372;
+      --pearl-bg:#2a2410; --pearl-ink:#f0d68a; --pearl-line:#4a3f14;
+      --chip:#232a40;
+    }
+  }
+  :root[data-theme="dark"]{
+      --bg:#0f1320; --card:#171d2e; --ink:#e8ecf6; --muted:#9aa4c0;
+      --line:#28304a; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+      --moa-bg:#182642; --moa-ink:#bcd4ff; --moa-line:#2c4372;
+      --pearl-bg:#2a2410; --pearl-ink:#f0d68a; --pearl-line:#4a3f14;
+      --chip:#232a40;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 18px 80px}
+
+  header.top{
+    position:sticky; top:0; z-index:50; background:var(--bg);
+    padding:16px 0 10px; border-bottom:1px solid var(--line);
+    backdrop-filter:saturate(1.2);
+  }
+  .titlebar{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:1180px; margin:0 auto; padding:0 18px}
+  h1{
+    font-family:'Newsreader',Georgia,serif; font-weight:600;
+    font-size:clamp(22px,3.4vw,32px); margin:0; letter-spacing:-.01em;
+  }
+  h1 .sub{display:block; font-family:'Inter',sans-serif; font-weight:500; font-size:13px; color:var(--muted); letter-spacing:0; margin-top:3px}
+  .themebtn{
+    border:1px solid var(--line); background:var(--card); color:var(--ink);
+    border-radius:10px; padding:8px 12px; font-size:13px; font-weight:600; cursor:pointer;
+    display:inline-flex; align-items:center; gap:7px;
+  }
+  .themebtn:hover{border-color:var(--accent)}
+
+  .controls{max-width:1180px; margin:12px auto 0; padding:0 18px; display:flex; flex-direction:column; gap:10px}
+  .searchrow{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .search{
+    flex:1; min-width:220px; display:flex; align-items:center; gap:9px;
+    background:var(--card); border:1px solid var(--line); border-radius:12px; padding:11px 14px;
+    box-shadow:var(--shadow);
+  }
+  .search:focus-within{border-color:var(--accent)}
+  .search svg{flex:none; color:var(--muted)}
+  .search input{border:0; outline:0; background:transparent; color:var(--ink); font-size:15px; width:100%; font-family:inherit}
+  .count{font-size:13px; color:var(--muted); white-space:nowrap; font-weight:500}
+
+  .chips{display:flex; flex-wrap:wrap; gap:7px}
+  .chip{
+    border:1px solid var(--line); background:var(--card); color:var(--muted);
+    border-radius:999px; padding:6px 12px; font-size:12.5px; font-weight:600; cursor:pointer;
+    display:inline-flex; align-items:center; gap:6px; transition:.12s;
+  }
+  .chip .dot{width:8px; height:8px; border-radius:50%; background:var(--cc,var(--muted))}
+  .chip:hover{color:var(--ink); border-color:var(--cc,var(--accent))}
+  .chip.on{background:var(--cc,var(--accent)); color:#fff; border-color:transparent}
+  .chip.on .dot{background:rgba(255,255,255,.9)}
+  .chip.star::before{content:"★"; font-size:11px; margin-right:1px}
+  .chip.allbtn{font-weight:700}
+
+  .legend{font-size:12px; color:var(--muted); margin-top:2px}
+
+  section.grp{margin-top:30px}
+  .grphead{display:flex; align-items:center; gap:10px; margin:0 2px 12px}
+  .grphead h2{font-size:16px; margin:0; letter-spacing:.02em; text-transform:uppercase; font-weight:800}
+  .grphead .bar{height:3px; flex:1; border-radius:2px; background:var(--cc,var(--line)); opacity:.5}
+  .grphead .star{color:#e0a400; font-size:15px}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px}
+
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:16px 17px 15px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+  }
+  .card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--cc,var(--accent))}
+  .card .cattag{
+    display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700;
+    color:var(--cc,var(--accent)); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;
+  }
+  .card .cattag .d{width:7px;height:7px;border-radius:50%;background:var(--cc)}
+  .card h3{font-size:17px; margin:0 0 3px; font-weight:700; letter-spacing:-.01em}
+  .card .drugs{font-size:13px; color:var(--muted); margin:0 0 11px; font-weight:500}
+  .card .drugs b{color:var(--ink); font-weight:600}
+
+  .moa{
+    background:var(--moa-bg); border:1px solid var(--moa-line); color:var(--moa-ink);
+    border-radius:10px; padding:9px 11px; font-size:13.5px; margin-bottom:11px;
+  }
+  .moa .lab{font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; opacity:.85; display:block; margin-bottom:2px}
+
+  .field{margin-bottom:8px; font-size:13.5px}
+  .field .lab{font-size:10.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:1px}
+  .field ul{margin:2px 0 0; padding-left:17px}
+  .field li{margin-bottom:2px}
+
+  .pearls{margin-top:10px; display:flex; flex-direction:column; gap:6px}
+  .pearl{
+    background:var(--pearl-bg); border:1px solid var(--pearl-line); color:var(--pearl-ink);
+    border-radius:9px; padding:7px 10px 7px 30px; font-size:12.8px; position:relative; font-weight:500;
+  }
+  .pearl::before{content:"💡"; position:absolute; left:9px; top:6px; font-size:13px}
+  .pearl.key::before{content:"⚠️"}
+  .pearl.mnem::before{content:"🧠"}
+
+  .noresults{text-align:center; color:var(--muted); padding:60px 20px; font-size:15px}
+
+  .foot{margin-top:40px; padding-top:18px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); text-align:center}
+
+  mark{background:#ffe483; color:inherit; border-radius:3px; padding:0 1px}
+  :root[data-theme="dark"] mark, :root:not([data-theme="light"]) mark{background:#7a5c00; color:#ffe9a8}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) mark{background:#7a5c00; color:#ffe9a8}}
+
+  @media print{
+    header.top,.controls,.themebtn,.foot{display:none !important}
+    body{background:#fff; color:#000}
+    .card{box-shadow:none; border:1px solid #bbb; break-inside:avoid; page-break-inside:avoid}
+    .grid{grid-template-columns:1fr 1fr}
+    .moa{background:#f2f2f2; color:#000; border-color:#999}
+    .pearl{background:#f7f7f7; color:#000; border-color:#bbb}
+    section.grp{break-before:auto}
+    .grphead h2{color:#000}
+    .card[hidden],section.grp[hidden]{display:none !important}
+  }
+  @media (max-width:520px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="titlebar">
+    <h1>Pharmacology — Exam 3 Study Guide
+      <span class="sub">NUR312 · Cohort 38 · Weeks 4, 6 &amp; 7 + Exam 3 discussion topics · every card shows the MOA</span>
+    </h1>
+    <button class="themebtn" id="themeBtn" title="Toggle light / dark">◐ Theme</button>
+  </div>
+  <div class="controls">
+    <div class="searchrow">
+      <label class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search a drug, class, MOA, or key word (e.g. flumazenil, GABA, hypokalemia, rescue inhaler)…" autocomplete="off">
+      </label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="legend">★ = your six focus areas. Tap a topic to filter, tap again to clear. Search and filters work together. Use your browser&rsquo;s Print for a clean paper copy.</div>
+  </div>
+</header>
+
+<div class="wrap" id="app"></div>
+
+<script>
+/* ---- category metadata ---- */
+const CATS = {
+  cnsdep:{label:"CNS Depressants", color:"var(--c-cnsdep)", focus:true},
+  relax:{label:"Muscle Relaxants", color:"var(--c-relax)", focus:true},
+  chemo:{label:"Cancer & Chemo Drugs", color:"var(--c-chemo)", focus:true},
+  diuretic:{label:"Diuretics", color:"var(--c-diuretic)", focus:true},
+  resp:{label:"Respiratory", color:"var(--c-resp)", focus:true},
+  decong:{label:"Decongestants & Cold Care", color:"var(--c-decong)", focus:true},
+  stim:{label:"CNS Stimulants & Migraine", color:"var(--c-stim)"},
+  epilepsy:{label:"Antiepileptics", color:"var(--c-epilepsy)"},
+  parkinson:{label:"Antiparkinson", color:"var(--c-parkinson)"},
+  psych:{label:"Psychotherapeutics", color:"var(--c-psych)"},
+  sud:{label:"Substance Use Disorder", color:"var(--c-sud)"},
+  tb:{label:"Antitubercular", color:"var(--c-tb)"},
+  fluid:{label:"Fluids & Electrolytes", color:"var(--c-fluid)"},
+  immune:{label:"Immune / Antirheumatic", color:"var(--c-immune)"},
+  endo:{label:"Endocrine (discussion topics)", color:"var(--c-endo)"}
+};
+
+/* ---- data: every entry carries an MOA ---- */
+const D = [
+/* ============ CNS DEPRESSANTS ============ */
+{cat:"cnsdep", name:"Benzodiazepines",
+ drugs:`<b>Diazepam</b> (Valium) · <b>Midazolam</b> (Versed) · <b>Lorazepam</b> (Ativan) · <b>Alprazolam</b> (Xanax) · <b>Temazepam</b> (Restoril)`,
+ moa:`Enhance the action of GABA, the main inhibitory neurotransmitter. They depress CNS activity at the hypothalamus, thalamus, and limbic system. Result: sedation, less anxiety, less sensory overload.`,
+ use:`Sedative-hypnotic and anxiolytic (anti-anxiety). Acute seizure / status epilepticus. Alcohol withdrawal.`,
+ adv:`Headache, drowsiness, dizziness, vertigo, lethargy, cognitive impairment. Not safe in pregnancy.`,
+ nurse:`Taper — do NOT stop abruptly. Avoid alcohol and other CNS depressants. Watch elderly for a paradoxical reaction (agitated / awake instead of sedated).`,
+ pearls:[{t:"Reversal agent = flumazenil (Romazicon). Overdose care is otherwise supportive.",k:"key"},
+         {t:"Paradoxical reaction = the opposite of the intended effect (patient stays awake/agitated), common in older adults.",c:"mnem"}]},
+
+{cat:"cnsdep", name:"Zolpidem (Ambien)",
+ drugs:`<b>Zolpidem</b> (Ambien) — a nonbenzodiazepine (\u201cZ-drug\u201d) hypnotic`,
+ moa:`Acts on GABA receptors like a benzo but is more selective for sedation, so it causes less daytime sleepiness. Short-acting.`,
+ use:`Short-term insomnia / help falling asleep at night. PRN.`,
+ adv:`Complex sleep behaviors — sleep-walking, sleep-driving, doing things while not fully awake.`,
+ nurse:`Dose is lower for women (5 mg) than men (10 mg). Take right at bedtime with time to sleep 7-8 hrs.`,
+ pearls:[{t:"BLACK BOX: complex sleep behaviors (sleep-driving). A 10 mg bedtime order for a woman should be questioned — 5 mg is correct.",k:"key"}]},
+
+{cat:"cnsdep", name:"Barbiturates",
+ drugs:`<b>Phenobarbital</b> · <b>Pentobarbital</b> · Fioricet (combo)`,
+ moa:`Increase the effect of GABA in the brainstem, deeply depressing the CNS.`,
+ use:`Now mostly limited to seizure control and anesthesia for procedures (largely replaced by benzos).`,
+ adv:`Highly addictive, low therapeutic index. Reduce REM sleep → agitation and stress. Many drug interactions.`,
+ nurse:`Overdose is symptomatic and supportive (no specific antidote like flumazenil). Taper to stop.`,
+ pearls:[{t:"Low therapeutic index + high abuse potential is why barbiturates were replaced by benzos for most uses.",c:"mnem"}]},
+
+/* ============ MUSCLE RELAXANTS ============ */
+{cat:"relax", name:"Skeletal Muscle Relaxants",
+ drugs:`<b>Cyclobenzaprine</b> (Flexeril) · <b>Baclofen</b> (Lioresal) · <b>Methocarbamol</b> (Robaxin)`,
+ moa:`Relieve pain from skeletal muscle spasm by acting centrally on the CNS in a way that resembles GABA, or by binding directly to skeletal muscle.`,
+ use:`Relief of pain from acute skeletal muscle spasms (e.g., back/neck strain). Baclofen also for spasticity (MS, spinal cord injury).`,
+ adv:`Euphoria, lightheadedness, dizziness, fatigue, muscle weakness — all signs of CNS depression.`,
+ nurse:`Monitor for CNS depression (the classic exam answer for a muscle-relaxant adverse effect). Avoid with alcohol and benzodiazepines.`,
+ pearls:[{t:"Cyclobenzaprine (Flexeril) use = relieve muscle spasm pain. It is NOT an antibiotic or antihypertensive.",c:"mnem"},
+         {t:"Adverse effect the nurse monitors for = CNS depression.",k:"key"}]},
+
+/* ============ CANCER & CHEMO ============ */
+{cat:"chemo", name:"Chemotherapy — Overview",
+ drugs:`Cell cycle–specific (CCS) vs cell cycle–nonspecific (CCNS)`,
+ moa:`Antineoplastics kill rapidly dividing cells. CCS drugs act at a specific phase of the cell cycle; CCNS drugs are cytotoxic at any phase. All harm normal fast-growing cells too (bone marrow, GI mucosa, hair follicles).`,
+ use:`Pharmacologic treatment of cancer. Combination therapy is usually more effective than a single drug.`,
+ adv:`Narrow therapeutic index. Dose-limiting: the GI tract and bone marrow are damaged before the cancer is fully killed.`,
+ nurse:`Combinations are used to prevent drug resistance and add a synergistic effect — not to lower cost.`,
+ pearls:[{t:"\u201cDose-limiting\u201d = the patient can only tolerate so much because healthy fast-growing cells die first.",c:"mnem"}]},
+
+{cat:"chemo", name:"Methotrexate",
+ drugs:`<b>Methotrexate</b> (CCS antimetabolite)`,
+ moa:`Blocks folic acid metabolism (folate antagonist), so cells cannot make DNA and rapidly dividing cells die.`,
+ use:`Solid tumors, blood cancers (leukemia), and at LOW doses for psoriasis and rheumatoid arthritis.`,
+ adv:`Bone marrow suppression: increased bruising/bleeding, fever, chills, infection. Also mucositis, hepatotoxicity.`,
+ nurse:`Monitor CBC and liver function. Use non-drug contraception — teratogenic. Report signs of infection or bleeding.`,
+ pearls:[{t:"Patient education: watch for bone-marrow-suppression signs — bruising, fever, chills. Report them immediately.",k:"key"},
+         {t:"Same drug, two dose worlds: high dose = cancer, low dose = RA / psoriasis.",c:"mnem"}]},
+
+{cat:"chemo", name:"Doxorubicin",
+ drugs:`<b>Doxorubicin</b> (cytotoxic antibiotic, CCNS)`,
+ moa:`Inserts into DNA and blocks the enzymes needed for DNA/RNA synthesis, killing cancer cells at any phase.`,
+ use:`Combination chemo — leukemia, breast, ovarian, bone, squamous cell, AIDS-related Kaposi sarcoma.`,
+ adv:`CARDIOTOXIC — risk of heart failure. Plus the usual myelosuppression, N/V, alopecia.`,
+ nurse:`With N/V, the priority assessment is HYDRATION. Monitor cardiac function. Vesicant — watch the IV site.`,
+ pearls:[{t:"Doxorubicin = \u201cred devil.\u201d Its signature danger is cardiotoxicity / heart failure.",k:"key"},
+         {t:"During N/V, priority assessment = hydration (fluid/electrolyte loss).",c:"mnem"}]},
+
+{cat:"chemo", name:"Cisplatin",
+ drugs:`<b>Cisplatin</b> (alkylating-like platinum agent, CCNS)`,
+ moa:`Cross-links DNA strands so the cell cannot replicate — cytotoxic at any cell-cycle phase.`,
+ use:`Solid tumors.`,
+ adv:`Nephrotoxicity, ototoxicity, severe N/V, myelosuppression.`,
+ nurse:`Keep well hydrated to protect the kidneys. Give antiemetics before treatment.`,
+ pearls:[{t:"Platinum drug → think kidneys and ears (nephro- and ototoxic).",c:"mnem"}]},
+
+{cat:"chemo", name:"Tamoxifen",
+ drugs:`<b>Tamoxifen</b> (hormonal antineoplastic)`,
+ moa:`Blocks estrogen receptors so estrogen cannot fuel the tumor (an estrogen blocker).`,
+ use:`Estrogen-receptor-positive BREAST cancer — adjuvant and preventive therapy.`,
+ adv:`Increased risk of blood clots (DVT/PE). Increased risk of a secondary uterine/endometrial malignancy.`,
+ nurse:`No hormone replacement therapy (HRT) while taking it. Report leg swelling/pain, abnormal vaginal bleeding.`,
+ pearls:[{t:"See tamoxifen → suspect BREAST cancer.",k:"key"},
+         {t:"Adjuvant tamoxifen risk = a secondary malignancy (endometrial) + clots.",c:"mnem"}]},
+
+{cat:"chemo", name:"Chemo Adverse Effects — Bone Marrow",
+ drugs:`Neutropenia · Thrombocytopenia · Anemia`,
+ moa:`Chemo suppresses bone marrow, so all three blood cell lines drop. This is the most dangerous shared toxicity.`,
+ use:`—`,
+ adv:`Neutropenia → infection risk. Thrombocytopenia → bleeding (bruising, bleeding gums, blood in urine, petechiae). Anemia → severe fatigue.`,
+ nurse:`Neutropenic precautions: hand hygiene, avoid crowds/sick people, no fresh flowers or raw fruits/veg, mask, cook food well, no gardening or litter boxes.`,
+ pearls:[{t:"Question a chemo order if platelets are very low (e.g., 8,000/mm\u00b3) — bleeding risk.",k:"key"},
+         {t:"Thrombocytopenia S/S: bleeding gums, blood in urine, easy bruising, petechiae.",c:"mnem"}]},
+
+{cat:"chemo", name:"Chemo Adverse Effects — GI (Stomatitis)",
+ drugs:`Stomatitis · Nausea / Vomiting · Diarrhea`,
+ moa:`Chemo kills the rapidly dividing cells lining the GI tract, causing inflammation and breakdown of the mucosa.`,
+ use:`—`,
+ adv:`Stomatitis = inflammation of the oral mucosa (sore, red mouth). Nausea, vomiting, diarrhea.`,
+ nurse:`Inspect mouth and gums daily. Soft toothbrush, bland foods, avoid alcohol-based rinses. Care plan for GI effects = mouth care + hydration + antiemetics.`,
+ pearls:[{t:"Stomatitis = inflammation of the oral mucosa. Daily oral assessment is key.",c:"mnem"}]},
+
+{cat:"chemo", name:"Chemo Antiemetics",
+ drugs:`<b>Ondansetron</b> (Zofran) · <b>Dexamethasone</b> · <b>Aprepitant</b> (Emend)`,
+ moa:`Block the pathways that trigger vomiting — ondansetron blocks serotonin (5-HT3) receptors; aprepitant blocks substance P/NK-1 receptors; dexamethasone reduces inflammation-driven nausea.`,
+ use:`Prevent chemotherapy-induced nausea and vomiting.`,
+ adv:`Ondansetron: headache, constipation, QT prolongation.`,
+ nurse:`Give the antiemetic 30–60 minutes BEFORE chemo starts — it works best preventively.`,
+ pearls:[{t:"Chemo at 0900 → give the antiemetic ~0800–0830 (30–60 min before), NOT when nausea starts.",k:"key"}]},
+
+{cat:"chemo", name:"Extravasation & Vesicants",
+ drugs:`Vesicant chemo drugs (e.g., doxorubicin, vincristine)`,
+ moa:`A vesicant is a drug that causes blistering and tissue death if it leaks out of the vein into surrounding tissue.`,
+ use:`—`,
+ adv:`Extravasation → permanent damage to nerves, tendons, muscle; possible loss of a limb.`,
+ nurse:`Continuously monitor the IV site. If extravasation is suspected: STOP the infusion immediately, contact the prescriber, but LEAVE the IV catheter in place.`,
+ pearls:[{t:"Extravasation: stop the infusion, keep the catheter in, call the provider.",k:"key"}]},
+
+{cat:"chemo", name:"Tumor Lysis Syndrome & Hyperuricemia",
+ drugs:`Complication of treating fast-growing blood cancers`,
+ moa:`Rapid cancer-cell death dumps intracellular contents into the blood: high potassium, high phosphate, high uric acid, low calcium — which injures the kidneys.`,
+ use:`—`,
+ adv:`Hyperkalemia, hyperphosphatemia, hyperuricemia, hypocalcemia → nephropathy. Hyperuricemia also raises gout risk.`,
+ nurse:`Keep the patient well hydrated. Monitor electrolytes and renal function.`,
+ pearls:[{t:"Tumor lysis = HIGH K\u207a, HIGH phosphate, HIGH uric acid, LOW calcium → kidney damage.",c:"mnem"}]},
+
+{cat:"chemo", name:"Cancer Definitions",
+ drugs:`Key terms for the matching question`,
+ moa:`Cancer = uncontrolled, rapid cell growth that invades tissue and can metastasize (spread) through the lymphatic system.`,
+ use:`—`,
+ adv:`—`,
+ nurse:`<b>Benign</b> = non-cancerous, does not spread. <b>Malignant</b> = cancerous, invades & spreads. <b>Neoplasm</b> = new abnormal growth (tumor). <b>Primary lesion</b> = the original tumor site. <b>Metastasis</b> = spread to a distant site.`,
+ pearls:[{t:"Paraneoplastic syndrome = symptoms not from the tumor spreading; cachexia (wasting) is most common and can be the first sign of cancer.",c:"mnem"},
+         {t:"Cancer risk is higher in patients with HIV/AIDS (immunocompromised → e.g., Kaposi sarcoma).",c:"mnem"}]},
+
+/* ============ DIURETICS ============ */
+{cat:"diuretic", name:"Loop Diuretics",
+ drugs:`<b>Furosemide</b> (Lasix) · <b>Bumetanide</b> (Bumex) · <b>Torsemide</b> (Demadex)`,
+ moa:`Act on the ascending loop of Henle to block reabsorption of sodium and chloride → strong, rapid diuresis with loss of fluid, sodium, and potassium.`,
+ use:`Edema from heart failure; hypertension. Most powerful diuretic class.`,
+ adv:`HYPOkalemia, hypotension, ototoxicity, dehydration, dizziness.`,
+ nurse:`Take in the morning. Daily weights. Monitor potassium; eat potassium-rich foods. Stand up slowly. Report muscle weakness / increased dizziness.`,
+ pearls:[{t:"Loop = loses potassium → HYPOkalemia. Encourage high-K foods (bananas, oranges, potatoes).",k:"key"},
+         {t:"\u201cLASIX loses\u201d fluid, potassium, and hearing (ototoxicity).",c:"mnem"}]},
+
+{cat:"diuretic", name:"Thiazide Diuretics",
+ drugs:`<b>Hydrochlorothiazide</b> (HCTZ)`,
+ moa:`Inhibit reabsorption of sodium, chloride, and potassium in the distal convoluted tubule → water, sodium, and chloride are excreted.`,
+ use:`FIRST-LINE for hypertension. Also mild edema and diastolic heart failure.`,
+ adv:`HYPOkalemia, and it can RAISE blood glucose. Use caution in diabetes. Not effective if creatinine clearance <30–50 mL/min.`,
+ nurse:`Diabetic patient teaching: monitor blood glucose closely — thiazides can raise it. Take in the morning; monitor K.`,
+ pearls:[{t:"Diabetic on a thiazide → \u201cwatch your blood sugar, it may go up.\u201d",k:"key"},
+         {t:"Loop AND thiazide both cause HYPOkalemia.",c:"mnem"}]},
+
+{cat:"diuretic", name:"Potassium-Sparing Diuretics",
+ drugs:`<b>Spironolactone</b> (Aldactone)`,
+ moa:`Competitively blocks aldosterone receptors in the collecting duct / distal tubule. Sodium and water are excreted, but potassium is KEPT (spared).`,
+ use:`Hyperaldosteronism, hypertension, heart failure.`,
+ adv:`HYPERkalemia. Endocrine effects: gynecomastia, amenorrhea, irregular menses, postmenopausal bleeding.`,
+ nurse:`Do NOT add potassium supplements or high-K foods. A potassium of 5.8 mEq/L is a red flag.`,
+ pearls:[{t:"Spironolactone SPARES potassium → risk of HYPERkalemia. Concerning lab = high K\u207a (e.g., 5.8).",k:"key"},
+         {t:"Only the potassium-sparing class raises K; all others lower it.",c:"mnem"}]},
+
+{cat:"diuretic", name:"Osmotic Diuretics",
+ drugs:`<b>Mannitol</b> (Osmitrol)`,
+ moa:`Pulls water out of tissues into the proximal renal tubule and blocks reabsorption of water and solutes → rapid diuresis.`,
+ use:`Acute renal failure; reduce increased intracranial pressure (ICP) / cerebral edema; reduce high intraocular pressure.`,
+ adv:`Fluid overload if kidneys fail, electrolyte shifts.`,
+ nurse:`IV infusion ONLY, and it MUST be given through a filter (mannitol can crystallize).`,
+ pearls:[{t:"Mannitol: IV only + always use a filter. Think brain (\u2193ICP) and eyes.",k:"key"}]},
+
+{cat:"diuretic", name:"Carbonic Anhydrase Inhibitors",
+ drugs:`<b>Acetazolamide</b> (Diamox)`,
+ moa:`Block the enzyme carbonic anhydrase, so bicarbonate, sodium, water, and potassium are excreted and urine volume rises.`,
+ use:`Open-angle glaucoma (also altitude sickness, some seizures).`,
+ adv:`HYPOkalemia, metabolic acidosis.`,
+ nurse:`Contraindicated with a sulfa allergy — do not give if allergic to sulfa antibiotics.`,
+ pearls:[{t:"Sulfa allergy → no acetazolamide (and be cautious with thiazides/loops too).",k:"key"}]},
+
+{cat:"diuretic", name:"Diuretics — General Nursing",
+ drugs:`Applies across the diuretic classes`,
+ moa:`All increase urine output; the tubule site of action determines potassium effect.`,
+ use:`—`,
+ adv:`Metabolic alkalosis, drowsiness, hypokalemia (except K-sparing), tachycardia, hypotension, leg cramps.`,
+ nurse:`Give in the MORNING to protect sleep. Keep a daily weight log. Monitor serum potassium. Eat high-K foods with all classes EXCEPT potassium-sparing.`,
+ pearls:[{t:"Therapeutic effect = less edema, less fluid overload, lower BP, HF improvement.",c:"mnem"}]},
+
+/* ============ RESPIRATORY ============ */
+{cat:"resp", name:"SABA — Albuterol (rescue)",
+ drugs:`<b>Albuterol</b> (Proventil / Ventolin) — Short-Acting Beta\u2082 Agonist`,
+ moa:`Stimulates beta\u2082-adrenergic receptors on bronchial smooth muscle → the airway relaxes and dilates, restoring airflow fast.`,
+ use:`The RESCUE inhaler for an ACUTE asthma attack / bronchospasm. MDI or nebulizer.`,
+ adv:`Tremor, tachycardia, palpitations, nervousness, insomnia, hyperglycemia. At high doses it loses its beta\u2082 selectivity.`,
+ nurse:`Needing it MORE often (or feeling sick from overuse) signals worsening disease → have the patient come in for evaluation.`,
+ pearls:[{t:"Albuterol = rescue = ACUTE attacks. If a beta agonist + steroid inhaler are both due, give the bronchodilator FIRST.",k:"key"},
+         {t:"Increasing rescue-inhaler use = poor control → evaluate, don\u2019t just refill.",c:"mnem"}]},
+
+{cat:"resp", name:"LABA — Salmeterol (maintenance)",
+ drugs:`<b>Salmeterol</b> (Serevent) · combo <b>salmeterol-fluticasone</b> (Advair)`,
+ moa:`Long-acting beta\u2082 agonist — same receptor as albuterol but slow onset and long duration, so it prevents bronchospasm over time.`,
+ use:`MAINTENANCE (scheduled) treatment of asthma and COPD. Combo pairs it with an inhaled corticosteroid.`,
+ adv:`Tremor, tachycardia; used alone in asthma it carries an asthma-death risk, so it is paired with an ICS.`,
+ nurse:`NEVER use for an acute attack. Max one puff twice daily. With the combo inhaler, rinse the mouth after (steroid → thrush).`,
+ pearls:[{t:"Salmeterol = maintenance ONLY, never a rescue drug. Two puffs a day is the ceiling.",k:"key"},
+         {t:"Salmeterol-fluticasone teaching: scheduled use, rinse mouth after, not for sudden attacks.",c:"mnem"}]},
+
+{cat:"resp", name:"Inhaled Anticholinergics",
+ drugs:`<b>Ipratropium</b> (Atrovent) · <b>Tiotropium</b> (Spiriva)`,
+ moa:`Block acetylcholine (muscarinic) receptors in the airway → indirectly relax and dilate the bronchi and reduce secretions.`,
+ use:`Maintenance / PREVENTION of bronchospasm in COPD (chronic bronchitis, emphysema). NOT for acute symptoms.`,
+ adv:`Anticholinergic effects: dry mouth, blurred vision, urinary retention, constipation. Ipratropium usually dosed twice daily.`,
+ nurse:`Not a rescue drug. Watch anticholinergic effects; caution with glaucoma and BPH.`,
+ pearls:[{t:"Ipratropium adverse effects are anticholinergic: \u201ccan\u2019t see, can\u2019t pee, can\u2019t spit, can\u2019t poop.\u201d",c:"mnem"}]},
+
+{cat:"resp", name:"Xanthine Derivatives",
+ drugs:`<b>Theophylline</b> · Aminophylline (IV) · Caffeine`,
+ moa:`Plant alkaloids that relax bronchial smooth muscle and stimulate the CNS/respiratory drive, dilating the airways.`,
+ use:`Adjunct for COPD and mild-to-moderate chronic asthma. NOT for an acute attack.`,
+ adv:`Narrow therapeutic window: N/V, reflux, sinus tachycardia, dysrhythmias, hyperglycemia. Theophylline level 10–20 mcg/mL.`,
+ nurse:`Report N/V, restlessness, insomnia, tremors. Many interactions; smoking speeds metabolism. Caution in cardiac patients.`,
+ pearls:[{t:"Theophylline has a narrow range (10–20 mcg/mL) — toxicity looks like caffeine overdose (tachycardia, tremor, seizures).",c:"mnem"}]},
+
+{cat:"resp", name:"Leukotriene Receptor Antagonists",
+ drugs:`<b>Montelukast</b> (Singulair)`,
+ moa:`Block leukotrienes from binding receptors in the lungs. Leukotrienes normally cause inflammation, bronchoconstriction, and mucus — blocking them relieves asthma.`,
+ use:`PROPHYLAXIS and long-term control of asthma (age 12+). Also allergic rhinitis. NOT for acute attacks.`,
+ adv:`BLACK BOX: serious mood/behavior changes. Monitor liver function.`,
+ nurse:`Take every night on a schedule even when feeling well. Improvement takes about 1 week.`,
+ pearls:[{t:"Montelukast therapeutic effect = prevents asthma symptoms (chronic control), not rescue.",k:"key"},
+         {t:"BLACK BOX = neuropsychiatric/mood changes.",c:"mnem"}]},
+
+{cat:"resp", name:"Inhaled Corticosteroids (ICS)",
+ drugs:`<b>Fluticasone</b> (Flovent) · <b>Budesonide</b> (Pulmicort) · Beclomethasone · Mometasone · Triamcinolone`,
+ moa:`Reduce airway inflammation and boost the effect of beta agonists. This is a controller, not a reliever.`,
+ use:`CHRONIC asthma control. Do NOT relieve an acute attack. May take weeks for full effect.`,
+ adv:`Oral thrush (fungal infection), hoarseness, cough, dry mouth. Can raise blood glucose.`,
+ nurse:`RINSE the mouth after every use to prevent thrush. Use a spacer. If both a bronchodilator and steroid are due, bronchodilator FIRST.`,
+ pearls:[{t:"Corticosteroid in asthma = long-term CONTROL, taken daily. Rinse mouth after → prevents thrush.",k:"key"}]},
+
+{cat:"resp", name:"Propranolol & Respiratory Disease",
+ drugs:`<b>Propranolol</b> (nonselective beta blocker)`,
+ moa:`Blocks beta\u2081 AND beta\u2082 receptors. Blocking beta\u2082 in the lungs causes bronchoconstriction.`,
+ use:`Hypertension, dysrhythmias, migraine prophylaxis — but a caution in respiratory patients.`,
+ adv:`Can trigger bronchospasm; dangerous in asthma/COPD.`,
+ nurse:`Avoid nonselective beta blockers in patients with asthma or a history of bronchospasm — they oppose the airway-opening drugs.`,
+ pearls:[{t:"Nonselective beta blocker (propranolol) + asthma = bronchospasm risk. Use a cardioselective agent instead.",k:"key"}]},
+
+/* ============ DECONGESTANTS & COLD ============ */
+{cat:"decong", name:"Nasal Decongestants",
+ drugs:`Oral: <b>pseudoephedrine</b>, <b>phenylephrine</b> · Topical: <b>oxymetazoline</b> (Afrin)`,
+ moa:`Alpha-adrenergic agonists that CONSTRICT the blood vessels of the nasal mucosa, shrinking swollen tissue and reducing mucus/congestion.`,
+ use:`Relieve nasal congestion from colds and allergies. Topical form can also stop nosebleeds.`,
+ adv:`Alpha effects: HYPERTENSION, tachycardia, nervousness, insomnia. Topical overuse → rebound congestion.`,
+ nurse:`Limit topical sprays (Afrin) to ≤3 days to avoid rebound congestion. Caution with HTN, heart disease.`,
+ pearls:[{t:"Decongestants have alpha-adrenergic effects → the key risk is HYPERTENSION.",k:"key"},
+         {t:"Topical decongestant >3 days = rebound congestion (rhinitis medicamentosa) → worse than before.",c:"mnem"}]},
+
+{cat:"decong", name:"Antihistamines",
+ drugs:`Traditional: <b>Diphenhydramine</b> (Benadryl), Promethazine, Meclizine · Newer: <b>Loratadine</b> (Claritin), <b>Cetirizine</b> (Zyrtec), <b>Fexofenadine</b> (Allegra)`,
+ moa:`Compete with histamine for H\u2081 receptors, blocking histamine and reducing the allergic/inflammatory response.`,
+ use:`Allergic rhinitis (hay fever), allergic reactions, motion sickness, sleep aid, cold symptoms.`,
+ adv:`Traditional = sedation + anticholinergic effects (dry mouth, urinary retention, blurred vision). Newer = little/no sedation, longer acting.`,
+ nurse:`Assess for URINARY RETENTION risk before giving (anticholinergic). Caution with glaucoma, BPH, asthma.`,
+ pearls:[{t:"Traditional (Benadryl) → sedating + anticholinergic. Before giving, assess for urinary retention.",k:"key"},
+         {t:"H1 = airway/allergy; H2 (famotidine/Pepcid) = stomach acid.",c:"mnem"}]},
+
+{cat:"decong", name:"Antitussives",
+ drugs:`<b>Dextromethorphan</b> (Delsym/Robitussin-DM) · <b>Benzonatate</b> (Tessalon Perles) · Codeine`,
+ moa:`Suppress the cough reflex — centrally (opioids like codeine, and dextromethorphan) or by numbing stretch receptors in the airway (benzonatate).`,
+ use:`Only for a NONPRODUCTIVE (dry) cough.`,
+ adv:`Sedation, drowsiness, dizziness (esp. opioid antitussives).`,
+ nurse:`Do NOT use for a productive cough — you want that mucus cleared. Avoid driving. Report a cough lasting >1 week, fever, or rash.`,
+ pearls:[{t:"Antitussive = nonproductive/dry cough ONLY (e.g., post-op patient who needs to rest). Never suppress a productive cough.",k:"key"}]},
+
+{cat:"decong", name:"Expectorants",
+ drugs:`<b>Guaifenesin</b> (Mucinex)`,
+ moa:`Loosens and thins mucus/secretions so they are easier to cough up, which indirectly reduces the urge to cough.`,
+ use:`Productive cough with thick secretions (e.g., thick, dry mucus after pneumonia / with a tracheostomy).`,
+ adv:`Risk of dehydration.`,
+ nurse:`Increase fluid intake to help thin the secretions. Report fever or a cough lasting >1 week.`,
+ pearls:[{t:"Thick, hard-to-cough secretions → guaifenesin (loosens mucus) + push fluids. Opposite goal from an antitussive.",k:"key"}]},
+
+/* ============ CNS STIMULANTS & MIGRAINE ============ */
+{cat:"stim", name:"ADHD Stimulants",
+ drugs:`<b>Methylphenidate</b> (Ritalin) · <b>Dextroamphetamine/amphetamine</b> (Adderall) · Lisdexamfetamine (Vyvanse) · Modafinil`,
+ moa:`Increase dopamine and norepinephrine in the brain, stimulating areas tied to alertness and focus; reduce fatigue and drowsiness.`,
+ use:`ADHD, narcolepsy. Modafinil also for shift-work sleep disorder.`,
+ adv:`CARDIAC — palpitations, tachycardia, HTN, dysrhythmias. Also insomnia, anxiety, decreased appetite, dry mouth.`,
+ nurse:`Priority assessment before/on methylphenidate = cardiovascular status (HR, BP). Contraindicated with cardiac abnormalities. Give early in the day.`,
+ pearls:[{t:"Methylphenidate priority assessment = the HEART (BP, pulse, rhythm).",k:"key"},
+         {t:"Narcolepsy with daytime sleepiness → modafinil promotes wakefulness.",c:"mnem"}]},
+
+{cat:"stim", name:"Anorexiants",
+ drugs:`<b>Phentermine</b> (Ionamin)`,
+ moa:`Suppress the appetite control center in the brain, raise metabolic rate, and reduce fat absorption.`,
+ use:`Obesity (defined by BMI as a medical diagnosis).`,
+ adv:`Cardiovascular stimulation.`,
+ nurse:`Contraindicated in cardiovascular disease, HTN, hyperthyroidism, eating disorders, and with MAOIs.`,
+ pearls:[{t:"Appetite suppressant — screen out cardiac disease and MAOI use first.",c:"mnem"}]},
+
+{cat:"stim", name:"Antimigraine — Triptans",
+ drugs:`<b>Sumatriptan</b> (Imitrex) — a serotonin (5-HT) receptor agonist`,
+ moa:`Stimulate serotonin receptors on cerebral arteries → VASOCONSTRICTION, which relieves the migraine caused by dilated, high-pressure vessels.`,
+ use:`ABORTIVE treatment of an active migraine — NOT preventive.`,
+ adv:`Vasoconstriction, tingling/flushing, injection-site irritation.`,
+ nurse:`Contraindicated in cardiovascular disease (it constricts vessels — risk of cardiac ischemia). Take at the first sign of a migraine.`,
+ pearls:[{t:"Sumatriptan = ABORTIVE (stops a migraine in progress), not prevention. Clinical reasoning: give when the headache starts.",k:"key"},
+         {t:"Contraindication = cardiovascular disease (vasoconstriction).",k:"key"}]},
+
+/* ============ ANTIEPILEPTICS ============ */
+{cat:"epilepsy", name:"Phenytoin (Dilantin)",
+ drugs:`<b>Phenytoin</b> (Dilantin)`,
+ moa:`Stabilizes neuronal membranes and reduces the spread of seizure activity (dampens abnormal nerve firing).`,
+ use:`First-line for generalized and focal seizures. Long half-life.`,
+ adv:`GINGIVAL HYPERPLASIA (gum overgrowth), sedation. Therapeutic level 10–20 mcg/mL.`,
+ nurse:`Teach meticulous oral hygiene and regular dental visits. Same time daily, do not stop abruptly, monitor drug levels.`,
+ pearls:[{t:"Phenytoin education: gum overgrowth (gingival hyperplasia) → dental care. Level 10–20.",k:"key"}]},
+
+{cat:"epilepsy", name:"Levetiracetam (Keppra)",
+ drugs:`<b>Levetiracetam</b> (Keppra)`,
+ moa:`Modulates neurotransmitter release to suppress seizure activity (exact mechanism not fully known).`,
+ use:`Adjunct for partial seizures; prevention of seizures after head injury / brain bleed. PO and IV.`,
+ adv:`Low adverse-effect profile — mainly sedation and mood/behavior changes. Few drug interactions.`,
+ nurse:`Give at the same time daily; do not stop abruptly. Monitor mood.`,
+ pearls:[{t:"Keppra use = seizure prevention, including after head injury/brain bleed. \u201cKlean\u201d profile — few interactions.",c:"mnem"}]},
+
+{cat:"epilepsy", name:"Lamotrigine (Lamictal)",
+ drugs:`<b>Lamotrigine</b> (Lamictal)`,
+ moa:`Stabilizes neuronal membranes to reduce seizure activity; also stabilizes mood.`,
+ use:`Partial (simple/complex) seizures and bipolar disorder.`,
+ adv:`Relatively minor CNS/GI effects — but risk of STEVENS-JOHNSON SYNDROME (serious rash).`,
+ nurse:`Teach the patient to report ANY rash immediately and stop the drug — could be Stevens-Johnson. Titrate slowly.`,
+ pearls:[{t:"Lamotrigine education: report any rash right away — risk of Stevens-Johnson syndrome.",k:"key"}]},
+
+{cat:"epilepsy", name:"Valproic Acid (Depakote)",
+ drugs:`<b>Valproic acid</b> (Depakote)`,
+ moa:`Increases GABA and stabilizes neuronal membranes to control seizures and mood.`,
+ use:`Generalized seizures, partial seizures, bipolar disorder.`,
+ adv:`Drowsiness, GI upset, tremor, weight gain, hair loss, HEPATOTOXICITY, pancreatitis. Highly protein-bound.`,
+ nurse:`Monitor liver function and drug levels. Report abdominal pain (pancreatitis) or signs of liver injury.`,
+ pearls:[{t:"Valproic acid → watch the LIVER (hepatotoxic) and pancreas.",c:"mnem"}]},
+
+{cat:"epilepsy", name:"Seizure — Priority Interventions",
+ drugs:`Acute seizure care + status epilepticus drug`,
+ moa:`During a seizure the priority is protecting the airway and preventing injury; benzodiazepines (lorazepam/diazepam) stop prolonged seizures by enhancing GABA.`,
+ use:`A generalized seizure that will not stop → IV lorazepam (or diazepam).`,
+ adv:`—`,
+ nurse:`PRIORITY during a seizure: protect the patient — turn on their side, protect the head, keep the airway open, do NOT restrain, do NOT put anything in the mouth. Stay and time it.`,
+ pearls:[{t:"Prolonged/continuous seizure → lorazepam (a benzodiazepine) is the drug expected.",k:"key"},
+         {t:"Priority nursing action = SAFETY: side-lying, protect head/airway, never restrain or force objects in the mouth.",k:"key"}]},
+
+{cat:"epilepsy", name:"Antiepileptics — General Teaching",
+ drugs:`Class-wide principles`,
+ moa:`All reduce abnormal neuronal firing; most require steady serum levels.`,
+ use:`Lifelong seizure control.`,
+ adv:`BLACK BOX: suicidal ideation. Many interactions; effects differ per drug.`,
+ nurse:`Take at the same time daily. Do NOT stop even if seizure-free. Keep lab/drug-level appointments. Check before any OTC drug. Keep a seizure journal.`,
+ pearls:[{t:"WRONG statement to correct: \u201cI\u2019ll have no seizures once my levels are normal\u201d — control is not a guarantee, and you never stop the drug on your own.",k:"key"}]},
+
+/* ============ ANTIPARKINSON ============ */
+{cat:"parkinson", name:"Levodopa-Carbidopa (Sinemet)",
+ drugs:`<b>Carbidopa-levodopa</b> (Sinemet)`,
+ moa:`Levodopa crosses into the brain and is converted to dopamine, replacing what is lost in Parkinson\u2019s. Carbidopa lets more levodopa reach the brain and cuts side effects.`,
+ use:`Parkinson\u2019s disease (works only while functioning nerve terminals remain — roughly the first 5–10 years).`,
+ adv:`Confusion, involuntary movements (dyskinesia), GI distress, orthostatic hypotension, dysrhythmias.`,
+ nurse:`Best on an empty stomach (take with food only if GI upset). AVOID a high-protein diet — protein blocks absorption. Avoid MAOIs. Don\u2019t stop abruptly.`,
+ pearls:[{t:"High-protein meals slow/block levodopa absorption → less effect.",k:"key"},
+         {t:"Parkinson\u2019s = imbalance of dopamine & acetylcholine. Symptoms = TRAP: Tremor, Rigidity, Akinesia, Postural instability.",c:"mnem"}]},
+
+{cat:"parkinson", name:"Amantadine (Symmetrel)",
+ drugs:`<b>Amantadine</b> (Symmetrel) — dopamine modulator`,
+ moa:`Causes release of stored dopamine and blocks its reuptake, raising dopamine available to receptors.`,
+ use:`Early Parkinson\u2019s (typically effective for about 12 months).`,
+ adv:`Dizziness, insomnia, nausea.`,
+ nurse:`Avoid cholinergic drugs (risk of cholinergic crisis). Watch for the listed CNS/GI effects.`,
+ pearls:[{t:"Amantadine adverse effects to watch: nausea, dizziness, insomnia.",c:"mnem"}]},
+
+{cat:"parkinson", name:"Bromocriptine (Parlodel)",
+ drugs:`<b>Bromocriptine</b> (Parlodel) — dopamine receptor agonist`,
+ moa:`Activates dopamine receptors directly to boost dopamine effect.`,
+ use:`Used alongside carbidopa-levodopa to lower the levodopa dose needed and prolong its effect.`,
+ adv:`GI upset, dyskinesias, insomnia.`,
+ nurse:`Avoid adrenergic drugs.`,
+ pearls:[{t:"Dopamine agonist \u201cassist\u201d — lets you use less levodopa.",c:"mnem"}]},
+
+/* ============ PSYCHOTHERAPEUTICS ============ */
+{cat:"psych", name:"Anxiolytics (Buspirone)",
+ drugs:`<b>Buspirone</b> (BuSpar) · benzodiazepines (Xanax, Ativan, Valium)`,
+ moa:`Buspirone binds serotonin and dopamine receptors (exact anti-anxiety mechanism unknown) with a slow onset and NO sedation. Benzos work fast via GABA.`,
+ use:`Buspirone = maintenance (daily) treatment of generalized anxiety — not for acute panic. Benzos = acute anxiety.`,
+ adv:`Buspirone: blurred vision, headache, nausea. It lacks the sedation/dependence of benzos.`,
+ nurse:`Teach that buspirone takes time and must be taken daily — it will not work \u201cas needed\u201d for a panic episode.`,
+ pearls:[{t:"Common MAINTENANCE anxiolytic = buspirone (daily, non-sedating, slow onset).",k:"key"}]},
+
+{cat:"psych", name:"Lithium Carbonate",
+ drugs:`<b>Lithium</b> (mood stabilizer)`,
+ moa:`Alters sodium transport and neurotransmitter activity in neurons to stabilize mood (exact mechanism not fully known). Behaves like sodium in the body.`,
+ use:`Bipolar disorder.`,
+ adv:`GI distress, fine tremor, polyuria/thirst, weight gain, goiter/hypothyroidism, bradydysrhythmia.`,
+ nurse:`Maintenance level 0.6–1.2 mEq/L — a narrow window, so check levels regularly. Give with food/milk. Keep sodium and fluid intake CONSISTENT.`,
+ pearls:[{t:"Lithium labs: therapeutic 0.6–1.2. Because it acts like sodium, DEHYDRATION or low sodium (vomiting, diarrhea, diuretics) raises the level → toxicity.",k:"key"},
+         {t:"Early toxicity: coarse tremor, N/V/D, confusion, ataxia, slurred speech.",c:"mnem"}]},
+
+{cat:"psych", name:"Antipsychotics — First Generation",
+ drugs:`Haloperidol (Haldol), Chlorpromazine, Fluphenazine`,
+ moa:`Block dopamine (D\u2082) receptors in the brain, reducing psychotic symptoms.`,
+ use:`Schizophrenia, acute psychosis, mania, Tourette\u2019s, intractable hiccups.`,
+ adv:`EXTRAPYRAMIDAL SYMPTOMS (EPS): acute dystonia, akathisia, pseudoparkinsonism, tardive dyskinesia. Neuroleptic malignant syndrome (rare, life-threatening).`,
+ nurse:`Assess for EPS (abnormal movements). Report high fever + rigidity + autonomic instability (NMS) — emergency.`,
+ pearls:[{t:"First-gen (typical) antipsychotics → EPS (movement disorders). ADAPT: Akathisia, Dystonia, Akinesia, Pseudoparkinsonism, Tardive dyskinesia.",k:"key"}]},
+
+{cat:"psych", name:"Antipsychotics — Atypical",
+ drugs:`Olanzapine (Zyprexa), Risperidone, Quetiapine (Seroquel), Clozapine`,
+ moa:`Block both dopamine and serotonin receptors → fewer movement side effects but more metabolic effects.`,
+ use:`Schizophrenia, bipolar, adjunct in depression, autism-related irritability.`,
+ adv:`METABOLIC SYNDROME: weight gain, high blood glucose (diabetes), high cholesterol. Clozapine → agranulocytosis (monitor WBC).`,
+ nurse:`Monitor weight, glucose, and lipids. All antipsychotics carry a black box for suicidal ideation in children.`,
+ pearls:[{t:"Atypical antipsychotics → the essential adverse effect is METABOLIC syndrome (weight, glucose, lipids).",k:"key"}]},
+
+{cat:"psych", name:"SSRIs",
+ drugs:`<b>Sertraline</b> (Zoloft) · Fluoxetine (Prozac) · Paroxetine (Paxil) · Citalopram (Celexa) · Escitalopram (Lexapro)`,
+ moa:`Selectively block serotonin reuptake, so more serotonin stays in the synapse to improve mood.`,
+ use:`Depression, GAD, panic, OCD, social anxiety, PTSD. First-line for depression.`,
+ adv:`Early: nausea, drowsiness (resolve). Long-term: insomnia, headache, sexual dysfunction. Serotonin syndrome, GI bleed, weight gain.`,
+ nurse:`Full effect takes 4–6 weeks. Do NOT stop abruptly (taper). Avoid St. John\u2019s wort (serotonin syndrome). Assess for SUICIDAL IDEATION, especially early and in young patients.`,
+ pearls:[{t:"Sertraline (Zoloft) teaching: use caution rising (orthostatic), no St. John\u2019s wort, don\u2019t stop abruptly, check before OTCs.",k:"key"},
+         {t:"Depression + suicide risk: energy can return BEFORE mood lifts (weeks 1–4) → highest suicide-attempt risk. Assess at follow-up.",k:"key"}]},
+
+{cat:"psych", name:"SNRIs",
+ drugs:`<b>Venlafaxine</b> (Effexor) · <b>Duloxetine</b> (Cymbalta)`,
+ moa:`Block reuptake of BOTH serotonin and norepinephrine.`,
+ use:`Depression, GAD, panic, social anxiety. Adjunct for nerve/chronic pain (fibromyalgia, diabetic neuropathy, low back pain).`,
+ adv:`Similar to SSRIs; can raise blood pressure.`,
+ nurse:`Monitor BP. Taper to stop. Assess for suicidal ideation.`,
+ pearls:[{t:"SNRIs double up (serotonin + norepinephrine) → useful for depression AND chronic pain.",c:"mnem"}]},
+
+{cat:"psych", name:"Tricyclic Antidepressants (TCAs)",
+ drugs:`Amitriptyline · Imipramine · Nortriptyline · Clomipramine`,
+ moa:`Block reuptake of norepinephrine and serotonin, intensifying their effect.`,
+ use:`Depression, neuropathic pain, fibromyalgia (first-line), anxiety, insomnia; imipramine for childhood enuresis; clomipramine for OCD.`,
+ adv:`Anticholinergic effects, orthostatic hypotension, sedation. DANGEROUS in overdose (cardiac dysrhythmias).`,
+ nurse:`Caution with overdose risk. Watch anticholinergic and cardiac effects.`,
+ pearls:[{t:"TCAs are lethal in overdose (cardiotoxic) — a real concern in depressed patients.",k:"key"}]},
+
+{cat:"psych", name:"MAOIs",
+ drugs:`<b>Phenelzine</b> (Nardil) · Isocarboxazid (Marplan) · Tranylcypromine (Parnate)`,
+ moa:`Block monoamine oxidase, so more norepinephrine, dopamine, serotonin, AND tyramine stay available.`,
+ use:`Depression (often treatment-resistant), panic, GAD, OCD, PTSD, bulimia.`,
+ adv:`HYPERTENSIVE CRISIS with tyramine foods. \u201cInteracts with everything.\u201d Takes weeks–months for full effect.`,
+ nurse:`Phenelzine education: AVOID tyramine foods — aged cheese, cured/smoked meats (pepperoni), wine, aged/fermented foods. Avoid other serotonergic drugs. Take daily; don\u2019t stop suddenly; watch for suicidal ideation.`,
+ pearls:[{t:"MAOI + tyramine = hypertensive crisis (\u201ccheese effect\u201d). Safe foods on a list: orange juice, milk, fresh shrimp. Avoid: Swiss/aged cheese, pepperoni pizza.",k:"key"}]},
+
+/* ============ SUBSTANCE USE ============ */
+{cat:"sud", name:"Alcohol Withdrawal",
+ drugs:`<b>Benzodiazepines</b> (lorazepam, diazepam) + <b>thiamine</b> (B1)`,
+ moa:`Alcohol enhances GABA; stopping it leaves the CNS hyperexcitable. Benzos replace the GABA effect and calm withdrawal; thiamine prevents Wernicke\u2019s encephalopathy.`,
+ use:`Alcohol withdrawal, including delirium tremens (DTs). Severity tracked with CIWA.`,
+ adv:`Withdrawal signs: elevated BP, pulse, temp; insomnia, tremors, agitation; severe = DTs.`,
+ nurse:`Benzodiazepines are the treatment of CHOICE. Severe withdrawal → monitor in ICU. Give thiamine and other B vitamins.`,
+ pearls:[{t:"Medications for alcohol withdrawal = benzodiazepines (drug of choice) + thiamine/B vitamins.",k:"key"},
+         {t:"Delirium tremens presents with TACHYcardia, hypertension, fever, agitation (NOT bradycardia/somnolence).",c:"mnem"}]},
+
+{cat:"sud", name:"Alcohol Use Disorder Maintenance",
+ drugs:`<b>Disulfiram</b> (Antabuse) · <b>Naltrexone</b> · <b>Acamprosate</b> (Campral)`,
+ moa:`Disulfiram blocks alcohol metabolism → toxic acetaldehyde builds up, causing a violently unpleasant reaction if the person drinks. Naltrexone blocks opioid receptors to reduce craving/reward. Acamprosate stabilizes brain chemistry in abstinence.`,
+ use:`Maintain sobriety in alcohol use disorder (with counseling / AA).`,
+ adv:`Disulfiram-alcohol reaction: flushing, severe N/V, throbbing headache, hypotension.`,
+ nurse:`Disulfiram teaching: avoid ALL alcohol — including hidden sources (mouthwash, sauces, aftershave). It does NOT cure alcoholism. Effects can last ~2 weeks after stopping.`,
+ pearls:[{t:"Disulfiram does not cure — it deters. Any alcohol → acetaldehyde reaction.",k:"key"}]},
+
+{cat:"sud", name:"Nicotine Cessation",
+ drugs:`Nicotine patch/gum/inhaler/spray · <b>Bupropion</b> (Zyban) · <b>Varenicline</b>`,
+ moa:`Replacement products give nicotine without tobacco carcinogens to ease withdrawal. Bupropion and varenicline act centrally to reduce craving.`,
+ use:`Smoking cessation.`,
+ adv:`Nicotine releases epinephrine → physiologic stress, not relaxation.`,
+ nurse:`Patch = steady baseline (not for quick cravings). Gum = chew slowly and \u201cpark\u201d it; chewing fast releases too much nicotine at once.`,
+ pearls:[{t:"Patch = slow/steady; gum = chew slowly. \u201cChew rapidly for quick relief\u201d is WRONG.",c:"mnem"}]},
+
+/* ============ ANTITUBERCULAR ============ */
+{cat:"tb", name:"Antitubercular Drugs (RIPE)",
+ drugs:`<b>Rifampin</b> · <b>Isoniazid (INH)</b> · <b>Pyrazinamide</b> · <b>Ethambutol</b>`,
+ moa:`Multiple antibiotics kill/inhibit Mycobacterium tuberculosis. Several drugs are combined so the organism cannot develop resistance.`,
+ use:`Active TB (6–12 months, sometimes up to 24). MDR-TB is resistant to INH + rifampin.`,
+ adv:`INH → peripheral neuropathy + hepatotoxicity. Rifampin → red/orange body fluids + reduces oral contraceptive efficacy. Ethambutol → optic neuritis (vision).`,
+ nurse:`Give B6 (pyridoxine) with INH to prevent neuropathy. Strict adherence — never share pills. Monitor liver function. Collect sputum in the MORNING.`,
+ pearls:[{t:"INH → give vitamin B6 (pyridoxine) to prevent peripheral neuropathy.",k:"key"},
+         {t:"Rifampin → harmless red/orange urine, sweat, tears; use backup birth control. \u201cTake for 1 week then stop\u201d is WRONG — full course required.",k:"key"},
+         {t:"PPD (Mantoux): read INDURATION, not redness. BCG vaccine can cause a false-positive PPD.",c:"mnem"}]},
+
+/* ============ FLUIDS & ELECTROLYTES ============ */
+{cat:"fluid", name:"IV Fluids — Crystalloids & Colloids",
+ drugs:`Crystalloids: NS 0.9%, Lactated Ringers, D5W · Colloids: Albumin, Dextran`,
+ moa:`Crystalloids contain fluid + electrolytes that maintain the osmotic gradient — used for dehydration. Colloids are proteins that pull fluid from the interstitial space into the plasma (raise volume).`,
+ use:`Crystalloids for dehydration/fluid replacement; colloids to expand plasma volume; blood products when ≥25% blood volume is lost.`,
+ adv:`Crystalloid infusion risk = FLUID OVERLOAD.`,
+ nurse:`Monitor infusion rate, site, and for infiltration. Assess vitals, daily weights, I&O, skin, and lung sounds.`,
+ pearls:[{t:"On a crystalloid infusion, watch for FLUID OVERLOAD (crackles, edema, ↑BP, bounding pulse).",k:"key"}]},
+
+{cat:"fluid", name:"Potassium (K\u207a)",
+ drugs:`Normal 3.5–5 mEq/L (main intracellular electrolyte)`,
+ moa:`Potassium drives muscle contraction, nerve impulse transmission, and heartbeat regulation. Excess is excreted by the kidneys.`,
+ use:`Replace in hypokalemia (PO or IV).`,
+ adv:`Hypokalemia: muscle weakness, constipation, irregular pulse, lethargy. Hyperkalemia: mostly cardiac → >7 mEq/L can cause V-fib / arrest.`,
+ nurse:`NEVER IV push potassium — give diluted, no faster than ~10–20 mEq/hr, on a pump, with cardiac monitoring. Check the ECG first.`,
+ pearls:[{t:"IV potassium: dilute, slow, pump, monitor. NEVER IV bolus/push — it can be fatal.",k:"key"},
+         {t:"Drugs to LOWER K: albuterol, dextrose/insulin, calcium, Kayexalate.",c:"mnem"}]},
+
+{cat:"fluid", name:"Sodium (Na\u207a)",
+ drugs:`Normal 135–145 mEq/L (main extracellular electrolyte)`,
+ moa:`Sodium controls water distribution, fluid/electrolyte balance, osmotic pressure, and acid-base balance.`,
+ use:`—`,
+ adv:`Imbalance shifts water in/out of cells → neuro changes (confusion, seizures) at the extremes.`,
+ nurse:`Assess fluid status, daily weights, I&O. Correct sodium changes SLOWLY.`,
+ pearls:[{t:"Sodium and water travel together — sodium problems are really water-balance problems.",c:"mnem"}]},
+
+/* ============ IMMUNE / ANTIRHEUMATIC ============ */
+{cat:"immune", name:"DMARDs (Antirheumatic)",
+ drugs:`Nonbiologic: <b>Methotrexate</b>, Hydroxychloroquine (Plaquenil) · Biologic: Adalimumab (Humira)`,
+ moa:`Act on the immune system — anti-inflammatory and immunomodulating. They inhibit immune cells from moving into inflamed, damaged joints, slowing disease.`,
+ use:`First-line for rheumatoid arthritis (LOWER doses than in cancer). Slow onset (weeks).`,
+ adv:`Toxic effects — bone marrow suppression, hepatotoxicity, infection risk.`,
+ nurse:`Monitor CBC and liver. Signs of bone-marrow suppression on methotrexate: increased bruising, fever, chills, infection.`,
+ pearls:[{t:"Methotrexate for RA = low dose; monitor CBC + liver; report fever/bruising (marrow suppression).",k:"key"}]},
+
+{cat:"immune", name:"Hematopoietic Drugs",
+ drugs:`<b>Epoetin alfa</b> (RBCs) · <b>Filgrastim</b> (WBCs) · Romiplostim (platelets)`,
+ moa:`Stimulate the bone marrow to make more of a specific blood component, shortening anemia, neutropenia, or thrombocytopenia.`,
+ use:`Support patients on chemo — allows higher chemo doses and reduces low-blood-count complications.`,
+ adv:`Fever, muscle/bone pain, flushing.`,
+ nurse:`Expect bone pain with filgrastim (marrow is revving up). Monitor blood counts.`,
+ pearls:[{t:"Filgrastim boosts WBCs → bone pain is expected as marrow ramps up.",c:"mnem"}]},
+
+{cat:"immune", name:"Immunomodulators",
+ drugs:`Interferons · Monoclonal antibodies (\u2013mabs) · Interleukins`,
+ moa:`Alter the immune response so the body can attack tumor cells and viruses (or, as immunosuppressants, dampen an overactive immune system).`,
+ use:`Cancer, MS, RA, organ transplant.`,
+ adv:`Flu-like symptoms; immunosuppression → infection risk.`,
+ nurse:`Infection prevention: excellent hand hygiene, avoid crowds/sick people, mask, cook food well, no gardening or litter box, no fresh flowers or raw produce, stay up to date on vaccines.`,
+ pearls:[{t:"On immunosuppressants → the whole teaching plan is infection prevention.",c:"mnem"}]},
+
+/* ============ ENDOCRINE (discussion topics) ============ */
+{cat:"endo", name:"Addison\u2019s Disease Medication",
+ drugs:`<b>Hydrocortisone</b> · <b>Fludrocortisone</b> (mineralocorticoid)`,
+ moa:`Addison\u2019s = the adrenal glands make too little cortisol (and aldosterone). Treatment REPLACES those missing hormones.`,
+ use:`Lifelong hormone replacement for adrenal insufficiency.`,
+ adv:`Under-replacement → Addisonian crisis (hypotension, shock). Over-replacement → Cushing-like effects.`,
+ nurse:`Never stop steroids abruptly. Increase the dose during stress/illness/surgery. Teach signs of crisis.`,
+ pearls:[{t:"Addison\u2019s = too LITTLE cortisol → REPLACE it (hydrocortisone). Stress = more steroid, not less.",k:"key"}]},
+
+{cat:"endo", name:"Cushing\u2019s / Long-Term Steroids",
+ drugs:`Excess corticosteroids (endogenous or from long-term steroid therapy)`,
+ moa:`Too MUCH cortisol produces the Cushing\u2019s picture. Long-term steroid therapy mimics it.`,
+ use:`—`,
+ adv:`Moon face, buffalo hump, truncal obesity with thin limbs, thin/bruised skin, striae, hyperglycemia, hypertension, osteoporosis, poor wound healing, infection risk.`,
+ nurse:`Recognize the Cushingoid look in a patient on chronic steroids. Never stop steroids abruptly (taper). Monitor glucose, BP, weight.`,
+ pearls:[{t:"Long-term steroids → Cushingoid appearance: moon face, buffalo hump, central obesity, thin skin, high glucose.",k:"key"}]},
+
+{cat:"endo", name:"DKA — Insulin",
+ drugs:`<b>Regular insulin</b>, IV`,
+ moa:`In diabetic ketoacidosis, insulin drives glucose (and potassium) into cells, shutting off ketone production. Only regular (short-acting) insulin can be given IV.`,
+ use:`Diabetic ketoacidosis.`,
+ adv:`Hypoglycemia and HYPOkalemia as potassium shifts back into cells.`,
+ nurse:`Give regular insulin by IV infusion. Monitor glucose and potassium closely; also give IV fluids.`,
+ pearls:[{t:"DKA insulin = REGULAR insulin IV (the only IV-compatible insulin). Watch potassium — it drops as insulin works.",k:"key"}]},
+
+{cat:"endo", name:"Desmopressin (DDAVP)",
+ drugs:`<b>Desmopressin</b> / DDAVP (synthetic ADH), incl. intranasal`,
+ moa:`Mimics antidiuretic hormone → the kidneys reabsorb water, so LESS urine is made and it becomes more concentrated.`,
+ use:`Diabetes insipidus (also bedwesting, some bleeding disorders).`,
+ adv:`Water intoxication / hyponatremia if too much water is retained (headache, confusion).`,
+ nurse:`Therapeutic effect of intranasal desmopressin = decreased urine output and increased urine concentration (less thirst/urination).`,
+ pearls:[{t:"Desmopressin/DDAVP use = diabetes insipidus. Effect = LESS urine, more concentrated. Watch for water overload / low sodium.",k:"key"}]},
+
+{cat:"endo", name:"Somatropin",
+ drugs:`<b>Somatropin</b> (synthetic growth hormone)`,
+ moa:`Replaces growth hormone to stimulate growth and metabolism.`,
+ use:`Growth hormone deficiency (children and adults).`,
+ adv:`Monitor for HYPERGLYCEMIA (GH opposes insulin). Also fluid retention, joint pain.`,
+ nurse:`Watch blood glucose. Assess growth in children.`,
+ pearls:[{t:"Somatropin adverse effect to monitor = hyperglycemia.",k:"key"}]},
+
+{cat:"psych", name:"Depression & Suicide Risk",
+ drugs:`Applies to all antidepressants`,
+ moa:`Antidepressants raise mood-related neurotransmitters, but mood lifts slowly (weeks) while energy/motivation may return first.`,
+ use:`—`,
+ adv:`BLACK BOX: increased suicidal ideation, especially early and in children/young adults.`,
+ nurse:`Assess for suicidal ideation at every contact — highest risk is the first few weeks when energy returns before mood does.`,
+ pearls:[{t:"After ~4 weeks on an antidepressant, the follow-up priority to assess = suicidal ideation.",k:"key"}]}
+];
+
+/* ---- render ---- */
+const app = document.getElementById('app');
+const chipsEl = document.getElementById('chips');
+const qEl = document.getElementById('q');
+const countEl = document.getElementById('count');
+
+let activeCat = null;
+let query = "";
+
+/* build filter chips: focus areas first, then the rest */
+const order = Object.keys(CATS).sort((a,b)=> (CATS[b].focus?1:0)-(CATS[a].focus?1:0));
+const allChip = document.createElement('button');
+allChip.className='chip allbtn on'; allChip.textContent='All topics';
+allChip.onclick=()=>{activeCat=null; syncChips(); render();};
+chipsEl.appendChild(allChip);
+order.forEach(k=>{
+  const c=CATS[k];
+  const b=document.createElement('button');
+  b.className='chip'+(c.focus?' star':'');
+  b.style.setProperty('--cc',c.color);
+  b.dataset.k=k;
+  b.innerHTML=`<span class="dot"></span>${c.label}`;
+  b.onclick=()=>{activeCat = activeCat===k?null:k; syncChips(); render();};
+  chipsEl.appendChild(b);
+});
+function syncChips(){
+  allChip.classList.toggle('on', !activeCat);
+  chipsEl.querySelectorAll('.chip[data-k]').forEach(b=>{
+    b.classList.toggle('on', b.dataset.k===activeCat);
+  });
+}
+
+qEl.addEventListener('input', e=>{ query=e.target.value.trim().toLowerCase(); render(); });
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function hl(html){
+  if(!query) return html;
+  // highlight plain-text query in already-safe html (avoid breaking tags)
+  const parts = html.split(/(<[^>]+>)/g);
+  const re = new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+  return parts.map(p=> p.startsWith('<')?p:p.replace(re,'<mark>$1</mark>')).join('');
+}
+function matches(d){
+  if(activeCat && d.cat!==activeCat) return false;
+  if(!query) return true;
+  const blob=[d.name,d.drugs,d.moa,d.use,d.adv,d.nurse,(d.pearls||[]).map(p=>p.t).join(' '),CATS[d.cat].label].join(' ').toLowerCase();
+  return blob.includes(query);
+}
+
+function cardHTML(d){
+  const c=CATS[d.cat];
+  const pearls=(d.pearls||[]).map(p=>`<div class="pearl ${p.k?'key':(p.c||'')}">${hl(p.t)}</div>`).join('');
+  const field=(lab,val)=> (val && val!=='—') ? `<div class="field"><span class="lab">${lab}</span>${hl(val)}</div>`:'';
+  return `<article class="card" style="--cc:${c.color}">
+    <span class="cattag"><span class="d"></span>${c.label}${c.focus?' · focus':''}</span>
+    <h3>${hl(d.name)}</h3>
+    <p class="drugs">${hl(d.drugs)}</p>
+    <div class="moa"><span class="lab">Mechanism of Action</span>${hl(d.moa)}</div>
+    ${field('Uses', d.use)}
+    ${field('Key Adverse Effects', d.adv)}
+    ${field('Nursing / Patient Education', d.nurse)}
+    ${pearls?`<div class="pearls">${pearls}</div>`:''}
+  </article>`;
+}
+
+function render(){
+  const shown = D.filter(matches);
+  countEl.textContent = `${shown.length} card${shown.length!==1?'s':''}`;
+  if(!shown.length){
+    app.innerHTML=`<div class="noresults">No cards match \u201c${esc(query)}\u201d${activeCat?' in '+CATS[activeCat].label:''}.<br>Try a different word or clear the filter.</div>`;
+    return;
+  }
+  // group by category, in chip order
+  let html='';
+  order.forEach(k=>{
+    const grp=shown.filter(d=>d.cat===k);
+    if(!grp.length) return;
+    const c=CATS[k];
+    html+=`<section class="grp" style="--cc:${c.color}">
+      <div class="grphead">
+        ${c.focus?'<span class="star">\u2605</span>':''}
+        <h2 style="color:${c.color}">${c.label}</h2>
+        <span class="bar"></span>
+      </div>
+      <div class="grid">${grp.map(cardHTML).join('')}</div>
+    </section>`;
+  });
+  app.innerHTML=html+`<div class="foot">NUR312 Cohort 38 &middot; Built from Week 4, 6 &amp; 7 slides and the Exam 3 discussion list. Study aid only &mdash; always confirm against your course materials and current drug references.</div>`;
+}
+
+/* theme toggle (in-memory + optional persistence) */
+const root=document.documentElement;
+const themeBtn=document.getElementById('themeBtn');
+let theme=null;
+try{ theme=localStorage.getItem('nur312theme'); }catch(e){}
+if(theme) root.setAttribute('data-theme',theme);
+themeBtn.onclick=()=>{
+  const cur=root.getAttribute('data-theme');
+  const next = cur==='dark'?'light':(cur==='light'?'dark':( matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark'));
+  root.setAttribute('data-theme',next);
+  try{ localStorage.setItem('nur312theme',next);}catch(e){}
+};
+
+render();
+</script>
+</body>
+</html>

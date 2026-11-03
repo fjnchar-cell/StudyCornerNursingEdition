@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch. 18 — Urinary System Disorders | NUR 311 Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f6fb; --surface:#ffffff; --surface-2:#f0f3fa;
+    --text:#1c2436; --muted:#5a6480; --line:#e0e6f2;
+    --shadow:0 1px 3px rgba(20,30,60,.08),0 4px 16px rgba(20,30,60,.05);
+    /* category colors */
+    --c-ap:#2563eb;     --c-ap-bg:#e8f0ff;
+    --c-dx:#7c3aed;     --c-dx-bg:#f1e9fe;
+    --c-rx:#0d9488;     --c-rx-bg:#e0f5f2;
+    --c-inf:#dc2626;    --c-inf-bg:#fdeaea;
+    --c-obs:#d97706;    --c-obs-bg:#fdf1de;
+    --c-vasc:#db2777;   --c-vasc-bg:#fdeaf4;
+    --c-fail:#4f46e5;   --c-fail-bg:#eae9fe;
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --bg:#0f1420; --surface:#171d2c; --surface-2:#1e2536;
+      --text:#e7ecf7; --muted:#98a3bd; --line:#2b3346;
+      --shadow:0 1px 3px rgba(0,0,0,.4),0 4px 16px rgba(0,0,0,.3);
+      --c-ap-bg:#16233f; --c-dx-bg:#251a3c; --c-rx-bg:#0f2e2a;
+      --c-inf-bg:#3a1717; --c-obs-bg:#3a2810; --c-vasc-bg:#3a1428; --c-fail-bg:#1f1d40;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1420; --surface:#171d2c; --surface-2:#1e2536;
+    --text:#e7ecf7; --muted:#98a3bd; --line:#2b3346;
+    --shadow:0 1px 3px rgba(0,0,0,.4),0 4px 16px rgba(0,0,0,.3);
+    --c-ap-bg:#16233f; --c-dx-bg:#251a3c; --c-rx-bg:#0f2e2a;
+    --c-inf-bg:#3a1717; --c-obs-bg:#3a2810; --c-vasc-bg:#3a1428; --c-fail-bg:#1f1d40;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 18px 80px}
+
+  /* ---- Header ---- */
+  header.hero{
+    background:linear-gradient(135deg,#1e3a8a,#4338ca 55%,#6d28d9);
+    color:#fff;padding:32px 18px 26px;margin-bottom:0;
+  }
+  .hero-inner{max-width:960px;margin:0 auto}
+  .kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85;font-weight:600}
+  header.hero h1{margin:.25rem 0 .35rem;font-size:1.9rem;font-weight:800;letter-spacing:-.02em}
+  .hero-sub{opacity:.9;font-size:.95rem;max-width:640px}
+  .hero-meta{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+  .hero-meta span{background:rgba(255,255,255,.16);padding:4px 11px;border-radius:20px;font-size:.78rem;font-weight:500}
+
+  /* ---- Controls ---- */
+  .controls{
+    position:sticky;top:0;z-index:20;background:var(--surface);
+    border-bottom:1px solid var(--line);box-shadow:var(--shadow);
+    padding:12px 18px;
+  }
+  .controls-inner{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+  .search-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  #search{
+    flex:1;min-width:180px;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);
+    background:var(--surface-2);color:var(--text);font-size:.95rem;font-family:inherit;
+  }
+  #search:focus{outline:none;border-color:var(--c-ap)}
+  .btn{
+    padding:9px 13px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface-2);
+    color:var(--text);font-size:.83rem;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--c-ap)}
+  .chips{display:flex;gap:7px;flex-wrap:wrap}
+  .chip{
+    padding:6px 12px;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;
+    border:1.5px solid transparent;user-select:none;transition:transform .05s;
+  }
+  .chip:active{transform:scale(.96)}
+  .chip[aria-pressed="false"]{opacity:.45}
+  .chip.ap{background:var(--c-ap-bg);color:var(--c-ap)}
+  .chip.dx{background:var(--c-dx-bg);color:var(--c-dx)}
+  .chip.rx{background:var(--c-rx-bg);color:var(--c-rx)}
+  .chip.inf{background:var(--c-inf-bg);color:var(--c-inf)}
+  .chip.obs{background:var(--c-obs-bg);color:var(--c-obs)}
+  .chip.vasc{background:var(--c-vasc-bg);color:var(--c-vasc)}
+  .chip.fail{background:var(--c-fail-bg);color:var(--c-fail)}
+  .no-results{text-align:center;color:var(--muted);padding:40px 0;display:none;font-style:italic}
+
+  /* ---- Sections ---- */
+  section.block{margin-top:22px}
+  .sec-head{
+    display:flex;align-items:center;gap:10px;cursor:pointer;padding:12px 16px;
+    border-radius:12px;background:var(--surface);box-shadow:var(--shadow);
+    border-left:5px solid var(--accent,#888);
+  }
+  .sec-head:hover{background:var(--surface-2)}
+  .sec-head h2{margin:0;font-size:1.12rem;font-weight:700;flex:1}
+  .sec-head .tag{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    padding:3px 8px;border-radius:6px;background:var(--accent-bg);color:var(--accent)}
+  .caret{transition:transform .2s;color:var(--muted);font-size:.9rem}
+  .sec-head.collapsed .caret{transform:rotate(-90deg)}
+  .sec-body{padding:6px 2px 4px}
+  .sec-head.collapsed + .sec-body{display:none}
+
+  /* category accents applied to sections */
+  .cat-ap{--accent:var(--c-ap);--accent-bg:var(--c-ap-bg)}
+  .cat-dx{--accent:var(--c-dx);--accent-bg:var(--c-dx-bg)}
+  .cat-rx{--accent:var(--c-rx);--accent-bg:var(--c-rx-bg)}
+  .cat-inf{--accent:var(--c-inf);--accent-bg:var(--c-inf-bg)}
+  .cat-obs{--accent:var(--c-obs);--accent-bg:var(--c-obs-bg)}
+  .cat-vasc{--accent:var(--c-vasc);--accent-bg:var(--c-vasc-bg)}
+  .cat-fail{--accent:var(--c-fail);--accent-bg:var(--c-fail-bg)}
+
+  /* ---- Cards ---- */
+  .card{
+    background:var(--surface);border-radius:12px;box-shadow:var(--shadow);
+    padding:16px 18px;margin-top:12px;border-left:4px solid var(--accent,#888);
+  }
+  .card h3{margin:0 0 8px;font-size:1.02rem;font-weight:700}
+  .card h4{margin:14px 0 5px;font-size:.9rem;font-weight:700;color:var(--accent)}
+  .card ul{margin:4px 0 4px;padding-left:20px}
+  .card li{margin:3px 0}
+  .card li b, .card p b{color:var(--text)}
+  .lead{color:var(--muted);font-size:.9rem;margin:0 0 6px}
+
+  /* mnemonic / high-yield callouts */
+  .callout{
+    border-radius:10px;padding:12px 14px;margin:12px 0 4px;font-size:.9rem;
+    border:1.5px dashed var(--accent);background:var(--accent-bg);
+  }
+  .callout .lbl{font-weight:800;text-transform:uppercase;font-size:.7rem;letter-spacing:.08em;
+    color:var(--accent);display:block;margin-bottom:3px}
+  .callout.hy{--accent:#ea580c;--accent-bg:#fdf0e3}
+  :root[data-theme="dark"] .callout.hy{--accent-bg:#3a2a13}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .callout.hy{--accent-bg:#3a2a13}}
+  .callout.mn{--accent:#0891b2;--accent-bg:#e2f6fb}
+  :root[data-theme="dark"] .callout.mn{--accent-bg:#0f2e38}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .callout.mn{--accent-bg:#0f2e38}}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto;margin:10px 0 4px}
+  table{border-collapse:collapse;width:100%;font-size:.85rem;min-width:420px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--surface-2);font-weight:700;font-size:.8rem}
+  tr:last-child td{border-bottom:none}
+
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:5px;
+    background:var(--accent-bg);color:var(--accent);margin:2px 4px 2px 0}
+
+  footer{max-width:960px;margin:40px auto 0;padding:0 18px;color:var(--muted);font-size:.8rem;text-align:center}
+
+  /* ---- print ---- */
+  @media print{
+    .controls,.no-results,.hero-meta{display:none!important}
+    header.hero{background:#1e3a8a!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .sec-head.collapsed + .sec-body{display:block!important}
+    .sec-head{box-shadow:none;border:1px solid #ccc}
+    .card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+    .callout{break-inside:avoid}
+    body{background:#fff}
+    section.block{break-inside:avoid-page}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">NUR 311 Pathophysiology · Prof. Marpole</div>
+    <h1>Chapter 18 — Urinary System Disorders</h1>
+    <p class="hero-sub">A layered, searchable review of renal anatomy &amp; physiology, diagnostics, and the major urinary disorders. Filter by topic color, search any term, and print for offline review.</p>
+    <div class="hero-meta">
+      <span>🔵 A&amp;P</span><span>🟣 Diagnostics</span><span>🟢 Treatments</span>
+      <span>🔴 Infection/Inflammation</span><span>🟠 Obstruction/Tumors</span>
+      <span>🩷 Vascular/Congenital</span><span>🟦 Renal Failure</span>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search-row">
+      <input id="search" type="search" placeholder="🔍 Search any term (e.g. casts, aldosterone, azotemia, ESWL)…" autocomplete="off">
+      <button class="btn" id="expandAll">Expand all</button>
+      <button class="btn" id="collapseAll">Collapse all</button>
+      <button class="btn" id="themeBtn">🌙 Theme</button>
+      <button class="btn" onclick="window.print()">🖨️ Print</button>
+    </div>
+    <div class="chips" id="chips">
+      <span class="chip ap"   data-cat="ap"   aria-pressed="true" role="button">A&amp;P</span>
+      <span class="chip dx"   data-cat="dx"   aria-pressed="true" role="button">Diagnostics</span>
+      <span class="chip rx"   data-cat="rx"   aria-pressed="true" role="button">Treatments</span>
+      <span class="chip inf"  data-cat="inf"  aria-pressed="true" role="button">Infection/Inflammation</span>
+      <span class="chip obs"  data-cat="obs"  aria-pressed="true" role="button">Obstruction/Tumors</span>
+      <span class="chip vasc" data-cat="vasc" aria-pressed="true" role="button">Vascular/Congenital</span>
+      <span class="chip fail" data-cat="fail" aria-pressed="true" role="button">Renal Failure</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+<p class="no-results" id="noResults">No matches. Clear the search or re-enable a topic filter.</p>
+
+<!-- ============ 1. FUNCTIONS & ANATOMY ============ -->
+<section class="block cat-ap" data-cat="ap">
+  <div class="sec-head"><span class="caret">▼</span><h2>1 · Functions &amp; Anatomy of the Urinary System</h2><span class="tag">A&amp;P</span></div>
+  <div class="sec-body">
+
+    <div class="card">
+      <h3>What the urinary system does</h3>
+      <p class="lead">The kidneys keep the internal environment stable — far more than "making urine."</p>
+      <ul>
+        <li>Removes metabolic wastes (nitrogen wastes like urea and creatinine).</li>
+        <li>Removes hormones, drugs, and other foreign material from the body.</li>
+        <li>Regulates water, electrolyte, and acid–base balance.</li>
+        <li>Secretes <b>erythropoietin</b> → stimulates red blood cell production.</li>
+        <li>Activates <b>vitamin D</b> → needed for calcium absorption and bone health.</li>
+        <li>Regulates blood pressure through the <b>renin–angiotensin–aldosterone system (RAAS)</b>.</li>
+      </ul>
+      <div class="callout hy"><span class="lbl">High-yield</span>Two of these functions explain the classic complications of chronic renal failure: no erythropoietin → <b>anemia</b>; no vitamin D activation → <b>hypocalcemia &amp; bone disease</b>.</div>
+    </div>
+
+    <div class="card">
+      <h3>Structural path of urine</h3>
+      <p><span class="pill">Kidneys</span>→<span class="pill">Ureters</span>→<span class="pill">Bladder</span>→<span class="pill">Urethra</span></p>
+      <h4>Nephron — the functional unit</h4>
+      <ul>
+        <li>Each kidney has <b>over a million nephrons</b>.</li>
+        <li><b>Renal corpuscle</b> = glomerulus + Bowman capsule (site of filtration).</li>
+        <li><b>Renal tubules</b> in order: proximal convoluted tubule → loop of Henle → distal convoluted tubule → collecting duct.</li>
+      </ul>
+      <div class="callout mn"><span class="lbl">Mnemonic — tubule order</span>"<b>Please Let Diane Come</b>" = <b>P</b>roximal → <b>L</b>oop of Henle → <b>D</b>istal → <b>C</b>ollecting duct.</div>
+    </div>
+
+    <div class="card">
+      <h3>Blood flow through the kidney</h3>
+      <p class="lead">Know that filtration happens between two arterioles — that's what makes GFR controllable.</p>
+      <p>Renal artery → interlobar → arcuate → interlobular artery → <b>afferent arteriole</b> → <b>glomerular capillaries</b> → <b>efferent arteriole</b> → peritubular capillaries → interlobular vein → arcuate → interlobar → renal vein.</p>
+      <div class="callout mn"><span class="lbl">Remember</span>Afferent arteriole = <b>A</b>rrives (blood in). Efferent = <b>E</b>xits. The glomerulus sits <i>between</i> two arterioles — unique in the body.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 2. URINE FORMATION ============ -->
+<section class="block cat-ap" data-cat="ap">
+  <div class="sec-head"><span class="caret">▼</span><h2>2 · Urine Formation, Hormones &amp; GFR</h2><span class="tag">A&amp;P</span></div>
+  <div class="sec-body">
+
+    <div class="card">
+      <h3>Three steps of urine formation</h3>
+      <h4>① Filtration (in the renal corpuscle)</h4>
+      <ul>
+        <li>Large volume of fluid passes from glomerular capillaries into Bowman capsule.</li>
+        <li>Wastes, nutrients, electrolytes, and dissolved substances filter through.</li>
+        <li><b>Cells and proteins stay in the blood</b> — they are too large to filter normally.</li>
+      </ul>
+      <h4>② Reabsorption (into peritubular capillaries)</h4>
+      <ul>
+        <li>Essential nutrients, water, and electrolytes are reclaimed.</li>
+        <li>Transport mechanisms: <b>active transport, co-transport, osmosis</b> (water).</li>
+        <li>Most water and all glucose reabsorption happens in the <b>proximal convoluted tubule</b>.</li>
+        <li>Controls pH and electrolyte balance.</li>
+      </ul>
+      <h4>③ Secretion</h4>
+      <ul><li>Additional wastes and ions moved from blood into the tubule for excretion.</li></ul>
+      <div class="callout hy"><span class="lbl">High-yield</span>Finding <b>protein or blood cells in urine is abnormal</b> — it means the glomerular filter is leaking (glomerulonephritis, nephrotic syndrome).</div>
+    </div>
+
+    <div class="card">
+      <h3>Hormones controlling reabsorption</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Hormone</th><th>Source</th><th>Action</th></tr>
+        <tr><td><b>ADH</b> (antidiuretic hormone)</td><td>Posterior pituitary</td><td>↑ water reabsorption in distal tubule &amp; collecting duct → concentrates urine</td></tr>
+        <tr><td><b>Aldosterone</b></td><td>Adrenal cortex</td><td>↑ sodium reabsorption in exchange for potassium or hydrogen (water follows Na⁺)</td></tr>
+        <tr><td><b>Atrial natriuretic hormone (ANH)</b></td><td>Heart (atria)</td><td>↓ sodium &amp; fluid reabsorption → lowers blood volume</td></tr>
+      </table></div>
+      <div class="callout mn"><span class="lbl">Mnemonic — aldosterone</span>"<b>Sodium retention, Potassium excretion</b>." Aldosterone keeps salt (and water), dumps potassium. ANH does the opposite of aldosterone.</div>
+    </div>
+
+    <div class="card">
+      <h3>Glomerular Filtration Rate (GFR)</h3>
+      <p class="lead">GFR is controlled by adjusting the diameter of the two arterioles around the glomerulus.</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>Change</th><th>Effect on glomerular pressure</th><th>Effect on filtrate/GFR</th></tr>
+        <tr><td>Constrict <b>afferent</b> arteriole</td><td>↓ pressure</td><td>↓ filtrate</td></tr>
+        <tr><td>Dilate <b>afferent</b> arteriole</td><td>↑ pressure</td><td>↑ filtrate</td></tr>
+        <tr><td>Constrict <b>efferent</b> arteriole</td><td>↑ pressure</td><td>↑ filtrate</td></tr>
+      </table></div>
+      <h4>Three factors controlling arteriolar constriction</h4>
+      <ul>
+        <li><b>Autoregulation</b> — local diameter changes in response to renal blood flow.</li>
+        <li><b>Sympathetic nervous system</b> — increases vasoconstriction in both arterioles.</li>
+        <li><b>Renin</b> — released by juxtaglomerular cells when afferent blood flow drops → triggers the renin–angiotensin mechanism → raises BP.</li>
+      </ul>
+      <div class="callout hy"><span class="lbl">High-yield</span><b>Decreased GFR</b> is the central problem in most renal disease. It causes retention of nitrogen wastes (↑ BUN &amp; creatinine), fluid, and acid → azotemia, edema, metabolic acidosis.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 3. INCONTINENCE & RETENTION ============ -->
+<section class="block cat-ap" data-cat="ap">
+  <div class="sec-head"><span class="caret">▼</span><h2>3 · Incontinence &amp; Retention</h2><span class="tag">A&amp;P</span></div>
+  <div class="sec-body">
+    <div class="card">
+      <h3>Incontinence — loss of voluntary bladder control</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Type</th><th>Mechanism / who</th></tr>
+        <tr><td><b>Enuresis</b></td><td>Involuntary urination in a child older than 4 yrs; linked to developmental delay, sleep patterns, psychosocial factors.</td></tr>
+        <tr><td><b>Stress</b> (more common in women)</td><td>↑ intra-abdominal pressure forces urine past sphincter — coughing, lifting, laughing; multiple pregnancies.</td></tr>
+        <tr><td><b>Overflow</b></td><td>Incompetent sphincter or weakened detrusor muscle → bladder never fully empties → frequency + leakage; common in older adults.</td></tr>
+        <tr><td><b>Neurogenic bladder</b></td><td>Spinal cord injury or brain damage disrupts CNS/ANS control; may be <b>spastic</b> or <b>flaccid</b>.</td></tr>
+      </table></div>
+    </div>
+    <div class="card">
+      <h3>Retention — inability to empty the bladder</h3>
+      <ul>
+        <li>May be accompanied by <b>overflow incontinence</b>.</li>
+        <li>Sacral-level spinal cord injury blocks the <b>micturition reflex</b>.</li>
+        <li>May follow general or spinal <b>anesthesia</b>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. DIAGNOSTIC TESTS ============ -->
+<section class="block cat-dx" data-cat="dx">
+  <div class="sec-head"><span class="caret">▼</span><h2>4 · Diagnostic Tests</h2><span class="tag">Diagnostics</span></div>
+  <div class="sec-body">
+
+    <div class="card">
+      <h3>Urinalysis — appearance of urine</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Finding</th><th>Meaning</th></tr>
+        <tr><td>Straw-colored, mild odor, <b>SG 1.010–1.050</b></td><td>Normal urine</td></tr>
+        <tr><td>Cloudy</td><td>Protein, blood, bacteria, or pus</td></tr>
+        <tr><td>Dark color</td><td>Hematuria, excess bilirubin, or highly concentrated urine</td></tr>
+        <tr><td>Unusual/unpleasant odor</td><td>Infection, or from diet/medication</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h3>Abnormal constituents of urine</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Finding</th><th>Significance</th></tr>
+        <tr><td><b>Hematuria</b> (blood)</td><td>Small amounts → infection, inflammation, tumor. Large amounts → ↑ glomerular permeability or hemorrhage.</td></tr>
+        <tr><td><b>Proteinuria / albuminuria</b></td><td>Albumin or plasma proteins leaking into filtrate (damaged glomerulus).</td></tr>
+        <tr><td><b>Bacteriuria</b></td><td>Urinary tract infection.</td></tr>
+        <tr><td><b>Urinary casts</b></td><td>Inflammation of the <b>kidney tubules</b> (upper tract, not just bladder).</td></tr>
+        <tr><td><b>Specific gravity</b></td><td>Ability of tubules to concentrate urine. Low = dilute; high = concentrated (both judged with normal hydration). Abnormal SG relates to renal failure.</td></tr>
+        <tr><td><b>Glucose &amp; ketones</b></td><td>Poorly controlled diabetes mellitus.</td></tr>
+      </table></div>
+      <div class="callout hy"><span class="lbl">High-yield distinction</span><b>Casts = kidney tubule involvement.</b> If you see casts, think upper tract (pyelonephritis, glomerulonephritis), not simple cystitis.</div>
+    </div>
+
+    <div class="card">
+      <h3>Blood tests</h3>
+      <ul>
+        <li>↑ <b>Serum urea (BUN) &amp; creatinine</b> → failure to excrete nitrogen wastes, caused by ↓ GFR.</li>
+        <li><b>Metabolic acidosis</b> → ↓ GFR; tubules fail to control acid–base balance.</li>
+        <li><b>Anemia</b> → ↓ erythropoietin and/or bone marrow depression.</li>
+        <li><b>Electrolytes</b> → depend on related fluid balance.</li>
+        <li><b>Antistreptolysin O (ASO)</b> / antistreptokinase titers → diagnose <b>poststreptococcal glomerulonephritis</b>.</li>
+        <li>↑ <b>Renin</b> → kidney as a cause of hypertension.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Other tests</h3>
+      <ul>
+        <li><b>Culture &amp; sensitivity</b> — identifies the causative organism and guides drug choice.</li>
+        <li><b>Radiologic</b> — radionuclide imaging, angiography, ultrasound, CT, MRI, IV pyelography (structure, flow, filtration).</li>
+        <li><b>Clearance tests</b> — creatinine or inulin clearance → assess GFR.</li>
+        <li><b>Cystoscopy</b> — visualizes lower tract; can biopsy or remove stones.</li>
+        <li><b>Biopsy</b> — obtains tissue specimen.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 5. DIURETICS ============ -->
+<section class="block cat-rx" data-cat="rx">
+  <div class="sec-head"><span class="caret">▼</span><h2>5 · Diuretic Drugs</h2><span class="tag">Treatments</span></div>
+  <div class="sec-body">
+    <div class="card">
+      <h3>Purpose &amp; use</h3>
+      <ul>
+        <li>Remove excess sodium and water by ↑ excretion through the kidneys.</li>
+        <li>Reduce fluid volume in tissues and blood.</li>
+        <li>Prescribed for renal disease, <b>hypertension, edema, CHF</b>, liver disease, pulmonary edema.</li>
+        <li>Different drugs use different mechanisms to increase urine volume.</li>
+      </ul>
+      <div class="callout hy"><span class="lbl">High-yield — potassium!</span>Some diuretics are <b>potassium-wasting</b> (loops, thiazides) and some are <b>potassium-sparing</b> (spironolactone). Always monitor serum K⁺. Watch for hypokalemia (wasting) or hyperkalemia (sparing).</div>
+      <div class="callout mn"><span class="lbl">Cross-course link · NUR 312 Pharm</span>Ties directly to your fluid/electrolyte and cardiovascular drug content — loop (furosemide), thiazide (HCTZ), K⁺-sparing (spironolactone), osmotic (mannitol), carbonic anhydrase inhibitors.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. DIALYSIS ============ -->
+<section class="block cat-rx" data-cat="rx">
+  <div class="sec-head"><span class="caret">▼</span><h2>6 · Dialysis</h2><span class="tag">Treatments</span></div>
+  <div class="sec-body">
+    <div class="card">
+      <h3>Overview</h3>
+      <p class="lead">Dialysis performs the kidney's filtration and reabsorption functions when the kidneys can't.</p>
+      <ul>
+        <li>Two forms: <b>hemodialysis</b> and <b>peritoneal dialysis</b>.</li>
+        <li>Sustains life during kidney failure.</li>
+        <li>Used for <b>acute</b> failure until the primary problem reverses.</li>
+        <li>Used for <b>end-stage</b> failure until a successful kidney transplant is available.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Hemodialysis vs. Peritoneal dialysis</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th></th><th>Hemodialysis</th><th>Peritoneal dialysis</th></tr>
+        <tr><td>Setting</td><td>Hospital, dialysis center, or home w/ special equipment &amp; training</td><td>Usually outpatient; can be done at night or while ambulatory</td></tr>
+        <tr><td>Membrane</td><td>Artificial <b>semipermeable membrane</b> in the machine</td><td>Patient's own <b>peritoneal membrane</b></td></tr>
+        <tr><td>How it works</td><td>Blood flows from implanted <b>shunt/catheter</b> in an artery → machine (exchange with dialysate) → returned to vein; cells &amp; proteins stay in blood</td><td>Catheter implanted in peritoneal cavity; dialysate instilled, then drained by gravity</td></tr>
+        <tr><td>Time</td><td>~3 times/week, 3–4 hrs each</td><td>Takes more time than hemodialysis; needs loose clothing for the fluid bag</td></tr>
+        <tr><td>Main complications</td><td>Shunt infection, blood clots, sclerosed/damaged vessels; ↑ risk of hepatitis B/C &amp; HIV if Standard Precautions not followed</td><td><b>Peritonitis</b> (infection)</td></tr>
+      </table></div>
+      <div class="callout hy"><span class="lbl">High-yield</span>Both types: give <b>prophylactic antibiotics</b>, watch for infection, and use <b>caution with many drugs</b> — toxic levels can build up because the kidneys aren't clearing them.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. UTIs ============ -->
+<section class="block cat-inf" data-cat="inf">
+  <div class="sec-head"><span class="caret">▼</span><h2>7 · Urinary Tract Infections (UTIs)</h2><span class="tag">Infection</span></div>
+  <div class="sec-body">
+
+    <div class="card">
+      <h3>Basics</h3>
+      <ul>
+        <li>Very common; urine is an excellent growth medium.</li>
+        <li><b>Lower UTI:</b> cystitis (bladder), urethritis (urethra).</li>
+        <li><b>Upper UTI:</b> pyelonephritis (kidney).</li>
+        <li>Most common organism: <b>Escherichia coli</b>.</li>
+        <li>Others: Klebsiella, Proteus, Enterobacter, Citrobacter, Serratia, Pseudomonas, Enterococcus, coagulase-negative Staphylococcus, Chlamydia, Mycoplasma.</li>
+      </ul>
+      <h4>Why more common in certain groups</h4>
+      <ul>
+        <li><b>Women</b> — short urethra + proximity to anus.</li>
+        <li><b>Older men</b> — prostatic hypertrophy → urine retention.</li>
+        <li><b>Children</b> — congenital abnormalities.</li>
+        <li>Predisposing: incontinence, urine retention, direct fecal contamination.</li>
+      </ul>
+      <div class="callout mn"><span class="lbl">Mnemonic — E. coli</span>The #1 UTI bug comes from the gut — think "<b>E. coli = Enteric, from the colon</b>," which explains why fecal contamination and a short urethra near the anus drive female UTIs.</div>
+    </div>
+
+    <div class="card">
+      <h3>Cystitis &amp; Urethritis</h3>
+      <ul>
+        <li>Bladder wall (cystitis) and urethra (urethritis) become inflamed → hyperactive bladder, reduced capacity.</li>
+        <li>Local signs: <b>dysuria, urgency, frequency, nocturia</b>, pelvic pain.</li>
+        <li>Systemic signs may appear: fever, malaise, nausea, leukocytosis.</li>
+        <li>Urine often cloudy w/ unusual odor.</li>
+        <li>Urinalysis: <b>bacteriuria, pyuria, microscopic hematuria</b>.</li>
+      </ul>
+      <h4>Two categories of urethritis</h4>
+      <ul>
+        <li><b>Gonococcal</b> — caused by <i>Neisseria gonorrhoeae</i>.</li>
+        <li><b>Nongonococcal (NGU)</b> — most common cause is <i>Chlamydia trachomatis</i>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Pyelonephritis (upper UTI)</h3>
+      <ul>
+        <li>Involves one or both kidneys; infection ascends from ureter into kidney.</li>
+        <li>Purulent exudate fills the pelvis and calyces.</li>
+        <li>Recurrent/chronic infection → scar tissue → loss of tubule function.</li>
+        <li>Obstruction + collected filtrate → <b>hydronephrosis</b> → eventual chronic renal failure if untreated.</li>
+        <li>Signs = cystitis signs <b>plus</b> renal pain: dull, aching <b>lower back/flank pain</b>, high fever.</li>
+        <li>Urinalysis similar to cystitis but with <b>urinary casts</b> (tubule involvement).</li>
+      </ul>
+      <div class="callout hy"><span class="lbl">High-yield differentiator</span><b>Flank pain + fever + casts = pyelonephritis</b> (upper). Cystitis stays lower: dysuria/frequency without flank pain or casts.</div>
+    </div>
+
+    <div class="card">
+      <h3>Treatment of UTIs</h3>
+      <p class="lead">Antibiotics selected by culture &amp; sensitivity:</p>
+      <ul>
+        <li>Trimethoprim-sulfamethoxazole (Bactrim, Cotrim, Septra)</li>
+        <li>Nitrofurantoin (Furadantin)</li>
+        <li>Cephalosporins (Keflex, Duricef)</li>
+        <li>Carbapenems (Doribax)</li>
+        <li>Amoxicillin</li>
+        <li><b>Fosfomycin</b> — used for pregnant women</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 8. GLOMERULONEPHRITIS & NEPHROTIC ============ -->
+<section class="block cat-inf" data-cat="inf">
+  <div class="sec-head"><span class="caret">▼</span><h2>8 · Inflammatory Disorders: Glomerulonephritis &amp; Nephrotic Syndrome</h2><span class="tag">Inflammation</span></div>
+  <div class="sec-body">
+
+    <div class="card">
+      <h3>Glomerulonephritis</h3>
+      <p class="lead">An immune (antigen–antibody) process that inflames the glomeruli.</p>
+      <h4>Pathophysiology</h4>
+      <ul>
+        <li>Antistreptococcal (ASO) antibodies form an <b>antigen–antibody complex</b>.</li>
+        <li>Complex activates the <b>complement system</b> → inflammatory response in glomeruli.</li>
+        <li>↑ capillary permeability → leakage of protein and large numbers of RBCs.</li>
+        <li>Congestion &amp; cell proliferation → <b>↓ GFR</b> → retention of fluid and wastes.</li>
+      </ul>
+      <h4>Signs &amp; symptoms</h4>
+      <ul>
+        <li>Dark, cloudy urine.</li>
+        <li><b>Facial &amp; periorbital edema first</b>, then generalized edema.</li>
+        <li>Elevated blood pressure (↑ renin + ↓ GFR).</li>
+        <li>Flank/back pain (edema stretches the renal capsule).</li>
+        <li>Decreased urine output; general signs of inflammation.</li>
+      </ul>
+      <h4>Diagnostics</h4>
+      <ul>
+        <li>↑ serum urea &amp; creatinine.</li>
+        <li>↑ anti-DNase B, ASO, antistreptokinase antibodies.</li>
+        <li><b>↓ complement levels</b> (used to track renal inflammation).</li>
+        <li>Metabolic acidosis.</li>
+        <li>Urinalysis: <b>proteinuria, hematuria, erythrocyte (RBC) casts</b>, no evidence of infection.</li>
+      </ul>
+      <h4>Treatment</h4>
+      <ul>
+        <li>Possible sodium restriction; decreased protein &amp; fluid in severe cases.</li>
+        <li><b>Glucocorticoids</b> to reduce inflammation.</li>
+        <li>Antihypertensives.</li>
+      </ul>
+      <div class="callout hy"><span class="lbl">High-yield hallmark</span><b>RBC casts + hematuria + periorbital edema</b> after a strep infection = poststreptococcal glomerulonephritis. Contrast with nephrotic syndrome below.</div>
+    </div>
+
+    <div class="card">
+      <h3>Nephrotic Syndrome</h3>
+      <ul>
+        <li>Glomerular capillaries become abnormally permeable → <b>large amounts of plasma protein</b> escape into filtrate.</li>
+        <li>May be idiopathic in children 2–6 yrs; may be secondary to <b>SLE (lupus)</b>, nephrotoxins, or drugs.</li>
+      </ul>
+      <h4>Pathophysiology</h4>
+      <ul>
+        <li><b>Hypoalbuminemia</b> → ↓ plasma osmotic pressure → generalized edema.</li>
+        <li>Blood pressure stays low/normal (may rise with angiotensin II).</li>
+        <li>↓ blood volume → ↑ aldosterone → more severe edema.</li>
+        <li>High blood cholesterol; <b>lipiduria</b> gives milky urine.</li>
+      </ul>
+      <h4>Signs &amp; symptoms</h4>
+      <ul><li><b>Proteinuria, lipiduria, casts</b>; massive edema; sudden increase in girth.</li></ul>
+      <h4>Treatment</h4>
+      <ul>
+        <li>Glucocorticoids (reduce inflammation).</li>
+        <li><b>ACE inhibitors</b> — may decrease protein loss in urine.</li>
+        <li>Antihypertensives; sodium restriction.</li>
+      </ul>
+      <div class="callout mn"><span class="lbl">Compare: -itis vs. -otic</span>Glomerulo<b>nephritis</b> = inflammation, leaks <b>blood (RBC casts, hematuria)</b>. <b>Nephrotic</b> syndrome = leaks <b>protein</b> (massive proteinuria, hypoalbuminemia, huge edema, lipiduria). "Nephro<b>T</b>ic = <b>T</b>ons of proTein."</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 9. OBSTRUCTIONS & STONES ============ -->
+<section class="block cat-obs" data-cat="obs">
+  <div class="sec-head"><span class="caret">▼</span><h2>9 · Urinary Tract Obstructions: Calculi &amp; Hydronephrosis</h2><span class="tag">Obstruction</span></div>
+  <div class="sec-body">
+
+    <div class="card">
+      <h3>Urolithiasis (calculi / stones)</h3>
+      <ul>
+        <li>Can develop anywhere in the urinary tract; small to very large.</li>
+        <li>Tend to form with: excess solutes in filtrate, <b>insufficient fluid intake (major factor)</b>, and UTI.</li>
+        <li>Manifestations occur <b>only with obstruction</b> of urine flow.</li>
+        <li>Obstruction may lead to infection and <b>hydronephrosis</b> (dilation of calyces) with renal tissue atrophy.</li>
+      </ul>
+      <h4>Stone types</h4>
+      <div class="tbl-wrap"><table>
+        <tr><th>Stone</th><th>Forms with</th></tr>
+        <tr><td><b>Calcium salts</b> (most common)</td><td>High urine calcium; forms readily in <b>alkaline</b> urine</td></tr>
+        <tr><td><b>Uric acid</b></td><td>Hyperuricemia (gout, high-purine diet, chemotherapy); forms in <b>acidic</b> urine</td></tr>
+        <tr><td><b>Struvite &amp; cystine</b></td><td>Depend on predisposing factors</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h3>Signs, treatment &amp; prevention</h3>
+      <h4>Signs &amp; symptoms</h4>
+      <ul>
+        <li>Stones in kidney/bladder are often <b>asymptomatic</b> (found via recurrent infections).</li>
+        <li>Flank pain from renal capsule distention.</li>
+        <li><b>Renal colic</b> — intense spasms of flank pain radiating to the groin when a stone obstructs the ureter; lasts until stone passes or is removed.</li>
+        <li>Possible nausea/vomiting, cool moist skin, rapid pulse.</li>
+        <li>Radiology confirms stone location.</li>
+      </ul>
+      <h4>Treatment</h4>
+      <ul>
+        <li>Small stones may pass on their own.</li>
+        <li><b>Extracorporeal shock wave lithotripsy (ESWL)</b>; <b>laser lithotripsy</b>.</li>
+        <li>Drugs to partially dissolve stones; surgery.</li>
+      </ul>
+      <h4>Prevention</h4>
+      <ul>
+        <li>Treat the underlying condition.</li>
+        <li>Adjust urine pH through diet.</li>
+        <li><b>Consistent increased fluid intake</b> — the single biggest preventive measure.</li>
+      </ul>
+      <div class="callout hy"><span class="lbl">High-yield NCLEX</span>The #1 patient teaching for stone prevention is <b>increase fluid intake</b>. And renal colic pain <b>radiates from flank to groin.</b></div>
+    </div>
+
+    <div class="card">
+      <h3>Hydronephrosis</h3>
+      <ul>
+        <li>A <b>secondary</b> problem — dilation of the kidney behind an obstruction.</li>
+        <li>Causes: complication of calculi, tumors/scar tissue, untreated prostatic enlargement, developmental abnormalities.</li>
+        <li>Frequently asymptomatic early.</li>
+        <li>Diagnosed by ultrasonography, radionuclide imaging, CT, or renal scan.</li>
+        <li>If the cause is not removed → <b>chronic renal failure</b>.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 10. TUMORS ============ -->
+<section class="block cat-obs" data-cat="obs">
+  <div class="sec-head"><span class="caret">▼</span><h2>10 · Tumors: Renal Cell &amp; Bladder Cancer</h2><span class="tag">Tumors</span></div>
+  <div class="sec-body">
+
+    <div class="card">
+      <h3>Renal Cell Carcinoma</h3>
+      <ul>
+        <li>Primary tumor from <b>tubule epithelium</b>, most often in the renal cortex.</li>
+        <li>Often <b>asymptomatic early</b>; frequently already metastasized (liver, lung, bone, CNS) at diagnosis.</li>
+        <li>More frequent in <b>men and smokers</b>.</li>
+        <li>Treatment: <b>removal of the kidney</b>; immunotherapy in some cases.</li>
+        <li>Tumor is <b>radioresistant</b>; chemotherapy usually not used.</li>
+      </ul>
+      <h4>Manifestations</h4>
+      <ul>
+        <li>Painless hematuria (gross or microscopic) — often the first sign.</li>
+        <li>Dull, aching flank pain; palpable mass.</li>
+        <li>Unexplained weight loss; anemia or erythrocytosis.</li>
+        <li>Paraneoplastic syndromes — hypercalcemia or Cushing's syndrome.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Bladder Cancer</h3>
+      <ul>
+        <li>Most bladder tumors are <b>malignant</b>, arising from <b>transitional epithelium</b>; often multiple tumors.</li>
+        <li>Diagnosed by <b>urine cytology and biopsy</b>.</li>
+        <li>Early signs: <b>hematuria, dysuria</b>; infection is common.</li>
+        <li>Invasive through the wall; metastasizes to pelvic lymph nodes, liver, bone.</li>
+      </ul>
+      <h4>Predisposing factors</h4>
+      <ul>
+        <li>Chemical exposure — aniline dyes, rubber, aluminum (lab/industry work).</li>
+        <li><b>Cigarette smoking</b>.</li>
+        <li>Recurrent infections; heavy analgesic intake.</li>
+      </ul>
+      <h4>Treatment</h4>
+      <ul><li>Surgical resection; chemotherapy and radiation; photoradiation in some early cases.</li></ul>
+      <div class="callout hy"><span class="lbl">High-yield</span><b>Painless hematuria</b> is the classic red flag for BOTH renal cell and bladder cancer. Smoking is a shared risk factor.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 11. VASCULAR & CONGENITAL ============ -->
+<section class="block cat-vasc" data-cat="vasc">
+  <div class="sec-head"><span class="caret">▼</span><h2>11 · Vascular &amp; Congenital Disorders</h2><span class="tag">Vascular/Congenital</span></div>
+  <div class="sec-body">
+
+    <div class="card">
+      <h3>Nephrosclerosis (vascular)</h3>
+      <ul>
+        <li>Vascular changes in the kidney; some occur normally with aging.</li>
+        <li>Thickening/hardening of arteriole &amp; small artery walls → narrowed lumen → ↓ blood supply.</li>
+        <li>↓ blood supply → stimulates <b>renin</b> → ↑ blood pressure → continued ischemia → tissue destruction → <b>chronic renal failure</b>.</li>
+        <li>Can be a primary lesion or secondary to <b>essential hypertension</b>.</li>
+      </ul>
+      <h4>Treatment</h4>
+      <ul><li>Antihypertensives, diuretics, beta blockers, reduced sodium intake.</li></ul>
+      <div class="callout mn"><span class="lbl">Vicious cycle</span>Hypertension damages kidneys → damaged kidneys release renin → renin raises BP further. Breaking the cycle = BP control.</div>
+    </div>
+
+    <div class="card">
+      <h3>Congenital disorders</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Disorder</th><th>Description</th></tr>
+        <tr><td>Vesicoureteral reflux</td><td>Backflow of urine from bladder toward kidney</td></tr>
+        <tr><td>Agenesis</td><td>Failure of one kidney to develop</td></tr>
+        <tr><td>Hypoplasia</td><td>Failure to develop to normal size</td></tr>
+        <tr><td>Ectopic kidney</td><td>Kidney &amp; ureter displaced from normal position</td></tr>
+        <tr><td>"Horseshoe" kidney</td><td>Fusion of the two kidneys</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h3>Adult Polycystic Kidney Disease</h3>
+      <ul>
+        <li><b>Autosomal dominant</b> gene on <b>chromosome 16</b>.</li>
+        <li>No signs in childhood/young adulthood; first manifestations usually around <b>age 40</b>.</li>
+        <li>Multiple cysts in both kidneys → enlargement → compression &amp; destruction of tissue → <b>chronic renal failure</b>.</li>
+        <li>Diagnosed by abdominal CT or MRI.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Wilms' Tumor</h3>
+      <ul>
+        <li>Most common <b>tumor in children</b>.</li>
+        <li>Defects in tumor suppressor genes on <b>chromosome 11</b>.</li>
+        <li>May occur with other congenital disorders; usually <b>unilateral</b>.</li>
+        <li>Large encapsulated mass; pulmonary metastases may be present at diagnosis.</li>
+      </ul>
+      <div class="callout mn"><span class="lbl">Chromosome tip</span>Polycystic kidney → chromosome <b>16</b>. Wilms' tumor → chromosome <b>11</b>.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 12. RENAL FAILURE ============ -->
+<section class="block cat-fail" data-cat="fail">
+  <div class="sec-head"><span class="caret">▼</span><h2>12 · Renal Failure — Acute &amp; Chronic</h2><span class="tag">Renal Failure</span></div>
+  <div class="sec-body">
+
+    <div class="card">
+      <h3>Acute Renal Failure (ARF)</h3>
+      <h4>Causes</h4>
+      <ul>
+        <li>Acute bilateral kidney disease.</li>
+        <li>Severe, prolonged <b>circulatory shock or heart failure</b> (ischemia).</li>
+        <li><b>Nephrotoxins</b> — drugs, chemicals, toxins.</li>
+        <li>Occasional mechanical obstruction — calculi, blood clots, tumors block flow beyond the kidneys.</li>
+      </ul>
+      <h4>Features &amp; treatment</h4>
+      <ul>
+        <li><b>Sudden onset</b>.</li>
+        <li>Blood tests: ↑ BUN &amp; creatinine, <b>metabolic acidosis, hyperkalemia</b>.</li>
+        <li>Treatment: identify &amp; remove/treat the primary problem to minimize necrosis and permanent damage.</li>
+        <li>Dialysis to normalize body fluids and maintain homeostasis.</li>
+      </ul>
+      <div class="callout hy"><span class="lbl">High-yield — ARF is often reversible</span>Because ARF has a sudden, identifiable cause, treating it early can restore kidney function. Contrast with chronic failure, which is <b>gradual and irreversible</b>.</div>
+    </div>
+
+    <div class="card">
+      <h3>Chronic Renal Failure (CRF)</h3>
+      <ul>
+        <li><b>Gradual, irreversible</b> destruction of the kidneys over a long time.</li>
+        <li><b>Asymptomatic in early stages</b>.</li>
+        <li>Causes: chronic kidney disease, congenital polycystic disease, systemic disorders, long-term low-level nephrotoxin exposure.</li>
+      </ul>
+      <h4>Stages</h4>
+      <div class="tbl-wrap"><table>
+        <tr><th>Stage</th><th>Key features</th></tr>
+        <tr><td><b>1. Decreased renal reserve</b></td><td>↓ GFR; higher-than-normal serum creatinine; <b>no clinical symptoms</b></td></tr>
+        <tr><td><b>2. Renal insufficiency</b></td><td>GFR ~20% of normal; significant retention of nitrogen wastes; large volumes of <b>dilute urine</b>; ↓ erythropoiesis; ↑ BP</td></tr>
+        <tr><td><b>3. End-stage renal failure</b></td><td>Negligible GFR; fluid/electrolytes/wastes retained; <b>azotemia, anemia, acidosis (the 3 A's)</b>; all body systems affected; marked <b>oliguria/anuria</b>; needs regular dialysis or transplant</td></tr>
+      </table></div>
+      <div class="callout mn"><span class="lbl">Mnemonic — end-stage</span>The <b>3 A's</b> of end-stage renal failure: <b>A</b>zotemia (nitrogen waste buildup), <b>A</b>nemia (no erythropoietin), <b>A</b>cidosis (tubules can't manage acid).</div>
+    </div>
+
+    <div class="card">
+      <h3>Progression of signs in CRF</h3>
+      <h4>Early sign</h4>
+      <ul><li><b>Increased urinary output</b> (kidneys lose concentrating ability first).</li></ul>
+      <h4>General signs</h4>
+      <ul><li>Anorexia, nausea, anemia, fatigue, unintended weight loss, exercise intolerance, bone marrow depression &amp; impaired cell function, elevated blood pressure.</li></ul>
+      <h4>Complete failure</h4>
+      <ul>
+        <li><b>Oliguria</b>.</li>
+        <li>Dry, pruritic, hyperpigmented skin; easy bruising; possible <b>uremic frost</b>.</li>
+        <li>Peripheral neuropathy; encephalopathy.</li>
+        <li>Impotence (men), menstrual irregularities (women).</li>
+        <li>CHF, dysrhythmias; failure to activate vitamin D; systemic infections.</li>
+      </ul>
+      <div class="callout hy"><span class="lbl">High-yield trap</span>CRF <b>starts</b> with increased urine output (dilute urine) and <b>ends</b> with oliguria/anuria. Don't assume renal failure always means low urine output.</div>
+    </div>
+
+    <div class="card">
+      <h3>Diagnostics &amp; treatment (CRF)</h3>
+      <h4>Diagnostic findings</h4>
+      <ul>
+        <li>Decompensated <b>metabolic acidosis</b>; <b>azotemia</b>; severe <b>anemia</b>.</li>
+        <li>Electrolytes vary with water retention — usually <b>hyponatremia &amp; hyperkalemia</b>, plus <b>hypocalcemia &amp; hyperphosphatemia</b>.</li>
+      </ul>
+      <h4>Treatment</h4>
+      <ul>
+        <li>All body systems affected → hard to maintain fluid/electrolyte/acid–base homeostasis.</li>
+        <li>Drugs to stimulate <b>erythropoiesis</b>; drugs for cardiovascular problems.</li>
+        <li><b>Restrict</b> fluid, electrolytes, and protein intake.</li>
+        <li>Dialysis or transplantation.</li>
+      </ul>
+      <div class="callout mn"><span class="lbl">Electrolyte pattern to memorize</span>CRF: Na↓, K↑, Ca↓, Phosphate↑. (Low sodium &amp; calcium; high potassium &amp; phosphate.)</div>
+    </div>
+
+    <div class="card">
+      <h3>Acute vs. Chronic — quick compare</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th></th><th>Acute (ARF)</th><th>Chronic (CRF)</th></tr>
+        <tr><td>Onset</td><td>Sudden</td><td>Gradual</td></tr>
+        <tr><td>Reversible?</td><td>Often, if cause treated early</td><td>No — irreversible</td></tr>
+        <tr><td>Cause</td><td>Shock, nephrotoxins, obstruction</td><td>Chronic disease, polycystic, long-term toxins</td></tr>
+        <tr><td>Early urine</td><td>Oliguria</td><td>Increased output (dilute)</td></tr>
+        <tr><td>Goal</td><td>Remove cause + support</td><td>Slow progression, dialysis/transplant</td></tr>
+      </table></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SELF-CHECK ============ -->
+<section class="block cat-dx" data-cat="dx">
+  <div class="sec-head"><span class="caret">▼</span><h2>★ Rapid Self-Check Questions</h2><span class="tag">Review</span></div>
+  <div class="sec-body">
+    <div class="card">
+      <h3>Test yourself (answers in bold)</h3>
+      <ul>
+        <li>Which hormone concentrates urine by increasing water reabsorption? → <b>ADH</b></li>
+        <li>Aldosterone reabsorbs sodium in exchange for what two ions? → <b>Potassium or hydrogen</b></li>
+        <li>Urinary casts point to inflammation of what structure? → <b>Kidney tubules</b></li>
+        <li>Most common UTI organism? → <b>E. coli</b></li>
+        <li>Flank pain + fever + casts suggests which infection? → <b>Pyelonephritis</b></li>
+        <li>Glomerulonephritis leaks mainly ___; nephrotic syndrome leaks mainly ___. → <b>Blood (RBCs) / Protein</b></li>
+        <li>Biggest modifiable factor in stone formation &amp; prevention? → <b>Fluid intake</b></li>
+        <li>Renal colic pain radiates from where to where? → <b>Flank to groin</b></li>
+        <li>Classic early red flag for renal cell &amp; bladder cancer? → <b>Painless hematuria</b></li>
+        <li>The 3 A's of end-stage renal failure? → <b>Azotemia, Anemia, Acidosis</b></li>
+        <li>Polycystic kidney = chromosome ___; Wilms' = chromosome ___. → <b>16 / 11</b></li>
+        <li>CRF electrolyte pattern? → <b>Na↓, K↑, Ca↓, Phosphate↑</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Chapter 18 · Urinary System Disorders · Built for NUR 311 Pathophysiology review. Content from your lecture deck — always cross-check with your course textbook and instructor materials.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var LS_THEME="ch18_theme", LS_COLLAPSE="ch18_collapsed";
+
+  /* ---- theme ---- */
+  var root=document.documentElement, tbtn=document.getElementById("themeBtn");
+  function applyTheme(t){ if(t){root.setAttribute("data-theme",t);} tbtn.textContent = (t==="dark")?"☀️ Theme":"🌙 Theme"; }
+  try{ var saved=localStorage.getItem(LS_THEME); if(saved) applyTheme(saved); }catch(e){}
+  tbtn.addEventListener("click",function(){
+    var cur=root.getAttribute("data-theme");
+    var next = (cur==="dark")?"light":"dark";
+    applyTheme(next);
+    try{ localStorage.setItem(LS_THEME,next); }catch(e){}
+  });
+
+  /* ---- collapse / expand ---- */
+  var heads=[].slice.call(document.querySelectorAll(".sec-head"));
+  function restoreCollapse(){
+    try{
+      var raw=localStorage.getItem(LS_COLLAPSE); if(!raw) return;
+      var set=JSON.parse(raw);
+      heads.forEach(function(h,i){ if(set.indexOf(i)>-1) h.classList.add("collapsed"); });
+    }catch(e){}
+  }
+  function saveCollapse(){
+    try{
+      var arr=[]; heads.forEach(function(h,i){ if(h.classList.contains("collapsed")) arr.push(i); });
+      localStorage.setItem(LS_COLLAPSE,JSON.stringify(arr));
+    }catch(e){}
+  }
+  heads.forEach(function(h){
+    h.addEventListener("click",function(){ h.classList.toggle("collapsed"); saveCollapse(); });
+  });
+  document.getElementById("expandAll").addEventListener("click",function(){
+    heads.forEach(function(h){h.classList.remove("collapsed");}); saveCollapse();
+  });
+  document.getElementById("collapseAll").addEventListener("click",function(){
+    heads.forEach(function(h){h.classList.add("collapsed");}); saveCollapse();
+  });
+  restoreCollapse();
+
+  /* ---- category filter chips ---- */
+  var active={ap:1,dx:1,rx:1,inf:1,obs:1,vasc:1,fail:1};
+  var chips=[].slice.call(document.querySelectorAll(".chip"));
+  chips.forEach(function(c){
+    c.addEventListener("click",function(){
+      var cat=c.getAttribute("data-cat");
+      active[cat]=!active[cat];
+      c.setAttribute("aria-pressed", active[cat]?"true":"false");
+      applyFilters();
+    });
+  });
+
+  /* ---- live search + filter ---- */
+  var search=document.getElementById("search");
+  var sections=[].slice.call(document.querySelectorAll("section.block"));
+  var noResults=document.getElementById("noResults");
+
+  function applyFilters(){
+    var q=search.value.trim().toLowerCase();
+    var anyVisible=false;
+    sections.forEach(function(sec){
+      var cat=sec.getAttribute("data-cat");
+      var catOn = active[cat];
+      var textMatch = !q || sec.textContent.toLowerCase().indexOf(q)>-1;
+      var show = catOn && textMatch;
+      sec.style.display = show ? "" : "none";
+      if(show){
+        anyVisible=true;
+        // auto-expand a section when a live search matches inside it
+        if(q){ sec.querySelector(".sec-head").classList.remove("collapsed"); }
+      }
+    });
+    noResults.style.display = anyVisible ? "none" : "block";
+  }
+  search.addEventListener("input",applyFilters);
+})();
+</script>
+</body>
+</html>

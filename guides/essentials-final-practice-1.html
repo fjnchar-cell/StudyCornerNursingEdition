@@ -1,0 +1,357 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Essentials Final Practice Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:wght@600&display=swap">
+<style>
+/* Layout: single-column exam runner, sticky score bar, question map below the question */
+:root{
+  --bg:#f3f6f8; --surface:#ffffff; --fg:#16212b; --muted:#566573; --line:#d6dee5;
+  --accent:#0b6e7f; --accent-fg:#ffffff; --accent-soft:#e0f0f3;
+  --good:#1c7448; --good-bg:#e2f4e9; --bad:#b3261e; --bad-bg:#fbe8e6; --warn:#8a5a00; --warn-bg:#fdf1d6;
+  --f-display:'Source Serif 4',Georgia,serif; --f-body:'IBM Plex Sans',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f171d; --surface:#17222a; --fg:#e6edf2; --muted:#9aabb8; --line:#2b3a45;
+  --accent:#4cc3d6; --accent-fg:#06222a; --accent-soft:#12333a;
+  --good:#6fd39b; --good-bg:#12321f; --bad:#ff8f86; --bad-bg:#3a1a18; --warn:#f0c15a; --warn-bg:#392c0c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f171d; --surface:#17222a; --fg:#e6edf2; --muted:#9aabb8; --line:#2b3a45;
+  --accent:#4cc3d6; --accent-fg:#06222a; --accent-soft:#12333a;
+  --good:#6fd39b; --good-bg:#12321f; --bad:#ff8f86; --bad-bg:#3a1a18; --warn:#f0c15a; --warn-bg:#392c0c; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+*{box-sizing:border-box}
+.wrap{max-width:760px;margin-inline:auto}
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.bar-row{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
+h1{font-family:var(--f-display);font-size:1.25rem;margin:0;text-wrap:balance}
+.stats{font-family:var(--f-mono);font-size:.82rem;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.stats b{color:var(--fg);font-weight:500}
+.prog{height:5px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;margin-top:16px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--f-mono);font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.chip{background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:4px}
+.stem{font-size:1.05rem;margin:14px 0 4px;max-width:65ch}
+.instr{font-size:.85rem;color:var(--muted);margin:0 0 12px;font-style:italic}
+.opts{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:11px 14px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .mk{flex:none;width:20px;height:20px;border:2px solid var(--muted);margin-top:2px;display:grid;place-items:center;font-size:.75rem;line-height:1;font-weight:600}
+.opt.single .mk{border-radius:50%}.opt.multi .mk{border-radius:4px}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.sel .mk{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--good);background:var(--good-bg)}
+.opt.ok .mk{background:var(--good);border-color:var(--good);color:#fff}
+.opt.no{border-color:var(--bad);background:var(--bad-bg)}
+.opt.no .mk{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.miss{border-style:dashed;border-color:var(--good)}
+.opt .tag{margin-left:auto;font-family:var(--f-mono);font-size:.72rem;white-space:nowrap;padding-left:8px;align-self:center}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.calc{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.calc input{font:inherit;font-family:var(--f-mono);width:9rem;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
+.unit{font-family:var(--f-mono);color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{font:inherit;font-weight:500;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.why{margin-top:16px;padding:14px 16px;border-radius:8px;border:1px solid var(--line);background:var(--bg)}
+.why h3{margin:0 0 6px;font-size:.95rem}
+.why.right h3{color:var(--good)}.why.wrong h3{color:var(--bad)}
+.why p{margin:0 0 8px;max-width:65ch}.why p:last-child{margin:0}
+.why .pearl{font-size:.88rem;color:var(--warn);background:var(--warn-bg);padding:8px 10px;border-radius:6px}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px;margin-top:10px}
+.map button{font-family:var(--f-mono);font-size:.8rem;padding:7px 0;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.map button.cur{outline:2px solid var(--accent);outline-offset:1px}
+.map button.ok{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.map button.no{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+h2{font-family:var(--f-display);font-size:1.1rem;margin:0}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tw{overflow-x:auto}
+.big{font-family:var(--f-display);font-size:2.4rem;line-height:1.1;margin:6px 0}
+.small{font-size:.85rem;color:var(--muted)}
+.miss-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+@media (prefers-reduced-motion:reduce){.prog i{transition:none}}
+</style>
+
+<div class="wrap">
+<header class="bar">
+  <div class="bar-row">
+    <h1>Essentials Final Practice Exam</h1>
+    <div class="stats"><span>Answered <b id="sAns">0</b>/50</span><span>Correct <b id="sOk">0</b></span><span>Score <b id="sPct">–</b></span></div>
+  </div>
+  <div class="prog"><i id="pbar"></i></div>
+</header>
+<main id="main"></main>
+<section class="card" aria-label="Question map">
+  <h2>Question map</h2>
+  <div class="map" id="map"></div>
+  <div class="actions"><button class="btn ghost" id="btnResults">See results</button><button class="btn ghost" id="btnReset">Start over</button></div>
+</section>
+</div>
+
+<script>
+const Q = [
+/* HEALTH, WELLNESS & CHA */
+{cat:'Health & CHA',type:'mc',q:'A client with metastatic breast cancer receives chemotherapy. The oncology team and a licensed acupuncturist have agreed on a written plan in which the client receives both chemotherapy and weekly acupuncture for nausea. Which term best describes this approach to care?',
+ o:[['Integrative health',1],['Alternative medicine',0],['Complementary approach used independently by the client',0],['Conventional medicine',0]],
+ why:'Integrative health combines conventional and complementary care in a coordinated way. If the client had added acupuncture on their own without the team knowing, it would be complementary. Alternative means it replaces conventional care. Conventional is standard Western care such as medication and surgery.',pearl:'C-A-I: Complementary = Co-pilot, Alternative = Another route, Integrative = In it together.'},
+{cat:'Health & CHA',type:'mc',q:'A client with chronic fatigue says, "I think I am sick because my mind, body, and spirit are out of balance." Which nurse response best reflects a holistic view of health?',
+ o:[['"It sounds like you see your health as connected across mind, body, and spirit. What helps you feel balanced?"',1],['"Illness is caused by physical problems, so your spirit is not the issue."',0],['"There is no scientific evidence for that belief."',0],['"Let\'s focus only on your lab results first."',0]],
+ why:'Holism treats the whole person. The best response reflects the client\'s view and uses an open-ended question. The other responses dismiss the belief or narrow care to the physical body.',pearl:'Holism = mind, body, spirit. Health reflects the balance of interconnected dimensions.'},
+{cat:'Health & CHA',type:'sata',q:'The nurse is teaching a class on complementary health approaches. Which interventions are examples of complementary approaches? Select all that apply.',
+ o:[['Massage therapy',1],['Acupuncture',1],['Aromatherapy',1],['Guided imagery',1],['Yoga',1],['Insulin therapy',0],['Surgical resection of a tumor',0]],
+ why:'Massage, acupuncture, aromatherapy, guided imagery, and yoga are nonpharmacologic approaches not typically part of conventional care and used alongside it. Insulin and surgery are conventional medicine.'},
+
+/* PROFESSIONAL PRACTICE */
+{cat:'Professional Practice',type:'mc',q:'A nurse licensed in one state accepts a travel assignment in another state. A colleague asks the nurse to perform a skill that the nurse\'s home state allows but the new state\'s Nurse Practice Act does not list. What should the nurse do?',
+ o:[['Follow the Nurse Practice Act of the state where the nurse is practicing and decline the skill','1'],['Perform the skill because it is within the home state scope of practice',0],['Perform the skill if the client consents',0],['Perform the skill if the charge nurse verbally approves',0]],
+ why:'The Nurse Practice Act is state law and defines scope of practice for the state where the nurse is working. Client consent or a supervisor\'s approval cannot expand legal scope.',pearl:'Scope of practice = what a nurse is legally allowed to do. Know it for the state you work in.'},
+{cat:'Professional Practice',type:'mc',q:'A nurse gives SBAR report to a provider about a client. Which statement is the Assessment component?',
+ o:[['"I think he is developing respiratory failure. He has bilateral crackles and a respiratory rate of 28."',1],['"I am calling about Mr. Lee in room 412. His oxygen saturation dropped to 88%."',0],['"He is 68 years old and was admitted two days ago with pneumonia."',0],['"I would like you to evaluate him within the next 15 minutes."',0]],
+ why:'Assessment is the nurse\'s analysis of the problem based on findings. The call reason is Situation, the admission history is Background, and the request to evaluate is Recommendation.',pearl:'Some Bodies Always Report: Situation, Background, Assessment, Recommendation.'},
+{cat:'Professional Practice',type:'sata',q:'A new graduate asks why complete and timely charting matters. Which are purposes of client documentation? Select all that apply.',
+ o:[['Communication among the health care team',1],['Legal record of care provided',1],['Support for reimbursement from insurers and Medicare',1],['Data collection for research and quality auditing',1],['Replacing the need for verbal handoff report',0],['Recording the nurse\'s opinion of coworkers\' performance',0]],
+ why:'Documentation supports communication, provides a legal record, drives reimbursement, and feeds auditing and research. It supplements handoff but does not replace it, and it is never a place for opinions about coworkers.',pearl:'CLEAR-R: Communication, Legal, Education, Auditing, Reimbursement, Research. Not charted = not done = not paid.'},
+{cat:'Professional Practice',type:'mc',q:'A unit nurse notices that IV pump alarms are frequent during night shift. She gathers alarm counts for a month, works with biomedical staff to change alarm settings, and then measures whether alarms decrease. Which QSEN competency is she primarily demonstrating?',
+ o:[['Quality improvement',1],['Informatics',0],['Teamwork and collaboration',0],['Patient-centered care',0]],
+ why:'Collecting data, testing a change, and measuring the result is the quality improvement cycle. She also collaborates and uses technology, but the defining activity is measuring and improving a process.',pearl:'QSEN: Patient-centered, Teamwork, Evidence-based practice, Quality improvement, Safety, Informatics.'},
+
+/* CRITICAL THINKING */
+{cat:'Critical Thinking',type:'mc',q:'After a shift, a nurse thinks back on how quickly she recognized early signs of sepsis in a client and considers what she would do differently next time. Which phase of Tanner\'s Clinical Judgment Model does this represent?',
+ o:[['Reflecting',1],['Interpreting',0],['Responding',0],['Noticing',0]],
+ why:'Reflecting is reviewing the outcome and learning from the experience. Noticing is collecting data, interpreting is making sense of the data, and responding is taking action.',pearl:'Nurses Instantly Recognize Risks: Noticing, Interpreting, Responding, Reflecting.'},
+{cat:'Critical Thinking',type:'mc',q:'A nurse calms an anxious family member by using active listening and clarifying what the family member fears. Which of the four blended competencies of critical thinking is this?',
+ o:[['Interpersonal',1],['Cognitive',0],['Technical',0],['Ethical/legal',0]],
+ why:'Active listening and clarifying feelings are interpersonal skills. Cognitive is knowledge and reasoning, technical is hands-on skill, and ethical/legal is professional standards and rights.',pearl:'C-TIE: Cognitive, Technical, Interpersonal, Ethical/legal.'},
+{cat:'Critical Thinking',type:'sata',q:'Which nurse behaviors reflect critical thinking dispositions (attitudes)? Select all that apply.',
+ o:[['Admitting uncertainty about a dose and asking the charge nurse to verify',1],['Continuing to look for the cause of a client\'s new confusion after the first lab result is normal',1],['Reporting her own medication error promptly',1],['Asking why a unit routine is done a certain way',1],['Doing tasks the way the unit has always done them without questioning',0],['Labeling a client\'s repeated complaints as "noncompliance" without further assessment',0]],
+ why:'Humility, perseverance, integrity, and curiosity are dispositions of a good thinker. Rigid habit and premature labeling are the opposite of open, inquiring thinking.'},
+
+/* COMMUNICATION & CULTURE */
+{cat:'Communication',type:'mc',q:'A client admitted with diarrhea is being assessed. Which nurse statement is the best open-ended question?',
+ o:[['"Describe your bowel movements over the past few days and how they differ from your usual pattern."',1],['"Do you have diarrhea?"',0],['"Is your stool watery?"',0],['"Have you been taking laxatives?"',0]],
+ why:'Open-ended questions invite a full description and cannot be answered yes or no. The other options are closed-ended and limit information.',pearl:'TED: Tell me… Explain… Describe…'},
+{cat:'Communication',type:'mc',q:'A client says, "I am scared the surgery will go wrong." Which response is most therapeutic?',
+ o:[['"You sound worried about the surgery. What concerns you most?"',1],['"Don\'t worry, our surgeon is the best in the state."',0],['"Why are you scared? Nothing bad will happen."',0],['"Everyone gets nervous before surgery."',0]],
+ why:'The goal of therapeutic communication is to build trust. Reflecting the feeling and asking an open-ended question invites the client to talk. False reassurance, "why" questions, and generalizations block communication.'},
+
+/* INFECTION */
+{cat:'Infection Control',type:'sata',q:'A client is admitted with suspected active tuberculosis. Which precautions should the nurse implement? Select all that apply.',
+ o:[['Place the client in a negative-pressure room with the door closed',1],['Staff wear an N95 respirator when entering',1],['Client wears a surgical mask when leaving the room',1],['Continue standard precautions in addition',1],['Staff wear a surgical mask only',0],['Keep the door open for easier observation',0]],
+ why:'TB is airborne (particles smaller than 5 microns). Airborne precautions require negative pressure with the door closed, N95 for staff, and a surgical mask on the client during transport. Standard precautions always apply. A surgical mask does not protect against airborne particles.',pearl:'My Chicken Hez TB: Measles, Chickenpox, disseminated Herpes zoster, TB.'},
+{cat:'Infection Control',type:'mc',q:'A nurse is leaving the room of a client on contact isolation. Which sequence of PPE removal is correct?',
+ o:[['Gloves, goggles, gown, mask',1],['Mask, gown, goggles, gloves',0],['Gown, gloves, mask, goggles',0],['Goggles, mask, gloves, gown',0]],
+ why:'Gloves are the most contaminated and come off first, followed by goggles, gown, and then mask. Hand hygiene follows removal.',pearl:'Doff alphabetical: Gloves, Goggles, Gown, Mask.'},
+{cat:'Infection Control',type:'mc',q:'Two days after exposure to influenza, a client reports feeling tired with a low-grade temperature but has no cough or other specific symptoms. Which statement is accurate?',
+ o:[['The client is in the prodromal stage and is highly contagious',1],['The client is in the incubation stage and is not yet contagious',0],['The client is in the illness stage because a fever is present',0],['The client is in the convalescence stage and can stop precautions',0]],
+ why:'The prodromal stage has vague, nonspecific symptoms, and the client is most contagious. Incubation has no symptoms, illness has specific symptoms, and convalescence is recovery.',pearl:'PROdromal = PRO spreader.'},
+{cat:'Infection Control',type:'mc',q:'A nursing assistant asks about cleaning terms. Which statement by the nurse is correct?',
+ o:[['"Sterilization kills all microorganisms including spores, and is used for items entering sterile tissue."',1],['"Disinfection kills all microorganisms including spores."',0],['"Sterilization is used for items that touch intact skin."',0],['"Medical asepsis removes all microorganisms from an object."',0]],
+ why:'Sterilization destroys all microorganisms including spores. Disinfection kills most microorganisms but not spores and suits items touching intact skin. Medical asepsis reduces the number and spread of microorganisms; surgical asepsis is sterile technique.',pearl:'Sterilization = Spores gone.'},
+{cat:'Infection Control',type:'sata',q:'For which situations is hand hygiene indicated? Select all that apply.',
+ o:[['Before palpating a client\'s abdomen',1],['Before accessing a central line to flush it',1],['After adjusting the bed rails and touching the bedside table',1],['After emptying a client\'s urinal',1],['Only when hands are visibly soiled',0],['After typing notes at the nurses\' station',0]],
+ why:'The five moments are before touching the client, before a clean or aseptic procedure, after body fluid exposure risk, after touching the client, and after touching the client\'s surroundings. Hand hygiene is not limited to visible soiling, and the nursing station is not the client\'s environment.',pearl:'2 Befores, 3 Afters.'},
+{cat:'Infection Control',type:'mc',q:'At 48 hours, the nurse reads a client\'s TB skin test. The site has a 20 mm area of redness but no raised, hard area. How should the nurse interpret this?',
+ o:[['Induration is 0 mm; record the result as negative and document the redness',1],['20 mm; the test is positive',0],['The test is invalid and must be repeated on the same arm',0],['The result is indeterminate until redness resolves',0]],
+ why:'Only induration (a raised, hardened area) is measured, in millimeters, at 48 to 72 hours. Redness is not measured.',pearl:'Measure the bump, not the blush.'},
+
+/* MEDICATION */
+{cat:'Medication & IV',type:'mc',q:'The nurse receives an order for an IV antibiotic with the drug name, dose, and frequency but no route. What should the nurse do?',
+ o:[['Contact the prescriber to clarify the order before giving the medication',1],['Give the drug intravenously because the order says IV antibiotic',0],['Ask the pharmacist to choose the route',0],['Ask another nurse which route is usual',0]],
+ why:'A complete order includes patient name, date/time, drug, dose, route, frequency, and prescriber signature. Never assume missing information. Clarify with the prescriber and document.'},
+{cat:'Medication & IV',type:'mc',q:'A client vomits 15 minutes after taking an oral antibiotic. Which action should the nurse take?',
+ o:[['Check the emesis for the tablet and notify the prescriber',1],['Give another full dose immediately',0],['Document the vomiting only and give the next dose on time',0],['Change the route to intramuscular without an order',0]],
+ why:'The nurse does not re-dose independently. Checking for the tablet helps determine how much medication may have been lost (bioavailability), and the prescriber decides on re-dosing or a route change.'},
+{cat:'Medication & IV',type:'mc',q:'A client receiving a vesicant chemotherapy drug through a peripheral IV reports burning at the site, and the area is swollen. Which action is the priority?',
+ o:[['Stop the infusion and notify the provider following facility extravasation protocol',1],['Apply a warm compress and continue the infusion slowly',0],['Increase the flow rate to flush the drug through',0],['Remove the catheter and apply firm pressure without notifying the provider',0]],
+ why:'Extravasation is leakage of a vesicant into tissue, which can cause blistering and severe tissue damage. The infusion must stop at once, and the provider is notified so protocol steps such as aspiration and antidote can proceed. Flushing or continuing the drug worsens damage.',pearl:'EXtravasation = EXtra damage.'},
+{cat:'Medication & IV',type:'mc',q:'While an IV medication is infusing, the nurse sees crystals forming in the tubing. What is the priority action?',
+ o:[['Stop the infusion and clamp the tubing closest to the client',1],['Flush the line with saline to dissolve the crystals',0],['Slow the rate and continue to monitor',0],['Replace the bag and continue the infusion through the same tubing',0]],
+ why:'Crystals or precipitate mean incompatible drugs or solutions may have mixed. Stopping the infusion and clamping closest to the client prevents particles from entering the bloodstream. Never flush a precipitate toward the client.'},
+{cat:'Medication & IV',type:'sata',q:'The nurse prepares to give an IV push medication. Which findings support that the IV line is patent? Select all that apply.',
+ o:[['Blood return when the nurse pulls back on the syringe',1],['Saline flushes easily with no resistance',1],['No swelling at the insertion site',1],['Client reports no pain on flushing',1],['Resistance is felt when flushing',0],['Site is cool, pale, and swollen',0]],
+ why:'A patent line flushes easily with no swelling, pain, or resistance, and blood return is expected. In your course, absent blood return can still be acceptable if the line flushes easily with no swelling, pain, or resistance. Resistance or a cool, pale, swollen site suggests infiltration.'},
+
+/* DOSAGE */
+{cat:'Dosage Calculation',type:'calc',q:'The provider orders levothyroxine 0.15 mg PO daily. The pharmacy supplies 75 mcg tablets. How many tablets will the nurse administer?',ans:2,tol:0.01,unit:'tablet(s)',
+ why:'Convert first: 0.15 mg = 150 mcg (1 mg = 1,000 mcg). Then (Desired ÷ Have) × Quantity = 150 ÷ 75 × 1 = 2 tablets.',pearl:'Doctors Have Questions: Desired ÷ Have × Quantity.'},
+{cat:'Dosage Calculation',type:'calc',q:'The provider orders amoxicillin 750 mg PO. Available: oral suspension 500 mg per 5 mL. How many mL will the nurse give? Enter a number.',ans:7.5,tol:0.01,unit:'mL',
+ why:'(750 mg ÷ 500 mg) × 5 mL = 1.5 × 5 = 7.5 mL.'},
+{cat:'Dosage Calculation',type:'calc',q:'A client is ordered 1,200 mL of 0.9% sodium chloride over 10 hours at 120 mL/hr. At the 4-hour check, 350 mL has infused. Within agency policy, what new rate in mL/hr will finish the infusion on time? Round to the nearest whole number.',ans:141.67,tol:0.5,unit:'mL/hr',
+ why:'Volume remaining = 1,200 − 350 = 850 mL. Time remaining = 10 − 4 = 6 hr. Rate = 850 ÷ 6 = 141.67, which rounds to 142 mL/hr. Always follow agency policy about how much a rate may be adjusted.'},
+{cat:'Dosage Calculation',type:'calc',q:'The provider orders 500 mL of IV fluid over 4 hours by gravity. The drop factor is 15 gtt/mL. How many gtt/min should the nurse set? Round to the nearest whole number.',ans:31.25,tol:0.5,unit:'gtt/min',
+ why:'gtt/min = (mL × drop factor) ÷ minutes = (500 × 15) ÷ 240 = 31.25, which rounds to 31 gtt/min.',pearl:'Very Delicate Task: Volume × Drop ÷ Time.'},
+{cat:'Dosage Calculation',type:'calc',q:'A client is to receive 250 mL of IV antibiotic over 90 minutes using a microdrip set (60 gtt/mL). How many gtt/min? Round to the nearest whole number.',ans:166.67,tol:0.5,unit:'gtt/min',
+ why:'(250 × 60) ÷ 90 = 15,000 ÷ 90 = 166.67, which rounds to 167 gtt/min. A microdrip set is 60 gtt/mL.'},
+{cat:'Dosage Calculation',type:'calc',q:'The heparin infusion bag contains 25,000 units in 500 mL D5W. The order is 1,200 units/hr. At what rate in mL/hr will the nurse set the pump?',ans:24,tol:0.05,unit:'mL/hr',
+ why:'Concentration = 25,000 ÷ 500 = 50 units/mL. Rate = 1,200 ÷ 50 = 24 mL/hr.'},
+{cat:'Dosage Calculation',type:'calc',q:'The heparin bag contains 20,000 units in 250 mL. The order is 1,000 units/hr. At what rate in mL/hr will the nurse set the pump? Do not round.',ans:12.5,tol:0.05,unit:'mL/hr',
+ why:'Concentration = 20,000 ÷ 250 = 80 units/mL. Rate = 1,000 ÷ 80 = 12.5 mL/hr. Heparin flow rates are not rounded in critical care; confirm your instructor\'s rule.'},
+{cat:'Dosage Calculation',type:'calc',q:'A client weighs 176 lb. The provider orders a medication at 0.5 mg/kg. How many mg will the nurse give?',ans:40,tol:0.5,unit:'mg',
+ why:'kg = lb ÷ 2.2 = 176 ÷ 2.2 = 80 kg. Dose = 80 × 0.5 = 40 mg.',pearl:'Kilos are the smaller number, so you divide.'},
+
+/* VITALS */
+{cat:'Vital Signs',type:'calc',q:'A client\'s temperature is 102.2°F. What is this in degrees Celsius? Round to the nearest tenth.',ans:39.0,tol:0.1,unit:'°C',
+ why:'°C = (°F − 32) × 5/9 = (102.2 − 32) × 5/9 = 70.2 × 5/9 = 39.0°C.',pearl:'Going to Celsius: subtract first, then shrink.'},
+{cat:'Vital Signs',type:'mc',q:'A febrile client is in a warm room. Which intervention increases heat loss by convection?',
+ o:[['Placing a fan so air moves across the client\'s skin',1],['Placing the client on a cooling blanket',0],['Removing blankets and lowering the room temperature only',0],['Wiping the skin with a cool wet cloth and leaving it exposed to air',0]],
+ why:'Convection is heat loss through air currents. A cooling blanket uses conduction (direct contact). Moisture on skin drying uses evaporation. Cooler surroundings promote radiation.',pearl:'Rays (radiation), Contact (conduction), Current (convection), Exit (evaporation).'},
+{cat:'Vital Signs',type:'sata',q:'The nurse obtains resting vital signs on several adults. Which values are abnormal? Select all that apply.',
+ o:[['Heart rate 54/min',1],['Respiratory rate 22/min',1],['Heart rate 104/min',1],['SpO₂ 96%',0],['Blood pressure 116/74 mm Hg',0],['Temperature 98.2°F (36.8°C)',0]],
+ why:'Normal adult ranges: HR 60–100, RR 12–20, BP below 120/80, SpO₂ 95–100%, temperature about 98.6°F (37°C). HR 54 is bradycardia, 104 is tachycardia, and RR 22 is tachypnea.'},
+
+/* NUTRITION */
+{cat:'Nutrition',type:'mc',q:'A client reports difficulty seeing in dim light at night. The nurse suspects a deficiency of which nutrient?',
+ o:[['Vitamin A',1],['Vitamin B12',0],['Vitamin K',0],['Iron',0]],
+ why:'Vitamin A supports vision, especially night vision. It is fat-soluble and stored in the body. Vitamin A = An eye.'},
+{cat:'Nutrition',type:'sata',q:'Which findings are consistent with vitamin B12 deficiency? Select all that apply.',
+ o:[['Tingling in the feet',1],['Difficulty concentrating ("brain fog")',1],['Sore mouth or tongue',1],['Fatigue and weakness',1],['Difficulty seeing at night',0],['Bleeding gums',0]],
+ why:'B12 is needed for red blood cells and nerve health, so deficiency causes fatigue, neurologic symptoms, and mouth soreness. Night blindness points to vitamin A, and bleeding gums to vitamin C.',pearl:'B12 hits the Brain, the Blood, and the Bottom of the feet.'},
+
+/* ELIMINATION */
+{cat:'Elimination',type:'mc',q:'The nurse assesses a client with a new colostomy. Which finding requires immediate provider notification?',
+ o:[['Stoma is dusky, dark purple to black',1],['Stoma is pink-red and moist',0],['Stoma is slightly swollen on day 1',0],['Mucus is present in the pouch',0]],
+ why:'A healthy stoma is pink-red and moist. Dusky, blue, pale, or black stoma signals poor blood flow and needs prompt reporting. Mild swelling early on and mucus are expected.',pearl:'Healthy stoma looks like the inside of your mouth.'},
+{cat:'Elimination',type:'mc',q:'A nurse has just finished inserting an indwelling urinary catheter in an uncircumcised male client. Which action is the priority to prevent a complication?',
+ o:[['Return the foreskin to its natural position over the glans',1],['Leave the foreskin retracted to keep the meatus clean',0],['Apply ice to the penis to reduce swelling',0],['Tape the catheter tightly to the penis',0]],
+ why:'Foreskin left retracted can become trapped behind the glans and swell (paraphimosis), cutting off blood flow. It is an emergency. The foreskin is kept retracted during the procedure and then replaced.'},
+{cat:'Elimination',type:'sata',q:'Which nursing interventions best protect the skin of a client with urinary incontinence? Select all that apply.',
+ o:[['Scheduled toileting',1],['Apply barrier cream after cleansing',1],['Prompt cleansing with a pH-balanced cleanser',1],['Restrict fluids to reduce urine',0],['Use plastic-backed pads directly on skin',0],['Scrub skin vigorously with soap',0]],
+ why:'Scheduled toileting reduces accidents, barrier cream protects skin, and gentle cleansing limits irritation. Restricting fluids concentrates urine and risks dehydration. Plastic trapping moisture and scrubbing damage skin.'},
+{cat:'Elimination',type:'mc',q:'A client has abdominal distention and absent bowel sounds after abdominal surgery. Which normal process is most likely diminished?',
+ o:[['Peristalsis',1],['Glomerular filtration',0],['Diffusion',0],['Osmosis',0]],
+ why:'Peristalsis is wave-like contraction of circular and longitudinal smooth muscle that moves contents through the GI tract. After surgery, it may slow or stop (ileus).'},
+
+/* FLUIDS */
+{cat:'Fluids & Electrolytes',type:'mc',q:'A client has a sodium level of 121 mEq/L, new confusion, and a headache. Which is the priority nursing action?',
+ o:[['Initiate seizure precautions and notify the provider',1],['Encourage the client to drink extra water',0],['Ambulate the client in the hall',0],['Dim the lights and leave the bed in the high position',0]],
+ why:'Normal sodium is 135–145 mEq/L. Low sodium causes brain cell swelling, confusion, and seizures. Protect safety and report. Extra free water can worsen the imbalance.',pearl:'Low Na = No brain.'},
+{cat:'Fluids & Electrolytes',type:'sata',q:'A client taking furosemide has a potassium level of 3.0 mEq/L. Which findings would the nurse expect? Select all that apply.',
+ o:[['Leg cramps',1],['Weak, irregular pulse',1],['Constipation',1],['Shallow respirations',1],['Peaked T waves on ECG',0],['Hyperactive bowel sounds',0]],
+ why:'Normal potassium is 3.5–5.0 mEq/L. Hypokalemia causes weakness, cramps, dysrhythmias, shallow breathing, and decreased bowel activity. Peaked T waves are associated with hyperkalemia.',pearl:'Low K: Leg cramps, Limp muscles, Lethargy, Lazy bowels, Lethal rhythms.'},
+{cat:'Fluids & Electrolytes',type:'mc',q:'The nurse is teaching about fluid balance. Which is an example of insensible fluid loss?',
+ o:[['Water vapor lost through the skin and lungs',1],['Urine output',0],['Wound drainage',0],['Emesis',0]],
+ why:'Insensible loss is water you cannot measure, lost through skin and lungs. Urine, drainage, and emesis are sensible losses because they can be measured.',pearl:'In-sensible = you can\'t sense (measure) it.'},
+
+/* PAIN */
+{cat:'Pain',type:'mc',q:'A client with cancer takes scheduled extended-release morphine and has well-controlled pain. The client suddenly reports severe pain of 8/10. Which is the best interpretation and action?',
+ o:[['Breakthrough pain; give the ordered rapid-acting PRN analgesic and reassess',1],['Chronic pain; wait for the next scheduled dose',0],['Neuropathic pain; withhold opioids',0],['Drug-seeking behavior; request a psychiatric consult',0]],
+ why:'Breakthrough pain is a sudden flare that "breaks through" otherwise controlled pain. It is treated with a PRN rapid-acting analgesic and reassessed. Waiting or labeling the client leaves pain untreated.'},
+
+/* HEALTH PROMOTION */
+{cat:'Health Promotion',type:'sata',q:'The nurse teaches older adults at a senior center about health promotion. Which are appropriate? Select all that apply.',
+ o:[['Annual influenza vaccine',1],['Pneumococcal vaccination',1],['Regular screenings such as mammography and colon cancer screening as recommended',1],['Home safety review to reduce fall risk',1],['Avoid vaccines because immune response weakens with age',0],['Stop all screenings once you reach age 65',0]],
+ why:'Vaccines are primary prevention and screenings are secondary prevention. Older adults benefit from both, along with fall prevention.',pearl:'Shots + Screens.'},
+{cat:'Health Promotion',type:'mc',q:'A female client reports painful intercourse. Which is the nurse\'s best first question?',
+ o:[['"What medications are you taking, including over-the-counter?"',1],['"How long have you been married?"',0],['"Have you talked to your partner about this?"',0],['"Do you have multiple sexual partners?"',0]],
+ why:'Many medications, such as antihistamines, cause dryness that can contribute to dyspareunia. Asking about medications is a nonjudgmental, focused first question. The other options are irrelevant or judgmental.'},
+
+/* LEADERSHIP */
+{cat:'Leadership',type:'mc',q:'Two nurses argue over the break schedule. The charge nurse says, "Let\'s not fuss, we are all one team," and moves on without discussing the issue. Which conflict resolution strategy is this?',
+ o:[['Smoothing',1],['Collaboration',0],['Compromise',0],['Competition',0]],
+ why:'Smoothing downplays differences to keep peace and rarely resolves the underlying conflict, so it often returns. Collaboration and compromise involve working through the issue.'},
+{cat:'Leadership',type:'mc',q:'Which action demonstrates self-evaluation skills?',
+ o:[['After a code, the nurse reflects on her own performance and identifies strengths and areas to improve',1],['The nurse waits for the annual review to learn how she is doing',0],['The nurse compares her speed to coworkers to judge her competence',0],['The nurse asks the manager to list her errors',0]],
+ why:'Self-evaluation focuses on self-reflection: honestly reviewing your own practice to set goals for growth.'},
+{cat:'Leadership',type:'sata',q:'Which actions are characteristic of an autocratic leader? Select all that apply.',
+ o:[['Makes decisions without input from the team',1],['Gives directives and expects them to be followed',1],['Maintains tight control over the work',1],['Uses strict rules and close supervision',1],['Encourages group members to decide together',0],['Delegates decision-making authority to the team',0]],
+ why:'Autocratic leaders control decisions and give orders. Group decision making and shared authority describe democratic and laissez-faire styles.'},
+{cat:'Leadership',type:'mc',q:'The charge nurse is delegating tasks. Which task can be delegated to an unlicensed assistive personnel (UAP)?',
+ o:[['Obtaining vital signs for a stable client on postoperative day 3',1],['Assessing pain response 30 minutes after an IV analgesic',0],['Evaluating stoma color on a new colostomy',0],['Obtaining initial vital signs on a newly admitted client with chest pain',0]],
+ why:'UAP may perform routine tasks for stable clients. Assessment, evaluation, and care of unstable or new clients stay with the licensed nurse.'}
+];
+
+/* normalize + shuffle */
+function shuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
+Q.forEach(q=>{if(q.o){q.o=q.o.map(x=>({t:x[0],ok:x[1]===1||x[1]==='1'}));shuf(q.o);}});
+const N=Q.length;
+let cur=0, A=Array(N).fill(null), draft=Array(N).fill(null), view='q';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+function stats(){
+  const done=A.filter(Boolean).length, ok=A.filter(a=>a&&a.ok).length;
+  $('sAns').textContent=done; $('sOk').textContent=ok;
+  $('sPct').textContent=done?Math.round(ok/done*100)+'%':'–';
+  $('pbar').style.width=(done/N*100)+'%';
+  $('map').innerHTML=Q.map((q,i)=>{const a=A[i];return `<button data-i="${i}" class="${a?(a.ok?'ok':'no'):''} ${i===cur&&view==='q'?'cur':''}" aria-label="Question ${i+1}${a?(a.ok?' correct':' incorrect'):''}">${i+1}</button>`}).join('');
+}
+function render(){
+  stats();
+  if(view==='r'){renderResults();return}
+  const q=Q[cur], a=A[cur], L='ABCDEFG';
+  let body='';
+  if(q.type==='calc'){
+    const v=a?a.val:(draft[cur]??'');
+    body=`<div class="calc"><input id="calcIn" inputmode="decimal" autocomplete="off" aria-label="Your answer" value="${esc(v)}" ${a?'disabled':''}><span class="unit">${esc(q.unit)}</span></div>`;
+  } else {
+    const multi=q.type==='sata', sel=a?a.sel:(draft[cur]||[]);
+    body=`<p class="instr">${multi?'Select all that apply.':'Select one answer.'}</p><ul class="opts">`+q.o.map((o,i)=>{
+      let c='opt '+(multi?'multi':'single'), tag='', mk=multi?'':'';
+      const on=sel.includes(i);
+      if(on)c+=' sel';
+      if(a){ if(on&&o.ok){c+=' ok';tag='Correct';mk='✓'} else if(on&&!o.ok){c+=' no';tag='Incorrect';mk='✕'} else if(!on&&o.ok){c+=' miss';tag=multi?'Missed':'Correct answer'} }
+      else if(on) mk='✓';
+      return `<li><button class="${c}" data-o="${i}" ${a?'disabled':''} aria-pressed="${on}"><span class="mk">${mk}</span><span>${L[i]}. ${esc(o.t)}</span>${tag?`<span class="tag">${tag}</span>`:''}</button></li>`}).join('')+'</ul>';
+  }
+  let why='';
+  if(a){
+    why=`<div class="why ${a.ok?'right':'wrong'}" role="status"><h3>${a.ok?'Correct':'Incorrect'}${q.type==='calc'?` · answer ${q.ans}${q.unit?' '+esc(q.unit):''}`:''}</h3><p>${esc(q.why)}</p>${q.pearl?`<p class="pearl">${esc(q.pearl)}</p>`:''}</div>`;
+  }
+  const last=cur===N-1;
+  $('main').innerHTML=`<section class="card"><div class="meta"><span>Question ${cur+1} of ${N}</span><span class="chip">${esc(q.cat)}</span><span>${q.type==='sata'?'Select all':q.type==='calc'?'Calculation':'Multiple choice'}</span></div>
+  <p class="stem">${esc(q.q)}</p>${body}${why}
+  <div class="actions">${a?'':`<button class="btn" id="btnSub">Submit answer</button>`}
+  <button class="btn ${a?'':'ghost'}" id="btnPrev" ${cur===0?'disabled':''}>Previous</button>
+  <button class="btn ${a?'':'ghost'}" id="btnNext">${last?'See results':'Next'}</button></div></section>`;
+  const sub=$('btnSub'); if(sub) sub.disabled=!canSub();
+  const ci=$('calcIn'); if(ci&&!a){ci.addEventListener('input',()=>{draft[cur]=ci.value;const s=$('btnSub');if(s)s.disabled=!canSub()});ci.addEventListener('keydown',e=>{if(e.key==='Enter'&&canSub())submit()})}
+}
+function canSub(){const q=Q[cur];if(q.type==='calc'){const v=parseFloat(String(draft[cur]||'').replace(/,/g,''));return !isNaN(v)}return (draft[cur]||[]).length>0}
+function submit(){
+  const q=Q[cur]; if(A[cur]||!canSub())return;
+  if(q.type==='calc'){const v=parseFloat(String(draft[cur]).replace(/,/g,''));A[cur]={val:draft[cur],ok:Math.abs(v-q.ans)<=q.tol}}
+  else{const sel=draft[cur].slice().sort((x,y)=>x-y);const need=q.o.map((o,i)=>o.ok?i:-1).filter(i=>i>=0);A[cur]={sel,ok:sel.length===need.length&&sel.every((v,i)=>v===need[i])}}
+  render();
+}
+function renderResults(){
+  const done=A.filter(Boolean).length, ok=A.filter(a=>a&&a.ok).length;
+  const cats={};Q.forEach((q,i)=>{const c=cats[q.cat]=cats[q.cat]||{n:0,d:0,ok:0};c.n++;if(A[i]){c.d++;if(A[i].ok)c.ok++}});
+  const rows=Object.entries(cats).map(([k,c])=>`<tr><td>${esc(k)}</td><td class="n">${c.ok}/${c.n}</td><td class="n">${c.d?Math.round(c.ok/c.d*100)+'%':'–'}</td></tr>`).join('');
+  const missed=Q.map((q,i)=>A[i]&&!A[i].ok?i:-1).filter(i=>i>=0), skipped=Q.map((q,i)=>A[i]?-1:i).filter(i=>i>=0);
+  const chips=(arr)=>arr.map(i=>`<button class="btn ghost" style="padding:4px 10px" data-i="${i}">${i+1}</button>`).join('');
+  $('main').innerHTML=`<section class="card"><h2>Results</h2><div class="big">${done?Math.round(ok/done*100):0}%</div>
+  <p class="small">${ok} correct of ${done} answered${skipped.length?` · ${skipped.length} not yet answered`:''}. SATA questions are graded all or nothing.</p>
+  <div class="tw"><table><thead><tr><th>Topic</th><th>Correct</th><th>Score</th></tr></thead><tbody>${rows}</tbody></table></div>
+  ${missed.length?`<p style="margin:16px 0 0"><b>Review missed</b></p><div class="miss-list">${chips(missed)}</div>`:''}
+  ${skipped.length?`<p style="margin:16px 0 0"><b>Unanswered</b></p><div class="miss-list">${chips(skipped)}</div>`:''}
+  <div class="actions"><button class="btn" id="btnBack">Back to questions</button></div></section>`;
+}
+function go(i){cur=Math.max(0,Math.min(N-1,i));view='q';render();window.scrollTo({top:0})}
+function reset(){A=Array(N).fill(null);draft=Array(N).fill(null);Q.forEach(q=>{if(q.o)shuf(q.o)});cur=0;view='q';render();window.scrollTo({top:0})}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button'); if(!t)return;
+  if(t.dataset.o!==undefined){
+    const i=+t.dataset.o,q=Q[cur]; if(A[cur])return;
+    if(q.type==='sata'){const s=draft[cur]||[];draft[cur]=s.includes(i)?s.filter(x=>x!==i):[...s,i]}
+    else draft[cur]=[i];
+    render();return}
+  if(t.dataset.i!==undefined){go(+t.dataset.i);return}
+  switch(t.id){
+    case 'btnSub':submit();break;
+    case 'btnPrev':go(cur-1);break;
+    case 'btnNext':if(cur===N-1){view='r';render();window.scrollTo({top:0})}else go(cur+1);break;
+    case 'btnResults':view='r';render();window.scrollTo({top:0});break;
+    case 'btnBack':go(cur);break;
+    case 'btnReset':reset();break;
+  }
+});
+render();
+</script>
+
+</body></html>

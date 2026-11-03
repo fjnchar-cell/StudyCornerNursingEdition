@@ -1,0 +1,478 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Respiratory Practice Set</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: Shift Board's study-mode look. Score strip, topic chips, one question card at a time, jump grid below.
+   Deliberately single dark theme: navy ground, focus blue, highlighter yellow. */
+:root{
+  color-scheme:dark;
+  --bg:#0A1222; --surface:#111C31; --raised:#16233C; --sunk:#0C1528; --line:#22324F;
+  --ink:#EAF0FA; --muted:#8C9BB8; --faint:#5C6C8A;
+  --blue:#5B9BFF; --blue-deep:#2156C9; --blue-wash:#13284D;
+  --yellow:#FFD34D; --yellow-wash:#2E2814;
+  --ok:#4FD1A5; --ok-wash:#0F2E28; --bad:#FF7A6B; --bad-wash:#33171A;
+  --display:"DM Serif Display", Georgia, serif;
+  --body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:16px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 500px at 85% -10%, rgba(91,155,255,.10), transparent 60%);background-attachment:fixed}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+::selection{background:var(--yellow);color:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));padding-block:34px 60px;display:grid;gap:16px}
+
+h1{font:400 clamp(38px,8vw,52px)/1 var(--display);margin:0;color:var(--yellow)}
+h1 span{color:var(--ink)}
+.sub{font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.sub b{color:var(--blue);font-weight:500}
+
+.score{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:10px;align-items:stretch}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat .k{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font:500 24px var(--mono);font-variant-numeric:tabular-nums;margin-top:2px}
+.stat.hi{border-color:var(--yellow);background:linear-gradient(160deg,var(--yellow-wash),var(--surface) 75%)}
+.stat.hi .v{color:var(--yellow)}
+.acts{display:grid;gap:8px}
+.btn{border:1px solid var(--line);background:var(--raised);padding:9px 14px;border-radius:10px;cursor:pointer;font-weight:700;font-size:14px;white-space:nowrap}
+.btn:hover{border-color:var(--blue)}
+.btn.y{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+.btn.b{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.armed{background:var(--bad);border-color:var(--bad);color:var(--bg)}
+
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 12px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted)}
+.chip small{font:500 11px var(--mono);margin-left:4px;opacity:.85}
+.chip[aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+
+.card{background:var(--surface);border:1px solid rgba(91,155,255,.5);border-radius:var(--r);padding:20px 22px;display:grid;gap:14px;min-width:0}
+.qh{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.qn{font:500 12px var(--mono);letter-spacing:.08em;color:var(--muted);margin-right:auto}
+.badge{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:7px;white-space:nowrap;background:var(--blue-wash);color:var(--blue)}
+.badge.y{background:var(--yellow-wash);color:var(--yellow)}
+.stem{font-size:18px;font-weight:500;line-height:1.5;margin:0;text-wrap:pretty}
+.stem b{color:var(--yellow);font-weight:700}
+.hint{font:500 12px var(--mono);letter-spacing:.06em;color:var(--yellow);text-transform:uppercase}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:12px;align-items:start;text-align:left;width:100%;background:var(--raised);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-size:15.5px;line-height:1.45}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt:disabled{cursor:default}
+.ol{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font:500 13px var(--mono);background:var(--sunk);border:1px solid var(--line);color:var(--muted)}
+.opt.sel{border-color:var(--yellow)}
+.opt.sel .ol{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+.opt.sata .ol{border-radius:6px}
+.opt.right{border-color:var(--ok);background:var(--ok-wash)}
+.opt.right .ol{background:var(--ok);border-color:var(--ok);color:var(--bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-wash)}
+.opt.wrong .ol{background:var(--bad);border-color:var(--bad);color:var(--bg)}
+.opt.missed{border-color:var(--ok);border-style:dashed}
+.mark{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding-top:5px;white-space:nowrap}
+.right .mark{color:var(--ok)} .wrong .mark,.missed .mark{color:var(--bad)}
+.missed .mark{color:var(--ok)}
+
+.verdict{font:700 17px var(--body);display:flex;gap:8px;align-items:center}
+.verdict.ok{color:var(--ok)} .verdict.no{color:var(--bad)}
+.rat{background:var(--sunk);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:10px}
+.rat p{margin:0;font-size:15px;line-height:1.6}
+.rat ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14.5px;color:var(--muted)}
+.rat ul b{color:var(--ink)}
+.tip{display:flex;gap:10px;align-items:baseline;background:var(--yellow-wash);border-radius:10px;padding:10px 12px;font-size:14px}
+.tip span{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);white-space:nowrap}
+
+.nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nav .sp{flex:1}
+.keys{font:500 11px var(--mono);color:var(--faint)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px}
+.dot{aspect-ratio:1;max-width:100%;border-radius:9px;border:1px solid var(--line);background:var(--surface);font:500 12px var(--mono);cursor:pointer;color:var(--muted);display:grid;place-items:center}
+.dot.ok{background:var(--ok-wash);border-color:var(--ok);color:var(--ok)}
+.dot.no{background:var(--bad-wash);border-color:var(--bad);color:var(--bad)}
+.dot.cur{outline:2px solid var(--yellow);outline-offset:1px;color:var(--ink)}
+.sec{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.foot{font-size:13px;color:var(--faint);line-height:1.5}
+.done{text-align:center;display:grid;gap:10px;justify-items:center}
+.done .big{font:400 56px/1 var(--display);color:var(--yellow)}
+
+@media (max-width:560px){
+  .score{grid-template-columns:repeat(3,1fr)}
+  .acts{grid-column:1/-1;grid-template-columns:1fr 1fr}
+  .stat .v{font-size:20px}
+  .card{padding:16px}
+  .stem{font-size:17px}
+  .keys{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Respiratory <span>Practice</span></h1>
+    <div class="sub"><b>NUR 326 Med-Surg</b> · Respiratory disorders · NCLEX style</div>
+  </header>
+
+  <section class="score" aria-label="Score">
+    <div class="stat hi"><div class="k">Score</div><div class="v" id="sPct">—</div></div>
+    <div class="stat"><div class="k">Correct</div><div class="v" id="sOk">0</div></div>
+    <div class="stat"><div class="k">Answered</div><div class="v" id="sDone">0</div></div>
+    <div class="acts"><button class="btn y" id="drill">Drill missed</button><button class="btn" id="reset">Start over</button></div>
+  </section>
+
+  <div class="chips" id="chips" aria-label="Topics"></div>
+
+  <main id="card" class="card" aria-live="polite"></main>
+
+  <section style="display:grid;gap:10px">
+    <div class="sec">Jump to a question</div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <p class="foot">Original NCLEX-style practice questions on respiratory disorders, with rationales. Check anything that conflicts with your instructor's materials against your textbook. Your progress saves on this device.</p>
+</div>
+
+<script>
+(() => {
+"use strict";
+/* k: one | sata.  a: indices of correct options.  why: notes on options (index -> text). */
+const Q = [
+/* ---------- COPD & oxygen ---------- */
+{t:"COPD & oxygen",k:"one",tag:"Assessment",s:"A client with long-standing COPD and chronic CO2 retention is receiving oxygen by nasal cannula. Which oxygen saturation goal is appropriate?",
+ o:["88% to 92%","93% to 95%","96% to 98%","100%"],a:[0],
+ r:"Clients with COPD who chronically retain CO2 are kept at a target of about 88–92%. Pushing oxygen higher can worsen CO2 retention (by changing ventilation-perfusion matching) and lead to drowsiness and CO2 narcosis. Oxygen is never withheld from a client in distress, though. The goal is the lowest flow that reaches the target.",
+ why:{1:"93–95% is a common target for clients who don't retain CO2.",2:"96–98% is more than this client needs and raises the risk of CO2 retention.",3:"100% is not a realistic or safe goal for this client."},
+ tip:"COPD + CO2 retainer = target 88–92%."},
+{t:"COPD & oxygen",k:"one",tag:"Equipment",s:"Which oxygen delivery device gives the <b>most precise</b> concentration of oxygen to a client with COPD?",
+ o:["Nasal cannula","Simple face mask","Venturi mask","Non-rebreather mask"],a:[2],
+ r:"A Venturi mask mixes room air and oxygen through a set adapter, delivering an exact FiO2 (for example 24%, 28% or 31%) no matter how the client breathes. That makes it the preferred device when oxygen must be carefully controlled.",
+ why:{0:"With a nasal cannula, the actual FiO2 changes with the client's breathing pattern.",1:"A simple mask gives a variable concentration.",3:"A non-rebreather delivers high, imprecise concentrations for emergencies."},
+ tip:"Venturi = Very exact."},
+{t:"COPD & oxygen",k:"one",tag:"Teaching",s:"The nurse teaches pursed-lip breathing to a client with emphysema. Which statement shows the client understands?",
+ o:["“I'll breathe in through my mouth and out through my nose.”","“I'll breathe out slowly through pursed lips, about twice as long as I breathe in.”","“I'll take quick, short breaths when I feel short of breath.”","“I'll hold my breath for 10 seconds after each breath out.”"],a:[1],
+ r:"Pursed-lip breathing (in through the nose, then a slow exhale through pursed lips) creates back-pressure that keeps small airways open longer. More trapped air gets out, which eases shortness of breath and helps the client slow their breathing.",
+ why:{0:"The inhale is through the nose, and the exhale is through pursed lips.",2:"Quick, shallow breaths increase air trapping.",3:"Breath holding is not part of this technique."},
+ tip:"Smell the roses (in), blow out the candle slowly (out)."},
+{t:"COPD & oxygen",k:"sata",tag:"Assessment",s:"Which findings does the nurse expect in a client with long-standing emphysema? <b>Select all that apply.</b>",
+ o:["Barrel-shaped chest","Prolonged expiratory phase","Use of neck and shoulder muscles to breathe","Leaning forward with arms braced on the knees (tripod position)","Inspiratory stridor"],a:[0,1,2,3],
+ r:"Air trapping over years increases the front-to-back diameter of the chest (barrel chest). Getting air out is the hard part, so exhalation is prolonged and accessory muscles are used. Tripod positioning gives the accessory muscles leverage.",
+ why:{4:"Inspiratory stridor signals an upper-airway obstruction, such as laryngeal swelling, and is an emergency."},
+ tip:""},
+{t:"COPD & oxygen",k:"one",tag:"Nutrition",s:"A client with COPD has lost weight and says eating makes them short of breath. Which instruction should the nurse give?",
+ o:["Eat three large meals a day to get enough calories.","Drink plenty of fluid with each meal.","Eat 5–6 small, high-calorie, high-protein meals and rest before eating.","Choose mostly high-carbohydrate foods for quick energy."],a:[2],
+ r:"Large meals push up on the diaphragm and add to breathlessness. Small, frequent, calorie- and protein-dense meals help, and resting beforehand saves energy for eating. Fluids are taken between meals so the stomach doesn't fill up.",
+ why:{0:"Large meals increase fullness and dyspnea.",1:"Fluids with meals fill the stomach; drink them between meals.",3:"Breaking down carbohydrates produces more CO2 than fat or protein, which a CO2 retainer can't afford."},
+ tip:""},
+
+/* ---------- Asthma ---------- */
+{t:"Asthma",k:"one",tag:"Pharm",s:"A client with asthma is prescribed albuterol and fluticasone inhalers, both due now. Which instruction is correct?",
+ o:["Use the fluticasone first, then the albuterol.","Use the albuterol first, wait, then use the fluticasone.","Use both inhalers at the same time.","Use only the fluticasone when wheezing."],a:[1],
+ r:"Albuterol is a short-acting bronchodilator. Using it first opens the airways so the inhaled corticosteroid can reach deeper into the lungs. Wait about a minute between puffs, and rinse the mouth after the steroid.",
+ why:{0:"Using the steroid first means less of it reaches the narrowed airways.",2:"They are taken separately so each one works properly.",3:"Fluticasone controls inflammation over time. It does not relieve acute wheezing."},
+ tip:"Open the door (bronchodilator) before you send in the furniture (steroid)."},
+{t:"Asthma",k:"one",tag:"Teaching",s:"Which instruction should the nurse give a client starting an inhaled corticosteroid?",
+ o:["Use it only during an asthma attack.","Rinse your mouth and spit after each dose.","Take it on an empty stomach.","Expect it to stop wheezing within minutes."],a:[1],
+ r:"Inhaled steroids can leave residue in the mouth and throat that leads to oral thrush (candidiasis) and hoarseness. Rinsing and spitting after each dose prevents this. These drugs are taken daily for long-term control, even when the client feels well.",
+ why:{0:"Inhaled steroids are controllers, not rescue drugs.",2:"Food timing doesn't matter for an inhaler.",3:"They take days to weeks for full effect."},
+ tip:"Steroid inhaler: rinse, spit, every day."},
+{t:"Asthma",k:"one",tag:"Teaching",s:"A client's personal best peak flow is 500 L/min. This morning's reading is 220 L/min. What should the client do?",
+ o:["Continue the usual medicines; this is the green zone.","Use the rescue inhaler and get emergency care if the reading doesn't improve right away.","Repeat the reading tomorrow.","Skip the controller medicine today."],a:[1],
+ r:"220 is 44% of the personal best, which is the red zone (below 50%). The client uses the rescue inhaler right away and gets emergency help if the reading doesn't improve quickly. Zones: green 80–100%, yellow 50–79%, red below 50%.",
+ why:{0:"Green would be 400 or higher.",2:"Red-zone readings need action now.",3:"Controller medicines are never skipped during a flare."},
+ tip:"Green = go. Yellow = caution. Red = rescue + emergency help."},
+{t:"Asthma",k:"one",tag:"Priority",s:"A client in an asthma attack had loud wheezing an hour ago. Now the wheezing is barely audible, the client can't speak in full sentences, and SpO2 is 85%. What does the nurse conclude?",
+ o:["The bronchodilator is working.","Airflow is critically reduced and respiratory failure may be near.","The client is anxious and needs reassurance.","The attack is resolving."],a:[1],
+ r:"Wheezing needs moving air. When wheezing fades while distress gets worse (a 'silent chest'), so little air is moving that respiratory failure may be close. This is an emergency: call for help, give oxygen and bronchodilators, and prepare for possible intubation.",
+ why:{0:"Improvement would come with better SpO2 and easier breathing.",2:"The findings are physiologic, not anxiety.",3:"A resolving attack doesn't come with a falling SpO2 and inability to speak."},
+ tip:"Quiet chest + worse distress = danger, not improvement."},
+
+/* ---------- Pneumonia ---------- */
+{t:"Pneumonia",k:"one",tag:"Priority",s:"A client is admitted with community-acquired pneumonia. The provider orders IV antibiotics, a sputum culture, a chest x-ray and acetaminophen. Which should the nurse do <b>first</b>?",
+ o:["Give the acetaminophen.","Collect the sputum culture.","Send the client for the chest x-ray.","Start the IV antibiotic."],a:[1],
+ r:"Cultures are collected before the first dose of antibiotic so the results show the true organism. The antibiotic follows right after, without delay. Starting antibiotics first can make the culture falsely negative.",
+ why:{0:"Fever control can wait a few minutes.",2:"The x-ray doesn't need to come before cultures and antibiotics.",3:"The antibiotic is critical but comes after the culture."},
+ tip:"Culture before antibiotics."},
+{t:"Pneumonia",k:"one",tag:"Assessment",s:"An 84-year-old client in a long-term care facility may have pneumonia. Which finding is often the <b>earliest</b> sign in older adults?",
+ o:["Temperature of 103°F (39.4°C)","New confusion or agitation","Productive cough with rust-colored sputum","Severe pleuritic chest pain"],a:[1],
+ r:"Older adults often don't show classic pneumonia signs. A new change in mental status (confusion, agitation, falls) may be the first clue, and fever may be mild or absent because of age-related changes in immune response.",
+ why:{0:"A high fever is less common in older adults.",2:"Classic sputum findings may be absent.",3:"Pleuritic pain is less reliable in this age group."},
+ tip:"In older adults, new confusion = look for infection or low oxygen."},
+{t:"Pneumonia",k:"one",tag:"Positioning",s:"A client has pneumonia in the right lower lobe. To improve oxygenation, how should the nurse position the client?",
+ o:["Lying on the right side","Lying on the left side","Flat on the back","Prone with the head turned right"],a:[1],
+ r:"'Good lung down': gravity sends more blood flow to the lower lung. With the healthy left lung down, the extra blood flows past working alveoli, which improves gas exchange.",
+ why:{0:"Right side down sends more blood to the diseased lung and worsens oxygenation.",2:"Supine doesn't take advantage of gravity.",3:"Prone positioning is used for ARDS on a ventilator, not routine pneumonia."},
+ tip:"Good lung down."},
+
+/* ---------- Tuberculosis ---------- */
+{t:"Tuberculosis",k:"one",tag:"Infection control",s:"A client with suspected active tuberculosis is admitted. Which precautions should the nurse use?",
+ o:["Droplet precautions with a surgical mask","Contact precautions with gown and gloves","Airborne precautions with a negative-pressure room and an N95 respirator","Standard precautions only"],a:[2],
+ r:"TB spreads through tiny airborne particles that stay suspended in the air. The client needs a negative-pressure (airborne infection isolation) room, and staff wear a fitted N95 respirator. The client wears a surgical mask when leaving the room.",
+ why:{0:"Surgical masks don't filter TB particles for staff.",1:"TB is not spread by contact.",3:"Standard precautions are not enough."},
+ tip:"Airborne diseases: Measles, Varicella (chickenpox), TB. 'My Chicken Hez TB.'"},
+{t:"Tuberculosis",k:"one",tag:"Assessment",s:"A nurse's tuberculin skin test is read at 48 hours and shows 11 mm of induration. What does this result mean?",
+ o:["Negative; no follow-up needed","Positive; the nurse needs a chest x-ray","Invalid; the test must be repeated in a week","Positive; the nurse has active TB and must start isolation"],a:[1],
+ r:"For health-care workers, 10 mm or more of induration (measure the hardened area, not the redness) is positive. A positive skin test means TB infection, not necessarily active disease, so a chest x-ray and symptom evaluation come next.",
+ why:{0:"10 mm or more is positive for health-care workers.",2:"A reading at 48–72 hours is valid.",3:"A positive skin test alone doesn't diagnose active TB."},
+ tip:"5 mm: immunocompromised or close contact · 10 mm: health-care worker or other risk · 15 mm: no risk factors."},
+{t:"Tuberculosis",k:"one",tag:"Pharm",s:"A client starting rifampin, isoniazid, pyrazinamide and ethambutol asks about side effects. Which statement by the client <b>needs more teaching</b>?",
+ o:["“My urine and tears may turn orange-red.”","“I'll take vitamin B6 to protect my nerves.”","“I'll avoid alcohol while on these medicines.”","“I can stop the pills once my cough goes away.”"],a:[3],
+ r:"TB treatment lasts at least 6 months. Stopping early when symptoms improve is a major cause of relapse and drug-resistant TB. Directly observed therapy is often used to make sure every dose is taken.",
+ why:{0:"Correct: rifampin turns body fluids orange-red and can stain soft contact lenses.",1:"Correct: pyridoxine prevents peripheral neuropathy from isoniazid.",2:"Correct: alcohol adds to the liver toxicity of these drugs."},
+ tip:"“Needs more teaching” = choose the incorrect statement."},
+{t:"Tuberculosis",k:"one",tag:"Evaluation",s:"Which finding shows a client receiving TB treatment is <b>no longer infectious</b>?",
+ o:["The cough has stopped.","Three consecutive sputum smears are negative for acid-fast bacilli.","The tuberculin skin test is now negative.","The client has taken medicine for 3 days."],a:[1],
+ r:"Three negative AFB sputum smears collected on different days (along with clinical improvement on therapy) show the client is no longer contagious, and airborne isolation can end.",
+ why:{0:"Feeling better isn't proof the client is non-infectious.",2:"The skin test stays positive for life after infection.",3:"Three days of therapy is not enough."},
+ tip:""},
+
+/* ---------- Chest tubes & pneumothorax ---------- */
+{t:"Chest tubes",k:"sata",tag:"Assessment",s:"The nurse checks a client's chest tube connected to a wet-suction drainage system. Which findings are expected? <b>Select all that apply.</b>",
+ o:["Water level in the water-seal chamber rises and falls with breathing","Gentle continuous bubbling in the suction-control chamber","Drainage system positioned below the level of the chest","Vigorous continuous bubbling in the water-seal chamber","Tubing clamped to prevent air leaks"],a:[0,1,2],
+ r:"Tidaling in the water-seal chamber shows the system is open to the pleural space. Gentle bubbling in a wet suction-control chamber means suction is working. Keeping the unit below the chest lets gravity drain fluid and stops backflow.",
+ why:{3:"Continuous bubbling in the water seal means an air leak. Check connections from the client's chest outward.",4:"Clamping is not routine and can cause a tension pneumothorax."},
+ tip:"Water-seal: tidaling is good, continuous bubbling is a leak. Suction-control: gentle bubbling is good."},
+{t:"Chest tubes",k:"one",tag:"Priority",s:"While a client is being repositioned, the chest tube pulls out of the chest. What should the nurse do <b>first</b>?",
+ o:["Reinsert the chest tube.","Cover the site with a sterile occlusive dressing taped on three sides.","Place the client flat in bed.","Call for a chest x-ray."],a:[1],
+ r:"Covering the opening stops air from rushing into the pleural space. Taping only three sides creates a flutter valve that lets air escape on exhalation, which prevents a tension pneumothorax. Then the nurse stays with the client, assesses breathing, and notifies the provider.",
+ why:{0:"Only the provider inserts chest tubes.",2:"Lying flat does nothing to seal the opening.",3:"An x-ray comes later. Seal the site first."},
+ tip:"Out of the chest: occlusive dressing, three sides taped."},
+{t:"Chest tubes",k:"one",tag:"Priority",s:"A chest tube becomes disconnected from the drainage system. What is the nurse's immediate action?",
+ o:["Clamp the tube close to the chest for an hour.","Place the end of the tube in a bottle of sterile water.","Leave it open to air until a new system arrives.","Remove the chest tube."],a:[1],
+ r:"Submerging the tube about 1 inch (2–3 cm) in sterile water creates a temporary water seal: air can leave the chest but cannot be pulled back in. The nurse then sets up a new sterile drainage system.",
+ why:{0:"Prolonged clamping can cause a tension pneumothorax.",2:"An open tube lets air into the pleural space.",3:"Only the provider removes chest tubes."},
+ tip:"Disconnected from the drainage system: put the end in sterile water."},
+{t:"Chest tubes",k:"one",tag:"Assessment",s:"After a motor-vehicle crash, which finding points to a <b>tension</b> pneumothorax on the left side?",
+ o:["Trachea shifted toward the left","Trachea shifted toward the right, with distended neck veins and falling BP","Crackles in both lung bases","A productive cough with yellow sputum"],a:[1],
+ r:"In a tension pneumothorax, air builds up in the pleural space with no way out. The pressure pushes the heart, great vessels and trachea toward the unaffected side, so venous return falls and BP drops. It is an emergency treated with needle decompression and then a chest tube.",
+ why:{0:"The trachea moves away from the affected side.",2:"Crackles point to fluid, not a pneumothorax.",3:"A productive cough points to infection."},
+ tip:"Tension pneumo pushes everything AWAY from the problem side."},
+{t:"Chest tubes",k:"one",tag:"Priority",s:"A client is 2 hours out of a lobectomy. Which finding should the nurse report <b>immediately</b>?",
+ o:["Tidaling in the water-seal chamber","Pain rated 5/10 with coughing","250 mL of bright red drainage in the last hour","Serosanguineous drainage on the dressing"],a:[2],
+ r:"Drainage over about 100 mL per hour, especially if bright red, suggests active bleeding and must be reported right away. The nurse also checks vital signs for hypovolemia.",
+ why:{0:"Tidaling is expected.",1:"Pain after thoracic surgery is expected; treat it so the client can cough and deep breathe.",3:"A small amount of serosanguineous drainage is expected."},
+ tip:"After chest surgery, 100 mL/hr or more of bright red drainage = call now."},
+
+/* ---------- Pulmonary embolism ---------- */
+{t:"Pulmonary embolism",k:"one",tag:"Priority",s:"On day 2 after a hip replacement, a client suddenly becomes short of breath with sharp chest pain on inhaling. HR is 124 and SpO2 is 86%. What should the nurse do <b>first</b>?",
+ o:["Raise the head of the bed and apply oxygen.","Prepare to start a heparin infusion.","Send the client for CT pulmonary angiography.","Document the findings and recheck in 15 minutes."],a:[0],
+ r:"These findings strongly suggest a pulmonary embolism. Improving oxygenation comes first: sit the client up and give oxygen. Then stay with the client, call for help, notify the provider, and prepare for diagnostic tests and anticoagulation.",
+ why:{1:"Heparin is likely but needs an order and comes after oxygenation.",2:"The CT confirms the diagnosis but doesn't treat the hypoxia.",3:"Waiting is unsafe."},
+ tip:"Hypoxic client: oxygen and positioning come before tests and meds."},
+{t:"Pulmonary embolism",k:"one",tag:"Pharm",s:"A client with a pulmonary embolism is on a continuous IV heparin infusion. Which lab value does the nurse use to monitor therapy?",
+ o:["INR","Activated partial thromboplastin time (aPTT)","Platelet count only","Serum potassium"],a:[1],
+ r:"The heparin dose is adjusted by protocol based on the aPTT (some facilities use anti-Xa levels). Platelets are also checked for heparin-induced thrombocytopenia. The antidote is protamine sulfate.",
+ why:{0:"INR monitors warfarin.",2:"Platelets screen for HIT but don't guide dosing.",3:"Potassium is unrelated to heparin dosing."},
+ tip:"Heparin = aPTT (protamine). Warfarin = INR (vitamin K)."},
+
+/* ---------- ABGs ---------- */
+{t:"ABGs",k:"one",tag:"Interpretation",s:"A client who received several doses of opioids has these arterial blood gases: pH 7.30, PaCO2 58 mm Hg, HCO3 25 mEq/L. How does the nurse interpret them?",
+ o:["Uncompensated respiratory acidosis","Uncompensated metabolic acidosis","Partially compensated respiratory alkalosis","Normal ABGs"],a:[0],
+ r:"pH below 7.35 means acidosis. PaCO2 above 45 is acidic and matches the pH, so the cause is respiratory, from slowed breathing that retains CO2. HCO3 is still normal (22–26), so the kidneys haven't compensated yet.",
+ why:{1:"HCO3 is normal, so the problem isn't metabolic.",2:"A pH of 7.30 is acidotic, not alkalotic.",3:"Both pH and PaCO2 are abnormal."},
+ tip:"ROME: Respiratory Opposite (pH and CO2 move in opposite directions), Metabolic Equal."},
+{t:"ABGs",k:"one",tag:"Interpretation",s:"A client with COPD has these ABGs: pH 7.33, PaCO2 56 mm Hg, HCO3 31 mEq/L. How does the nurse interpret them?",
+ o:["Fully compensated metabolic alkalosis","Partially compensated respiratory acidosis","Uncompensated respiratory acidosis","Fully compensated respiratory acidosis"],a:[1],
+ r:"pH is still below 7.35, so acidosis. The high PaCO2 explains it (respiratory). HCO3 is above 26, so the kidneys are holding bicarbonate to compensate. Because the pH is still abnormal, compensation is partial.",
+ why:{0:"The pH is acidotic, and the high CO2 is the cause.",2:"The high HCO3 shows compensation has started.",3:"Full compensation would bring the pH back into 7.35–7.45."},
+ tip:"pH abnormal + both values abnormal = partially compensated."},
+{t:"ABGs",k:"one",tag:"Intervention",s:"An anxious client is breathing 34 times a minute and reports tingling around the mouth. ABGs: pH 7.51, PaCO2 29 mm Hg, HCO3 24 mEq/L. Which intervention is appropriate?",
+ o:["Give sodium bicarbonate.","Coach the client to slow the breathing rate.","Increase the oxygen to 10 L/min.","Encourage rapid deep breaths."],a:[1],
+ r:"This is uncompensated respiratory alkalosis from hyperventilation: too much CO2 is being blown off. Slowing the breathing rate lets CO2 rise back toward normal. The tingling comes from a drop in ionized calcium as the blood becomes alkalotic.",
+ why:{0:"Bicarbonate would make the alkalosis worse.",2:"The client isn't hypoxic; the problem is CO2 loss.",3:"Faster breathing blows off even more CO2."},
+ tip:"Breathing too fast = alkalosis. Breathing too slow = acidosis."},
+
+/* ---------- ARDS & ventilators ---------- */
+{t:"ARDS & ventilators",k:"one",tag:"Assessment",s:"A client with sepsis develops severe dyspnea. Which finding most strongly suggests acute respiratory distress syndrome (ARDS)?",
+ o:["SpO2 that improves quickly with 2 L of oxygen by nasal cannula","Low PaO2 that does not improve despite high concentrations of oxygen","Wheezing that clears with albuterol","Crackles that clear after a diuretic"],a:[1],
+ r:"The hallmark of ARDS is refractory hypoxemia: oxygen levels stay low even on high FiO2, because fluid-filled and collapsed alveoli can't exchange gas. The chest x-ray shows bilateral infiltrates that are not caused by heart failure.",
+ why:{0:"A quick response to low-flow oxygen argues against ARDS.",2:"Bronchospasm that clears with albuterol is asthma-like.",3:"Fluid overload that clears with diuretics suggests heart failure."},
+ tip:"ARDS = oxygen doesn't fix the oxygen."},
+{t:"ARDS & ventilators",k:"one",tag:"Troubleshooting",s:"The high-pressure alarm sounds on a client's ventilator. Which finding most likely explains it?",
+ o:["The tubing has disconnected from the endotracheal tube.","The client has thick secretions and coarse rhonchi.","The endotracheal tube cuff is leaking.","The client is sleeping quietly."],a:[1],
+ r:"A high-pressure alarm means it is harder than expected to push air in. Common causes are secretions, coughing, biting the tube, kinked tubing or bronchospasm. The nurse assesses the client and suctions if secretions are present. If the cause can't be found right away, the nurse manually ventilates the client with a bag-valve mask.",
+ why:{0:"A disconnection triggers a low-pressure alarm.",2:"A cuff leak also triggers a low-pressure alarm.",3:"A calm, sleeping client shouldn't raise the airway pressure."},
+ tip:"HIGH pressure = blockage. LOW pressure = leak or disconnection."},
+
+/* ---------- Airway care ---------- */
+{t:"Airway care",k:"one",tag:"Safety",s:"The nurse watches a new graduate suction a client's tracheostomy. Which action requires the nurse to <b>intervene</b>?",
+ o:["Hyperoxygenating the client before suctioning","Using sterile gloves and a sterile catheter","Applying suction while inserting the catheter","Limiting each pass to 10 seconds"],a:[2],
+ r:"Suction is applied only while withdrawing the catheter. Applying it on the way in pulls oxygen out of the airway and damages the mucosa. The other actions are correct technique.",
+ why:{0:"Correct: hyperoxygenating prevents hypoxemia.",1:"Correct: suctioning a trach or ET tube is sterile.",3:"Correct: short passes limit hypoxia and vagal stimulation."},
+ tip:"“Requires intervention” = find the WRONG action."},
+{t:"Airway care",k:"sata",tag:"Safety",s:"A client returns from surgery with a new tracheostomy. Which items should be at the bedside? <b>Select all that apply.</b>",
+ o:["Obturator","Spare tracheostomy tube of the same size and one size smaller","Suction equipment","Oxygen and a bag-valve mask","Hemostat to keep the stoma closed"],a:[0,1,2,3],
+ r:"If the trach comes out, the obturator guides a replacement tube in, and the spare tubes allow a quick change (a smaller size helps if the stoma begins to close). Suction, oxygen and a bag-valve mask support the airway in an emergency.",
+ why:{4:"A hemostat is not standard emergency trach equipment and is never used to close the airway."},
+ tip:""},
+{t:"Airway care",k:"one",tag:"Teaching",s:"Which instruction about using an incentive spirometer is correct?",
+ o:["Blow out as hard and fast as you can into the mouthpiece.","Breathe in slowly and deeply, then hold your breath for 3–5 seconds.","Use it once a day before bed.","Lie flat while using it."],a:[1],
+ r:"The client sits upright, seals the lips around the mouthpiece, inhales slowly and deeply to raise the indicator, and holds the breath for 3–5 seconds to keep the alveoli open. It is used about 10 times an hour while awake to prevent atelectasis and pneumonia.",
+ why:{0:"An incentive spirometer measures inhalation, not exhalation.",2:"Once a day is not enough.",3:"Sitting upright allows full lung expansion."},
+ tip:"Incentive spirometer = slow, deep inhale, then hold."},
+
+/* ---------- Thoracentesis ---------- */
+{t:"Thoracentesis",k:"one",tag:"Procedure",s:"How should the nurse position a client for a thoracentesis?",
+ o:["Flat on the back with arms at the sides","Sitting upright, leaning forward over a padded over-bed table","Trendelenburg position","Lying on the affected side"],a:[1],
+ r:"Sitting and leaning forward over a table spreads the ribs and lets fluid pool at the base of the pleural space, where the needle goes in. If the client can't sit up, they lie on the unaffected side with the head of the bed raised.",
+ why:{0:"Lying supine doesn't give access to the back of the chest.",2:"Trendelenburg isn't used.",3:"Lying on the affected side blocks the insertion site."},
+ tip:""},
+{t:"Thoracentesis",k:"one",tag:"Priority",s:"Shortly after a thoracentesis, which finding should the nurse report <b>immediately</b>?",
+ o:["Mild soreness at the puncture site","A small amount of drainage on the dressing","Sudden sharp chest pain, worsening shortness of breath and SpO2 falling to 87%","Feeling tired after the procedure"],a:[2],
+ r:"Sudden pain, dyspnea and falling oxygen levels suggest a pneumothorax from the needle puncturing the lung. A chest x-ray is usually done after the procedure to check for this.",
+ why:{0:"Mild soreness is expected.",1:"A small amount of drainage is expected.",3:"Fatigue is common and not urgent."},
+ tip:"After any chest procedure: watch for pneumothorax."},
+
+/* ---------- Prioritize & delegate ---------- */
+{t:"Prioritize & delegate",k:"one",tag:"Priority",s:"After shift report, which client should the nurse see <b>first</b>?",
+ o:["A client with COPD whose SpO2 is 90% on 2 L by nasal cannula","A client with pneumonia whose temperature is 100.9°F (38.3°C)","A client with TB waiting for a morning sputum specimen","A client with a chest tube who suddenly reports sharp chest pain and is breathing 32 times a minute"],a:[3],
+ r:"A sudden change in a client with a chest tube (new sharp pain and rapid breathing) could mean a tension pneumothorax or a problem with the system. That is a potential emergency. The other clients have expected or stable findings.",
+ why:{0:"90% is within this client's expected range.",1:"A low-grade fever is expected with pneumonia.",2:"Collecting a specimen is routine."},
+ tip:"Sudden, new and respiratory = see first."},
+{t:"Prioritize & delegate",k:"one",tag:"Delegation",s:"Which task can the nurse delegate to unlicensed assistive personnel (UAP)?",
+ o:["Suctioning a tracheostomy placed this morning","Listening to lung sounds on a client with pneumonia","Measuring vital signs and pulse oximetry on a client with stable COPD","Teaching a client how to use a metered-dose inhaler"],a:[2],
+ r:"Routine data collection on a stable client, such as vital signs and pulse oximetry, can be delegated. The UAP reports results, and the nurse interprets them.",
+ why:{0:"A fresh tracheostomy needs sterile suctioning and nursing assessment.",1:"Assessment stays with the nurse.",3:"Teaching stays with the nurse."},
+ tip:"The nurse keeps assessment, teaching, evaluation and unstable clients."}
+];
+
+
+/* ---------- state ---------- */
+const KEY = "respPractice.v1";
+let A = {};            // id -> {pick:[...], ok:bool}
+try { A = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { A = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(A)); } catch {} };
+Q.forEach((q, i) => q.id = "q" + i);
+/* Rotate single-answer options so the correct letter cycles A → B → C → D across the set
+   (calculation choices stay in numeric order; select-all items keep their order). */
+let slot = 0;
+Q.forEach(q => {
+  if (q.k !== "one" || q.tag === "Calculation") return;
+  const n = q.o.length, shift = ((slot++ % n) - q.a[0] + n) % n;
+  const map = {}; q.o.forEach((_, j) => map[j] = (j + shift) % n);
+  const o = []; q.o.forEach((t, j) => o[map[j]] = t); q.o = o;
+  q.a = q.a.map(j => map[j]);
+  const w = {}; Object.entries(q.why || {}).forEach(([k, v]) => w[map[k]] = v); q.why = w;
+});
+
+const TOPICS = ["All", ...new Set(Q.map(q => q.t))];
+let topic = "All", drill = false, cur = 0, picks = new Set();
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = "ABCDEF";
+
+function list(){
+  return Q.filter(q => (topic === "All" || q.t === topic) && (!drill || (A[q.id] && !A[q.id].ok)));
+}
+function same(a, b){ return a.length === b.length && a.every(x => b.includes(x)); }
+
+function renderScore(){
+  const done = Object.keys(A).length, ok = Object.values(A).filter(x => x.ok).length;
+  $("#sDone").textContent = `${done}/${Q.length}`;
+  $("#sOk").textContent = ok;
+  $("#sPct").textContent = done ? Math.round(ok / done * 100) + "%" : "—";
+  const miss = done - ok;
+  $("#drill").textContent = drill ? "Show all" : `Drill missed${miss ? ` (${miss})` : ""}`;
+  $("#drill").disabled = !drill && !miss;
+}
+function renderChips(){
+  $("#chips").innerHTML = TOPICS.map(t => {
+    const qs = Q.filter(q => t === "All" || q.t === t);
+    const d = qs.filter(q => A[q.id]), ok = d.filter(q => A[q.id].ok).length;
+    return `<button class="chip" data-topic="${esc(t)}" aria-pressed="${t === topic}">${esc(t)}<small>${d.length ? `${ok}/${d.length}` : qs.length}</small></button>`;
+  }).join("");
+}
+function renderGrid(){
+  const L2 = list();
+  $("#grid").innerHTML = L2.map((q, i) => {
+    const s = A[q.id]; const cls = s ? (s.ok ? "ok" : "no") : "";
+    return `<button class="dot ${cls} ${i === cur ? "cur" : ""}" data-jump="${i}" aria-label="Question ${Q.indexOf(q) + 1}${s ? (s.ok ? ", correct" : ", missed") : ""}">${Q.indexOf(q) + 1}</button>`;
+  }).join("");
+}
+function renderCard(){
+  const L2 = list();
+  if (!L2.length) {
+    $("#card").innerHTML = `<div class="done"><div class="big">${drill ? "All clear" : "—"}</div><p class="foot" style="margin:0">${drill ? "You've answered every missed question in this topic correctly." : "No questions here."}</p><button class="btn b" id="showAll">Show all questions</button></div>`;
+    return;
+  }
+  if (cur >= L2.length) cur = L2.length - 1;
+  const q = L2[cur], st = A[q.id], answered = !!st;
+  const shown = answered ? st.pick : [...picks];
+  const sata = q.k === "sata";
+  let opts = q.o.map((o, i) => {
+    let cls = "opt" + (sata ? " sata" : ""), mark = "";
+    if (answered) {
+      const isA = q.a.includes(i), isP = shown.includes(i);
+      if (isA && isP) { cls += " right"; mark = "Correct"; }
+      else if (!isA && isP) { cls += " wrong"; mark = "Your pick"; }
+      else if (isA && !isP) { cls += " missed"; mark = "Missed"; }
+    } else if (picks.has(i)) cls += " sel";
+    return `<button class="${cls}" data-opt="${i}" ${answered ? "disabled" : ""} aria-pressed="${shown.includes(i)}"><span class="ol">${L[i]}</span><span>${esc(o)}</span><span class="mark">${mark}</span></button>`;
+  }).join("");
+  const whyList = Object.entries(q.why || {}).map(([i, w]) => `<li><b>${L[i]}.</b> ${esc(w)}</li>`).join("");
+  $("#card").innerHTML = `
+    <div class="qh"><span class="qn">QUESTION ${Q.indexOf(q) + 1} · ${cur + 1} OF ${L2.length}</span><span class="badge">${esc(q.t)}</span><span class="badge y">${esc(q.tag)}</span></div>
+    <p class="stem">${q.s}</p>
+    ${sata && !answered ? `<div class="hint">Select all that apply, then check your answer</div>` : ""}
+    <div class="opts">${opts}</div>
+    ${answered ? `
+      <div class="verdict ${st.ok ? "ok" : "no"}">${st.ok ? "✓ Correct" : "✗ Not quite"} <span class="foot" style="font-weight:500">Answer: ${q.a.map(i => L[i]).join(", ")}</span></div>
+      <div class="rat"><p>${esc(q.r)}</p>${whyList ? `<ul>${whyList}</ul>` : ""}${q.tip ? `<div class="tip"><span>Strategy</span>${esc(q.tip)}</div>` : ""}</div>` : ""}
+    <div class="nav">
+      <button class="btn" id="prev" ${cur === 0 ? "disabled" : ""}>← Back</button>
+      ${!answered ? `<button class="btn y" id="check" ${picks.size ? "" : "disabled"}>Check answer</button>` : `<button class="btn" id="retry">Try again</button>`}
+      <span class="sp"></span><span class="keys">keys: A–F · Enter · ← →</span>
+      <button class="btn b" id="next" ${cur >= L2.length - 1 ? "disabled" : ""}>Next →</button>
+    </div>`;
+}
+function render(){ renderScore(); renderChips(); renderGrid(); renderCard(); }
+
+function check(){
+  const q = list()[cur]; if (!q || A[q.id] || !picks.size) return;
+  const pick = [...picks].sort();
+  A[q.id] = { pick, ok: same(pick, q.a) };
+  save(); picks.clear(); render();
+}
+function go(n){ const L2 = list(); cur = Math.max(0, Math.min(L2.length - 1, n)); picks.clear(); render(); window.scrollTo({ top: $("#card").offsetTop - 12, behavior: "smooth" }); }
+
+document.addEventListener("click", e => {
+  const el = e.target.closest("button"); if (!el) return;
+  if (el.dataset.topic) { topic = el.dataset.topic; cur = 0; picks.clear(); return render(); }
+  if (el.dataset.jump !== undefined) return go(+el.dataset.jump);
+  if (el.dataset.opt !== undefined) {
+    const q = list()[cur], i = +el.dataset.opt;
+    if (q.k === "sata") picks.has(i) ? picks.delete(i) : picks.add(i);
+    else { picks.clear(); picks.add(i); }
+    return q.k === "sata" ? renderCard() : check();
+  }
+  switch (el.id) {
+    case "check": return check();
+    case "next": return go(cur + 1);
+    case "prev": return go(cur - 1);
+    case "retry": { const q = list()[cur]; delete A[q.id]; save(); picks.clear(); return render(); }
+    case "drill": drill = !drill; cur = 0; picks.clear(); return render();
+    case "showAll": drill = false; topic = "All"; cur = 0; return render();
+    case "reset":
+      if (!el.classList.contains("armed")) { el.classList.add("armed"); el.textContent = "Tap to confirm"; setTimeout(() => { if (el.isConnected) { el.classList.remove("armed"); el.textContent = "Start over"; } }, 3000); return; }
+      A = {}; save(); drill = false; cur = 0; picks.clear(); el.classList.remove("armed"); el.textContent = "Start over"; return render();
+  }
+});
+document.addEventListener("keydown", e => {
+  if (e.target.matches("input,textarea") || e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toUpperCase(), q = list()[cur]; if (!q) return;
+  const idx = L.indexOf(k);
+  if (idx >= 0 && idx < q.o.length && !A[q.id]) { e.preventDefault(); document.querySelector(`[data-opt="${idx}"]`)?.click(); }
+  else if (e.key === "Enter") { e.preventDefault(); A[q.id] ? go(cur + 1) : check(); }
+  else if (e.key === "ArrowRight") go(cur + 1);
+  else if (e.key === "ArrowLeft") go(cur - 1);
+});
+render();
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,606 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>NUR 312 Pharm Guide</title>
+<style>
+  :root {
+    --ground: #f6f3ee;
+    --surface: #ffffff;
+    --surface-2: #fbf9f5;
+    --ink: #21261f;
+    --muted: #5f665c;
+    --faint: #8a9084;
+    --line: #e3ddd2;
+    --line-strong: #d3ccbe;
+
+    --accent: #0f6f63;
+    --accent-soft: #dcefe9;
+    --accent-ink: #0a4d44;
+
+    --exam: #b13a2a;
+    --exam-soft: #f7e2dc;
+    --safety: #b8791a;
+    --safety-soft: #f6ebd5;
+    --mnemonic: #6b52b5;
+    --mnemonic-soft: #ece6f8;
+
+    /* Endocrine family (warm) */
+    --c-pit: #9a6dd0;
+    --c-thy: #c65d9c;
+    --c-dm: #7c53b8;
+    --c-adr: #c07a3a;
+    --c-repro: #b5588a;
+    /* Cardiovascular family (cool) */
+    --c-htn: #0f8b7d;
+    --c-angina: #2f6fb0;
+    --c-hf: #4f52c0;
+    --c-rhythm: #0e8aa3;
+    --c-coag: #c0403a;
+    --c-onco: #7a8a3f;
+    --c-gi: #3f8f74;
+    --c-heme: #b23b4a;
+
+    --shadow: 0 1px 2px rgba(33,38,31,.05), 0 6px 20px rgba(33,38,31,.06);
+    --radius: 14px;
+    --maxw: 960px;
+
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #17191a; --surface: #1f2223; --surface-2: #24282a;
+      --ink: #e9eae4; --muted: #a6ab9f; --faint: #7c8177;
+      --line: #33383a; --line-strong: #434a4c;
+      --accent: #4bc0af; --accent-soft: #123a35; --accent-ink: #9fe4d8;
+      --exam: #f08a76; --exam-soft: #3d251f; --safety: #e6b45a; --safety-soft: #3a2f1a;
+      --mnemonic: #b3a0ec; --mnemonic-soft: #2a2440;
+      --c-pit: #b79aea; --c-thy: #e589bd; --c-dm: #b193e0; --c-adr: #e0a568; --c-repro: #dd86b4;
+      --c-htn: #45c3b2; --c-angina: #6fa6e0; --c-hf: #9294ec; --c-rhythm: #4fc3dc; --c-coag: #ec8681; --c-onco: #b7c775;
+      --c-gi: #55c39f; --c-heme: #ec8390;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #17191a; --surface: #1f2223; --surface-2: #24282a;
+    --ink: #e9eae4; --muted: #a6ab9f; --faint: #7c8177;
+    --line: #33383a; --line-strong: #434a4c;
+    --accent: #4bc0af; --accent-soft: #123a35; --accent-ink: #9fe4d8;
+    --exam: #f08a76; --exam-soft: #3d251f; --safety: #e6b45a; --safety-soft: #3a2f1a;
+    --mnemonic: #b3a0ec; --mnemonic-soft: #2a2440;
+    --c-pit: #b79aea; --c-thy: #e589bd; --c-dm: #b193e0; --c-adr: #e0a568; --c-repro: #dd86b4;
+    --c-htn: #45c3b2; --c-angina: #6fa6e0; --c-hf: #9294ec; --c-rhythm: #4fc3dc; --c-coag: #ec8681; --c-onco: #b7c775;
+    --c-gi: #55c39f; --c-heme: #ec8390;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ground); color: var(--ink);
+    font-family: var(--font-body); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: 18px; }
+
+  /* Header */
+  header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: color-mix(in srgb, var(--ground) 88%, transparent); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line); }
+  .head-inner { max-width: var(--maxw); margin: 0 auto; padding: 12px 18px; }
+  .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  h1 { font-family: var(--font-display); font-optical-sizing: auto; font-weight: 600;
+    font-size: clamp(1.35rem, 4vw, 2rem); line-height: 1.05; margin: 2px 0 0; text-wrap: balance; letter-spacing: -.01em; }
+  .sub { color: var(--muted); font-size: 13px; margin-top: 3px; }
+
+  .controls { display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+  .search { flex: 1 1 240px; min-width: 0; display: flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--line-strong); border-radius: 999px; padding: 8px 14px; box-shadow: var(--shadow); }
+  .search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .search svg { flex: none; width: 16px; height: 16px; color: var(--faint); }
+  .search input { border: 0; background: transparent; color: var(--ink); font: inherit; width: 100%; outline: none; }
+  .search input::placeholder { color: var(--faint); }
+  .clear-btn { border: 0; background: transparent; color: var(--faint); cursor: pointer; font-size: 18px; line-height: 1; padding: 0 2px; display: none; }
+  .clear-btn.show { display: inline; }
+  .toggle { display: inline-flex; align-items: center; gap: 7px; background: var(--surface);
+    border: 1px solid var(--line-strong); border-radius: 999px; padding: 8px 14px; cursor: pointer;
+    font: inherit; color: var(--ink); font-size: 13px; white-space: nowrap; box-shadow: var(--shadow); user-select: none; }
+  .toggle .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--exam); flex: none; }
+  .toggle[aria-pressed="true"] { background: var(--exam-soft); border-color: var(--exam); color: var(--exam); font-weight: 600; }
+  .icon-btn { border: 1px solid var(--line-strong); background: var(--surface); border-radius: 999px;
+    width: 38px; height: 38px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    color: var(--muted); box-shadow: var(--shadow); flex: none; }
+  .icon-btn svg { width: 17px; height: 17px; }
+
+  nav.chips { display: flex; gap: 8px; overflow-x: auto; padding: 10px 18px 6px; max-width: var(--maxw); margin: 0 auto; scrollbar-width: thin; align-items: center; }
+  nav.chips .grp { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); flex: none; padding: 0 2px; }
+  nav.chips a { flex: none; text-decoration: none; font-size: 12.5px; font-weight: 500; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 6px; }
+  nav.chips a .swatch { width: 8px; height: 8px; border-radius: 2px; }
+  nav.chips a:hover { border-color: var(--line-strong); color: var(--ink); }
+  nav.chips .sep { width: 1px; height: 18px; background: var(--line-strong); flex: none; }
+
+  /* Reminders */
+  .reminders { margin: 16px 0 4px; background: linear-gradient(180deg, var(--accent-soft), var(--surface));
+    border: 1px solid var(--accent); border-left-width: 4px; border-radius: var(--radius); padding: 14px 16px; }
+  .reminders h2 { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 8px; font-weight: 600; }
+  .reminders ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; }
+  .reminders li { font-size: 13.5px; }
+  .reminders b { color: var(--exam); }
+
+  /* Part divider */
+  .part { margin: 40px 0 4px; display: flex; align-items: center; gap: 14px; }
+  .part::before, .part::after { content: ""; height: 2px; background: var(--line-strong); flex: 1; border-radius: 2px; }
+  .part span { font-family: var(--font-display); font-weight: 600; font-size: clamp(1rem,3vw,1.3rem); color: var(--ink); white-space: nowrap; }
+  .part small { font-family: var(--font-mono); font-size: 10.5px; color: var(--faint); letter-spacing: .06em; }
+
+  main { padding: 4px 0 60px; }
+  section.topic { margin-top: 24px; scroll-margin-top: 160px; }
+  .topic-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; padding-left: 14px; position: relative; flex-wrap: wrap; }
+  .topic-head::before { content: ""; position: absolute; left: 0; top: 3px; bottom: 3px; width: 5px; border-radius: 3px; background: var(--hue); }
+  .topic-head h2 { font-family: var(--font-display); font-weight: 600; font-optical-sizing: auto; font-size: clamp(1.1rem, 3vw, 1.45rem); margin: 0; letter-spacing: -.01em; }
+  .chap { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .05em; color: #fff; background: var(--hue); padding: 3px 8px; border-radius: 6px; text-transform: uppercase; white-space: nowrap; }
+  .bigpic { margin: 0 0 14px 14px; padding: 12px 14px; background: var(--surface-2); border: 1px dashed var(--line-strong); border-radius: 10px; font-size: 14px; color: var(--muted); }
+  .bigpic strong { color: var(--ink); }
+
+  .cards { display: grid; gap: 10px; }
+  .sub-h { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--hue); font-weight: 600; margin: 8px 0 -2px 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 14px 12px 16px; position: relative; box-shadow: var(--shadow); font-size: 14.5px; border-left: 3px solid var(--hue); }
+  .card p { margin: 0; }
+  .card .lead { font-weight: 600; color: var(--ink); }
+  .card .tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .05em;
+    text-transform: uppercase; font-weight: 600; padding: 2px 7px; border-radius: 5px; margin-bottom: 6px; margin-right: 6px; }
+  .tag.exam { background: var(--exam-soft); color: var(--exam); }
+  .tag.safety { background: var(--safety-soft); color: var(--safety); }
+  .card[data-exam="1"] { border-left-color: var(--exam); background: color-mix(in srgb, var(--exam-soft) 25%, var(--surface)); }
+
+  /* Table */
+  .table-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.data { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 460px; }
+  table.data th, table.data td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.data thead th { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--line-strong); }
+  table.data tbody tr:last-child td { border-bottom: 0; }
+  table.data td.num { font-variant-numeric: tabular-nums; }
+  table.data .drug { font-weight: 600; }
+
+  .mnemonic { background: var(--mnemonic-soft); border: 1px solid color-mix(in srgb, var(--mnemonic) 40%, transparent);
+    border-radius: 12px; padding: 11px 14px 11px 42px; position: relative; font-size: 14px; }
+  .mnemonic::before { content: "🧠"; position: absolute; left: 13px; top: 10px; font-size: 16px; }
+  .mnemonic .m-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--mnemonic); font-weight: 700; display: block; margin-bottom: 2px; }
+  .mnemonic b { color: var(--mnemonic); }
+
+  /* Exam focus checklist */
+  .focus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 8px; }
+  .focus-item { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--exam);
+    border-radius: 10px; padding: 9px 12px; font-size: 13.5px; box-shadow: var(--shadow); }
+  .focus-item .n { font-family: var(--font-mono); font-size: 10px; color: var(--exam); font-weight: 700; }
+
+  .note-end { font-size: 12.5px; color: var(--faint); font-style: italic; margin: 8px 0 0 16px; }
+  mark { background: #ffe07a; color: #000; border-radius: 3px; padding: 0 2px; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) mark { background: #7a5a00; color: #fff; } }
+  :root[data-theme="dark"] mark { background: #7a5a00; color: #fff; }
+  .noresult { text-align: center; color: var(--muted); padding: 40px 20px; display: none; }
+  .noresult.show { display: block; }
+  footer { text-align: center; color: var(--faint); font-size: 12px; padding: 20px; border-top: 1px solid var(--line); }
+
+  @media print {
+    :root { --shadow: none; }
+    header.site { position: static; }
+    .search, .toggle, .icon-btn, .clear-btn, nav.chips { display: none !important; }
+    body { background: #fff; color: #000; font-size: 10.5pt; }
+    .card, .reminders, .bigpic, .mnemonic, .focus-item, .table-card { break-inside: avoid; box-shadow: none; }
+    .card[data-exam="1"] { background: #fff; }
+    header.site { border: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) { a, .toggle, .icon-btn { transition: all .15s ease; } }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+
+<header class="site">
+  <div class="head-inner">
+    <span class="kicker">NUR 312 · Pharmacology · Cohort 38 · Exam 4</span>
+    <h1>Endocrine &amp; Cardiovascular Pharmacology</h1>
+    <div class="sub">Week 8 endocrine (Ch. 30–35) · Week 9 cardiac (Ch. 22–27) · exam focus list</div>
+    <div class="controls">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="Search drugs, effects, mnemonics…" autocomplete="off" aria-label="Search the study guide">
+        <button class="clear-btn" id="clear" aria-label="Clear search">×</button>
+      </div>
+      <button class="toggle" id="examOnly" aria-pressed="false"><span class="dot"></span>Exam high-yield</button>
+      <button class="icon-btn" id="theme" aria-label="Toggle light/dark" title="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <button class="icon-btn" id="printBtn" aria-label="Print study guide" title="Print">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="chips" aria-label="Jump to topic">
+    <span class="grp">Endo</span>
+    <a href="#pit"><span class="swatch" style="background:var(--c-pit)"></span>Pituitary</a>
+    <a href="#thy"><span class="swatch" style="background:var(--c-thy)"></span>Thyroid</a>
+    <a href="#dm"><span class="swatch" style="background:var(--c-dm)"></span>Diabetes</a>
+    <a href="#adr"><span class="swatch" style="background:var(--c-adr)"></span>Adrenal</a>
+    <a href="#repro"><span class="swatch" style="background:var(--c-repro)"></span>Repro</a>
+    <span class="sep"></span>
+    <span class="grp">Cardiac</span>
+    <a href="#htn"><span class="swatch" style="background:var(--c-htn)"></span>HTN</a>
+    <a href="#angina"><span class="swatch" style="background:var(--c-angina)"></span>Angina</a>
+    <a href="#hf"><span class="swatch" style="background:var(--c-hf)"></span>Heart Failure</a>
+    <a href="#rhythm"><span class="swatch" style="background:var(--c-rhythm)"></span>Rhythm</a>
+    <a href="#coag"><span class="swatch" style="background:var(--c-coag)"></span>Coagulation</a>
+    <span class="sep"></span>
+    <span class="grp">More</span>
+    <a href="#gi"><span class="swatch" style="background:var(--c-gi)"></span>GI drugs</a>
+    <a href="#heme"><span class="swatch" style="background:var(--c-heme)"></span>Blood</a>
+    <span class="sep"></span>
+    <a href="#focus"><span class="swatch" style="background:var(--exam)"></span>Exam 4 focus</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="reminders" id="reminders">
+    <h2>◷ This week</h2>
+    <ul>
+      <li><b>IV checkoffs</b> — regular IV insertion; primary and secondary lines handled separately.</li>
+      <li><b>Exam Friday</b> (Exam 4) — see the focus list at the bottom.</li>
+      <li>Complete <b>2 Medication Worksheets</b> on any 2 drugs from Ch. 22 (Antihypertensives).</li>
+      <li>Review Week 4 PowerPoints: 20, 29, 36, 37, 45, 47 — cancer meds in the neoplastic section.</li>
+    </ul>
+  </div>
+</div>
+
+<main class="wrap" id="main">
+
+  <div class="part"><small>Part A</small><span>Endocrine</span><small>Week 8 · Ch. 30–35</small></div>
+
+  <!-- ===== PITUITARY ===== -->
+  <section class="topic" id="pit" style="--hue:var(--c-pit)">
+    <div class="topic-head"><h2>Pituitary Drugs</h2><span class="chap">Ch. 30</span></div>
+    <div class="cards">
+      <div class="sub-h">Growth hormone — Somatropin</div>
+      <div class="card"><p><span class="lead">Somatropin</span> stimulates overall growth and protein production and decreases glucose use. Uses: GH deficiency, AIDS wasting, pediatric growth failure.</p></div>
+      <div class="card"><p><span class="lead">Complications:</span> hyperglycemia and hypercalciuria (renal calculi) — monitor for <b>flank pain</b>, increase water intake, decrease calcium intake. Rotate IM/SQ injection sites; obtain baseline height and weight.</p></div>
+
+      <div class="sub-h">Antidiuretic hormone (ADH) — Vasopressin / Desmopressin</div>
+      <div class="card"><p><span class="lead">ADH (vasopressin, desmopressin)</span> promotes water reabsorption in the kidneys via vasoconstriction. Used to treat <b>diabetes insipidus (DI)</b> and for vasoconstriction in hypotension.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Therapeutic effect in DI = decreased thirst</span> (and decreased urine output). Complications: water intoxication/fluid overload, pounding headache, myocardial ischemia. <b>Weigh daily</b>, monitor BP, sodium, and kidney function.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== THYROID ===== -->
+  <section class="topic" id="thy" style="--hue:var(--c-thy)">
+    <div class="topic-head"><h2>Thyroid Drugs</h2><span class="chap">Ch. 31</span></div>
+    <div class="bigpic">The thyroid secretes <strong>T4 (thyroxine), T3 (triiodothyronine), and calcitonin</strong> — essential for metabolism.</div>
+    <div class="cards">
+      <div class="mnemonic"><span class="m-label">Read the labs</span>
+        Hyperthyroid: <b>TSH low, T4 high</b>. Hypothyroid: <b>TSH high, T4 low</b>. Treatment goal is to normalize both.</div>
+
+      <div class="sub-h">Hyperthyroid — Thionamides</div>
+      <div class="card"><p><span class="lead">Methimazole (MMZ) &amp; propylthiouracil (PTU)</span> block synthesis of thyroid hormone / conversion of T4→T3 (treats Graves'). Other options: radioactive iodine (I-131), surgery, potassium iodide.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Agranulocytosis</span> is the key risk — report <b>sore throat, fever, chills, malaise</b>; monitor CBC for leukopenia/thrombocytopenia. Also risk of liver injury. Avoid iodine-rich foods.</p></div>
+      <div class="card"><p><span class="lead">Pregnancy:</span> PTU in the first trimester, MMZ in the second and third. A beta blocker may be added for heart-rate control. Effects take 1–2 weeks (full effect up to 12 weeks).</p></div>
+
+      <div class="sub-h">Hypothyroid — Thyroid replacement</div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Levothyroxine (Synthroid)</span> — pure T4, replacement for hypothyroidism. Take <b>in the morning on an empty stomach</b>; lifelong therapy; full effect 6–8 weeks; reassess TSH at 3–6 months.</p></div>
+      <div class="card"><p><span class="lead">Cautions:</span> monitor cardiac function (palpitations, dysrhythmias). Toxicity = thyrotoxicosis / thyroid storm. Contraindicated in thyrotoxicosis and after recent MI; <b>not</b> used for obesity. Older adults and cardiac patients start at lower doses.</p></div>
+      <div class="card"><p><span class="lead">Brand switching:</span> do not switch brands or stop without the prescriber — the correct nurse response is to check with the provider and monitor the patient. Interactions: warfarin bleeding risk; insulin and digoxin become less effective.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== DIABETES ===== -->
+  <section class="topic" id="dm" style="--hue:var(--c-dm)">
+    <div class="topic-head"><h2>Antidiabetic Drugs</h2><span class="chap">Ch. 32</span></div>
+    <div class="bigpic"><strong>Diabetes is self-management</strong> supported by education, medication, monitoring, and lifestyle. Insulin lowers glucose, promotes protein synthesis and lipogenesis, and shifts <strong>potassium and magnesium into cells</strong>.</div>
+    <div class="cards">
+      <div class="mnemonic"><span class="m-label">Diagnosis &amp; the 3 P's</span>
+        Dx: fasting glucose <b>&gt; 126 mg/dL</b> or <b>HbA1C ≥ 6.5%</b>. Classic signs — <b>P</b>olyuria, <b>P</b>olydipsia, <b>P</b>olyphagia, plus glycosuria, weight loss, fatigue, blurred vision.</div>
+
+      <div class="card"><p><span class="lead">Type 1 vs Type 2:</span> Type 1 (&lt;10%) = no/defective insulin production → needs exogenous insulin. Type 2 (~90%) = insulin deficiency and/or resistance; tied to obesity, HTN, dyslipidemia, clotting risk.</p></div>
+      <div class="card"><p><span class="lead">Gestational diabetes:</span> hyperglycemia in pregnancy — <b>insulin only, no oral agents</b>. Usually resolves after delivery; ~30% develop type 2 within 10–15 years.</p></div>
+
+      <div class="sub-h">Insulins — onset / peak / duration</div>
+      <div class="card table-card" data-exam="1">
+        <span class="tag exam">Exam</span>
+        <table class="data">
+          <thead><tr><th>Type</th><th>Examples</th><th class="num">Onset</th><th class="num">Peak</th><th class="num">Duration</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">Rapid</td><td>lispro (Humalog), aspart (NovoLog), glulisine (Apidra)</td><td class="num">15–30 min</td><td class="num">0.5–2.5 h</td><td class="num">3–6 h</td></tr>
+            <tr><td class="drug">Inhaled rapid</td><td>Afrezza (avoid: smokers, lung disease)</td><td class="num">~</td><td class="num">12–15 min</td><td class="num">2–3 h</td></tr>
+            <tr><td class="drug">Short / Regular</td><td>Humulin R, Novolin R — <b>only insulin given IV</b></td><td class="num">30–60 min</td><td class="num">1–5 h</td><td class="num">6–10 h</td></tr>
+            <tr><td class="drug">Intermediate / NPH</td><td>Humulin N, Novolin N — <b>cloudy</b></td><td class="num">1–2 h</td><td class="num">6–14 h</td><td class="num">16–24 h</td></tr>
+            <tr><td class="drug">Long (basal)</td><td>glargine (Lantus), detemir (Levemir), degludec (Tresiba) — <b>clear</b></td><td class="num">~70 min</td><td class="num">none</td><td class="num">18–24 h</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mnemonic"><span class="m-label">Drawing up &amp; giving insulin</span>
+        <b>Clear before cloudy</b> — withdraw Regular/rapid (clear) <b>before</b> NPH (cloudy). Roll vials (don't shake), use insulin syringes only, and second-check the dose with another nurse. Only Regular insulin can go IV.</div>
+      <div class="card" data-exam="1"><span class="tag safety">Nursing priority</span><p><b>Check blood glucose before giving insulin</b>, and confirm the patient will eat within the appropriate time. If a rapid-acting dose was given and the meal is delayed, give the patient food (e.g., cereal, milk, juice) rather than waiting.</p></div>
+      <div class="card"><p><span class="lead">Sliding-scale insulin</span> is based on the current glucose reading and adjusts up as glucose rises. It does <b>not</b> replace scheduled insulin — combine only when the order says to. Downside: it reacts to highs rather than preventing them.</p></div>
+
+      <div class="sub-h">Oral antidiabetics</div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Metformin (biguanide)</span> — first-line for type 2. Decreases hepatic glucose production and intestinal absorption; <b>does not cause hypoglycemia</b> (weight neutral). GI effects, metallic taste, low B12. Rare but lethal: <b>lactic acidosis</b>. Take with meals; hold around contrast dye studies.</p></div>
+      <div class="card"><p><span class="lead">Sulfonylureas</span> (glipizide, glyburide, glimepiride) and <span class="lead">meglitinides</span> (repaglinide, nateglinide) stimulate insulin release from the pancreas → significant <b>hypoglycemia risk</b>.</p></div>
+      <div class="card"><p><span class="lead">Others:</span> <b>Glitazones</b> (pioglitazone) decrease insulin resistance — HF risk. <b>Alpha-glucosidase inhibitors</b> (acarbose) delay glucose absorption, take with first bite. <b>DPP-IV "gliptins"</b> (sitagliptin) and <b>SGLT2 "gliflozins"</b> (empagliflozin — yeast infections) round out the classes.</p></div>
+
+      <div class="sub-h">Injectable non-insulins &amp; hypoglycemia</div>
+      <div class="card"><p><span class="lead">GLP-1 agonists</span> (dulaglutide/Trulicity, semaglutide/Ozempic) enhance glucose-driven insulin secretion + weight loss; nausea/vomiting and rare pancreatitis. <b>Amylin agonist</b> pramlintide (Symlin) slows gastric emptying.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Hypoglycemia = glucose &lt; 70 mg/dL.</span> Early: confusion, irritability, tremor, sweating. Late: hypothermia, seizures, coma. Conscious &amp; can swallow → fast carbs/oral glucose. Unconscious → <b>NPO</b>; give IV D50W or glucagon (roll to side).</p></div>
+      <div class="mnemonic"><span class="m-label">Hypoglycemia</span> "<b>Cold and clammy — needs some candy.</b>" A patient who is cold, clammy, shaky, and confused is <b>low</b>, not high.</div>
+      <div class="card"><p><span class="lead">HbA1C</span> reflects glucose control over the previous ~3 months (compliance), not the current reading. Stress, infection, illness, trauma, and <b>corticosteroids</b> raise blood glucose.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== ADRENAL ===== -->
+  <section class="topic" id="adr" style="--hue:var(--c-adr)">
+    <div class="topic-head"><h2>Adrenal Drugs</h2><span class="chap">Ch. 33</span></div>
+    <div class="bigpic">The adrenal cortex secretes corticosteroids. <strong>Over</strong>secretion → Cushing's syndrome; <strong>under</strong>secretion → Addison's disease.</div>
+    <div class="cards">
+      <div class="card"><p><span class="lead">Glucocorticoids</span> (prednisone, dexamethasone, hydrocortisone, methylprednisolone) control inflammation; <span class="lead">mineralocorticoid</span> fludrocortisone manages fluid/electrolytes. Used for adrenal insufficiency, inflammation, allergic reactions.</p></div>
+      <div class="card" data-exam="1"><span class="tag safety">Patient teaching</span><p>Take once-daily corticosteroids <b>in the morning</b> to reduce adrenal suppression, take <b>with food/milk</b>, and <b>never stop abruptly</b> — taper. Do not use with active infection; report fever/sore throat.</p></div>
+      <div class="card"><p><span class="lead">Adverse effects:</span> hyperglycemia, hypokalemia, hypernatremia (sodium/water retention), osteoporosis, GI bleeding/peptic ulcer, adrenal suppression, and Cushing's features (weight gain, hirsutism, bruising, muscle atrophy). Monitor daily weight and glucose.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== REPRO ===== -->
+  <section class="topic" id="repro" style="--hue:var(--c-repro)">
+    <div class="topic-head"><h2>Women's &amp; Men's Health</h2><span class="chap">Ch. 34–35</span></div>
+    <div class="cards">
+      <div class="card"><p><span class="lead">Contraceptives</span> (oral taken at the same time daily, IUD, IM injection) prevent pregnancy. Contraindications: blood clots, HTN. Adverse effects: <b>blood clots</b>, dizziness, headache, depression, weight gain.</p></div>
+      <div class="card"><p><span class="lead">Testosterone / androgens</span> maintain male sex characteristics, bone, and muscle (topical, IM/SQ, oral). Contraindicated in cardiac and liver impairment. Men's health also uses <b>alpha-1 blockers</b> (BPH), <b>finasteride</b> (baldness/BPH), and ED drugs (hypotension risk with alpha blockers or nitrates).</p></div>
+    </div>
+  </section>
+
+  <div class="part"><small>Part B</small><span>Cardiovascular</span><small>Week 9 · Ch. 22–27</small></div>
+
+  <!-- ===== ANTIHYPERTENSIVES ===== -->
+  <section class="topic" id="htn" style="--hue:var(--c-htn)">
+    <div class="topic-head"><h2>Antihypertensive Drugs</h2><span class="chap">Ch. 22</span></div>
+    <div class="bigpic"><strong>BP = CO × SVR.</strong> Hypertension is essential/primary (unknown cause, ~90%) or secondary (known cause, ~10%) and damages the heart, brain, kidneys, eyes, and vessels.</div>
+    <div class="cards">
+      <div class="mnemonic"><span class="m-label">The 7 categories</span>
+        <b>Diuretics · Adrenergics · Vasodilators · ACE inhibitors · ARBs · Calcium channel blockers · Direct renin inhibitors.</b></div>
+
+      <div class="card" data-exam="1"><span class="tag safety">Nursing priority</span><p><b>Assess blood pressure before administering</b> any antihypertensive; the key response to watch for with an alpha-adrenergic drug is <b>hypotension</b>. Teach slow position changes to prevent orthostatic syncope.</p></div>
+
+      <div class="sub-h">Adrenergic drugs</div>
+      <div class="card"><p><span class="lead">Adrenergic drugs</span> cause orthostatic hypotension, first-dose syncope, dry mouth, sedation, constipation, edema, sexual dysfunction, and <b>rebound HTN if stopped abruptly</b>. Additive CNS depression with alcohol/benzos/opioids.</p></div>
+      <div class="card"><p><span class="lead">Clonidine</span> (centrally acting) decreases sympathetic outflow; oral or patch, not first-line, do not stop abruptly. Also used for opioid withdrawal.</p></div>
+      <div class="card"><p><span class="lead">Alpha-1 blockers</span> (doxazosin, prazosin, terazosin) dilate arteries/veins and improve urinary flow. <b>Tamsulosin (Flomax) is for BPH, not BP.</b></p></div>
+      <div class="card"><p><span class="lead">Beta blockers</span> block beta-1 → decreased SVR; taper over 1–2 weeks. <b>Carvedilol (Coreg)</b> treats HTN and mild-moderate HF with digoxin/diuretics/ACE; avoid in asthma/bronchospasm, severe bradycardia, cardiogenic shock.</p></div>
+
+      <div class="sub-h">RAAS drugs — ACE inhibitors &amp; ARBs</div>
+      <div class="card"><p><span class="lead">ACE inhibitors ("-pril":</span> lisinopril, enalapril, captopril, ramipril) block angiotensin I→II, reducing vasoconstriction and aldosterone-driven Na/water retention. Reduce preload &amp; afterload, prevent ventricular remodeling after MI, and lower HF mortality.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">ACE inhibitors are the drug of choice in diabetes</span> — they reduce glomerular filtration pressure and proteinuria, preventing diabetic nephropathy (that's why a diabetic without HTN may still be prescribed lisinopril).</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">ACE adverse effects:</span> dry, nonproductive <b>cough</b> (reverses off the drug), <b>hyperkalemia</b> (check potassium), and <b>angioedema</b> — rare but potentially fatal.</p></div>
+      <div class="card"><p><span class="lead">ARBs ("-sartan":</span> losartan, valsartan, olmesartan) block angiotensin II receptors on vascular smooth muscle and adrenal gland → less vasoconstriction and aldosterone. <b>No dry cough</b>, hyperkalemia less likely; <b>contraindicated in pregnancy</b>.</p></div>
+
+      <div class="sub-h">CCBs, diuretics &amp; vasodilators</div>
+      <div class="card"><p><span class="lead">Calcium channel blockers</span> relax smooth muscle → ↓SVR and BP. Uses: HTN (amlodipine is first-line), angina, atrial fibrillation, migraine, Raynaud's, and preventing cerebral artery spasm after subarachnoid hemorrhage. Nifedipine is safe in pregnancy.</p></div>
+      <div class="card"><p><span class="lead">Thiazide diuretics</span> (first-line in JNC 8) decrease plasma/ECF volume → ↓preload, CO, peripheral resistance, and BP.</p></div>
+      <div class="card"><p><span class="lead">Vasodilators:</span> hydralazine relaxes arteriolar/venous smooth muscle (oral for essential HTN, injectable for emergencies; BiDil for HF in African-American patients). <b>Sodium nitroprusside (Nipride)</b> is IV-titrated in the ICU for severe hypertensive emergencies.</p></div>
+      <div class="card" data-exam="1"><span class="tag safety">Patient teaching</span><p>Do <b>not</b> double missed doses or stop abruptly (rebound crisis, stroke). Give oral forms with meals; use an IV pump for IV forms. Report SOB, swelling, weight change, chest pain, palpitations, or excessive fatigue. Impotence is an expected effect that affects compliance.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== ANTIANGINALS ===== -->
+  <section class="topic" id="angina" style="--hue:var(--c-angina)">
+    <div class="topic-head"><h2>Antianginal Drugs</h2><span class="chap">Ch. 23</span></div>
+    <div class="bigpic">Angina = chest pain from <strong>reduced oxygen supply vs demand</strong> (chronic stable, unstable, Prinzmetal/vasospastic). Goal: increase blood flow or decrease oxygen demand. Drug classes: nitrates/nitrites, beta blockers, CCBs.</div>
+    <div class="cards">
+      <div class="card"><p><span class="lead">Nitrates &amp; nitrites</span> relax smooth muscle and dilate coronary arteries → more oxygen to ischemic myocardium. SL, IV, transdermal, ointment, and translingual forms <b>bypass first-pass metabolism</b>. Rapid-acting = acute attacks; long-acting = prevention.</p></div>
+      <div class="card" data-exam="1"><span class="tag safety">Safety</span><p><b>Never combine nitrates with ED drugs — sildenafil (Viagra), tadalafil (Cialis), vardenafil (Levitra)</b> → severe, dangerous hypotension. Also contraindicated in severe anemia, closed-angle glaucoma, and severe head injury.</p></div>
+      <div class="card"><p><span class="lead">Nitrate adverse effects:</span> headache (diminishes with use), reflex tachycardia, postural hypotension, topical skin irritation, and possible tolerance.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== HEART FAILURE ===== -->
+  <section class="topic" id="hf" style="--hue:var(--c-hf)">
+    <div class="topic-head"><h2>Heart Failure Drugs</h2><span class="chap">Ch. 24</span></div>
+    <div class="bigpic"><strong>Heart failure</strong> = the heart can't pump enough to meet the body's needs → insufficient cardiac output and fluid overload (left, right, or both). Therapy uses ACE inhibitors, ARBs, beta blockers, diuretics, and inotropes.</div>
+    <div class="cards">
+      <div class="mnemonic"><span class="m-label">The three "-tropics"</span>
+        <b>Ino</b>tropic = force of contraction · <b>Chrono</b>tropic = heart rate · <b>Dromo</b>tropic = conduction. Digoxin is <b>+inotropic, −chronotropic, −dromotropic</b>.</div>
+      <div class="card"><p><span class="lead">Dobutamine</span> — a positive inotrope; beta-1-selective vasoactive adrenergic that increases contraction force and blood ejected.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Digoxin (Lanoxin):</span> check <b>apical pulse for 1 full minute; hold if &lt; 60</b>. Therapeutic level <b>0.5–2 ng/mL</b>; standard dose 0.125–0.25 mg daily. Improves symptoms and exercise tolerance but does not reduce mortality.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Digoxin toxicity:</span> bradycardia, headache, dizziness, confusion, nausea, and <b>visual disturbances (yellow halos)</b>. <b>Low potassium or magnesium raises toxicity risk</b> (so a K⁺ of 2.0 is the red flag, not an apical pulse of 62). Antidote: digoxin immune Fab (Digibind).</p></div>
+    </div>
+  </section>
+
+  <!-- ===== ANTIDYSRHYTHMICS ===== -->
+  <section class="topic" id="rhythm" style="--hue:var(--c-rhythm)">
+    <div class="topic-head"><h2>Antidysrhythmic Drugs</h2><span class="chap">Ch. 25</span></div>
+    <div class="bigpic">Dysrhythmia = any deviation from normal rhythm (a-fib, a-flutter, SVT, VT, VF). <strong>Vaughan Williams classes:</strong> I (Na⁺ channel), II (beta blockers), III (amiodarone), IV (CCBs).</div>
+    <div class="cards">
+      <div class="card"><p><span class="lead">Amiodarone (Class III)</span> prolongs the action potential; drug of choice for ventricular dysrhythmias (sustained VT, VF) per ACLS. Adverse: corneal microdeposits/visual halos, photophobia, dry eyes, photosensitivity, and <b>pulmonary toxicity</b>.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Diltiazem (Cardizem, Class IV CCB)</span> slows AV conduction for PSVT and rate control in a-flutter/fib; also angina, HTN, hypertrophic cardiomyopathy. <b>Risk of hypotension</b> — if a patient reports fatigue and dizziness, the priority is to <b>check the blood pressure</b>.</p></div>
+      <div class="card"><p><span class="lead">Adenosine (Adenocard)</span> for PSVT can cause a brief asystole on IV push — a transient, expected pause; if asystole persists, begin CPR.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== COAGULATION ===== -->
+  <section class="topic" id="coag" style="--hue:var(--c-coag)">
+    <div class="topic-head"><h2>Coagulation Modifiers</h2><span class="chap">Ch. 26</span></div>
+    <div class="cards">
+      <div class="mnemonic"><span class="m-label">Who does what</span>
+        <b>Anticoagulants</b> prevent new clots · <b>Antiplatelets</b> block platelet aggregation · <b>Thrombolytics</b> lyse existing clots · <b>Antifibrinolytics</b> promote clot formation. A <b>thrombus</b> is a clot; an <b>embolus</b> is one that travels (→ MI, CVA, PE, DVT).</div>
+
+      <div class="sub-h">Anticoagulants</div>
+      <div class="card table-card" data-exam="1">
+        <span class="tag exam">Exam</span>
+        <table class="data">
+          <thead><tr><th>Drug</th><th>Monitor</th><th>Therapeutic</th><th>Antidote</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">Heparin (IV/SQ)</td><td>aPTT or anti-Xa (q6h)</td><td>—</td><td>Protamine sulfate</td></tr>
+            <tr><td class="drug">Warfarin (Coumadin, PO)</td><td>PT / INR</td><td>INR 2–3.5</td><td>Vitamin K</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card"><p><span class="lead">Heparin</span> inhibits factors IIa (thrombin) and Xa. <b>Do not aspirate or massage</b> SQ sites; give in deep SQ fat away from the umbilicus. Watch for <b>heparin-induced thrombocytopenia (HIT)</b> → treat with argatroban/lepirudin. Enoxaparin (Lovenox) is LMWH — no routine labs, don't expel the syringe air bubble.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Warfarin</span> takes several days for full effect, so <b>heparin overlaps warfarin</b> (~5 days) until the INR is therapeutic. Many drug/herbal interactions; keep <b>vitamin K foods (leafy greens, spinach)</b> consistent — don't binge or avoid entirely. Newer orals: direct thrombin inhibitor dabigatran (Pradaxa, antidote idarucizumab) and factor Xa inhibitor rivaroxaban (Xarelto).</p></div>
+      <div class="card"><p><span class="lead">Heparin toxicity / bleeding:</span> hematuria, melena, petechiae, ecchymoses, gum/mucous-membrane bleeding → <b>stop the drug</b>; 1 mg protamine reverses ~100 units of heparin. On warfarin, an elderly patient who falls and hits their head needs assessment for <b>internal bleeding</b>.</p></div>
+
+      <div class="sub-h">Antiplatelets, thrombolytics &amp; antifibrinolytics</div>
+      <div class="card"><p><span class="lead">Antiplatelets</span> (aspirin, clopidogrel/Plavix, eptifibatide) prevent platelet adhesion at vessel injury. Bleeding is the main adverse effect; combining with <b>ginkgo</b> raises bleeding risk.</p></div>
+      <div class="card"><p><span class="lead">Thrombolytics ("-ase":</span> alteplase/tPA, reteplase, tenecteplase) activate plasminogen → plasmin to <b>lyse existing clots</b>. Uses: acute MI, ischemic stroke, PE, DVT. Big risk = bleeding (internal, intracranial); requires ICU monitoring ≥ 24 h.</p></div>
+      <div class="card"><p><span class="lead">Antifibrinolytics</span> (aminocaproic acid/Amicar, tranexamic acid/TXA, desmopressin/DDAVP) <b>promote</b> clotting — for hemophilia, von Willebrand's, surgical/postpartum hemorrhage.</p></div>
+    </div>
+  </section>
+
+  <div class="part"><small>Part C</small><span>GI &amp; Blood</span><small>Other chapters · also on Exam 4</small></div>
+
+  <!-- ===== GI DRUGS ===== -->
+  <section class="topic" id="gi" style="--hue:var(--c-gi)">
+    <div class="topic-head"><h2>GI Drugs</h2><span class="chap">Acid · Laxatives</span></div>
+    <div class="bigpic">Acid-controlling drugs and laxatives. The stomach protects itself with <strong>mucous cells</strong> that secrete a mucus–bicarbonate layer over the lining; ulcer drugs either cut acid or reinforce that barrier.</div>
+    <div class="cards">
+
+      <div class="sub-h">Protecting the stomach &amp; acid control</div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Mucous cells</span> protect the stomach lining from acid — they secrete a layer of <b>mucus and bicarbonate</b> that buffers hydrochloric acid and keeps it off the mucosa.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Sucralfate (Carafate)</span> therapeutic effect: it forms a <b>protective paste/barrier over the ulcer site</b>, shielding it from acid and pepsin so it can heal. Give on an empty stomach before meals; it can bind other drugs, so separate their timing.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">PPIs in the ICU:</span> proton pump inhibitors (e.g., IV pantoprazole) are used for <b>stress ulcer prophylaxis</b> — preventing stress-related mucosal bleeding in critically ill patients.</p></div>
+      <div class="card"><p><span class="lead">PPIs ("-prazole",</span> omeprazole) block the H⁺/K⁺ pump — the final step of acid secretion. Teach: take <b>before meals</b>, swallow whole (don't crush), and note that long-term use risks low magnesium, B12, and fracture. Also on the list: H₂ blockers ("-tidine") and antacids that neutralize existing acid.</p></div>
+
+      <div class="sub-h">Laxatives</div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Labs to monitor on laxatives:</span> <b>electrolytes — especially potassium, plus sodium and magnesium — and fluid balance</b>. Fluid and electrolyte loss (hypokalemia, dehydration) is the main risk with overuse.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Magnesium hydroxide (Milk of Magnesia)</span> adverse effects: <b>diarrhea</b> (osmotic effect) and, especially with renal impairment, <b>hypermagnesemia</b> — plus cramping and dehydration.</p></div>
+      <div class="card" data-exam="1"><span class="tag exam">Exam</span><p><span class="lead">Long-term laxative use</span> leads to <b>laxative dependence and loss of normal bowel tone/function</b>, along with chronic fluid and electrolyte imbalance.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== BLOOD / HEMATOPOIETIC ===== -->
+  <section class="topic" id="heme" style="--hue:var(--c-heme)">
+    <div class="topic-head"><h2>Blood-Forming Drugs</h2><span class="chap">Hematopoietic</span></div>
+    <div class="cards">
+      <div class="card" data-exam="1"><span class="tag safety">Self-administration</span><p><span class="lead">Epoetin alfa (Epogen, Procrit)</span> stimulates red-cell production for anemia. Self-injection steps at home: wash hands and gather supplies; check the dose and expiration; <b>do not shake the vial</b> (shaking inactivates it); give <b>subcutaneously, rotating sites</b>; use a new needle each time and dispose in a sharps container; store in the refrigerator.</p></div>
+      <div class="card"><p><span class="lead">Monitoring:</span> check <b>blood pressure</b> (hypertension is a key risk) and hemoglobin/hematocrit regularly. Report headache or chest pain; do not overshoot the target hemoglobin because too-high levels raise the risk of clots.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== CANCER (stub) ===== -->
+  <section class="topic" id="onco" style="--hue:var(--c-onco)">
+    <div class="topic-head"><h2>Cancer Medications</h2><span class="chap">Neoplastic</span></div>
+    <div class="cards">
+      <div class="card"><p><span class="lead">Common chemotherapy effects:</span> nausea, vomiting, fatigue, anorexia, and pain.</p></div>
+    </div>
+    <p class="note-end">Not in the Week 8–9 decks — cancer meds are in the neoplastic section of the Week 4 PowerPoints (review decks 20, 29, 36, 37, 45, 47).</p>
+  </section>
+
+  <!-- ===== EXAM 4 FOCUS ===== -->
+  <section class="topic" id="focus" style="--hue:var(--exam)">
+    <div class="topic-head"><h2>Exam 4 — Discussion Focus</h2><span class="chap">Study checklist</span></div>
+    <div class="bigpic">The topics your instructor flagged for Exam 4. Cross-reference each with the sections above; the GI items (antacids, H2 blockers, PPIs, laxatives, antidiarrheals, <em>H. pylori</em>) come from the GI chapter, not these two decks.</div>
+    <div class="focus-grid">
+      <div class="focus-item"><span class="n">RAAS</span> ARBs; ACE mechanism, common side effects, adverse reactions; ACE + diabetes; valsartan/olmesartan MOA</div>
+      <div class="focus-item"><span class="n">HTN</span> Health promotion &amp; hypertension; lisinopril + ibuprofen interaction; captopril therapeutic effect; assessing understanding of multiple BP meds</div>
+      <div class="focus-item"><span class="n">Adrenergics</span> Adrenergic antagonist main class; adrenergic actions/effects; assessment before beta blockers; doxazosin (Cardura) teaching</div>
+      <div class="focus-item"><span class="n">Beta blockers</span> Beta blockers &amp; diabetes; beta blockers &amp; asthma</div>
+      <div class="focus-item"><span class="n">CCBs</span> Action &amp; effect on BP; side effects; assessment before administration; how Cardizem (diltiazem) works for BP</div>
+      <div class="focus-item"><span class="n">Nitrates</span> Precautions when administering nitrates; isosorbide dinitrate adverse effects</div>
+      <div class="focus-item"><span class="n">Heart failure</span> HF &amp; digoxin; effective use of Lanoxin; HF response on digoxin + furosemide; positive vs negative inotrope — which patient gets what</div>
+      <div class="focus-item"><span class="n">Diuretics</span> Furosemide (Lasix) therapeutic effect; how to know a diuretic is effective; diuretics that cause hypokalemia</div>
+      <div class="focus-item"><span class="n">Diabetes</span> Treating hypoglycemia; timing of Regular insulin; which patients get insulin only; glipizide precautions</div>
+      <div class="focus-item"><span class="n">Safe practice</span> Safe administration of oral medications; educating on herbal + conventional meds together</div>
+      <div class="focus-item"><span class="n">GI — acid</span> Cells that protect the stomach lining (mucous cells); sucralfate therapeutic effect; PPI for stress-ulcer prophylaxis in ICU; omeprazole teaching + absorption; H2 antagonist &amp; antacid MOA; acid-controlling drugs; antiflatulent; H. pylori treatment</div>
+      <div class="focus-item"><span class="n">GI — bowel</span> Labs to monitor on laxatives; magnesium hydroxide adverse effects; adverse effect of long-term laxative use; treatment for acute diarrhea</div>
+      <div class="focus-item"><span class="n">Blood</span> Steps to self-administer epoetin alfa at home</div>
+    </div>
+  </section>
+
+  <div class="noresult" id="noresult">No cards match your search. <a href="#" id="resetLink">Clear it</a>.</div>
+</main>
+
+<footer>NUR 312 Pharmacology · Cohort 38 · built from your Week 8 &amp; 9 lecture decks and the Exam 4 topics · <span id="count"></span></footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('theme');
+  try { var t = localStorage.getItem('nur312-theme'); if (t === 'dark' || t === 'light') root.setAttribute('data-theme', t); } catch (e) {}
+  themeBtn.addEventListener('click', function () {
+    var isDark = root.getAttribute('data-theme') === 'dark'
+      || (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('nur312-theme', next); } catch (e) {}
+  });
+  document.getElementById('printBtn').addEventListener('click', function () { window.print(); });
+
+  var items = Array.prototype.slice.call(document.querySelectorAll('.card, .mnemonic'));
+  document.getElementById('count').textContent = items.length + ' study cards';
+  items.forEach(function (el) { el.setAttribute('data-orig', el.innerHTML); });
+
+  var input = document.getElementById('q');
+  var clearBtn = document.getElementById('clear');
+  var examBtn = document.getElementById('examOnly');
+  var noresult = document.getElementById('noresult');
+  var examOnly = false;
+
+  function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function highlight(el, term) {
+    var orig = el.getAttribute('data-orig');
+    if (!term) { el.innerHTML = orig; return; }
+    var tmp = document.createElement('div'); tmp.innerHTML = orig;
+    var re = new RegExp('(' + esc(term) + ')', 'ig');
+    (function walk(node) {
+      for (var i = 0; i < node.childNodes.length; i++) {
+        var c = node.childNodes[i];
+        if (c.nodeType === 3) {
+          if (re.test(c.nodeValue)) {
+            var span = document.createElement('span');
+            span.innerHTML = c.nodeValue.replace(re, '<mark>$1</mark>');
+            node.replaceChild(span, c); i += span.childNodes.length - 1;
+          }
+        } else if (c.nodeType === 1 && c.tagName !== 'MARK') { walk(c); }
+      }
+    })(tmp);
+    el.innerHTML = tmp.innerHTML;
+  }
+  function run() {
+    var term = input.value.trim(); var low = term.toLowerCase();
+    clearBtn.classList.toggle('show', term.length > 0);
+    var anyVisible = false;
+    items.forEach(function (el) {
+      var text = (el.getAttribute('data-orig') || '').replace(/<[^>]+>/g, ' ').toLowerCase();
+      var show = (!low || text.indexOf(low) !== -1) && (!examOnly || el.getAttribute('data-exam') === '1');
+      el.hidden = !show;
+      if (show) { anyVisible = true; highlight(el, term); }
+    });
+    document.querySelectorAll('section.topic').forEach(function (sec) {
+      sec.hidden = sec.querySelectorAll('.card:not([hidden]), .mnemonic:not([hidden])').length === 0;
+    });
+    // hide part dividers when their sections are all hidden
+    document.querySelectorAll('.part').forEach(function (p) {
+      var n = p.nextElementSibling, anyOpen = false;
+      while (n && !n.classList.contains('part')) {
+        if (n.classList && n.classList.contains('topic') && !n.hidden) anyOpen = true;
+        n = n.nextElementSibling;
+      }
+      p.hidden = !anyOpen;
+    });
+    noresult.classList.toggle('show', !anyVisible);
+  }
+  input.addEventListener('input', run);
+  clearBtn.addEventListener('click', function () { input.value = ''; input.focus(); run(); });
+  document.getElementById('resetLink').addEventListener('click', function (e) {
+    e.preventDefault(); input.value = ''; examOnly = false; examBtn.setAttribute('aria-pressed', 'false'); run();
+  });
+  examBtn.addEventListener('click', function () {
+    examOnly = !examOnly; examBtn.setAttribute('aria-pressed', examOnly ? 'true' : 'false'); run();
+  });
+  document.querySelectorAll('nav.chips a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var target = document.getElementById(a.getAttribute('href').slice(1));
+      if (target) {
+        e.preventDefault();
+        if (input.value || examOnly) { input.value = ''; examOnly = false; examBtn.setAttribute('aria-pressed','false'); run(); }
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+  run();
+})();
+</script>
+
+</body></html>

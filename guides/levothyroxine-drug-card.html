@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Levothyroxine — Nursing Drug Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f7f8;
+    --surface:#ffffff;
+    --surface-2:#eef1f3;
+    --ink:#16202a;
+    --ink-soft:#4c5a67;
+    --ink-faint:#7a8894;
+    --line:#dbe1e6;
+    --line-strong:#c3ccd3;
+    --shadow:0 1px 2px rgba(16,32,42,.06), 0 8px 24px rgba(16,32,42,.05);
+    --radius:14px;
+
+    /* category accents */
+    --c-action:#5b53c9;
+    --c-use:#0e8a6e;
+    --c-comp:#d23f5a;
+    --c-admin:#2f6fd6;
+    --c-contra:#c9761a;
+    --c-nursing:#0d8aa6;
+    --c-interact:#9a3fb0;
+    --c-edu:#2b8a4a;
+    --c-eval:#3574c4;
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --bg:#0f151b;
+      --surface:#161e26;
+      --surface-2:#1d2831;
+      --ink:#e7edf2;
+      --ink-soft:#a9b6c1;
+      --ink-faint:#7b8894;
+      --line:#2a3742;
+      --line-strong:#3a4a56;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+      --c-action:#9a92f0;--c-use:#3fc6a3;--c-comp:#f2778c;--c-admin:#6fa3f0;
+      --c-contra:#eaa64e;--c-nursing:#41c0da;--c-interact:#cd7fe0;--c-edu:#5fc47f;--c-eval:#6fa5ec;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f151b;--surface:#161e26;--surface-2:#1d2831;--ink:#e7edf2;--ink-soft:#a9b6c1;
+    --ink-faint:#7b8894;--line:#2a3742;--line-strong:#3a4a56;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+    --c-action:#9a92f0;--c-use:#3fc6a3;--c-comp:#f2778c;--c-admin:#6fa3f0;
+    --c-contra:#eaa64e;--c-nursing:#41c0da;--c-interact:#cd7fe0;--c-edu:#5fc47f;--c-eval:#6fa5ec;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    line-height:1.5;font-size:16px;
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    max-width:1120px;margin:0 auto;padding:36px 24px 20px;
+  }
+  .kicker{
+    font-size:.82rem;color:var(--ink-faint);letter-spacing:.02em;
+    display:flex;align-items:center;gap:8px;margin-bottom:10px;
+  }
+  .pulse{color:var(--c-comp);font-weight:600}
+  .wordmark{
+    font-family:Fraunces,Georgia,serif;font-weight:600;
+    font-size:clamp(2.6rem,7vw,4.6rem);line-height:.98;letter-spacing:-.015em;
+    margin:0;color:var(--ink);
+  }
+  .subline{
+    margin:6px 0 0;color:var(--ink-soft);font-size:1.02rem;max-width:60ch;
+  }
+  .subline b{color:var(--ink);font-weight:600}
+  .fastfacts{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;
+  }
+  .fact{
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;
+    padding:9px 13px;box-shadow:var(--shadow);min-width:120px;
+  }
+  .fact .k{font-size:.72rem;color:var(--ink-faint);margin-bottom:2px}
+  .fact .v{font-size:.95rem;font-weight:600;color:var(--ink)}
+
+  /* ---------- CONTROLS ---------- */
+  .controls{
+    position:sticky;top:0;z-index:20;background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .controls-inner{
+    max-width:1120px;margin:0 auto;padding:14px 24px;
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .searchrow{display:flex;gap:10px;align-items:center}
+  .search{
+    flex:1;position:relative;
+  }
+  .search input{
+    width:100%;padding:12px 14px 12px 42px;font-size:1rem;font-family:inherit;
+    border:1px solid var(--line-strong);border-radius:11px;background:var(--surface);
+    color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s;
+  }
+  .search input:focus{border-color:var(--c-admin);box-shadow:0 0 0 3px color-mix(in srgb,var(--c-admin) 22%,transparent)}
+  .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-faint)}
+  .btn{
+    border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+    padding:12px 16px;border-radius:11px;font-family:inherit;font-size:.92rem;font-weight:600;
+    cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s;
+  }
+  .btn:hover{background:var(--surface-2)}
+  .chiprow{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    --dot:var(--ink-faint);
+    display:inline-flex;align-items:center;gap:7px;
+    border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-soft);
+    padding:6px 12px;border-radius:999px;font-size:.84rem;font-weight:500;cursor:pointer;
+    transition:all .13s;user-select:none;
+  }
+  .chip .dot{width:9px;height:9px;border-radius:50%;background:var(--dot);flex:none}
+  .chip[aria-pressed="true"]{background:color-mix(in srgb,var(--dot) 14%,var(--surface));color:var(--ink);border-color:color-mix(in srgb,var(--dot) 45%,var(--line-strong))}
+  .chip[aria-pressed="false"]{opacity:.5}
+  .chip:hover{opacity:1}
+
+  /* ---------- CONTENT ---------- */
+  main{max-width:1120px;margin:0 auto;padding:26px 24px 80px}
+  .noresult{
+    display:none;text-align:center;color:var(--ink-soft);padding:60px 20px;font-size:1.05rem;
+  }
+  .noresult.show{display:block}
+
+  section.card{
+    --accent:var(--ink);
+    background:var(--surface);border:1px solid var(--line);
+    border-left:4px solid var(--accent);
+    border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:22px 24px;margin-bottom:18px;scroll-margin-top:150px;
+  }
+  section.card.hidden{display:none}
+  .card-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
+  .num{
+    font-family:Fraunces,serif;font-size:1.05rem;font-weight:600;
+    color:var(--accent);flex:none;min-width:1.4em;
+  }
+  h2{
+    font-family:Fraunces,serif;font-weight:600;font-size:1.5rem;letter-spacing:-.01em;
+    margin:0;color:var(--ink);
+  }
+  .card-sub{color:var(--ink-faint);font-size:.9rem;margin:2px 0 16px 0}
+  ul.pts{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  ul.pts li{
+    position:relative;padding-left:22px;color:var(--ink);font-size:1rem;
+  }
+  ul.pts li::before{
+    content:"";position:absolute;left:4px;top:.62em;
+    width:7px;height:7px;border-radius:2px;background:var(--accent);
+  }
+  ul.pts li.hit{background:color-mix(in srgb,var(--c-admin) 12%,transparent);border-radius:6px;padding-top:2px;padding-bottom:2px}
+  li b{font-weight:600}
+  li .tag{
+    font-size:.72rem;font-weight:700;color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line));border-radius:5px;
+    padding:1px 5px;margin-right:6px;vertical-align:1px;white-space:nowrap;
+  }
+
+  /* mnemonic callout */
+  .mnem{
+    margin-top:16px;background:color-mix(in srgb,var(--accent) 9%,var(--surface));
+    border:1px dashed color-mix(in srgb,var(--accent) 45%,var(--line));
+    border-radius:11px;padding:13px 15px;
+  }
+  .mnem .lab{
+    font-size:.74rem;font-weight:700;letter-spacing:.04em;color:var(--accent);
+    display:flex;align-items:center;gap:6px;margin-bottom:5px;text-transform:uppercase;
+  }
+  .mnem .body{font-size:.96rem;color:var(--ink)}
+  .mnem .body strong{color:var(--accent)}
+
+  footer.pagefoot{
+    max-width:1120px;margin:0 auto;padding:0 24px 50px;color:var(--ink-faint);font-size:.82rem;
+  }
+  footer.pagefoot hr{border:none;border-top:1px solid var(--line);margin:0 0 16px}
+
+  @media (max-width:640px){
+    header.hero{padding:26px 18px 14px}
+    .controls-inner{padding:12px 18px}
+    main{padding:20px 18px 60px}
+    section.card{padding:18px 18px}
+    h2{font-size:1.3rem}
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print{
+    :root{--bg:#fff;--surface:#fff;--ink:#111;--ink-soft:#333;--ink-faint:#555;--line:#bbb;--shadow:none}
+    .controls,.no-print{display:none !important}
+    body{font-size:11pt}
+    header.hero{padding:0 0 10px}
+    .wordmark{font-size:30pt}
+    .fastfacts{margin-top:10px}
+    main{padding:0}
+    section.card{
+      box-shadow:none;border:1px solid #ccc;border-left:3px solid var(--accent);
+      break-inside:avoid;page-break-inside:avoid;margin-bottom:10px;padding:12px 14px;
+    }
+    .mnem{break-inside:avoid}
+    section.card.hidden{display:block !important}
+    ul.pts li.hit{background:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker"><span class="pulse">◆</span> Thyroid replacement · synthetic T4 · high-alert dosing</div>
+  <h1 class="wordmark">Levothyroxine</h1>
+  <p class="subline">Synthetic <b>T4 (thyroxine)</b>. Replaces missing thyroid hormone in hypothyroidism. Brand names: <b>Synthroid, Levoxyl, Unithroid, Tirosint</b>.</p>
+  <div class="fastfacts">
+    <div class="fact"><div class="k">Class</div><div class="v">Thyroid hormone</div></div>
+    <div class="fact"><div class="k">Usual route</div><div class="v">PO · (IV for myxedema)</div></div>
+    <div class="fact"><div class="k">Dosing unit</div><div class="v">micrograms (mcg)</div></div>
+    <div class="fact"><div class="k">Pregnancy</div><div class="v">Safe — often ↑ need</div></div>
+    <div class="fact"><div class="k">Duration</div><div class="v">Usually lifelong</div></div>
+  </div>
+</header>
+
+<div class="controls no-print">
+  <div class="controls-inner">
+    <div class="searchrow">
+      <div class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input id="q" type="search" placeholder="Search this card — e.g. tachycardia, TSH, warfarin, empty stomach…" autocomplete="off">
+      </div>
+      <button class="btn" id="printBtn">Print / PDF</button>
+    </div>
+    <div class="chiprow" id="chips"></div>
+  </div>
+</div>
+
+<main id="content"></main>
+<p class="noresult" id="noresult">No matches. Try another term, or clear the search.</p>
+
+<footer class="pagefoot no-print">
+  <hr>
+  Study reference for nursing pharmacology — always confirm dose, timing, and orders against your facility's drug guide and provider orders. Adverse effects of levothyroxine are largely signs of over-replacement (a hyperthyroid picture).
+</footer>
+
+<script>
+const DATA = [
+  {
+    id:"action", n:1, accent:"--c-action",
+    title:"Pharmacological action", sub:"What it does in the body",
+    points:[
+      "Synthetic form of thyroxine (T4).",
+      "Converted to T3 in peripheral tissues; T3 is the active hormone.",
+      "Replaces or supplements the body's own thyroid hormone.",
+      "Raises the basal metabolic rate.",
+      "Speeds metabolism of proteins, carbohydrates, and fats.",
+      "Supports normal growth, brain development, and cardiac function.",
+      "Effect builds slowly — full response takes several weeks."
+    ],
+    mnemLab:"Think", mnem:"Thyroid hormone is the body's <strong>accelerator</strong>. Too little = everything slows down; the drug speeds it back to normal."
+  },
+  {
+    id:"use", n:2, accent:"--c-use",
+    title:"Therapeutic use", sub:"Why it's prescribed",
+    points:[
+      "Hypothyroidism (primary, secondary, congenital).",
+      "Myxedema and myxedema coma (IV for the emergency form).",
+      "Hashimoto's thyroiditis.",
+      "Replacement after thyroidectomy or radioactive iodine.",
+      "TSH suppression in thyroid cancer.",
+      "Congenital hypothyroidism in infants (prevents impaired development)."
+    ]
+  },
+  {
+    id:"comp", n:3, accent:"--c-comp",
+    title:"Complications / adverse effects", sub:"Almost all = signs of too much drug (hyperthyroid picture)",
+    points:[
+      "<span class='tag'>CARDIAC</span>Tachycardia, palpitations, atrial fibrillation.",
+      "<span class='tag'>CARDIAC</span>Chest pain / angina; MI risk in cardiac patients.",
+      "Hypertension.",
+      "Tremors, nervousness, anxiety, insomnia.",
+      "Heat intolerance, sweating, fever.",
+      "Weight loss with increased appetite.",
+      "Diarrhea.",
+      "Headache, menstrual changes.",
+      "<span class='tag'>LONG-TERM</span>Bone loss / osteoporosis with chronic over-dosing (esp. postmenopausal women).",
+      "Transient hair loss early in therapy."
+    ],
+    mnemLab:"Overdose = hyperthyroid", mnem:"Signs of too much: <strong>Tachycardia, Tremor, Trouble sleeping, weighT loss, Temperature intolerance, diarrhea.</strong> If the client races, they got too much."
+  },
+  {
+    id:"admin", n:4, accent:"--c-admin",
+    title:"Medication administration", sub:"Timing is everything",
+    points:[
+      "Give PO on an <b>empty stomach</b>, 30–60 minutes before breakfast.",
+      "Give at the <b>same time each day</b> (morning preferred).",
+      "Give with a full glass of water.",
+      "Do not switch brands without provider approval — bioavailability differs.",
+      "Start low and titrate slowly in older adults and cardiac patients.",
+      "Separate from calcium, iron, and antacids by <b>4 hours</b>.",
+      "Doses are in micrograms (mcg) — high-alert; double-check the decimal.",
+      "IV form is reserved for myxedema coma or when PO isn't possible."
+    ],
+    mnemLab:"The 3 E's", mnem:"<strong>Early</strong> (morning) · <strong>Empty</strong> (stomach, before food) · <strong>Every day the same</strong> time."
+  },
+  {
+    id:"contra", n:5, accent:"--c-contra",
+    title:"Contraindications / precautions", sub:"When to hold or use caution",
+    points:[
+      "<span class='tag'>CONTRA</span>Recent acute MI.",
+      "<span class='tag'>CONTRA</span>Uncorrected hyperthyroidism / thyrotoxicosis.",
+      "<span class='tag'>CONTRA</span>Untreated adrenal insufficiency (can trigger adrenal crisis).",
+      "<span class='tag'>CONTRA</span>Hypersensitivity to the drug.",
+      "<span class='tag'>CAUTION</span>Cardiovascular disease — CAD, angina, HTN, arrhythmias.",
+      "<span class='tag'>CAUTION</span>Older adults — begin with low doses.",
+      "<span class='tag'>CAUTION</span>Diabetes — may raise glucose and change insulin/oral-agent needs.",
+      "<span class='tag'>SAFE</span>Pregnancy — continue therapy; requirements often increase."
+    ]
+  },
+  {
+    id:"nursing", n:6, accent:"--c-nursing",
+    title:"Nursing interventions", sub:"Assess, monitor, protect",
+    points:[
+      "Obtain baseline HR, BP, and weight before starting.",
+      "Check apical pulse before dosing; hold and notify if HR is above the set limit (often >100).",
+      "Monitor TSH and free T4 labs.",
+      "Watch for a hyperthyroid picture (over-replacement) and lingering hypothyroid signs (under-replacement).",
+      "Assess for chest pain or palpitations — report promptly in cardiac clients.",
+      "Track weight and energy over weeks.",
+      "Monitor blood glucose in diabetic clients.",
+      "In children, monitor growth and development."
+    ]
+  },
+  {
+    id:"interact", n:7, accent:"--c-interact",
+    title:"Interactions", sub:"Drugs and foods that matter",
+    points:[
+      "<span class='tag'>↑ EFFECT</span>Warfarin — raises bleeding risk; warfarin dose may need lowering.",
+      "<span class='tag'>↑ NEED</span>Insulin & oral antidiabetics — may need higher doses.",
+      "<span class='tag'>↓ EFFECT</span>Digoxin — levothyroxine can lower digoxin levels.",
+      "<span class='tag'>↓ ABSORB</span>Calcium, iron, antacids, sucralfate — separate by 4 hours.",
+      "<span class='tag'>↓ ABSORB</span>Cholestyramine / colestipol — bind the drug in the gut.",
+      "<span class='tag'>↑ NEED</span>Estrogens / oral contraceptives — may increase requirement.",
+      "<span class='tag'>↑ METAB</span>Phenytoin, rifampin, carbamazepine — speed drug breakdown.",
+      "Foods: soy, high-fiber meals, coffee, and grapefruit reduce absorption."
+    ],
+    mnemLab:"Absorption blockers", mnem:"<strong>C.I.A.</strong> blocks the door — <strong>C</strong>alcium, <strong>I</strong>ron, <strong>A</strong>ntacids. Space them 4 hours from the dose."
+  },
+  {
+    id:"edu", n:8, accent:"--c-edu",
+    title:"Client education", sub:"What the client needs to know",
+    points:[
+      "Take exactly as prescribed — usually a lifelong medication.",
+      "Never stop abruptly.",
+      "Take in the morning, empty stomach, 30–60 min before food.",
+      "Take at the same time every day.",
+      "Don't switch brands or generics without asking the provider.",
+      "Separate from calcium, iron, and antacids by 4 hours.",
+      "Report chest pain, pounding/racing heart, sweating, nervousness, or trouble sleeping — signs of too much.",
+      "Report fatigue, weight gain, cold intolerance, constipation, or depression — signs of too little.",
+      "Effects take weeks — don't expect an overnight change.",
+      "Missed dose: take when remembered; skip if near the next — never double up.",
+      "Keep all follow-up appointments for blood tests.",
+      "Tell the provider right away if pregnant; consider a medical-alert ID."
+    ]
+  },
+  {
+    id:"eval", n:9, accent:"--c-eval",
+    title:"Evaluation of effectiveness", sub:"How you know it's working",
+    points:[
+      "<b>TSH returns to normal range</b> — the key indicator in primary hypothyroidism.",
+      "Free T4 within normal limits.",
+      "More energy, less fatigue.",
+      "Weight normalizes; appetite steadies.",
+      "Improved cold tolerance and mood.",
+      "Regular bowel movements (less constipation).",
+      "Heart rate within normal limits.",
+      "No hyperthyroid signs — meaning not over-replaced.",
+      "In children: normal growth and development."
+    ],
+    mnemLab:"Bottom line", mnem:"A <strong>normal TSH</strong> with the client feeling like themselves again = the therapeutic goal."
+  }
+];
+
+const LABELS = {
+  action:"Action", use:"Use", comp:"Complications", admin:"Administration",
+  contra:"Contra/precautions", nursing:"Nursing", interact:"Interactions",
+  edu:"Education", eval:"Evaluation"
+};
+
+const content = document.getElementById('content');
+const chipsWrap = document.getElementById('chips');
+const noresult = document.getElementById('noresult');
+const active = new Set(DATA.map(d=>d.id));
+
+// build sections
+DATA.forEach(d=>{
+  const sec = document.createElement('section');
+  sec.className='card'; sec.id='card-'+d.id;
+  sec.style.setProperty('--accent','var('+d.accent+')');
+  const mnem = d.mnem ? `
+    <div class="mnem">
+      <div class="lab">💡 ${d.mnemLab||'Mnemonic'}</div>
+      <div class="body">${d.mnem}</div>
+    </div>`:'';
+  sec.innerHTML = `
+    <div class="card-head"><span class="num">${String(d.n).padStart(2,'0')}</span><h2>${d.title}</h2></div>
+    <p class="card-sub">${d.sub}</p>
+    <ul class="pts">${d.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+    ${mnem}`;
+  content.appendChild(sec);
+});
+
+// build filter chips
+DATA.forEach(d=>{
+  const c = document.createElement('button');
+  c.className='chip'; c.setAttribute('aria-pressed','true');
+  c.style.setProperty('--dot','var('+d.accent+')');
+  c.innerHTML = `<span class="dot"></span>${LABELS[d.id]}`;
+  c.addEventListener('click',()=>{
+    if(active.has(d.id)){active.delete(d.id);c.setAttribute('aria-pressed','false');}
+    else{active.add(d.id);c.setAttribute('aria-pressed','true');}
+    apply();
+  });
+  chipsWrap.appendChild(c);
+});
+
+const q = document.getElementById('q');
+q.addEventListener('input', apply);
+
+function apply(){
+  const term = q.value.trim().toLowerCase();
+  let anyVisible = false;
+  DATA.forEach(d=>{
+    const sec = document.getElementById('card-'+d.id);
+    const lis = sec.querySelectorAll('ul.pts li');
+    let matchInSection = false;
+    lis.forEach(li=>{
+      const txt = li.textContent.toLowerCase();
+      const hit = term && txt.includes(term);
+      li.classList.toggle('hit', hit);
+      if(!term || hit) matchInSection = true;
+    });
+    // also match section title/sub
+    const titleMatch = term && (d.title.toLowerCase().includes(term) || d.sub.toLowerCase().includes(term));
+    if(titleMatch) matchInSection = true;
+
+    const catOn = active.has(d.id);
+    const show = catOn && (!term || matchInSection);
+    sec.classList.toggle('hidden', !show);
+    if(show) anyVisible = true;
+  });
+  noresult.classList.toggle('show', !anyVisible);
+}
+
+document.getElementById('printBtn').addEventListener('click',()=>window.print());
+apply();
+</script>
+</body>
+</html>

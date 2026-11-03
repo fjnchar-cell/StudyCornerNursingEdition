@@ -1,0 +1,492 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neuro Practice Set</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: Shift Board's study-mode look. Score strip, topic chips, one question card at a time, jump grid below.
+   Deliberately single dark theme: navy ground, focus blue, highlighter yellow. */
+:root{
+  color-scheme:dark;
+  --bg:#0A1222; --surface:#111C31; --raised:#16233C; --sunk:#0C1528; --line:#22324F;
+  --ink:#EAF0FA; --muted:#8C9BB8; --faint:#5C6C8A;
+  --blue:#5B9BFF; --blue-deep:#2156C9; --blue-wash:#13284D;
+  --yellow:#FFD34D; --yellow-wash:#2E2814;
+  --ok:#4FD1A5; --ok-wash:#0F2E28; --bad:#FF7A6B; --bad-wash:#33171A;
+  --display:"DM Serif Display", Georgia, serif;
+  --body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:16px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 500px at 85% -10%, rgba(91,155,255,.10), transparent 60%);background-attachment:fixed}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+::selection{background:var(--yellow);color:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));padding-block:34px 60px;display:grid;gap:16px}
+
+h1{font:400 clamp(38px,8vw,52px)/1 var(--display);margin:0;color:var(--yellow)}
+h1 span{color:var(--ink)}
+.sub{font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.sub b{color:var(--blue);font-weight:500}
+
+.score{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:10px;align-items:stretch}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat .k{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font:500 24px var(--mono);font-variant-numeric:tabular-nums;margin-top:2px}
+.stat.hi{border-color:var(--yellow);background:linear-gradient(160deg,var(--yellow-wash),var(--surface) 75%)}
+.stat.hi .v{color:var(--yellow)}
+.acts{display:grid;gap:8px}
+.btn{border:1px solid var(--line);background:var(--raised);padding:9px 14px;border-radius:10px;cursor:pointer;font-weight:700;font-size:14px;white-space:nowrap}
+.btn:hover{border-color:var(--blue)}
+.btn.y{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+.btn.b{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.armed{background:var(--bad);border-color:var(--bad);color:var(--bg)}
+
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 12px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted)}
+.chip small{font:500 11px var(--mono);margin-left:4px;opacity:.85}
+.chip[aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+
+.card{background:var(--surface);border:1px solid rgba(91,155,255,.5);border-radius:var(--r);padding:20px 22px;display:grid;gap:14px;min-width:0}
+.qh{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.qn{font:500 12px var(--mono);letter-spacing:.08em;color:var(--muted);margin-right:auto}
+.badge{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:7px;white-space:nowrap;background:var(--blue-wash);color:var(--blue)}
+.badge.y{background:var(--yellow-wash);color:var(--yellow)}
+.stem{font-size:18px;font-weight:500;line-height:1.5;margin:0;text-wrap:pretty}
+.stem b{color:var(--yellow);font-weight:700}
+.hint{font:500 12px var(--mono);letter-spacing:.06em;color:var(--yellow);text-transform:uppercase}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:12px;align-items:start;text-align:left;width:100%;background:var(--raised);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-size:15.5px;line-height:1.45}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt:disabled{cursor:default}
+.ol{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font:500 13px var(--mono);background:var(--sunk);border:1px solid var(--line);color:var(--muted)}
+.opt.sel{border-color:var(--yellow)}
+.opt.sel .ol{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+.opt.sata .ol{border-radius:6px}
+.opt.right{border-color:var(--ok);background:var(--ok-wash)}
+.opt.right .ol{background:var(--ok);border-color:var(--ok);color:var(--bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-wash)}
+.opt.wrong .ol{background:var(--bad);border-color:var(--bad);color:var(--bg)}
+.opt.missed{border-color:var(--ok);border-style:dashed}
+.mark{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding-top:5px;white-space:nowrap}
+.right .mark{color:var(--ok)} .wrong .mark,.missed .mark{color:var(--bad)}
+.missed .mark{color:var(--ok)}
+
+.verdict{font:700 17px var(--body);display:flex;gap:8px;align-items:center}
+.verdict.ok{color:var(--ok)} .verdict.no{color:var(--bad)}
+.rat{background:var(--sunk);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:10px}
+.rat p{margin:0;font-size:15px;line-height:1.6}
+.rat ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14.5px;color:var(--muted)}
+.rat ul b{color:var(--ink)}
+.tip{display:flex;gap:10px;align-items:baseline;background:var(--yellow-wash);border-radius:10px;padding:10px 12px;font-size:14px}
+.tip span{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);white-space:nowrap}
+
+.nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nav .sp{flex:1}
+.keys{font:500 11px var(--mono);color:var(--faint)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px}
+.dot{aspect-ratio:1;max-width:100%;border-radius:9px;border:1px solid var(--line);background:var(--surface);font:500 12px var(--mono);cursor:pointer;color:var(--muted);display:grid;place-items:center}
+.dot.ok{background:var(--ok-wash);border-color:var(--ok);color:var(--ok)}
+.dot.no{background:var(--bad-wash);border-color:var(--bad);color:var(--bad)}
+.dot.cur{outline:2px solid var(--yellow);outline-offset:1px;color:var(--ink)}
+.sec{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.foot{font-size:13px;color:var(--faint);line-height:1.5}
+.done{text-align:center;display:grid;gap:10px;justify-items:center}
+.done .big{font:400 56px/1 var(--display);color:var(--yellow)}
+
+@media (max-width:560px){
+  .score{grid-template-columns:repeat(3,1fr)}
+  .acts{grid-column:1/-1;grid-template-columns:1fr 1fr}
+  .stat .v{font-size:20px}
+  .card{padding:16px}
+  .stem{font-size:17px}
+  .keys{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Neuro <span>Practice</span></h1>
+    <div class="sub"><b>NUR 326 Med-Surg</b> · Neurological disorders · Med-Surg Success Ch 2 topics</div>
+  </header>
+
+  <section class="score" aria-label="Score">
+    <div class="stat hi"><div class="k">Score</div><div class="v" id="sPct">—</div></div>
+    <div class="stat"><div class="k">Correct</div><div class="v" id="sOk">0</div></div>
+    <div class="stat"><div class="k">Answered</div><div class="v" id="sDone">0</div></div>
+    <div class="acts"><button class="btn y" id="drill">Drill missed</button><button class="btn" id="reset">Start over</button></div>
+  </section>
+
+  <div class="chips" id="chips" aria-label="Topics"></div>
+
+  <main id="card" class="card" aria-live="polite"></main>
+
+  <section style="display:grid;gap:10px">
+    <div class="sec">Jump to a question</div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <p class="foot">Original practice questions written on the same topics as Chapter 2 of <i>Med-Surg Success</i>, with rationales. Check anything that conflicts with your instructor's materials against your textbook. Your progress saves on this device.</p>
+</div>
+
+<script>
+(() => {
+"use strict";
+/* k: one | sata.  a: indices of correct options.  why: notes on options (index -> text). */
+const Q = [
+/* ---------- Stroke ---------- */
+{t:"Stroke",k:"one",tag:"Priority",s:"A 68-year-old client arrives in the ED 90 minutes after sudden right-sided weakness and difficulty finding words. Blood pressure is 172/94. Which action should the nurse take <b>first</b>?",
+ o:["Give aspirin 325 mg by mouth.","Obtain a STAT noncontrast CT scan of the head.","Start a continuous heparin infusion.","Insert a nasogastric tube for medications."],a:[1],
+ r:"The client is inside the window for a clot-dissolving drug (alteplase, up to 3–4.5 hours from onset). Before any clot-busting or blood-thinning drug, a noncontrast CT has to rule out bleeding in the brain. Giving a thrombolytic or anticoagulant to a hemorrhagic stroke can be fatal.",
+ why:{0:"Aspirin waits until bleeding is ruled out, and the client needs a swallow screen first. It is also held for 24 hours after alteplase.",2:"Anticoagulation is never started before hemorrhage is excluded.",3:"An NG tube is not urgent and does not change acute treatment."},
+ tip:"Time is brain. In acute stroke the first question is always: is it a clot or a bleed? The CT answers it."},
+{t:"Stroke",k:"sata",tag:"SATA",s:"The nurse is assessing a client with a <b>left</b>-hemisphere stroke. Which findings does the nurse expect? <b>Select all that apply.</b>",
+ o:["Weakness or paralysis of the right arm and leg","Difficulty speaking or understanding language","Slow, cautious approach to tasks","Neglect of the left side of the body","Impulsive behavior and poor judgment"],a:[0,1,2],
+ r:"Each hemisphere controls the opposite side of the body, so a left-brain stroke causes right-sided weakness. The left hemisphere holds the language centers in most people, so aphasia is common. Left-brain stroke clients tend to be slow and cautious, and may be anxious or depressed.",
+ why:{3:"Left-side neglect is a right-hemisphere finding.",4:"Impulsivity and poor judgment are also right-hemisphere findings."},
+ tip:"Left brain = Language + Lethargic (slow, cautious). Right brain = Reckless (impulsive) + neglects the left."},
+{t:"Stroke",k:"one",tag:"Safety",s:"A client recovering from a stroke has not eaten or had anything to drink since admission. Before the first meal tray is given, what should the nurse do?",
+ o:["Offer thin liquids through a straw to check tolerance.","Sit the client upright and complete a bedside swallow screen.","Place food on the weaker side of the mouth to strengthen it.","Lower the head of the bed after the meal so the client can rest."],a:[1],
+ r:"Dysphagia is common after a stroke and puts the client at high risk for aspiration pneumonia. Nothing goes in by mouth until a swallow screen is passed. During and after meals, the client sits fully upright (about 90°).",
+ why:{0:"Thin liquids and straws are the hardest to control and increase aspiration risk.",2:"Food goes on the stronger side, where the client can feel and control it.",3:"The client stays upright for at least 30 minutes after eating."},
+ tip:"When a question mentions a new stroke and food, think aspiration first."},
+{t:"Stroke",k:"one",tag:"Teaching",s:"A client with atrial fibrillation is going home on apixaban after a TIA. Which statement shows the client understands the teaching?",
+ o:["“I'll take ibuprofen if my knees ache.”","“If I miss a dose, I'll take two the next time.”","“I'll switch to an electric razor and call if my stools turn black.”","“This medicine will dissolve the clot that caused my symptoms.”"],a:[2],
+ r:"Apixaban is an oral anticoagulant used to prevent new clots from forming in the atria during atrial fibrillation. Bleeding precautions are the key teaching: electric razor, soft toothbrush, and reporting black or tarry stools, blood in the urine, or unusual bruising.",
+ why:{0:"NSAIDs add to the bleeding risk.",1:"Doubling a dose raises the bleeding risk. The client follows the missed-dose instructions instead.",3:"Anticoagulants prevent new clots. They do not dissolve existing ones; that is what thrombolytics do."},
+ tip:"With any anticoagulant, the correct answer is usually a bleeding precaution."},
+
+/* ---------- Head injury & ICP ---------- */
+{t:"Head injury & ICP",k:"one",tag:"Assessment",s:"A client with a head injury is being monitored for increased intracranial pressure. Which finding is the <b>earliest</b> sign that ICP is rising?",
+ o:["Widening pulse pressure","Restlessness and new confusion","Bradycardia","Fixed, dilated pupils"],a:[1],
+ r:"A change in level of consciousness is the earliest and most sensitive sign of rising ICP. Even subtle restlessness, irritability or new confusion should be reported right away.",
+ why:{0:"Widening pulse pressure is part of Cushing's triad, a late sign.",2:"Bradycardia is also part of Cushing's triad.",3:"Fixed, dilated pupils mean herniation is occurring. This is a very late sign."},
+ tip:"Earliest = LOC change. Late = Cushing's triad: high BP with a widening pulse pressure, slow pulse, irregular breathing."},
+{t:"Head injury & ICP",k:"one",tag:"Calculation",s:"The nurse assesses a client after a fall. The client opens the eyes only to a painful stimulus, answers with random inappropriate words, and reaches up to push the nurse's hand away from the painful stimulus. What is the Glasgow Coma Scale score?",
+ o:["7","8","10","12"],a:[2],
+ r:"Eye opening to pain = 2. Inappropriate words = 3. Localizing (purposefully moving toward the stimulus to push it away) = 5. Total: 2 + 3 + 5 = 10. GCS ranges from 3 to 15, and 8 or below generally means the client cannot protect the airway.",
+ why:{1:"8 would apply if the client only withdrew (4) instead of localizing.",3:"12 would need confused speech (4) and eyes opening to voice (3)."},
+ tip:"Eyes 4 · Verbal 5 · Motor 6. Score 8 or less: intubate."},
+{t:"Head injury & ICP",k:"one",tag:"Priority",s:"A client with a suspected basilar skull fracture has clear fluid draining from the right ear. Which action is appropriate?",
+ o:["Pack the ear canal with gauze to stop the drainage.","Place a sterile pad loosely over the ear and check the drainage for a halo ring.","Irrigate the ear with sterile saline.","Insert a nasogastric tube to decompress the stomach."],a:[1],
+ r:"Clear drainage from the ear or nose after a skull fracture may be cerebrospinal fluid. Let it drain freely onto a loose sterile pad and look for a halo or ring (a yellowish ring around blood on gauze), then report it. Blocking the leak can raise ICP and trap bacteria, which increases the risk of meningitis.",
+ why:{0:"Packing blocks the flow and raises the infection risk.",2:"Irrigating introduces bacteria straight toward the brain.",3:"Nothing goes through the nose with a basilar skull fracture. A tube can pass into the brain."},
+ tip:"Suspected CSF leak: don't block it, don't put anything in, watch for meningitis."},
+{t:"Head injury & ICP",k:"sata",tag:"SATA",s:"Which interventions help prevent increases in intracranial pressure? <b>Select all that apply.</b>",
+ o:["Keep the head of the bed at 30 degrees with the head midline","Limit each suctioning pass to 10 seconds or less","Give a stool softener to prevent straining","Flex the client's hips to 90 degrees for comfort","Place the client in Trendelenburg position"],a:[0,1,2],
+ r:"Raising the head of the bed to 30° with the head and neck in a neutral, midline position helps venous blood drain from the brain. Suctioning, coughing and straining (Valsalva) all spike ICP, so suctioning is kept brief and stool softeners prevent straining.",
+ why:{3:"Sharp hip flexion raises intra-abdominal and intrathoracic pressure, which raises ICP.",4:"Head-down positioning increases blood volume in the brain."},
+ tip:"For ICP: head up, head midline, no straining, short suctioning."},
+{t:"Head injury & ICP",k:"one",tag:"Assessment",s:"A client hit the side of the head during a softball game, was briefly unconscious, then woke up and talked normally for about an hour. The client is now hard to arouse, and the right pupil is dilated. Which condition does the nurse suspect?",
+ o:["Concussion","Epidural hematoma","Chronic subdural hematoma","Diffuse axonal injury"],a:[1],
+ r:"An epidural hematoma is usually an arterial bleed (often the middle meningeal artery) after a blow to the temporal area. The classic pattern is a brief loss of consciousness, a lucid interval, and then rapid decline. It is a surgical emergency.",
+ why:{0:"A concussion does not cause a dilated pupil or rapid decline.",2:"A chronic subdural bleed is venous and develops over weeks.",3:"Diffuse axonal injury causes immediate, prolonged coma with no lucid interval."},
+ tip:"Lucid interval then crash = epidural (arterial)."},
+{t:"Head injury & ICP",k:"one",tag:"Evaluation",s:"A client with a severe brain injury showed decorticate posturing to pain this morning. Which finding this afternoon shows the client's condition is <b>worsening</b>?",
+ o:["The client localizes to a painful stimulus.","The client now shows decerebrate posturing.","The client withdraws the arm from pain.","The client opens the eyes when spoken to."],a:[1],
+ r:"Decerebrate posturing (arms extended and internally rotated) means deeper brainstem damage than decorticate posturing (arms flexed toward the core). Going from decorticate to decerebrate is a sign of deterioration and must be reported immediately.",
+ why:{0:"Localizing is a higher motor response than posturing, so it shows improvement.",2:"Withdrawal is also a higher motor response than posturing.",3:"Eyes opening to voice is an improvement."},
+ tip:"DeCORticate = arms toward the CORE (better). DEcerebrate = extended (worse)."},
+{t:"Head injury & ICP",k:"sata",tag:"Teaching",s:"A client with a mild concussion is being discharged home with a family member. What should the nurse teach the family to report right away? <b>Select all that apply.</b>",
+ o:["Vomiting more than once","A headache that keeps getting worse","New confusion or unusual sleepiness","Pupils of unequal size","Mild tiredness the next day"],a:[0,1,2,3],
+ r:"Repeated vomiting, a worsening headache, new confusion or drowsiness, unequal pupils, seizures, weakness, or clear fluid from the nose or ears can all mean bleeding or swelling in the brain. These need emergency evaluation.",
+ why:{4:"Some tiredness is expected after a concussion. Rest, acetaminophen for headache, and avoiding alcohol are standard teaching."},
+ tip:"Teaching about head injuries centers on warning signs of rising ICP."},
+
+/* ---------- Spinal cord injury ---------- */
+{t:"Spinal cord injury",k:"one",tag:"Priority",s:"A client with a C6 spinal cord injury suddenly reports a pounding headache. The face is flushed and sweaty, BP is 194/108, and the pulse is 52. What should the nurse do <b>first</b>?",
+ o:["Sit the client upright and lower the legs.","Check the bladder for distention.","Give the prescribed antihypertensive.","Notify the health-care provider."],a:[0],
+ r:"This is autonomic dysreflexia, a hypertensive emergency in injuries at T6 or above. Sitting the client up lowers blood pressure immediately by pooling blood in the legs. Next, find and remove the trigger: a full bladder is the most common cause, then constipation, then tight clothing or skin pressure.",
+ why:{1:"Checking the bladder is the next step, after positioning.",2:"Medication is used only if BP stays high after positioning and removing the cause.",3:"The nurse acts first, then notifies the provider."},
+ tip:"Autonomic dysreflexia: SIT UP, then hunt for the cause (bladder → bowel → skin)."},
+{t:"Spinal cord injury",k:"one",tag:"Assessment",s:"Which set of findings points to <b>neurogenic shock</b> in a client with a new T4 spinal cord injury?",
+ o:["BP 82/48, pulse 54, warm and dry skin","BP 82/48, pulse 128, cool and clammy skin","BP 190/110, pulse 50, flushed face","BP 136/84, pulse 92, absent reflexes below the injury"],a:[0],
+ r:"Neurogenic shock happens when the injury cuts off sympathetic nervous system control. Blood vessels dilate (hypotension), the heart rate stays slow because nothing is speeding it up, and the skin is warm and dry. It usually occurs with injuries at T6 or above.",
+ why:{1:"A fast pulse with cool, clammy skin is hypovolemic (bleeding) shock.",2:"High BP with a slow pulse and flushing is autonomic dysreflexia.",3:"Absent reflexes with normal vital signs is spinal shock, not neurogenic shock."},
+ tip:"Neurogenic shock is the 'warm' shock: low BP + low HR."},
+{t:"Spinal cord injury",k:"one",tag:"Priority",s:"A client is admitted with a C4 spinal cord injury. Which assessment is the nurse's <b>priority</b>?",
+ o:["Sensation in the hands","Bowel sounds","Respiratory rate, depth and oxygen saturation","Skin over the sacrum"],a:[2],
+ r:"The phrenic nerve (C3–C5) controls the diaphragm. A C4 injury and swelling around it can quickly cause respiratory failure, so breathing is monitored closely and the nurse prepares for ventilator support.",
+ why:{0:"Sensation is assessed, but it is not life-threatening.",1:"A paralytic ileus can develop, but breathing comes first.",3:"Pressure injury prevention matters but is not the immediate threat."},
+ tip:"“C3, 4, 5 keeps the diaphragm alive.”"},
+{t:"Spinal cord injury",k:"one",tag:"Safety",s:"A client is going home in a halo brace for a cervical fracture. Which instruction is <b>most</b> important?",
+ o:["Loosen the pins slightly if they feel tight.","Keep the wrench attached to the front of the vest at all times.","Use a heating pad under the vest for comfort.","Remove the vest to shower each day."],a:[1],
+ r:"The wrench must stay taped to the vest so the front panel can be removed quickly for CPR or an airway emergency. Pin sites are cleaned as prescribed and checked for infection.",
+ why:{0:"Only the provider adjusts the pins.",2:"Heat under the vest can burn skin the client may not be able to feel.",3:"The vest stays on. The client takes sponge baths."},
+ tip:"In safety questions, choose the answer that prevents an emergency from becoming fatal."},
+{t:"Spinal cord injury",k:"one",tag:"Priority",s:"The nurse raises the head of the bed for a client with a T2 spinal cord injury. The client says, “I feel dizzy and like I might pass out.” BP drops from 108/66 to 78/44. What is the nurse's <b>first</b> action?",
+ o:["Lower the head of the bed.","Increase the IV rate.","Apply an abdominal binder.","Call the rapid response team."],a:[0],
+ r:"This is orthostatic hypotension. Without sympathetic control, blood pools in the legs when the client sits up. Lowering the head of the bed restores blood flow to the brain right away. To prevent it, raise the client slowly and use an abdominal binder and compression stockings.",
+ why:{1:"Raising the IV rate needs an order and works slower than repositioning.",2:"A binder helps prevent episodes but is not the first fix.",3:"The nurse can correct this immediately without the rapid response team."},
+ tip:"When a position change causes the problem, the first fix is usually to undo the position."},
+
+/* ---------- Seizures ---------- */
+{t:"Seizures",k:"sata",tag:"SATA",s:"A client in bed begins a generalized tonic-clonic seizure. Which actions should the nurse take? <b>Select all that apply.</b>",
+ o:["Note the time the seizure starts","Turn the client onto the side if possible","Loosen tight clothing around the neck","Insert a padded tongue blade between the teeth","Hold the client's arms still to prevent injury"],a:[0,1,2],
+ r:"During a seizure the nurse protects the client from injury and keeps the airway open. Timing the seizure is critical: a seizure lasting more than 5 minutes is status epilepticus. Side-lying lets secretions drain, and loosening clothing helps breathing.",
+ why:{3:"Nothing goes in the mouth. It can break teeth or injure the client or the nurse.",4:"Restraint can cause fractures or other injury."},
+ tip:"Seizure care: time it, turn them, nothing in the mouth, never restrain."},
+{t:"Seizures",k:"one",tag:"Teaching",s:"A client is starting phenytoin for epilepsy. Which statement shows the client <b>needs more teaching</b>?",
+ o:["“I'll brush and floss carefully and see my dentist regularly.”","“I'll have my blood level checked as scheduled.”","“Once I've gone a month without a seizure, I can stop taking it.”","“I won't drink alcohol while I'm on this medicine.”"],a:[2],
+ r:"Antiseizure drugs are never stopped suddenly. Abrupt withdrawal can trigger status epilepticus. Any change is made by the provider with a gradual taper.",
+ why:{0:"Correct: phenytoin causes gingival hyperplasia (gum overgrowth).",1:"Correct: the therapeutic range is about 10–20 mcg/mL.",3:"Correct: alcohol lowers the seizure threshold and interacts with the drug."},
+ tip:"“Needs more teaching” = pick the WRONG statement."},
+{t:"Seizures",k:"one",tag:"Pharm",s:"A client has been seizing for 7 minutes without stopping. Which medication does the nurse expect to give <b>first</b>?",
+ o:["IV lorazepam","Oral levetiracetam","IV mannitol","IV dexamethasone"],a:[0],
+ r:"Status epilepticus is a seizure lasting more than 5 minutes, or repeated seizures without recovery between them. A fast-acting IV benzodiazepine (lorazepam) is the first-line drug, followed by a longer-acting drug such as fosphenytoin or levetiracetam IV. Support the airway and give oxygen throughout.",
+ why:{1:"An oral drug is too slow and unsafe during a seizure.",2:"Mannitol treats cerebral edema, not seizures.",3:"Dexamethasone treats edema around tumors, not active seizures."},
+ tip:"Stop the seizure first: benzodiazepine IV, then a long-acting antiseizure drug."},
+{t:"Seizures",k:"one",tag:"Calculation",s:"The provider orders phenytoin 1,000 mg IV in 100 mL of normal saline, infused no faster than 50 mg/minute. What is the <b>fastest</b> rate the nurse can set on the pump, in mL/hr?",
+ o:["150 mL/hr","200 mL/hr","300 mL/hr","500 mL/hr"],a:[2],
+ r:"1,000 mg ÷ 50 mg/min = 20 minutes minimum. 100 mL ÷ 20 min = 5 mL/min. 5 mL/min × 60 = 300 mL/hr. Infusing IV phenytoin too fast can cause hypotension and dysrhythmias, so the client is on a cardiac monitor. Phenytoin is mixed only in normal saline.",
+ why:{0:"150 mL/hr is safe but slower than the maximum allowed.",3:"500 mL/hr would deliver about 83 mg/min, which is unsafe."},
+ tip:"Find the minimum time first, then convert to mL/hr."},
+{t:"Seizures",k:"sata",tag:"Teaching",s:"Which factors should the nurse teach a client with epilepsy can trigger a seizure? <b>Select all that apply.</b>",
+ o:["Lack of sleep","Drinking alcohol","Missed medication doses","Flashing or strobe lights","Regular moderate exercise"],a:[0,1,2,3],
+ r:"Sleep deprivation, alcohol, missed doses, flickering lights, high stress, fever and low blood sugar all lower the seizure threshold. Clients keep a seizure diary to help identify personal triggers.",
+ why:{4:"Regular moderate exercise is encouraged and does not trigger seizures in most clients."},
+ tip:""},
+
+/* ---------- Brain tumors ---------- */
+{t:"Brain tumors",k:"one",tag:"Priority",s:"A client is 1 day after a transsphenoidal hypophysectomy. Which finding should the nurse report <b>immediately</b>?",
+ o:["Mild stuffiness with nasal packing in place","Urine output of 450 mL/hr with a specific gravity of 1.002","A headache rated 3 out of 10","Dry lips from mouth breathing"],a:[1],
+ r:"Surgery near the pituitary can damage the posterior pituitary and stop ADH production, causing diabetes insipidus. Large amounts of very dilute urine can quickly lead to dehydration and high sodium. Clear postnasal drainage that tests positive for glucose (a CSF leak) is the other complication to watch for.",
+ why:{0:"Stuffiness is expected with nasal packing.",2:"A mild headache is expected after surgery.",3:"Dry lips are expected. Mouth care and a humidifier help."},
+ tip:"Pituitary surgery: watch urine output (DI) and clear nasal drainage (CSF leak)."},
+{t:"Brain tumors",k:"one",tag:"Pharm",s:"A client with a brain tumor is receiving dexamethasone to reduce swelling around the tumor. Which lab result should the nurse monitor <b>most</b> closely?",
+ o:["Blood glucose","Serum calcium","Platelet count","Serum ammonia"],a:[0],
+ r:"Corticosteroids such as dexamethasone raise blood glucose, so glucose is checked regularly. Other teaching: take with food to protect the stomach, watch for infection, and never stop the drug abruptly.",
+ why:{1:"Calcium is not a main concern in short-term use.",2:"Steroids do not typically lower platelets.",3:"Ammonia relates to liver failure."},
+ tip:"Steroids raise sugar: check glucose."},
+
+/* ---------- Meningitis ---------- */
+{t:"Meningitis",k:"one",tag:"Infection control",s:"A client is admitted with suspected meningococcal meningitis. Which precautions should the nurse start?",
+ o:["Standard precautions only","Droplet precautions","Airborne precautions","Contact precautions only"],a:[1],
+ r:"Neisseria meningitidis spreads by respiratory droplets. Droplet precautions (private room and a surgical mask within about 3 feet) continue until the client has received 24 hours of effective antibiotics. Close contacts usually receive antibiotic prophylaxis such as rifampin or ciprofloxacin.",
+ why:{0:"Standard precautions alone do not stop droplet spread.",2:"Airborne precautions are for measles, varicella and tuberculosis.",3:"Contact precautions do not address droplet spread."},
+ tip:"Meningococcal = droplet, until 24 hours of antibiotics."},
+{t:"Meningitis",k:"sata",tag:"Assessment",s:"Which findings support a diagnosis of bacterial meningitis? <b>Select all that apply.</b>",
+ o:["Neck stiffness (nuchal rigidity)","Positive Kernig's sign","Positive Brudzinski's sign","Sensitivity to light","Fever","Positive Chvostek's sign"],a:[0,1,2,3,4],
+ r:"Irritated meninges cause neck stiffness, photophobia, fever and a severe headache. Kernig's sign is pain or resistance when the knee is straightened with the hip flexed. Brudzinski's sign is when bending the neck forward makes the hips and knees flex.",
+ why:{5:"Chvostek's sign (facial twitching when the cheek is tapped) points to low calcium."},
+ tip:"Kernig = Knee. Brudzinski = Bend the neck."},
+{t:"Meningitis",k:"one",tag:"Priority",s:"The nurse is caring for a client with meningococcal meningitis. Which finding should be reported to the provider <b>immediately</b>?",
+ o:["A purple, non-blanching rash spreading on the legs","Pain when looking at bright lights","A temperature of 100.8°F (38.2°C)","Neck stiffness"],a:[0],
+ r:"A spreading petechial or purpuric rash means meningococcemia: the bacteria are in the bloodstream. It can lead to septic shock, DIC and tissue death within hours. The other findings are expected with meningitis.",
+ why:{1:"Photophobia is an expected finding; dim the lights.",2:"Fever is expected and treated with antipyretics.",3:"Nuchal rigidity is expected with meningitis."},
+ tip:"When everything listed fits the disease, report the finding that signals a new, life-threatening complication."},
+{t:"Meningitis",k:"one",tag:"Procedure",s:"How should the nurse position a client for a lumbar puncture?",
+ o:["Prone with a pillow under the hips","Side-lying with the knees drawn toward the chest and chin tucked","Supine with the head of the bed at 45 degrees","Trendelenburg position"],a:[1],
+ r:"Curling into a fetal position (or sitting and leaning forward over a table) widens the spaces between the lumbar vertebrae so the needle can reach the CSF. Before the procedure the client empties the bladder and consent is confirmed. Afterward, encourage fluids and report a severe headache, numbness or drainage at the site.",
+ why:{0:"Prone does not open the vertebral spaces.",2:"Supine does not give access to the back.",3:"Trendelenburg is not used for a lumbar puncture."},
+ tip:""},
+
+/* ---------- Parkinson's ---------- */
+{t:"Parkinson's",k:"sata",tag:"Assessment",s:"Which findings support a diagnosis of Parkinson's disease? <b>Select all that apply.</b>",
+ o:["Pill-rolling tremor at rest","Muscle rigidity","Slowed movement (bradykinesia)","Shuffling gait with poor balance","Exaggerated arm swing when walking"],a:[0,1,2,3],
+ r:"Parkinson's comes from a loss of dopamine in the basal ganglia. The cardinal signs are a resting tremor, rigidity (often 'cogwheel'), bradykinesia and postural instability. Clients also show a masklike face, small handwriting, a soft voice and trouble swallowing.",
+ why:{4:"Arm swing is reduced in Parkinson's, not exaggerated."},
+ tip:"TRAP: Tremor, Rigidity, Akinesia/bradykinesia, Postural instability."},
+{t:"Parkinson's",k:"one",tag:"Pharm",s:"A client is taking carbidopa-levodopa. Which statement shows the client understands the teaching?",
+ o:["“I'll eat a large high-protein meal right when I take each dose.”","“I'll get up slowly from bed or a chair.”","“If my urine darkens, I'll stop the medicine.”","“I'll stop taking it if my tremor gets better.”"],a:[1],
+ r:"Levodopa often causes orthostatic hypotension, so clients change position slowly to prevent falls. Carbidopa keeps levodopa from breaking down before it reaches the brain, so more of the dose gets there.",
+ why:{0:"Large high-protein meals compete with levodopa for absorption. Protein is spread through the day.",2:"Dark urine or sweat is harmless and expected.",3:"Stopping abruptly can cause severe rigidity and a dangerous reaction similar to NMS."},
+ tip:""},
+{t:"Parkinson's",k:"one",tag:"Priority",s:"Which goal is the <b>priority</b> for a client with advanced Parkinson's disease who coughs during meals?",
+ o:["The client will express feelings about body image.","The client will eat without signs of aspiration.","The client will name local support groups.","The client will maintain current body weight."],a:[1],
+ r:"Coughing during meals means dysphagia, and aspiration pneumonia is a leading cause of death in Parkinson's. Airway and breathing come first: upright position, small bites, chin tuck, thickened liquids as recommended by speech therapy, and suction nearby.",
+ why:{0:"Psychosocial goals come after physiologic ones.",2:"Support groups are important but not the priority.",3:"Weight is a nutrition goal; aspiration is an airway threat."},
+ tip:"Physiologic (ABC) needs come before psychosocial ones."},
+
+/* ---------- ALS ---------- */
+{t:"ALS",k:"one",tag:"Teaching",s:"A family member asks what to expect as ALS progresses. Which statement by the nurse is accurate?",
+ o:["“Thinking and the senses usually stay intact while the muscles weaken.”","“Memory loss is usually the first sign.”","“Sensation in the hands and feet is lost early.”","“Bladder control is lost first.”"],a:[0],
+ r:"ALS destroys upper and lower motor neurons. Muscles weaken and waste away, but sensation, eye movement, and bowel and bladder control are usually spared. Most people keep their thinking ability, although some develop frontotemporal changes. Death usually results from respiratory failure.",
+ why:{1:"ALS does not usually begin with memory loss.",2:"Sensory neurons are spared.",3:"Bowel and bladder control are usually preserved."},
+ tip:"ALS = Always Losing Strength, but not sensation or (usually) the mind."},
+{t:"ALS",k:"one",tag:"Pharm",s:"A client with ALS is starting riluzole. Which instruction should the nurse include?",
+ o:["Take it with a high-fat meal.","Expect routine blood tests to check liver function.","Increase leafy green vegetables.","Stop it if muscle weakness continues."],a:[1],
+ r:"Riluzole can raise liver enzymes, so liver function tests are monitored. It is taken on an empty stomach (1 hour before or 2 hours after meals), and any fever is reported because it can cause neutropenia. Riluzole slows the disease but does not stop it.",
+ why:{0:"High-fat meals reduce absorption.",2:"Leafy greens matter for warfarin, not riluzole.",3:"Weakness continues because riluzole only slows progression."},
+ tip:""},
+
+/* ---------- Encephalitis & West Nile ---------- */
+{t:"Encephalitis",k:"one",tag:"Pharm",s:"A client with herpes simplex encephalitis is receiving IV acyclovir. Which assessment is most important during therapy?",
+ o:["Daily blood glucose","Serum creatinine and urine output","Visual acuity","Bowel sounds"],a:[1],
+ r:"Acyclovir can crystallize in the kidneys and cause nephrotoxicity. The nurse keeps the client well hydrated, infuses the drug slowly, and monitors BUN, creatinine and urine output.",
+ why:{0:"Acyclovir does not significantly affect glucose.",2:"Vision is not the main concern with acyclovir.",3:"GI upset can occur but is not the main risk."},
+ tip:"Acyclovir: protect the kidneys."},
+{t:"Encephalitis",k:"sata",tag:"Teaching",s:"A community health nurse is teaching about preventing West Nile virus. Which points should be included? <b>Select all that apply.</b>",
+ o:["Empty standing water from flowerpots and birdbaths","Use an insect repellent such as DEET on exposed skin","Wear long sleeves and pants outdoors at dawn and dusk","Mosquitoes are most active in the middle of the day","The virus spreads easily by coughing and sneezing"],a:[0,1,2],
+ r:"West Nile virus spreads through the bite of an infected Culex mosquito, which breeds in standing water and bites most at dawn and dusk. In rare cases it spreads through blood transfusion, organ transplant or breast milk, but not through casual contact.",
+ why:{3:"Peak activity is dawn and dusk.",4:"It is not spread by respiratory droplets."},
+ tip:""},
+
+/* ---------- Substance use ---------- */
+{t:"Substance use",k:"one",tag:"Pharm",s:"A malnourished client with chronic alcohol use is admitted with confusion. An IV of dextrose 5% is ordered. What should the nurse give <b>before</b> starting the dextrose?",
+ o:["IV thiamine (vitamin B1)","IV naloxone","IV potassium chloride bolus","Oral folic acid"],a:[0],
+ r:"Chronic alcohol use depletes thiamine. Giving glucose first uses up the remaining thiamine and can trigger or worsen Wernicke's encephalopathy (confusion, ataxia, eye-movement problems), which can progress to Korsakoff syndrome with permanent memory loss and confabulation. Thiamine goes in before or with dextrose.",
+ why:{1:"Naloxone reverses opioids, not alcohol effects.",2:"Potassium is never given by IV push or bolus.",3:"Folic acid is often replaced too, but thiamine is the time-critical one."},
+ tip:"Thiamine before glucose."},
+{t:"Substance use",k:"one",tag:"Pharm",s:"A client is brought to the ED unresponsive with a respiratory rate of 6 and pinpoint pupils. While the nurse supports breathing with a bag-valve mask, which medication should the nurse anticipate?",
+ o:["Flumazenil","Naloxone","Atropine","Lorazepam"],a:[1],
+ r:"Pinpoint pupils, respiratory depression and unresponsiveness are the classic opioid overdose triad. Naloxone reverses opioids within minutes. It wears off before many opioids do, so the client is watched for recurring sedation and given repeat doses as needed. Withdrawal symptoms may appear suddenly.",
+ why:{0:"Flumazenil reverses benzodiazepines.",2:"Atropine treats bradycardia and organophosphate poisoning.",3:"Lorazepam would worsen respiratory depression."},
+ tip:"Pinpoint pupils + slow breathing = naloxone."},
+
+/* ---------- Prioritize & delegate ---------- */
+{t:"Prioritize & delegate",k:"one",tag:"Priority",s:"After shift report, which client should the nurse see <b>first</b>?",
+ o:["A client with an L2 spinal cord injury who is tearful about going home","A client with Parkinson's disease whose tremor is worse before the next dose","A client with a C6 spinal cord injury reporting a pounding headache, with BP 196/106","A client 3 days after a stroke with expected left-sided weakness"],a:[2],
+ r:"A pounding headache and severe hypertension in a client with an injury above T6 suggest autonomic dysreflexia, which can lead to stroke or seizures within minutes. The other clients are stable or have expected findings.",
+ why:{0:"Emotional support is important but not urgent.",1:"An end-of-dose tremor is expected and not life-threatening.",3:"Expected findings after a stroke do not need to be seen first."},
+ tip:"See the unexpected, unstable finding first. Expected findings can wait."},
+{t:"Prioritize & delegate",k:"one",tag:"Delegation",s:"Which task can the nurse delegate to unlicensed assistive personnel (UAP)?",
+ o:["Feeding the first meal to a client admitted yesterday with a stroke","Performing neuro checks on a client with a head injury","Repositioning a client with a stable, long-term stroke every 2 hours","Teaching a client with epilepsy how to keep a seizure diary"],a:[2],
+ r:"UAP can perform routine care for stable clients with predictable outcomes, such as turning, bathing, and feeding clients without swallowing problems. Assessment, teaching, evaluation and care of unstable clients stay with the nurse.",
+ why:{0:"A first meal after a new stroke needs a swallow assessment by the nurse.",1:"Neuro checks are assessment and cannot be delegated.",3:"Teaching cannot be delegated."},
+ tip:"The nurse keeps assessment, teaching, evaluation and unstable clients."}
+];
+
+/* ---------- state ---------- */
+const KEY = "neuroPractice.v1";
+let A = {};            // id -> {pick:[...], ok:bool}
+try { A = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { A = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(A)); } catch {} };
+Q.forEach((q, i) => q.id = "q" + i);
+/* Rotate single-answer options so the correct letter cycles A → B → C → D across the set
+   (calculation choices stay in numeric order; select-all items keep their order). */
+let slot = 0;
+Q.forEach(q => {
+  if (q.k !== "one" || q.tag === "Calculation") return;
+  const n = q.o.length, shift = ((slot++ % n) - q.a[0] + n) % n;
+  const map = {}; q.o.forEach((_, j) => map[j] = (j + shift) % n);
+  const o = []; q.o.forEach((t, j) => o[map[j]] = t); q.o = o;
+  q.a = q.a.map(j => map[j]);
+  const w = {}; Object.entries(q.why || {}).forEach(([k, v]) => w[map[k]] = v); q.why = w;
+});
+
+const TOPICS = ["All", ...new Set(Q.map(q => q.t))];
+let topic = "All", drill = false, cur = 0, picks = new Set();
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = "ABCDEF";
+
+function list(){
+  return Q.filter(q => (topic === "All" || q.t === topic) && (!drill || (A[q.id] && !A[q.id].ok)));
+}
+function same(a, b){ return a.length === b.length && a.every(x => b.includes(x)); }
+
+function renderScore(){
+  const done = Object.keys(A).length, ok = Object.values(A).filter(x => x.ok).length;
+  $("#sDone").textContent = `${done}/${Q.length}`;
+  $("#sOk").textContent = ok;
+  $("#sPct").textContent = done ? Math.round(ok / done * 100) + "%" : "—";
+  const miss = done - ok;
+  $("#drill").textContent = drill ? "Show all" : `Drill missed${miss ? ` (${miss})` : ""}`;
+  $("#drill").disabled = !drill && !miss;
+}
+function renderChips(){
+  $("#chips").innerHTML = TOPICS.map(t => {
+    const qs = Q.filter(q => t === "All" || q.t === t);
+    const d = qs.filter(q => A[q.id]), ok = d.filter(q => A[q.id].ok).length;
+    return `<button class="chip" data-topic="${esc(t)}" aria-pressed="${t === topic}">${esc(t)}<small>${d.length ? `${ok}/${d.length}` : qs.length}</small></button>`;
+  }).join("");
+}
+function renderGrid(){
+  const L2 = list();
+  $("#grid").innerHTML = L2.map((q, i) => {
+    const s = A[q.id]; const cls = s ? (s.ok ? "ok" : "no") : "";
+    return `<button class="dot ${cls} ${i === cur ? "cur" : ""}" data-jump="${i}" aria-label="Question ${Q.indexOf(q) + 1}${s ? (s.ok ? ", correct" : ", missed") : ""}">${Q.indexOf(q) + 1}</button>`;
+  }).join("");
+}
+function renderCard(){
+  const L2 = list();
+  if (!L2.length) {
+    $("#card").innerHTML = `<div class="done"><div class="big">${drill ? "All clear" : "—"}</div><p class="foot" style="margin:0">${drill ? "You've answered every missed question in this topic correctly." : "No questions here."}</p><button class="btn b" id="showAll">Show all questions</button></div>`;
+    return;
+  }
+  if (cur >= L2.length) cur = L2.length - 1;
+  const q = L2[cur], st = A[q.id], answered = !!st;
+  const shown = answered ? st.pick : [...picks];
+  const sata = q.k === "sata";
+  let opts = q.o.map((o, i) => {
+    let cls = "opt" + (sata ? " sata" : ""), mark = "";
+    if (answered) {
+      const isA = q.a.includes(i), isP = shown.includes(i);
+      if (isA && isP) { cls += " right"; mark = "Correct"; }
+      else if (!isA && isP) { cls += " wrong"; mark = "Your pick"; }
+      else if (isA && !isP) { cls += " missed"; mark = "Missed"; }
+    } else if (picks.has(i)) cls += " sel";
+    return `<button class="${cls}" data-opt="${i}" ${answered ? "disabled" : ""} aria-pressed="${shown.includes(i)}"><span class="ol">${L[i]}</span><span>${esc(o)}</span><span class="mark">${mark}</span></button>`;
+  }).join("");
+  const whyList = Object.entries(q.why || {}).map(([i, w]) => `<li><b>${L[i]}.</b> ${esc(w)}</li>`).join("");
+  $("#card").innerHTML = `
+    <div class="qh"><span class="qn">QUESTION ${Q.indexOf(q) + 1} · ${cur + 1} OF ${L2.length}</span><span class="badge">${esc(q.t)}</span><span class="badge y">${esc(q.tag)}</span></div>
+    <p class="stem">${q.s}</p>
+    ${sata && !answered ? `<div class="hint">Select all that apply, then check your answer</div>` : ""}
+    <div class="opts">${opts}</div>
+    ${answered ? `
+      <div class="verdict ${st.ok ? "ok" : "no"}">${st.ok ? "✓ Correct" : "✗ Not quite"} <span class="foot" style="font-weight:500">Answer: ${q.a.map(i => L[i]).join(", ")}</span></div>
+      <div class="rat"><p>${esc(q.r)}</p>${whyList ? `<ul>${whyList}</ul>` : ""}${q.tip ? `<div class="tip"><span>Strategy</span>${esc(q.tip)}</div>` : ""}</div>` : ""}
+    <div class="nav">
+      <button class="btn" id="prev" ${cur === 0 ? "disabled" : ""}>← Back</button>
+      ${!answered ? `<button class="btn y" id="check" ${picks.size ? "" : "disabled"}>Check answer</button>` : `<button class="btn" id="retry">Try again</button>`}
+      <span class="sp"></span><span class="keys">keys: A–F · Enter · ← →</span>
+      <button class="btn b" id="next" ${cur >= L2.length - 1 ? "disabled" : ""}>Next →</button>
+    </div>`;
+}
+function render(){ renderScore(); renderChips(); renderGrid(); renderCard(); }
+
+function check(){
+  const q = list()[cur]; if (!q || A[q.id] || !picks.size) return;
+  const pick = [...picks].sort();
+  A[q.id] = { pick, ok: same(pick, q.a) };
+  save(); picks.clear(); render();
+}
+function go(n){ const L2 = list(); cur = Math.max(0, Math.min(L2.length - 1, n)); picks.clear(); render(); window.scrollTo({ top: $("#card").offsetTop - 12, behavior: "smooth" }); }
+
+document.addEventListener("click", e => {
+  const el = e.target.closest("button"); if (!el) return;
+  if (el.dataset.topic) { topic = el.dataset.topic; cur = 0; picks.clear(); return render(); }
+  if (el.dataset.jump !== undefined) return go(+el.dataset.jump);
+  if (el.dataset.opt !== undefined) {
+    const q = list()[cur], i = +el.dataset.opt;
+    if (q.k === "sata") picks.has(i) ? picks.delete(i) : picks.add(i);
+    else { picks.clear(); picks.add(i); }
+    return q.k === "sata" ? renderCard() : check();
+  }
+  switch (el.id) {
+    case "check": return check();
+    case "next": return go(cur + 1);
+    case "prev": return go(cur - 1);
+    case "retry": { const q = list()[cur]; delete A[q.id]; save(); picks.clear(); return render(); }
+    case "drill": drill = !drill; cur = 0; picks.clear(); return render();
+    case "showAll": drill = false; topic = "All"; cur = 0; return render();
+    case "reset":
+      if (!el.classList.contains("armed")) { el.classList.add("armed"); el.textContent = "Tap to confirm"; setTimeout(() => { if (el.isConnected) { el.classList.remove("armed"); el.textContent = "Start over"; } }, 3000); return; }
+      A = {}; save(); drill = false; cur = 0; picks.clear(); el.classList.remove("armed"); el.textContent = "Start over"; return render();
+  }
+});
+document.addEventListener("keydown", e => {
+  if (e.target.matches("input,textarea") || e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toUpperCase(), q = list()[cur]; if (!q) return;
+  const idx = L.indexOf(k);
+  if (idx >= 0 && idx < q.o.length && !A[q.id]) { e.preventDefault(); document.querySelector(`[data-opt="${idx}"]`)?.click(); }
+  else if (e.key === "Enter") { e.preventDefault(); A[q.id] ? go(cur + 1) : check(); }
+  else if (e.key === "ArrowRight") go(cur + 1);
+  else if (e.key === "ArrowLeft") go(cur - 1);
+});
+render();
+})();
+</script>
+
+</body></html>

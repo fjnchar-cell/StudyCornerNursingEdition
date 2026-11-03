@@ -1,0 +1,878 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Pharm Apps NGN Quiz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single question "card" like a printed MAR sheet, with a sticky score rail and a 1–100 map. */
+:root{
+  --paper:#f3f6f7; --sheet:#ffffff; --ink:#14212b; --muted:#5b6b76; --rule:#d5dee3; --tint:#e8eff2;
+  --accent:#0f6f8a; --accent-ink:#ffffff; --ok:#1f7a4d; --ok-bg:#e2f3ea; --bad:#b4372c; --bad-bg:#fbe7e4; --warn:#9a6a00; --warn-bg:#fff3d6;
+  --sel:#d8edf3;
+  --f-display:"Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0f1519; --sheet:#172027; --ink:#e4ecef; --muted:#93a4ae; --rule:#2a3741; --tint:#1d2932;
+  --accent:#4fb3cf; --accent-ink:#06222b; --ok:#5fcf95; --ok-bg:#13301f; --bad:#ff8a7d; --bad-bg:#3a1c19; --warn:#f2c35a; --warn-bg:#352a0d; --sel:#1d3d48; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f1519; --sheet:#172027; --ink:#e4ecef; --muted:#93a4ae; --rule:#2a3741; --tint:#1d2932;
+  --accent:#4fb3cf; --accent-ink:#06222b; --ok:#5fcf95; --ok-bg:#13301f; --bad:#ff8a7d; --bad-bg:#3a1c19; --warn:#f2c35a; --warn-bg:#352a0d; --sel:#1d3d48; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:1080px;margin:0 auto}
+header.top{padding-block:28px 12px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,4vw,36px);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0;font-size:15px}
+.mono{font-family:var(--f-mono)}
+.scorebox{display:flex;gap:18px;align-items:baseline;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.scorebox b{font-size:28px;font-family:var(--f-display)}
+.scorebox span{color:var(--muted);font-size:13px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:10px;border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.chip{font:600 13px/1 var(--f-mono);letter-spacing:.02em;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);border-radius:999px;padding:7px 11px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:hsl(var(--h) 60% 48%)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:focus-visible,button:focus-visible,select:focus-visible,.opt:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.spacer{flex:1}
+select.mode{font:500 13px var(--f-mono);padding:7px 10px;border-radius:8px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:20px;margin-top:18px}
+@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}}
+.sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:22px clamp(16px,3vw,28px);min-width:0}
+.qhead{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-bottom:14px}
+.qnum{font:600 14px var(--f-mono);color:var(--muted)}
+.tag{font:600 11px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;padding:5px 8px;border-radius:5px;background:var(--tint);color:var(--ink)}
+.tag.unit{background:hsl(var(--h) 70% 92%);color:hsl(var(--h) 60% 26%)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag.unit{background:hsl(var(--h) 35% 22%);color:hsl(var(--h) 70% 82%)}}
+:root[data-theme="dark"] .tag.unit{background:hsl(var(--h) 35% 22%);color:hsl(var(--h) 70% 82%)}
+.tag.nfs{background:var(--warn-bg);color:var(--warn)}
+.case{background:var(--tint);border-radius:8px;padding:14px 16px;margin:0 0 14px;font-size:15px;overflow-x:auto}
+.case .lbl,.why .lbl{display:block;font:600 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.stem{font-size:17px;margin:0 0 14px;max-width:70ch}
+table.tbl{border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+table.tbl th,table.tbl td{border:1px solid var(--rule);padding:6px 10px;text-align:left}
+table.tbl th{font-family:var(--f-mono);font-size:12px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--rule);border-radius:8px;padding:11px 13px;cursor:pointer;background:var(--sheet)}
+.opt input{margin-top:4px;accent-color:var(--accent);width:17px;height:17px;flex:none}
+.opt.on{background:var(--sel);border-color:var(--accent)}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok)}
+.opt.bad{background:var(--bad-bg);border-color:var(--bad)}
+.opt.miss{border:2px dashed var(--ok)}
+.mark{margin-left:auto;font:600 12px var(--f-mono);white-space:nowrap}
+.mark.ok{color:var(--ok)}.mark.bad{color:var(--bad)}
+.mx{overflow-x:auto}
+.mx table{border-collapse:collapse;width:100%;min-width:420px;font-size:15px}
+.mx th,.mx td{border-bottom:1px solid var(--rule);padding:9px 8px;text-align:center}
+.mx th{font:600 12px/1.3 var(--f-mono);color:var(--muted);vertical-align:bottom}
+.mx td:first-child,.mx th:first-child{text-align:left}
+.mx td.ok{background:var(--ok-bg)}.mx td.bad{background:var(--bad-bg)}.mx td.miss{box-shadow:inset 0 0 0 2px var(--ok)}
+.mx input{width:18px;height:18px;accent-color:var(--accent)}
+.cloze{font-size:17px;line-height:2.1;max-width:72ch}
+.cloze select{font:inherit;font-size:15px;padding:3px 6px;border-radius:6px;border:1px solid var(--accent);background:var(--sheet);color:var(--ink);max-width:100%}
+.cloze select.ok{border-color:var(--ok);background:var(--ok-bg)}.cloze select.bad{border-color:var(--bad);background:var(--bad-bg)}
+.fix{font:600 12px var(--f-mono);color:var(--ok)}
+.bow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:stretch}
+@media (max-width:640px){.bow{grid-template-columns:1fr}}
+.bow .col{border:1px solid var(--rule);border-radius:8px;padding:10px;display:grid;gap:6px;align-content:start}
+.bow h4{margin:0 0 4px;font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.bow .mid{border-color:var(--accent);border-width:2px}
+.bow .opt{padding:8px 10px;font-size:14px}
+.hl{font-size:17px;line-height:2;max-width:72ch}
+.hl .tok{border-radius:4px;padding:1px 3px;cursor:pointer;border-bottom:2px dotted var(--muted)}
+.hl .tok.on{background:#f8e27a;color:#1a1a1a;border-bottom-color:transparent}
+.hl .tok.ok{background:var(--ok-bg);color:var(--ink);outline:2px solid var(--ok)}
+.hl .tok.bad{background:var(--bad-bg);color:var(--ink);outline:2px solid var(--bad);text-decoration:line-through}
+.hl .tok.miss{outline:2px dashed var(--ok)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+button.btn{font:600 15px var(--f-body);padding:10px 16px;border-radius:8px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);cursor:pointer}
+button.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button.btn:disabled{opacity:.45;cursor:default}
+.result{font:600 15px var(--f-mono)}
+.result.ok{color:var(--ok)}.result.bad{color:var(--bad)}.result.part{color:var(--warn)}
+.why{margin-top:16px;border-top:1px solid var(--rule);padding-top:14px;max-width:72ch}
+.side{display:grid;gap:16px;align-content:start}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:14px}
+.panel h3{margin:0 0 10px;font:600 12px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.map{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.map button{font:500 11px var(--f-mono);aspect-ratio:1;border:1px solid var(--rule);border-radius:4px;background:var(--sheet);color:var(--ink);cursor:pointer;padding:0;max-width:100%}
+.map button.cur{outline:2px solid var(--accent);outline-offset:1px}
+.map button.s-ok{background:var(--ok);color:var(--sheet);border-color:var(--ok)}
+.map button.s-part{background:var(--warn);color:var(--sheet);border-color:var(--warn)}
+.map button.s-bad{background:var(--bad);color:var(--sheet);border-color:var(--bad)}
+.map button.dim{opacity:.25}
+.units{display:grid;gap:7px}
+.urow{display:grid;grid-template-columns:96px 1fr 44px;gap:8px;align-items:center;font:500 12px var(--f-mono);font-variant-numeric:tabular-nums}
+.track{height:8px;background:var(--tint);border-radius:4px;overflow:hidden}
+.track i{display:block;height:100%;background:hsl(var(--h) 60% 48%)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font:500 11px var(--f-mono);color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.note{font-size:13px;color:var(--muted)}
+.reset{margin-top:10px}
+@media (prefers-reduced-motion:no-preference){.opt,.tok,.map button{transition:background .15s,border-color .15s}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Pharm Apps NGN Quiz</h1>
+      <p class="sub">NUR 312 midterm review · 100 clinical-judgment items · built from your Weeks 1, 6, 7, 9 &amp; 10 slides</p>
+    </div>
+    <div class="scorebox" aria-live="polite">
+      <div><b id="pct">0%</b> <span>score</span></div>
+      <div><b id="pts">0/0</b> <span>points</span></div>
+      <div><b id="done">0</b> <span>/ 100 answered</span></div>
+    </div>
+  </header>
+
+  <div class="bar" role="toolbar" aria-label="Filters">
+    <div id="chips" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    <span class="spacer"></span>
+    <label class="note" for="mode">Show</label>
+    <select id="mode" class="mode">
+      <option value="all">All questions</option>
+      <option value="unanswered">Unanswered</option>
+      <option value="missed">Missed or partial</option>
+    </select>
+  </div>
+
+  <div class="layout">
+    <main class="sheet" id="q" aria-live="polite"></main>
+    <aside class="side">
+      <div class="panel">
+        <h3>Question map</h3>
+        <div class="map" id="map"></div>
+        <div class="legend"><span><i style="background:var(--ok)"></i>Full credit</span><span><i style="background:var(--warn)"></i>Partial</span><span><i style="background:var(--bad)"></i>Zero</span></div>
+      </div>
+      <div class="panel">
+        <h3>Score by unit</h3>
+        <div class="units" id="units"></div>
+      </div>
+      <div class="panel">
+        <h3>How NGN scoring works here</h3>
+        <p class="note" style="margin:0">Multiple choice: 1 point. Select-all and highlight: +1 for each correct pick, −1 for each wrong pick (never below 0). Matrix and drop-down: 1 point per row or blank. Bowtie: 1 point per correct box (5 total).</p>
+        <button class="btn reset" id="reset" type="button">Clear all answers</button>
+        <p class="note" id="resetConfirm" hidden>Clear every answer? <button class="btn" id="resetYes" type="button">Yes, clear</button> <button class="btn" id="resetNo" type="button">Cancel</button></p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+// Types: mc {opts, a}, sata {opts, a:[]}, matrix {cols, rows:[[label, colIdx]]},
+// cloze {text with {0}.., blanks:[{o:[], a}]}, bowtie {cond:{o,a}, act:{o,a:[2]}, par:{o,a:[2]}},
+// highlight {parts:[string | [text, isCorrect]]}
+const Q = [];
+
+/* ================= ADRENERGIC (11) ================= */
+Q.push({unit:"adr", type:"mc",
+ case:"A client in septic shock is receiving norepinephrine (Levophed) through a peripheral IV in the left forearm. During hourly rounds the nurse finds the skin around the site cool, pale, and swollen.",
+ stem:"What is the nurse's FIRST action?",
+ opts:["Apply a warm compress to the site","Stop the norepinephrine infusion","Slow the infusion rate by half","Call the provider to request phentolamine"], a:1,
+ why:"Norepinephrine is a potent α vasoconstrictor. Extravasation can cause tissue necrosis. Stop the infusion first so no more drug enters the tissue. Phentolamine (an α blocker) is then injected into the site to reverse vasoconstriction, but stopping the drug comes first. Slowing the rate still delivers drug into the tissue."});
+
+Q.push({unit:"adr", type:"bowtie",
+ case:"<b>Nurse's note, 0730.</b> 61-year-old with type 1 diabetes and hypertension. Propranolol started 2 weeks ago. Skipped breakfast. Reports feeling \"foggy and sweaty.\" Denies shakiness or a racing heart. HR 58, BP 118/70, RR 16. Fingerstick glucose 48 mg/dL.",
+ stem:"Complete the diagram: the condition the client is most likely experiencing, 2 actions the nurse should take, and 2 parameters to monitor.",
+ cond:{o:["Hypoglycemia with masked warning signs","Beta-blocker overdose","Diabetic ketoacidosis","Orthostatic hypotension"],a:0},
+ act:{o:["Give 15 g of fast-acting carbohydrate","Recheck blood glucose in 15 minutes","Give prescribed insulin with breakfast","Prepare IV atropine","Teach the client to rely on tremor as a warning sign"],a:[0,1]},
+ par:{o:["Blood glucose","Level of consciousness","Peak expiratory flow","Serum potassium","Heart rate as a sign of low glucose"],a:[0,1]},
+ why:"Nonselective beta blockers like propranolol mask the adrenergic warning signs of hypoglycemia (tremor, tachycardia, nervousness). Sweating is not blocked, which is why the client is diaphoretic. Treat with the 15-15 rule. Monitor glucose and mental status. Heart rate is unreliable here because the drug blunts tachycardia. Atropine is for beta-blocker bradycardia with instability, which this client does not have."});
+
+Q.push({unit:"adr", type:"sata",
+ stem:"The nurse is teaching a client newly prescribed metoprolol for hypertension and angina. Which instructions should the nurse include? <i>Select all that apply.</i>",
+ opts:["Check your pulse before each dose and report a rate below 60.","Get up slowly from sitting or lying.","Do not stop this drug suddenly, even if you feel well.","Report a weight gain of more than 2 pounds in a day.","Expect your exercise tolerance to improve within a week.","If you miss a dose, take two doses next time."], a:[0,1,2,3],
+ why:"Beta blockers slow the heart and lower BP, so check pulse and rise slowly. Abrupt stopping causes rebound hypertension or chest pain. Sudden weight gain (>2 lb/day or 5 lb/week), edema, or dyspnea may mean heart failure. Beta blockers DECREASE exercise tolerance. Never double a missed dose."});
+
+Q.push({unit:"adr", type:"matrix",
+ stem:"Match each drug to its primary receptor action. Each row has one answer.",
+ cols:["α1 agonist","α1 blocker","α2 agonist","β1 agonist","β2 agonist"],
+ rows:[["Dobutamine",3],["Phenylephrine",0],["Albuterol",4],["Clonidine",2],["Tamsulosin",1]],
+ why:"Dobutamine: β1-selective inotrope. Phenylephrine: almost pure α1 vasoconstrictor. Albuterol: β2 bronchodilator. Clonidine: central α2 agonist that lowers sympathetic outflow. Tamsulosin: α1 blocker that relaxes prostate and bladder neck smooth muscle."});
+
+Q.push({unit:"adr", type:"mc",
+ case:"A 34-year-old with moderate persistent asthma (uses fluticasone/salmeterol daily) is seen for frequent migraines. The provider writes a new order for propranolol 40 mg PO twice daily for migraine prevention.",
+ stem:"What is the nurse's priority action?",
+ opts:["Give the first dose and teach the client to report dizziness","Contact the provider to question the order","Teach the client to take propranolol at the start of each migraine","Hold the fluticasone/salmeterol while starting propranolol"], a:1,
+ why:"Propranolol is NONselective. Blocking β2 receptors in the lungs causes bronchoconstriction, and severe pulmonary disease is a contraindication. It also blunts the client's β2 agonist (salmeterol). Question the order. Propranolol prevents migraines; it isn't taken at onset. Never hold asthma maintenance therapy."});
+
+Q.push({unit:"adr", type:"cloze",
+ stem:"Complete the statement.",
+ text:"A client in septic shock is started on norepinephrine. The nurse expects the drug to {0} by stimulating {1} receptors. The best evidence that the drug is working is {2}.",
+ blanks:[{o:["raise blood pressure","lower heart rate","dilate the bronchioles"],a:0},{o:["α1 and β1","β2 only","muscarinic"],a:0},{o:["MAP ≥ 65 mmHg and urine output ≥ 30 mL/h","improved peak flow","a lower blood glucose"],a:0}],
+ why:"Norepinephrine causes α-mediated vasoconstriction plus β1 cardiac stimulation. It has no β2 effect on the lungs. Adequate perfusion shows as a restored MAP and urine output, which slides list as therapeutic effects (increased urine output, normal VS, better skin color, better LOC)."});
+
+Q.push({unit:"adr", type:"highlight",
+ case:"72-year-old started on doxazosin 2 mg PO yesterday for BPH.",
+ stem:"Click to highlight the findings that require <b>follow-up</b>.",
+ parts:["Night nurse reports the client ",["fell while getting up to void at 0200",true],". Today the client says ",["his urine stream is stronger",false],". Lying BP ",["132/78",false],", standing BP ",["104/62",true],", standing HR ",["108",true],". ",["Voided 300 mL clear yellow urine",false],". Temp ",["98.4°F",false],". He ",["reports feeling lightheaded when he stands",true],"."],
+ why:"Alpha-1 blockers cause orthostatic hypotension and FIRST-DOSE SYNCOPE with reflex tachycardia. The fall, the 28-point systolic drop, the standing HR of 108, and the lightheadedness all need follow-up. A stronger urine stream and normal voiding are therapeutic effects. Teaching: take the first dose at bedtime and rise slowly."});
+
+Q.push({unit:"adr", type:"mc",
+ case:"A 40-year-old woman with a 5-mm ureteral stone is discharged with tamsulosin (Flomax). She says, \"Isn't this a man's prostate pill?\"",
+ stem:"Which response by the nurse is best?",
+ opts:["\"You're right. I'll call the provider because this drug is only for men.\"","\"It relaxes smooth muscle in the urinary tract, which helps the stone pass.\"","\"It dissolves the stone so it can pass in your urine.\"","\"It raises your blood pressure so your kidneys filter faster.\""], a:1,
+ why:"Tamsulosin is an α1 blocker. Relaxing smooth muscle in the ureter and bladder neck helps stones pass. Slides note it can be used in female patients with kidney stones. It doesn't dissolve stones, and it can LOWER BP (orthostatic hypotension)."});
+
+Q.push({unit:"adr", type:"sata",
+ case:"A client in cardiogenic shock has been on a dobutamine infusion for 6 hours.",
+ stem:"Which findings indicate the drug is having a therapeutic effect? <i>Select all that apply.</i>",
+ opts:["Urine output rose from 15 to 45 mL/h","Skin is warm and pink","Client is now alert and oriented","Peripheral edema has decreased","Heart rate 132 with new PVCs","New crackles in both lung bases"], a:[0,1,2,3],
+ why:"Slides list therapeutic effects of cardiovascular adrenergics: increased urine output, improved skin color and temperature, increased LOC, decreased edema, and return to normal vital signs. Tachycardia with ectopy is an adverse effect. New crackles suggest worsening fluid overload."});
+
+Q.push({unit:"adr", type:"mc",
+ case:"A client arrives in the ED after taking a large amount of his metoprolol. HR 38, BP 78/40, client is dizzy and pale.",
+ stem:"Which medication should the nurse prepare to give first?",
+ opts:["Flumazenil","Protamine sulfate","Atropine","Physostigmine"], a:2,
+ why:"Beta-blocker overdose management: atropine for bradycardia, then pacing and vasopressors for hypotension, and hemodialysis in severe cases. Flumazenil reverses benzodiazepines, protamine reverses heparin, and physostigmine reverses anticholinergic toxicity."});
+
+Q.push({unit:"adr", type:"matrix",
+ stem:"For each client, indicate whether beta-blocker therapy is <b>appropriate</b> or <b>contraindicated</b>.",
+ cols:["Appropriate","Contraindicated"],
+ rows:[["Stable client 3 days after an MI",0],["Second-degree heart block",1],["Chronic stable angina",0],["Cardiogenic shock",1],["Hypertension with no lung disease",0],["HR 48 at rest",1]],
+ why:"Beta blockers reduce O2 demand (angina), are cardioprotective after MI, and treat HTN. Contraindications include heart block, bradycardia, cardiogenic shock, uncompensated HF, severe pulmonary disease, pregnancy, and Raynaud's."});
+
+/* ================= CHOLINERGIC (11) ================= */
+Q.push({unit:"chol", type:"bowtie",
+ case:"<b>History:</b> 45-year-old with myasthenia gravis on pyridostigmine. Took \"a few extra pills\" because her eyelids felt heavy.<br><b>Now:</b> Heavy drooling, tearing, abdominal cramps, 3 loose stools in 2 hours, HR 48, BP 92/54, coarse crackles with increased secretions. Generalized muscle weakness is worse.",
+ stem:"Complete the diagram.",
+ cond:{o:["Cholinergic crisis","Myasthenic crisis","Anticholinergic toxicity","Serotonin syndrome"],a:0},
+ act:{o:["Give IV atropine as prescribed","Hold pyridostigmine","Give an additional pyridostigmine dose","Give physostigmine","Give neostigmine"],a:[0,1]},
+ par:{o:["Heart rate and rhythm","Respiratory status and secretions","Blood glucose","INR","Serum lithium level"],a:[0,1]},
+ why:"Excess cholinesterase inhibitor → too much ACh → SLUDGE, bradycardia, bronchial secretions, and worsening weakness (nicotinic overstimulation). This is cholinergic crisis, not myasthenic crisis. Hold the drug and give atropine, the cholinergic antidote. Physostigmine and neostigmine would make it worse. Watch HR and airway."});
+
+Q.push({unit:"chol", type:"mc",
+ case:"A client with postoperative urinary retention receives bethanechol (Urecholine) at 0900.",
+ stem:"By what time should the nurse expect the client to void if the drug is effective?",
+ opts:["0915","1000","1300","The next morning"], a:1,
+ why:"Slides: in urinary retention or hypotonic bladder, urination should occur within 60 minutes of bethanechol. If not, reassess (bladder scan) and notify the provider."});
+
+Q.push({unit:"chol", type:"sata",
+ stem:"The nurse reviews the chart of a client with a new prescription for bethanechol. Which findings would make this drug unsafe? <i>Select all that apply.</i>",
+ opts:["History of asthma","Apical pulse 52","Suspected small bowel obstruction","Hyperthyroidism","Urinary retention after surgery with no obstruction","Blood pressure 138/84"], a:[0,1,2,3],
+ why:"Cholinergics constrict bronchi, slow the heart, and increase GI/GU motility. Contraindications: asthma/COPD, bradycardia, GI or GU obstruction, hyperthyroidism, epilepsy, hypotension, Parkinson's, conduction defects. Postop non-obstructive retention is the indication. A BP of 138/84 is not a contraindication (hypotension is)."});
+
+Q.push({unit:"chol", type:"cloze",
+ stem:"Complete the statement.",
+ text:"Atropine is given preoperatively to {0}. After the dose, the nurse expects the heart rate to {1} and monitors the client for {2}.",
+ blanks:[{o:["reduce salivary and respiratory secretions","increase GI motility","constrict the pupils"],a:0},{o:["increase","decrease","stay the same"],a:0},{o:["urinary retention","diarrhea","bronchospasm"],a:0}],
+ why:"Atropine blocks muscarinic receptors: dries secretions, raises HR, dilates pupils, and causes urinary retention and constipation. Diarrhea and bronchospasm are cholinergic effects."});
+
+Q.push({unit:"chol", type:"highlight",
+ case:"81-year-old taking oxybutynin for overactive bladder. Home health visit on a 96°F July afternoon. No air conditioning.",
+ stem:"Highlight the findings that require <b>immediate follow-up</b>.",
+ parts:["Client ",["reports fewer urgency episodes this week",false],". Skin is ",["hot, flushed, and dry",true],". Temp ",["101.8°F",true],", HR ",["112",true],", BP 128/76. Daughter says she is ",["newly confused this afternoon",true],". Client ",["has not voided in 10 hours",true],". ",["Lung sounds clear",false],"."],
+ why:"Anticholinergics reduce sweating, so older adults are at high risk for HEATSTROKE. Hot, dry skin, fever, tachycardia, and new confusion point to heat illness or anticholinergic toxicity. Urinary retention is another anticholinergic effect. Fewer urgency episodes is the therapeutic effect."});
+
+Q.push({unit:"chol", type:"mc",
+ stem:"Dicyclomine (Bentyl) is prescribed for a client with irritable bowel syndrome. Which history finding should the nurse report to the prescriber before the first dose?",
+ opts:["Controlled hypertension","Angle-closure glaucoma","Seasonal allergies","Osteoarthritis of the knee"], a:1,
+ why:"Anticholinergics dilate pupils and raise intraocular pressure, which can trigger an acute attack in angle-closure glaucoma. Other contraindications: GI obstruction, myasthenia gravis, paralytic ileus, toxic megacolon."});
+
+Q.push({unit:"chol", type:"sata",
+ stem:"A client with myasthenia gravis is starting pyridostigmine. Which instructions are correct? <i>Select all that apply.</i>",
+ opts:["Take each dose about 30 minutes before meals.","Space doses evenly through the day.","Report increased muscle weakness or trouble breathing right away.","Do not stop the medication suddenly.","Skip doses on days you feel strong.","Take an extra dose whenever you feel weak."], a:[0,1,2,3],
+ why:"Taking it 30 minutes before meals improves chewing and swallowing. Even spacing optimizes effect. Weakness can mean under- OR overdosing (cholinergic crisis), so it must be reported. Clients should never self-adjust doses; overdosing is life-threatening."});
+
+Q.push({unit:"chol", type:"matrix",
+ stem:"Classify each finding as a <b>cholinergic</b> effect or an <b>anticholinergic</b> effect.",
+ cols:["Cholinergic","Anticholinergic"],
+ rows:[["Miosis (pupil constriction)",0],["Urinary retention",1],["Bradycardia",0],["Dry mouth",1],["Diarrhea",0],["Tachycardia",1],["Increased bronchial secretions",0]],
+ why:"Cholinergic = rest and digest: slow HR, constricted pupils, more secretions, more GI and bladder activity. Anticholinergic = can't see, can't pee, can't spit, can't poop, plus tachycardia."});
+
+Q.push({unit:"chol", type:"mc",
+ case:"The daughter of a client newly started on donepezil asks, \"How soon will her memory be back to normal?\"",
+ stem:"Which response is best?",
+ opts:["\"Most people return to normal memory within 2 weeks.\"","\"It helps manage symptoms but doesn't cure Alzheimer's. Improvement may take up to 6 weeks.\"","\"If there's no change in a week, she should double the dose.\"","\"It reverses the damage to her brain cells over time.\""], a:1,
+ why:"Slides: be honest that cholinesterase inhibitors manage symptoms, not cure. Effects may take up to 6 weeks. Look for improved mood and less confusion. Never self-adjust doses."});
+
+Q.push({unit:"chol", type:"mc",
+ case:"A toddler is brought to the ED after swallowing several of a grandparent's atropine-containing tablets. He is flushed, hot, and agitated with dilated pupils and HR 180.",
+ stem:"Which antidote should the nurse anticipate?",
+ opts:["Atropine","Physostigmine","Naloxone","Protamine sulfate"], a:1,
+ why:"Physostigmine (a cholinesterase inhibitor) is the antidote for atropine/anticholinergic overdose. Atropine is the antidote for the opposite problem (cholinergic toxicity). Treatment also includes supportive care, ECG monitoring, and activated charcoal."});
+
+Q.push({unit:"chol", type:"sata",
+ case:"Post-op day 2 after bowel surgery. Hypoactive bowel sounds and abdominal distension. Bethanechol is ordered.",
+ stem:"Which findings show the drug is working? <i>Select all that apply.</i>",
+ opts:["Active bowel sounds in all 4 quadrants","Passing flatus","Small soft bowel movement","Abdominal girth increased by 3 cm","HR 50 and dizzy","New expiratory wheezes"], a:[0,1,2],
+ why:"Slides: for decreased GI peristalsis, monitor for increased bowel sounds, passage of flatus, and bowel movements. Bradycardia and wheezing are cholinergic ADVERSE effects. Increasing girth means it isn't working."});
+
+/* ================= ANESTHESIA (7) ================= */
+Q.push({unit:"anes", type:"bowtie",
+ case:"<b>PACU, 20 min after intubation with succinylcholine.</b> Temp rose from 98.8°F to 104.5°F. Jaw and generalized muscle rigidity. HR 142, irregular. End-tidal CO2 rising. K+ 6.1 mEq/L.",
+ stem:"Complete the diagram.",
+ cond:{o:["Malignant hyperthermia","Sepsis","Anaphylaxis","Neuroleptic malignant syndrome"],a:0},
+ act:{o:["Stop the triggering agent and call for help","Give dantrolene IV as prescribed","Give another dose of succinylcholine","Give neostigmine","Apply warming blankets"],a:[0,1]},
+ par:{o:["Core temperature","Serum potassium and cardiac rhythm","Blood glucose","INR","Pupil size"],a:[0,1]},
+ why:"Succinylcholine (and inhaled anesthetics) can trigger malignant hyperthermia: rapid temperature rise, rigidity, tachycardia, rising CO2, and hyperkalemia. Treatment: stop the trigger and give dantrolene, plus active cooling. Monitor temperature, K+, and rhythm (hyperkalemia causes dysrhythmias)."});
+
+Q.push({unit:"anes", type:"mc",
+ case:"An intubated ICU client receives a continuous vecuronium infusion. He lies completely still, HR 112, BP 158/94. No sedative or analgesic is ordered.",
+ stem:"What should the nurse do?",
+ opts:["Document that the client appears comfortable","Contact the provider for sedation and analgesia orders","Increase the vecuronium rate","Give neostigmine to assess for pain"], a:1,
+ why:"Neuromuscular blockers paralyze but do NOT sedate or relieve pain. A paralyzed client can be fully awake and in pain. Tachycardia and hypertension may be the only clues. Sedation and analgesia must accompany NM blockade."});
+
+Q.push({unit:"anes", type:"sata",
+ stem:"A client will receive midazolam and fentanyl for moderate (procedural) sedation. Which nursing actions are appropriate? <i>Select all that apply.</i>",
+ opts:["Monitor SpO2 continuously","Check that the client responds to verbal commands","Have flumazenil and naloxone available","Count respiratory rate frequently","Prepare for planned intubation","Tell the client they will clearly remember the procedure"], a:[0,1,2,3],
+ why:"Moderate sedation keeps the client able to maintain their own airway and respond to commands; respiratory arrest is not expected. Still monitor SpO2, RR, and LOC, and keep reversal agents ready (flumazenil for benzos, naloxone for opioids). Clients usually do NOT recall the procedure."});
+
+Q.push({unit:"anes", type:"matrix",
+ stem:"Match each feature to the anesthetic agent.",
+ cols:["Propofol","Dexmedetomidine","Ketamine","Nitrous oxide"],
+ rows:[["Sedation without respiratory depression",1],["Hallucinations and disturbing dreams",2],["Monitor triglycerides if given with TPN",0],["Weakest general anesthetic; used in dental procedures",3],["α2-adrenergic agonist",1]],
+ why:"Dexmedetomidine (Precedex) is an α2 agonist: sedation and analgesia without respiratory depression. Ketamine causes psychomimetic effects. Propofol is a lipid emulsion: watch triglycerides. Nitrous oxide is the only inhaled gas used and the weakest."});
+
+Q.push({unit:"anes", type:"mc",
+ stem:"A provider asks for lidocaine with epinephrine before suturing a laceration. A student asks why epinephrine is added. What is the nurse's best answer?",
+ opts:["It speeds the onset of numbness.","It causes vasoconstriction, which prolongs the anesthetic and reduces bleeding.","It prevents an allergic reaction to lidocaine.","It counteracts lidocaine's sedative effect."], a:1,
+ why:"Epinephrine constricts local vessels, so the lidocaine stays at the site longer and bleeding decreases. Lidocaine is the most common amide local anesthetic and does not cause loss of consciousness."});
+
+Q.push({unit:"anes", type:"cloze",
+ stem:"Complete the statement.",
+ text:"Neostigmine is given at the end of surgery to reverse {0} neuromuscular blockers. Succinylcholine, a {1} agent, can cause {2}.",
+ blanks:[{o:["nondepolarizing","depolarizing","opioid"],a:0},{o:["depolarizing","nondepolarizing","benzodiazepine"],a:0},{o:["hyperkalemia","hypokalemia","hypoglycemia"],a:0}],
+ why:"Neostigmine (cholinesterase inhibitor) increases ACh to overcome nondepolarizing blockers like vecuronium and rocuronium. Succinylcholine depolarizes and holds the muscle depolarized. Complications include hyperkalemia, malignant hyperthermia, muscle pain, and respiratory arrest."});
+
+Q.push({unit:"anes", type:"mc",
+ stem:"A client is discharged with cyclobenzaprine for back spasms. Which statement shows a need for more teaching?",
+ opts:["\"I'll take it with food or milk.\"","\"This is only for short-term use.\"","\"A glass of wine at night will help me relax with it.\"","\"I won't drive until I know how it affects me.\""], a:2,
+ why:"Muscle relaxants cause CNS depression. Alcohol and benzodiazepines add to sedation and must be avoided. Taking with food, short-term use, and avoiding driving are all correct."});
+/* ================= NEURO (12) ================= */
+Q.push({unit:"neuro", type:"mc",
+ case:"A client is brought to the ED after swallowing a bottle of oral diazepam. He is very drowsy but responds to his name. RR 12, SpO2 95%.",
+ stem:"Which intervention should the nurse prepare for first?",
+ opts:["Hemodialysis","Flumazenil IV","Naloxone IV","Intubation and mechanical ventilation"], a:1,
+ why:"Flumazenil (Romazicon) reverses benzodiazepines. The client is still breathing adequately, so intubation isn't the first step. Naloxone reverses opioids. Hemodialysis does not remove benzodiazepines well."});
+
+Q.push({unit:"neuro", type:"mc",
+ case:"An 84-year-old received temazepam at 2200 for sleep. At 0400 the night nurse finds her wide awake, restless, reading, and watching TV.",
+ stem:"How should the nurse document this response?",
+ opts:["Allergic reaction","Teratogenic effect","Paradoxical reaction","Idiosyncratic tolerance"], a:2,
+ why:"A paradoxical reaction is the opposite of the expected effect. Older adults are prone to paradoxical excitement from benzodiazepines, and they often need lower doses."});
+
+Q.push({unit:"neuro", type:"mc",
+ case:"A 46-year-old woman is being discharged after a hysterectomy. The surgeon prescribed zolpidem 10 mg at bedtime PRN sleep.",
+ stem:"What is the nurse's priority action?",
+ opts:["Review side effects with the client","Suggest a glass of wine at bedtime instead","Contact the prescriber to question the dose","Help her find a pharmacy on the way home"], a:2,
+ why:"Recommended zolpidem dose is 5 mg for women and 10 mg for men; women clear it more slowly and have next-morning impairment. Question the dose first. Never combine with alcohol. Zolpidem carries a black box warning for complex sleep behaviors."});
+
+Q.push({unit:"neuro", type:"bowtie",
+ case:"A client with epilepsy has a generalized tonic-clonic seizure that has lasted 6 minutes without stopping. SpO2 86%. IV access in place.",
+ stem:"Complete the diagram.",
+ cond:{o:["Status epilepticus","Absence seizure","Syncope","Paradoxical benzodiazepine reaction"],a:0},
+ act:{o:["Give IV lorazepam as prescribed","Turn to the side and give oxygen","Insert a tongue blade","Restrain the extremities","Give an oral phenytoin dose"],a:[0,1]},
+ par:{o:["Seizure activity and duration","Respiratory rate and SpO2","INR","Serum lithium level","Urine specific gravity"],a:[0,1]},
+ why:"A generalized seizure lasting several minutes is status epilepticus. The slide answer is IV lorazepam (a benzodiazepine). Protect the airway (side-lying, oxygen). Never put anything in the mouth or restrain. Nothing goes by mouth during a seizure. Benzodiazepines can depress breathing, so watch RR and SpO2."});
+
+Q.push({unit:"neuro", type:"sata",
+ stem:"The nurse is giving an antiepileptic drug. Which guidelines should the nurse follow? <i>Select all that apply.</i>",
+ opts:["Monitor for drowsiness","Stop the drug once seizures disappear","Give it at the same time every day","Give it on an empty stomach","Notify the prescriber if the client can't take the medication (e.g., NPO)","Monitor drug levels, CBC, and liver function"], a:[0,2,4,5],
+ why:"AEDs cause sedation, need steady levels (same time daily), and should never be stopped abruptly or just held when NPO; call for an alternate route. Labs: liver, CBC, and serum drug levels. Most AEDs don't require an empty stomach."});
+
+Q.push({unit:"neuro", type:"cloze",
+ stem:"Use the trend to complete the statement.",
+ case:"<table class='tbl'><tr><th></th><th>Day 1</th><th>Day 4</th><th>Day 7</th></tr><tr><td>Phenytoin level (mcg/mL)</td><td>8</td><td>14</td><td>24</td></tr><tr><td>Findings</td><td>1 brief seizure</td><td>No seizures</td><td>Nystagmus, unsteady gait, slurred speech</td></tr></table>",
+ text:"The Day 7 level is {0} the therapeutic range of {1}. The nurse's priority is to {2}.",
+ blanks:[{o:["above","within","below"],a:0},{o:["10–20 mcg/mL","0.5–2 ng/mL","0.6–1.2 mEq/L"],a:0},{o:["hold the next dose and notify the provider","give the next dose as scheduled","request a dose increase"],a:0}],
+ why:"Phenytoin's therapeutic range is 10–20 mcg/mL. At 24 the client shows toxicity (nystagmus, ataxia, slurred speech). Hold and notify. 0.5–2 is digoxin; 0.6–1.2 is lithium."});
+
+Q.push({unit:"neuro", type:"mc",
+ case:"A client who has taken carbidopa-levodopa for Parkinson's disease for over a year wants to start a low-carb, high-protein diet to lose weight.",
+ stem:"How will this diet affect his drug therapy?",
+ opts:["It will have no effect.","High-protein meals can slow or block absorption of the drug.","High-protein meals will raise drug levels.","It's fine as long as he also takes vitamin B6."], a:1,
+ why:"Dietary protein competes with levodopa for absorption and transport into the brain. Teach to avoid high-protein meals; take the drug on an empty stomach when possible. Also avoid MAOIs."});
+
+Q.push({unit:"neuro", type:"sata",
+ stem:"A client has started amantadine (Symmetrel) for early Parkinson's disease. Which adverse effects should the nurse watch for? <i>Select all that apply.</i>",
+ opts:["Nausea","Palpitations","Dizziness","Insomnia","Fatigue"], a:[0,2,3],
+ why:"Slides list amantadine adverse effects as dizziness, insomnia, and nausea. Also avoid combining with cholinergic drugs. It usually works for about 12 months."});
+
+Q.push({unit:"neuro", type:"mc",
+ stem:"A client with narcolepsy has excessive daytime sleepiness. Which drug does the nurse expect to improve wakefulness?",
+ opts:["Phentermine","Almotriptan","Modafinil","Bromocriptine"], a:2,
+ why:"Modafinil (nonamphetamine stimulant) is used for narcolepsy and shift-work sleep disorder. Phentermine is an anorexiant. Triptans abort migraines. Bromocriptine is a dopamine agonist for Parkinson's."});
+
+Q.push({unit:"neuro", type:"mc",
+ stem:"A client will start sumatriptan for migraines. Which history finding may be a contraindication?",
+ opts:["Coronary artery disease","Chronic bronchitis","History of kidney stones","Type 2 diabetes"], a:0,
+ why:"Triptans are serotonin agonists that constrict blood vessels, including coronary arteries. Cardiovascular disease is a contraindication. Triptans abort migraines; they don't prevent them."});
+
+Q.push({unit:"neuro", type:"highlight",
+ case:"9-year-old on methylphenidate for ADHD for 6 months. Well-child visit.",
+ stem:"Highlight the findings that require <b>follow-up</b>.",
+ parts:["Teacher reports ",["improved focus in class",false],". Weight dropped from the ",["25th to the 10th percentile",true],". BP ",["128/86",true],". Parent says he ",["takes his third dose at 1900 with dinner",true]," and ",["has trouble falling asleep",true],". ",["Eats a full breakfast before the morning dose",false],"."],
+ why:"Stimulants suppress appetite (watch growth charts), raise BP and HR, and cause insomnia. The last dose should be 4–6 hours before bedtime, and stimulants are best on an empty stomach. Improved focus is the therapeutic effect."});
+
+Q.push({unit:"neuro", type:"matrix",
+ stem:"Match each finding or feature to the antiepileptic drug.",
+ cols:["Phenytoin","Valproic acid","Lamotrigine","Levetiracetam"],
+ rows:[["Gingival hyperplasia",0],["Stevens-Johnson syndrome risk",2],["Pancreatitis and hepatotoxicity",1],["Seizure prevention after a head injury; few interactions",3],["Also treats bipolar disorder; available as 'sprinkles'",1]],
+ why:"Phenytoin: gingival hyperplasia, range 10–20. Valproic acid: hepatotoxicity, pancreatitis, weight gain, hair loss; also bipolar. Lamotrigine: SJS rash; also bipolar. Levetiracetam: low side effects (sedation), few interactions, used after head injury and brain bleeds."});
+
+/* ================= MENTAL HEALTH (12) ================= */
+Q.push({unit:"psych", type:"bowtie",
+ case:"Client on lithium for 6 months for bipolar disorder. Had vomiting and diarrhea for 3 days. Now: coarse hand tremor, confusion, slurred speech, unsteady gait. Lithium level 1.9 mEq/L. BUN 32 mg/dL.",
+ stem:"Complete the diagram.",
+ cond:{o:["Lithium toxicity","Serotonin syndrome","Neuroleptic malignant syndrome","Expected lithium side effects"],a:0},
+ act:{o:["Hold lithium and notify the provider","Anticipate IV fluids (normal saline)","Give lithium with milk","Restrict sodium intake","Give flumazenil"],a:[0,1]},
+ par:{o:["Serum lithium level","Intake, output, and renal function","INR","Peak expiratory flow","Blood glucose"],a:[0,1]},
+ why:"Vomiting and diarrhea cause dehydration and sodium loss, and the kidneys hold on to lithium. A level of 1.5–2.0 brings confusion, coarse tremor, poor coordination, and sedation. Hold the drug and restore fluid and sodium. Never restrict sodium on lithium. Monitor levels and kidney function."});
+
+Q.push({unit:"psych", type:"sata",
+ stem:"The nurse is teaching a client starting sertraline (an SSRI). Which points are appropriate? <i>Select all that apply.</i>",
+ opts:["Avoid foods that contain tyramine.","Use caution when standing up from sitting.","Don't take products that contain St. John's wort.","Don't stop this medication suddenly.","Drug levels become toxic if you get dehydrated.","Check with the prescriber before taking OTC medicines."], a:[1,2,3,5],
+ why:"SSRIs can cause postural hypotension. St. John's wort raises serotonin syndrome risk. Taper to avoid withdrawal syndrome. Many OTC drugs interact. Tyramine restriction is for MAOIs. Dehydration toxicity is a lithium concern."});
+
+Q.push({unit:"psych", type:"mc",
+ stem:"A client was started on an antidepressant 4 weeks ago. The nurse calls to schedule follow-up. Which concern is the priority to assess during the call?",
+ opts:["Muscle weakness","Hallucinations","Suicidal ideation","Difficulty urinating"], a:2,
+ why:"As antidepressants start working, energy often returns before mood lifts, so suicide risk can rise in the first weeks. All antidepressants carry a black box warning about suicidal thinking."});
+
+Q.push({unit:"psych", type:"sata",
+ stem:"A client is taking phenelzine (Nardil). Which foods should the nurse teach the client to avoid? <i>Select all that apply.</i>",
+ opts:["Orange juice","Aged Swiss cheese","Fresh shrimp","Milk","Pepperoni pizza","Draft beer"], a:[1,4,5],
+ why:"Tyramine is high in aged, cured, and fermented foods: aged cheeses, pepperoni and salami, draft or tap beer, red wine, soy sauce. MAOIs block tyramine breakdown → hypertensive crisis. Fresh foods, OJ, and milk are fine."});
+
+Q.push({unit:"psych", type:"highlight",
+ case:"Client on phenelzine attended a wine-and-cheese party 2 hours ago. Arrives at urgent care.",
+ stem:"Highlight the findings consistent with the client's most likely complication.",
+ parts:["Reports a ",["severe pounding occipital headache",true]," and ",["stiff neck",true],". BP ",["212/118",true],". Feels ",["heart pounding",true],". RR ",["18",false],". Says ",["\"my mood has been better lately\"",false],". SpO2 ",["98%",false],"."],
+ why:"Tyramine (aged cheese, red wine) plus an MAOI causes hypertensive crisis: severe headache (often occipital), stiff neck, palpitations, and very high BP. Normal RR and SpO2 and an improving mood are not part of the crisis."});
+
+Q.push({unit:"psych", type:"matrix",
+ stem:"A client is taking haloperidol. Match each finding to the type of extrapyramidal symptom.",
+ cols:["Acute dystonia","Akathisia","Pseudoparkinsonism","Tardive dyskinesia"],
+ rows:[["Can't sit still; paces the hallway",1],["Eyes rolled upward, neck twisted to one side",0],["Shuffling gait and pill-rolling tremor",2],["Lip smacking and tongue rolling after years of therapy",3]],
+ why:"Acute dystonia: sudden spasms of face, neck, eyes, or larynx (can be an emergency). Akathisia: restlessness. Pseudoparkinsonism: stooped, shuffling, rigid, tremor. Tardive dyskinesia: late, involuntary oral-facial movements that may be permanent."});
+
+Q.push({unit:"psych", type:"mc",
+ stem:"A client with schizophrenia starts olanzapine (atypical antipsychotic). Which monitoring plan is most important?",
+ opts:["Weekly CBC for agranulocytosis","Weight, waist circumference, fasting glucose, and lipids","Serum drug levels every 3 days","Daily peak flow readings"], a:1,
+ why:"Atypical antipsychotics cause metabolic syndrome: weight gain (abdominal obesity), raised triglycerides, low HDL, high BP, and high fasting glucose. First-generation agents are more associated with EPS."});
+
+Q.push({unit:"psych", type:"cloze",
+ stem:"Complete the statement.",
+ text:"A client is admitted after swallowing 40 amitriptyline tablets. The priority assessment is {0} because TCA toxicity causes {1}. At discharge, the nurse expects the prescriber to order {2}.",
+ blanks:[{o:["continuous cardiac monitoring","peak expiratory flow","daily INR"],a:0},{o:["dysrhythmias and seizures","hyperkalemia","hypoglycemia"],a:0},{o:["a small, limited supply","a 90-day supply","a PRN supply"],a:0}],
+ why:"TCA toxicity causes cardiac dysrhythmias, confusion, and agitation, followed by seizures and coma. TCAs are lethal in overdose, so suicidal clients get limited supplies. Monitor for suicidal ideation."});
+
+Q.push({unit:"psych", type:"mc",
+ stem:"A client with delirium tremens is admitted. Which finding should the nurse expect?",
+ opts:["Tachycardia","Hypotension","Bradycardia","Somnolence"], a:0,
+ why:"Alcohol withdrawal causes sympathetic overactivity: elevated HR, BP, and temperature, plus tremors, agitation, and insomnia. Severe withdrawal (DTs) is treated with benzodiazepines, often in the ICU."});
+
+Q.push({unit:"psych", type:"mc",
+ stem:"Which statement should the nurse include when teaching about disulfiram (Antabuse)?",
+ opts:["\"It will cure your alcoholism if you take it as directed.\"","\"Drinking alcohol on this drug makes your blood pressure very high.\"","\"Avoid all alcohol for at least 3 to 4 days after your last dose.\"","\"If you miss a dose, double the next one.\""], a:2,
+ why:"Disulfiram stays active for days; alcohol within that window causes acetaldehyde syndrome (flushing, vomiting, HYPOtension, chest pain). Avoid hidden alcohol too: mouthwash, cough syrups, sauces. It deters drinking; it doesn't cure."});
+
+Q.push({unit:"psych", type:"mc",
+ stem:"A client starting nicotine polacrilex gum asks how to use it. Which instruction is correct?",
+ opts:["\"Chew it quickly and steadily for 30 minutes.\"","\"Chew until you notice a tingle, then park it between your cheek and gum.\"","\"Swallow the juice to absorb the nicotine faster.\"","\"Use it only if the patch causes skin irritation.\""], a:1,
+ why:"The gum releases nicotine through the cheek lining. Chew-and-park gives a steady dose. Rapid chewing releases a burst of nicotine and swallowed nicotine causes GI upset and hiccups. Gum gives faster craving relief than the patch, which provides a steady level."});
+
+Q.push({unit:"psych", type:"sata",
+ stem:"Which drug combinations place a client at risk for serotonin syndrome? <i>Select all that apply.</i>",
+ opts:["Sertraline + St. John's wort","Fluoxetine + phenelzine","Venlafaxine + paroxetine","Sertraline + acetaminophen","Buspirone + phenelzine","Paroxetine + loratadine"], a:[0,1,2,4],
+ why:"Combining serotonergic drugs (SSRIs, SNRIs, MAOIs, St. John's wort) risks serotonin syndrome. Buspirone is contraindicated with MAOIs and for 14 days after (hypertensive crisis and serotonergic effects). Acetaminophen and loratadine don't affect serotonin."});
+
+/* ================= RESPIRATORY (14) ================= */
+Q.push({unit:"resp", type:"mc",
+ case:"A client with chronic bronchitis calls for an albuterol refill 2 weeks after filling it. \"I use it whenever I need it, but now it makes me feel sick, and I need it more often.\"",
+ stem:"What is the nurse's most appropriate action?",
+ opts:["Confirm the pharmacy for the refill","Ask the client to come in for a respiratory evaluation","Tell the client not to use it so often","Ask the prescriber for a different inhaler"], a:1,
+ why:"Needing a rescue inhaler more often means the disease is worsening and needs evaluation. Overuse also causes adverse effects (tremor, tachycardia, nausea) and loss of β2 selectivity. Assess before changing anything."});
+
+Q.push({unit:"resp", type:"mc",
+ stem:"Which medication should the nurse teach a client with asthma to use during an acute asthma attack?",
+ opts:["Albuterol","Salmeterol","Theophylline","Montelukast"], a:0,
+ why:"Albuterol is the short-acting β2 agonist (SABA) rescue inhaler. Salmeterol (LABA), theophylline, and montelukast are maintenance drugs and are not for acute attacks."});
+
+Q.push({unit:"resp", type:"cloze",
+ stem:"Complete the statement.",
+ text:"A client is ordered albuterol 2 puffs and fluticasone 2 puffs. The nurse gives {0}. Between the two puffs of the same drug the nurse waits {1}. Before switching to the second drug the nurse waits {2}. After the fluticasone, the client should {3}.",
+ blanks:[{o:["albuterol first","fluticasone first","either one first"],a:0},{o:["1–2 minutes","10 minutes","no time"],a:0},{o:["2–5 minutes","30 seconds","15 minutes"],a:0},{o:["rinse the mouth and spit","hold their breath for 60 seconds","drink milk"],a:0}],
+ why:"Bronchodilator first opens the airways so the steroid reaches deeper. Wait 1–2 minutes between puffs of the same drug and 2–5 minutes between different drugs. Rinsing after an inhaled corticosteroid prevents oral candidiasis."});
+
+Q.push({unit:"resp", type:"bowtie",
+ case:"Client on isoniazid (INH), rifampin, and ethambutol for 6 weeks. Reports fatigue and nausea. Yellow sclera. Urine is \"dark like tea.\" Has orange-tinged tears. Drinks 3–4 beers daily. ALT 310 U/L (normal < 40).",
+ stem:"Complete the diagram.",
+ cond:{o:["Drug-induced hepatotoxicity","Expected rifampin discoloration","Peripheral neuropathy","Multidrug-resistant TB"],a:0},
+ act:{o:["Hold INH and notify the provider","Reinforce that alcohol must be avoided","Give an extra dose of vitamin B6","Tell the client orange tears mean liver damage","Double the INH dose"],a:[0,1]},
+ par:{o:["Liver function tests","Skin and sclera color","Visual acuity","Serum potassium","Peak expiratory flow"],a:[0,1]},
+ why:"INH and rifampin are hepatotoxic; alcohol increases the risk. Jaundice, dark urine, fatigue, and rising AST/ALT mean HOLD and report. Orange tears are an expected rifampin effect. Vitamin B6 prevents neuropathy, not hepatotoxicity. Visual checks are for ethambutol."});
+
+Q.push({unit:"resp", type:"sata",
+ case:"The wife of a client with TB is taking rifampin to prevent infection.",
+ stem:"Which statements by the wife show she understands the teaching? <i>Select all that apply.</i>",
+ opts:["\"My birth control pills won't work, so I'll use another method.\"","\"I'll take it for one week and then stop.\"","\"My urine may turn reddish-orange.\"","\"I'll wear my glasses instead of soft contacts.\"","\"I'll report yellow skin or eyes.\""], a:[0,2,3,4],
+ why:"Rifampin makes hormonal contraceptives ineffective, turns urine, sweat, and tears red-orange (staining soft lenses), and can cause hepatitis. TB therapy and prophylaxis last months, not a week."});
+
+Q.push({unit:"resp", type:"mc",
+ stem:"A sputum specimen for acid-fast bacilli is ordered for a client on TB drugs. When should the nurse collect it?",
+ opts:["Early morning","Noon","1700","2200"], a:0,
+ why:"Secretions pool overnight, so an early-morning specimen gives the best yield."});
+
+Q.push({unit:"resp", type:"mc",
+ stem:"Four weeks after starting outpatient TB therapy, a client still has night sweats. What should the nurse identify as the main concern?",
+ opts:["He is not taking his medication properly.","More time is needed to see a response.","His infection is resistant to therapy.","He has contracted a second strain of TB."], a:0,
+ why:"With drug-sensitive TB, symptoms improve within about 2 weeks. Nonadherence is the most common reason for poor response and should be assessed first. Resistance is possible but is confirmed by culture and sensitivity."});
+
+Q.push({unit:"resp", type:"matrix",
+ stem:"Match each finding or teaching point to the antitubercular drug.",
+ cols:["Isoniazid (INH)","Rifampin","Ethambutol"],
+ rows:[["Numbness and tingling in the feet",0],["Red-orange urine, tears, and sweat",1],["Blurred vision or red-green color changes",2],["Given with pyridoxine (vitamin B6)",0],["Makes oral contraceptives ineffective",1],["Needs baseline and routine eye exams",2]],
+ why:"INH = Interferes with B6, Neuropathy, Hepatotoxicity. Rifampin = RED-fampin and contraceptive failure. Ethambutol = Eye (optic neuritis)."});
+
+Q.push({unit:"resp", type:"mc",
+ stem:"Before giving diphenhydramine, which condition is most important for the nurse to ask about?",
+ opts:["Chronic hives","Motion sickness","Urinary retention","Insomnia"], a:2,
+ why:"First-generation antihistamines are anticholinergic and can worsen urinary retention (BPH) and narrow-angle glaucoma. Hives, motion sickness, and insomnia are indications."});
+
+Q.push({unit:"resp", type:"mc",
+ stem:"A client with a tracheostomy has pneumonia and very thick, dry secretions that are hard to cough up. Which drug is most helpful?",
+ opts:["Benzonatate","Dextromethorphan","Codeine cough syrup","Guaifenesin"], a:3,
+ why:"Guaifenesin is an expectorant that loosens and thins secretions. The other three are antitussives that suppress cough, which this client needs. Push fluids with expectorants."});
+
+Q.push({unit:"resp", type:"mc",
+ stem:"An antitussive would be the best choice for which client?",
+ opts:["A client with a productive cough","A client with chronic sinusitis","A client who had abdominal surgery yesterday","A client with influenza"], a:2,
+ why:"Antitussives are for nonproductive coughs where coughing does harm, such as straining a fresh abdominal incision. A productive cough should not be suppressed."});
+
+Q.push({unit:"resp", type:"highlight",
+ case:"58-year-old with hypertension calls the clinic about a cold.",
+ stem:"Highlight the findings that require <b>follow-up</b>.",
+ parts:["Has been ",["using oxymetazoline nasal spray 4 times a day for 2 weeks",true]," and says ",["the congestion is getting worse",true],". Also took ",["pseudoephedrine tablets for 5 days",true],". Home BP ",["168/98",true],". Reports ",["palpitations",true],". ",["Clear nasal drainage",false],". ",["Afebrile",false],"."],
+ why:"Topical decongestants used for more than a few days cause rebound congestion. Both oxymetazoline and pseudoephedrine are α-adrenergic and raise BP and HR. Decongestants are contraindicated or used with caution in hypertension. Clear drainage and no fever are expected in a cold."});
+
+Q.push({unit:"resp", type:"cloze",
+ stem:"Complete the statement.",
+ text:"A client on theophylline has a level of 24 mcg/mL with nausea, vomiting, and HR 124. The level is {0} the therapeutic range. If the client quits smoking, theophylline levels will likely {1}.",
+ blanks:[{o:["above","within","below"],a:0},{o:["rise","fall","stay the same"],a:0}],
+ why:"Theophylline's range is 10–20 mcg/mL (many prefer 5–15). Nausea, vomiting, restlessness, and tachycardia are early toxicity signs. Smoking speeds theophylline metabolism, so quitting slows it and levels RISE; doses may need lowering."});
+
+Q.push({unit:"resp", type:"matrix",
+ stem:"Classify each drug as a <b>rescue</b> (acute) or <b>maintenance</b> (long-term control) respiratory drug.",
+ cols:["Rescue","Maintenance"],
+ rows:[["Albuterol",0],["Salmeterol",1],["Montelukast",1],["Fluticasone (inhaled)",1],["Ipratropium",1],["Levalbuterol",0]],
+ why:"SABAs (albuterol, levalbuterol) are rescue inhalers. LABAs, LTRAs, inhaled corticosteroids, and anticholinergics like ipratropium are for prevention and maintenance. Slides state ipratropium is not for acute symptoms."});
+/* ================= CARDIAC (15) ================= */
+Q.push({unit:"card", type:"bowtie",
+ case:"<b>Home health visit.</b> 79-year-old with heart failure and A-fib on digoxin 0.25 mg daily and furosemide 40 mg BID. Reports nausea, no appetite for 3 days, and \"yellow rings around the lights.\" Apical pulse 52, irregular. Labs today: K+ 2.9 mEq/L, digoxin 2.8 ng/mL, creatinine 1.9 mg/dL.",
+ stem:"Complete the diagram.",
+ cond:{o:["Digoxin toxicity","Hyperkalemia","Acute MI","Expected digoxin effect"],a:0},
+ act:{o:["Hold digoxin and notify the provider","Anticipate potassium replacement","Give the next furosemide dose","Give digoxin with food to reduce nausea","Give atropine at home"],a:[0,1]},
+ par:{o:["Serum potassium","Apical pulse and ECG rhythm","aPTT","Blood glucose","Peak flow"],a:[0,1]},
+ why:"Digoxin's range is 0.5–2 ng/mL. Toxicity: bradycardia, nausea, anorexia, confusion, visual halos. Hypokalemia (from furosemide) and renal impairment both raise toxicity risk. Hold digoxin, correct K+, and monitor rhythm. Digoxin immune Fab is reserved for life-threatening dysrhythmias, K+ >5, or massive overdose."});
+
+Q.push({unit:"card", type:"mc",
+ case:"A client started lisinopril 3 days ago. She calls the nurse because her lips and tongue are swelling and her voice sounds hoarse.",
+ stem:"What is the nurse's priority?",
+ opts:["Give the next dose with an antihistamine","Assess the airway and activate emergency response","Reassure her that this is the common ACE inhibitor cough","Switch her to losartan"], a:1,
+ why:"Angioedema is a rare but potentially fatal ACE inhibitor reaction. Hoarseness suggests laryngeal involvement. Airway comes first. The drug is stopped permanently. Cough is a different, benign effect."});
+
+Q.push({unit:"card", type:"mc",
+ case:"A client with diabetes and normal blood pressure has a new prescription for lisinopril. She asks why, since she has never had hypertension.",
+ stem:"What is the best explanation?",
+ opts:["\"The doctor knows best.\"","\"You may be confused about your diagnosis.\"","\"It protects the heart after a heart attack.\"","\"It protects the kidneys in people with diabetes.\""], a:3,
+ why:"ACE inhibitors lower glomerular filtration pressure and reduce proteinuria. They are standard therapy to slow diabetic nephropathy, even in clients without hypertension."});
+
+Q.push({unit:"card", type:"matrix",
+ stem:"Match each drug to the adverse effect the nurse should teach about most.",
+ cols:["Dry, nonproductive cough","Peripheral (ankle) edema","Rebound HTN if stopped suddenly","First-dose syncope","Pulmonary toxicity"],
+ rows:[["Lisinopril",0],["Amlodipine",1],["Clonidine",2],["Prazosin",3],["Amiodarone",4]],
+ why:"ACE inhibitors cause a dry cough. Dihydropyridine CCBs cause peripheral edema and flushing. Clonidine must be tapered. α1 blockers cause first-dose syncope (give at bedtime). Amiodarone causes pulmonary toxicity, corneal deposits, and photosensitivity."});
+
+Q.push({unit:"card", type:"sata",
+ stem:"A male client takes isosorbide dinitrate for angina. Which substances could cause a drug interaction? <i>Select all that apply.</i>",
+ opts:["A glass of wine","Thyroid replacement hormone","Tadalafil (ED drug)","Metformin","Carvedilol"], a:[0,2,4],
+ why:"Alcohol, ED drugs (sildenafil, tadalafil, vardenafil), and other BP-lowering drugs like carvedilol add to nitrate vasodilation and can cause severe hypotension. ED drugs are absolutely contraindicated with nitrates."});
+
+Q.push({unit:"card", type:"cloze",
+ stem:"Complete the teaching for sublingual nitroglycerin.",
+ text:"At the start of chest pain, sit down and place {0} under the tongue. If the pain is not better {1} after the first dose, call 911. A {2} is common and usually fades with continued use.",
+ blanks:[{o:["1 tablet","2 tablets","3 tablets"],a:0},{o:["5 minutes","30 minutes","1 hour"],a:0},{o:["headache","dry cough","bradycardia"],a:0}],
+ why:"Take 1 tablet every 5 minutes, up to 3. Call 911 if pain is unrelieved 5 minutes after the first dose. Headache, reflex tachycardia, and postural hypotension are common. SL forms bypass first-pass metabolism."});
+
+Q.push({unit:"card", type:"mc",
+ case:"A client admitted for A-fib is going home on diltiazem. While reviewing his med list he says, \"I'm so tired, and when I stand up I'm so dizzy I can hardly walk.\"",
+ stem:"What is the nurse's priority action?",
+ opts:["Tell him this is normal","Call the provider","Check his blood pressure","Bring him a cup of coffee"], a:2,
+ why:"Diltiazem (Class IV CCB) carries a risk of hypotension and bradycardia. Assess first: check BP (and HR), then report findings to the provider."});
+
+Q.push({unit:"card", type:"mc",
+ case:"A client in the ED has PSVT that did not respond to calcium channel blockers. Immediately after rapid IV push adenosine, the monitor shows asystole.",
+ stem:"What is the nurse's priority action?",
+ opts:["Start CPR","Watch the monitor; this brief asystole resolves on its own","Prepare for intubation","Defibrillate"], a:1,
+ why:"Adenosine has a half-life of seconds. A brief period of asystole is expected as it resets the conduction system, and the rhythm returns quickly. Give it rapid IV push followed by a saline flush."});
+
+Q.push({unit:"card", type:"cloze",
+ stem:"Complete the statement.",
+ text:"A client with a PE is converted from IV heparin to warfarin. The two drugs overlap for at least {0}. Warfarin dosing is guided by the {1}. The heparin is stopped when {2}.",
+ blanks:[{o:["5 days","24 hours","2 weeks"],a:0},{o:["PT/INR","aPTT","platelet count"],a:0},{o:["the INR is therapeutic","the aPTT is normal","the first warfarin dose is given"],a:0}],
+ why:"Warfarin takes several days to reach full effect. Heparin provides anticoagulation until the INR is therapeutic, then it is stopped. This is not a 'double dose'; it's a bridge."});
+
+Q.push({unit:"card", type:"matrix",
+ stem:"Indicate how each anticoagulant is monitored.",
+ cols:["aPTT or anti-Xa","PT/INR","No routine coagulation monitoring"],
+ rows:[["Continuous IV heparin",0],["Warfarin",1],["Enoxaparin (Lovenox)",2],["Dabigatran (Pradaxa)",2],["Rivaroxaban (Xarelto)",2]],
+ why:"IV heparin: aPTT or anti-Xa every 6 hours. Warfarin: PT/INR. LMWH, direct thrombin inhibitors like dabigatran, and factor Xa inhibitors don't need routine coagulation monitoring. Still watch for bleeding."});
+
+Q.push({unit:"card", type:"highlight",
+ case:"75-year-old on warfarin for chronic A-fib fell at home 6 hours ago and hit his head on a table. His wife calls the clinic.",
+ stem:"Highlight the findings that require <b>immediate follow-up</b>.",
+ parts:["She reports ",["no cuts or visible bleeding",false],", but ",["a small lump on his scalp",true],". His ",["headache is getting worse",true],". He ",["seems more sleepy than usual",true]," and ",["asked the same question three times",true],". Last INR ",["4.1",true]," two days ago. ",["He ate a salad with spinach last night",false],"."],
+ why:"Anticoagulated clients who hit their heads can bleed inside the skull without any visible blood. Worsening headache, drowsiness, and confusion suggest intracranial bleeding, and an INR of 4.1 is above range. He needs urgent evaluation. One salad doesn't explain these findings; consistent vitamin K intake matters more."});
+
+Q.push({unit:"card", type:"sata",
+ stem:"Which instructions should the nurse include for a client starting warfarin? <i>Select all that apply.</i>",
+ opts:["Keep your intake of green leafy vegetables consistent.","Use a soft toothbrush and an electric razor.","Wear a medical alert bracelet.","Check with your provider before taking herbal or OTC products.","Never eat spinach again.","Take aspirin for headaches."], a:[0,1,2,3],
+ why:"Consistency, not elimination, of vitamin K keeps the INR stable. Prevent injury and bleeding. Many herbals (ginkgo, garlic) and OTC drugs (aspirin, NSAIDs) increase bleeding risk."});
+
+Q.push({unit:"card", type:"mc",
+ stem:"Which point should the nurse emphasize for a client taking a statin?",
+ opts:["Take it on an empty stomach before meals.","A low-fat diet is no longer needed.","Report muscle pain or dark urine right away.","Cholesterol will improve within 2 weeks."], a:2,
+ why:"Statins can cause rhabdomyolysis: muscle breakdown → myoglobinuria → acute kidney failure. It is usually reversible if the statin is stopped early. Statins are taken at bedtime and diet still matters."});
+
+Q.push({unit:"card", type:"sata",
+ stem:"A client has taken simvastatin for 6 months and is called in for a lab check. Which tests does the nurse expect? <i>Select all that apply.</i>",
+ opts:["PT/INR","Total cholesterol","Triglycerides","Liver function tests","Complete blood count","HDL and LDL","Creatine kinase (CK)"], a:[1,2,3,5,6],
+ why:"Monitor effectiveness with a lipid panel (total cholesterol, TG, HDL, LDL) and safety with liver function and CK (muscle injury). PT/INR and CBC aren't routine statin labs."});
+
+Q.push({unit:"card", type:"bowtie",
+ case:"<b>Neuro ICU.</b> Client receiving an alteplase infusion for acute ischemic stroke. 40 min into the infusion: BP fell from 168/92 to 96/54, HR rose from 88 to 124, client is restless and reports new severe back pain.",
+ stem:"Complete the diagram.",
+ cond:{o:["Internal bleeding","Anaphylaxis","Reperfusion dysrhythmia","Expected thrombolytic effect"],a:0},
+ act:{o:["Stop the alteplase infusion","Notify the provider immediately","Give a heparin bolus","Increase the infusion rate","Give vitamin K"],a:[0,1]},
+ par:{o:["Blood pressure and heart rate","Neurologic status","Blood glucose","Peak flow","Urine specific gravity"],a:[0,1]},
+ why:"Bleeding is the main thrombolytic risk. Signs of internal bleeding: falling BP, rising HR, restlessness, and new back or flank pain (retroperitoneal). Stop the infusion and notify. Neuro checks catch intracranial bleeding. Heparin would worsen bleeding; vitamin K reverses warfarin, not tPA."});
+
+/* ================= RENAL (6) — NOT FROM SLIDES ================= */
+Q.push({unit:"renal", type:"bowtie",
+ case:"Client with heart failure on furosemide 40 mg IV twice daily. Reports leg cramps and weakness. K+ 3.0 mEq/L. ECG shows flattened T waves and U waves.",
+ stem:"Complete the diagram.",
+ cond:{o:["Hypokalemia","Hyperkalemia","Hyponatremia","Fluid volume overload"],a:0},
+ act:{o:["Notify the provider and anticipate potassium replacement","Place the client on a cardiac monitor","Give KCl by IV push","Restrict fluids to 500 mL/day","Hold all of the client's medications"],a:[0,1]},
+ par:{o:["Serum potassium","Heart rhythm","Blood glucose","aPTT","Pupil response"],a:[0,1]},
+ why:"Loop diuretics waste potassium. Cramps, weakness, flat T waves, and U waves are classic hypokalemia. Replace K+ (never IV push) and monitor rhythm. Hypokalemia also raises digoxin toxicity risk."});
+
+Q.push({unit:"renal", type:"sata",
+ stem:"A client is starting spironolactone. Which teaching points are correct? <i>Select all that apply.</i>",
+ opts:["Avoid salt substitutes.","Don't take potassium supplements unless prescribed.","Report muscle weakness or an irregular heartbeat.","Report breast tenderness or enlargement.","Eat extra bananas and oranges each day.","Take your dose at bedtime."], a:[0,1,2,3],
+ why:"Spironolactone is potassium-sparing. Salt substitutes (KCl) and supplements raise the risk of hyperkalemia, which causes weakness and dysrhythmias. Gynecomastia is a known effect. Diuretics are taken in the morning."});
+
+Q.push({unit:"renal", type:"mc",
+ stem:"An order reads: \"Potassium chloride 20 mEq IV push now.\" What should the nurse do?",
+ opts:["Give it slowly over 2 minutes","Dilute it in 10 mL and push","Contact the prescriber to clarify the order","Give it IM instead"], a:2,
+ why:"IV potassium is never given by IV push; it can cause fatal dysrhythmias. It must be diluted and infused by pump (commonly ≤10 mEq/h peripherally). Clarify the order."});
+
+Q.push({unit:"renal", type:"matrix",
+ stem:"Match each statement to the diuretic.",
+ cols:["Furosemide","Hydrochlorothiazide","Spironolactone","Mannitol"],
+ rows:[["Most likely to cause hyperkalemia",2],["Used to reduce intracranial pressure",3],["Ototoxicity with rapid IV push",0],["May raise blood glucose and uric acid",1],["Use an in-line filter (crystals can form)",3],["Blocks aldosterone",2]],
+ why:"Loops: potent, ototoxic. Thiazides: hyperglycemia, hyperuricemia, hypercalcemia, hypokalemia. Spironolactone: aldosterone antagonist, keeps K+. Mannitol: osmotic, lowers ICP and IOP, filter needed."});
+
+Q.push({unit:"renal", type:"mc",
+ stem:"A client with increased intracranial pressure is receiving IV mannitol. Which finding requires the nurse to stop the infusion and notify the provider?",
+ opts:["Urine output 150 mL/h","New crackles and shortness of breath","Headache improving","Serum osmolality rising toward the goal"], a:1,
+ why:"Mannitol pulls fluid into the vascular space before it is excreted. In clients with poor cardiac reserve this can cause pulmonary edema or HF. High urine output is the expected effect."});
+
+Q.push({unit:"renal", type:"cloze",
+ stem:"Complete the statement.",
+ text:"A client on furosemide weighs 1.5 kg more than yesterday. This equals about {0} of retained fluid. The nurse should {1}. Furosemide is best given in the {2}.",
+ blanks:[{o:["1.5 liters","150 mL","15 liters"],a:0},{o:["report it to the provider","recheck in one week","encourage more fluids"],a:0},{o:["morning","evening","middle of the night"],a:0}],
+ why:"1 kg ≈ 1 L of fluid. A gain of more than 2 lb (about 1 kg) in a day suggests fluid retention and should be reported. Morning dosing prevents nighttime voiding and falls."});
+
+/* ================= GI (12) ================= */
+Q.push({unit:"gi", type:"mc",
+ stem:"A client with chronic renal failure wants an antacid for occasional heartburn. Which is the best choice?",
+ opts:["Magnesium-containing antacid","Calcium-containing antacid","Aluminum-containing antacid","No antacid is safe with kidney disease"], a:2,
+ why:"Slides: aluminum salts are recommended in renal disease because they are more easily excreted. Magnesium and calcium accumulate to toxic levels when the kidneys fail."});
+
+Q.push({unit:"gi", type:"mc",
+ stem:"An older adult is admitted for a possible GI bleed. Which acid-controlling drug is most likely to cause confusion and disorientation?",
+ opts:["An antacid","A proton pump inhibitor","An H2 receptor antagonist","A mucosal protectant"], a:2,
+ why:"H2 antagonists (especially cimetidine) can cause confusion in older adults. Use them with caution in clients who are already confused, disoriented, or older, and assess renal and liver function."});
+
+Q.push({unit:"gi", type:"mc",
+ stem:"Which instruction should the nurse give a client taking a proton pump inhibitor?",
+ opts:["\"Take it with your first meal.\"","\"Take it on an empty stomach, 30 to 60 minutes before eating.\"","\"Take it whenever you have heartburn.\"","\"Take it at bedtime with a snack.\""], a:1,
+ why:"PPIs work best first thing in the morning on an empty stomach. Food decreases absorption. Don't crush or chew delayed-release granules."});
+
+Q.push({unit:"gi", type:"cloze",
+ stem:"Complete the statement.",
+ text:"A client is prescribed sucralfate 1 g four times daily and levothyroxine daily. The nurse gives the levothyroxine {0}. Sucralfate works by {1}. Its most common adverse effect is {2}.",
+ blanks:[{o:["at least 2 hours before the sucralfate","together with the sucralfate","1 hour after the sucralfate"],a:0},{o:["forming a protective barrier over the ulcer","neutralizing stomach acid systemically","blocking the proton pump"],a:0},{o:["constipation","diarrhea","hypokalemia"],a:0}],
+ why:"Sucralfate binds to the ulcer base and can bind other drugs too, impairing their absorption. Give other drugs at least 2 hours before. It acts locally, with little absorption. Constipation is common."});
+
+Q.push({unit:"gi", type:"mc",
+ stem:"A client on long-term antibiotics for an infected leg wound has had \"spells of diarrhea\" for a week. Which drug is most appropriate?",
+ opts:["Bismuth subsalicylate","Lactobacillus acidophilus","Diphenoxylate with atropine","Codeine"], a:1,
+ why:"Probiotics restore normal gut flora and are indicated for antibiotic-associated diarrhea. Also assess for C. difficile. Antimotility drugs can trap toxins in infectious diarrhea."});
+
+Q.push({unit:"gi", type:"mc",
+ stem:"A client with pernicious anemia asks why she can't just take a vitamin B12 pill. What is the nurse's best answer?",
+ opts:["\"Pills cause more stomach upset.\"","\"Your stomach lacks intrinsic factor, which is needed to absorb B12 from the gut.\"","\"The pills work, but injections are cheaper.\"","\"You'll only need B12 until your blood count is normal.\""], a:1,
+ why:"Pernicious anemia is a lack of intrinsic factor, so oral B12 isn't absorbed. Slides: B12 must be given IM (or intranasally), usually for life."});
+
+Q.push({unit:"gi", type:"sata",
+ stem:"The nurse is giving psyllium (Metamucil). Which actions and teaching points are correct? <i>Select all that apply.</i>",
+ opts:["Mix it in a full glass of water and drink it right away.","Drink additional fluid during the day.","Report chest pain or difficulty swallowing after a dose.","Use caution in clients with heart failure on fluid restriction.","Take it dry and follow with a sip of water.","Expect it to work within 15 minutes."], a:[0,1,2,3],
+ why:"Bulk formers absorb water. Without enough fluid they can cause esophageal obstruction or impaction. Fluid overload is a concern in HF. Onset is usually 12–72 hours, not minutes."});
+
+Q.push({unit:"gi", type:"sata",
+ stem:"A client has taken omeprazole daily for 5 years. Which complications should the nurse monitor for? <i>Select all that apply.</i>",
+ opts:["Clostridioides difficile infection","Hip or wrist fracture","Low magnesium","Pneumonia","Hyperkalemia","Tardive dyskinesia"], a:[0,1,2,3],
+ why:"Long-term PPI use is linked to C. difficile, osteoporosis and fractures, hypomagnesemia, and pneumonia, plus possible dementia and lupus. Tardive dyskinesia is a metoclopramide risk."});
+
+Q.push({unit:"gi", type:"bowtie",
+ case:"Client with diabetic gastroparesis has taken metoclopramide for 14 months. Spouse reports repeated lip smacking, tongue thrusting, and chewing motions that the client can't stop.",
+ stem:"Complete the diagram.",
+ cond:{o:["Tardive dyskinesia","Acute dystonia","Serotonin syndrome","Hypoglycemia"],a:0},
+ act:{o:["Hold metoclopramide and notify the provider","Document the type and frequency of movements","Increase the metoclopramide dose","Give atropine","Tell the client the movements will stop in a day"],a:[0,1]},
+ par:{o:["Involuntary facial and tongue movements","Ability to chew and swallow safely","INR","Serum lithium level","Peak flow"],a:[0,1]},
+ why:"Metoclopramide has a black box warning for tardive dyskinesia with long-term use. TD may be irreversible, so stop the drug early. Document movements (often with a scale like AIMS) and assess swallowing and nutrition."});
+
+Q.push({unit:"gi", type:"matrix",
+ stem:"Match each client situation to the most appropriate antiemetic.",
+ cols:["Meclizine","Ondansetron","Metoclopramide","Scopolamine patch","Dronabinol"],
+ rows:[["Severe vertigo from motion sickness",0],["Nausea before the first chemotherapy dose",1],["Delayed gastric emptying (gastroparesis)",2],["Preventing seasickness on a cruise",3],["Chemo-related nausea with poor appetite and weight loss",4]],
+ why:"Meclizine (H1 blocker) treats vertigo and motion sickness. Ondansetron (5-HT3 blocker) is first choice for chemo nausea, given 30–60 min before. Metoclopramide is prokinetic. Scopolamine patch goes behind the ear at least 4 hours before travel. Dronabinol (THC) treats chemo nausea and stimulates appetite."});
+
+Q.push({unit:"gi", type:"sata",
+ stem:"Which instructions should the nurse give a client starting oral ferrous sulfate? <i>Select all that apply.</i>",
+ opts:["Take it between meals with orange juice.","Stay upright for 15–30 minutes after each dose.","Black, tarry-looking stools are expected.","Keep it out of reach of children.","Take it with milk to protect your stomach.","Crush the extended-release tablet if it's hard to swallow."], a:[0,1,2,3],
+ why:"Vitamin C improves iron absorption. Staying upright prevents esophageal injury. Iron darkens stool. Iron overdose is a leading cause of pediatric poisoning. Milk, antacids, eggs, and cereal impair absorption. Never crush ER forms. If GI upset occurs, it can be taken with food."});
+
+Q.push({unit:"gi", type:"highlight",
+ case:"Client receiving TPN through a central line. During rounds the nurse finds the tubing disconnected; the infusion stopped about 1 hour ago.",
+ stem:"Highlight the findings that require <b>immediate</b> follow-up.",
+ parts:["Skin is ",["cold and clammy",true],". HR ",["118",true],". Client says she ",["feels dizzy and shaky",true],". Temp ",["98.8°F",false],". Line dressing ",["dry and intact",false],". ",["Voided 250 mL",false]," at 0600."],
+ why:"TPN is high in dextrose, so the body increases insulin output. When TPN stops suddenly, rebound HYPOGLYCEMIA can follow: cold clammy skin, tachycardia, dizziness, shakiness. The immediate action is to check blood glucose. The normal temperature, intact dressing, and voiding don't need immediate action."});
+
+const UNITINFO={adr:["Adrenergic",12],chol:["Cholinergic",160],anes:["Anesthesia",265],neuro:["Neuro",220],psych:["Mental health",320],resp:["Respiratory",195],card:["Cardiac",350],renal:["Renal",45],gi:["GI",95]};
+const TYPENAME={mc:"Multiple choice",sata:"Select all that apply",matrix:"Matrix",cloze:"Drop-down cloze",bowtie:"Bowtie",highlight:"Highlight"};
+// Seeded shuffle so option order is stable per question
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function perm(n,seed){const r=rng(seed),a=[...Array(n).keys()];for(let i=n-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+Q.forEach((q,i)=>{q.i=i;
+  if(q.opts) q.p=perm(q.opts.length,i*31+7);
+  if(q.type==="bowtie"){q.pc=perm(q.cond.o.length,i*13+1);q.pa=perm(q.act.o.length,i*17+2);q.pp=perm(q.par.o.length,i*19+3)}
+  if(q.type==="cloze") q.pb=q.blanks.map((b,k)=>perm(b.o.length,i*23+k));
+});
+const KEY="pharm-ngn-v1";
+let S={resp:{},score:{},cur:0,unit:"all",mode:"all"};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function maxPts(q){switch(q.type){case"mc":return 1;case"sata":return q.a.length;case"matrix":return q.rows.length;case"cloze":return q.blanks.length;case"bowtie":return 5;case"highlight":return q.parts.filter(p=>Array.isArray(p)&&p[1]).length}}
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function visible(){return Q.filter(q=>(S.unit==="all"||q.unit===S.unit)&&(S.mode==="all"||(S.mode==="unanswered"&&S.score[q.i]==null)||(S.mode==="missed"&&S.score[q.i]!=null&&S.score[q.i]<maxPts(q))))}
+
+function grade(q,r){
+  if(!r) return 0;
+  switch(q.type){
+    case"mc": return r.v===q.a?1:0;
+    case"sata":{let s=0;(r.v||[]).forEach(x=>s+=q.a.includes(x)?1:-1);return Math.max(0,s)}
+    case"matrix": return q.rows.reduce((s,row,k)=>s+((r.v||{})[k]===row[1]?1:0),0);
+    case"cloze": return q.blanks.reduce((s,b,k)=>s+((r.v||{})[k]===b.a?1:0),0);
+    case"bowtie":{let s=(r.c===q.cond.a)?1:0;(r.a||[]).forEach(x=>{if(q.act.a.includes(x))s++});(r.p||[]).forEach(x=>{if(q.par.a.includes(x))s++});return s}
+    case"highlight":{let s=0;(r.v||[]).forEach(k=>s+=q.parts[k][1]?1:-1);return Math.max(0,s)}
+  }
+}
+function answered(q,r){if(!r)return false;switch(q.type){case"mc":return r.v!=null;case"sata":case"highlight":return (r.v||[]).length>0;case"matrix":return Object.keys(r.v||{}).length===q.rows.length;case"cloze":return Object.keys(r.v||{}).length===q.blanks.length;case"bowtie":return r.c!=null&&(r.a||[]).length===2&&(r.p||[]).length===2}}
+
+function renderChips(){
+  const c=document.getElementById("chips");
+  const items=[["all","All",null]].concat(Object.entries(UNITINFO).map(([k,v])=>[k,v[0],v[1]]));
+  c.innerHTML=items.map(([k,l,h])=>`<button type="button" class="chip" aria-pressed="${S.unit===k}" data-u="${k}" ${h!=null?`style="--h:${h}"`:""}>${h!=null?'<span class="dot"></span>':''}${l}</button>`).join("");
+  c.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{S.unit=b.dataset.u;const v=visible();if(v.length&&!v.some(q=>q.i===S.cur))S.cur=v[0].i;save();renderAll()});
+}
+
+function renderQ(){
+  const el=document.getElementById("q");const v=visible();
+  if(!v.length){el.innerHTML=`<p class="stem">No questions match this filter.</p><p class="note">Try "All questions" or another unit.</p>`;return}
+  if(!v.some(q=>q.i===S.cur)) S.cur=v[0].i;
+  const q=Q[S.cur];const r=S.resp[q.i]||(S.resp[q.i]={});const done=S.score[q.i]!=null;const pos=v.findIndex(x=>x.i===q.i);
+  const [un,h]=UNITINFO[q.unit];
+  let html=`<div class="qhead"><span class="qnum">Q${q.i+1} · ${pos+1} of ${v.length} shown</span><span class="tag unit" style="--h:${h}">${un}</span><span class="tag">${TYPENAME[q.type]}</span>${q.unit==="renal"?'<span class="tag nfs">Not from your slides</span>':''}</div>`;
+  if(q.case) html+=`<div class="case"><span class="lbl">Client data</span>${q.case}</div>`;
+  html+=`<p class="stem">${q.stem}</p><div id="body"></div>`;
+  html+=`<div class="actions"><button class="btn" id="prev" type="button" ${pos===0?"disabled":""}>← Back</button><button class="btn primary" id="check" type="button" ${done?"hidden":""}>Check answer</button><button class="btn" id="retry" type="button" ${done?"":"hidden"}>Try again</button><button class="btn" id="next" type="button" ${pos===v.length-1?"disabled":""}>Next →</button><span class="result" id="res"></span></div>`;
+  html+=`<div class="why" id="why" ${done?"":"hidden"}><span class="lbl">Rationale</span>${q.why}</div>`;
+  el.innerHTML=html;
+  const body=el.querySelector("#body");
+  ({mc:rMC,sata:rSATA,matrix:rMX,cloze:rCZ,bowtie:rBT,highlight:rHL})[q.type](q,r,done,body);
+  if(done){const s=S.score[q.i],m=maxPts(q);const res=el.querySelector("#res");res.textContent=`${s}/${m} points`;res.className="result "+(s===m?"ok":s===0?"bad":"part")}
+  el.querySelector("#prev").onclick=()=>{S.cur=v[pos-1].i;save();renderAll(true)};
+  el.querySelector("#next").onclick=()=>{S.cur=v[pos+1].i;save();renderAll(true)};
+  el.querySelector("#check").onclick=()=>{
+    if(!answered(q,S.resp[q.i])){const res=el.querySelector("#res");res.textContent=q.type==="bowtie"?"Pick 1 condition, 2 actions, and 2 parameters.":"Answer every part first.";res.className="result part";return}
+    S.score[q.i]=grade(q,S.resp[q.i]);save();renderAll()};
+  el.querySelector("#retry").onclick=()=>{delete S.score[q.i];S.resp[q.i]={};save();renderAll()};
+}
+function optHTML(type,name,text,checked,cls,mark,dis){return `<label class="opt ${cls}"><input type="${type}" name="${name}" ${checked?"checked":""} ${dis?"disabled":""}><span>${text}</span>${mark?`<span class="mark ${mark[0]}">${mark[1]}</span>`:""}</label>`}
+function rMC(q,r,done,b){
+  b.innerHTML=`<div class="opts">${q.p.map(o=>{const sel=r.v===o;let cls=sel?"on":"",mk=null;if(done){if(o===q.a){cls=sel?"ok":"miss";mk=["ok",sel?"✓ Correct":"Correct answer"]}else if(sel){cls="bad";mk=["bad","✗"]}}return optHTML("radio","mc"+q.i,q.opts[o],sel,cls,mk,done)}).join("")}</div>`;
+  b.querySelectorAll("input").forEach((inp,k)=>inp.onchange=()=>{r.v=q.p[k];save();renderQ()});
+}
+function rSATA(q,r,done,b){
+  r.v=r.v||[];
+  b.innerHTML=`<div class="opts">${q.p.map(o=>{const sel=r.v.includes(o);let cls=sel?"on":"",mk=null;if(done){const c=q.a.includes(o);if(c&&sel){cls="ok";mk=["ok","+1"]}else if(c){cls="miss";mk=["ok","Missed"]}else if(sel){cls="bad";mk=["bad","−1"]}}return optHTML("checkbox","s"+q.i,q.opts[o],sel,cls,mk,done)}).join("")}</div>`;
+  b.querySelectorAll("input").forEach((inp,k)=>inp.onchange=()=>{const o=q.p[k];r.v=inp.checked?[...r.v,o]:r.v.filter(x=>x!==o);save();renderQ()});
+}
+function rMX(q,r,done,b){
+  r.v=r.v||{};
+  b.innerHTML=`<div class="mx"><table><thead><tr><th>Finding</th>${q.cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>${q.rows.map((row,k)=>`<tr><td>${row[0]}</td>${q.cols.map((c,j)=>{const sel=r.v[k]===j;let cls="";if(done){if(j===row[1])cls=sel?"ok":"miss";else if(sel)cls="bad"}return `<td class="${cls}"><input type="radio" name="m${q.i}_${k}" aria-label="${esc(row[0])}: ${esc(c)}" ${sel?"checked":""} ${done?"disabled":""} data-k="${k}" data-j="${j}"></td>`}).join("")}</tr>`).join("")}</tbody></table></div>`;
+  b.querySelectorAll("input").forEach(inp=>inp.onchange=()=>{r.v[inp.dataset.k]=+inp.dataset.j;save()});
+}
+function rCZ(q,r,done,b){
+  r.v=r.v||{};
+  const html=q.text.replace(/\{(\d)\}/g,(m,k)=>{k=+k;const bl=q.blanks[k];const cur=r.v[k];let cls="";if(done)cls=cur===bl.a?"ok":"bad";
+    let s=`<select data-k="${k}" class="${cls}" ${done?"disabled":""} aria-label="Blank ${k+1}"><option value="">Select…</option>${q.pb[k].map(o=>`<option value="${o}" ${cur===o?"selected":""}>${bl.o[o]}</option>`).join("")}</select>`;
+    if(done&&cur!==bl.a)s+=` <span class="fix">→ ${bl.o[bl.a]}</span>`;return s});
+  b.innerHTML=`<div class="cloze">${html}</div>`;
+  b.querySelectorAll("select").forEach(sel=>sel.onchange=()=>{if(sel.value==="")delete r.v[sel.dataset.k];else r.v[sel.dataset.k]=+sel.value;save()});
+}
+function rBT(q,r,done,b){
+  r.a=r.a||[];r.p=r.p||[];
+  const col=(title,set,ord,key,multi,mid)=>{
+    return `<div class="col ${mid?"mid":""}"><h4>${title}</h4>${ord.map(o=>{const sel=multi?r[key].includes(o):r[key]===o;const correct=multi?set.a.includes(o):set.a===o;let cls=sel?"on":"",mk=null;if(done){if(correct&&sel){cls="ok";mk=["ok","✓"]}else if(correct){cls="miss";mk=["ok","✓"]}else if(sel){cls="bad";mk=["bad","✗"]}}return optHTML(multi?"checkbox":"radio",`b${q.i}${key}`,set.o[o],sel,cls,mk,done).replace("<input",`<input data-key="${key}" data-o="${o}"`)}).join("")}</div>`};
+  b.innerHTML=`<div class="bow">${col("Actions to take (pick 2)",q.act,q.pa,"a",true)}${col("Condition most likely (pick 1)",q.cond,q.pc,"c",false,true)}${col("Parameters to monitor (pick 2)",q.par,q.pp,"p",true)}</div>`;
+  b.querySelectorAll("input").forEach(inp=>inp.onchange=()=>{const k=inp.dataset.key,o=+inp.dataset.o;
+    if(k==="c")r.c=o;else{let arr=r[k].filter(x=>x!==o);if(inp.checked){arr.push(o);if(arr.length>2)arr=arr.slice(-2)}r[k]=arr}
+    save();renderQ()});
+}
+function rHL(q,r,done,b){
+  r.v=r.v||[];
+  b.innerHTML=`<div class="hl">${q.parts.map((p,k)=>{if(!Array.isArray(p))return p;const sel=r.v.includes(k);let cls=sel?"on":"";if(done){if(p[1])cls=sel?"ok":"miss";else if(sel)cls="bad";else cls=""}return `<span class="tok ${cls}" role="checkbox" aria-checked="${sel}" tabindex="${done?-1:0}" data-k="${k}">${p[0]}</span>`}).join("")}</div><p class="note">Click or tap a phrase to highlight it. Click again to remove.</p>`;
+  if(done)return;
+  b.querySelectorAll(".tok").forEach(t=>{const tog=()=>{const k=+t.dataset.k;r.v=r.v.includes(k)?r.v.filter(x=>x!==k):[...r.v,k];save();renderQ()};t.onclick=tog;t.onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();tog()}}});
+}
+
+function renderSide(){
+  const v=new Set(visible().map(q=>q.i));
+  document.getElementById("map").innerHTML=Q.map(q=>{const s=S.score[q.i];let c="";if(s!=null){const m=maxPts(q);c=s===m?"s-ok":s===0?"s-bad":"s-part"}return `<button type="button" class="${c} ${q.i===S.cur?"cur":""} ${v.has(q.i)?"":"dim"}" data-i="${q.i}" aria-label="Question ${q.i+1}">${q.i+1}</button>`}).join("");
+  document.querySelectorAll("#map button").forEach(bt=>bt.onclick=()=>{const i=+bt.dataset.i;if(!v.has(i)){S.unit="all";S.mode="all";document.getElementById("mode").value="all"}S.cur=i;save();renderAll(true)});
+  let tp=0,tm=0,n=0;const per={};
+  Q.forEach(q=>{const s=S.score[q.i];if(s==null)return;n++;const m=maxPts(q);tp+=s;tm+=m;per[q.unit]=per[q.unit]||[0,0,0];per[q.unit][0]+=s;per[q.unit][1]+=m;per[q.unit][2]++});
+  document.getElementById("pct").textContent=tm?Math.round(100*tp/tm)+"%":"–";
+  document.getElementById("pts").textContent=`${tp}/${tm}`;
+  document.getElementById("done").textContent=n;
+  const tot={};Q.forEach(q=>tot[q.unit]=(tot[q.unit]||0)+1);
+  document.getElementById("units").innerHTML=Object.entries(UNITINFO).map(([k,[l,h]])=>{const p=per[k];const pc=p&&p[1]?Math.round(100*p[0]/p[1]):null;return `<div class="urow" style="--h:${h}"><span>${l}</span><span class="track" title="${p?p[2]:0} of ${tot[k]} answered"><i style="width:${pc||0}%"></i></span><span style="text-align:right">${pc==null?"–":pc+"%"}</span></div>`}).join("");
+}
+function renderAll(scroll){renderChips();renderQ();renderSide();if(scroll){const t=document.getElementById("q");if(t.getBoundingClientRect().top<0)t.scrollIntoView({block:"start"})}}
+document.getElementById("mode").value=S.mode;
+document.getElementById("mode").onchange=e=>{S.mode=e.target.value;save();renderAll()};
+document.getElementById("reset").onclick=()=>{document.getElementById("resetConfirm").hidden=false};
+document.getElementById("resetNo").onclick=()=>{document.getElementById("resetConfirm").hidden=true};
+document.getElementById("resetYes").onclick=()=>{S={resp:{},score:{},cur:0,unit:"all",mode:"all"};document.getElementById("mode").value="all";document.getElementById("resetConfirm").hidden=true;save();renderAll()};
+renderAll();
+</script>
+
+</body></html>

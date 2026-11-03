@@ -1,0 +1,447 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Community Health Case Studies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: single reading column of case cards under a sticky score + filter bar, like a stack of patient charts */
+:root{
+  --bg:#EBF0EF; --surface:#FFFFFF; --sunk:#F3F7F6; --ink:#15302D; --muted:#566B67; --line:#D3DEDB;
+  --accent:#0F6E66; --accent-ink:#FFFFFF; --ok:#2C7A3A; --ok-bg:#E6F3E8; --bad:#B0501C; --bad-bg:#FBEDE4;
+  --tip:#6B4FA0; --tip-bg:#F1ECF9;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1716; --surface:#152220; --sunk:#1B2B29; --ink:#E2ECEA; --muted:#94A9A5; --line:#2A3D3A;
+  --accent:#4DBDAF; --accent-ink:#0D1716; --ok:#71C982; --ok-bg:#1A3220; --bad:#EE9264; --bad-bg:#3A2419;
+  --tip:#B9A2E6; --tip-bg:#261F36; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1716; --surface:#152220; --sunk:#1B2B29; --ink:#E2ECEA; --muted:#94A9A5; --line:#2A3D3A;
+  --accent:#4DBDAF; --accent-ink:#0D1716; --ok:#71C982; --ok-bg:#1A3220; --bad:#EE9264; --bad-bg:#3A2419;
+  --tip:#B9A2E6; --tip-bg:#261F36; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:24px 64px}
+header h1{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+header p{color:var(--muted);margin:.4rem 0 0;max-width:60ch}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;margin-top:16px;border-bottom:1px solid var(--line);display:grid;gap:10px}
+.score{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.score b{color:var(--ink);font-variant-numeric:tabular-nums}
+.meter{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:4px;overflow:hidden;display:flex}
+.meter i{display:block;height:100%}
+.meter .m-ok{background:var(--ok)} .meter .m-bad{background:var(--bad)}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input[type=search],select{font:inherit;font-size:.95rem;padding:7px 10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px}
+input[type=search]{flex:1;min-width:160px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:600 .8rem var(--body);padding:5px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button:focus-visible,input:focus-visible,select:focus-visible,label:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.list{display:grid;gap:18px;margin-top:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:12px;min-width:0}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.meta .num{color:var(--accent);font-weight:500}
+.tag{border:1px solid var(--line);padding:2px 7px;border-radius:4px}
+.tag.sata{border-color:var(--tip);color:var(--tip)}
+.card h2{font-family:var(--display);font-weight:600;font-size:1.2rem;margin:0;line-height:1.25;text-wrap:balance}
+.chart{background:var(--sunk);border-radius:6px;padding:12px 14px;display:grid;gap:6px}
+.chart .vitals{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.chart p{margin:0}
+.q{font-weight:700;margin:0}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--surface)}
+.opt input{margin-top:4px;accent-color:var(--accent);flex:none}
+.opt .t{min-width:0}
+.opt .why{display:block;font-size:.88rem;color:var(--muted);margin-top:3px}
+.opt.right{border-color:var(--ok);background:var(--ok-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.missed{border-color:var(--ok);border-style:dashed}
+.done .opt{cursor:default}
+.mark{font-family:var(--mono);font-size:.72rem;font-weight:500;margin-left:6px}
+.right .mark{color:var(--ok)} .wrong .mark,.missed .mark{color:var(--bad)} .missed .mark{color:var(--ok)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{font:700 .95rem var(--body);padding:9px 16px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.verdict{font-weight:700}
+.verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)}
+.rat{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:10px}
+.rat p{margin:0}
+.rat h3{font:700 .78rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:0}
+.tip{background:var(--tip-bg);color:var(--ink);border-radius:6px;padding:10px 12px;font-size:.95rem}
+.tip b{color:var(--tip)}
+.empty{color:var(--muted);text-align:center;padding:32px 0}
+footer{margin-top:28px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){.rat{animation:in .25s ease-out}@keyframes in{from{opacity:.4;transform:translateY(-3px)}to{opacity:1;transform:none}}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Community Health Case Studies</h1>
+  <p>25 NCLEX-style cases built from your TB, epidemiology, grief, violence, safety and infection-control notes. Pick your answer, submit, then read the rationale.</p>
+</header>
+
+<div class="bar">
+  <div class="score">
+    <span>Answered <b id="sAns">0</b>/25</span>
+    <span>Correct <b id="sOk">0</b></span>
+    <span>Score <b id="sPct">–</b></span>
+    <div class="meter" aria-hidden="true"><i class="m-ok" id="mOk"></i><i class="m-bad" id="mBad"></i></div>
+  </div>
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search cases (e.g. N95, prevalence, walker)" aria-label="Search cases">
+    <select id="show" aria-label="Show">
+      <option value="all">All cases</option>
+      <option value="open">Not answered</option>
+      <option value="missed">Missed only</option>
+      <option value="sata">Select-all only</option>
+    </select>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Filter by topic"></div>
+</div>
+
+<div class="list" id="list"></div>
+<p class="empty" id="empty" hidden>No cases match. Clear the search or pick another topic.</p>
+
+<footer>
+  <span>SATA items score all-or-nothing, like a strict practice exam.</span>
+  <button class="btn ghost" id="reset">Reset all answers</button>
+</footer>
+</div>
+
+<script>
+const Q = [
+{cat:"Infection Control", title:"Active TB on admission", v:"54 M · Med-surg admit · AFB smear +",
+ s:"Mr. Okafor has had a productive cough for 3 weeks, night sweats, and blood-streaked sputum. His sputum smear is positive for acid-fast bacilli. He is being admitted.",
+ q:"Which actions should the nurse implement? Select all that apply.", sata:true,
+ o:[["Place him in a private negative-pressure room",1,"Negative airflow keeps droplet nuclei from escaping the room."],
+    ["Keep the room door closed",1,"An open door breaks the pressure differential."],
+    ["Wear a surgical mask when giving care",0,"Surgical masks do not filter droplet nuclei. Staff need an N95."],
+    ["Wear a fit-tested N95 respirator when entering",1,"Required PPE for Airborne Precautions."],
+    ["Leave the door open so staff can observe him",0,"Defeats the negative-pressure room."],
+    ["Have him wear a surgical mask if he must leave the room",1,"The client wears a surgical mask for transport to contain his own secretions."]],
+ r:"Active pulmonary TB spreads by airborne droplet nuclei. Airborne Precautions = private negative-pressure room, door closed, N95 for staff, surgical mask on the client for transport.",
+ tip:"<b>Airborne list:</b> “My Chicken Hez TB” = Measles, Chickenpox (varicella), Herpes zoster (disseminated), TB."},
+
+{cat:"Infection Control", title:"Positive skin test, no symptoms", v:"29 F · New-hire RN · TST 12 mm",
+ s:"Ms. Reyes is a new-hire nurse with no cough, fever, or weight loss. Her Mantoux test read at 48 hours shows 12 mm of induration.",
+ q:"What is the nurse's next action?",
+ o:[["Start her on a four-drug TB regimen",0,"Treatment is decided after active disease is confirmed or ruled out."],
+    ["Arrange a chest radiograph",1,"Confirms or rules out active disease."],
+    ["Place her on Airborne Precautions",0,"She has no symptoms of active disease."],
+    ["Repeat the skin test in one week",0,"A positive result does not need repeating; it needs follow-up imaging."]],
+ r:"A positive skin test shows TB exposure (infection), not necessarily active disease. A chest x-ray, and sputum testing if indicated, confirms or rules out active infection.",
+ tip:"<b>Skin test = Exposure. X-ray = Explains</b> whether it's active."},
+
+{cat:"Infection Control", title:"Placing a Mantoux test", v:"Clinic · Annual TB screening",
+ s:"A nursing student is placing a tuberculin skin test on a client's inner forearm while the nurse observes.",
+ q:"Which actions show correct technique? Select all that apply.", sata:true,
+ o:[["Draws up 0.1 mL of PPD",1,"Standard dose."],
+    ["Inserts the needle bevel-up at a 5–15° angle",1,"Intradermal angle."],
+    ["Confirms a pale wheal about 6–10 mm forms",1,"The wheal proves the dose went intradermal."],
+    ["Massages the site to spread the solution",0,"Massage can push PPD out of the dermis and distort the reading."],
+    ["Uses a 45° angle into subcutaneous tissue",0,"That is a subcutaneous injection; the test would be invalid."],
+    ["Tells the client to return in 48–72 hours for the reading",1,"Induration is read in that window."]],
+ r:"Mantoux = intradermal, 0.1 mL PPD, 5–15°, small wheal of about 6–10 mm. No massage. Read in 48–72 hours by measuring induration, not redness.",
+ tip:"<b>Point-one, five-to-fifteen, wheal is seen.</b>"},
+
+{cat:"Infection Control", title:"Farmworker on long TB therapy", v:"38 M · Seasonal farmworker · Month 3 of 9",
+ s:"Mr. Hernández is in month 3 of a 9-month TB treatment plan. He tells the nurse he is leaving next week to follow the harvest to another state.",
+ q:"Which action best supports continuity of his treatment?",
+ o:[["Enroll him in the Migrant Clinicians Network's tracking and record-sharing program",1,"Designed to follow mobile clients and transfer records so therapy continues."],
+    ["Give him a 6-month supply of medication to take on his own",0,"Unsafe; no monitoring for adherence or adverse effects."],
+    ["Pause therapy until he returns next season",0,"Interrupting therapy risks relapse and drug resistance."],
+    ["Tell him to find a clinic once he arrives",0,"Leaves the hand-off to chance."]],
+ r:"The Migrant Clinicians Network (MCN) runs a program that tracks migrant clients and shares health records across locations, which protects long treatments such as 6–12 months of TB therapy.",
+ tip:"<b>MCN = Moves Care with the Nomad.</b>"},
+
+{cat:"Epidemiology", title:"Is this an outbreak?", v:"Community health · County surveillance",
+ s:"A town that usually sees 1–2 cases of hepatitis A per month has reported 9 cases in the first 2 weeks of October.",
+ q:"What should the community health nurse do first?",
+ o:[["Launch a vaccination clinic at the town hall",0,"Implementation comes after assessment confirms the problem."],
+    ["Determine the number of new cases and compare it with past trends",1,"Assessment. Incidence shows whether a true increase occurred."],
+    ["Issue a public warning through local news",0,"Premature before the data are confirmed."],
+    ["Close the restaurants named by the clients",0,"An intervention without assessment."]],
+ r:"When an outbreak is suspected, assessment comes first in the nursing process. Counting new cases (incidence) and comparing them with historical data confirms whether a significant increase has happened.",
+ tip:"<b>ADPIE:</b> Assess before you Act."},
+
+{cat:"Epidemiology", title:"Reporting how common diabetes is", v:"Population 10,000 · Calendar year",
+ s:"On January 1, 400 residents of a town had type 2 diabetes. During the year, 100 more residents were newly diagnosed. Assume no deaths or moves.",
+ q:"The nurse wants to report how common diabetes is in the town on December 31. Which figure is correct?",
+ o:[["Incidence: 100 cases",0,"Incidence counts only new cases; it does not show how common the disease is."],
+    ["Prevalence: 100 cases",0,"Prevalence includes pre-existing cases too."],
+    ["Prevalence: 500 cases (5%)",1,"All existing cases, old plus new: 500 of 10,000."],
+    ["Incidence: 500 cases",0,"Mixes up the two measures."]],
+ r:"Prevalence = ALL existing cases (new and pre-existing) at a point in time. It shows how common a condition is. Incidence = new cases only, used to spot increases.",
+ tip:"<b>INcidence = New cases coming IN. Prevalence = the whole Pool.</b>"},
+
+{cat:"Maternal & Adolescent", title:"Vaccines at 28 weeks", v:"31 F · G2P1 · 28 wks · Rubella non-immune",
+ s:"Aisha is at a routine prenatal visit in October. Her record shows she is non-immune to rubella and has no varicella immunity.",
+ q:"Which vaccines can the nurse give today? Select all that apply.", sata:true,
+ o:[["Tdap",1,"Recommended each pregnancy at 27–36 weeks to protect the newborn from pertussis."],
+    ["Inactivated influenza vaccine",1,"Safe in any trimester during flu season."],
+    ["MMR",0,"Live vaccine; contraindicated in pregnancy. Give postpartum."],
+    ["Varicella",0,"Live vaccine; contraindicated in pregnancy. Give postpartum."],
+    ["Herpes zoster vaccine",0,"Not given during pregnancy."]],
+ r:"Tdap is recommended during pregnancy between 27 and 36 weeks. Live vaccines such as MMR and varicella, and herpes zoster vaccine, are contraindicated. Non-immune clients receive MMR and varicella after delivery.",
+ tip:"<b>Live vaccines LEAVE until after delivery.</b>"},
+
+{cat:"Maternal & Adolescent", title:"Pregnant teen, no prenatal care", v:"16 F · School clinic · ~18 wks",
+ s:"Jaylen tells the school nurse she is about 18 weeks pregnant. She has not seen a provider, is afraid to tell her parents, and smokes 4 cigarettes a day.",
+ q:"What is the nurse's priority action?",
+ o:[["Help her get prenatal care scheduled today",1,"Securing care is the first safety step for both client and fetus."],
+    ["Teach smoking cessation strategies",0,"Important, but secondary to getting her into care."],
+    ["Discuss adoption options",0,"Not the priority and assumes her decision."],
+    ["Call her parents to inform them",0,"Breaches confidentiality; minors can generally consent to pregnancy care."]],
+ r:"Adolescent pregnancy carries higher risk for the client and fetus. Following safety and risk-reduction priorities, securing prenatal care comes first. Other teaching follows once care is in place.",
+ tip:"<b>Secure care first, then teach.</b>"},
+
+{cat:"Ethics & Legal", title:"Called away from the station", v:"Med-surg unit · Visitors in hallway",
+ s:"The nurse is reviewing a client's printed lab results at the nurses' station when a call light alarms. Visitors are standing at the counter.",
+ q:"What should the nurse do before leaving the station?",
+ o:[["Ask a visitor to let her know if anyone needs her",0,"Irrelevant to protecting the document."],
+    ["Turn the printout face-down or place it in a secure location",1,"Keeps PHI out of view."],
+    ["Leave it as is since she will be right back",0,"PHI must never be left visible, even briefly."],
+    ["Carry the printout into the other client's room",0,"Exposes it to another client and family."]],
+ r:"Protected health information must never be visible to unauthorized people. Turn documents face-down or secure them, and lock screens, every time you step away.",
+ tip:"<b>Step away? Flip it or lock it.</b>"},
+
+{cat:"Ethics & Legal", title:"Town meeting question", v:"Public health nurse · Town council",
+ s:"The nurse is presenting rising STI rates to the town council. A council member asks, “Is it true the high school coach is one of the cases?”",
+ q:"Which response is most appropriate?",
+ o:[["“Yes, but this stays in this room.”",0,"Discloses identifiable health information."],
+    ["“I'd rather not say, but you might be right.”",0,"Implies confirmation, which is still a breach."],
+    ["“I can't discuss any individual. Cases among adults 25–34 rose 30% this year.”",1,"Protects identity and shares de-identified population data."],
+    ["“I can list the schools where cases were reported.”",0,"Small groups can identify individuals."]],
+ r:"Revealing a specific person's identity or health concerns without permission breaches confidentiality, even in public health. Aggregate statistics do not identify individuals and can be shared.",
+ tip:"<b>Share numbers, not names.</b>"},
+
+{cat:"Communication", title:"Working with an interpreter", v:"72 F · Speaks a regional Vietnamese dialect · HF teaching",
+ s:"Mrs. Nguyen needs discharge teaching for heart failure. The nurse arranges a professional medical interpreter.",
+ q:"Which actions are appropriate? Select all that apply.", sata:true,
+ o:[["Invite the interpreter's feedback on culturally appropriate ways to communicate",1,"Interpreters are a cultural resource."],
+    ["Let the interpreter leave out details that might upset her",0,"Interpreters must not add or omit content."],
+    ["Confirm the interpreter is fluent in her specific dialect",1,"Dialect fluency is needed for accurate translation."],
+    ["Observe how the interpreter conveys information",1,"Assessing the approach ensures accuracy and respect."],
+    ["Use her 12-year-old grandson to save time",0,"Family, especially children, are not appropriate medical interpreters."],
+    ["Face and speak directly to Mrs. Nguyen",1,"The nurse addresses the client, not the interpreter."]],
+ r:"Good interpreter use: a trained interpreter fluent in the client's language and dialect, open to cultural feedback, observed for accuracy, with the nurse speaking directly to the client. The interpreter never adds or omits content.",
+ tip:"<b>Talk to the client, translate everything, trust no omissions.</b>"},
+
+{cat:"Violence & Abuse", title:"Disclosure in the ED", v:"24 F · Emergency department",
+ s:"Dana tells the nurse, “My boyfriend's friend, Marcus Hale, sexually assaulted me. I think it was last night.”",
+ q:"Which actions should the nurse take? Select all that apply.", sata:true,
+ o:[["Find out when the assault happened to see if a forensic exam is indicated",1,"Evidence collection is time-sensitive."],
+    ["Document the alleged abuser's name as she stated it",1,"Appropriate, using her own words."],
+    ["Suggest she shower before the exam to feel more comfortable",0,"Destroys evidence."],
+    ["Continue violence screening at future visits",1,"Screening is ongoing, not one-time."],
+    ["Chart that her story “seems inconsistent”",0,"Subjective opinion; document objective findings and quotes."]],
+ r:"Determine whether the assault was recent enough to warrant a forensic exam. Documenting the alleged abuser's name is appropriate, using the client's words. Violence screening continues at every visit.",
+ tip:"<b>Time it, quote it, keep screening.</b>"},
+
+{cat:"Violence & Abuse", title:"“I'm leaving him tomorrow”", v:"34 F · Clinic · Old and new bruises",
+ s:"Monique says, “Tomorrow I'm taking the kids and leaving him for good. I told him last night.”",
+ q:"What is the nurse's priority?",
+ o:[["Praise her decision and schedule a follow-up in 2 weeks",0,"Misses the immediate danger."],
+    ["Recognize this as the highest-risk period and build a safety plan now",1,"Leaving is the most dangerous time."],
+    ["Suggest couples counseling first",0,"Unsafe and inappropriate in abusive relationships."],
+    ["Tell her to call police if he hits her again",0,"Reactive, not protective."]],
+ r:"Leaving, or threatening to leave, is often the most dangerous period because the abuser feels a loss of control. The nurse makes a safety plan now: shelter, hotline, documents, a safe route, and a code word.",
+ tip:"<b>Leaving = the Lethal window.</b>"},
+
+{cat:"Grief & Loss", title:"Fishing trip next summer", v:"61 M · Metastatic pancreatic cancer · Hospice discussed",
+ s:"The day after a hospice discussion, Mr. Patel says, “Once I'm past this, I'm booking a fishing trip with my grandson next summer.”",
+ q:"The nurse recognizes this statement as which stage of grief?",
+ o:[["Bargaining",0,"Bargaining sounds like “If I..., then....”"],
+    ["Denial",1,"Planning as if the illness is not terminal."],
+    ["Anger",0,"No blame or hostility here."],
+    ["Acceptance",0,"Acceptance would acknowledge the prognosis."]],
+ r:"Denial is difficulty accepting reality. Making plans as if the disease is not terminal shows denial of the anticipated loss. The nurse accepts the statement without arguing and stays available.",
+ tip:"<b>DABDA:</b> Denial, Anger, Bargaining, Depression, Acceptance."},
+
+{cat:"Grief & Loss", title:"Angry and guilty after a death", v:"67 F · Widowed 6 weeks",
+ s:"Mrs. Lindqvist cries often. She says she is angry her husband never saw a doctor and guilty she didn't push him. Her daughter asks if her mother needs a psychiatric evaluation.",
+ q:"Which response by the nurse is best?",
+ o:[["“Anger at someone who died is a warning sign.”",0,"Anger is a normal grief emotion."],
+    ["“Sadness, anger, and guilt are normal in grief. Being able to express them helps her heal.”",1,"Validates healthy grief."],
+    ["“Keep her busy so she doesn't dwell on it.”",0,"Discourages expression of grief."],
+    ["“She should be moving past this by now.”",0,"Six weeks is early; grief has no fixed timeline."]],
+ r:"Healthy grief often includes sadness, anger, guilt, and regret. Experiencing and expressing these emotions is essential to working through grief.",
+ tip:"<b>Feel it to heal it.</b>"},
+
+{cat:"Home Safety", title:"Winter headaches at home", v:"Home visit · Family of 4 · January",
+ s:"All four family members have headaches, nausea, and dizziness that improve when they are at work or school.",
+ q:"Which household sources could produce carbon monoxide? Select all that apply.", sata:true,
+ o:[["Gas stove",1,"Burns fuel."],
+    ["Wood-burning fireplace",1,"Burns fuel."],
+    ["Car warming up in the attached garage",1,"Combustion engine."],
+    ["Electric space heater",0,"Electric devices do not produce CO."],
+    ["Electric washing machine",0,"Electric devices do not produce CO."],
+    ["Gas furnace",1,"Burns fuel."]],
+ r:"Carbon monoxide is colorless and odorless. It comes from anything that burns fuel: gas stoves, furnaces, fireplaces, and motor vehicles. Electric appliances do not produce CO. Symptoms that ease away from home are a classic clue.",
+ tip:"<b>If it burns, it can make CO.</b>"},
+
+{cat:"Home Safety", title:"Going home after hip replacement", v:"70 M · POD 3 · R total hip arthroplasty",
+ s:"Mr. Brooks is being discharged home. The nurse evaluates his understanding of discharge teaching.",
+ q:"Which statement indicates a need for further teaching?",
+ o:[["“I'll use my walker every time I get up, even at night.”",0,"Correct; reduces fall risk."],
+    ["“I'll look at my incision every day for redness or drainage.”",0,"Correct; daily or per provider instructions."],
+    ["“If my hip is sore, I'll skip my exercises that day.”",1,"Skipping prescribed exercises impedes recovery."],
+    ["“I'll keep the path to the bathroom clear of rugs.”",0,"Correct fall prevention."]],
+ r:"After hip arthroplasty, use the walker to prevent falls, check the incision daily or as instructed, and do prescribed exercises. Skipping them slows recovery and raises the risk of complications.",
+ tip:"<b>Walker, Wound check, Workouts.</b>"},
+
+{cat:"Health Education", title:"Before a 14-hour flight", v:"58 F · BMI 34 · Takes estrogen",
+ s:"Ms. Carter is flying 14 hours to visit family next week.",
+ q:"Which teaching is the priority?",
+ o:[["Take a sleeping pill so the flight goes faster",0,"Promotes long immobility."],
+    ["Do ankle pumps and walk the aisle every 1–2 hours",1,"Reduces venous stasis."],
+    ["Limit fluids to avoid trips to the restroom",0,"Dehydration raises clot risk."],
+    ["Wear snug jeans to support the legs",0,"Tight waistbands impede venous return."]],
+ r:"The greatest acute risk of prolonged sitting is venous thromboembolism such as DVT. Regular movement, leg stretches, and ankle pumps reduce stasis and improve circulation. Her obesity and estrogen use add risk.",
+ tip:"<b>Pump, stretch, walk = no clot.</b>"},
+
+{cat:"Health Education", title:"Writing a heart failure handout", v:"Community clinic · Low-literacy population",
+ s:"The nurse is creating a written handout on daily weights and low-sodium eating.",
+ q:"Which strategies should the nurse use? Select all that apply.", sata:true,
+ o:[["Write at or below a sixth-grade reading level",1,"National guideline for patient materials."],
+    ["Add pictures or diagrams",1,"Visual aids improve understanding."],
+    ["Use medical terms so the content is precise",0,"Jargon reduces comprehension."],
+    ["Keep sentences short, with one idea each",1,"Supports readability."],
+    ["Write at a tenth-grade level, the average adult level",0,"Too high for most patients."]],
+ r:"Write patient materials at or below a sixth-grade reading level and add visual aids. Plain language and short sentences help everyone, not only clients with low literacy.",
+ tip:"<b>Six and see:</b> sixth grade, plus pictures."},
+
+{cat:"Health Education", title:"Can't read the pill bottle", v:"79 M · Macular degeneration · Lives alone",
+ s:"Mr. Kowalski has missed doses because he cannot read his medication labels. He wants to stay independent.",
+ q:"Which intervention is most appropriate?",
+ o:[["Have his daughter give him all his medications",0,"Removes his independence."],
+    ["Provide a handheld magnifier and request large-print labels",1,"Low-vision aids preserve independence."],
+    ["Recommend a move to assisted living",0,"Excessive for this problem."],
+    ["Teach him to identify pills by color",0,"Unreliable with AMD and generic changes."]],
+ r:"Low-vision aids such as magnifiers help clients with age-related macular degeneration keep reading labels and fine print, so they can manage their own care.",
+ tip:"<b>AMD = Aids Maintain Dignity.</b>"},
+
+{cat:"Infection Control", title:"Child with whooping cough", v:"6 yr M · Pertussis · Cough day 10",
+ s:"Leo's cough started like a cold 10 days ago. Now he has coughing fits with a whoop. His mother asks what the family should do.",
+ q:"Which information should the nurse include? Select all that apply.", sata:true,
+ o:[["Pertussis is most contagious in the early cold-like and early cough stages",1,"Catarrhal stage is peak communicability."],
+    ["Keep Leo home from school until his provider clears him to return",1,"Exclusion limits spread; your notes say about 2 weeks or until severe coughing subsides."],
+    ["Household members may need preventive antibiotics",1,"Close contacts often get prophylaxis."],
+    ["Once the whoop starts, he is no longer contagious",0,"He can still spread it in the early cough stage."],
+    ["Only unvaccinated siblings need to be checked",0,"All close contacts are evaluated."]],
+ r:"Pertussis is highly contagious in the catarrhal and early cough stages. Keeping the child home limits spread; your notes give about 2 weeks or until severe coughing subsides (some programs allow return after 5 days of antibiotics, so follow your course's source). Family and close contacts may need prophylactic antibiotics.",
+ tip:"<b>Catarrhal = Contagious.</b>"},
+
+{cat:"Infection Control", title:"MRSA on the wrestling team", v:"School nurse · 3 athletes with skin lesions",
+ s:"Three wrestlers have MRSA skin infections. The coach asks the school nurse how to prevent more cases.",
+ q:"Which measures should the nurse teach? Select all that apply.", sata:true,
+ o:[["Wash hands with soap or use alcohol rub often",1,"The cornerstone of prevention."],
+    ["Keep wounds covered with a clean, dry bandage",1,"Contains drainage."],
+    ["Don't share towels, razors, or uniforms",1,"Shared items spread MRSA."],
+    ["Train coaches and staff on infection-control practices",1,"Education lowers overall risk."],
+    ["Let athletes with draining wounds compete if wrapped",0,"Draining lesions should not have skin contact."],
+    ["Squeeze boils at home to drain them",0,"Spreads infection; refer to a provider."]],
+ r:"MRSA prevention rests on hand hygiene, covering wounds, and not sharing personal items. Educating staff and students reduces transmission across the whole team.",
+ tip:"<b>Wash, Wrap, Won't share.</b>"},
+
+{cat:"Infection Control", title:"Infant from daycare", v:"7 mo F · Daycare · Runny nose × 3 days",
+ s:"Mia's runny nose has turned into a cough. Several children in her daycare room have RSV.",
+ q:"Which findings would the nurse expect if Mia has RSV? Select all that apply.", sata:true,
+ o:[["Wheezing",1,"Small-airway inflammation."],
+    ["Respiratory rate of 64/min",1,"Tachypnea for her age."],
+    ["Nasal flaring and retractions",1,"Signs of difficulty breathing."],
+    ["Persistent cough",1,"Typical symptom."],
+    ["Petechial rash",0,"Not an RSV finding; suggests another cause."],
+    ["Respiratory rate of 18/min",0,"Too slow for an infant; RSV causes tachypnea."]],
+ r:"RSV spreads through close contact with infected respiratory secretions. Typical findings are cough, wheezing, tachypnea, and difficulty breathing. Hand hygiene and cleaning surfaces limit spread in daycare.",
+ tip:"<b>RSV = Runny, then Struggling, then Vigilant handwashing.</b>"},
+
+{cat:"Ethics & Legal", title:"Losing weight living alone", v:"84 F · Lost 4 kg in 2 months",
+ s:"Mrs. Alvarez lives alone and says cooking has become too tiring. The nurse arranges home-delivered meals with her agreement.",
+ q:"Which ethical principle does this action best demonstrate?",
+ o:[["Autonomy",0,"Respecting her choices; present, but not the core of the action."],
+    ["Justice",0,"Fair distribution of resources."],
+    ["Beneficence",1,"Acting in her best interest to promote well-being."],
+    ["Fidelity",0,"Keeping promises."]],
+ r:"Beneficence means acting in the client's best interest and promoting well-being. Ensuring adequate nutrition helps her keep her health and independence.",
+ tip:"<b>Beneficence = Bring good.</b>"},
+
+{cat:"Home Safety", title:"Choosing a safe chair", v:"81 M · Unsteady gait · Uses a cane",
+ s:"On a home safety visit, the nurse sees a rocking chair, a swivel recliner, and a firm armchair in Mr. Thompson's living room.",
+ q:"Which recommendation best reduces his fall risk?",
+ o:[["Add a thick cushion to the rocking chair",0,"Makes it less stable."],
+    ["Use the rocking chair only when someone is home",0,"The chair is still unstable."],
+    ["Remove or block the rocking and swivel chairs; use the firm armchair",1,"Stable seating with armrests for getting up."],
+    ["Put a rug under the rocker to stop it sliding",0,"Adds a trip hazard."]],
+ r:"Rocking and swivel chairs are unstable for older adults with balance problems. Removing or blocking them and using a firm chair with armrests reduces fall risk.",
+ tip:"<b>If it moves, remove.</b>"}
+];
+
+const KEY="chcs-v1"; let st={};
+try{st=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){st={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const cats=["All",...new Set(Q.map(x=>x.cat))]; let cat="All";
+const $=id=>document.getElementById(id);
+
+$("chips").innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c==="All"}" data-c="${c}">${c}</button>`).join("");
+$("chips").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;cat=b.dataset.c;
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));filter()};
+
+function card(x,i){
+  const s=st[i]||{sel:[],done:false}; const type=x.sata?"checkbox":"radio";
+  const opts=x.o.map((o,j)=>{
+    let cls="",mark="";
+    if(s.done){const picked=s.sel.includes(j);
+      if(o[1]&&picked){cls="right";mark="✓ correct"}
+      else if(!o[1]&&picked){cls="wrong";mark="✗ incorrect"}
+      else if(o[1]&&!picked){cls="missed";mark="✓ missed"}}
+    return `<label class="opt ${cls}"><input type="${type}" name="q${i}" id="q${i}o${j}" value="${j}" ${s.sel.includes(j)?"checked":""} ${s.done?"disabled":""}>
+      <span class="t">${String.fromCharCode(65+j)}. ${o[0]}${mark?`<span class="mark">${mark}</span>`:""}${s.done?`<span class="why">${o[2]}</span>`:""}</span></label>`}).join("");
+  return `<article class="card ${s.done?"done":""}" data-i="${i}">
+    <div class="meta"><span class="num">Case ${String(i+1).padStart(2,"0")}</span><span class="tag">${x.cat}</span>${x.sata?'<span class="tag sata">Select all</span>':""}</div>
+    <h2>${x.title}</h2>
+    <div class="chart"><span class="vitals">${x.v}</span><p>${x.s}</p></div>
+    <p class="q">${x.q}</p>
+    <div class="opts">${opts}</div>
+    <div class="actions">${s.done
+      ?`<span class="verdict ${s.ok?"ok":"bad"}">${s.ok?"Correct":"Not quite"}</span><button class="btn ghost" data-a="retry">Try again</button>`
+      :`<button class="btn" data-a="submit" ${s.sel.length?"":"disabled"}>Submit answer</button>`}</div>
+    ${s.done?`<div class="rat"><h3>Rationale</h3><p>${x.r}</p><div class="tip">${x.tip}</div></div>`:""}
+  </article>`}
+
+function render(){ $("list").innerHTML=Q.map(card).join(""); filter(); score(); }
+function rerender(i){const el=document.querySelector(`.card[data-i="${i}"]`);el.outerHTML=card(Q[i],i);filter();score();}
+
+$("list").addEventListener("change",e=>{
+  const c=e.target.closest(".card");if(!c)return;const i=+c.dataset.i;
+  st[i]={sel:[...c.querySelectorAll("input:checked")].map(n=>+n.value),done:false};
+  c.querySelector('[data-a="submit"]').disabled=!st[i].sel.length; save();});
+$("list").addEventListener("click",e=>{
+  const b=e.target.closest("[data-a]");if(!b)return;const i=+b.closest(".card").dataset.i;
+  if(b.dataset.a==="submit"){const key=Q[i].o.map((o,j)=>o[1]?j:-1).filter(j=>j>=0);
+    const sel=[...st[i].sel].sort();st[i].done=true;st[i].ok=sel.length===key.length&&sel.every((v,k)=>v===key[k]);}
+  else{st[i]={sel:[],done:false}}
+  save();rerender(i);});
+
+function score(){
+  const vals=Object.values(st).filter(s=>s.done);const ok=vals.filter(s=>s.ok).length;
+  $("sAns").textContent=vals.length;$("sOk").textContent=ok;
+  $("sPct").textContent=vals.length?Math.round(ok/vals.length*100)+"%":"–";
+  $("mOk").style.width=ok/25*100+"%";$("mBad").style.width=(vals.length-ok)/25*100+"%";}
+
+function filter(){
+  const term=$("search").value.trim().toLowerCase(),show=$("show").value;let n=0;
+  document.querySelectorAll(".card").forEach(c=>{const i=+c.dataset.i,x=Q[i],s=st[i]||{};
+    const text=(x.title+x.s+x.q+x.r+x.cat+x.o.map(o=>o[0]).join(" ")).toLowerCase();
+    let vis=(cat==="All"||x.cat===cat)&&(!term||text.includes(term));
+    if(show==="open")vis=vis&&!s.done; if(show==="missed")vis=vis&&s.done&&!s.ok; if(show==="sata")vis=vis&&x.sata;
+    c.hidden=!vis;if(vis)n++;});
+  $("empty").hidden=n>0;}
+$("search").oninput=filter;$("show").onchange=filter;
+$("reset").onclick=()=>{st={};save();render();};
+render();
+</script>
+
+</body></html>

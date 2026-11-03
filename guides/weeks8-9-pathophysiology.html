@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weeks 8–9 Pathophysiology — Renal · Endocrine · Reproductive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --renal:#0e7c86;      --renal-soft:#e3f2f2;   --renal-ink:#0a5b63;
+  --endo:#b26b00;       --endo-soft:#fbeed6;    --endo-ink:#8a5200;
+  --repro:#a5386a;      --repro-soft:#f7e3ec;   --repro-ink:#7f2b52;
+  --exam:#c0392b;       --exam-soft:#fbe6e3;
+  --mnem:#6d4bb0;       --mnem-soft:#efeaf8;
+  --xcourse:#2b6cb0;    --xcourse-soft:#e5eefa;
+  --emerg:#b91c1c;      --emerg-soft:#fde4e4;
+
+  --bg:#ffffff;         --surface:#ffffff;      --surface-2:#f6f7f8;
+  --ink:#1a1d21;        --ink-2:#4a5057;        --ink-3:#7a828b;
+  --line:#e2e5e9;       --line-strong:#cfd4da;
+  --shadow:0 1px 2px rgba(20,25,35,.05), 0 2px 8px rgba(20,25,35,.04);
+  --radius:12px;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --bg:#14171a; --surface:#1c2024; --surface-2:#22272c;
+    --ink:#e9ecef; --ink-2:#b6bcc4; --ink-3:#868e98;
+    --line:#2c3238; --line-strong:#3a424a;
+    --renal-soft:#0e2b2d; --endo-soft:#2e2308; --repro-soft:#2c1522;
+    --exam-soft:#2e1512; --mnem-soft:#1f193a; --xcourse-soft:#111f31; --emerg-soft:#2e1010;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 2px 8px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14171a; --surface:#1c2024; --surface-2:#22272c;
+  --ink:#e9ecef; --ink-2:#b6bcc4; --ink-3:#868e98;
+  --line:#2c3238; --line-strong:#3a424a;
+  --renal-soft:#0e2b2d; --endo-soft:#2e2308; --repro-soft:#2c1522;
+  --exam-soft:#2e1512; --mnem-soft:#1f193a; --xcourse-soft:#111f31; --emerg-soft:#2e1010;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 2px 8px rgba(0,0,0,.25);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Public Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* ---------- Hero ---------- */
+.hero{padding:44px 0 22px}
+.hero .eyebrow{font-size:.86rem;color:var(--ink-3);letter-spacing:.01em;margin:0 0 10px}
+.hero h1{
+  font-family:"Newsreader",serif;font-weight:500;line-height:1.04;
+  font-size:clamp(2.1rem,5.2vw,3.5rem);margin:0;letter-spacing:-.01em;
+}
+.hero h1 .sys{white-space:nowrap}
+.hero h1 .r{color:var(--renal)} .hero h1 .e{color:var(--endo)} .hero h1 .p{color:var(--repro)}
+.hero .rule{
+  margin:20px 0 0;max-width:66ch;font-size:1.08rem;color:var(--ink-2);
+  font-family:"Newsreader",serif;font-style:italic;line-height:1.4;
+}
+.hero .rule strong{font-style:normal;font-weight:600;color:var(--ink)}
+.scope{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.scope a{
+  text-decoration:none;font-size:.9rem;font-weight:600;padding:7px 13px;border-radius:999px;
+  border:1px solid var(--line-strong);color:var(--ink-2);background:var(--surface);transition:.15s;
+}
+.scope a.r{border-color:var(--renal);color:var(--renal-ink);background:var(--renal-soft)}
+.scope a.e{border-color:var(--endo);color:var(--endo-ink);background:var(--endo-soft)}
+.scope a.p{border-color:var(--repro);color:var(--repro-ink);background:var(--repro-soft)}
+.scope a:hover{transform:translateY(-1px)}
+
+/* ---------- Sticky controls ---------- */
+.controls{
+  position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line);
+  padding:12px 0;margin-top:8px;
+}
+.controls .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.search{position:relative;flex:1 1 260px;min-width:220px}
+.search input{
+  width:100%;padding:11px 38px 11px 40px;border-radius:10px;border:1px solid var(--line-strong);
+  background:var(--surface);color:var(--ink);font-size:1rem;font-family:inherit;
+}
+.search input:focus{outline:2px solid var(--renal);outline-offset:1px;border-color:var(--renal)}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--ink-3)}
+.search .clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--ink-3);cursor:pointer;font-size:1.2rem;line-height:1;padding:4px;display:none}
+.count{font-size:.85rem;color:var(--ink-3);white-space:nowrap}
+.btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-2);border-radius:9px;padding:9px 13px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+.btn:hover{border-color:var(--ink-3)}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+.chip{
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-2);
+  border-radius:999px;padding:6px 13px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;
+  display:inline-flex;align-items:center;gap:7px;transition:.13s;
+}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--ink-3)}
+.chip:hover{border-color:var(--ink-3)}
+.chip[aria-pressed="true"]{color:#fff;border-color:transparent}
+.chip.f-all[aria-pressed="true"]{background:var(--ink)}
+.chip.f-renal[aria-pressed="true"]{background:var(--renal)} .chip.f-renal .dot{background:var(--renal)}
+.chip.f-endo[aria-pressed="true"]{background:var(--endo)} .chip.f-endo .dot{background:var(--endo)}
+.chip.f-repro[aria-pressed="true"]{background:var(--repro)} .chip.f-repro .dot{background:var(--repro)}
+.chip.f-exam[aria-pressed="true"]{background:var(--exam)} .chip.f-exam .dot{background:var(--exam)}
+.chip.f-mnemonic[aria-pressed="true"]{background:var(--mnem)} .chip.f-mnemonic .dot{background:var(--mnem)}
+.chip.f-xcourse[aria-pressed="true"]{background:var(--xcourse)} .chip.f-xcourse .dot{background:var(--xcourse)}
+.chip.f-emergency[aria-pressed="true"]{background:var(--emerg)} .chip.f-emergency .dot{background:var(--emerg)}
+.chips-label{font-size:.78rem;color:var(--ink-3);font-weight:600;align-self:center;margin-right:2px}
+
+/* progress */
+.progress{display:flex;align-items:center;gap:10px;margin-top:11px;font-size:.82rem;color:var(--ink-3)}
+.progress .bar{flex:1;height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden;max-width:280px}
+.progress .fill{height:100%;width:0;background:linear-gradient(90deg,var(--renal),var(--endo),var(--repro));transition:width .3s}
+.progress button{border:0;background:none;color:var(--ink-3);text-decoration:underline;cursor:pointer;font-size:.8rem;font-family:inherit}
+
+/* ---------- Sections ---------- */
+.section{padding:38px 0 8px;scroll-margin-top:150px}
+.section-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid;padding-bottom:10px;margin-bottom:6px}
+.section.renal .section-head{border-color:var(--renal)}
+.section.endo .section-head{border-color:var(--endo)}
+.section.repro .section-head{border-color:var(--repro)}
+.section-head h2{font-family:"Newsreader",serif;font-weight:600;font-size:1.9rem;margin:0;letter-spacing:-.01em}
+.section.renal .section-head h2{color:var(--renal-ink)}
+.section.endo .section-head h2{color:var(--endo-ink)}
+.section.repro .section-head h2{color:var(--repro-ink)}
+.section-head .meta{font-size:.9rem;color:var(--ink-3);font-weight:600}
+
+.sub{margin:22px 0 0}
+.sub > summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;gap:11px;
+  padding:11px 2px;font-weight:700;font-size:1.12rem;color:var(--ink);
+}
+.sub > summary::-webkit-details-marker{display:none}
+.sub > summary .tw{width:18px;height:18px;color:var(--ink-3);transition:transform .2s;flex:none}
+.sub[open] > summary .tw{transform:rotate(90deg)}
+.sub > summary .tag{margin-left:auto;font-size:.72rem;font-weight:700;color:var(--ink-3);letter-spacing:.02em}
+.sub-body{display:grid;gap:12px;padding:4px 0 8px}
+
+/* ---------- Cards ---------- */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;box-shadow:var(--shadow);position:relative;
+}
+.card.hidden,.sub.hidden,.section.hidden{display:none}
+.card > .chk{position:absolute;top:15px;right:15px;width:18px;height:18px;cursor:pointer;accent-color:var(--renal)}
+.card.done{opacity:.62}
+.card.done .card-title::after{content:"✓";color:var(--renal);margin-left:8px;font-weight:700}
+.card-title{font-weight:700;font-size:1.02rem;margin:0 28px 8px 0;line-height:1.3}
+.section.renal .card-title{color:var(--renal-ink)}
+.section.endo .card-title{color:var(--endo-ink)}
+.section.repro .card-title{color:var(--repro-ink)}
+.card ul{margin:0;padding-left:19px}
+.card li{margin:4px 0}
+.card li::marker{color:var(--ink-3)}
+.card p{margin:6px 0}
+.card .lead{font-weight:600}
+.hl{background:#ffe9a8;color:#3a2f00;border-radius:3px;padding:0 2px}
+:root[data-theme="dark"] .hl{background:#6b5410;color:#ffe9a8}
+
+/* value pills */
+.k{font-weight:700;color:var(--ink)}
+.val{font-variant-numeric:tabular-nums;font-weight:700}
+
+/* callouts */
+.callout{border-radius:10px;padding:12px 14px 12px 14px;font-size:.95rem;border:1px solid;margin:2px 0}
+.callout .lbl{font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;margin-bottom:5px}
+.callout.exam{background:var(--exam-soft);border-color:color-mix(in srgb,var(--exam) 35%,transparent)}
+.callout.exam .lbl{color:var(--exam)}
+.callout.mnem{background:var(--mnem-soft);border-color:color-mix(in srgb,var(--mnem) 35%,transparent)}
+.callout.mnem .lbl{color:var(--mnem)}
+.callout.xcourse{background:var(--xcourse-soft);border-color:color-mix(in srgb,var(--xcourse) 35%,transparent)}
+.callout.xcourse .lbl{color:var(--xcourse)}
+.callout.emerg{background:var(--emerg-soft);border-color:color-mix(in srgb,var(--emerg) 45%,transparent)}
+.callout.emerg .lbl{color:var(--emerg)}
+.callout p{margin:4px 0}
+.callout b{color:var(--ink)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:520px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--surface-2);font-weight:700;color:var(--ink);position:sticky;top:0}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;color:var(--ink)}
+.cmp-a{color:var(--renal-ink);font-weight:700}
+.cmp-b{color:var(--repro-ink);font-weight:700}
+
+/* misc */
+.noresult{text-align:center;padding:48px 0;color:var(--ink-3);display:none}
+.noresult.show{display:block}
+footer{border-top:1px solid var(--line);margin-top:48px;padding:22px 0 60px;color:var(--ink-3);font-size:.85rem}
+.totop{position:fixed;right:20px;bottom:20px;z-index:40;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-2);border-radius:50%;width:44px;height:44px;cursor:pointer;box-shadow:var(--shadow);display:none;align-items:center;justify-content:center}
+.totop.show{display:flex}
+.topbar{display:flex;justify-content:flex-end;gap:8px;padding-top:14px}
+.icon-btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-2);border-radius:9px;padding:8px 11px;cursor:pointer;font-size:.85rem;font-weight:600;font-family:inherit;display:inline-flex;gap:6px;align-items:center}
+.icon-btn:hover{border-color:var(--ink-3)}
+
+@media (max-width:600px){
+  .hero{padding:30px 0 16px}
+  .card > .chk{top:14px}
+  .section-head{flex-direction:column;gap:2px;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- Print ---------- */
+@media print{
+  .controls,.topbar,.totop,.scope,.progress,.card > .chk,.sub > summary .tag{display:none!important}
+  body{font-size:11pt;background:#fff;color:#000}
+  .hero{padding:0 0 8px}
+  .card,.tbl-wrap{box-shadow:none;break-inside:avoid;border-color:#bbb}
+  .sub-body{display:grid!important}
+  .sub.hidden,.card.hidden,.section.hidden{display:block!important}
+  .section{padding-top:16px;break-inside:avoid-page}
+  .callout{border:1px solid #999}
+  a{color:#000;text-decoration:none}
+  .totop{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <button class="icon-btn" id="themeBtn" title="Toggle light/dark">◐ Theme</button>
+    <button class="icon-btn" id="printBtn" title="Expand all and print">🖨 Print / Save PDF</button>
+  </div>
+
+  <header class="hero">
+    <p class="eyebrow">Pathophysiology · NUR 311 · Cohort 38 · Prof. Marpole · Weeks 8–9</p>
+    <h1><span class="sys r">Renal</span> · <span class="sys e">Endocrine</span> · <span class="sys p">Reproductive</span></h1>
+    <p class="rule">The rule for every disorder: <strong>connect it to the affected organ or hormone, then name it by its labs and its symptoms.</strong> Recognition beats memorizing treatment protocols.</p>
+    <nav class="scope">
+      <a class="r" href="#renal">Renal &amp; Urinary — Ch. 18</a>
+      <a class="e" href="#endocrine">Endocrine — Ch. 16</a>
+      <a class="p" href="#reproductive">Reproductive &amp; STIs — Ch. 19</a>
+    </nav>
+  </header>
+
+  <div class="controls">
+    <div class="row">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="Search everything — e.g. 'hyperkalemia', 'DKA', 'AV fistula', 'PSA'…" autocomplete="off" aria-label="Search the study guide">
+        <button class="clear" id="clearBtn" aria-label="Clear search">×</button>
+      </div>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="chips" id="chips">
+      <span class="chips-label">System</span>
+      <button class="chip f-all" data-filter="all" aria-pressed="true"><span class="dot"></span>All</button>
+      <button class="chip f-renal" data-filter="renal" aria-pressed="false"><span class="dot"></span>Renal</button>
+      <button class="chip f-endo" data-filter="endo" aria-pressed="false"><span class="dot"></span>Endocrine</button>
+      <button class="chip f-repro" data-filter="repro" aria-pressed="false"><span class="dot"></span>Reproductive</button>
+      <span class="chips-label" style="margin-left:8px">Focus</span>
+      <button class="chip f-exam" data-tag="exam" aria-pressed="false"><span class="dot"></span>Exam focus</button>
+      <button class="chip f-mnemonic" data-tag="mnemonic" aria-pressed="false"><span class="dot"></span>Mnemonics</button>
+      <button class="chip f-xcourse" data-tag="xcourse" aria-pressed="false"><span class="dot"></span>Cross-course</button>
+      <button class="chip f-emergency" data-tag="emergency" aria-pressed="false"><span class="dot"></span>Emergencies</button>
+    </div>
+    <div class="progress">
+      <span id="pctLabel">0% mastered</span>
+      <span class="bar"><span class="fill" id="pfill"></span></span>
+      <button id="resetBtn">reset</button>
+    </div>
+  </div>
+
+  <div class="noresult" id="noresult">No cards match that search and filter. Try clearing one.</div>
+
+  <!-- ============================ RENAL ============================ -->
+  <section class="section renal" id="renal">
+    <div class="section-head">
+      <h2>Renal &amp; Urinary System</h2>
+      <span class="meta">Chapter 18 — filtration, labs, infection, failure</span>
+    </div>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Kidney functions &amp; anatomy<span class="tag">2 cards</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">What the kidneys do</h3>
+          <ul>
+            <li>Filter metabolic waste and remove drugs, hormones, and foreign material.</li>
+            <li>Regulate water, electrolyte, and acid–base balance.</li>
+            <li>Secrete <span class="k">erythropoietin</span> to stimulate red-cell production.</li>
+            <li>Activate <span class="k">vitamin D</span>.</li>
+            <li>Control blood pressure through the <span class="k">renin–angiotensin–aldosterone system (RAAS)</span>.</li>
+          </ul>
+          <div class="callout exam"><span class="lbl">Exam link</span><p>Because kidneys make EPO and activate vitamin D, kidney failure causes <b>anemia</b> and <b>bone disease</b> — not just fluid problems.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Anatomy &amp; the nephron</h3>
+          <ul>
+            <li>Path of urine: <span class="k">kidneys → ureters → bladder → urethra</span>.</li>
+            <li>The <span class="k">nephron</span> is the functional unit; each kidney has over a million.</li>
+            <li>Renal corpuscle = <span class="k">glomerulus</span> + <span class="k">Bowman capsule</span>.</li>
+            <li>Tubules: proximal convoluted tubule → loop of Henle → distal convoluted tubule → collecting duct.</li>
+          </ul>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Urine formation &amp; hormones<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Three steps of urine formation</h3>
+          <ul>
+            <li><span class="k">Filtration</span> — fluid, wastes, nutrients, and electrolytes pass from glomerular capillaries into Bowman capsule. Cells and protein stay in the blood.</li>
+            <li><span class="k">Reabsorption</span> — essential nutrients, water, and electrolytes return to the peritubular capillaries; most water and all glucose are reabsorbed in the proximal tubule.</li>
+            <li><span class="k">Secretion</span> — controls pH and clears extra ions and drugs.</li>
+          </ul>
+        </article>
+        <article class="card" data-system="renal" data-tags="mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Hormones that control reabsorption</h3>
+          <ul>
+            <li><span class="k">ADH</span> (posterior pituitary) → reabsorbs <b>water</b> in the distal tubule and collecting duct.</li>
+            <li><span class="k">Aldosterone</span> (adrenal cortex) → reabsorbs <b>sodium</b> in exchange for potassium or hydrogen.</li>
+            <li><span class="k">Atrial natriuretic hormone</span> (heart) → <b>reduces</b> sodium and fluid reabsorption.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>ADH = Add Water.</b> <b>Aldosterone = save salt, lose K⁺.</b> <b>ANH = the "anti" hormone</b> that dumps salt and water.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>GFR &amp; its control<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Glomerular filtration rate (GFR)</h3>
+          <p class="lead">GFR estimates how much blood the kidneys filter per minute — the single best measure of overall kidney function.</p>
+          <ul>
+            <li>Constrict the <b>afferent</b> arteriole → less pressure in → <b>less</b> filtrate.</li>
+            <li>Dilate the <b>afferent</b> arteriole → more pressure in → <b>more</b> filtrate.</li>
+            <li>Constrict the <b>efferent</b> arteriole → pressure backs up → <b>more</b> filtrate.</li>
+          </ul>
+        </article>
+        <article class="card" data-system="renal" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Three controllers of GFR</h3>
+          <ul>
+            <li><span class="k">Autoregulation</span> — local arteriole adjustments to changing blood flow.</li>
+            <li><span class="k">Sympathetic nervous system</span> — vasoconstricts both arterioles.</li>
+            <li><span class="k">Renin</span> — released by juxtaglomerular cells when afferent blood flow drops, triggering the renin–angiotensin mechanism.</li>
+          </ul>
+          <div class="callout xcourse"><span class="lbl">↔ Pharmacology (NUR 312)</span><p>This is exactly where <b>ACE inhibitors / ARBs</b> act. They relax the efferent arteriole, lower glomerular pressure, and protect the kidney over time — the reason they reduce diabetic and glomerular proteinuria.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Labs &amp; diagnostics<span class="tag">exam-heavy</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Blood markers of kidney filtration</h3>
+          <ul>
+            <li><span class="k">Creatinine</span> — waste from normal muscle activity. A rise is the <b>single most useful indicator</b> of reduced filtration.</li>
+            <li><span class="k">BUN</span> (blood urea nitrogen) — nitrogen waste; rises with reduced clearance but also with dehydration.</li>
+            <li><span class="k">GFR</span> — estimates and stages filtration capacity.</li>
+          </ul>
+          <div class="callout exam"><span class="lbl">Exam focus</span><p>Rising <b>creatinine + BUN</b> = reduced renal clearance. Always interpret with urine findings, fluid status, and medications — not in isolation.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Urinalysis — normal vs abnormal</h3>
+          <p>Normal urine is straw-colored with a mild odor and should <b>not</b> contain protein, glucose, blood, or white cells. Specific gravity ≈ <span class="val">1.010–1.030</span>.</p>
+          <ul>
+            <li><span class="k">Proteinuria</span> — glomerular damage / increased permeability.</li>
+            <li><span class="k">Hematuria</span> — trauma, stones, inflammation, glomerular disease.</li>
+            <li><span class="k">Pyuria</span> — WBCs/pus → infection.</li>
+            <li><span class="k">Glucosuria</span> — high blood glucose; sugar feeds bacteria.</li>
+            <li><span class="k">Bacteriuria</span> — supports urinary infection.</li>
+            <li><span class="k">RBC casts</span> — bleeding/inflammation inside the nephron → glomerular disease.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Casts point to the tubules.</b> RBC casts = glomerulonephritis; WBC casts = pyelonephritis.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Diagnostic tests</h3>
+          <ul>
+            <li><span class="k">Urine culture &amp; sensitivity</span> — identifies the organism and the right antibiotic.</li>
+            <li>Imaging — ultrasound, CT, IV pyelography.</li>
+            <li><span class="k">Cystoscopy</span> — scope through the urethra to view the bladder; can biopsy or remove stones.</li>
+            <li>Clearance tests (creatinine, inulin) assess GFR; antibody titers (ASO) support post-strep glomerulonephritis.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Word hook</span><p><b>Cysto-</b> = bladder, <b>-oscopy</b> = look with a scope → cystoscopy views the <b>bladder</b>.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Urinary tract infections<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">UTIs — where and why</h3>
+          <ul>
+            <li><span class="k">Urethritis</span> = urethra · <span class="k">Cystitis</span> = bladder · <span class="k">Ureteritis</span> = ureter · <span class="k">Pyelonephritis</span> = kidney.</li>
+            <li>Most common organism: <span class="k">E. coli</span>.</li>
+            <li>More common in women — shorter urethra, closer to the anus.</li>
+            <li>Risk factors: urine stasis, retention, glucose in urine, reflux, catheters, prostatic enlargement in older men.</li>
+          </ul>
+        </article>
+        <article class="card" data-system="renal" data-tags="exam xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Recognizing a UTI</h3>
+          <ul>
+            <li>Lower tract: dysuria, urgency, frequency, nocturia, cloudy/malodorous urine, suprapubic pain.</li>
+            <li>Systemic: fever, malaise, nausea, leukocytosis.</li>
+            <li>Older adults may present with <b>new confusion</b> as the only sign.</li>
+            <li>Pyelonephritis adds <b>flank pain</b> and <b>costovertebral angle (CVA) tenderness</b>.</li>
+          </ul>
+          <div class="callout xcourse"><span class="lbl">↔ Health Assessment (NUR 315)</span><p><b>CVA tenderness</b> is elicited by gently percussing the back over the kidney (fist percussion). A positive result points to pyelonephritis, not simple cystitis.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Treatment</h3>
+          <p>Bacterial UTIs are treated with antibiotics; culture &amp; sensitivity guides the choice. Adequate hydration and regular bladder emptying reduce stasis.</p>
+          <div class="callout xcourse"><span class="lbl">↔ Pharmacology (NUR 312)</span><p>Common agents: <b>nitrofurantoin</b>, <b>TMP-SMX (Bactrim)</b>, cephalosporins, amoxicillin. <b>Fosfomycin</b> is chosen in pregnancy.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Glomerulonephritis vs Nephrotic syndrome<span class="tag">high yield</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Glomerulonephritis (nephritic picture)</h3>
+          <p class="lead">Inflammation of the glomeruli that leaks blood and some protein into the urine.</p>
+          <ul>
+            <li><b>Hematuria</b> (dark/cloudy urine), <b>RBC casts</b>, proteinuria.</li>
+            <li>Decreased urine output, edema (periorbital/facial first), <b>hypertension</b>.</li>
+            <li>Elevated BUN/creatinine; often post-streptococcal (↑ ASO, ↓ complement).</li>
+            <li>No fever/bacteriuria of infection.</li>
+          </ul>
+        </article>
+        <article class="card" data-system="renal" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Nephrotic syndrome</h3>
+          <p class="lead">Marked glomerular permeability to protein.</p>
+          <ul>
+            <li><b>Massive proteinuria</b> and <b>hypoalbuminemia</b>.</li>
+            <li>Massive/generalized edema, <b>lipiduria</b> (milky urine), urinary casts.</li>
+            <li>Hematuria is <b>not</b> the defining feature.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Nephr<u>O</u>tic = pr<u>O</u>tein.</b> A question about <b>low albumin</b> specifically → nephrotic. A question about <b>blood + RBC casts</b> → glomerulonephritis.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Side-by-side comparison</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Feature</th><th class="cmp-a">Glomerulonephritis</th><th class="cmp-b">Nephrotic syndrome</th></tr></thead>
+            <tbody>
+              <tr><td>Primary problem</td><td>Glomerular inflammation</td><td>↑ Protein permeability</td></tr>
+              <tr><td>Hematuria</td><td>Common (with RBC casts)</td><td>Not defining</td></tr>
+              <tr><td>Proteinuria</td><td>Present</td><td>Severe / massive</td></tr>
+              <tr><td>Albumin</td><td>May be decreased</td><td>Specifically low</td></tr>
+              <tr><td>Edema</td><td>Common</td><td>Often massive</td></tr>
+              <tr><td>Blood pressure</td><td>Often elevated</td><td>Variable</td></tr>
+            </tbody>
+          </table></div>
+          <div class="callout xcourse"><span class="lbl">↔ Pharmacology (NUR 312)</span><p>Both are managed with <b>sodium restriction</b>, fluid balance, <b>glucocorticoids</b> for inflammation, and antihypertensives; <b>ACE inhibitors</b> cut protein loss in nephrotic syndrome.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Obstruction: stones, hydronephrosis, nephrosclerosis<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Urolithiasis (kidney stones)</h3>
+          <ul>
+            <li>Also called renal calculi / nephrolithiasis. <b>Most common composition is calcium.</b></li>
+            <li>Promoted by dehydration (concentrated urine), infection, and high solute load. Uric acid stones link to gout.</li>
+            <li>Obstruction → severe colicky flank pain radiating to the groin, hematuria, possible hydronephrosis and infection.</li>
+            <li>Nursing: <b>strain all urine</b>; send recovered stones for analysis.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Strain to explain</b> — catching the stone tells you its type, which guides prevention. Prevention centers on <b>fluids</b>; don't blanket-restrict calcium.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Hydronephrosis &amp; nephrosclerosis</h3>
+          <ul>
+            <li><span class="k">Hydronephrosis</span> — fluid backs up and dilates the kidney from obstruction (stones, tumors, scar, prostate enlargement). Risks: infection and loss of function.</li>
+            <li><span class="k">Nephrosclerosis</span> — thickening/hardening of small renal arteries → ↓ blood flow, ischemia. Think "atherosclerosis of the kidney"; often secondary to hypertension.</li>
+          </ul>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Congenital &amp; genetic disorders<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Structural &amp; reflux disorders</h3>
+          <ul>
+            <li><span class="k">Vesicoureteral reflux</span> — urine flows backward from bladder toward the kidneys, carrying bacteria upward → recurrent infection and damage.</li>
+            <li><span class="k">Ectopic kidney</span> — abnormal position; significance depends on drainage and function.</li>
+            <li><span class="k">Horseshoe kidney</span> — the two kidneys are fused; <span class="k">agenesis</span>/<span class="k">hypoplasia</span> = failure to form / to reach normal size.</li>
+          </ul>
+        </article>
+        <article class="card" data-system="renal" data-tags="exam xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Polycystic kidney disease (ADPKD)</h3>
+          <ul>
+            <li><b>Autosomal dominant</b>, gene on <b>chromosome 16</b>.</li>
+            <li>Multiple fluid-filled cysts replace working nephrons; kidneys enlarge.</li>
+            <li>Often silent until about <b>age 40</b>; progressive toward chronic renal failure. Damage is not reversible.</li>
+          </ul>
+          <div class="callout xcourse"><span class="lbl">↔ Health Assessment (NUR 315)</span><p>Autosomal dominant = a family-history disorder. A <b>genogram</b> showing an affected parent and ~50% affected children fits the inheritance pattern.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Wilms tumor</h3>
+          <p>Most common kidney tumor in <b>children</b>; large encapsulated mass, usually unilateral, linked to tumor-suppressor defects on <b>chromosome 11</b>. A renal mass in a child needs prompt evaluation — Wilms tumor is commonly malignant.</p>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Acute vs Chronic kidney failure<span class="tag">high yield</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="exam emergency">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Acute kidney injury (AKI / ARF)</h3>
+          <ul>
+            <li>Sudden decline in function — often <b>reversible</b> if the cause is treated.</li>
+            <li>Causes: low perfusion/shock, nephrotoxins, contrast, obstruction, severe infection, trauma.</li>
+            <li>Findings: rising creatinine/BUN, fluid retention, <b>hyperkalemia</b>, metabolic acidosis.</li>
+          </ul>
+          <div class="callout emerg"><span class="lbl">Watch for</span><p><b>Hyperkalemia</b> in AKI is life-threatening (cardiac dysrhythmias). Monitor potassium and ECG closely.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Chronic kidney disease (CKD)</h3>
+          <ul>
+            <li>Gradual, usually <b>irreversible</b> loss of nephrons; staged by GFR.</li>
+            <li>Early: may be asymptomatic or ↑ urine output (lost concentrating ability). Later: oliguria.</li>
+            <li>Findings: anemia, fatigue, nausea, hypertension, dry/pruritic skin, easy bruising, fluid/electrolyte problems.</li>
+            <li>Manage potassium and sodium in the diet; avoid nephrotoxins.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">The 3 A's of CKD</span><p><b>Azotemia</b> (nitrogen waste ↑), <b>Anemia</b> (↓ EPO), <b>Acidosis</b> (can't excrete acid).</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">CKD stages by GFR</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Stage</th><th>GFR (mL/min)</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td class="val">≥ 90</td><td>Normal/high, other evidence of damage</td></tr>
+              <tr><td>2</td><td class="val">60–89</td><td>Mildly decreased</td></tr>
+              <tr><td>3</td><td class="val">30–59</td><td>Key point for education &amp; lifestyle change</td></tr>
+              <tr><td>4</td><td class="val">15–29</td><td>Severely decreased</td></tr>
+              <tr><td>5</td><td class="val">&lt; 15</td><td>End-stage → renal replacement therapy</td></tr>
+            </tbody>
+          </table></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">AKI vs CKD at a glance</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Feature</th><th class="cmp-a">AKI</th><th class="cmp-b">CKD</th></tr></thead>
+            <tbody>
+              <tr><td>Onset</td><td>Sudden</td><td>Gradual, progressive</td></tr>
+              <tr><td>Reversibility</td><td>Potentially reversible</td><td>Usually irreversible</td></tr>
+              <tr><td>Causes</td><td>Toxins, contrast, obstruction, low perfusion</td><td>Progressive nephron loss</td></tr>
+              <tr><td>Staging</td><td>Change in labs/function</td><td>GFR</td></tr>
+              <tr><td>Dialysis</td><td>May be temporary</td><td>May become long-term</td></tr>
+            </tbody>
+          </table></div>
+          <div class="callout mnem"><span class="lbl">Urine output terms</span><p><b>Oliguria</b> = low output (some urine). <b>Anuria</b> = essentially none. Lecture used <b>&lt; 30 mL/hr</b> as a concerning threshold — but always read it in context.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Dialysis &amp; diuretics<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="renal" data-tags="exam emergency mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Hemodialysis &amp; the AV fistula</h3>
+          <ul>
+            <li>Blood is filtered through an external machine, ~<b>3–4 hours</b>, several times a week.</li>
+            <li>Requires vascular access — usually an <b>arteriovenous (AV) fistula</b> joining an artery and vein.</li>
+            <li>Assess the access: feel the <b>thrill</b> (vibration), hear the <b>bruit</b> (whoosh).</li>
+          </ul>
+          <div class="callout emerg"><span class="lbl">Never on the fistula arm</span><p>No <b>blood pressure cuff</b>, no <b>tourniquet</b>, no <b>venipuncture or IV</b>. Losing the access threatens the patient's dialysis and survival.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Peritoneal dialysis</h3>
+          <ul>
+            <li>The <b>peritoneal membrane</b> is the filter; sterile dialysate is instilled through a catheter, dwells, then drains by gravity.</li>
+            <li>Automated form often runs overnight (~10 hrs); offers independence but restricts movement.</li>
+            <li>Major risk: <b>peritonitis</b> — sterile technique is essential.</li>
+          </ul>
+          <div class="callout exam"><span class="lbl">Concept</span><p>Dialysis <b>does not cure</b> kidney disease — it is life-sustaining replacement. In AKI it may be temporary; in CKD it may be long-term until transplant.</p></div>
+        </article>
+        <article class="card" data-system="renal" data-tags="xcourse mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Diuretics</h3>
+          <p>Increase excretion of sodium and water to reduce fluid volume — used in hypertension, edema, heart failure, and renal/liver disease. Some are potassium-<b>wasting</b>, some potassium-<b>sparing</b>.</p>
+          <div class="callout xcourse"><span class="lbl">↔ Pharmacology (NUR 312)</span><p><b>K-wasting:</b> loop (furosemide), thiazide → watch for <b>hypokalemia</b>. <b>K-sparing:</b> spironolactone → watch for <b>hyperkalemia</b>. Ties directly to your fluid/electrolyte content.</p></div>
+        </article>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============================ ENDOCRINE ============================ -->
+  <section class="section endo" id="endocrine">
+    <div class="section-head">
+      <h2>Endocrine System</h2>
+      <span class="meta">Chapter 16 — hormones, feedback, diabetes</span>
+    </div>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Endocrine basics &amp; regulation<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="endo" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">How the system is wired</h3>
+          <ul>
+            <li>General pathway: <span class="k">hypothalamus → pituitary → end organ</span>.</li>
+            <li>Anterior pituitary <b>sends</b> hormones; posterior pituitary <b>releases</b> hormones made by the hypothalamus (ADH, oxytocin).</li>
+            <li><span class="k">Negative feedback</span>: the end-product hormone suppresses further stimulation (e.g., thyroid hormone suppresses TSH).</li>
+            <li>Receptors adjust: <b>up</b>regulation (more/sensitized) vs <b>down</b>regulation (fewer/less sensitive).</li>
+          </ul>
+        </article>
+        <article class="card" data-system="endo" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Three ways endocrine glands fail + three levels</h3>
+          <ul>
+            <li><b>Deficiency</b> (gland destroyed), <b>excess</b> (tumor/autoimmune), or <b>resistance</b> (receptors don't respond).</li>
+            <li><span class="k">Primary</span> — problem in the gland itself.</li>
+            <li><span class="k">Secondary</span> — problem in the pituitary.</li>
+            <li><span class="k">Tertiary</span> — problem in the hypothalamus.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>1-2-3 = gland, pituitary, hypothalamus.</b> Count "up the chain" from the target organ.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">The ACTH → cortisol pathway</h3>
+          <p class="lead">Hypothalamus (CRH) → anterior pituitary (ACTH) → adrenal cortex (cortisol).</p>
+          <p>Morning serum cortisol is drawn at <b>8–9 a.m.</b> because cortisol is normally highest then.</p>
+          <div class="callout mnem"><span class="lbl">Chain</span><p><b>CRH → ACTH → Cortisol.</b> This one chain explains Addison's, Cushing's, and why steroids can't be stopped abruptly.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Pituitary disorders<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="endo" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Hypopituitarism</h3>
+          <ul>
+            <li>Loss of one or more pituitary hormones (<b>panhypopituitarism</b> = all).</li>
+            <li>Causes: pituitary tumor, brain surgery, radiation, trauma, ischemia.</li>
+            <li>Signs are <b>nonspecific</b>: weakness, weight change, hypotension, sluggishness, depression, polyuria, dehydration — so hormone levels are needed.</li>
+            <li>Most serious effects: adrenal insufficiency, hypothyroidism, diabetes insipidus.</li>
+          </ul>
+        </article>
+        <article class="card" data-system="endo" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Hyperpituitarism</h3>
+          <ul>
+            <li>Usually a <b>pituitary adenoma</b>; may over-secrete ACTH, TSH, GH, or prolactin.</li>
+            <li><b>Prolactinoma</b> is most common → antiestrogenic/antiandrogenic effects.</li>
+            <li>Excess <b>growth hormone</b> → gigantism (children) or acromegaly (adults).</li>
+            <li>Large tumors compress the optic nerve → headaches, visual changes.</li>
+          </ul>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>ADH disorders: DI vs SIADH<span class="tag">high yield</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="endo" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Diabetes insipidus (DI)</h3>
+          <ul>
+            <li><b>Too little ADH</b> (central) or the kidney won't respond (nephrogenic).</li>
+            <li>Large volume of <b>dilute</b> urine → polyuria, thirst, dehydration, disorientation.</li>
+            <li>Labs: serum osmolality <b>&gt; 300</b>, urine osmolality <b>&lt; 300</b> mOsm/kg.</li>
+            <li>Treat with desmopressin/vasopressin when appropriate.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>DI = Dry Inside.</b> No ADH → water pours out → dehydrated, dilute urine, high serum sodium.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="exam mnemonic emergency">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">SIADH</h3>
+          <ul>
+            <li><b>Too much ADH</b> → fluid retention, concentrated urine, dilute plasma, hypervolemia.</li>
+            <li>Dangerous <b>hyponatremia</b> → cerebral edema.</li>
+            <li>Associated with brain injury, neurosurgery, and small-cell lung cancer.</li>
+            <li>Treat with fluid restriction, <b>slow</b> sodium correction, possible ADH-receptor antagonists.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>SIADH = Soaked Inside.</b> Water held in → dilutional hyponatremia → correct sodium <b>slowly</b> to protect the brain.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">DI vs SIADH comparison</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Feature</th><th class="cmp-a">DI</th><th class="cmp-b">SIADH</th></tr></thead>
+            <tbody>
+              <tr><td>ADH</td><td>Too little</td><td>Too much</td></tr>
+              <tr><td>Urine</td><td>Large, dilute</td><td>Scant, concentrated</td></tr>
+              <tr><td>Serum sodium</td><td>High</td><td>Low (hyponatremia)</td></tr>
+              <tr><td>Volume status</td><td>Dehydrated</td><td>Overloaded</td></tr>
+              <tr><td>Treatment</td><td>Replace ADH (desmopressin)</td><td>Restrict fluids</td></tr>
+            </tbody>
+          </table></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Thyroid &amp; parathyroid<span class="tag">high yield</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="endo" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Reading thyroid labs</h3>
+          <p class="lead">Classify by <b>T3 and T4</b>. In <b>primary</b> disease, TSH moves the opposite direction.</p>
+          <ul>
+            <li>Primary <b>hypo</b>thyroid → low T3/T4, <b>high</b> TSH.</li>
+            <li>Primary <b>hyper</b>thyroid → high T3/T4, <b>low</b> TSH.</li>
+            <li><span class="k">Goiter</span> = enlarged thyroid; can occur with either state or with low iodine.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p>TSH is the <b>opposite</b> partner in primary disease. Low thyroid hormone → the pituitary shouts louder (↑ TSH).</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Hypothyroidism — everything slows &amp; cools</h3>
+          <ul>
+            <li>Cold intolerance, weight gain, fatigue, lethargy, constipation, bradycardia.</li>
+            <li>Memory deficits, dry skin, hair loss, brittle nails, puffy face.</li>
+            <li><b>Hashimoto's thyroiditis</b> is the common autoimmune cause; congenital form = cretinism.</li>
+          </ul>
+        </article>
+        <article class="card" data-system="endo" data-tags="mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Hyperthyroidism — everything speeds &amp; heats</h3>
+          <ul>
+            <li>Heat intolerance, weight loss, nervousness, insomnia, tachycardia, <b>atrial fibrillation</b>, diarrhea, sweating.</li>
+            <li><b>Graves' disease</b> is the most common cause → <b>exophthalmos</b> (bulging eyes) and goiter.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Hyper = Hot &amp; fast.</b> Graves' = <b>bug eyes</b> (exophthalmos). Hypo = cold, slow, and heavy.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="emergency xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Thyroid storm (thyrotoxic crisis)</h3>
+          <p>Overwhelming release of thyroid hormone → high fever, tachycardia, agitation, possible psychosis. Often triggered by surgery or trauma.</p>
+          <div class="callout emerg"><span class="lbl">Medical emergency</span><p>Management: block synthesis (<b>methimazole/PTU</b>), block release (iodide), slow the heart (<b>beta-blocker</b>), support circulation (IV glucocorticoids).</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Parathyroid (PTH)</h3>
+          <ul>
+            <li>PTH is released when <b>calcium is low</b>; it raises calcium via bone resorption and intestinal absorption.</li>
+            <li><span class="k">Hypoparathyroidism</span> — often from inadvertent damage during thyroid surgery → <b>hypocalcemia</b>; treat with calcium + vitamin D.</li>
+            <li><span class="k">Hyperparathyroidism</span> — usually an adenoma → high PTH and calcium; may need parathyroidectomy.</li>
+          </ul>
+          <div class="callout xcourse"><span class="lbl">↔ Concept link</span><p>Thyroid surgery risks the neighboring parathyroids → watch for post-op <b>hypocalcemia</b> (tingling, tetany, positive Chvostek/Trousseau).</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Adrenal disorders<span class="tag">high yield</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="endo" data-tags="emergency xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Why you never stop steroids abruptly</h3>
+          <p>Long-term glucocorticoids suppress CRH and ACTH → the adrenal gland atrophies. Stopping suddenly leaves the body unable to respond to stress.</p>
+          <div class="callout emerg"><span class="lbl">Safety</span><p>Always <b>taper</b> steroids. Use the smallest effective dose to limit adrenal atrophy.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Addison's disease (primary adrenal insufficiency)</h3>
+          <ul>
+            <li>Usually autoimmune destruction of the adrenal cortex → too little cortisol/aldosterone.</li>
+            <li>Weakness, hypotension, fatigue, anorexia, <b>hypoglycemia</b>, <b>hyponatremia</b>, <b>hyperkalemia</b>.</li>
+            <li><b>Hyperpigmentation</b> (bronzed skin), amenorrhea, loss of axillary/pubic hair.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Addison's = everything down</b> (BP, Na⁺, glucose) — <b>except potassium, which is up.</b> Skin bronzes because ACTH shares a precursor with melanocyte-stimulating hormone.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Cushing's — disease vs syndrome</h3>
+          <ul>
+            <li><span class="k">Cushing's <b>disease</b></span> — pituitary adenoma → high ACTH → high cortisol.</li>
+            <li><span class="k">Cushing's <b>syndrome</b></span> — high cortisol from adrenal disease or, most commonly, <b>exogenous steroids</b>.</li>
+            <li>Features: central weight gain, <b>moon face</b>, <b>buffalo hump</b>, striae, easy bruising, poor wound healing, hypertension, hyperglycemia, osteoporosis, immune suppression, hirsutism/amenorrhea.</li>
+            <li>Testing: salivary/24-hr urine cortisol; <b>dexamethasone suppression test</b> (no suppression in Cushing's).</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Cushing's = everything up.</b> Too much cortisol = the classic "moon face + buffalo hump + thin bruising skin." Disease starts in the <b>pituitary</b>; syndrome is <b>cortisol excess</b> from anywhere (usually steroids).</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="mnemonic xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Pheochromocytoma</h3>
+          <p>Adrenal <b>medulla</b> tumor that secretes catecholamines (epinephrine/norepinephrine). Diagnosis: 24-hr urine for catecholamine metabolites. Treatment: surgical removal + adrenergic blockers.</p>
+          <div class="callout mnem"><span class="lbl">Classic triad — the 3 P's</span><p><b>Palpitations, Pain (headache), Perspiration</b>, on a background of severe hypertension, tremors, and tachycardia.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Diabetes mellitus — foundations<span class="tag">very high yield</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="endo" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Types of diabetes</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Type</th><th>Core defect</th><th>Key point</th></tr></thead>
+            <tbody>
+              <tr><td>Type 1</td><td>Autoimmune loss of beta cells → <b>no insulin</b></td><td>Lifelong insulin; often presents as DKA</td></tr>
+              <tr><td>Type 2</td><td><b>Insulin resistance</b> (~90% of cases)</td><td>Obesity, sedentary, dyslipidemia, genetics</td></tr>
+              <tr><td>Gestational</td><td>Pregnancy hormones ↓ insulin sensitivity</td><td>Macrosomia; ↑ later T2DM risk</td></tr>
+            </tbody>
+          </table></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="exam">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Blood glucose numbers</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Status</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Normal (fasting)</td><td class="val">70–100 mg/dL</td></tr>
+              <tr><td>Hypoglycemia</td><td class="val">&lt; 70 mg/dL</td></tr>
+              <tr><td>Prediabetes (fasting)</td><td class="val">100–125 mg/dL</td></tr>
+              <tr><td>Diabetes (fasting)</td><td class="val">&gt; 126 mg/dL</td></tr>
+              <tr><td>Diabetes (random/postprandial)</td><td class="val">&gt; 200 mg/dL</td></tr>
+            </tbody>
+          </table></div>
+          <div class="callout exam"><span class="lbl">Exam focus</span><p><b>A1c</b> reflects ~3 months of average glucose and is preferred for <b>monitoring</b>. Fasting glucose can diagnose but is not enough to judge control.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Classic signs + why they happen</h3>
+          <ul>
+            <li><b>Polyuria</b> — glucose spills into urine and drags water out (osmotic diuresis).</li>
+            <li><b>Polydipsia</b> — cellular dehydration drives thirst.</li>
+            <li><b>Polyphagia</b> — cells can't use glucose, so hunger rises.</li>
+            <li>Also: blurred vision, recurrent infections, weight change, electrolyte shifts.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">The 3 P's</span><p><b>Polyuria, Polydipsia, Polyphagia</b> — pee, drink, eat.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Diabetes labs</h3>
+          <ul>
+            <li><b>OGTT</b> (75 g glucose load), fasting/random glucose, <b>A1c</b>, estimated average glucose (eAG).</li>
+            <li><b>C-peptide</b> and islet-cell antibodies help distinguish T1 from T2.</li>
+            <li>Urinalysis: <b>glucosuria</b> (renal threshold exceeded) and <b>ketonuria</b> (more common in T1).</li>
+          </ul>
+          <div class="callout xcourse"><span class="lbl">↔ Pharmacology (NUR 312)</span><p><b>Metformin</b> lowers hepatic glucose output and improves insulin sensitivity — it supplies <b>no insulin</b>, so it is <b>not</b> appropriate for Type 1.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Diabetic emergencies &amp; morning highs<span class="tag">high yield</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="endo" data-tags="exam emergency mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">DKA vs HHS</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Feature</th><th class="cmp-a">DKA</th><th class="cmp-b">HHS</th></tr></thead>
+            <tbody>
+              <tr><td>More common in</td><td>Type 1</td><td>Type 2</td></tr>
+              <tr><td>Insulin</td><td>Absent</td><td>Some present</td></tr>
+              <tr><td>Ketones/acidosis</td><td><b>Yes</b> (pH &lt; 7.3)</td><td>No / minimal</td></tr>
+              <tr><td>Glucose</td><td>&gt; 250 mg/dL</td><td>&gt; 600 mg/dL</td></tr>
+              <tr><td>Hallmark signs</td><td>Kussmaul breathing, fruity breath, N/V</td><td>Severe dehydration, confusion, coma</td></tr>
+              <tr><td>First treatment</td><td>Fluids + insulin</td><td><b>Fluids first</b>, then insulin</td></tr>
+            </tbody>
+          </table></div>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>DKA = Ketones + acid (Type 1).</b> <b>HHS = Huge sugar, High osmolality, no ketones (Type 2)</b> — fix the fluids first.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Somogyi effect vs dawn phenomenon</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Feature</th><th class="cmp-a">Somogyi</th><th class="cmp-b">Dawn</th></tr></thead>
+            <tbody>
+              <tr><td>Morning glucose</td><td>High</td><td>High</td></tr>
+              <tr><td>Overnight low?</td><td><b>Yes</b> — rebound</td><td>No</td></tr>
+              <tr><td>Cause</td><td>Too much insulin at night</td><td>Nighttime growth-hormone rise</td></tr>
+              <tr><td>Fix</td><td>Reduce/adjust nighttime insulin</td><td>Adjust meds, diet, exercise</td></tr>
+            </tbody>
+          </table></div>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Somogyi = "So low, then high"</b> (a rebound from a nighttime low). <b>Dawn = a steady sunrise rise</b> with no dip.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Hypoglycemia</h3>
+          <p>Glucose <span class="val">&lt; 70 mg/dL</span> from too much insulin, too little food, or extra activity. The body responds with epinephrine and glucagon; the brain is affected quickly, so treat promptly.</p>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Long-term complications &amp; management<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="endo" data-tags="xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Complications of diabetes</h3>
+          <ul>
+            <li><b>Macrovascular</b> — atherosclerosis; cardiac events 2–4× more likely.</li>
+            <li><b>Neuropathy</b> — distal, symmetric; starts in the feet; blunted pain can mask injury and cause a <b>silent MI</b>.</li>
+            <li><b>Retinopathy</b> — leading cause of adult blindness (microaneurysms, cotton-wool spots).</li>
+            <li><b>Nephropathy</b> — glomerular damage, microalbuminuria → renal failure.</li>
+            <li><b>Infection &amp; poor healing</b> — leading cause of nontraumatic lower-limb amputation.</li>
+          </ul>
+          <div class="callout xcourse"><span class="lbl">↔ Health Assessment / Fundamentals</span><p>This is the "why" behind diabetic <b>foot exams</b>, <b>fundoscopic exams</b>, and meticulous <b>wound/skin care</b>.</p></div>
+        </article>
+        <article class="card" data-system="endo" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Treatment &amp; monitoring goals</h3>
+          <ul>
+            <li>Primary goal is <b>glycemic control</b> to prevent complications; watch for both hyper- and hypoglycemia.</li>
+            <li>Reduce cardiovascular risk: lipids, blood pressure &lt; 140/90 (T2), smoking cessation, exercise.</li>
+            <li>Clinician tracks A1c + fasting/postprandial glucose; patient self-monitors with a glucometer (before meals, 2 hrs after, bedtime).</li>
+          </ul>
+        </article>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============================ REPRODUCTIVE ============================ -->
+  <section class="section repro" id="reproductive">
+    <div class="section-head">
+      <h2>Reproductive System &amp; STIs</h2>
+      <span class="meta">Chapter 19 — menstrual, prolapse, male, infections</span>
+    </div>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Female menstrual terminology<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="repro" data-tags="mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Menstrual disorder vocabulary</h3>
+          <ul>
+            <li><span class="k">Amenorrhea</span> — no menstruation (rule out pregnancy first). Primary = no menses by age 16.</li>
+            <li><span class="k">Dysmenorrhea</span> — painful periods.</li>
+            <li><span class="k">Menorrhagia</span> — heavy bleeding lasting &gt; 7 days.</li>
+            <li><span class="k">Metrorrhagia</span> — bleeding <b>between</b> normal periods.</li>
+            <li><span class="k">Oligomenorrhea</span> — infrequent periods.</li>
+            <li><span class="k">Dyspareunia</span> — painful intercourse; <span class="k">menopause</span> ≈ age 51.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Meno</b>rrhagia = <b>Много</b>/"more" during periods. <b>Metro</b>rrhagia = "between" (think metro <b>stops</b> in the middle). <b>Oligo</b> = few.</p></div>
+        </article>
+        <article class="card" data-system="repro" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Assessment of bleeding</h3>
+          <p>Take a menstrual history: last menstrual period, duration, interval, regularity, and volume. Saturating a pad or tampon <b>every hour</b> is excessive.</p>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Pregnancy terms &amp; dating<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="repro" data-tags="mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Naegele's rule</h3>
+          <p>Estimate the due date from the last menstrual period: <b>subtract 3 months, add 7 days, add 1 year</b>. Pregnancy runs ~40 weeks from the LMP.</p>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>−3 months, +7 days.</b> Conception is ~2 weeks after the LMP if cycles are regular.</p></div>
+        </article>
+        <article class="card" data-system="repro" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Gravidity &amp; parity terms</h3>
+          <ul>
+            <li><span class="k">Gravidity</span> = number of pregnancies; <span class="k">parity</span> = deliveries after ~24 weeks.</li>
+            <li><b>Nulliparous</b> = no pregnancies · <b>Primigravida</b> = first pregnancy · <b>Multiparous</b> = several.</li>
+            <li>G2P2 = two pregnancies, two deliveries.</li>
+          </ul>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Infertility &amp; PCOS<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="repro" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Causes of female infertility</h3>
+          <ul>
+            <li><b>PCOS</b> — androgen excess, no ovulation.</li>
+            <li><b>Premature ovarian failure</b> — antibodies against ovarian tissue.</li>
+            <li><b>Endometriosis</b> — uterine tissue growing outside the uterus.</li>
+            <li>Fallopian tube damage, cervical obstruction, uterine fibroids disrupting implantation.</li>
+          </ul>
+        </article>
+        <article class="card" data-system="repro" data-tags="exam xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Polycystic ovary syndrome (PCOS)</h3>
+          <ul>
+            <li>Most common endocrine disorder in young women; leading cause of U.S. infertility.</li>
+            <li>Core triad: <b>androgen excess, anovulation, hyperinsulinemia</b>; follicular cysts.</li>
+            <li>Often part of <b>metabolic syndrome</b>; screen for insulin resistance and T2DM.</li>
+          </ul>
+          <div class="callout xcourse"><span class="lbl">↔ Endocrine link (this week)</span><p>PCOS is where reproductive and endocrine content overlap — <b>metformin</b> can address the insulin-resistance component, the same drug you met in diabetes.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Prolapse &amp; herniation<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="repro" data-tags="mnemonic xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Uterine prolapse &amp; friends</h3>
+          <ul>
+            <li><span class="k">Uterine prolapse</span> — uterus protrudes into the vagina; linked to multiparity, pelvic muscle/nerve injury, obesity, chronic constipation, and menopause.</li>
+            <li><span class="k">Cystocele</span> — bladder herniates into the vagina.</li>
+            <li><span class="k">Rectocele</span> — rectum herniates into the vagina.</li>
+            <li><span class="k">Enterocele</span> — intestine herniates between uterine ligaments.</li>
+            <li>Management: Kegel exercises, a <b>pessary</b>, tissue repair, or hysterectomy.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Cysto = bladder, Recto = rectum, Entero = intestine</b> — named for the organ pushing in.</p></div>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Cervix, vagina, ovary &amp; breast<span class="tag"></span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="repro" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Common structural &amp; inflammatory disorders</h3>
+          <ul>
+            <li><span class="k">Cervicitis</span> — inflamed cervix from ascending infection; polyps may cause postcoital bleeding.</li>
+            <li><span class="k">Vaginitis</span> — discharge, burning, itching; bacterial, candida, or trichomonas; identify the organism to treat.</li>
+            <li><b>Ovarian cysts</b> — follicular (usually asymptomatic, regress) vs corpus luteum (may rupture, cause pain).</li>
+            <li><b>Breast</b>: mastitis (inflammation, often lactation), galactorrhea (milk without lactation — think prolactinoma).</li>
+          </ul>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Male reproductive disorders<span class="tag">high yield</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="repro" data-tags="exam xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Benign prostatic hyperplasia (BPH)</h3>
+          <ul>
+            <li>Testosterone-driven prostate enlargement that encroaches on the urethra and obstructs flow.</li>
+            <li>Symptoms: hesitancy, frequency, small voids, incomplete emptying, retention (lower urinary tract symptoms).</li>
+            <li><b>DRE</b> assesses the prostate; <b>PSA</b> helps screen for cancer but <b>cannot diagnose it alone</b> — biopsy confirms.</li>
+          </ul>
+          <div class="callout xcourse"><span class="lbl">↔ Renal link (this week)</span><p>BPH is a classic cause of <b>urinary retention</b> and obstruction — tying straight back to hydronephrosis and UTI risk in older men.</p></div>
+        </article>
+        <article class="card" data-system="repro" data-tags="exam xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Erectile dysfunction</h3>
+          <p>Treated with oral <b>PDE-5 inhibitors</b> (sildenafil, tadalafil), which enhance nitric-oxide vasodilation.</p>
+          <div class="callout emerg"><span class="lbl">Critical interaction</span><p>PDE-5 inhibitors are <b>contraindicated with nitrates</b> — the combination causes severe, dangerous hypotension.</p></div>
+        </article>
+        <article class="card" data-system="repro" data-tags="exam emergency mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Testicular torsion</h3>
+          <p>Twisting of the spermatic cord cuts off blood flow → sudden, severe, unilateral pain. Most common in adolescents.</p>
+          <div class="callout emerg"><span class="lbl">Surgical emergency</span><p>Detorsion within <b>~6 hours</b> saves the testicle. Delay risks infarction and loss. This is a urological emergency — no watchful waiting.</p></div>
+        </article>
+        <article class="card" data-system="repro" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Other male anatomy terms</h3>
+          <ul>
+            <li><span class="k">Cryptorchidism</span> — undescended testis; correct by age 1 (needs cooler temperature for sperm).</li>
+            <li><span class="k">Phimosis</span> — foreskin too tight; <span class="k">paraphimosis</span> — foreskin stuck retracted.</li>
+            <li><span class="k">Priapism</span> — prolonged painful erection (drugs, sickle-cell crisis).</li>
+            <li><span class="k">Peyronie's</span> — fibrous penile curvature; <span class="k">varicocele/hydrocele/hematocele</span> — scrotal swellings.</li>
+          </ul>
+        </article>
+      </div>
+    </details>
+
+    <details class="sub" open>
+      <summary><svg class="tw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>Sexually transmitted infections<span class="tag">high yield</span></summary>
+      <div class="sub-body">
+        <article class="card" data-system="repro" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">STI basics &amp; the CDC Five Ps</h3>
+          <ul>
+            <li>STIs may be bacterial, viral, fungal, or parasitic — and often <b>asymptomatic</b>.</li>
+            <li>Untreated infections can cause <b>pelvic inflammatory disease</b> and <b>infertility</b>.</li>
+            <li>Someone with one STI should be tested for others.</li>
+          </ul>
+          <div class="callout mnem"><span class="lbl">CDC Five Ps of the sexual history</span><p><b>Partners, Practices, Protection (STI prevention), Past history, Pregnancy prevention.</b></p></div>
+        </article>
+        <article class="card" data-system="repro" data-tags="exam xcourse">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Bacterial STIs</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Infection</th><th>Key features</th></tr></thead>
+            <tbody>
+              <tr><td>Chlamydia</td><td>Very common; often silent; cervicitis, PID, infertility. Newborn: pneumonia/conjunctivitis.</td></tr>
+              <tr><td>Gonorrhea</td><td><i>Neisseria gonorrhoeae</i>; men have dysuria/discharge, women often asymptomatic; antibiotic resistance rising.</td></tr>
+              <tr><td>Syphilis</td><td><i>Treponema pallidum</i>; 4 phases (see below); treatable but not eradicated from the body.</td></tr>
+              <tr><td>Bacterial vaginosis</td><td><i>Gardnerella</i>; "fishy" discharge with <b>clue cells</b>.</td></tr>
+            </tbody>
+          </table></div>
+          <div class="callout xcourse"><span class="lbl">↔ Pharmacology (NUR 312)</span><p>Chlamydia → azithromycin/doxycycline; gonorrhea → ceftriaxone; syphilis → penicillin; trichomonas &amp; BV → metronidazole (treat partners too).</p></div>
+        </article>
+        <article class="card" data-system="repro" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Syphilis phases</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Phase</th><th>Hallmark</th></tr></thead>
+            <tbody>
+              <tr><td>Primary</td><td>Painless <b>chancre</b>; highly infectious</td></tr>
+              <tr><td>Secondary</td><td>Widespread <b>rash</b>; highly infectious</td></tr>
+              <tr><td>Latent</td><td>Asymptomatic; may self-heal or persist</td></tr>
+              <tr><td>Tertiary</td><td>Neurological damage (neurosyphilis), gummas</td></tr>
+            </tbody>
+          </table></div>
+          <div class="callout mnem"><span class="lbl">Memory hook</span><p><b>Chancre → rash → hidden → neuro.</b> One sore, then a rash, then silence, then late organ damage.</p></div>
+        </article>
+        <article class="card" data-system="repro" data-tags="">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Viral &amp; parasitic STIs</h3>
+          <ul>
+            <li><span class="k">HPV</span> — most common STI; types 6/11 cause warts, oncogenic types cause cervical and other cancers. Vaccinate before age 15 (2-dose) or 15–26 (3-dose).</li>
+            <li><span class="k">HSV</span> — recurrent painful vesicles; <b>no cure</b>; acyclovir reduces symptoms.</li>
+            <li><span class="k">Trichomonas</span> — most common nonviral STI; green-yellow discharge; treat with metronidazole.</li>
+          </ul>
+        </article>
+        <article class="card" data-system="repro" data-tags="exam mnemonic">
+          <input type="checkbox" class="chk" aria-label="mark mastered">
+          <h3 class="card-title">Pelvic inflammatory disease (PID)</h3>
+          <p>Ascending infection of the upper reproductive tract (often gonorrhea/chlamydia). Causes pelvic pain, fever, discharge, and can lead to infertility. Risk rises with multiple partners, prior STIs, and IUD use.</p>
+          <div class="callout mnem"><span class="lbl">Signature sign</span><p><b>Chandelier sign</b> — cervical motion tenderness so intense the patient "reaches for the chandelier." Positive on pelvic exam points to PID.</p></div>
+        </article>
+      </div>
+    </details>
+  </section>
+
+  <button class="totop" id="totop" aria-label="Back to top">↑</button>
+
+  <footer>
+    <p>Built from your Week 8 (Ch. 18 — Urinary), Week 9 (Ch. 16 &amp; 19 — Endocrine &amp; Reproductive) lecture decks and the Week 8–9 review. Color = system · callouts = exam focus, mnemonics, cross-course links, emergencies. Check-offs and theme save on this device. Nursing study reference — not a clinical protocol.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var LS_DONE="w89patho_done_v1", LS_THEME="w89patho_theme_v1";
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  var subs=[].slice.call(document.querySelectorAll('.sub'));
+  var sections=[].slice.call(document.querySelectorAll('.section'));
+  var q=document.getElementById('q');
+  var count=document.getElementById('count');
+  var noresult=document.getElementById('noresult');
+  var activeSystem="all", activeTags={};
+
+  // give each card a stable id from its title
+  cards.forEach(function(c,i){
+    var t=c.querySelector('.card-title');
+    c.dataset.cid=(t?t.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-'):'card')+'-'+i;
+  });
+
+  // ---- mastery persistence ----
+  function loadDone(){ try{return JSON.parse(localStorage.getItem(LS_DONE)||'{}');}catch(e){return {};} }
+  function saveDone(d){ try{localStorage.setItem(LS_DONE,JSON.stringify(d));}catch(e){} }
+  var done=loadDone();
+  cards.forEach(function(c){
+    var box=c.querySelector('.chk');
+    if(done[c.dataset.cid]){ box.checked=true; c.classList.add('done'); }
+    box.addEventListener('change',function(){
+      if(box.checked){ done[c.dataset.cid]=1; c.classList.add('done'); }
+      else{ delete done[c.dataset.cid]; c.classList.remove('done'); }
+      saveDone(done); updateProgress();
+    });
+  });
+  function updateProgress(){
+    var total=cards.length, n=0;
+    cards.forEach(function(c){ if(done[c.dataset.cid]) n++; });
+    var pct=total?Math.round(n/total*100):0;
+    document.getElementById('pfill').style.width=pct+'%';
+    document.getElementById('pctLabel').textContent=pct+'% mastered ('+n+'/'+total+')';
+  }
+  document.getElementById('resetBtn').addEventListener('click',function(){
+    done={}; saveDone(done);
+    cards.forEach(function(c){ c.classList.remove('done'); c.querySelector('.chk').checked=false; });
+    updateProgress();
+  });
+  updateProgress();
+
+  // ---- theme ----
+  try{ var st=localStorage.getItem(LS_THEME); if(st) document.documentElement.setAttribute('data-theme',st); }catch(e){}
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',cur);
+    try{localStorage.setItem(LS_THEME,cur);}catch(e){}
+  });
+
+  // ---- search + filter ----
+  function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+  function clearHighlights(c){
+    var marks=c.querySelectorAll('mark.hl');
+    marks.forEach(function(m){ var t=document.createTextNode(m.textContent); m.parentNode.replaceChild(t,m); m.parentNode.normalize&&m.parentNode.normalize(); });
+  }
+  function highlight(c,term){
+    if(!term) return;
+    var rx=new RegExp('('+esc(term)+')','gi');
+    var walker=document.createTreeWalker(c,NodeFilter.SHOW_TEXT,null);
+    var nodes=[],n;
+    while(n=walker.nextNode()){ if(n.parentNode.nodeName!=='SCRIPT'&&n.nodeValue.trim()) nodes.push(n); }
+    nodes.forEach(function(node){
+      if(!rx.test(node.nodeValue)) return;
+      rx.lastIndex=0;
+      var span=document.createElement('span');
+      span.innerHTML=node.nodeValue.replace(rx,'<mark class="hl">$1</mark>');
+      node.parentNode.replaceChild(span,node);
+      while(span.firstChild) span.parentNode.insertBefore(span.firstChild,span);
+      span.parentNode.removeChild(span);
+    });
+  }
+
+  function apply(){
+    var term=q.value.trim().toLowerCase();
+    var tagList=Object.keys(activeTags).filter(function(k){return activeTags[k];});
+    var anyVisible=false;
+    document.getElementById('clearBtn').style.display=term?'block':'none';
+
+    cards.forEach(function(c){
+      clearHighlights(c);
+      var okSys=(activeSystem==='all')|| (c.dataset.system===activeSystem);
+      var cardTags=(c.dataset.tags||'').split(/\s+/);
+      var okTag=tagList.length===0 || tagList.every(function(t){return cardTags.indexOf(t)>-1;});
+      var okText=!term || c.textContent.toLowerCase().indexOf(term)>-1;
+      var show=okSys&&okTag&&okText;
+      c.classList.toggle('hidden',!show);
+      if(show){ anyVisible=true; if(term) highlight(c,term); }
+    });
+
+    // hide empty subs / sections, auto-open subs when searching
+    subs.forEach(function(s){
+      var vis=s.querySelectorAll('.card:not(.hidden)').length;
+      s.classList.toggle('hidden',vis===0);
+      if(term&&vis>0) s.open=true;
+    });
+    sections.forEach(function(sec){
+      var vis=sec.querySelectorAll('.card:not(.hidden)').length;
+      sec.classList.toggle('hidden',vis===0);
+    });
+
+    var shown=document.querySelectorAll('.card:not(.hidden)').length;
+    count.textContent=shown+' of '+cards.length+' topics';
+    noresult.classList.toggle('show',!anyVisible);
+  }
+
+  q.addEventListener('input',apply);
+  document.getElementById('clearBtn').addEventListener('click',function(){ q.value=''; apply(); q.focus(); });
+
+  document.getElementById('chips').addEventListener('click',function(e){
+    var b=e.target.closest('.chip'); if(!b) return;
+    if(b.dataset.filter!==undefined){
+      activeSystem=b.dataset.filter;
+      [].slice.call(this.querySelectorAll('.chip[data-filter]')).forEach(function(x){
+        x.setAttribute('aria-pressed', x===b ? 'true':'false');
+      });
+    } else if(b.dataset.tag!==undefined){
+      var t=b.dataset.tag;
+      activeTags[t]=!activeTags[t];
+      b.setAttribute('aria-pressed', activeTags[t]?'true':'false');
+    }
+    apply();
+  });
+
+  // ---- print: expand everything ----
+  document.getElementById('printBtn').addEventListener('click',function(){
+    subs.forEach(function(s){ s.open=true; });
+    window.print();
+  });
+
+  // ---- back to top ----
+  var totop=document.getElementById('totop');
+  window.addEventListener('scroll',function(){ totop.classList.toggle('show',window.scrollY>600); });
+  totop.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+  apply();
+})();
+</script>
+</body>
+</html>

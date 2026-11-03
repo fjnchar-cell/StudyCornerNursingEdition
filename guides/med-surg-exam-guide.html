@@ -1,0 +1,541 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Med-Surg Exam Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky filter bar over a single reading column; each chapter is a colored band with cards flowing in balanced columns. */
+:root{
+  --bg:#EEF3F4; --surface:#FFFFFF; --ink:#13232A; --muted:#55666E; --line:#D3DDE1; --accent:#0B6E78;
+  --alert:#B42318; --alert-bg:#FDECEA; --mn:#6B4BB0; --mn-bg:#F2EEFB; --good:#1D7A3E; --good-bg:#E6F4EA;
+  --c13:#7A4E9E; --c14:#2F64B0; --c15:#0B7A72; --c16:#4A7A1C; --c68:#C0392B; --c69:#A86200;
+  --c00:#13232A; --lec:#8A6400; --lec-bg:#FBF3DA;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1A1F; --surface:#15252B; --ink:#E4EEF0; --muted:#9AAEB5; --line:#2A3E45; --accent:#4FC3CB;
+  --alert:#FF8A7A; --alert-bg:#3A1C1A; --mn:#B9A2F0; --mn-bg:#251E3A; --good:#6FD08E; --good-bg:#14301F;
+  --c13:#B994DB; --c14:#7FA8EC; --c15:#4CC5B9; --c16:#9CCB62; --c68:#F08174; --c69:#E5A24A; --c00:#E4EEF0; --lec:#E8C15A; --lec-bg:#2C2410; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1A1F; --surface:#15252B; --ink:#E4EEF0; --muted:#9AAEB5; --line:#2A3E45; --accent:#4FC3CB;
+  --alert:#FF8A7A; --alert-bg:#3A1C1A; --mn:#B9A2F0; --mn-bg:#251E3A; --good:#6FD08E; --good-bg:#14301F;
+  --c13:#B994DB; --c14:#7FA8EC; --c15:#4CC5B9; --c16:#9CCB62; --c68:#F08174; --c69:#E5A24A; --c00:#E4EEF0; --lec:#E8C15A; --lec-bg:#2C2410; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;padding:0 16px 64px}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{padding-block:28px 12px;display:grid;gap:6px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:4px 0 0}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;border-bottom:1px solid var(--line);display:grid;gap:10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.search{flex:1 1 260px;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:0 12px}
+.search:focus-within{border-color:var(--accent)}
+.search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;padding:10px 0;outline:none}
+.search svg{flex:none;color:var(--muted)}
+.count{font-family:var(--f-mono);font-size:12px;color:var(--muted);white-space:nowrap}
+.chip{font:inherit;font-size:14px;cursor:pointer;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 12px;display:inline-flex;align-items:center;gap:6px}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip[aria-pressed="false"]{opacity:.5;background:transparent}
+.chip[aria-pressed="false"] .dot{background:transparent;border:1.5px solid var(--c)}
+.chip:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.ghost{font:inherit;font-size:13px;background:none;border:0;color:var(--accent);cursor:pointer;text-decoration:underline;padding:4px}
+.score{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+
+.chapter{margin-top:34px}
+.ch-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-top:6px solid var(--c);padding-top:12px}
+.ch-num{font-family:var(--f-mono);font-size:13px;color:var(--c);letter-spacing:.06em}
+.ch-head h2{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,3.4vw,32px);margin:0;line-height:1.1;text-wrap:balance}
+.ch-big{font-size:15px;color:var(--muted);max-width:70ch;margin:6px 0 0}
+.sec h3{font-family:var(--f-display);font-weight:600;font-size:19px;margin:22px 0 10px;color:var(--c)}
+.grid{columns:2 360px;column-gap:14px}
+.card{break-inside:avoid;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 14px;min-width:0}
+.card h4{margin:0 0 6px;font-size:16px;font-weight:700;line-height:1.3}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-bottom:6px}
+.card.alert{border-color:var(--alert);background:var(--alert-bg)}
+.card.alert .tag{background:var(--alert);color:var(--surface)}
+.card.mn{border:1.5px dashed var(--mn);background:var(--mn-bg)}
+.card.mn .tag{background:var(--mn);color:var(--surface)}
+.card.mn .hook{font-family:var(--f-display);font-weight:600;font-size:19px;line-height:1.25;color:var(--mn);margin:2px 0 6px}
+.card.key .tag{background:var(--line);color:var(--muted)}
+.card.prof{border-color:var(--lec);background:var(--lec-bg)}
+.card.prof .tag{background:var(--lec);color:var(--surface)}
+.card ul{margin:0;padding-left:18px;display:grid;gap:3px}
+.card p{margin:0}
+.note{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px!important}
+.tw{overflow-x:auto;margin-top:4px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td:first-child{font-weight:700;white-space:nowrap}
+.card.q .tag{background:var(--c);color:var(--surface)}
+.q .stem{font-weight:700;margin-bottom:8px}
+.opts{display:grid;gap:6px}
+.opt{font:inherit;text-align:left;cursor:pointer;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:8px 10px}
+.opt:hover{border-color:var(--c)}
+.opt.right{border-color:var(--good);background:var(--good-bg)}
+.opt.wrong{border-color:var(--alert);background:var(--alert-bg)}
+.opt:disabled{cursor:default}
+.rat{margin-top:10px;font-size:14.5px;border-left:3px solid var(--c);padding-left:10px}
+.rat b{display:block}
+mark{background:color-mix(in srgb, var(--accent) 28%, transparent);color:inherit;border-radius:2px}
+.empty{padding:40px 0;color:var(--muted);text-align:center}
+@media (max-width:640px){.bar{position:static}}
+@media (prefers-reduced-motion:no-preference){.card{transition:opacity .15s}}
+@media print{
+  .bar{display:none} body{padding:0} .card{border-color:#999;background:#fff!important}
+  .rat[hidden]{display:block!important} .chapter{break-before:page}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Med-Surg · Ch 13, 14, 15, 16, 68, 69 · slides + Week 1 lecture</div>
+    <h1>Med-Surg Exam Guide</h1>
+    <p class="lede">Palliative care, the perioperative journey, emergency nursing, and disaster nursing, pulled from your lecture slides. Red cards are nursing priorities. Purple cards are memory hooks. Gold cards are what your professor emphasized in lecture. Practice questions are at the end of each chapter. Start with the test-strategy section.</p>
+  </header>
+
+  <div class="bar" id="bar">
+    <div class="row">
+      <label class="search" for="q">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search: dantrolene, POLST, START, dehiscence…" autocomplete="off">
+      </label>
+      <span class="count" id="count"></span>
+      <span class="score" id="score"></span>
+    </div>
+    <div class="row" id="chChips"><span class="lbl">Chapters</span></div>
+    <div class="row" id="kindChips"><span class="lbl">Show</span></div>
+  </div>
+
+  <main id="main"></main>
+  <div class="empty" id="empty" hidden>Nothing matches. Try a shorter search or turn more filters on.</div>
+</div>
+
+<script>
+const K="key",A="alert",M="mn",P="prof";
+const T=(head,rows)=>({head,rows});
+const CH=[
+{id:"00",short:"Test strategy",title:"How Prof. Marpole Tests",c:"--c00",big:"From the Week 1 lecture. He teaches to the NCLEX and ATI, and the first exam tests critical thinking from day one.",secs:[
+ {h:"The four-step method for any question",cards:[
+  [P,"Step 1: Where are we in ADPIE?",["Assessment, diagnosis, planning, intervention, or evaluation?","No diagnosis yet → the answer is an assessment.","“Priority intervention” can be an assessment. ATI counts assessing as an action.","After an intervention, evaluate before doing the next one."]],
+  [P,"Step 2: Active problem before risk",["An active diagnosis beats a “risk for” diagnosis.","Chest pain: decreased cardiac output beats risk for falls."]],
+  [P,"Step 3: ABCs, then Maslow",["About 99% of priority questions come down to airway, breathing, circulation.","Chest pain example: vital signs (including SpO₂ and RR) come before the EKG or troponin."]],
+  [P,"Step 4: Intervention strategy",["Safest first.","Least invasive first (antibiotics before surgery).","Correct action, correctly done: turn every 2 hours, incentive spirometer 10 times an hour, <b>passive</b> ROM for a paralyzed patient.","Expected vs. unexpected: high CO₂ in COPD is expected; new shortness of breath is not.","Watch for “flashy” distractors that make a baseline finding sound alarming."]],
+  [M,"The method in one line","<div class='hook'>Where am I? What’s active? ABC? Safe and correct?</div>"],
+  [P,"Reading habits",["Read what the question actually asks (per dose vs. per day, one insulin vs. total).","Don’t add outside information to the stem.","Treat SATA options as true/false.","On these exams, “intubate” means call the provider or prepare for intubation."]]
+ ]},
+ {h:"What’s in and out",cards:[
+  [P,"Guaranteed or flagged topics",["Malignant hyperthermia (one question on Exam 1, one on the final).","ESI triage (several questions).","START tags in a mass casualty (about two scenarios).","PPE level (one question).","Purpose of a FAST exam.","Informed consent and the time-out.","Stage of grief from a scenario.","Heat exhaustion vs. heat stroke."]],
+  [P,"Not tested in this course",["The four stages of general anesthesia (he stopped testing them).","PACU phase I vs. II details.","Wound care (later chapter).","Psychiatric emergencies, alcohol, violence, sexual assault and SANE, trafficking.","Ventilator management and capnography waveforms.","Interpreting FAST images.","Preoperative checklist specifics."]],
+  [P,"Where lecture and slides differ",T(["Topic","Lecture","Slide"],[["Urgent surgery","Within 24–48 h","Within 24–30 h"],["Dog bites","Low risk, no routine antibiotics","Dog and cat bites both carry Pasteurella infection risk"],["Hospital supplies","7–14 days","Self-sufficient 96 h, ideally 7 days"],["Hospice prognosis","About 3–6 months","Not given"],["CO poisoning O₂","Mentioned targeting SpO₂ 99%","100% oxygen"]]),"He said to go by the textbook and his lecture. Ask him about any of these before the exam."],
+  [P,"Dosage calc exam",["20 questions, pass/fail, need 90% (18 of 20). Three tries.","Units used: kg, g, mg, and centi. Kg to lb: multiply by 2.2.","Only one drip-factor question: (volume in mL ÷ time in min) × drop factor. Round to a whole number.","Most missed: not reading whether the question asks per dose, per shift, or per day.","Read a meniscus at the bottom of the curve. Use military time."]]
+ ]}
+],qs:[]},
+{id:"13",title:"Palliative & End-of-Life Care",c:"--c13",big:"Palliative care improves quality of life at any stage of serious illness. Hospice is the end-of-life subset of palliative care.",secs:[
+ {h:"Lecture highlights",cards:[
+  [P,"What Prof. Marpole stressed",["Biggest barrier to good end-of-life care: the <b>clinician’s attitude toward death</b>. Many providers see death as failure.","Hospice: prognosis of about 3–6 months or less. Focus is comfort, not cure.","Hospice can still do procedures <b>for comfort</b>, e.g., paracentesis for painful ascites or removing a mass that blocks breathing.","“Hospice does palliative care. Palliative care doesn’t do hospice.”","Palliative care may use high opioid doses to keep the patient comfortable. It is not killing the patient. Educate families on this.","Hospice follows the family for about a year after the death.","Most common hospice diagnoses: dementia, heart disease, lung disease (not cancer)."]],
+  [P,"Four awareness contexts",T(["Context","Meaning"],[["Closed","Patient does not know they are dying (common in pediatrics when parents request it)"],["Suspected","Patient suspects and tries to find out"],["Mutual pretense","Everyone knows but acts as if they don’t"],["Open","Everyone openly acknowledges the dying"]]),"These are definitions to recognize in a scenario. No one context is “best.”"],
+  [P,"Death with dignity",["The current term for what used to be called physician-assisted suicide.","Legal in about 12 states.","<b>Not legal in Florida.</b> A nurse cannot help a patient end their life in Florida.","Compassionate withdrawal of care is different and will be covered later."]],
+  [P,"Advance directives & proxies (Florida)",["An advance directive is legally binding. Family must follow it.","Telling family “I want to be a DNR” is not binding unless it is written in an advance directive.","Proxy order in Florida: legal <b>spouse</b> (even if separated) → adult children (majority rules) → competent parents → adult siblings → a friend → court-appointed proxy.","Florida does not recognize common-law marriage from other states.","Proxy rules are set by each state."]],
+  [P,"Postmortem care",["Only a physician calls time of death and signs the death certificate.","All traumatic deaths get an autopsy.","Autopsy planned: <b>leave every line, tube, and drain in place</b>.","No autopsy: remove lines and prep the body for the family.","Sphincters relax within about 10–30 minutes: expect urine, stool, or vomit. Let the family say goodbye, clean the body, then bring them back.","Signs of approaching death from lecture: mottled skin, increased secretions, breathing changes, decreased intake, delirium."]],
+  [P,"Grief on the exam",["Expect one scenario question: “Which stage of grief is this?”","Know DABDA cold.","Grief is circular. A person can move from acceptance back to depression, e.g., on an anniversary."]]
+ ]},
+ {h:"Palliative care vs. hospice",cards:[
+  [K,"Palliative care",["Interdisciplinary model.","Focus: symptom management plus psychosocial and spiritual support.","Goal: better quality of life for the patient <b>and</b> family.","Fits any age and any stage of serious illness.","Can run alongside curative treatment. It does not replace it.","Starts early in the plan of care. Extends into bereavement for the family."]],
+  [K,"Hospice",["A type (subset) of palliative care.","Focus: comfort at the end of life.","The patient chooses symptom relief and the dying process over cure.","A philosophy, not a place.","Began in the 1970s as a volunteer-based, spiritually centered movement.","Paid under Medicare Part A.","Common diagnoses: neurologic (Alzheimer, dementia, Parkinson)."]],
+  [M,"Palliative vs. hospice","<div class='hook'>Palliative = any Point in illness. Hospice = the Home stretch.</div><p>Every hospice patient gets palliative care. Not every palliative patient is in hospice.</p>"],
+  [K,"Four illness trajectories",T(["Trajectory","Example","Pattern"],[["Sudden death","Unexpected","Minority of deaths"],["Terminal illness","Cancer","Short, steady decline"],["Organ failure","Heart failure","Slow decline with episodic flare-ups"],["Frailty","Dementia","Slow decline over years"]]),"Functional status is a good predictor of prognosis. The Palliative Performance Scale scores ambulation, activity, disease evidence, self-care, intake, and consciousness."],
+  [K,"Where palliative care happens",["Institution-based: 90% of hospitals with 300+ beds, 56% with fewer than 300.","Outpatient clinics: for patients not eligible for home hospice.","Community / home-based programs.","Hospice under Medicare Part A.","Trend: end-of-life care shifted from home to facilities."]],
+  [K,"Landmarks to know",["SUPPORT study: exposed poor end-of-life care in hospitals.","2014 IOM report <i>Dying in America</i>: access, communication, advance care planning, education, public engagement.","NCP: eight domains of care for the seriously ill.","2017 ANA + HPNA Call for Action: five areas (practice, education, policy, research, administration).","Every nurse needs <b>primary</b> palliative skills: basic symptom management and goals-of-care talks. Specialists handle complex symptoms and family conflict."]]
+ ]},
+ {h:"Communication & advance care planning",cards:[
+  [K,"Communicating with seriously ill patients",["Communication is a skill. It can be taught and practiced.","Critical moments: diagnosis, treatment failure, intervention decisions, hospice decisions.","Use open-ended questions.","Respond to emotion before giving information.","Tailor language to the family’s understanding and values."]],
+  [K,"Nurse’s role in family meetings",["Before: stakeholder analysis. Make sure the important people are present.","Set up a private, comfortable space.","During: advocate for the patient, translate medical terms, respond to emotions.","Purpose: share information, clarify goals, address concerns."]],
+  [K,"End-of-life documents",T(["Document","What it does"],[["Living will","States wishes for treatment if the patient cannot speak"],["Durable POA for health care","Names a surrogate decision-maker"],["DNR","Medical order to withhold CPR in cardiac arrest"],["POLST","Turns preferences into medical orders. Travels across settings. Signed by patient/surrogate and provider."]]),"Advance directives are protected by the Patient Self-Determination Act of 1991. They are underused."],
+  [A,"Exam trap: DNR ≠ do not treat",["A DNR only withholds CPR during arrest.","The patient still gets antibiotics, fluids, pain control, and nursing care.","A living will is not a medical order. A POLST is."]]
+ ]},
+ {h:"Psychosocial & spiritual care",cards:[
+  [K,"Hope",["Hope persists but changes over time.","In terminal illness, hope is not limited to cure. It shifts to achievable goals.","Fosters hope: love of family and friends, faith, goals and independence, good clinician relationships, humor, uplifting memories.","Hinders hope: abandonment and isolation, uncontrolled pain, devaluation of personhood.","Nurse: listen well and support realistic hope."]],
+  [M,"FICA spiritual assessment","<div class='hook'>F-I-C-A</div><ul><li><b>F</b>aith and belief: “What gives your life meaning?”</li><li><b>I</b>mportance and influence of faith on health</li><li><b>C</b>ommunity: part of a spiritual community?</li><li><b>A</b>ddress in care: how should we include this?</li></ul>"],
+  [K,"Domains of spirituality",["Meaning and purpose in life","Beliefs and faith","Sources of hope","Attitudes toward death"],"Financial stability is NOT a domain (slide question)."],
+  [K,"Culturally sensitive end-of-life care",["Death, grief, and mourning are culturally bound.","Address historical mistrust and language barriers.","Set aside your own assumptions.","Respect each family’s decision-making style.","Share cultural knowledge with the team."]],
+  [K,"Signs that death is near",["More sleep, less responsiveness.","Decreased intake and urine output.","Cool, mottled extremities.","Breathing changes: periods of apnea, Cheyne-Stokes pattern.","Noisy terminal secretions.","Restlessness or terminal delirium.","Hearing is thought to remain. Keep talking to the patient."],"This slide was an image in the deck. These are the standard textbook signs; check against your book."]
+ ]},
+ {h:"Grief, mourning & bereavement",cards:[
+  [K,"Three terms",T(["Term","Meaning"],[["Grief","The personal feelings that come with loss"],["Mourning","Outward expressions and behaviors of grief"],["Bereavement","The period of mourning after a loss"]])],
+  [M,"Kübler-Ross stages","<div class='hook'>DABDA</div><p>Denial, Anger, Bargaining, Depression, Acceptance.</p><p class='note'>Newer models say grief is not linear. The Dual Process Model: people swing between loss-oriented and restoration-oriented coping.</p>"],
+  [K,"Anticipatory grief & grief after death",["Anticipatory grief starts before the death.","After death: accept the loss, feel the pain of separation, learn to live without the person.","Relief and guilt together are normal after a long illness.","Grief is shaped by coping skills, relationship to the deceased, nature of the death, family dynamics, support, and culture."]],
+  [A,"Complicated grief: refer",["Prolonged sadness and worthlessness.","Symptoms that interfere with daily life.","Self-destructive behaviors.","Higher risk: death of a child or spouse, multiple losses, history of trauma.","Needs professional assessment, psychological treatment, sometimes medication."]]
+ ]}
+],qs:[
+ ["A patient says, “If I can just see my daughter graduate, I’ll be ready.” Which stage of grief is this?",["Denial","Anger","Bargaining","Acceptance"],2,"Making a deal for more time is bargaining.","Lecture"],
+ ["A hospice patient has painful ascites. The family asks if a paracentesis is allowed. Best answer?",["No, hospice stops all procedures","Yes, procedures done for comfort are allowed","Only if the patient leaves hospice","Only in the ICU"],1,"Hospice allows interventions that relieve symptoms. It avoids those that only prolong life.","Lecture"],
+ ["A patient died, and an autopsy is planned. What should the nurse do with the IV and Foley?",["Remove them","Leave them in place","Remove only the IV","Ask the family"],1,"With an autopsy, all lines, tubes, and drains stay in place.","Lecture"],
+
+ ["Which of the following is a key aim of palliative care?",["To cure serious illnesses","To improve the quality of life for patients and families","To provide only end-of-life care","To focus solely on physical symptom management"],1,"Palliative care improves quality of life through symptom management and psychosocial-spiritual support. It works alongside other treatment.","Slide"],
+ ["True or false: Initial hospice care was home based or at freestanding hospices.",["True","False"],0,"Early hospice was home based or freestanding. Palliative care began in academic hospitals.","Slide"],
+ ["Which is NOT a domain of spirituality?",["Meaning and purpose in life","Beliefs and faith","Financial stability","Sources of hope"],2,"The domains are meaning/purpose, beliefs/faith, sources of hope, and attitudes toward death.","Slide"],
+ ["A patient’s daughter asks, “If Mom signs a DNR, will they stop her antibiotics?” Best response?",["“Yes, a DNR means comfort care only.”","“A DNR only means no CPR if her heart stops. Other treatments continue.”","“You should ask the chaplain.”","“Only hospice patients can have a DNR.”"],1,"A DNR is a narrow order to withhold CPR. It does not withdraw other care.","Practice"],
+ ["Which document converts a patient’s end-of-life preferences into medical orders that follow the patient across settings?",["Living will","Durable power of attorney","POLST","Organ donor card"],2,"POLST is signed by the patient/surrogate and the provider and transfers between settings.","Practice"]
+]},
+
+{id:"14",title:"Preoperative Nursing Management",c:"--c14",big:"Get the patient as healthy, informed, and safe as possible before surgery.",secs:[
+ {h:"Lecture highlights",cards:[
+  [P,"Informed consent: Prof’s top exam topic",["Consent is needed for <b>any procedure</b>: surgery, intubation, chest tube, central line, paracentesis, bedside debridement.","The surgeon explains the procedure, risks, benefits, alternatives. The nurse <b>cannot be the first</b> to explain it.","The nurse witnesses the signature and checks understanding: “Tell me in your own words what the surgery is.”","A history and physical must be done before signing.","Valid only if signed before psychoactive premeds. Assess the patient: a documented GCS 15 on a mild drug may still be reliable.","Consent stays with the chart wherever the patient goes.","Use the patient’s preferred language.","Emergency with no proxy: two physicians can deem it emergent.","A competent adult can refuse, even if it will kill them. Usually you cannot override parents for a child."]],
+  [P,"Pre-op from lecture",["The preoperative phase begins with the decision for surgery (informed consent).","Urgent surgery: Prof said <b>24–48 hours</b> (slide says 24–30). Cancer surgery can be “required.”","Purpose: diagnosis (an assessment), cure, or repair. Repair fixes function but not the injury (a fracture or tendon).","Classification matters for insurance. Emergent surgery is covered anywhere; optional is usually out of pocket.","Day of surgery: compare to baseline. Report anything unexpected, e.g., a new fever before elective surgery.","After premeds are given, it’s the “point of no return.”"]],
+  [P,"Meds before surgery",["Beta-blocker: report the last dose to anesthesia. Usually the patient takes the morning dose.","Do <b>not</b> hold enoxaparin or heparin prophylaxis unless the surgeon orders it.","On the NCLEX the nurse never decides to hold a med alone. Ask the provider.","Meds that affect surgery: steroids (may need a stress dose), diuretics, antipsychotics, insulin, antibiotics, anticoagulants, anticonvulsants, thyroid hormone, opioids, herbals.","Sips of water with meds are OK while NPO, except with bowel obstruction or perforation."]],
+  [P,"NPO the way Prof teaches it",["Purpose of NPO: prevent aspiration (true/false question in lecture).","Tell the public “nothing after midnight.” They often think yogurt or pudding counts as liquid.","Clinically, clear fluids are allowed up to 2 hours before."]],
+  [P,"Other pre-op points",["Ambulatory surgery patients must have a driver. Anesthesia is liable otherwise.","Older adults: lower cardiac and respiratory reserve, slower to wake, need less anesthesia, bowels wake slowly, get cold faster.","Check dentition. Dentures come out before intubation.","Protein is the key nutrient for wound healing.","Teach splinting the incision with a pillow, deep breathing, leg exercises in bed.","Surgery over 1 hour usually means a Foley.","Remove nail polish so the pulse oximeter works."]],
+  [P,"How to read Prof’s questions",["Treat SATA as a set of true/false statements.","Simplify the stem: “Which results should you report?” means “Which are abnormal?”","<b>Don’t add outside information.</b> A high WBC before surgery is reported. Don’t assume an appendicitis that isn’t in the stem.","Don’t nitpick timing words (antiembolism stockings before vs. during surgery)."]]
+ ]},
+ {h:"Perioperative phases & surgery types",cards:[
+  [K,"Three perioperative phases",T(["Phase","Starts","Ends"],[["Preoperative","Decision to have surgery","Transfer to the OR bed"],["Intraoperative","Transfer to the OR bed","Admission to PACU"],["Postoperative","Admission to PACU","Follow-up evaluation"]]),"Nursing activities follow AORN and ASPAN standards."],
+  [M,"Phases","<div class='hook'>Pre → Intra → Post. There is no “inter.”</div><p>“Interoperative” is a distractor on the slide quiz.</p>"],
+  [K,"AORN conceptual model: 4 domains",["Safety","Physiologic responses","Behavioral responses","Health care systems (structural data on processes and outcomes)"]],
+  [K,"Categories by urgency",T(["Category","Timing","Examples"],[["Emergent","Immediately; life-threatening","Severe bleeding, bladder obstruction, extensive burns"],["Urgent","Within 24–30 hours","Closed fracture, infected wound"],["Required","Weeks to months","BPH, thyroid disorders"],["Elective","Delay is not catastrophic","Scar repair, simple hernia"],["Optional","Personal preference","Cosmetic surgery"]])],
+  [M,"Urgency order","<div class='hook'>Even Unlucky Rookies Eat Oreos</div><p>Emergent, Urgent, Required, Elective, Optional.</p>"],
+  [K,"Surgery by purpose",["Diagnostic: biopsy, exploratory laparotomy","Curative: tumor excision, appendectomy","Repair: multiple wound repair","Reconstructive/cosmetic: mammoplasty, facelift","Palliative: tumor debulking","Rehabilitative: total joint replacement"]]
+ ]},
+ {h:"Preoperative assessment",cards:[
+  [K,"Preadmission testing (PAT)",["Ambulatory surgery means no overnight stay.","PAT cuts hospital stays and costs.","Collects history, demographics, diagnostic tests.","Teaches what to expect on the day of surgery.","Starts discharge planning. Reviews advance directives."]],
+  [A,"Informed consent",["The <b>surgeon</b> explains the procedure, risks, and benefits and obtains consent.","The <b>nurse</b> verifies the signature and the patient’s understanding.","If the patient has questions or seems unclear, notify the surgeon.","Consent must be signed <b>before</b> psychoactive premedication."]],
+  [A,"Medications before surgery",["Do medication reconciliation. Ask about OTC and herbal products.","Stop aspirin and platelet inhibitors <b>7–10 days</b> before surgery.","Beta-blockers should be taken within <b>24 hours</b> of surgery. If not, anesthesia evaluates.","Corticosteroid use raises the risk of adrenal insufficiency."]],
+  [K,"Systems review",T(["System","Watch for"],[["Nutrition/fluids","BMI, waist; correct deficits; confirm NPO; prevent dehydration"],["Respiratory","Postpone if infection; smoking cessation; teach IS"],["Cardiovascular","Cardiac comorbidities; diagnostics as needed"],["Hepatic/renal","They clear drugs and anesthetics; acute kidney problems contraindicate surgery unless lifesaving"],["Endocrine","Diabetes: hypo/hyperglycemia, strict control; thyroid: thyrotoxicosis or respiratory failure"],["Immune","WBC and UA; postpone for infection or fever; latex screening"]])],
+  [K,"National Patient Safety Goals",["Set by The Joint Commission and CMS.","Prevent VTE, surgical site infections (SSIs), and wrong-site surgery."]],
+  [K,"Special populations",["<b>Older adults:</b> lower cardiac reserve, reduced kidney and liver function, less subcutaneous fat. Keep warm with a lightweight cotton blanket.","<b>Bariatric:</b> about 42% of US adults have obesity. Screen for OSA. BMI over 40 raises SSI and complication risk. Hard IV access, slow wound healing.","<b>Disability:</b> secure assistive devices, arrange interpreters, plan positioning, optimize restrictive lung disease.","<b>Emergency surgery:</b> quick visual survey. Get history and allergies from family if the patient is unconscious."]],
+  [K,"Psychosocial factors",["Common fears: the unknown, loss of control, death, pain, cancer.","High anxiety means more PONV, more pain, and more anesthesia.","Signs of fear: repeated questions, withdrawal, avoidance (TV, small talk).","Respect culture and religion. Example: a Jehovah’s Witness may decline blood.","Holistic care covers physiologic, psychosocial, cultural, spiritual, and educational needs."]]
+ ]},
+ {h:"Preoperative interventions",cards:[
+  [K,"NPO guidelines (adults)",T(["Intake","Stop before surgery"],[["Clear liquids","2 hours"],["Milk products","6 hours"],["Fatty food","8 hours"]]),"Carbohydrate loading is used for non-GI surgery as part of ERAS. Purpose of fasting: prevent aspiration."],
+  [M,"NPO","<div class='hook'>2 – 6 – 8</div><p>Clear 2, milk 6, fatty 8.</p>"],
+  [K,"Teaching before surgery",["Start teaching as early as possible.","Deep breathing, coughing, incentive spirometry.","Early ambulation, turning, leg exercises (knee/hip flexion, toe rotation).","Pain scale; PCA, epidural, and oral options.","Use verbal, written, and return demonstration.","Avoid overly detailed descriptions. They raise anxiety."]],
+  [K,"Bowel and skin prep",["Bowel: enema or laxative the evening before and morning of abdominal/pelvic surgery. Antibiotics reduce intestinal flora.","Skin: CHG or alcohol wipes; remove hair by <b>clipping</b>; povidone nasal swabs.","The surgical site is marked by the patient and surgeon."]],
+  [A,"Timing that gets tested",["Prophylactic antibiotic: within <b>1 hour before incision</b>.","After preanesthetic medication: patient stays in bed, side rails up.","Patient voids right before going to the OR."]],
+  [K,"Immediate preop checklist",["Confirm identity. Apply alert bands: allergy, fall risk, extremity precautions, code status.","Remove nail polish, dentures, jewelry. Secure valuables.","Completed record and checklist go with the patient.","Warm the patient: blankets, forced air, warmed IV fluids.","Hypothermia signs: weak pulse, shivering, slurred speech, dizziness.","Keep the area quiet so premeds work."]]
+ ]}
+],qs:[
+ ["Before surgery, which lab result should the nurse report to the provider?",["Sodium 145 mEq/L","Potassium 4.0 mEq/L","WBC 14,000/mm³","Hemoglobin 14 g/dL"],2,"WBC over 10,000 is abnormal. Report it. Don’t add outside reasons to excuse it.","Lecture"],
+ ["A nurse is verifying informed consent for a paracentesis. Which action is the nurse’s responsibility?",["Explain the purpose of the procedure","Describe the risks of the procedure","Ensure the client understands and witness the signature","Decide whether the procedure is needed"],2,"The provider explains purpose and risks. The nurse confirms understanding, capacity, and witnesses the signature.","Lecture"],
+ ["A client scheduled for an exploratory laparotomy has a temperature of 39°C (102.2°F). Priority action?",["Inform the surgeon","Give acetaminophen","Apply ice packs","Encourage oral fluids"],0,"An unexpected finding before surgery is reported. Treating the fever only masks it. The client is NPO.","Lecture"],
+ ["Which preoperative action is correct for a client having a colon resection?",["Avoid all preoperative medications","Give antibiotics 2 hours before incision","Use a razor to remove hair","Remove nail polish from fingers and toes"],3,"Nail polish blocks the pulse oximeter. Clip hair; give antibiotics within 1 hour before the cut.","Lecture"],
+
+ ["Which of the following is NOT a phase of perioperative nursing?",["Preoperative","Intraoperative","Postoperative","Interoperative"],3,"The phases are pre-, intra-, and postoperative.","Slide"],
+ ["True or false: The National Patient Safety Goals aim to prevent VTE, SSIs, and wrong-site surgery.",["True","False"],0,"TJC and CMS goals target VTE, SSIs, and wrong-site surgery.","Slide"],
+ ["Which is a key aspect of the holistic approach in preoperative nursing?",["Only physiologic needs","Only cultural needs","Physiologic, psychosocial, cultural, spiritual, and educational needs","Only educational needs"],2,"Holistic care addresses all of these needs and eases surgical anxiety.","Slide"],
+ ["A patient received IV midazolam and now says, “I forgot to sign my consent.” What should the nurse do?",["Have the patient sign quickly","Have a family member sign","Do not obtain the signature; notify the surgeon","Sign as witness and proceed"],2,"Consent must be signed before psychoactive premedication. The surgeon must be notified.","Practice"],
+ ["When should the prophylactic antibiotic be given?",["The night before surgery","Within 1 hour before incision","At wound closure","In PACU"],1,"Antibiotics within 1 hour before incision reduce SSIs.","Practice"]
+]},
+
+{id:"15",title:"Intraoperative Nursing Management",c:"--c15",big:"Protect the patient while they cannot protect themselves: asepsis, positioning, counts, monitoring, and advocacy.",secs:[
+ {h:"Lecture highlights",cards:[
+  [P,"Malignant hyperthermia: two guaranteed questions",["One MH question is on Exam 1 and one is on the final. It was the <b>most-missed question</b> on Exam 1 last semester.","Signs: tachycardia (150s), dysrhythmias, hypotension, <b>hypoventilation causing hypercapnia</b>.","Tachycardia and hypotension alone could be dehydration, bleeding, or sepsis.","If the stem gives low RR or high CO₂ → it’s MH → give <b>dantrolene (Dantrium)</b>.","If the stem gives only HR 150s and low BP after anesthesia → <b>assess CO₂ / ventilation first</b>.","MH confirmed: cool fluids, oxygen, dantrolene. Stabilize the patient. Do not let surgery continue."]],
+  [M,"MH decision rule","<div class='hook'>No CO₂ data? Assess. High CO₂? Dantrolene.</div>"],
+  [P,"The time-out (on the test and ATI)",["Nurse-driven safety check done before <b>any</b> procedure.","Right patient, right procedure, right site. The site is marked.","Confirm allergies, consent, antibiotic given (within the hour before the cut), SCDs, warming, implants and imaging ready.","Everyone agrees and introduces themselves.","If something is wrong, you are legally obligated to speak up. The nurse is liable too.","Created after wrong-site and wrong-patient surgeries."]],
+  [P,"Team & phases from lecture",["Circulating nurse: an RN, not sterile. Documents everything and acts as the runner.","Scrub role keeps the field sterile and holds everyone accountable.","Intraoperative phase starts when the patient is on the <b>OR bed</b>. Still on the stretcher = not intraop.","PACU phase is defined by what is happening (waking from anesthesia), not the room. A patient can be woken up in the ICU."]],
+  [P,"Sterile technique in the OR",["Past the red line: hair cover and mask.","Gown is sterile in front from chest to the level of the sterile field.","Sleeves are sterile from 2 inches above the elbow to the cuff.","Only the <b>top</b> drape is sterile.","Nurses open packages sterilely for bedside procedures (central lines, chest tubes)."]],
+  [P,"Anesthesia from lecture",["Nurses do not administer general anesthesia or moderate sedation.","General anesthesia removes reflexes, so the patient must be intubated. ET tube is the most secure airway.","Most common side effect of anesthesia: nausea and vomiting (aspiration risk).","Always <b>sedate before paralyzing</b>. Paralytics: rocuronium, vecuronium.","Read back drug and dose aloud before pushing; use a second nurse for overrides (a vecuronium vs. Versed mix-up killed a patient).","Regional: spinal acts faster but carries more risk than epidural. Used when general is unsafe (e.g., bad heart, hip replacement).","Local: lidocaine lasts about 20–30 minutes. Avoid injecting into a vessel. Lidocaine with epinephrine vasoconstricts and lasts longer (used on the face).","Older adults: anesthesia is stored in fat, low plasma protein, poor thermoregulation.","Induction with nitrous oxide by mask: priority is <b>SpO₂</b>."]]
+ ]},
+ {h:"The surgical team",cards:[
+  [K,"Who does what",T(["Role","Job"],[["Circulating nurse","Not scrubbed. Coordinates care, manages the room, verifies consent, monitors asepsis, handles specimens, documents, second verification of site"],["Scrub role","Sterile. Sets up the field, anticipates instruments, counts, labels specimens and meds, verifies implants"],["Surgeon","Performs the procedure and leads the team"],["RNFA","Under surgeon supervision: handles tissue, provides exposure, sutures, maintains hemostasis"],["Anesthesiologist / CRNA","Gives anesthesia; monitors BP, HR, RR, ECG, SpO₂, ETCO₂, temp, ABGs"]])],
+  [M,"Circulating vs. scrub","<div class='hook'>Circulator = Coordinates. Scrub = Sterile.</div><p>The circulator moves around the room. The scrub stays at the sterile field.</p>"],
+  [K,"The patient & advocacy",["Common fears: loss of control, pain, death, body changes.","Patient loses self-protective reflexes under anesthesia.","OR nurse is the patient advocate: dignity, privacy, no derogatory talk, confidentiality.","Updates family throughout."]],
+  [K,"Culture & older adults",["Ask about restrictions such as porcine-based products. Respect sacred areas such as the head.","Use certified medical interpreters, not family.","Older adults: warming, careful transfer and positioning, anti-embolism stockings/SCDs, close fluid and electrolyte monitoring."]]
+ ]},
+ {h:"Environment, asepsis & safety",cards:[
+  [K,"Surgical zones",T(["Zone","Attire"],[["Unrestricted","Street clothes"],["Semirestricted","Scrubs and caps"],["Restricted","Scrubs, shoe covers, caps, masks"]])],
+  [K,"Air & cleaning",["Standard OR: 15 air exchanges per hour.","HEPA filters particles larger than 0.3 µm.","Laminar airflow: 400–500 exchanges per hour.","Infection rate goal: under 1%.","Floors and surfaces cleaned between cases."]],
+  [K,"Hazards to staff and patient",["Fire: fuel + oxygen + ignition. Fire risk assessment at time-out; annual drill.","Surgical smoke equals about 30 unfiltered cigarettes a day. Use smoke evacuators and N95s.","Lasers: warning signs, goggles matched to the beam type.","Sharps: about 400,000 injuries a year. Use a neutral zone and double gloves.","Latex: use latex-free products. Staff can develop allergy with repeated exposure."]],
+  [A,"Retained surgical items",["Count sponges, needles, and instruments at the start, before wound closure, and at skin closure.","Missing item: the nurse alerts the team.","Retained items cause infection, abscess, fistula."]],
+  [A,"Site verification",["Site is marked by the physician.","Patient confirms it before entering the OR suite.","Mark must be visible after draping.","Team verifies at the time-out."]]
+ ]},
+ {h:"Anesthesia & sedation",cards:[
+  [K,"Four stages of general anesthesia",T(["Stage","Signs","Nurse action"],[["I Beginning","Dizzy, detached, ringing or roaring in ears","Keep it quiet"],["II Excitement","Struggling, shouting, crying; rapid pulse; irregular breathing; dilated pupils that react","Help restrain; prevent aspiration"],["III Surgical","Unconscious, regular breathing, normal pulse, small reactive pupils","Maintained for the procedure"],["IV Medullary depression","Shallow breathing, weak pulse, fixed dilated pupils, cyanosis","Stop the agent; support ventilation"]]),"Prof said he no longer tests the four stages. Low priority."],
+  [M,"Anesthesia stages","<div class='hook'>Ears ring → Wild thing → Quiet sleep → Too deep</div>"],
+  [K,"Types of anesthesia",T(["Type","Key facts"],[["General (inhaled)","Volatile liquids/gases via LMA or ET tube; leaves through the lungs"],["General (IV)","Barbiturates, benzos, hypnotics, opioids; low PONV; good for short and eye procedures"],["Epidural","Epidural space; higher dose than spinal; no headache; risk of high spinal"],["Spinal","Subarachnoid space via LP; lower body; risk of post-spinal headache"],["Nerve block","Ultrasound-guided; brachial plexus, paravertebral, caudal; less opioid use"],["Moderate sedation","Patient keeps own airway and responds to stimuli"],["MAC","Moderate sedation by anesthesia provider, ready to convert to general"],["Local","At the incision; often with epinephrine to prolong effect"]])],
+  [K,"Multimodal analgesia",["Several drugs and techniques together.","Acetaminophen, NSAIDs, ketamine, gabapentinoids.","Fewer opioids and fewer opioid risks.","Part of ERAS pathways."]],
+  [A,"Local Anesthetic Systemic Toxicity (LAST)",["Early: metallic taste, oral numbness, hearing changes or ringing.","Then: slurred speech, arrhythmias, seizure, respiratory arrest.","Treat: airway, 100% oxygen, <b>IV lipid emulsion</b>."]],
+  [K,"Regional anesthesia etiquette",["The patient is awake.","No casual conversation or extra noise.","A quiet room is therapeutic."]]
+ ]},
+ {h:"Intraoperative complications",cards:[
+  [A,"Malignant hyperthermia (MH)",["Rare inherited muscle disorder: altered calcium in skeletal muscle.","Triggers: inhaled anesthetics and muscle relaxants.","About 1 in 100,000 adult surgeries.","<b>Early:</b> tachycardia (HR over 150), hypercapnia (rising CO₂), jaw rigidity.","<b>Late:</b> rapid rise in temperature.","Treat with <b>dantrolene</b> (mortality down to ~10%). Follow the MHAUS protocol.","Usually 10–20 minutes after induction; can appear up to 24 hours postop."]],
+  [M,"MH order of signs","<div class='hook'>Heart and CO₂ climb, the Jaw locks, the Heat comes last.</div><p>Fever is a <b>late</b> sign. Don’t wait for it.</p>"],
+  [K,"Anesthesia awareness",["Unintended awareness during general anesthesia.","About 12 per 1,000 patients recall parts of surgery.","Clues: rising BP, rapid HR, movement.","Paralytics make it worse: the patient cannot signal.","Prevent: amnesic premeds; avoid paralytics unless essential."]],
+  [K,"Nausea, vomiting, aspiration",["PONV risk: history of motion sickness, female, postop opioids.","If vomiting: turn to side, lower head of table, suction.","Aspiration causes bronchospasm, pneumonitis, pulmonary edema.","Antiemetics, citric acid/sodium citrate, or H2 blockers may be given."]],
+  [K,"Anaphylaxis & hypoxia",["Anaphylaxis: drugs, latex, fibrin sealants, tissue adhesives. Remove the cause within 3 minutes. Watch for rebound.","Hypoxia: from poor ventilation, airway occlusion, esophageal intubation, aspiration. Brain damage within minutes. Capnography gives real-time CO₂ data."]],
+  [K,"Intraoperative hypothermia",["Core temperature below 36.6°C (98°F) per the slide.","Causes: cold room, cold fluids and gases, open wounds, less muscle activity, age, drugs.","Warm IV fluids, warm air blankets, cover exposed areas.","Rewarm gradually.","Monitor core temp, urine output, ECG, BP, ABGs, electrolytes."]],
+  [K,"Positioning injury",["Prolonged or poor positioning causes peripheral nerve injury.","Don’t hyperextend joints, compress arteries, or press on nerves and bony prominences.","Use padded braces, bean bags, foam padding."]],
+  [K,"Intraop nursing diagnoses & goals",["Anxiety → reduced anxiety","Risk for latex allergy → no latex exposure","Risk for positioning injury → no positioning injury","Risk for injury → freedom from injury","Risk for compromised dignity → dignity maintained"]]
+ ]}
+],qs:[
+ ["After general anesthesia, a client’s HR is 155 and BP 84/50. No other data are given. What should the nurse do first?",["Give dantrolene","Assess ventilation and end-tidal CO₂","Give a fluid bolus","Notify the family"],1,"Tachycardia and hypotension alone don’t confirm MH. Assess CO₂ first.","Lecture"],
+ ["A client in the OR is diagnosed with malignant hyperthermia. Which action is NOT appropriate?",["Give cool IV fluids","Give oxygen","Give IV dantrolene","Let the surgeon continue the procedure"],3,"Stabilize the patient. Surgery does not continue during an MH crisis.","Lecture"],
+ ["During induction with nitrous oxide by face mask, the nurse’s priority is:",["Blood pressure","Heart rate","Oxygen saturation","Temperature"],2,"Oxygenation comes first. A patient with good SpO₂ is being oxygenated even if HR or BP shift.","Lecture"],
+
+ ["Which team member administers anesthesia and monitors vital signs during surgery?",["Surgeon","Circulating nurse","Anesthesiologist or CRNA","Scrub nurse"],2,"The anesthesiologist or CRNA gives anesthesia and monitors the patient.","Slide"],
+ ["True or false: All nurses, especially perioperative nurses, should implement latex precautions and use latex-free products.",["True","False"],0,"Latex safety is every nurse’s responsibility.","Slide"],
+ ["Which is a major intraoperative complication?",["Hypertension","Anesthesia awareness","Hyperglycemia","Hyperlipidemia"],1,"Anesthesia awareness is listed with PONV, anaphylaxis, hypoxia, hypothermia, and MH.","Slide"],
+ ["Fifteen minutes after induction, the patient’s HR rises to 160 and end-tidal CO₂ climbs. Temperature is normal. What is the priority concern?",["Anesthesia awareness","Malignant hyperthermia","Hypovolemia","Anaphylaxis"],1,"Tachycardia and hypercapnia are early MH signs. Fever comes late. Prepare dantrolene.","Practice"],
+ ["During a local block the patient reports a metallic taste and ringing in the ears. These suggest:",["Normal anesthetic effect","Anxiety","Local anesthetic systemic toxicity","Malignant hyperthermia"],2,"These are early LAST signs. Report at once; treatment includes oxygen and IV lipid emulsion.","Practice"]
+]},
+
+{id:"16",title:"Postoperative Nursing Management",c:"--c16",big:"Airway first, then circulation, pain, and prevention of complications until the patient is safe to go home.",secs:[
+ {h:"Lecture highlights",cards:[
+  [P,"Post-op airway from lecture",["Do not lay the patient flat: the tongue can block the airway.","Position on the side or with the head of bed up about 30°.","Mouth breather? Use a mask, not a nasal cannula.","No food until swallowing (epiglottis) works, not just gag and cough.","Three breathing needs: breathing on their own (if not → intubate), pressure (CPAP/BiPAP), oxygen (nasal cannula).","Oral airway: size from corner of mouth to angle of jaw; insert upside down and rotate 180°. For patients not awake enough to protect the airway."]],
+  [P,"Intubation & capnography",["Intubate when the patient can’t protect or maintain the airway (GCS 8 or less, not breathing, anesthesia).","Contraindicated with severe laryngeal edema → think cricothyroidotomy.","Verify ET tube: equal bilateral breath sounds and symmetric chest rise. Louder on the right = too deep.","Oral care every 4 hours. Suction secretions.","Normal ETCO₂: 35–45 mm Hg.","On the exam, “intubate” means prepare for intubation or call the provider.","Ventilator management is <b>not tested</b>."]],
+  [P,"Fever timeline: a favorite test question",["Fever on <b>post-op day 1</b> → most likely <b>atelectasis</b>, not infection. Treat with incentive spirometer and deep breathing.","Infection takes a few days (around post-op day 3–5).","Day 0–1: watch for bleeding. Around day 5: higher DVT risk."]],
+  [M,"Post-op fever","<div class='hook'>The 5 W’s: Wind, Water, Wound, Walking, Wonder drugs</div><ul><li>Wind (POD 1–2): atelectasis, pneumonia</li><li>Water (POD 3–5): UTI</li><li>Wound (POD 5–7): wound infection</li><li>Walking (POD 5+): DVT/PE</li><li>Wonder drugs (any time): drug fever</li></ul><p class='note'>Classic mnemonic that matches the timeline Prof described.</p>"],
+  [P,"Dehiscence & evisceration from lecture",["Dehiscence: the wound opens. Evisceration: the contents come out.","Lecture order: call the surgeon, cover with saline-moistened sterile gauze.","Never push contents back in."]],
+  [P,"Other post-op points",["Agitation after anesthesia may be a full bladder or pain. Let them void or straight cath.","Pain meds can cause hypotension. Pain itself can cause hypertension.","Discharge: driver, prescriptions, follow-up numbers, wound care. After abdominal surgery, no lifting over 15 lb for 2–4 weeks.","ON-Q pump: local anesthetic balloon under the incision for 5–7 days. Keep the clamps open.","Drains: JP (bulb), Hemovac (accordion), Penrose (open tube, leaks).","Aldrete: just know it decides PACU discharge readiness. PACU phase details are not tested.","Complications by system: atelectasis, pneumonia, aspiration; shock, clots; delirium, stroke; skin breakdown, infection, dehiscence, hematoma; paralytic ileus, obstruction."]]
+ ]},
+ {h:"PACU care",cards:[
+  [K,"PACU phases",T(["Phase","Care"],[["Phase I","Immediate recovery; intensive nursing"],["Phase II","Less intensive; prepares for transfer or discharge; recliners"]]),"Goal of PACU: patient safety and recovery from anesthesia. Prof said phase details are not tested."],
+  [K,"Arrival in PACU",["Anesthesia provider maintains the airway during transport.","Move slowly to prevent orthostatic hypotension.","Protect incision and drains.","Replace soiled gown; cover with a lightweight blanket.","Immediate assessment: airway, LOC, cardiac, respiratory, wound, pain, drains, IV lines."]],
+  [A,"Airway comes first",["Hypopharyngeal obstruction: the jaw and tongue fall back.","Signs: choking, noisy irregular breathing, falling SpO₂, cyanosis.","Reposition: head tilt or jaw thrust.","Feel for breath with your palm at the nose and mouth."]],
+  [K,"Cardiovascular stability",["Assess LOC, vital signs, rhythm, skin temperature, color, moisture, urine output.","Main problems: hypotension/shock, hemorrhage, hypertension, arrhythmias."]],
+  [K,"Pain, anxiety, PONV",["IV opioids are the main PACU route. Multimodal analgesia works better than opioids alone.","Nonpharmacologic: massage, heat/cold, relaxation, guided imagery, music.","PONV hits about 30% of patients. Treat at the <b>first</b> report of nausea.","Aromatherapy can help."]],
+  [K,"Aldrete score: ready for discharge?",["Scores activity, respiration, circulation, consciousness, and O₂ saturation, 0–2 each (max 10).","Slide: score of <b>7–10</b> before PACU discharge.","Lower score: evaluated by anesthesia provider or surgeon."]],
+  [K,"Older adults in PACU",["Watch BP and ventilation during transfer.","Keep warm. Reposition often.","Delirium: fluctuating consciousness, hallucinations, cognitive deficits.","Tell delirium apart from postoperative cognitive dysfunction (POCD).","Hydrate, reorient, reassess drug doses."]],
+  [K,"Direct discharge home",["Verbal and written instructions to the patient and an accompanying adult.","Interpreters or alternate formats as needed.","Report: fever, bleeding, wound problems.","Follow-up phone call."]]
+ ]},
+ {h:"On the surgical unit",cards:[
+  [K,"First hours on the unit",["Prepare the room: IV pumps, suction, equipment.","Get the PACU report and review orders.","Priorities: ventilation, hemodynamic stability, incisional pain, site integrity, nausea, neuro status, spontaneous voiding."]],
+  [A,"Prevent respiratory complications",["Risks: opioids, poor lung expansion, immobility.","Problems: atelectasis, pneumonia, hypoxemia.","Prevent: deep breathing, coughing, incentive spirometer, turning, early ambulation.","Warning signs: decreased breath sounds, crackles, cough, fever, tachycardia, tachypnea."]],
+  [K,"Pain management",["Pain stress response raises myocardial oxygen demand, blood viscosity, and platelet aggregation.","Give opioids on schedule to prevent pain; IV is first-line.","Assess sedation with POSS before opioid doses.","PCA requires that the patient understands and can physically self-dose.","Epidural, intrapleural, and nerve-block catheters: report location, pain level, insertion site.","Other: subcutaneous pump, music, pet therapy, massage, repositioning."]],
+  [K,"Activity",["Early ambulation prevents atelectasis, pneumonia, GI distention, and circulatory problems.","It decreases pain and shortens the stay.","Move gradually: lie → sit → dangle → stand to catch orthostatic hypotension.","Bed exercises for arms, legs, feet, abdomen, glutes."]],
+  [K,"Wounds, drains, dressings",["Healing phases: inflammatory → proliferative → contraction and remodeling.","Slow healing risks: poor nutrition, smoking, diabetes, poor immunity, age.","Drains: Penrose, Jackson-Pratt, Hemovac. Measure and record output.","Ready to learn: patient looks at the incision or helps with the dressing."]],
+  [K,"GI, bowel & bladder",["NG tube if high vomiting risk or distention expected. Hiccups may be treated with chlorpromazine.","Diet: clear liquids → soft → solid as tolerated.","Constipation from immobility, low intake, opioids.","Notify provider if no bowel movement by postop day 2–3.","Urinary retention from anesthetics, anticholinergics, opioids, pain. Use running water, warm bedpan, bladder scanner.","Straight intermittent cath is preferred over indwelling."]],
+  [K,"Safety & emotional support",["Two side rails up, bed low, call light in reach.","Restraints only as a last resort, per policy.","Check neurovascular status: ROM, sensation, pulses.","Reassure, explain routines, involve the family."]]
+ ]},
+ {h:"Postoperative complications",cards:[
+  [K,"VTE, hematoma, infection",T(["Problem","Know this"],[["VTE","Risks: prior clot, cancer, trauma, obesity, venous catheters, hormones. DVT: calf pain or cramp. PE: tachypnea, chest pain, hemoptysis, SOB, sense of doom. Prevent: anticoagulant prophylaxis, SCDs, stockings, leg exercises, ambulation."],["Hematoma","Concealed bleeding under the incision. May need clot evacuation and secondary closure."],["Wound infection","Prevent with skin antisepsis, clipping, antimicrobial stewardship, clean technique."]])],
+  [A,"Dehiscence & evisceration",["<b>Dehiscence:</b> incision edges separate.","<b>Evisceration:</b> wound contents (intestines) protrude.","Causes: failed sutures, infection, distention, strenuous coughing, obesity, poor nutrition, diabetes, steroids, age.","Action: low Fowler’s position, cover with sterile dressings moistened with saline, notify surgeon.","Stay with the patient."]],
+  [M,"Evisceration response","<div class='hook'>Cover it wet, keep them low, call the surgeon.</div><p>Saline-moist sterile dressing, low Fowler’s, notify.</p>"],
+  [K,"Older adults after surgery",["Slower recovery, longer stays, more complications.","Delirium prevention: well-lit room, low noise, good pain control, reorientation, activity, no restraints.","Early ambulation, nutrition, extensive discharge planning."]],
+  [K,"Expected outcomes",["Clear airway, controlled pain, adequate cardiac output.","Normal activity tolerance, intact skin, normal temperature.","Normal nutrition, bowel, and urinary function.","No injury, less anxiety, ready for self-care at home."]]
+ ]}
+],qs:[
+ ["On post-op day 1, a client has a temperature of 38.9°C (102°F). Most likely cause and best action?",["Wound infection; culture the wound","Atelectasis; incentive spirometer and deep breathing","DVT; apply SCDs","UTI; send a urinalysis"],1,"Early fever is usually atelectasis. Infection takes several days.","Lecture"],
+ ["A client waking from anesthesia is agitated and hypertensive. Which should the nurse check first?",["Bladder distention","Serum sodium","Wound culture","Bowel sounds"],0,"Patients can’t express needs after anesthesia. A full bladder is a common cause of agitation.","Lecture"],
+
+ ["What is the primary objective of the PACU?",["Long-term surgical care","Patient safety and recovery from anesthesia","Preparing patients for surgery","Treating chronic illness"],1,"PACU focuses on safe recovery from anesthesia.","Slide"],
+ ["True or false: Trauma patients are the only patients who require postoperative care.",["True","False"],1,"Postop care includes acutely ill, major or emergency surgery, and patients with other disorders.","Slide"],
+ ["Which is NOT a benefit of early ambulation?",["Prevents atelectasis and pneumonia","Reduces abdominal distention","Increases pain and prolongs stay","Decreases pain and shortens stay"],2,"Early ambulation lowers pain and shortens the stay.","Slide"],
+ ["A patient coughs and says, “Something just gave way.” Loops of bowel are visible. First action?",["Push the bowel back in","Cover with sterile saline-moistened dressings and place in low Fowler’s","Apply a dry dressing and ambulate","Give an antiemetic"],1,"Protect the tissue with moist sterile dressings, lower the position, stay, and notify the surgeon.","Practice"],
+ ["A PACU patient is snoring loudly with SpO₂ falling to 88%. First action?",["Increase IV fluids","Perform head tilt or jaw thrust","Call the family","Give an opioid"],1,"Snoring and falling SpO₂ suggest hypopharyngeal obstruction. Reposition the airway first.","Practice"]
+]},
+
+{id:"68",title:"Emergency Nursing",c:"--c68",big:"Rapid assessment, treatment, and referral. Triage sorts patients so the sickest do not wait.",secs:[
+ {h:"Lecture highlights",cards:[
+  [P,"ESI triage: several exam questions",T(["Level","Rule","Example"],[["1","Dying / needs immediate lifesaving care","Not breathing, arrest"],["2","Should not wait (high risk, time-sensitive)","Chest pain, stroke"],["3","Stable, needs many resources","Abdominal pain (labs + CT): the classic level 3"],["4","Stable, one resource","Simple fracture (x-ray)"],["5","Stable, no resources","Medication refill"]]),"Use ESI thinking anywhere: see the least stable patient, or the one most likely to decline (e.g., a fresh post-op), first."],
+  [P,"ED legal points",["The nurse must be in the room for provider procedures: consent, documentation, time-out.","Unconscious patient: consent is implied.","EMTALA: you cannot turn anyone away, or send them to another ED with a shorter wait. They must be seen by a provider; the time is not guaranteed. They may leave on their own.","Prisoners stay cuffed with a guard. You must care for them regardless of their crime."]],
+  [P,"Primary & secondary survey",["A patient who is talking has an intact airway.","D = neuro: GCS, pupils, can they move extremities.","E = remove all clothing.","Secondary survey = history (medical, surgical, allergies). Full head-to-toe often happens later, on the floor or ICU."]],
+  [P,"Airway emergencies",["Complete obstruction → brain damage in 3–5 minutes.","CO₂ drives breathing. High CO₂ = hypercapnia.","Swollen airway (anaphylaxis, grade 4 tonsils): ask for a <b>cricothyroidotomy</b> instead of wasting time on intubation. Have the kit ready.","A dislodged trach is a stoma that can close quickly. Trach care is covered in respiratory week."]],
+  [P,"FAST exam & hemorrhage",["FAST = bedside ultrasound looking for internal bleeding (liver/kidney, spleen/kidney, heart, bladder/pelvis).","Safe in pregnancy (CT is not). Nurses do not interpret it.","Exam question: <b>What is the purpose of a FAST?</b> To detect internal bleeding.","Positive FAST → straight to surgery, skip CT. A FAST can be repeated if late bleeding is suspected.","Priority for any hemorrhage: <b>stop the bleed</b> before replacing fluids.","Hypotension alone does not prove bleeding.","Transfuse when Hgb is below 7. Hypotensive with Hgb 9 → normal saline or LR.","A limb tolerates a tourniquet about 2–4 hours. A femoral bleed can be fatal in under a minute.","Cullen and Grey Turner signs are <b>late</b> signs of internal bleeding."]],
+  [P,"Trauma details",["Seatbelt sign = high force → suspect internal bleeding and organ injury. Watch for distention.","Penetrating injury through the fascia → always explored in the OR.","Blunt trauma bleeding is often delayed.","Labs: H&H, lactic acid (perfusion), ABG, coags, WBC.","Crush injury releases myoglobin → rhabdomyolysis (cola-colored urine).","Compartment syndrome → fasciotomy. Charred burns → escharotomy."]],
+  [P,"Environmental, from lecture",["Know <b>heat exhaustion vs. heat stroke</b>. Exhaustion: still sweating and compensating. Stroke: can’t compensate, stops sweating, very hot, rapid pulse, dehydrated.","First action for any heat illness: <b>remove from the heat source</b>.","Give cool or room-temperature water to drink, not ice water. Ice baths or external ice are OK.","Watch for seizures, electrolyte problems, arrhythmias.","Frostbite: <b>don’t move or rub the part</b> (frozen clots). Rewarm quickly and splint.","Hypothermia: below 95°F. Drowning goal: restore breathing and perfusion."]],
+  [P,"Bites & poisons, from lecture",["Dog bites: most common, least worrisome. Usually closed by the provider.","Cat bites: need antibiotics. Do not suture.","Human bites: antibiotics if the skin is broken. Do not suture.","Tick: “went deer hunting, came back sick” → Lyme, bull’s-eye rash. Check the scalp.","Not every hospital stocks every antivenom.","Report every poisoning to poison control. Activated charcoal is used for overdoses like acetaminophen.","CO poisoning: SpO₂ reads 99–100% even though the patient is poisoned. Flushed, cherry-red cheeks. Treat with oxygen."],"Dog bites: Prof said they don’t routinely need antibiotics. The slide groups dogs with cats for Pasteurella risk. If a question hinges on it, cats and humans are the high-infection bites."],
+  [P,"Not on Prof’s exam",["Wound care (covered in the skin chapter).","Psychiatric emergencies, alcohol intoxication, violence, sexual assault and SANE nurses, trafficking. These are tested in mental health and public health."]]
+ ]},
+ {h:"Issues in the ED",cards:[
+  [K,"Consent, privacy, EMTALA",["Patients must consent to treatment.","If a patient cannot consent and needs immediate care, treat.","Document condition, response, discharge or transfer status, follow-up instructions.","Use an alias for patients involved in violence. Limit EHR access.","EMTALA: medical screening exam for everyone, stabilizing treatment, consent and acceptance before transfer."]],
+  [K,"Safety for staff",["Exposure to blood, droplets, and fluids. Screen everyone on arrival; follow isolation precautions.","Violence: 78–100% of ED staff report verbal abuse; 20–96% physical assault.","Mitigation: security, de-escalation training, zero-tolerance policy."]],
+  [K,"Holistic & family care",["Act confidently. Explain in plain words.","Treat unconscious patients as if conscious: touch, use their name, explain.","Encourage family presence during resuscitation, with a facilitator.","Report all errors and sentinel events."]],
+  [K,"Caring for staff",["Compassion fatigue from constant exposure to suffering.","Support: self-care, resilience training, employee assistance.","CISM: defusing, debriefing, follow-up."]],
+  [K,"Continuum of care",["Only 13.1% of ED patients were admitted (2021).","Discharge instructions: meds, treatments, diet, activity, when to follow up.","Use interpreters and alternate formats (large print, Braille, audio).","Older adults: 24.4% (65–74) and 33.8% (over 75) admitted. Falls and car crashes are common. Presentations are often atypical."]]
+ ]},
+ {h:"Triage & assessment",cards:[
+  [K,"Five-level triage systems",T(["System","How it works"],[["ESI","Levels 1 (most urgent) to 5, by acuity and expected resources"],["CTAS","Five levels with reassessment times"]])],
+  [K,"CTAS reassessment times",T(["Level","Reassess"],[["Resuscitation","Continuous"],["Emergent","Every 15 min"],["Urgent","Every 30 min"],["Less urgent","Every 60 min"],["Nonurgent","Every 120 min"]])],
+  [M,"CTAS","<div class='hook'>Constant, then 15 → 30 → 60 → 120</div><p>Each level doubles the time.</p>"],
+  [K,"Triage bypass & team triage",["Bypass: patient goes straight to an open bed; receiving nurse does the first assessment.","Team triage: triage nurse works with a physician or NP; can order tests or discharge quickly."]],
+  [K,"Primary survey: ABCDE",T(["Step","Do"],[["Airway","Open and clear the airway"],["Breathing","Protect c-spine, assess chest injury, ventilate"],["Circulation","Stop hemorrhage, treat shock; compressions if no pulse"],["Disability","Neuro check: GCS and AVPU"],["Exposure","Undress to find injuries; prevent hypothermia; keep privacy"]])],
+  [M,"AVPU","<div class='hook'>Alert · Verbal · Pain · Unresponsive</div><p>Quick level-of-consciousness check during “D.”</p>"],
+  [K,"Secondary survey",["Full history and mechanism of injury.","Head-to-toe exam, including the back.","Labs, imaging, monitors (ECG, arterial line, catheter).","Splint fractures, wound care.","Then: diagnoses, treatment, disposition, comfort and support."]]
+ ]},
+ {h:"Airway, breathing & circulation emergencies",cards:[
+  [K,"Airway obstruction",["Causes: aspiration, anaphylaxis, infection, trauma, burns.","Older adult risks: sedatives, poor motor coordination, neuro disease.","Signs: can’t speak, breathe, or cough; clutching the neck; stridor; accessory muscles; nasal flaring; restlessness.","Cyanosis and loss of consciousness are <b>late</b>."]],
+  [A,"Managing obstruction",["Partial: encourage forceful coughing.","Weak cough, high-pitched noise, worsening distress, or cyanosis: treat as complete obstruction.","After removal: rescue breathing; compressions if no pulse.","Airway maneuvers: head tilt-chin lift, jaw thrust. Protect the c-spine.","Devices: oral airway, nasal airway, ET tube, LMA, cricothyroidotomy if intubation fails."]],
+  [K,"Ventilation",["Check for equal bilateral breath sounds.","Monitor pulse oximetry, capnography, ABGs.","Pneumothorax: chest tube. Sucking chest wound: occlude it."]],
+  [A,"External hemorrhage",["Direct, firm pressure over the site or proximal artery.","Pressure dressing. Elevate and immobilize.","Tourniquet only when other methods fail. Document time on and off.","Two large-bore IVs. Type and crossmatch.","Isotonic fluids, colloids, blood. PRBCs for massive loss."]],
+  [K,"Internal hemorrhage & shock",["Signs: tachycardia, falling BP, thirst, apprehension, cool moist skin, delayed capillary refill.","Rapid PRBCs, plasma, platelets. Prepare for surgery.","Passive leg raise tests response to fluids.","Shock types: hypovolemic, cardiogenic, neurogenic, anaphylactic, septic."]],
+  [K,"Wound care",["Clip hair. Clean with normal saline. <b>Avoid povidone-iodine.</b>","Local anesthetic, irrigate, debride.","Primary closure: sutures, strips, skin glue.","Delayed primary closure: tissue loss or high infection risk.","Tetanus prophylaxis based on wound and immunization status.","Photograph wounds for forensic evidence."]]
+ ]},
+ {h:"Environmental emergencies",cards:[
+  [K,"Heat illness",T(["Type","Signs"],[["Heat cramps","Muscle cramps, profuse sweating, intense thirst"],["Heat exhaustion","High temp, headache, anxiety, syncope, profuse sweating"],["Heat stroke","Emergency: heat regulation fails; can’t maintain cardiac output; dehydration"]]),"Heat stroke can be exertional (activity in heat) or nonexertional (long exposure). Older adults sweat less, feel less thirst, and may keep windows shut."],
+  [K,"Cold injury",["Frostbite: freezing of tissue fluids → cell and vessel damage. Feet, hands, nose, ears.","First degree: redness. Fourth degree: full-depth tissue destruction.","Hypothermia: core temp <b>35°C (95°F) or less</b>.","At risk: older adults, infants, people experiencing homelessness, alcohol use, fatigue."]],
+  [A,"Two hypothermia numbers",["Perioperative (Ch 15 slide): below <b>36.6°C</b>.","Environmental (Ch 68 slide): <b>35°C (95°F) or less</b>.","Read which chapter the question is from."]],
+  [K,"Drowning & decompression",["Nonfatal drowning: survival at least 24 hours after submersion.","High risk: under 5 and over 85. Complications: hypoxia, acidosis, aspiration, ARDS.","Decompression sickness (“the bends”): nitrogen bubbles; joint pain, numbness, air emboli. Treat in a hyperbaric chamber."]],
+  [K,"Bites",T(["Bite","Key facts"],[["Dog / cat","Pasteurella infection risk. Clean with soap and water, antibiotics, tetanus, report for rabies follow-up"],["Human","Often from assaults; high infection risk"],["Pit viper","Edema, ecchymosis, hemorrhagic bullae, necrosis. Immobilize. Antivenin within 4–12 h"],["Brown recluse","Painless bite; systemic effects in 24–72 h; necrosis in ~10%"],["Black widow","Painful bite; systemic effects in 30 min; abdominal rigidity, hypertension"],["Tick","Remove early with tweezers. Lyme: erythema migrans → joint/cardiac/memory → arthritis, neuropathy"]])]
+ ]},
+ {h:"Poisoning",cards:[
+  [K,"Goals of poisoning care",["Remove or inactivate the poison before absorption.","Support vital organs.","Give a specific antidote.","Speed elimination."]],
+  [K,"Swallowed poisons",["Corrosive alkali: lye, drain cleaner, bleach. Corrosive acid: pool and rust cleaners, battery acid.","First: airway, ventilation, oxygen. Then cardiovascular stability.","Identify the substance, amount, time, symptoms; age and weight.","Dilute with water or milk, <b>except</b> with airway edema, obstruction, or burns.","Gastric lavage within 1 hour for some substances. Dialysis or hemoperfusion for some."]],
+  [M,"Activated charcoal does NOT work for","<div class='hook'>CHILL</div><p><b>C</b>orrosives, <b>H</b>eavy metals, <b>I</b>ron, <b>L</b>ithium, <b>L</b>iquid hydrocarbons.</p>"],
+  [A,"Carbon monoxide",["Hemoglobin binds CO 200 times more readily than oxygen.","Skin can be cherry red, pink, or pale. Color is <b>not</b> reliable.","Pulse oximetry can read falsely normal. Check a carboxyhemoglobin level.","Signs: looks intoxicated, headache, weakness, dizziness, confusion, coma.","Treat: fresh air, <b>100% oxygen</b> or hyperbaric oxygen, continuous monitoring."]],
+  [A,"Chemical burns to skin",["Brush off <b>dry</b> chemicals first.","Then flush with copious cool water while removing clothing.","Staff wear PPE.","Recheck at 24 h, 72 h, and 7 days."]],
+  [K,"Food poisoning",["Botulism and fish poisoning can cause respiratory paralysis. Support breathing.","Bring the suspected food. Collect food, vomitus, serum, stool samples.","Ask: when did symptoms start, what was eaten, did others get sick, neuro symptoms, fever?","Severe vomiting → alkalosis. Severe diarrhea → acidosis.","Diet: sips of fluids → clear liquids 12–24 h → bland, low-residue."]],
+  [M,"Acid-base from GI losses","<div class='hook'>Vomit loses acid → alkalosis. Diarrhea loses bicarb → acidosis.</div>"]
+ ]},
+ {h:"Psychiatric emergencies",cards:[
+  [K,"Overactive patients",["Disturbed, paranoid, panicky, possibly violent.","Rule out alcohol, drugs, hypoglycemia, stroke.","Goal: gain control. Security nearby. Restraints last.","Be calm, confident, firm. Introduce yourself: “I am here to help you.”","Use one-thought sentences. Be consistent. Give space and time."]],
+  [K,"PTSD",["About 6 in 100 people in the US.","Veterans: 29% (Iraq/Afghanistan), 21% (Gulf War), 10% (Vietnam).","Signs: intrusive thoughts, avoidance, hypervigilance, startle reaction.","Quiet environment. Assess violence and suicide risk. Connect to resources (VA National Center for PTSD)."]],
+  [A,"Depression & suicide risk",["Ask directly: “Have you ever thought about taking your own life?”","Risk factors: male, older or young adult, loss or stress, living alone, unemployed, divorced or widowed, LGBTQ+, prior attempt, family history, psychiatric illness.","Highest concern: a specific plan and the means to carry it out.","Treat the injury, prevent further self-harm, start crisis intervention and referral."]]
+ ]}
+],qs:[
+ ["A stable client arrives with abdominal pain and will need labs and a CT. ESI level?",["Level 1","Level 2","Level 3","Level 5"],2,"Stable with two or more resources = level 3. Abdominal pain is the classic example.","Lecture"],
+ ["A trauma client has a positive FAST exam. What is expected next?",["CT scan","Surgery","Repeat FAST in 24 hours","Discharge"],1,"Positive FAST means internal bleeding. The patient goes straight to surgery.","Lecture"],
+ ["A client is hypotensive with a hemoglobin of 9 g/dL. Which is the nurse likely to give?",["Packed red blood cells","Normal saline or lactated Ringer’s","Platelets","Albumin only"],1,"Transfusion is usually reserved for Hgb below 7. Give isotonic fluids.","Lecture"],
+ ["A runner collapses, is hot, and has stopped sweating. First action?",["Give ice water to drink","Remove from the heat","Start an IV","Check a blood glucose"],1,"Remove the person from the heat source first.","Lecture"],
+
+ ["Which is a key principle of emergency care?",["Long-term care","Rapid assessment, treatment, and referral","Routine checkups","Elective surgery"],1,"The ED is a temporary stop on the continuum of care.","Slide"],
+ ["True or false: Cool, moist skin and delayed capillary refill are signs of internal hemorrhage.",["True","False"],0,"They reflect poor perfusion and developing shock.","Slide"],
+ ["Which is a common symptom of a venomous snakebite?",["Severe itching","Edema and ecchymosis","Mild headache","Frequent urination"],1,"Pit viper bites cause local edema and bruising.","Slide"],
+ ["Under CTAS, how often is an “emergent” patient reassessed?",["Continuously","Every 15 minutes","Every 30 minutes","Every 60 minutes"],1,"Emergent = every 15 minutes. Resuscitation = continuous.","Practice"],
+ ["A patient found in a closed garage has SpO₂ 98% and a headache. The nurse knows:",["The SpO₂ rules out CO poisoning","Pulse oximetry can be falsely normal in CO poisoning","Cherry-red skin is required to diagnose CO","Room air is adequate"],1,"CO-bound hemoglobin reads as saturated. Get a carboxyhemoglobin level and give 100% O₂.","Practice"]
+]},
+
+{id:"69",title:"Disaster Nursing",c:"--c69",big:"In a disaster, do the greatest good for the greatest number. Know the command structure, triage colors, PPE, and decontamination.",secs:[
+ {h:"Lecture highlights",cards:[
+  [P,"START triage: about two exam scenarios",["Not breathing → reposition the airway once.","Breathes after repositioning → <b>Red</b>. Still not breathing → <b>Black</b>.","RR over 30 → Red.","Slow capillary refill → Red.","Does not obey commands → Red.","Obeys commands (and can’t walk, e.g., a broken leg) → <b>Yellow</b>.","Walking wounded → <b>Green</b>.","This is <b>field</b> triage. The hospital ED still uses ESI, where the dying patient is seen first."]],
+  [M,"START in order","<div class='hook'>Walk? Breathe? Over 30? Refill? Commands?</div><p>Green if walking. Then A, B, C, and neuro in that order. Any red flag = Red.</p>"],
+  [P,"Disaster basics from lecture",["A state of emergency brings resources, including nurses. Your license belongs to the state.","Disaster types: national (9/11), state (hurricane), regional, city/county, local (the Pulse nightclub shooting).","Disaster ethics: greatest good for the greatest number. You may leave someone who needs too many resources to save five others.","Prof: hospitals keep 7–14 days of supplies and 7 days of medications. (Slide: self-sufficient 96 hours, ideally 7 days.)","Never talk to the media or post about the hospital on social media.","Work outside your scope only in a true disaster, never at a roadside crash."]],
+  [P,"PPE, weapons, decontamination",["There will be a test question on PPE level.","<b>Level A</b> = full hazmat suit with its own air (think Monsters, Inc. “2319”).","Biologic agents: anthrax (about 6-day incubation), smallpox (about 12-day incubation).","Chemical: know it’s a weapon category; mustard, nerve, blood (cyanide), pulmonary agents.","Radiation: the longer the exposure, the worse the symptoms. Staff wear dosimeter badges.","Decontamination happens <b>outside</b> the hospital in a tent. Patients move <b>forward only</b>, never back.","Know why we decontaminate: to prevent spreading contamination to others and the facility."]]
+ ]},
+ {h:"Planning & command structure",cards:[
+  [K,"NIMS and FEMA",["Every disaster plan follows the National Incident Management System (NIMS).","NIMS is directed by DHS / FEMA.","Communities with plans have better morbidity and mortality.","Natural disasters: storms, floods, fires, earthquakes. Man-made: crashes, toxic spills.","Terrorism: unlawful use of violence or threats to coerce or intimidate.","MCI: an incident with enough casualties to make resources scarce."]],
+  [A,"Self-sufficiency numbers",["Community: may act alone for up to <b>5 days</b> before federal/state help arrives.","Hospital: self-sufficient for at least <b>96 hours</b>, ideally 7 days."]],
+  [M,"Self-sufficiency","<div class='hook'>Hospital 96 hours (4 days). Community 5 days.</div>"],
+  [K,"Agencies & teams",["Federal: HHS, DoD, DHS. States request federal help when local resources run out.","DMATs: volunteer medical teams for field hospitals (triage, care, evacuation).","NTAS: bulletins (trends) and alerts (elevated or imminent threat).","American Red Cross: shelters and volunteers.","Local: Metropolitan Medical Response Teams, Office of Emergency Management, poison control."]],
+  [K,"Incident Command System (ICS / HICS)",["Federally mandated command structure for personnel, equipment, and communication.","Hospital version: HICS.","Incident commander leads.","Team: safety officer, public information officer, liaison officer, and chiefs of operations, logistics, planning, and finance."]],
+  [K,"Emergency Operations Plan (EOP)",["The Joint Commission requires facilities to create and drill a plan.","Hazard vulnerability analysis identifies likely threats.","The plan states how it is activated.","Field command estimates how many patients are coming. Self-referred patients are unknown.","EOP committee picks the top 10 critical medications and restocking procedures."]],
+  [K,"Tracking patients",["Disaster tag: triage priority, name, age, location, injuries, treatments.","The tag stays on the patient.","A disaster log matches tag numbers to names for beds and family info."]]
+ ]},
+ {h:"Disaster triage",cards:[
+  [A,"The triage rule changes",["Everyday ED: the sickest go first.","Disaster: <b>the greatest good for the greatest number</b>.","Decisions weigh survival chances against resources used.","Triage is repeated at every level of care."]],
+  [K,"Color tags",T(["Color","Priority","Who"],[["Red","Immediate","Life-threatening but survivable with quick care"],["Yellow","Delayed","Serious injuries that can wait"],["Green","Minor","Walking wounded"],["Black","Expectant / deceased","Dead or not expected to survive with available resources"]]),"Systems: START (adults), JumpSTART (children), SALT."],
+  [M,"START red criteria","<div class='hook'>30 – 2 – Can do</div><p>RR over 30, capillary refill over 2 seconds (or no radial pulse), or can’t follow commands → <b>Red</b>.</p><p class='note'>Standard START criteria; the triage chart slide was an image.</p>"],
+  [K,"Casualty waves",["First wave: minimally injured (often self-referred).","Second wave: severely injured.","Third wave: patients found by rescuers."]],
+  [K,"Media & families",["One designated spokesperson / public information officer.","Regular, controlled updates. Keep media out of care areas.","Separate family area staffed by social workers, counselors, or clergy."]],
+  [K,"Nurse’s role & ethics",["Nurses are the largest part of the workforce.","May work outside their usual scope (e.g., critical care nurses may intubate or place chest tubes).","Delegate to students, outside staff, volunteers.","Ethical principles: autonomy, nonmaleficence, beneficence, distributive justice.","Conflicts: rationing, futile care, resuscitation, duty vs. personal safety."]],
+  [K,"Behavioral response",["Disaster can bring PTSD, depression, anxiety, grief, substance use.","Nurse: active listening, emotional support, information, referrals.","<b>Discourage</b> repeated media exposure. Encourage return to normal routines.","CISM for staff: education, field support (rest, food, rotation), debriefing, follow-up. It does not replace mental health care."]]
+ ]},
+ {h:"Detection, PPE & decontamination",cards:[
+  [K,"Clues to deliberate dispersal",["Unusual rise in fever, respiratory, or GI cases.","Clusters of the same unusual illness from one place or event.","Many deaths within 72 hours of admission.","Disease in normally healthy people.","Report to the state health department and CDC."]],
+  [K,"EPA PPE levels",T(["Level","Protection"],[["A","Highest respiratory and skin protection"],["B","High respiratory, less skin protection"],["C","Known airborne substance; air-purifying respirator"],["D","Minimum; regular work uniform"]]),"Hospitals mostly use C and D. Level D is not enough for contaminated patients. N95s filter 95% of particles; discard after each patient."],
+  [M,"PPE","<div class='hook'>A = All covered. D = Daily uniform.</div>"],
+  [A,"Two-step decontamination",["Step 1: remove clothing and jewelry, rinse with water.","Step 2: thorough soap-and-water wash and rinse.","Decontaminate near the scene, before transport.","Staff wear PPE. Contain and dispose of runoff.","Protect privacy and prevent hypothermia."]]
+ ]},
+ {h:"Natural disasters & outbreaks",cards:[
+  [K,"Natural disaster health issues",["Immediate: trauma, dehydration, pulmonary problems.","Loss of communication, clean water, electricity.","Waterborne and vector-borne disease: cholera, E. coli, hepatitis A, leptospirosis, malaria, dengue.","Pulmonary problems peak with earthquakes and volcanic eruptions.","Early warning systems reduce tornado and hurricane deaths."]],
+  [K,"Outbreak → epidemic → pandemic",T(["Term","Meaning"],[["Outbreak","Disease above normal expectations"],["Epidemic","Widespread outbreak from a single source; cases exceed expected incidence"],["Pandemic","Epidemic across multiple countries or continents (e.g., COVID-19, declared March 2020)"]]),"An outbreak is declared over when new cases fall below the expected number."]
+ ]},
+ {h:"Weapons of mass destruction",cards:[
+  [K,"Blast injuries",["Treat the whole scene as a crime scene. Watch for secondary devices.","<b>Tympanic membrane rupture</b>: most common injury. Hearing loss, tinnitus, pain, otorrhea. Most heal on their own.","<b>Blast lung</b>: dyspnea, hypoxia, tachypnea, cough, chest pain. Oxygen, possible intubation, chest tube.","Air embolus: prone, left lateral position, hyperbaric treatment.","Blast abdomen: pain, guarding, rebound, rectal bleeding.","Head injuries cause most post-blast deaths.","Pregnant patients: risk of placental abruption."]],
+  [K,"Biologic vs. chemical",["Biologic: living organisms or toxins. Needs surveillance and suspicion.","Chemical: effects appear faster than biologic.","Volatility: tendency to become vapor (phosgene, cyanide).","Most chemicals are heavier than air. Stand up and move to higher ground.","Longest latency: sulfur mustard and pulmonary agents.","Decontaminate with soap and water."]],
+  [K,"Chemical agent classes",T(["Class","Effect"],[["Vesicant","Severe burns and blisters"],["Nerve","Disrupts nerve impulses; rapid damage"],["Blood","Blocks cellular metabolism; asphyxiation"],["Pulmonary","Destroys lung membranes; disrupts oxygen transport"]])],
+  [K,"Radiation basics",T(["Type","Penetration"],[["Alpha","Cannot penetrate skin; localized damage"],["Beta","Moderately penetrates skin"],["Gamma","Highly penetrating; hard to shield"]]),"Measured in rads and rems. Dirty bombs spread radioactive material but are not nuclear weapons. Detect with Geiger counters and dosimeters."],
+  [M,"Limit radiation exposure","<div class='hook'>Time · Distance · Shielding</div><p>Less time, more distance, more shielding.</p>"],
+  [K,"Radiation injury & ARS",["Injury types: external irradiation, contamination, incorporation (uptake into cells).","Triage outside the hospital. Soap and water for most decon. Chelating agents for internal contamination.","ARS: hematopoietic system affected first (shows severity).","GI system at 600 rad or more. CNS above 1,000 rad.","Survival groups: probable (few symptoms), possible (latent period, low WBC and platelets), improbable (severe early symptoms)."]]
+ ]}
+],qs:[
+ ["At a mass casualty scene, a victim is not breathing. After one airway reposition, the victim is still not breathing. Tag?",["Red","Yellow","Green","Black"],3,"No breathing after repositioning = Black.","Lecture"],
+ ["A victim has a broken leg and can’t walk, RR 22, capillary refill under 2 seconds, and follows commands. Tag?",["Red","Yellow","Green","Black"],1,"Can’t walk but passes breathing, perfusion, and mental status = Yellow.","Lecture"],
+ ["Which PPE level is a fully encapsulated hazmat suit with its own air supply?",["Level A","Level B","Level C","Level D"],0,"Level A is the highest protection.","Lecture"],
+
+ ["Which guidelines should disaster plans follow?",["CDC","NIMS","WHO","OSHA"],1,"NIMS, directed by DHS/FEMA, is the framework for all disasters.","Slide"],
+ ["True or false: Nurses should encourage repeated media exposure to help people cope.",["True","False"],1,"Repeated exposure worsens trauma. Encourage normal routines.","Slide"],
+ ["Which is NOT a common sign of blast lung?",["Dyspnea","Hypoxia","Tachypnea","Otorrhea"],3,"Otorrhea points to tympanic membrane rupture.","Slide"],
+ ["Using START, a walking-wounded-area patient has RR 34, radial pulse present, and follows commands. Tag?",["Green","Yellow","Red","Black"],2,"RR over 30 alone makes the patient Red (immediate).","Practice"],
+ ["How long should a hospital plan to be self-sufficient in a disaster?",["24 hours","48 hours","At least 96 hours","30 days"],2,"At least 96 hours, ideally 7 days.","Practice"]
+]}
+];
+
+const KINDS=[[P,"From lecture"],["key","Key facts"],[A,"Priorities"],[M,"Mnemonics"],["q","Practice Qs"]];
+const SHORT={"13":"Palliative","14":"Preoperative","15":"Intraoperative","16":"Postoperative","68":"Emergency","69":"Disaster"};
+const state={ch:new Set(CH.map(c=>c.id)),kind:new Set(KINDS.map(k=>k[0])),q:""};
+const answered={};
+const esc=s=>s.replace(/[&<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]));
+
+function body(b){
+  if(typeof b==="string") return b.startsWith("<")?b:"<p>"+b+"</p>";
+  if(Array.isArray(b)) return "<ul>"+b.map(x=>"<li>"+x+"</li>").join("")+"</ul>";
+  return "<div class='tw'><table><thead><tr>"+b.head.map(h=>"<th>"+h+"</th>").join("")+"</tr></thead><tbody>"+b.rows.map(r=>"<tr>"+r.map(c=>"<td>"+c+"</td>").join("")+"</tr>").join("")+"</tbody></table></div>";
+}
+const tagName={key:"Key facts",alert:"Nurse priority",mn:"Memory hook",prof:"Prof says"};
+
+function build(){
+  const main=document.getElementById("main");let h="";
+  CH.forEach(ch=>{
+    h+=`<section class="chapter" data-ch="${ch.id}" id="ch${ch.id}" style="--c:var(${ch.c})"><div class="ch-head"><span class="ch-num">${ch.short?"START HERE":"CHAPTER "+ch.id}</span><h2>${ch.title}</h2></div><p class="ch-big">${ch.big}</p>`;
+    ch.secs.forEach(s=>{
+      h+=`<div class="sec"><h3>${s.h}</h3><div class="grid">`;
+      s.cards.forEach(([k,t,b,note])=>{
+        h+=`<article class="card ${k}" data-kind="${k}"><span class="tag">${tagName[k]}</span><h4>${t}</h4>${body(b)}${note?`<p class="note">${note}</p>`:""}</article>`;
+      });
+      h+=`</div></div>`;
+    });
+    if(!ch.qs.length){h+=`</section>`;return;}
+    h+=`<div class="sec"><h3>Practice questions</h3><div class="grid">`;
+    ch.qs.forEach(([stem,opts,a,r,src],i)=>{
+      const id=ch.id+"-"+i;
+      h+=`<article class="card q" data-kind="q" data-qid="${id}"><span class="tag">${src==="Slide"?"From your slides":src==="Lecture"?"From lecture":"Practice"}</span><div class="stem">${stem}</div><div class="opts">${opts.map((o,j)=>`<button class="opt" data-j="${j}" data-a="${a}">${String.fromCharCode(65+j)}. ${o}</button>`).join("")}</div><div class="rat" hidden><b>Answer: ${String.fromCharCode(65+a)}. ${opts[a]}</b>${r}</div></article>`;
+    });
+    h+=`</div></div></section>`;
+  });
+  main.innerHTML=h;
+  main.querySelectorAll(".card").forEach(c=>{c.dataset.text=c.textContent.toLowerCase();c.dataset.html=c.innerHTML;});
+}
+document.getElementById("main").addEventListener("click",e=>{
+    const b=e.target.closest(".opt");if(!b)return;
+    const card=b.closest(".q");const j=+b.dataset.j,a=+b.dataset.a;
+    card.querySelectorAll(".opt").forEach(o=>{o.disabled=true;if(+o.dataset.j===a)o.classList.add("right");});
+    if(j!==a)b.classList.add("wrong");
+    card.querySelector(".rat").hidden=false;
+    card.dataset.html=card.innerHTML;
+    answered[card.dataset.qid]=j===a;updScore();
+});
+function updScore(){const v=Object.values(answered);document.getElementById("score").textContent=v.length?`Quiz: ${v.filter(Boolean).length}/${v.length} correct`:"";}
+
+function highlight(el,term){
+  if(!term)return;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);const nodes=[];
+  while(w.nextNode())nodes.push(w.currentNode);
+  const re=new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi");
+  nodes.forEach(n=>{if(!re.test(n.nodeValue))return;re.lastIndex=0;const span=document.createElement("span");span.innerHTML=esc(n.nodeValue).replace(re,m=>"<mark>"+m+"</mark>");n.replaceWith(...span.childNodes);});
+}
+function apply(){
+  const term=state.q.trim().toLowerCase();let n=0;
+  document.querySelectorAll(".chapter").forEach(sec=>{
+    const chOn=state.ch.has(sec.dataset.ch);let any=0;
+    sec.querySelectorAll(".sec").forEach(s=>{
+      let vis=0;
+      s.querySelectorAll(".card").forEach(c=>{
+        const ok=chOn&&state.kind.has(c.dataset.kind)&&(!term||c.dataset.text.includes(term));
+        c.hidden=!ok;
+        if(c.innerHTML!==c.dataset.html)c.innerHTML=c.dataset.html;
+        if(ok){vis++;highlight(c,term);}
+      });
+      s.hidden=!vis;any+=vis;
+    });
+    sec.hidden=!any;n+=any;
+  });
+  document.getElementById("count").textContent=n+" cards";
+  document.getElementById("empty").hidden=n>0;
+}
+function chips(){
+  const cc=document.getElementById("chChips"),kc=document.getElementById("kindChips");
+  CH.forEach(ch=>{const b=document.createElement("button");b.className="chip";b.style.setProperty("--c",`var(${ch.c})`);b.setAttribute("aria-pressed","true");b.innerHTML=ch.short?`<span class="dot"></span>${ch.short}`:`<span class="dot"></span>${ch.id} · ${SHORT[ch.id]}`;b.title=ch.title;b.onclick=()=>toggle(state.ch,ch.id,b);cc.appendChild(b);});
+  const all=document.createElement("button");all.className="ghost";all.textContent="All";all.onclick=()=>{CH.forEach(c=>state.ch.add(c.id));cc.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed","true"));apply();};cc.appendChild(all);
+  const kc_c={prof:"var(--lec)",key:"var(--muted)",alert:"var(--alert)",mn:"var(--mn)",q:"var(--accent)"};
+  KINDS.forEach(([k,l])=>{const b=document.createElement("button");b.className="chip";b.style.setProperty("--c",kc_c[k]);b.setAttribute("aria-pressed","true");b.innerHTML=`<span class="dot"></span>${l}`;b.onclick=()=>toggle(state.kind,k,b);kc.appendChild(b);});
+  const reset=document.createElement("button");reset.className="ghost";reset.textContent="Reset quiz";reset.onclick=()=>{for(const k in answered)delete answered[k];const m=document.getElementById("main");m.innerHTML="";build();apply();updScore();};kc.appendChild(reset);
+}
+function toggle(set,v,b){set.has(v)?set.delete(v):set.add(v);b.setAttribute("aria-pressed",set.has(v));apply();}
+build();chips();apply();
+let t;document.getElementById("q").addEventListener("input",e=>{clearTimeout(t);t=setTimeout(()=>{state.q=e.target.value;apply();},120);});
+</script>
+
+</body></html>
