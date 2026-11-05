@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nursing Podcast Library</title>
+<meta name="theme-color" content="#0A1222">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Same "study mode" palette as the Shift Board and Study Corner. */
+:root{
+  color-scheme:dark;
+  --bg:#0A1222; --surface:#111C31; --raised:#16233C; --sunk:#0C1528; --line:#22324F;
+  --ink:#EAF0FA; --muted:#8C9BB8; --faint:#5C6C8A;
+  --blue:#5B9BFF; --blue-deep:#2156C9; --blue-wash:#13284D;
+  --yellow:#FFD34D; --yellow-wash:#2E2814; --violet:#B9A2FF; --violet-wash:#231C3D;
+  --display:"DM Serif Display", Georgia, serif;
+  --body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:16px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 500px at 85% -10%, rgba(185,162,255,.10), transparent 60%),radial-gradient(700px 400px at -10% 10%, rgba(255,211,77,.05), transparent 60%);background-attachment:fixed}
+a{color:var(--blue)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px)) 80px}
+header{padding-block:28px 6px}
+.crumbs{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--yellow)}
+h1{font:400 clamp(38px,8vw,54px)/1 var(--display);margin:10px 0 0;color:var(--yellow)}
+h1 span{color:var(--ink)}
+.sub{color:var(--muted);margin-top:10px;max-width:60ch}
+.search{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 16px;margin-top:20px}
+.search:focus-within{border-color:var(--violet)}
+.search svg{flex:none;color:var(--violet)}
+.search input{background:none;border:0;outline:0;padding:14px 0;width:100%;font-size:16px}
+.search input::placeholder{color:var(--faint)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 13px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#1A1405}
+.count{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:18px 0 0}
+.ep{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-top:12px;min-width:0}
+.ep.playing{border-color:rgba(185,162,255,.6)}
+.top{display:grid;grid-template-columns:46px minmax(0,1fr);gap:14px;align-items:start}
+.ic{width:46px;height:46px;border-radius:12px;background:var(--violet);color:#14102A;display:grid;place-items:center}
+.ep h2{font:700 17px/1.3 var(--body);margin:0;overflow-wrap:anywhere}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px;font-size:13px;color:var(--muted)}
+.tag{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--violet-wash);color:var(--violet)}
+.tag.c{background:var(--blue-wash);color:var(--blue)}
+.desc{margin:10px 0 0;color:var(--ink)}
+audio{width:100%;margin-top:14px;height:40px;color-scheme:dark}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{display:inline-block;border:1px solid var(--line);background:var(--raised);padding:6px 11px;border-radius:9px;font-weight:700;font-size:13px;text-decoration:none;color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--violet)}
+.tx{margin-top:12px;max-height:320px;overflow:auto;background:var(--sunk);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--muted);white-space:pre-wrap}
+.hit{margin-top:10px;font-size:13.5px;color:var(--muted);border-left:3px solid var(--yellow);padding-left:10px}
+mark{background:var(--yellow);color:#1A1405;border-radius:3px;padding:0 2px}
+.empty{margin-top:16px;padding:22px;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted);text-align:center}
+@media (max-width:560px){ .ep{padding:16px} .top{grid-template-columns:38px minmax(0,1fr);gap:12px} .ic{width:38px;height:38px;border-radius:10px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="crumbs"><a href="../">Shift Board</a> / <a href="../study/">Study</a> / Podcasts</div>
+    <h1>Podcast <span>Library</span></h1>
+    <p class="sub">NotebookLM study podcasts, by topic. Search covers titles, topics and any published transcripts.</p>
+    <label class="search" for="q">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="q" placeholder="Search episodes and transcripts…" autocomplete="off">
+    </label>
+    <div class="chips" id="cats" role="group" aria-label="Filter by category"></div>
+  </header>
+  <div class="count" id="count"></div>
+  <main id="list"></main>
+</div>
+<script>
+(() => {
+"use strict";
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const mins = s => s >= 3600 ? `${Math.floor(s / 3600)} h ${Math.round(s % 3600 / 60)} min` : `${Math.max(1, Math.round(s / 60))} min`;
+const POS = "studycorner.podcast.pos";
+let pos = {}; try { pos = JSON.parse(localStorage.getItem(POS)) || {}; } catch {}
+const savePos = () => { try { localStorage.setItem(POS, JSON.stringify(pos)); } catch {} };
+let EPS = [], cat = new URLSearchParams(location.search).get("cat") || "All", q = "";
+const ICON = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>`;
+
+function snippet(text, term){
+  const i = text.toLowerCase().indexOf(term); if (i < 0) return "";
+  const a = Math.max(0, i - 70), b = Math.min(text.length, i + term.length + 90);
+  return (a ? "…" : "") + esc(text.slice(a, i)) + "<mark>" + esc(text.slice(i, i + term.length)) + "</mark>" + esc(text.slice(i + term.length, b)) + (b < text.length ? "…" : "");
+}
+function render(){
+  const cats = ["All", ...[...new Set(EPS.map(e => e.category))].sort()];
+  $("#cats").innerHTML = cats.length > 2 ? cats.map(c => `<button class="chip" data-cat="${esc(c)}" aria-pressed="${c === cat}">${esc(c)} ${c === "All" ? EPS.length : EPS.filter(e => e.category === c).length}</button>`).join("") : "";
+  const t = q.toLowerCase();
+  const list = EPS.filter(e => (cat === "All" || e.category === cat) && (!t || [e.title, e.description, e.category, e.course, e.text].join(" ").toLowerCase().includes(t)));
+  $("#count").textContent = EPS.length ? `${list.length} episode${list.length === 1 ? "" : "s"}` : "";
+  if (!EPS.length) { $("#list").innerHTML = `<div class="empty">No episodes published yet. New NotebookLM podcasts show up here once they're approved.</div>`; return; }
+  if (!list.length) { $("#list").innerHTML = `<div class="empty">No episodes match “${esc(q)}”.</div>`; return; }
+  $("#list").innerHTML = list.map(e => {
+    const inText = t && e.text && ![e.title, e.description, e.category, e.course].join(" ").toLowerCase().includes(t);
+    return `<article class="ep" id="ep-${esc(e.id)}">
+      <div class="top"><div class="ic">${ICON}</div><div style="min-width:0">
+        <h2>${esc(e.title)}</h2>
+        <div class="meta"><span class="tag">${esc(e.category)}</span>${e.course ? `<span class="tag c">${esc(e.course)}</span>` : ""}<span>${mins(e.duration)}</span>${e.added ? `<span>· ${esc(new Date(e.added + "T12:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }))}</span>` : ""}</div>
+      </div></div>
+      ${e.description ? `<p class="desc">${esc(e.description)}</p>` : ""}
+      ${inText ? `<div class="hit">${snippet(e.text, t)}</div>` : ""}
+      <audio controls preload="none" data-id="${esc(e.id)}" src="${esc(e.audio)}">${e.captions ? `<track kind="captions" srclang="en" label="English" src="${esc(e.captions)}">` : ""}</audio>
+      <div class="acts">${e.transcript ? `<button class="btn" data-tx="${esc(e.id)}" aria-expanded="false">Show transcript</button><a class="btn" href="${esc(e.transcript)}" download="${esc(e.id)}-transcript.txt">Download transcript</a>` : ""}${pos[e.id] > 20 ? `<span class="meta" style="margin:0">Resumes at ${Math.floor(pos[e.id] / 60)}:${String(Math.floor(pos[e.id] % 60)).padStart(2, "0")}</span>` : ""}</div>
+      <div class="tx" id="tx-${esc(e.id)}" hidden></div>
+    </article>`;
+  }).join("");
+}
+
+document.addEventListener("click", ev => {
+  const c = ev.target.closest("[data-cat]"); if (c) { cat = c.dataset.cat; render(); return; }
+  const b = ev.target.closest("[data-tx]"); if (!b) return;
+  const e = EPS.find(x => x.id === b.dataset.tx), box = $("#tx-" + CSS.escape(e.id));
+  if (!box.hidden) { box.hidden = true; b.textContent = "Show transcript"; b.setAttribute("aria-expanded", "false"); return; }
+  box.hidden = false; b.textContent = "Hide transcript"; b.setAttribute("aria-expanded", "true");
+  if (!box.dataset.loaded) { box.textContent = "Loading…"; fetch(e.transcript).then(r => r.text()).then(t => { box.textContent = t.trim(); box.dataset.loaded = "1"; }).catch(() => { box.textContent = "Couldn't load the transcript."; }); }
+});
+// One episode plays at a time, and each remembers where you stopped.
+document.addEventListener("play", ev => {
+  if (ev.target.tagName !== "AUDIO") return;
+  document.querySelectorAll("audio").forEach(a => { if (a !== ev.target) a.pause(); a.closest(".ep").classList.toggle("playing", a === ev.target); });
+}, true);
+document.addEventListener("loadedmetadata", ev => { const a = ev.target; if (a.tagName === "AUDIO" && pos[a.dataset.id] > 20 && pos[a.dataset.id] < a.duration - 15) a.currentTime = pos[a.dataset.id]; }, true);
+document.addEventListener("timeupdate", ev => { const a = ev.target; if (a.tagName !== "AUDIO") return; if (Math.abs((pos[a.dataset.id] || 0) - a.currentTime) > 5) { pos[a.dataset.id] = a.currentTime; savePos(); } }, true);
+document.addEventListener("ended", ev => { const a = ev.target; if (a.tagName === "AUDIO") { delete pos[a.dataset.id]; savePos(); } }, true);
+$("#q").addEventListener("input", e => { q = e.target.value.trim(); render(); });
+
+fetch("episodes.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : []).catch(() => []).then(d => {
+  EPS = Array.isArray(d) ? d : [];
+  render();
+  if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+});
+})();
+</script>
+</body>
+</html>

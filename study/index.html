@@ -78,30 +78,39 @@ h3{font:700 17px/1.3 var(--body);margin:0}
     <div id="due"></div>
   </section>
 
+  <section class="card" style="border-color:rgba(185,162,255,.5)">
+    <div class="row"><h3>Podcast Library</h3><span class="spacer"></span><a class="btn" href="../podcasts/">Listen</a></div>
+    <p class="muted small" style="margin:6px 0 0" id="podInfo">NotebookLM study podcasts by topic, with search and transcripts.</p>
+  </section>
+
   <div id="courses"></div>
 
   <h2>Study guides &amp; practice sets</h2>
   <p class="muted small">Interactive pages built during the semester. The practice sets keep their own scores in this browser.</p>
   <div id="guides"></div>
 
-  <h2>Connect NotebookLM &amp; Notability</h2>
+  <div id="notesWrap" hidden>
+    <h2>My notes</h2>
+    <p class="muted small">Notability PDFs I've approved for the site.</p>
+    <section class="card" id="notes"></section>
+  </div>
+
+  <h2>Adding new content</h2>
   <section class="card">
-    <p style="margin-top:0">Neither app can push files straight into a website, and this site is public, so it shouldn't hold your personal notes anyway. This is the closest thing to real time:</p>
-    <h3 style="margin-top:14px">Notability → Google Drive (automatic)</h3>
+    <h3>NotebookLM podcast</h3>
     <ol class="steps">
-      <li>In Notability, open <b>Settings → Auto-backup</b>, choose <b>Google Drive</b>, and set the format to <b>PDF</b>.</li>
-      <li>Every note you edit is re-exported to a <b>Notability</b> folder in Drive within a few minutes.</li>
-      <li>Open that Drive folder from <a href="#links-anchor">the link below</a>. Save it once with your folder's link and it's one tap from here.</li>
+      <li>Download the Audio Overview into <b>Nursing Website Content / NotebookLM Podcasts</b> in Google Drive.</li>
+      <li>On the PC, run the sync. The episode is imported and transcribed privately.</li>
+      <li>Set <b>approved</b> to <b>yes</b> in <code>episodes.csv</code> (and <b>transcript_public</b> if you want the transcript on the site), then sync again with publishing on.</li>
     </ol>
-    <h3 style="margin-top:14px">NotebookLM ← the same Drive folder</h3>
+    <h3 style="margin-top:14px">Notability note</h3>
     <ol class="steps">
-      <li>In a NotebookLM notebook, <b>Add source → Google Drive</b>, and pick your Notability PDFs or Google Docs.</li>
-      <li>Drive sources don't refresh themselves. For Google Docs and Slides, open the source and press <b>Click to sync with Google Drive</b>. For a PDF, remove it and add the new copy.</li>
-      <li>Audio Overviews download as audio files. Drop them in the Shift Board's <a href="../#library">Library</a>, which keeps them private on your device.</li>
+      <li>Copy the PDF from <b>Notability Notes</b> into <b>Approved for Website</b>. Nothing else in Notability Notes is ever read.</li>
+      <li>Sync with publishing on. Removing the PDF from Approved for Website takes it off the site at the next sync.</li>
     </ol>
-    <div class="note">Only uploaded slide decks and the study pages live on GitHub. Anything with your name, grades or clinical notes stays in Drive, Notability or the Library tab.</div>
+    <div class="note">Private Reference Materials and everything not approved stay off GitHub. This site is public, so approve only material without names, grades or patient details.</div>
     <div class="row" style="margin-top:14px" id="links-anchor">
-      <a class="btn sm" id="driveLink" href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener">Open my Notability folder</a>
+      <a class="btn sm" id="driveLink" href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener">Open my Drive folder</a>
       <a class="btn sm" href="https://notebooklm.google.com/" target="_blank" rel="noopener">NotebookLM</a>
       <button class="btn sm" id="setDrive" type="button">Set folder link</button>
     </div>
@@ -178,6 +187,15 @@ $("#courses").innerHTML = COURSES.map(c => {
 
 $("#guides").innerHTML = GUIDES.map(g => `<section class="card"><h3 style="margin-bottom:6px">${esc(g.term)}</h3>${g.items.map(([c, t, f]) => `
   <div class="item"><div class="ic web">${esc(c.replace("NUR ", ""))}</div><div style="min-width:0"><div class="t">${esc(t)}</div><div class="small muted">${esc(c)}</div></div><div class="acts"><a class="btn sm" href="../guides/${f}">Open</a></div></div>`).join("")}</section>`).join("");
+
+fetch("../podcasts/episodes.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : []).then(eps => {
+  if (Array.isArray(eps) && eps.length) $("#podInfo").textContent = `${eps.length} episode${eps.length > 1 ? "s" : ""} · ${[...new Set(eps.map(e => e.category))].join(", ")}`;
+}).catch(() => {});
+fetch("../notes/notes.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : []).then(ns => {
+  if (!Array.isArray(ns) || !ns.length) return;
+  $("#notesWrap").hidden = false;
+  $("#notes").innerHTML = ns.map(n => `<div class="item"><div class="ic ppt">PDF</div><div style="min-width:0"><div class="t">${esc(n.title)}</div><div class="small muted">${esc(n.folder || "Notability")} · ${n.kb >= 1024 ? (n.kb / 1024).toFixed(1) + " MB" : n.kb + " KB"}</div></div><div class="acts"><a class="btn sm" href="../notes/${encodeURIComponent(n.file)}" target="_blank" rel="noopener">Open</a></div></div>`).join("");
+}).catch(() => {});
 
 /* Drive folder link is kept in this browser only, so a private folder URL never goes into the public repo. */
 const DK = "studycorner.driveFolder";
