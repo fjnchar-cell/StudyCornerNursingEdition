@@ -1,0 +1,113 @@
+Imagine someone hands you a syringe and tells you it'll save a life.
+But the label is just a jumbled mess of vowels and consonants.
+Right. I mean, it's total gibberish to most of us.
+Exactly. But to a medical professional, there is a hidden color-coded map inside
+those letters. So today we're doing a deep dive into Lexi's medication color
+guide. Think of it as like a hacker's manual for the human body's control
+panel.
+Yeah, basically lets you bypass the massive information overload of all
+those complex drug names.
+Which is huge. So how does this guy to actually break it down for us?
+Well, the brilliance of this guide is how it groups these chemical codes based on
+how they manipulate our two main operating systems.
+You mean the fight or flight and the rest and digest systems?
+Spot on. The sympathetic and parasympathetic nervous systems.
+We are going to decode the suffixes of these drugs so you can see exactly how
+they hijack our biology.
+Okay, so if we look at the fight or flight side first, the sympathetic nervous
+system, let's picture it as a sports car.
+I like that analogy.
+Right. So in this guide, red drugs stomp on the gas pedal and orange drugs.
+They just slam on the brakes.
+Exactly. Red drugs, which are known as adrogenics, they flood the engine.
+They turn the fight or flight system completely on like adrenaline, basically.
+Right. We see heavy hitters here like epinephrine used in cardiac
+emergencies to, you know, shock the heart back to life.
+But the everyday cheat code is really looking at the end of the word.
+The suffix.
+Yes. Bronco dilators, which force your airways open so you can breathe
+during an asthma attack.
+They almost always end in a well, like albuterol.
+Oh, okay.
+I'm tracking the car analogy, but if orange drugs are the anti-adronergics
+that hit the brakes on that entire sympathetic system, wouldn't that like
+crash my blood pressure and stop my lungs at the same time?
+That is a very good question.
+I mean, how do doctors target just one specific part of the engine
+without stalling the whole car?
+Well, that comes down to targeting specific biological receptors.
+And the suffix totally gives away the target.
+Alpha blockers target the blood vessels, relaxing them to lower blood pressure.
+Precisely. And they typically end in OSIN.
+Oh, like Tamsulosin.
+Yeah, Tamsulosin, which relaxes the vessels around the prostate.
+Now, beta blockers, on the other hand, target the heart to slow it down
+and they end in law, the famous law drugs, the very same.
+But wait, slowing the heart is great, but couldn't a beta blocker
+accidentally hit the lungs, too, since, you know, both are right there in the chest?
+It absolutely can, which is why doctors use selective beta one blockers
+that only talk to the heart.
+So they ignore the lungs entirely.
+Exactly. And Lexi's guide offers a great mnemonic to remember the specific ones.
+It's man, babe, man, babe.
+OK, what does that stand for?
+It stands for Metaprolol, Atenolol, Nebavolol, Passauperol, Essibutolol,
+Betoxolol, and Esmalol.
+Wow, that is a lot of laws.
+So we figured out how to hack the panic button.
+But human bodies aren't really designed to run at 100 miles an hour forever.
+How do these drugs force the engine to cool down and switch over to our background
+maintenance mode?
+OK, so this brings us to the blue drugs, the colonergics.
+These turn the rest and digest system on got it.
+And a major memory hook here is the suffix stig mean, like pyridostig mean.
+Yeah, exactly, which is a crucial drug for treating myasthenia gravis,
+which is a condition where the nerves essentially stop talking to the muscles.
+So the drug forces that communication back open.
+It does. But there is a massive risk here.
+If you turn the rest and digest system on too high, you trigger what's called a colonergic crisis.
+Oh, that sounds messy.
+It is. When your body thinks it's completely safe,
+it diverts all its energy into maintenance and producing fluids,
+which brings us to the guide's sludge acronym, right?
+You got it.
+Salivation, lacrimation, which is producing tears,
+urinary incontinence, diarrhea, GI cramps, and emesis or vomiting.
+Just a complete flood of bodily fluids.
+So if blue causes the flood, green drugs, the anti-coolenergics must be a very aggressive mop.
+That is a perfect way to put it.
+Green drugs dry you out completely by turning the rest and digest system off.
+So the complete opposite of sludge. Right.
+The guide actually uses a very vivid rhyme for these side effects.
+Can't see, can't pee, can't spit, can't sht.
+Well, that paints a picture. It really does.
+By shutting down fluid production, you get dry eyes, urinary retention, dry mouth,
+and constipation.
+OK, but looking at the broader physiological picture here,
+it feels like there is a fascinating overlap.
+There is. Green drugs and red drugs actually create the exact same physiological effects.
+A fast heart rate and a completely dry body.
+Exactly.
+Because it's the difference between like stomping on the gas pedal with a red drug
+versus cutting the brake lines entirely with a green drug.
+I love that. Yes, both make the car go fast,
+but the biological mechanics are completely different.
+So you're hitting the same physiological state through entirely different
+biological backdoors, precisely.
+And then finally, the guide highlights the purple drugs, the master switch.
+Right. This is anesthesia.
+Purple drugs depress nerve function entirely.
+Think of local anesthetics like lidocaine or paralytics like succinocholine.
+Exactly. Instead of just turning a system on or off,
+a depolarizing paralytic essentially overstimulates the muscle receptors
+until they become exhausted and freeze.
+Temporarily pulling the plug on the control board forces system reboot.
+Wow. So we've mapped out the colors,
+the suffixes from lol to stig mean and how they physically manipulate the human
+engine. It's pretty incredible when you lay it all out like that.
+It really is. But it leaves you wondering, you know,
+if we've already figured out how to hack our hardware with these specific
+color coded chemical keys. Yeah, what comes next?
+Right. How long until AI and synthetic biology
+start generating custom design molecules ending in entirely new suffixes built
+to hack and cure diseases we currently think are completely untouchable.

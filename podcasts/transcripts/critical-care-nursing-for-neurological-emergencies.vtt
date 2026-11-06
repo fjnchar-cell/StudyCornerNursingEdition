@@ -1,0 +1,4700 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.800
+ Usually, when we talk about a medical diagnosis, there's this expectation of clinical precision.
+
+00:00:05.800 --> 00:00:06.800
+ Right.
+
+00:00:06.800 --> 00:00:07.800
+ That gets very cut and dry.
+
+00:00:07.800 --> 00:00:08.800
+ Yeah.
+
+00:00:08.800 --> 00:00:09.800
+ Exactly.
+
+00:00:09.800 --> 00:00:10.800
+ It feels almost like engineering.
+
+00:00:10.800 --> 00:00:14.240
+ You fall off your bike, you break your arm, the x-ray shows that jagged white line and
+
+00:00:14.240 --> 00:00:16.880
+ the doctor just points at the screen and says, "Well, there it is.
+
+00:00:16.880 --> 00:00:17.880
+ That's the problem."
+
+00:00:17.880 --> 00:00:21.280
+ It's a very binary way of looking at medicine.
+
+00:00:21.280 --> 00:00:24.720
+ Like it's broken or not broken, normal or abnormal.
+
+00:00:24.720 --> 00:00:25.720
+ Yeah.
+
+00:00:25.720 --> 00:00:30.300
+ You only like things to be visible, neatly categorized and easily fixed.
+
+00:00:30.300 --> 00:00:34.500
+ But then, I mean, you step into the world of neurology, of neurodevelopment and brain
+
+00:00:34.500 --> 00:00:38.920
+ trauma, and suddenly that trusty x-ray machine feels just completely inadequate.
+
+00:00:38.920 --> 00:00:40.200
+ Oh, totally inadequate.
+
+00:00:40.200 --> 00:00:41.200
+ Right.
+
+00:00:41.200 --> 00:00:44.200
+ We're looking at a diagnostic landscape that is incredibly murky.
+
+00:00:44.200 --> 00:00:46.760
+ It's not just about finding a broken bone.
+
+00:00:46.760 --> 00:00:52.120
+ It's about understanding an entire enclosed ecosystem that is just constantly shifting.
+
+00:00:52.120 --> 00:00:55.840
+ The central nervous system is the absolute definition of diagnostic muddy waters.
+
+00:00:55.840 --> 00:00:59.240
+ I mean, a patient can have a structurally perfect brain on a scan.
+
+00:00:59.240 --> 00:01:00.240
+ Right.
+
+00:01:00.240 --> 00:01:04.800
+ But functionally, they might be in a life-threatening crisis because of, say, a microscopic chemical
+
+00:01:04.800 --> 00:01:09.440
+ imbalance or a slight shift in pressure that we can't even see with a naked eye.
+
+00:01:09.440 --> 00:01:10.440
+ Which is wild.
+
+00:01:10.440 --> 00:01:11.440
+ So, welcome to the deep dive.
+
+00:01:11.440 --> 00:01:14.080
+ Today, our mission is to explore those muddy waters.
+
+00:01:14.080 --> 00:01:15.080
+ Yeah.
+
+00:01:15.080 --> 00:01:16.080
+ It's a huge topic.
+
+00:01:16.080 --> 00:01:17.080
+ It is.
+
+00:01:17.080 --> 00:01:22.880
+ Hence, highly detailed nursing study guide on neurology, covering chapters 60 to 65.
+
+00:01:22.880 --> 00:01:26.520
+ We're going to decode the most complex machine in the universe, the human brain.
+
+00:01:26.520 --> 00:01:29.720
+ But we're doing it specifically through the lens of critical care nursing.
+
+00:01:29.720 --> 00:01:33.400
+ Which I think offers a totally different vantage point than, say, a purely surgical text.
+
+00:01:33.400 --> 00:01:34.400
+ Right.
+
+00:01:34.400 --> 00:01:37.880
+ Because nurses aren't just looking at the overarching medical diagnosis, are they?
+
+00:01:37.880 --> 00:01:38.880
+ Exactly.
+
+00:01:38.880 --> 00:01:41.800
+ They are tasked with managing the minute-to-minute environment of the patient.
+
+00:01:41.800 --> 00:01:46.720
+ They're the ones on the front lines trying to keep this delicate enclosed system from
+
+00:01:46.720 --> 00:01:48.320
+ cascading into failure.
+
+00:01:48.320 --> 00:01:51.960
+ And for you listening right now, whether you're a medical professional studying for your boards
+
+00:01:51.960 --> 00:01:56.760
+ or just someone who, you know, gets light-headed seeing a band-aid, this matters to you.
+
+00:01:56.760 --> 00:01:57.760
+ It really does.
+
+00:01:57.760 --> 00:02:02.200
+ Understanding how your brain balances itself, how medical teams can physically peer inside
+
+00:02:02.200 --> 00:02:07.800
+ your skull, and what happens when those automated systems fail, it gives you a profound appreciation
+
+00:02:07.800 --> 00:02:09.080
+ for your own biology.
+
+00:02:09.080 --> 00:02:10.080
+ Yeah.
+
+00:02:10.080 --> 00:02:14.000
+ I mean, every thought you're having right now, as you process these words, is a result
+
+00:02:14.000 --> 00:02:17.200
+ of the invisible magic we're about to discuss.
+
+00:02:17.200 --> 00:02:18.200
+ So true.
+
+00:02:18.200 --> 00:02:21.800
+ And really, the overarching theme of this material is management.
+
+00:02:21.800 --> 00:02:27.160
+ The human brain is incredibly powerful, arguably the most powerful processor on earth.
+
+00:02:27.160 --> 00:02:28.720
+ But it's also incredibly fragile.
+
+00:02:28.720 --> 00:02:29.720
+ Right.
+
+00:02:29.720 --> 00:02:34.640
+ It's confined with an rigid bone box, and it relies entirely on a constant, uninterrupted
+
+00:02:34.640 --> 00:02:37.880
+ supply of oxygen and glucose.
+
+00:02:37.880 --> 00:02:42.520
+ So before we get into the disasters, like the strokes, the traumas, the infections, let's
+
+00:02:42.520 --> 00:02:45.620
+ look at how the brain operates on just, you know, a normal Tuesday.
+
+00:02:45.620 --> 00:02:46.620
+ The baseline.
+
+00:02:46.620 --> 00:02:47.620
+ Right.
+
+00:02:47.620 --> 00:02:48.620
+ The baseline.
+
+00:02:48.620 --> 00:02:51.160
+ The study guide starts heavily with this concept of homeostasis.
+
+00:02:51.160 --> 00:02:55.160
+ The brain is constantly working behind the scenes to keep everything perfectly balanced.
+
+00:02:55.160 --> 00:02:56.160
+ Yeah.
+
+00:02:56.160 --> 00:03:00.920
+ So homeostasis is essentially the body's relentless, automated drive to maintain a steady internal
+
+00:03:00.920 --> 00:03:01.920
+ state.
+
+00:03:01.920 --> 00:03:02.920
+ Like a thermostat.
+
+00:03:02.920 --> 00:03:03.920
+ Exactly.
+
+00:03:03.920 --> 00:03:05.160
+ Like an internal thermostat.
+
+00:03:05.160 --> 00:03:08.440
+ But it's regulating far more than just your body temperature.
+
+00:03:08.440 --> 00:03:12.760
+ It's constantly adjusting your blood pH, so your blood doesn't become too acidic.
+
+00:03:12.760 --> 00:03:17.960
+ It's tweaking your cardiac output, monitoring your electrolyte levels, your blood glucose,
+
+00:03:17.960 --> 00:03:21.320
+ and crucially for the brain, your intracranial pressure.
+
+00:03:21.320 --> 00:03:26.480
+ And managing all of these dials and levers falls largely to the autonomic nervous system.
+
+00:03:26.480 --> 00:03:31.640
+ The guide splits this into two opposing teams, basically, the sympathetic and the parasympathetic.
+
+00:03:31.640 --> 00:03:34.000
+ Yes, the classic tug of war.
+
+00:03:34.000 --> 00:03:36.600
+ Let's trace how these actually work in the body.
+
+00:03:36.600 --> 00:03:41.240
+ So the sympathetic nervous system is our fight or flight response, right?
+
+00:03:41.240 --> 00:03:42.240
+ Right.
+
+00:03:42.240 --> 00:03:43.240
+ The adrenergic system.
+
+00:03:43.240 --> 00:03:46.960
+ It's driven primarily by the neurotransmitters epinephrine and norepinephrine.
+
+00:03:46.960 --> 00:03:48.760
+ Adrenaline, basically.
+
+00:03:48.760 --> 00:03:49.760
+ Exactly.
+
+00:03:49.760 --> 00:03:53.280
+ Evolutionarily, this is what kicks in when you're startled by a predator.
+
+00:03:53.280 --> 00:03:57.320
+ If you're walking in the woods and see a bear, your sympathetic nervous system instantly
+
+00:03:57.320 --> 00:03:58.320
+ takes over.
+
+00:03:58.320 --> 00:03:59.920
+ It just floods the system.
+
+00:03:59.920 --> 00:04:00.920
+ Yeah.
+
+00:04:00.920 --> 00:04:04.440
+ It dilates your pupils so you can let in more light to see the threat.
+
+00:04:04.440 --> 00:04:08.360
+ It increases your heart rate and the force of your heart's contractions to put blood
+
+00:04:08.360 --> 00:04:09.600
+ to your major muscles.
+
+00:04:09.600 --> 00:04:10.760
+ Getting you ready to run.
+
+00:04:10.760 --> 00:04:11.760
+ Right.
+
+00:04:11.760 --> 00:04:16.200
+ And it dilates the bronchules in your lungs so you can pull in more oxygen to run away.
+
+00:04:16.200 --> 00:04:21.120
+ And it shuts down anything that isn't immediately useful for survival, like you aren't digesting
+
+00:04:21.120 --> 00:04:23.480
+ your lunch while you're running from a bear.
+
+00:04:23.480 --> 00:04:24.480
+ Exactly.
+
+00:04:24.480 --> 00:04:25.480
+ Yeah.
+
+00:04:25.480 --> 00:04:28.560
+ Which is the exact opposite of the parasympathetic nervous system, which we call the rest and
+
+00:04:28.560 --> 00:04:30.840
+ digest or colonergic system.
+
+00:04:30.840 --> 00:04:32.360
+ Driven by acetylcholine, right?
+
+00:04:32.360 --> 00:04:33.440
+ You got it.
+
+00:04:33.440 --> 00:04:36.980
+ When the threat is gone and you're sitting safely on your couch, the parasympathetic
+
+00:04:36.980 --> 00:04:38.440
+ system takes over.
+
+00:04:38.440 --> 00:04:43.440
+ It slows the heart rate, constricts the pupils to normal size, and directs blood flow back
+
+00:04:43.440 --> 00:04:46.880
+ to your gastrointestinal tract so you can process nutrients.
+
+00:04:46.880 --> 00:04:51.400
+ So these two systems are in a constant, delicate tug of war to maintain that homeostasis.
+
+00:04:51.400 --> 00:04:52.400
+ Absolutely.
+
+00:04:52.400 --> 00:04:56.440
+ That's the baseline operating system, but looking at the physical structure of the brain itself,
+
+00:04:56.440 --> 00:05:01.160
+ the study guide advises not to get bogged down, memorizing every single tiny crevice,
+
+00:05:01.160 --> 00:05:03.480
+ but to understand the broad strokes.
+
+00:05:03.480 --> 00:05:04.480
+ Right.
+
+00:05:04.480 --> 00:05:05.480
+ The macro view.
+
+00:05:05.480 --> 00:05:06.480
+ Yeah.
+
+00:05:06.480 --> 00:05:10.120
+ Like the frontal lobe is handling our executive function, our decision making, our impulses.
+
+00:05:10.120 --> 00:05:13.360
+ The occipital lobe in the back is processing our vision.
+
+00:05:13.360 --> 00:05:18.240
+ And the temporal lobes are doing hearing and language, parietal, sensory, right?
+
+00:05:18.240 --> 00:05:20.240
+ All the different compartments.
+
+00:05:20.240 --> 00:05:25.800
+ But the detail that really made me pause was the hierarchy of anatomy.
+
+00:05:25.800 --> 00:05:30.080
+ The physical structure of the brain actually dictates how the brain dies.
+
+00:05:30.080 --> 00:05:34.480
+ It's a really sobering physiological reality.
+
+00:05:34.480 --> 00:05:37.600
+ To understand it, you have to picture the brain's development.
+
+00:05:37.600 --> 00:05:38.600
+ Okay.
+
+00:05:38.600 --> 00:05:42.400
+ The deepest, lowest part of the brain, the brain stem, is the most primitive.
+
+00:05:42.400 --> 00:05:44.000
+ It evolved first.
+
+00:05:44.000 --> 00:05:47.120
+ It controls the absolute basics of biological survival.
+
+00:05:47.120 --> 00:05:50.840
+ So your drive to breathe, your heart rate, your blood pressure.
+
+00:05:50.840 --> 00:05:51.840
+ Exactly.
+
+00:05:51.840 --> 00:05:56.800
+ And then layered on top of that primitive core, we have the cerebral cortex, the frontal,
+
+00:05:56.800 --> 00:06:01.720
+ the temporal lobes, the newer stuff, the higher level of functions, yeah, your personality,
+
+00:06:01.720 --> 00:06:05.880
+ your memories, your ability to play the piano or speak a language, all of that resides in
+
+00:06:05.880 --> 00:06:08.440
+ the outer upper layers of the cerebral cortex.
+
+00:06:08.440 --> 00:06:09.440
+ Right.
+
+00:06:09.440 --> 00:06:15.200
+ So when the brain experiences a severe insult, like a lack of oxygen or degenerative disease,
+
+00:06:15.200 --> 00:06:17.560
+ it typically fails from the outside in man.
+
+00:06:17.560 --> 00:06:20.320
+ So it's like a house and a severe hurricane.
+
+00:06:20.320 --> 00:06:21.800
+ Oh, that's a good way to look at it.
+
+00:06:21.800 --> 00:06:22.800
+ Yeah.
+
+00:06:22.800 --> 00:06:23.800
+ Think about it.
+
+00:06:23.800 --> 00:06:26.800
+ And the upper floor is where all your personal belongings are.
+
+00:06:26.800 --> 00:06:31.080
+ They take the first hit from the wind, they get ripped away first.
+
+00:06:31.080 --> 00:06:35.480
+ But the brain stem, that primitive core, is like a reinforced concrete basement with
+
+00:06:35.480 --> 00:06:37.640
+ an industrial backup generator.
+
+00:06:37.640 --> 00:06:41.600
+ It just keeps the essential power on and keeps the heart beating, even if the entire rest
+
+00:06:41.600 --> 00:06:43.680
+ of the house has been destroyed.
+
+00:06:43.680 --> 00:06:48.240
+ That analogy perfectly illustrates the tragic trajectory of conditions like Alzheimer's
+
+00:06:48.240 --> 00:06:49.640
+ or severe dementia.
+
+00:06:49.640 --> 00:06:50.640
+ It really does.
+
+00:06:50.640 --> 00:06:55.320
+ Families often struggle to understand why their loved one has lost all memory, decision-making
+
+00:06:55.320 --> 00:06:57.120
+ ability and personality.
+
+00:06:57.120 --> 00:06:59.600
+ The entire upper floors of the house are gone.
+
+00:06:59.600 --> 00:07:04.040
+ Yet they continue to breathe normally, digest food and have a regular heartbeat.
+
+00:07:04.040 --> 00:07:06.320
+ Because that basement generator is still going.
+
+00:07:06.320 --> 00:07:07.320
+ Yes.
+
+00:07:07.320 --> 00:07:10.800
+ The basement generator of the brain stem is still running perfectly, even though the cognitive
+
+00:07:10.800 --> 00:07:13.320
+ essence of the person has been stripped away.
+
+00:07:13.320 --> 00:07:16.960
+ It reframes dimension in such a physical way.
+
+00:07:16.960 --> 00:07:20.520
+ So if we want to look inside this house to assess the damage or find a problem, we have
+
+00:07:20.520 --> 00:07:22.040
+ to rely on diagnostics.
+
+00:07:22.040 --> 00:07:23.040
+ Right.
+
+00:07:23.040 --> 00:07:27.960
+ And the nursing guide details, an entire arsenal of neuroimaging, let's start with a CT scan.
+
+00:07:27.960 --> 00:07:30.840
+ The main advantage here seems to be speed.
+
+00:07:30.840 --> 00:07:33.080
+ Speed is everything in a neurological emergency.
+
+00:07:33.080 --> 00:07:39.760
+ A CT scan, or computed tomography, uses x-rays to create cross-sectional images of the brain.
+
+00:07:39.760 --> 00:07:40.760
+ And it's fast.
+
+00:07:40.760 --> 00:07:45.160
+ It takes just a few minutes, making it the absolute gold standard for a patient who rolls
+
+00:07:45.160 --> 00:07:48.920
+ into the ER with head trauma or a suspected stroke.
+
+00:07:48.920 --> 00:07:53.640
+ But the guide includes a major caveat, CT scans take thick slices.
+
+00:07:53.640 --> 00:07:55.800
+ Let me puzzle through what that actually means clinically.
+
+00:07:55.800 --> 00:07:56.800
+ Go for it.
+
+00:07:56.800 --> 00:08:01.600
+ If the scanner is taking an image every few millimeters, it's not a continuous seamless
+
+00:08:01.600 --> 00:08:02.600
+ picture.
+
+00:08:02.600 --> 00:08:03.800
+ No, it's not.
+
+00:08:03.800 --> 00:08:05.200
+ Think of slicing a loaf of bread.
+
+00:08:05.200 --> 00:08:06.200
+ Okay.
+
+00:08:06.200 --> 00:08:10.880
+ If you take very thick slices, say an inch thick, you might have a small pocket of mold
+
+00:08:10.880 --> 00:08:13.840
+ completely hidden within the middle of one of those thick slices.
+
+00:08:13.840 --> 00:08:15.000
+ Oh, wow.
+
+00:08:15.000 --> 00:08:16.400
+ You wouldn't see it on the surface.
+
+00:08:16.400 --> 00:08:17.400
+ Exactly.
+
+00:08:17.400 --> 00:08:20.600
+ The CT scan operates with a similar limitation.
+
+00:08:20.600 --> 00:08:27.680
+ Because the visual slices have a certain thickness, a very tiny blood clot or a minuscule microbleed
+
+00:08:27.680 --> 00:08:31.480
+ or a very early stage tumor can easily be missed.
+
+00:08:31.480 --> 00:08:36.520
+ So a negative CT scan in the ER is great news, but it doesn't definitively rule out every
+
+00:08:36.520 --> 00:08:38.000
+ microscopic problem.
+
+00:08:38.000 --> 00:08:39.000
+ Right.
+
+00:08:39.000 --> 00:08:40.920
+ It's a screening tool for the big stuff.
+
+00:08:40.920 --> 00:08:44.480
+ And if the doctors need a better look at the blood vessels themselves, they use contrast
+
+00:08:44.480 --> 00:08:46.160
+ dye during the CT.
+
+00:08:46.160 --> 00:08:51.400
+ But from a nursing perspective, giving contrast creates a whole new set of responsibilities
+
+00:08:51.400 --> 00:08:52.400
+ afterward, right?
+
+00:08:52.400 --> 00:08:55.480
+ You can't just send them back to their room and forget about it.
+
+00:08:55.480 --> 00:08:56.480
+ Definitely not.
+
+00:08:56.480 --> 00:09:01.320
+ The contrast dye is nephrotoxic, meaning it can be very damaging to the kidneys if it's
+
+00:09:01.320 --> 00:09:04.120
+ allowed to sit and concentrate in the renal system.
+
+00:09:04.120 --> 00:09:05.440
+ So what's the move?
+
+00:09:05.440 --> 00:09:10.200
+ The nurse's immediate priority post scan is flushing that dye out of the patient's body.
+
+00:09:10.200 --> 00:09:16.040
+ If the patient is going home, the instruction is to drink a massive bottle of water immediately.
+
+00:09:16.040 --> 00:09:17.040
+ And flush the pipes.
+
+00:09:17.040 --> 00:09:18.040
+ Yep.
+
+00:09:18.040 --> 00:09:22.520
+ If they're admitted, the nurse will run IV fluids to force the kidneys to process and
+
+00:09:22.520 --> 00:09:24.240
+ excrete the contrast.
+
+00:09:24.240 --> 00:09:28.160
+ We see that same theme of contrast dye with cerebral angiography.
+
+00:09:28.160 --> 00:09:30.160
+ This one sounds incredibly invasive.
+
+00:09:30.160 --> 00:09:31.160
+ It is.
+
+00:09:31.160 --> 00:09:35.000
+ They're looking for aneurysms or narrowed blood vessels in the brain, but the entry
+
+00:09:35.000 --> 00:09:38.080
+ point is usually the femoral artery down in the groin.
+
+00:09:38.080 --> 00:09:42.640
+ Yeah, they puncture the femoral artery, which is a massive high pressure vessel.
+
+00:09:42.640 --> 00:09:47.280
+ And it thred a catheter all the way up through the aorta, into the neck, and up into the
+
+00:09:47.280 --> 00:09:49.240
+ cerebral circulation.
+
+00:09:49.240 --> 00:09:52.440
+ That's a long journey for a wire.
+
+00:09:52.440 --> 00:09:57.120
+ It is, but it provides a flawless road map of the brain's plumbing, but you are absolutely
+
+00:09:57.120 --> 00:09:58.920
+ right about the invasiveness.
+
+00:09:58.920 --> 00:10:03.320
+ So when the procedure's over and they pull that catheter out of the groin, the nurse isn't
+
+00:10:03.320 --> 00:10:05.280
+ just slapping a band-aid on it.
+
+00:10:05.280 --> 00:10:07.960
+ No, a band-aid would be blown off in seconds.
+
+00:10:07.960 --> 00:10:10.480
+ The arterial pressure in the femoral artery is immense.
+
+00:10:10.480 --> 00:10:13.120
+ It's like a fire hose.
+
+00:10:13.120 --> 00:10:14.360
+ Precisely.
+
+00:10:14.360 --> 00:10:18.560
+ The nurse must hold strict manual pressure on that puncture site, sometimes for 15 to
+
+00:10:18.560 --> 00:10:22.320
+ 20 minutes, just to allow a primary clot to form.
+
+00:10:22.320 --> 00:10:23.960
+ Just leaning on it.
+
+00:10:23.960 --> 00:10:25.320
+ Leaning hard.
+
+00:10:25.320 --> 00:10:29.040
+ And after that, the patient is placed on strict flat bed rest for hours.
+
+00:10:29.040 --> 00:10:31.600
+ The leg must be kept perfectly straight.
+
+00:10:31.600 --> 00:10:35.680
+ Because if they bend it, if they bend their hip, they can crack that fragile clot open,
+
+00:10:35.680 --> 00:10:39.600
+ and they can literally bleed to death internally into their leg or retroperitoneal space before
+
+00:10:39.600 --> 00:10:40.600
+ anyone notices.
+
+00:10:40.600 --> 00:10:41.600
+ Man.
+
+00:10:41.600 --> 00:10:46.480
+ Compare that high-stakes physical intervention to an MRI.
+
+00:10:46.480 --> 00:10:49.960
+ Magnetic resonance imaging gives a much clearer, more detailed picture of the brain tissue
+
+00:10:49.960 --> 00:10:53.120
+ itself without any radiation, which is great.
+
+00:10:53.120 --> 00:10:54.720
+ It's beautiful imaging.
+
+00:10:54.720 --> 00:10:57.840
+ But the patient experience is notoriously difficult.
+
+00:10:57.840 --> 00:11:02.960
+ You're sliding into a tight, incredibly loud tube for anywhere from 30 to 60 minutes.
+
+00:11:02.960 --> 00:11:06.720
+ The nursing guide specifically flags claustrophobia as a major barrier here.
+
+00:11:06.720 --> 00:11:10.200
+ It's often the nurse's responsibility to anticipate this.
+
+00:11:10.200 --> 00:11:12.320
+ Because if they panic, the scan is ruined.
+
+00:11:12.320 --> 00:11:13.320
+ Right.
+
+00:11:13.320 --> 00:11:16.360
+ If a patient is anxious, the nurse needs to advocate for them and ask the provider for
+
+00:11:16.360 --> 00:11:20.600
+ an anti-anxiety medication like a benzodiazepine beforehand.
+
+00:11:20.600 --> 00:11:23.840
+ Because if the patient moves even a fraction of an inch during that hour, the images are
+
+00:11:23.840 --> 00:11:25.880
+ blurred and totally useless.
+
+00:11:25.880 --> 00:11:28.640
+ And the other non-negotiable rule?
+
+00:11:28.640 --> 00:11:30.520
+ Absolutely no metal, none.
+
+00:11:30.520 --> 00:11:35.140
+ The magnetic field generated by an MRI machine is tens of thousands of times stronger than
+
+00:11:35.140 --> 00:11:36.920
+ the magnetic field of the Earth.
+
+00:11:36.920 --> 00:11:37.920
+ It's insane.
+
+00:11:37.920 --> 00:11:40.960
+ It will violently pull any ferromagnetic metal.
+
+00:11:40.960 --> 00:11:46.040
+ We're talking about pacemakers, or an aneurysm clips, and even some permanent jewelry.
+
+00:11:46.040 --> 00:11:50.000
+ If a patient has an implanted device that isn't MRI safe, putting them in that scanner
+
+00:11:50.000 --> 00:11:51.000
+ can be fatal.
+
+00:11:51.000 --> 00:11:55.240
+ Then you have the PET scan, which is fascinating because it doesn't just show the physical
+
+00:11:55.240 --> 00:11:57.360
+ anatomy, the structure of the house.
+
+00:11:57.360 --> 00:12:00.080
+ It shows the activity inside the house.
+
+00:12:00.080 --> 00:12:03.800
+ Positron emission tomography measures metabolic activity.
+
+00:12:03.800 --> 00:12:08.480
+ They inject a radioactive tracer, usually attached to a glucose analog.
+
+00:12:08.480 --> 00:12:09.480
+ Sugar basically.
+
+00:12:09.480 --> 00:12:10.480
+ Right.
+
+00:12:10.480 --> 00:12:14.680
+ Because the brain relies entirely on glucose for energy, areas of the brain that are highly
+
+00:12:14.680 --> 00:12:17.400
+ active will gobble up that radioactive glucose.
+
+00:12:17.400 --> 00:12:19.480
+ They just light up on the scan.
+
+00:12:19.480 --> 00:12:20.480
+ Yes.
+
+00:12:20.480 --> 00:12:24.240
+ This allows us to see not just what the brain looks like, but which parts are working, which
+
+00:12:24.240 --> 00:12:29.040
+ parts are damaged, or where a highly metabolic tumor is aggressively growing.
+
+00:12:29.040 --> 00:12:34.000
+ Okay, those are the high-tech imaging machines, but the diagnostic procedure that really caught
+
+00:12:34.000 --> 00:12:39.740
+ my eye purely because of the mechanical physics involved is the lumbar puncture, the LP, often
+
+00:12:39.740 --> 00:12:41.040
+ called a spinal tap.
+
+00:12:41.040 --> 00:12:43.080
+ It's a classic procedure.
+
+00:12:43.080 --> 00:12:47.600
+ They're going in to get cerebrospinal fluid, or CSF, usually to check for infections like
+
+00:12:47.600 --> 00:12:49.000
+ meningitis.
+
+00:12:49.000 --> 00:12:54.160
+ But the physical positioning required for this, you're putting a needle into the spine.
+
+00:12:54.160 --> 00:12:56.880
+ The anatomy of the spine requires absolute precision.
+
+00:12:56.880 --> 00:13:00.560
+ The spinal cord itself runs down through the vertebrae, but it typically ends around the
+
+00:13:00.560 --> 00:13:03.000
+ first or second lumbar vertebra.
+
+00:13:03.000 --> 00:13:05.040
+ So it doesn't go all the way to the tailbone.
+
+00:13:05.040 --> 00:13:06.040
+ Right.
+
+00:13:06.040 --> 00:13:10.280
+ Below that, in the subarachnoid space, is a bundle of nerve roots floating in a sack of
+
+00:13:10.280 --> 00:13:12.560
+ cerebrospinal fluid.
+
+00:13:12.560 --> 00:13:16.800
+ To get a sample safely, without paralyzing the patient, the physician must insert the needle
+
+00:13:16.800 --> 00:13:20.520
+ below where the solid spinal cord ends.
+
+00:13:20.520 --> 00:13:22.560
+ But the bones of the spine are stacked on top of each other.
+
+00:13:22.560 --> 00:13:24.880
+ How do you get a needle between them?
+
+00:13:24.880 --> 00:13:26.440
+ Pure mechanical positioning.
+
+00:13:26.440 --> 00:13:30.000
+ The nurse must assist the patient into a very specific posture.
+
+00:13:30.000 --> 00:13:34.880
+ They either sit on the edge of the bed and lean far forward over a bedside table, or
+
+00:13:34.880 --> 00:13:39.560
+ they lie on their side and curl their knees up to their chin in a tight fetal position.
+
+00:13:39.560 --> 00:13:41.200
+ Again, angry cat.
+
+00:13:41.200 --> 00:13:44.000
+ Yes, they have to arch their back like an angry cat.
+
+00:13:44.000 --> 00:13:48.920
+ This physical arching spreads the spinous processes, the bony parts of the vertebrae you
+
+00:13:48.920 --> 00:13:53.080
+ feel on your back, just enough to create a window for the needle to slide through into
+
+00:13:53.080 --> 00:13:54.280
+ the fluid sack.
+
+00:13:54.280 --> 00:13:55.280
+ That makes perfect sense.
+
+00:13:55.280 --> 00:13:56.760
+ They open the joints.
+
+00:13:56.760 --> 00:14:02.640
+ So they get the fluid, they pull the needle out, but the steady guide emphasizes the post-procedure
+
+00:14:02.640 --> 00:14:03.640
+ care heavily.
+
+00:14:03.640 --> 00:14:04.640
+ It's crucial.
+
+00:14:04.640 --> 00:14:08.920
+ If a patient sits up and suddenly gets a severe blinding headache and becomes sensitive
+
+00:14:08.920 --> 00:14:13.760
+ to light, it means they're leaking CSF from that tiny puncture hole in their lower back.
+
+00:14:13.760 --> 00:14:14.760
+ A spinal headache.
+
+00:14:14.760 --> 00:14:15.760
+ Yeah.
+
+00:14:15.760 --> 00:14:20.840
+ My question is, why does a leak in the lumbar spine cause a headache way up in the skull?
+
+00:14:20.840 --> 00:14:22.400
+ Let's trace the fluid dynamics here.
+
+00:14:22.400 --> 00:14:23.400
+ That's a great question.
+
+00:14:23.400 --> 00:14:28.640
+ The brain and the spinal cord share a continuous, closed fluid environment.
+
+00:14:28.640 --> 00:14:31.080
+ The brain doesn't just sit on the hard bone of the skull.
+
+00:14:31.080 --> 00:14:35.320
+ It essentially floats in a buoyant cushion of cerebrospinal fluid.
+
+00:14:35.320 --> 00:14:36.320
+ So it's suspended?
+
+00:14:36.320 --> 00:14:37.320
+ Right.
+
+00:14:37.320 --> 00:14:40.880
+ That fluid circulates down around the spinal cord and back up.
+
+00:14:40.880 --> 00:14:45.120
+ So if you poke a hole in the bottom of that fluid sack down in the lumbar region and that
+
+00:14:45.120 --> 00:14:50.600
+ tiny hole doesn't clot and seal right away, the fluid slowly weeps out into the surrounding
+
+00:14:50.600 --> 00:14:51.600
+ tissue?
+
+00:14:51.600 --> 00:14:52.600
+ Exactly.
+
+00:14:52.600 --> 00:14:56.960
+ And as the overall volume of fluid in the entire system drops, the brain physically loses
+
+00:14:56.960 --> 00:14:57.960
+ its buoyancy.
+
+00:14:57.960 --> 00:14:59.960
+ It's no longer floating securely.
+
+00:14:59.960 --> 00:15:00.960
+ Oh, wow.
+
+00:15:00.960 --> 00:15:04.480
+ Gravity takes over and the brain settles downward inside the skull.
+
+00:15:04.480 --> 00:15:09.080
+ As it sags, it pulls and stretches the meninges, those highly sensitive, pain-receptor-rich
+
+00:15:09.080 --> 00:15:11.640
+ membranes that anchor the brain to the skull.
+
+00:15:11.640 --> 00:15:13.720
+ And that tension is the headache?
+
+00:15:13.720 --> 00:15:17.000
+ That mechanical traction is what causes a massive, throbbing headache.
+
+00:15:17.000 --> 00:15:18.920
+ It's just plumbing.
+
+00:15:18.920 --> 00:15:20.560
+ So what does a nurse do to fix it?
+
+00:15:20.560 --> 00:15:23.560
+ I can't easily go back in and patch a microscopic hole.
+
+00:15:23.560 --> 00:15:28.360
+ Well, eventually, if it doesn't stop, a physician might perform an epidural blood patch where
+
+00:15:28.360 --> 00:15:31.880
+ they inject a bit of the patient's own blood over the hole to form a clot.
+
+00:15:31.880 --> 00:15:32.960
+ But immediately?
+
+00:15:32.960 --> 00:15:37.560
+ The immediate primary nursing intervention relies entirely on manipulating gravity and
+
+00:15:37.560 --> 00:15:38.920
+ hydration.
+
+00:15:38.920 --> 00:15:42.000
+ You place the patient completely flat on bed rest.
+
+00:15:42.000 --> 00:15:45.200
+ On a nursing board exam, the magic number is strictly four hours.
+
+00:15:45.200 --> 00:15:49.080
+ Because if they're lying flat, you remove the downward gravitational pull.
+
+00:15:49.080 --> 00:15:52.440
+ The fluid stops leaking at the bottom, and the brain stops sagging.
+
+00:15:52.440 --> 00:15:53.440
+ Precisely.
+
+00:15:53.440 --> 00:15:56.320
+ You take the tension off the meninges.
+
+00:15:56.320 --> 00:16:00.880
+ Simultaneously, the nurse vigorously pushes fluids, either having the patient drink heavily
+
+00:16:00.880 --> 00:16:03.120
+ or running IV fluids.
+
+00:16:03.120 --> 00:16:07.920
+ This gives the body the raw materials it needs to rapidly produce more cerebrospinal fluid
+
+00:16:07.920 --> 00:16:09.920
+ and refill the system.
+
+00:16:09.920 --> 00:16:12.040
+ It's so elegant when you understand the physics.
+
+00:16:12.040 --> 00:16:15.120
+ But this brings up a crucial clinical reality.
+
+00:16:15.120 --> 00:16:19.200
+ All of these scans and spinal taps are fantastic if you have the time to do them.
+
+00:16:19.200 --> 00:16:20.360
+ Which you often don't.
+
+00:16:20.360 --> 00:16:21.360
+ Right.
+
+00:16:21.360 --> 00:16:25.320
+ How does a nurse at the bedside know that something is going terribly wrong inside the
+
+00:16:25.320 --> 00:16:29.400
+ patient's skull before they ever get wheeled down to the scanner?
+
+00:16:29.400 --> 00:16:34.120
+ The study guide points to one ultimate overarching warning system.
+
+00:16:34.120 --> 00:16:37.160
+ Level of consciousness, or LOC.
+
+00:16:37.160 --> 00:16:41.960
+ It is universally considered the single most sensitive and important indicator of a neurological
+
+00:16:41.960 --> 00:16:43.680
+ patient's condition.
+
+00:16:43.680 --> 00:16:48.960
+ The guide is very deliberate in stating that altered LOC is not a disorder in itself.
+
+00:16:48.960 --> 00:16:49.960
+ It's a symptom.
+
+00:16:49.960 --> 00:16:52.720
+ It's the check engine light flashing on the dashboard.
+
+00:16:52.720 --> 00:16:53.720
+ Yeah.
+
+00:16:53.720 --> 00:16:58.720
+ If a patient suffers a head injury, or is slowly developing a brain bleed, the very first clinical
+
+00:16:58.720 --> 00:17:03.440
+ sign to change will rarely be their pupil reactivity or their heart rate.
+
+00:17:03.440 --> 00:17:04.440
+ Those are later signs.
+
+00:17:04.440 --> 00:17:06.080
+ So it's the first sign.
+
+00:17:06.080 --> 00:17:10.000
+ The very first indicator is a shift in their consciousness.
+
+00:17:10.000 --> 00:17:14.680
+ A patient who was previously alert might become subtly restless.
+
+00:17:14.680 --> 00:17:17.200
+ They might become suddenly combative or aggressive.
+
+00:17:17.200 --> 00:17:18.200
+ Just acting off.
+
+00:17:18.200 --> 00:17:19.200
+ Right.
+
+00:17:19.200 --> 00:17:22.840
+ They might be able to tell you their name, but they think it's 1998.
+
+00:17:22.840 --> 00:17:25.800
+ And they're at a grocery store instead of a hospital.
+
+00:17:25.800 --> 00:17:29.080
+ And assessing LOC isn't just asking, are you awake?
+
+00:17:29.080 --> 00:17:33.120
+ The guide breaks down a massive spectrum of consciousness.
+
+00:17:33.120 --> 00:17:37.600
+ You have coma, which is a state of unarousable unresponsiveness.
+
+00:17:37.600 --> 00:17:42.000
+ You have a kinetic mutism where the patient might open their eyes and seem to track you,
+
+00:17:42.000 --> 00:17:45.720
+ but they make no spontaneous movement or sound.
+
+00:17:45.720 --> 00:17:49.900
+ But the condition that always strikes me as the most profoundly difficult to comprehend
+
+00:17:49.900 --> 00:17:52.280
+ is the persistent vegetative state.
+
+00:17:52.280 --> 00:17:55.840
+ It's incredibly difficult, especially for the family standing at the bedside.
+
+00:17:55.840 --> 00:18:00.920
+ In a persistent vegetative state, the patient has suffered catastrophic damage to the cerebral
+
+00:18:00.920 --> 00:18:01.920
+ cortex.
+
+00:18:01.920 --> 00:18:02.920
+ The upper floors.
+
+00:18:02.920 --> 00:18:03.920
+ Yes.
+
+00:18:03.920 --> 00:18:08.120
+ No cognitive function, no awareness of themselves or their environment.
+
+00:18:08.120 --> 00:18:12.240
+ The upper floors of our house analogy are completely destroyed.
+
+00:18:12.240 --> 00:18:15.120
+ But the basement generator is still running.
+
+00:18:15.120 --> 00:18:16.120
+ Yes.
+
+00:18:16.120 --> 00:18:17.720
+ The brainstem is intact.
+
+00:18:17.720 --> 00:18:21.720
+ And because the brainstem also regulates the circadian rhythms, these patients will often
+
+00:18:21.720 --> 00:18:23.920
+ maintain normal sleep wake cycles.
+
+00:18:23.920 --> 00:18:25.880
+ Wait, they wake up?
+
+00:18:25.880 --> 00:18:29.680
+ They will physically open their eyes in the morning, stare blankly during the day and
+
+00:18:29.680 --> 00:18:32.160
+ close their eyes to sleep at night.
+
+00:18:32.160 --> 00:18:34.520
+ They might even yawn or grimace.
+
+00:18:34.520 --> 00:18:37.000
+ That must be so confusing for the family.
+
+00:18:37.000 --> 00:18:41.080
+ For family members seeing their loved one's eyes open feels like a sign of recovery.
+
+00:18:41.080 --> 00:18:44.840
+ But medically, it's merely an automated brainstem reflex.
+
+00:18:44.840 --> 00:18:49.520
+ It proves they aren't legally brain dead, but the person they knew is gone.
+
+00:18:49.520 --> 00:18:54.640
+ And then on the absolute opposite end of that spectrum, you have locked-in syndrome.
+
+00:18:54.640 --> 00:18:56.200
+ This is the stuff of nightmares.
+
+00:18:56.200 --> 00:18:57.360
+ Truly.
+
+00:18:57.360 --> 00:19:02.000
+ The brainstem suffers a very specific injury, often a stroke in the pawns that severs the
+
+00:19:02.000 --> 00:19:04.880
+ motor pathways going down to the body.
+
+00:19:04.880 --> 00:19:08.960
+ But the cerebral cortex, the mind, is perfectly intact.
+
+00:19:08.960 --> 00:19:12.520
+ The patient is fully awake, fully aware.
+
+00:19:12.520 --> 00:19:14.800
+ They can hear every conversation in the room.
+
+00:19:14.800 --> 00:19:16.720
+ They understand their diagnosis.
+
+00:19:16.720 --> 00:19:21.440
+ They feel pain, but they are entirely paralyzed.
+
+00:19:21.440 --> 00:19:23.400
+ They can't do anything.
+
+00:19:23.400 --> 00:19:28.560
+ They cannot move a single muscle in their body, except in most cases, vertical eye movements
+
+00:19:28.560 --> 00:19:29.960
+ and blinking.
+
+00:19:29.960 --> 00:19:33.520
+ They are a prisoner trapped inside their own biological shell.
+
+00:19:33.520 --> 00:19:37.680
+ The guide notes that nurse has established communication with these patients using blink
+
+00:19:37.680 --> 00:19:44.440
+ systems like one blink for yes, two for no, or scanning an alphabet board with their eyes.
+
+00:19:44.440 --> 00:19:46.920
+ It requires immense patience.
+
+00:19:46.920 --> 00:19:52.960
+ It really highlights exactly why frequent meticulous neurological assessments are vital.
+
+00:19:52.960 --> 00:19:55.240
+ Nurses don't just check LOC wants a shift.
+
+00:19:55.240 --> 00:19:57.880
+ In an ICU, they might be checking every 15 minutes.
+
+00:19:57.880 --> 00:20:03.240
+ Yeah, they're using the Glasgow Coma Scale, assessing verbal responses, motor responses,
+
+00:20:03.240 --> 00:20:04.520
+ and eye opening.
+
+00:20:04.520 --> 00:20:08.320
+ They're shining lights into the eyes to check pupillary response.
+
+00:20:08.320 --> 00:20:12.560
+ Let's talk about the pupils for a second, because that's a classic narrow check.
+
+00:20:12.560 --> 00:20:14.840
+ What exactly is a nurse looking for?
+
+00:20:14.840 --> 00:20:16.880
+ Well, normal pupils are brisk.
+
+00:20:16.880 --> 00:20:17.880
+ They shrink.
+
+00:20:17.880 --> 00:20:18.880
+ Right.
+
+00:20:18.880 --> 00:20:22.960
+ If a patient's ICP is starting to rise and put pressure on the cranial nerves, the pupils
+
+00:20:22.960 --> 00:20:26.720
+ might become sluggish, constricting very slowly.
+
+00:20:26.720 --> 00:20:32.040
+ The absolute worst case scenario is fixed and dilated pupils, meaning you shine a bright
+
+00:20:32.040 --> 00:20:35.120
+ light in the eye and the massive black pupil doesn't shrink at all.
+
+00:20:35.120 --> 00:20:37.120
+ It just stays wide open.
+
+00:20:37.120 --> 00:20:42.440
+ If the pupils are fixed and dilated, it indicates profound damage or herniation of the brainstem.
+
+00:20:42.440 --> 00:20:46.200
+ The pathways controlling that basic reflex have been crushed.
+
+00:20:46.200 --> 00:20:51.360
+ And all of this, the changing LOC, the sluggish pupils, it all comes back to one inescapable
+
+00:20:51.360 --> 00:20:54.840
+ physical reality of human anatomy, the skull.
+
+00:20:54.840 --> 00:20:56.200
+ The bone box.
+
+00:20:56.200 --> 00:20:59.480
+ The skull is a rigid, unforgiving bone box.
+
+00:20:59.480 --> 00:21:00.480
+ It does not stretch.
+
+00:21:00.480 --> 00:21:03.560
+ It does not expand to accommodate extra volume.
+
+00:21:03.560 --> 00:21:07.920
+ And this brings us to what feels like the most important physics lesson in all of neurology,
+
+00:21:07.920 --> 00:21:09.880
+ the Monroe-Kelly hypothesis.
+
+00:21:09.880 --> 00:21:13.080
+ It is the foundational principle of neurocritical care.
+
+00:21:13.080 --> 00:21:18.120
+ The Monroe-Kelly hypothesis dictates that the rigid cranial vault contains exactly three
+
+00:21:18.120 --> 00:21:19.120
+ components.
+
+00:21:19.120 --> 00:21:20.120
+ What are they?
+
+00:21:20.120 --> 00:21:25.960
+ Roughly 80% brain tissue, 10% blood, and 10% cerebrospinal fluid.
+
+00:21:25.960 --> 00:21:31.020
+ As the skull cannot expand, except in infants whose fontanels haven't fused, the total
+
+00:21:31.020 --> 00:21:34.680
+ volume inside that box must remain absolutely constant.
+
+00:21:34.680 --> 00:21:38.160
+ Let's build an analogy for this, because the math is so crucial.
+
+00:21:38.160 --> 00:21:42.960
+ So think of the skull like a hard shell suitcase you're packing for a trip.
+
+00:21:42.960 --> 00:21:44.560
+ Right, a very rigid suitcase.
+
+00:21:44.560 --> 00:21:45.560
+ Exactly.
+
+00:21:45.560 --> 00:21:47.840
+ And you've packed it to the absolute brim.
+
+00:21:47.840 --> 00:21:53.160
+ It's perfectly full, like 80% close, which is the brain tissue, and then 10% shoes, so
+
+00:21:53.160 --> 00:21:57.480
+ that's the blood, and 10% toiletries, the CSF.
+
+00:21:57.480 --> 00:21:59.400
+ The cerebrospinal fluid, right?
+
+00:21:59.400 --> 00:22:00.400
+ Right.
+
+00:22:00.400 --> 00:22:02.920
+ And you just managed to force that zipper closed.
+
+00:22:02.920 --> 00:22:05.040
+ A perfect equilibrium.
+
+00:22:05.040 --> 00:22:09.600
+ But then you decide you need to pack one more thick, heavy sweater.
+
+00:22:09.600 --> 00:22:14.120
+ Let's call that new sweater a growing brain tumor, or a sudden pool of blood from a ruptured
+
+00:22:14.120 --> 00:22:19.040
+ vessel, or just generalized swelling of the brain tissue after a trauma.
+
+00:22:19.040 --> 00:22:20.400
+ The new volume.
+
+00:22:20.400 --> 00:22:25.240
+ If you shove that thick sweater into the hard shell suitcase, you cannot close the zipper.
+
+00:22:25.240 --> 00:22:29.000
+ The only physical way to get the suitcase closed is to remove something else.
+
+00:22:29.000 --> 00:22:32.720
+ You have to take out a pair of shoes, or you have to take out your shampoo.
+
+00:22:32.720 --> 00:22:34.800
+ That is exactly what the brain tries to do initially.
+
+00:22:34.800 --> 00:22:36.280
+ It's called compensation.
+
+00:22:36.280 --> 00:22:37.280
+ Okay.
+
+00:22:37.280 --> 00:22:42.080
+ If a mass starts growing, the body will try to shunt some of the cerebrospinal fluid down
+
+00:22:42.080 --> 00:22:45.440
+ out of the skull and into the spinal canal.
+
+00:22:45.440 --> 00:22:46.640
+ It removes the toiletries.
+
+00:22:46.640 --> 00:22:47.640
+ Right.
+
+00:22:47.640 --> 00:22:52.760
+ It might slightly constrictly cerebrovains to reduce the volume of venous blood inside
+
+00:22:52.760 --> 00:22:53.760
+ the head.
+
+00:22:53.760 --> 00:22:54.760
+ It removes the shoes.
+
+00:22:54.760 --> 00:22:59.440
+ But the suitcase only has so many shoes and toiletries eventually run out of things to
+
+00:22:59.440 --> 00:23:00.440
+ remove.
+
+00:23:00.440 --> 00:23:02.800
+ And that is when compensation fails.
+
+00:23:02.800 --> 00:23:06.800
+ When the brain can no longer displace fluid or blood to make room for the swelling, the
+
+00:23:06.800 --> 00:23:10.240
+ pressure inside the rigid box begins to rise exponentially.
+
+00:23:10.240 --> 00:23:13.080
+ That's your intracranial pressure, or ICP.
+
+00:23:13.080 --> 00:23:15.120
+ And normal is what?
+
+00:23:15.120 --> 00:23:19.840
+ normal ICP is heavily regulated between 10 and 20 millimeters of mercury.
+
+00:23:19.840 --> 00:23:24.120
+ And we care so deeply about our rising ICP because of how it ruins the next mathematical
+
+00:23:24.120 --> 00:23:28.520
+ equation, cerebral perfusion pressure, or CPP.
+
+00:23:28.520 --> 00:23:31.640
+ This is the equation that dictates life or death for brain cells.
+
+00:23:31.640 --> 00:23:34.160
+ Let me see if I have the physiological logic, right?
+
+00:23:34.160 --> 00:23:35.160
+ Sure.
+
+00:23:35.160 --> 00:23:39.120
+ For the brain to survive, fresh, oxygenated arterial blood has to be pumped into the skull
+
+00:23:39.120 --> 00:23:40.120
+ by the heart.
+
+00:23:40.120 --> 00:23:41.120
+ Correct.
+
+00:23:41.120 --> 00:23:44.060
+ And the pressure of that blood being pumped into the system is essentially your mean
+
+00:23:44.060 --> 00:23:46.360
+ arterial pressure, your map.
+
+00:23:46.360 --> 00:23:50.800
+ But if the pressure inside the skull, the ICP is getting higher and higher, the heart
+
+00:23:50.800 --> 00:23:55.000
+ has to push harder and harder against that internal resistance to get the blood in.
+
+00:23:55.000 --> 00:23:56.560
+ It's fighting the pressure.
+
+00:23:56.560 --> 00:24:02.080
+ So CPP is the actual net pressure of the blood successfully reaching the brain tissue.
+
+00:24:02.080 --> 00:24:05.800
+ The equation is map minus ICP equals CPP.
+
+00:24:05.800 --> 00:24:07.040
+ Yes.
+
+00:24:07.040 --> 00:24:12.160
+ The study guide stresses that the magic number for a healthy CPP is generally around 60 to
+
+00:24:12.160 --> 00:24:13.560
+ 70 millimeters of mercury.
+
+00:24:13.560 --> 00:24:14.560
+ Okay.
+
+00:24:14.560 --> 00:24:19.240
+ If your CPP drops below 60, the brain tissue isn't getting enough blood flow.
+
+00:24:19.240 --> 00:24:21.080
+ Starting to starve for oxygen.
+
+00:24:21.080 --> 00:24:26.800
+ If the CPP drops below 50, you are looking at severe, permanent, irreversible, ischemic
+
+00:24:26.800 --> 00:24:28.040
+ brain damage.
+
+00:24:28.040 --> 00:24:29.920
+ So let's run the math on a patient.
+
+00:24:29.920 --> 00:24:33.400
+ Let's say a patient has a normal, healthy map of 65.
+
+00:24:33.400 --> 00:24:38.160
+ For their kidneys, their liver, their heart, a map of 65 is totally fine.
+
+00:24:38.160 --> 00:24:41.640
+ But they have a brain injury and their suitcase is overflowing.
+
+00:24:41.640 --> 00:24:43.880
+ Their ICP has spiked to 20.
+
+00:24:43.880 --> 00:24:49.680
+ So map of 65 minus an ICP of 20 equals a CPP of 45.
+
+00:24:49.680 --> 00:24:50.680
+ Wow.
+
+00:24:50.680 --> 00:24:54.160
+ So even though the monitor shows a totally acceptable normal blood pressure for the rest
+
+00:24:54.160 --> 00:24:57.600
+ of their body, their brain is secretly suffocating.
+
+00:24:57.600 --> 00:24:58.600
+ Exactly.
+
+00:24:58.600 --> 00:25:02.040
+ The resistance inside the skull is too high for the blood to effectively perfuse the
+
+00:25:02.040 --> 00:25:03.440
+ tissue.
+
+00:25:03.440 --> 00:25:08.000
+ And this is why critical care nurses are absolutely terrified of rising ICP.
+
+00:25:08.000 --> 00:25:09.560
+ Because it's a silent killer.
+
+00:25:09.560 --> 00:25:13.760
+ The early signs, as we discussed, are subtle changes in LSC, maybe a worsening headache
+
+00:25:13.760 --> 00:25:15.840
+ or unexpected vomiting.
+
+00:25:15.840 --> 00:25:21.040
+ But if you miss those early signs, the pressure continues to build until you hit the late signs.
+
+00:25:21.040 --> 00:25:25.000
+ And the late signs are a physiological siren indicating imminent death.
+
+00:25:25.000 --> 00:25:28.320
+ The guide refers to these late signs as Cushing's Triad.
+
+00:25:28.320 --> 00:25:31.920
+ Break down what's actually happening when a patient hits Cushing's Triad.
+
+00:25:31.920 --> 00:25:36.600
+ Cushing's Triad means this swelling has become so severe that it is physically crushing the
+
+00:25:36.600 --> 00:25:39.480
+ brain stem down to the base of the skull.
+
+00:25:39.480 --> 00:25:41.440
+ The brain stem is panicking.
+
+00:25:41.440 --> 00:25:44.840
+ The Triad consists of three very specific classic signs.
+
+00:25:44.840 --> 00:25:46.520
+ What's the first one?
+
+00:25:46.520 --> 00:25:50.720
+ First, severe bradycardia, the heart rate plummets to dangerously low levels.
+
+00:25:50.720 --> 00:25:51.720
+ Okay.
+
+00:25:51.720 --> 00:25:53.720
+ Second, irregular respirations.
+
+00:25:53.720 --> 00:25:58.600
+ You often see changed stokes breathing, which is a terrifying pattern of rapid deep breaths
+
+00:25:58.600 --> 00:26:02.720
+ followed by long periods of apnea where they stop breathing entirely.
+
+00:26:02.720 --> 00:26:05.920
+ And the third sign is a widened pulse pressure.
+
+00:26:05.920 --> 00:26:06.920
+ Yes.
+
+00:26:06.920 --> 00:26:11.680
+ The systolic blood pressure, the top number, shoots incredibly high as the body desperately
+
+00:26:11.680 --> 00:26:14.840
+ tries to force blood into the high pressure skull.
+
+00:26:14.840 --> 00:26:19.400
+ But the diastolic pressure, the bottom number, drops or stays the same.
+
+00:26:19.400 --> 00:26:22.440
+ So you might see a blood pressure of 190 over 50.
+
+00:26:22.440 --> 00:26:27.360
+ If Cushing's Triad isn't reversed immediately, physics demands an outcome.
+
+00:26:27.360 --> 00:26:29.720
+ The pressure is building inside a rigid box.
+
+00:26:29.720 --> 00:26:31.080
+ It has to go somewhere.
+
+00:26:31.080 --> 00:26:32.680
+ And there's only one way out.
+
+00:26:32.680 --> 00:26:33.680
+ Right.
+
+00:26:33.680 --> 00:26:37.320
+ Use it from the skull as the forearm and magnum, the hole at the very bottom where the spinal
+
+00:26:37.320 --> 00:26:38.760
+ cord attaches.
+
+00:26:38.760 --> 00:26:41.040
+ That event is called herniation.
+
+00:26:41.040 --> 00:26:46.000
+ The swollen brain tissue physically pushes itself down through that small opening.
+
+00:26:46.000 --> 00:26:50.360
+ As it squeezes through, it cuts off its own blood supply and catastrophically crushes the
+
+00:26:50.360 --> 00:26:51.520
+ brainstem.
+
+00:26:51.520 --> 00:26:52.520
+ Game over.
+
+00:26:52.520 --> 00:26:53.520
+ Herniation is fatal.
+
+00:26:53.520 --> 00:26:54.520
+ It's the end of the line.
+
+00:26:54.520 --> 00:26:59.240
+ So the entire game is stopping the pressure before herniation.
+
+00:26:59.240 --> 00:27:03.560
+ But when I was reading the study guide, I had a naive thought.
+
+00:27:03.560 --> 00:27:07.160
+ If the pressure in the skull is dangerously high, why don't the doctor just immediately
+
+00:27:07.160 --> 00:27:11.240
+ drill a hole in the bone or take off the top of the skull to let the pressure out?
+
+00:27:11.240 --> 00:27:12.440
+ Why wait?
+
+00:27:12.440 --> 00:27:17.160
+ Because opening the skull is an incredibly traumatic, dangerous intervention.
+
+00:27:17.160 --> 00:27:22.240
+ You are exposing the brain to massive risks of infection, bleeding, and further surgical
+
+00:27:22.240 --> 00:27:23.240
+ trauma.
+
+00:27:23.240 --> 00:27:27.520
+ The medical protocol always follows a strict, tiered approach, starting with the least
+
+00:27:27.520 --> 00:27:31.840
+ invasive interventions first and escalating only if necessary.
+
+00:27:31.840 --> 00:27:37.280
+ Okay, let's explore these tears because the nursing interventions in tier one are shockingly
+
+00:27:37.280 --> 00:27:38.280
+ simple.
+
+00:27:38.280 --> 00:27:39.280
+ They don't involve drilling.
+
+00:27:39.280 --> 00:27:42.400
+ They involve gravity and basic physics.
+
+00:27:42.400 --> 00:27:45.600
+ Step one in managing a patient with increased ICP.
+
+00:27:45.600 --> 00:27:50.320
+ Elevate the head of the bed to exactly 30 degrees and ensure the patient's neck is perfectly
+
+00:27:50.320 --> 00:27:51.920
+ neutral and straight.
+
+00:27:51.920 --> 00:27:54.240
+ Why exactly 30 degrees?
+
+00:27:54.240 --> 00:27:56.200
+ Let's think about the fluid dynamics.
+
+00:27:56.200 --> 00:27:59.220
+ If they lie completely flat, the venous blood pools in the head.
+
+00:27:59.220 --> 00:28:04.800
+ It can't drain back to the heart easily, which leaves the shoes in the suitcase, increasing
+
+00:28:04.800 --> 00:28:05.800
+ pressure.
+
+00:28:05.800 --> 00:28:10.240
+ But if you sit them straight up at 90 degrees, the heart has to work entirely against gravity
+
+00:28:10.240 --> 00:28:15.560
+ to pump fresh arterial blood up to the brain, which can dangerously lower that CPP we just
+
+00:28:15.560 --> 00:28:16.560
+ talked about.
+
+00:28:16.560 --> 00:28:18.200
+ So it's a Goldilocks situation.
+
+00:28:18.200 --> 00:28:21.640
+ 30 degrees is the perfect physiological sweet spot.
+
+00:28:21.640 --> 00:28:25.960
+ It promotes venous drainage out of the head via gravity, without severely compromising
+
+00:28:25.960 --> 00:28:27.640
+ arterial delivery.
+
+00:28:27.640 --> 00:28:31.200
+ And keeping the neck straight keeps the jugular veins that the pipes draining the head from
+
+00:28:31.200 --> 00:28:32.400
+ getting kinked.
+
+00:28:32.400 --> 00:28:37.360
+ The guide also mentions preventing the patient from doing anything that involves straining.
+
+00:28:37.360 --> 00:28:41.880
+ You give them stool softeners so they don't bear down, you don't let them cough.
+
+00:28:41.880 --> 00:28:47.240
+ Even a severe cough or shivering can transiently spike the pressure inside the chest, which backs
+
+00:28:47.240 --> 00:28:49.080
+ up the pressure into the head.
+
+00:28:49.080 --> 00:28:53.080
+ But if positioning and calming the patient aren't enough, we move to a fascinating tier
+
+00:28:53.080 --> 00:28:57.080
+ one intervention called permissive hypocapnea.
+
+00:28:57.080 --> 00:28:59.640
+ This concept blew my mind when I read it.
+
+00:28:59.640 --> 00:29:04.200
+ Permissive means the medical team is intentionally allowing or creating an abnormal state in
+
+00:29:04.200 --> 00:29:05.200
+ the body.
+
+00:29:05.200 --> 00:29:10.160
+ And hypocapnea means a low level of carbon dioxide in the blood.
+
+00:29:10.160 --> 00:29:12.280
+ How did they achieve that and why does it help?
+
+00:29:12.280 --> 00:29:17.720
+ They place the patient on a mechanical ventilator and deliberately increase the respiratory rate.
+
+00:29:17.720 --> 00:29:20.040
+ They make the patient hyperventilate.
+
+00:29:20.040 --> 00:29:23.400
+ By breathing faster, the patient blows off excess carbon dioxide.
+
+00:29:23.400 --> 00:29:24.400
+ Okay.
+
+00:29:24.400 --> 00:29:27.560
+ Now, we have to look at the chemistry of CO2 in the brain.
+
+00:29:27.560 --> 00:29:30.640
+ Carbon dioxide is a potent vasodilator.
+
+00:29:30.640 --> 00:29:35.760
+ When CO2 levels are high, blood vessels relax and widen to bring in more oxygen.
+
+00:29:35.760 --> 00:29:36.760
+ I see.
+
+00:29:36.760 --> 00:29:41.680
+ So if I hold my breath, my CO2 rises and the vessels in my brain open up wide to try to
+
+00:29:41.680 --> 00:29:44.000
+ grab any oxygen that can find.
+
+00:29:44.000 --> 00:29:47.960
+ But by forcing the patient to hyperventilate on the machine, you drive the CO2 levels
+
+00:29:47.960 --> 00:29:49.800
+ abnormally low.
+
+00:29:49.800 --> 00:29:54.280
+ And when CO2 drops, the blood vessels in the brain forcefully constrict.
+
+00:29:54.280 --> 00:29:55.280
+ They narrow.
+
+00:29:55.280 --> 00:29:59.720
+ Going right back to our suitcase analogy, if you constrict the blood vessels, you are
+
+00:29:59.720 --> 00:30:03.240
+ actively reducing the volume of blood inside the skull.
+
+00:30:03.240 --> 00:30:04.240
+ Shrinking the shoes.
+
+00:30:04.240 --> 00:30:07.920
+ You're shrinking the shoes so the swollen brain has more room to exist without popping
+
+00:30:07.920 --> 00:30:08.920
+ the zipper.
+
+00:30:08.920 --> 00:30:10.800
+ That is incredibly clever.
+
+00:30:10.800 --> 00:30:13.760
+ It is, but it requires masterful monitoring.
+
+00:30:13.760 --> 00:30:18.520
+ If you lower the CO2 too much and constrict the vessels too tightly, you cut off the blood
+
+00:30:18.520 --> 00:30:20.040
+ supply and cause ischemic damage.
+
+00:30:20.040 --> 00:30:21.700
+ It's a delicate balance.
+
+00:30:21.700 --> 00:30:22.700
+ Very delicate.
+
+00:30:22.700 --> 00:30:25.400
+ If tier one fails, we escalate to tier two.
+
+00:30:25.400 --> 00:30:28.920
+ This involves physically draining cerebral spinal fluid through a surgically implanted
+
+00:30:28.920 --> 00:30:33.440
+ catheter called an EVD, an external ventricular drain.
+
+00:30:33.440 --> 00:30:36.280
+ It also involves hyperosmolar therapy.
+
+00:30:36.280 --> 00:30:42.160
+ Using hypertonic saline, like 3% sodium chloride or a drug called manatol, let's trace the
+
+00:30:42.160 --> 00:30:43.560
+ osmosis of this.
+
+00:30:43.560 --> 00:30:46.600
+ The nurse gives us extremely salty IV fluid.
+
+00:30:46.600 --> 00:30:48.680
+ It enters the bloodstream.
+
+00:30:48.680 --> 00:30:52.440
+ Because the blood is now so concentrated with salt, it acts like a sponge.
+
+00:30:52.440 --> 00:30:57.920
+ It pulls water out of the swollen brain cells across the blood brain barrier and into the
+
+00:30:57.920 --> 00:31:02.520
+ bloodstream where it's carried to the kidneys and peed away.
+
+00:31:02.520 --> 00:31:07.600
+ You're literally dehydrating the brain tissue to shrink it and lower the pressure.
+
+00:31:07.600 --> 00:31:12.800
+ If that still doesn't work, tier three involves inducing a deep barbiturate coma to shut down
+
+00:31:12.800 --> 00:31:15.340
+ all metabolic demand in the brain.
+
+00:31:15.340 --> 00:31:19.680
+ And if the patient is still herniating, we finally reach the absolute last resort in
+
+00:31:19.680 --> 00:31:24.040
+ tier four, decompressive craniectomy.
+
+00:31:24.040 --> 00:31:25.040
+ Releasing the zipper.
+
+00:31:25.040 --> 00:31:26.040
+ Yes.
+
+00:31:26.040 --> 00:31:30.280
+ The neurosurgeon uses a saw to remove a massive flap of the skull bone, essentially taking
+
+00:31:30.280 --> 00:31:32.360
+ the lid off the box.
+
+00:31:32.360 --> 00:31:37.400
+ This allows the swollen, angry brain tissue to bulge outward safely rather than crushing
+
+00:31:37.400 --> 00:31:39.280
+ downward into the brain stem.
+
+00:31:39.280 --> 00:31:43.520
+ And the craziest part of this to me is what they do with the piece of bone they cut out.
+
+00:31:43.520 --> 00:31:45.080
+ They don't just put it on a shelf.
+
+00:31:45.080 --> 00:31:46.480
+ No, they don't.
+
+00:31:46.480 --> 00:31:51.800
+ To keep the patient's own bone alive, sterile and supplied with blood while the brain heals,
+
+00:31:51.800 --> 00:31:56.680
+ the surgeon will often create a pocket in the patient's abdomen and surgically implant
+
+00:31:56.680 --> 00:31:58.280
+ the skull flap into the belly.
+
+00:31:58.280 --> 00:32:00.240
+ Wait, they put it in the stomach, right?
+
+00:32:00.240 --> 00:32:01.560
+ Yeah, in the abdomen.
+
+00:32:01.560 --> 00:32:02.640
+ It's wild.
+
+00:32:02.640 --> 00:32:06.760
+ The patient's head is covered only by scalp and they must wear a specialized protective
+
+00:32:06.760 --> 00:32:11.360
+ helmet for weeks or months until the brain swelling subsides and the bone can be retrieved
+
+00:32:11.360 --> 00:32:13.640
+ from the abdomen and reattached.
+
+00:32:13.640 --> 00:32:18.480
+ It is wild what the human body can endure and what medicine can engineer.
+
+00:32:18.480 --> 00:32:23.240
+ So we spend a lot of time on pressure and the rigid physics of the skull.
+
+00:32:23.240 --> 00:32:26.680
+ But one of the most common reasons the brain might suddenly swell in the first place is
+
+00:32:26.680 --> 00:32:29.440
+ a catastrophic failure of the blood vessels.
+
+00:32:29.440 --> 00:32:30.680
+ A pipe problem.
+
+00:32:30.680 --> 00:32:35.000
+ Let's transition into ischemic versus hemorrhagic strokes.
+
+00:32:35.000 --> 00:32:40.200
+ The stroke is a medical emergency defined by a sudden acute loss of blood flow to a specific
+
+00:32:40.200 --> 00:32:41.820
+ region of the brain.
+
+00:32:41.820 --> 00:32:46.480
+ When the blood stops, the brain cells begin to die within minutes and as you said, it comes
+
+00:32:46.480 --> 00:32:48.720
+ down to a failure in the plumbing.
+
+00:32:48.720 --> 00:32:51.200
+ It is either a clog or a leak.
+
+00:32:51.200 --> 00:32:53.560
+ And ischemic stroke is the clog?
+
+00:32:53.560 --> 00:32:59.320
+ A blood clot forms, perhaps in the heart, breaks off, travels up the carotid artery and
+
+00:32:59.320 --> 00:33:04.480
+ wedges itself tightly into a narrow cerebral vessel, blocking all blood flow downstream.
+
+00:33:04.480 --> 00:33:05.480
+ Exactly.
+
+00:33:05.480 --> 00:33:07.920
+ A hemorrhagic stroke is the leak.
+
+00:33:07.920 --> 00:33:11.880
+ A weakened blood vessel literally bursts under pressure, bleeding directly into the
+
+00:33:11.880 --> 00:33:13.000
+ brain tissue.
+
+00:33:13.000 --> 00:33:18.080
+ Now, here is the clinical dilemma that critical care nurses face every day.
+
+00:33:18.080 --> 00:33:23.400
+ Both types of stroke, the clot and the bleed present with the exact same external symptoms.
+
+00:33:23.400 --> 00:33:24.400
+ Right.
+
+00:33:24.400 --> 00:33:25.880
+ The guide emphasizes this heavily.
+
+00:33:25.880 --> 00:33:30.400
+ The patient comes in with sudden numbness on one side of their body, facial drooping,
+
+00:33:30.400 --> 00:33:34.120
+ confusion, slurred speech or an inability to lift their arm.
+
+00:33:34.120 --> 00:33:37.880
+ You absolutely can not tell by looking at them whether they have a clot, starving the
+
+00:33:37.880 --> 00:33:41.000
+ brain or a ruptured pipe, flooding their brain.
+
+00:33:41.000 --> 00:33:45.680
+ Which brings us to the unquestionable golden rule of stroke care.
+
+00:33:45.680 --> 00:33:50.000
+ The absolute first step, the highest priority upon arrival at the emergency department, is
+
+00:33:50.000 --> 00:33:53.440
+ an immediate non-contrast CT scan of the head.
+
+00:33:53.440 --> 00:33:57.520
+ You must know the underlying plumbing problem before you intervene.
+
+00:33:57.520 --> 00:34:00.080
+ Because if you guess wrong, you will kill the patient.
+
+00:34:00.080 --> 00:34:01.080
+ Exactly.
+
+00:34:01.080 --> 00:34:04.600
+ Look at the treatment for an ischemic stroke, the clot.
+
+00:34:04.600 --> 00:34:09.680
+ The gold standard of medical treatment is a drug called TPA, Tissue Presbyterian Activator.
+
+00:34:09.680 --> 00:34:13.600
+ It is a highly potent thrombolytic, it's a clot buster.
+
+00:34:13.600 --> 00:34:15.080
+ It just dissolves it.
+
+00:34:15.080 --> 00:34:18.840
+ When administered, it hunts down the blood clot in the brain and aggressively dissolves
+
+00:34:18.840 --> 00:34:22.160
+ it, restoring blood flow and saving the dying tissue.
+
+00:34:22.160 --> 00:34:25.800
+ But if you look at a patient with a drooping face and assume it's a clot, and you push
+
+00:34:25.800 --> 00:34:30.520
+ that TPA clot buster, but they're actually having a hemorrhagic bleed, you've just condemned
+
+00:34:30.520 --> 00:34:31.680
+ them to death.
+
+00:34:31.680 --> 00:34:35.320
+ If they have a burst vessel in their brain, their body is desperately trying to form a
+
+00:34:35.320 --> 00:34:38.720
+ fragile clot at the site of the rupture to stop the bleeding.
+
+00:34:38.720 --> 00:34:43.520
+ If you flood their system with a clot buster, you destroy their body's only defense.
+
+00:34:43.520 --> 00:34:48.040
+ The leak will blow wide open and they will suffer a massive fatal brain hemorrhage.
+
+00:34:48.040 --> 00:34:51.280
+ You never, ever, under any circumstances.
+
+00:34:51.280 --> 00:34:56.160
+ administer TPA until a CT scan has definitively ruled out the presence of blood.
+
+00:34:56.160 --> 00:34:58.000
+ Okay, let's say they get the scan.
+
+00:34:58.000 --> 00:35:02.240
+ The CT is clear, there is no blood confirming it's an ischemic clot.
+
+00:35:02.240 --> 00:35:07.240
+ We want to give the TPA to save the tissue, but the study guide lists strict rigid rules
+
+00:35:07.240 --> 00:35:09.600
+ for who is allowed to receive this drug.
+
+00:35:09.600 --> 00:35:11.600
+ The most famous one is the time window.
+
+00:35:11.600 --> 00:35:14.400
+ The last known normal time.
+
+00:35:14.400 --> 00:35:16.320
+ This drug is incredibly dangerous.
+
+00:35:16.320 --> 00:35:20.840
+ You generally only have a strict three to four point five hour window from the exact moment
+
+00:35:20.840 --> 00:35:26.280
+ the patient was last seen acting completely normally to safely administer TPA.
+
+00:35:26.280 --> 00:35:31.240
+ So if a patient goes to bed at 10 p.m., feeling fine, wakes up at six a.m., tries to get out
+
+00:35:31.240 --> 00:35:35.600
+ of bed and realizes their right side is paralyzed, they cannot get the drug.
+
+00:35:35.600 --> 00:35:41.080
+ They cannot because their last known normal was eight hours ago, the window was passed.
+
+00:35:41.080 --> 00:35:43.720
+ And the physiological reason behind this window is crucial.
+
+00:35:43.720 --> 00:35:45.520
+ Why is it so strict?
+
+00:35:45.520 --> 00:35:49.160
+ After about four hours of being starved of blood, the brain tissue downstream of the
+
+00:35:49.160 --> 00:35:50.320
+ clot is dead.
+
+00:35:50.320 --> 00:35:52.840
+ It's necrotic and incredibly fragile.
+
+00:35:52.840 --> 00:35:56.720
+ If you use a clot buster to suddenly blast high pressure blood back into that dead fragile
+
+00:35:56.720 --> 00:35:59.520
+ tissue, the dead vessels will simply rupture.
+
+00:35:59.520 --> 00:36:02.800
+ You'll convert an ischemic stroke into a hemorrhagic stroke.
+
+00:36:02.800 --> 00:36:06.320
+ The risk of secondary bleeding drastically outweighs the benefit.
+
+00:36:06.320 --> 00:36:09.440
+ The guide also lists a bunch of physical contraindications.
+
+00:36:09.440 --> 00:36:13.480
+ You can't give it if their blood pressure is dangerously high, specifically over 185
+
+00:36:13.480 --> 00:36:15.480
+ over 110.
+
+00:36:15.480 --> 00:36:20.800
+ And my favorite physiological rule, you cannot give TPA if the patient has had major surgery
+
+00:36:20.800 --> 00:36:25.320
+ in the last two weeks, because TPA is not smart, it doesn't just target the bad clot
+
+00:36:25.320 --> 00:36:26.320
+ in the brain.
+
+00:36:26.320 --> 00:36:27.960
+ No, it's systemic.
+
+00:36:27.960 --> 00:36:32.520
+ It circulates through the entire body, aggressively dissolving every clot it finds.
+
+00:36:32.520 --> 00:36:36.880
+ If the patient had their appendix removed 10 days ago, their body has formed a vital healing
+
+00:36:36.880 --> 00:36:39.240
+ clot internally at the surgical site.
+
+00:36:39.240 --> 00:36:42.160
+ TPA will dissolve that healing clot.
+
+00:36:42.160 --> 00:36:45.760
+ The patient could bleed to death into their abdomen while the doctors are focused on fixing
+
+00:36:45.760 --> 00:36:46.920
+ the brain.
+
+00:36:46.920 --> 00:36:48.560
+ So that's the ischemic side.
+
+00:36:48.560 --> 00:36:50.440
+ Let's look at the hemorrhagic stroke.
+
+00:36:50.440 --> 00:36:51.960
+ It's a brain bleed.
+
+00:36:51.960 --> 00:36:58.480
+ The most common cause is uncontrolled hypertension, years of high blood pressure pounding against
+
+00:36:58.480 --> 00:37:03.480
+ the vessel walls until one day, an aneurysm forms and pops.
+
+00:37:03.480 --> 00:37:05.800
+ It's a devastating event.
+
+00:37:05.800 --> 00:37:11.480
+ The survival rate is lower and the recovery is grueling because free blood is highly toxic
+
+00:37:11.480 --> 00:37:13.920
+ and irritating to brain tissue.
+
+00:37:13.920 --> 00:37:19.640
+ But the most bizarre counterintuitive complication of a brain bleed happens days after the initial
+
+00:37:19.640 --> 00:37:20.720
+ event.
+
+00:37:20.720 --> 00:37:23.080
+ It's called vasospasm.
+
+00:37:23.080 --> 00:37:26.940
+ Vasospasm is a terrifying secondary crisis.
+
+00:37:26.940 --> 00:37:31.120
+ When the aneurysm bursts, it floods the subarachnoid space with blood.
+
+00:37:31.120 --> 00:37:35.880
+ This free blood coats the outside of the other healthy blood vessels in the brain.
+
+00:37:35.880 --> 00:37:37.400
+ And they don't like that.
+
+00:37:37.400 --> 00:37:41.360
+ No, the physical presence of that blood is highly irritating.
+
+00:37:41.360 --> 00:37:47.000
+ Days later, those healthy blood vessels react to the irritation by violently spasming and
+
+00:37:47.000 --> 00:37:50.160
+ clamping down, they narrow dramatically.
+
+00:37:50.160 --> 00:37:53.800
+ So the patient survives the initial bleeding pipe.
+
+00:37:53.800 --> 00:37:59.000
+ But days later, the other pipes squeeze shut, causing secondary ischemic strokes because
+
+00:37:59.000 --> 00:38:01.640
+ no blood can get through the narrowed vessels.
+
+00:38:01.640 --> 00:38:02.880
+ Precisely.
+
+00:38:02.880 --> 00:38:07.160
+ And this is where critical care nursing becomes a high wire act because the treatment for
+
+00:38:07.160 --> 00:38:10.440
+ this vasospasm is incredibly counterintuitive.
+
+00:38:10.440 --> 00:38:16.280
+ It's called triple H therapy, hypervelinia, hemodilution, and hypertension.
+
+00:38:16.280 --> 00:38:19.440
+ I totally paused and reread the notes here.
+
+00:38:19.440 --> 00:38:23.320
+ They pump the patient full of IV fluids, hypervelimia.
+
+00:38:23.320 --> 00:38:26.560
+ They thin the blood so it flows easier, hemodilution.
+
+00:38:26.560 --> 00:38:30.280
+ And most shockingly, they induce permissive hypertension.
+
+00:38:30.280 --> 00:38:35.360
+ The medical team literally gives medications to run the patient's blood pressure high,
+
+00:38:35.360 --> 00:38:36.360
+ on purpose.
+
+00:38:36.360 --> 00:38:37.360
+ It feels like madness.
+
+00:38:37.360 --> 00:38:38.360
+ It does.
+
+00:38:38.360 --> 00:38:42.880
+ The patient is lying in the ICU specifically because high blood pressure caused a blood
+
+00:38:42.880 --> 00:38:45.480
+ vessel in their brain to explode.
+
+00:38:45.480 --> 00:38:49.580
+ And now the nurses are intentionally driving their blood pressure back up into the danger
+
+00:38:49.580 --> 00:38:50.580
+ zone.
+
+00:38:50.580 --> 00:38:54.960
+ Walk me through the exact logic of when and why this is safe because it sounds like a
+
+00:38:54.960 --> 00:38:56.800
+ recipe for a second explosion.
+
+00:38:56.800 --> 00:39:00.200
+ It relies entirely on sequential stabilization.
+
+00:39:00.200 --> 00:39:03.640
+ Permissive hypertension is only initiated after the initial source of bleeding has been
+
+00:39:03.640 --> 00:39:05.440
+ definitively secured.
+
+00:39:05.440 --> 00:39:06.640
+ Meaning the surgery is done.
+
+00:39:06.640 --> 00:39:07.640
+ Yes.
+
+00:39:07.640 --> 00:39:11.120
+ The patient must have gone to surgery, where a neurosurgeon placed a physical titanium
+
+00:39:11.120 --> 00:39:16.040
+ clip across the neck of the burst aneurysm, war threaded platinum coils inside it to pack
+
+00:39:16.040 --> 00:39:17.240
+ its shut.
+
+00:39:17.240 --> 00:39:18.240
+ The weak pipe is fixed.
+
+00:39:18.240 --> 00:39:19.240
+ It cannot bleed again.
+
+00:39:19.240 --> 00:39:20.240
+ Okay.
+
+00:39:20.240 --> 00:39:21.720
+ So the leak is sealed.
+
+00:39:21.720 --> 00:39:25.120
+ Once the leak is secure, the primary threat shifts.
+
+00:39:25.120 --> 00:39:28.920
+ The new threat is the vasospasm choking off the blood supply.
+
+00:39:28.920 --> 00:39:33.280
+ Imagine a garden hose that someone has stepped on, narrowing the flow to a trickle.
+
+00:39:33.280 --> 00:39:34.280
+ Right.
+
+00:39:34.280 --> 00:39:37.800
+ The only physical way to force enough water through that narrowed, clamped down section
+
+00:39:37.800 --> 00:39:41.640
+ of the hose is to crank up the water pressure at the spigot.
+
+00:39:41.640 --> 00:39:43.320
+ The brain is the same.
+
+00:39:43.320 --> 00:39:48.320
+ To force oxygenated blood through those violently spasming cerebral vessels, the nurses must
+
+00:39:48.320 --> 00:39:53.480
+ intentionally increase the systemic blood pressure to push the blood past the resistance.
+
+00:39:53.480 --> 00:39:56.520
+ They run the BP high to save the brain from suffocating.
+
+00:39:56.520 --> 00:39:58.560
+ It is brilliant plumbing management.
+
+00:39:58.560 --> 00:40:02.440
+ Now regardless of whether a patient had a clot or a bleed, if they survive, they are
+
+00:40:02.440 --> 00:40:05.640
+ often left with long-term neurological deficits.
+
+00:40:05.640 --> 00:40:08.680
+ The study guide provides a whole vocabulary for these.
+
+00:40:08.680 --> 00:40:11.160
+ Hemiplegia is paralysis on one side.
+
+00:40:11.160 --> 00:40:13.320
+ Ephesia is trouble communicating.
+
+00:40:13.320 --> 00:40:16.840
+ But apraxia was a concept I had to think about for a minute.
+
+00:40:16.840 --> 00:40:21.200
+ Apraxia is one of the most heartbreaking deficits to witness because it highlights how specific
+
+00:40:21.200 --> 00:40:23.840
+ brain damage can be.
+
+00:40:23.840 --> 00:40:28.960
+ Apraxia is the loss of the ability to execute a previously learned familiar motor action,
+
+00:40:28.960 --> 00:40:32.760
+ even though the physical strength and the desire to do it are fully intact.
+
+00:40:32.760 --> 00:40:33.960
+ So they aren't paralyzed?
+
+00:40:33.960 --> 00:40:34.960
+ No.
+
+00:40:34.960 --> 00:40:35.960
+ The muscles work fine.
+
+00:40:35.960 --> 00:40:38.200
+ They haven't forgotten what a hairbrush is.
+
+00:40:38.200 --> 00:40:41.840
+ But when you hand them the hairbrush, they simply cannot coordinate the sequence of motor
+
+00:40:41.840 --> 00:40:45.080
+ movements required to brush their hair.
+
+00:40:45.080 --> 00:40:48.720
+ The motor planning center of the cerebral cortex has been wiped out.
+
+00:40:48.720 --> 00:40:53.560
+ The brain knows the goal, but the blueprint for how to move the arm to achieve it is gone.
+
+00:40:53.560 --> 00:40:56.760
+ Another specific deficit is homonymous hemianopia.
+
+00:40:56.760 --> 00:41:00.720
+ This is where the patient loses half of the visual field in both eyes.
+
+00:41:00.720 --> 00:41:04.760
+ So if the stroke affected the right side of the visual pathway, they simply cannot see
+
+00:41:04.760 --> 00:41:07.120
+ anything to the left of their nose in either eye.
+
+00:41:07.120 --> 00:41:08.680
+ Half the world is gone.
+
+00:41:08.680 --> 00:41:12.200
+ And the nursing intervention for this is such a great aha moment in the text.
+
+00:41:12.200 --> 00:41:16.680
+ The instinct might be to just place all their food, their phone and their call bell on their
+
+00:41:16.680 --> 00:41:20.280
+ good side and ignore the blind side.
+
+00:41:20.280 --> 00:41:24.040
+ And why you do approach them from the good side initially so you don't startle them.
+
+00:41:24.040 --> 00:41:27.320
+ The long-term goal of nursing rehabilitation is entirely different.
+
+00:41:27.320 --> 00:41:28.320
+ Right.
+
+00:41:28.320 --> 00:41:29.320
+ You don't cater to the deficit.
+
+00:41:29.320 --> 00:41:31.880
+ You actively teach them scanning techniques.
+
+00:41:31.880 --> 00:41:36.280
+ You force them to consciously turn their head and sweep their eyes to the affected side
+
+00:41:36.280 --> 00:41:40.840
+ to see the whole room, essentially retraining the brain's pathways to compensate for the
+
+00:41:40.840 --> 00:41:41.840
+ blind spot.
+
+00:41:41.840 --> 00:41:44.560
+ It's all about pushing toward independence.
+
+00:41:44.560 --> 00:41:48.880
+ You see the same philosophy with dysphagia, which is difficulty swallowing.
+
+00:41:48.880 --> 00:41:53.280
+ A stroke can easily paralyze or weaken the intricate muscles in the throat.
+
+00:41:53.280 --> 00:41:58.840
+ The immediate, fearful reaction might be to make the patient NPO, nothing by mouth, and
+
+00:41:58.840 --> 00:42:02.560
+ surgically inserted feeding tube into their stomach so they don't accidentally inhale
+
+00:42:02.560 --> 00:42:05.360
+ food into their lungs and dive in pneumonia.
+
+00:42:05.360 --> 00:42:09.360
+ But the nursing standard of care is to not just give up on eating.
+
+00:42:09.360 --> 00:42:11.080
+ You get a formal swallow study.
+
+00:42:11.080 --> 00:42:15.520
+ They put the patient under an x-ray fluoroscope and watch exactly how the muscles respond to
+
+00:42:15.520 --> 00:42:16.520
+ different textures.
+
+00:42:16.520 --> 00:42:20.760
+ And if the x-ray shows that they choke on thin liquids like water, but they can perfectly
+
+00:42:20.760 --> 00:42:25.720
+ and safely swallow thick, nectar-consistency liquids, if they intentionally tuck their
+
+00:42:25.720 --> 00:42:28.760
+ chin down to their chest when they swallow, then you let
+
+00:42:28.760 --> 00:42:29.760
+ them eat.
+
+00:42:29.760 --> 00:42:34.120
+ You modify their diet, you teach them the chin tuck technique, and you preserve the basic
+
+00:42:34.120 --> 00:42:36.440
+ human dignity of sharing a meal.
+
+00:42:36.440 --> 00:42:40.480
+ You adapt the environment to meet their new neurological baseline.
+
+00:42:40.480 --> 00:42:43.480
+ Which is a perfect segue into our next section.
+
+00:42:43.480 --> 00:42:48.600
+ We have spent the last half hour talking about the internal environment, internal pipe bursts,
+
+00:42:48.600 --> 00:42:50.040
+ internal pressure.
+
+00:42:50.040 --> 00:42:55.120
+ But what happens when that rigid skull takes a violent physical impact from the outside?
+
+00:42:55.120 --> 00:42:56.520
+ The physics change completely.
+
+00:42:56.520 --> 00:42:59.560
+ Let's look at trauma in the spinal cord.
+
+00:42:59.560 --> 00:43:04.520
+ Traumatic brain injury, or TBI, is the leading cause of death from trauma, mostly driven by
+
+00:43:04.520 --> 00:43:07.120
+ motor vehicle collisions and falls.
+
+00:43:07.120 --> 00:43:12.640
+ And the spectrum is massive, ranging from mild concussions to catastrophic skull fractures.
+
+00:43:12.640 --> 00:43:17.400
+ Let's examine the skull fractures, because the guide highlights two very specific, highly
+
+00:43:17.400 --> 00:43:22.600
+ visual clinical signs of a bazzler skull fracture, a severe crack right through the thick bone
+
+00:43:22.600 --> 00:43:24.400
+ at the base of the skull.
+
+00:43:24.400 --> 00:43:26.240
+ The first is the battle sign.
+
+00:43:26.240 --> 00:43:30.260
+ A nurse assessing a trauma patient will always look behind the ears.
+
+00:43:30.260 --> 00:43:35.240
+ Battle sign presents a significant dark bruising directly over the mastoid bone right behind
+
+00:43:35.240 --> 00:43:36.240
+ the ear lobe.
+
+00:43:36.240 --> 00:43:37.720
+ Like they got hit with a bat.
+
+00:43:37.720 --> 00:43:38.720
+ Exactly.
+
+00:43:38.720 --> 00:43:42.120
+ It looks for all the world like someone struck the patient directly behind the ear with a
+
+00:43:42.120 --> 00:43:43.120
+ bat.
+
+00:43:43.120 --> 00:43:47.480
+ But it is actually blood from a fracture deep inside the skull base, pooling and seeping
+
+00:43:47.480 --> 00:43:49.480
+ through the tissue to the surface.
+
+00:43:49.480 --> 00:43:53.280
+ And the second classic indicator is the halo sign.
+
+00:43:53.280 --> 00:43:57.000
+ This happens when a trauma patient is bleeding from their nose or their ears.
+
+00:43:57.000 --> 00:44:00.200
+ You don't just assume it's a bloody nose from getting hit in the face.
+
+00:44:00.200 --> 00:44:04.360
+ If a drop of that bloody fluid falls onto a white hospital pillowcase or a piece of sterile
+
+00:44:04.360 --> 00:44:08.200
+ gauze, a fascinating physical separation occurs.
+
+00:44:08.200 --> 00:44:12.360
+ Because blood and cerebral spinal fluid have different densities and weights.
+
+00:44:12.360 --> 00:44:16.640
+ The heavier red blood cells will clump and stay right in the center of the drop.
+
+00:44:16.640 --> 00:44:22.120
+ But if there's CSF mixed into that blood, the thinner, clear, slightly yellowish cerebral
+
+00:44:22.120 --> 00:44:27.240
+ spinal fluid will wick outward through the fabric, creating a distinct pale ring around
+
+00:44:27.240 --> 00:44:29.000
+ the central blood spot.
+
+00:44:29.000 --> 00:44:30.920
+ It literally looks like a halo.
+
+00:44:30.920 --> 00:44:31.920
+ Yes.
+
+00:44:31.920 --> 00:44:36.920
+ And if you see a halo sign, it means the rigid vault of the skull is cracked open, the meninges
+
+00:44:36.920 --> 00:44:41.800
+ are torn, and the brain's protective fluid is actively leaking out of the nose or ears.
+
+00:44:41.800 --> 00:44:46.960
+ It is a terrifying finding because it means the previously sterile closed system of the
+
+00:44:46.960 --> 00:44:49.960
+ brain is now open to the outside world.
+
+00:44:49.960 --> 00:44:54.440
+ Having massive, potentially lethal infections like meningitis directly into the central
+
+00:44:54.440 --> 00:44:56.080
+ nervous system.
+
+00:44:56.080 --> 00:44:57.080
+ Exactly.
+
+00:44:57.080 --> 00:44:58.360
+ It's a huge infection risk.
+
+00:44:58.360 --> 00:45:03.200
+ Now, if the brain itself takes an impact without crack in the skull, you can have a concussion.
+
+00:45:03.200 --> 00:45:07.280
+ This is a traumatic alteration in neurological function without visible structural damage
+
+00:45:07.280 --> 00:45:08.520
+ on a CT scan.
+
+00:45:08.520 --> 00:45:11.000
+ The brain just got violently rattled.
+
+00:45:11.000 --> 00:45:14.960
+ Patients usually go home, but the nursing discharge teaching is notoriously strict.
+
+00:45:14.960 --> 00:45:17.320
+ You don't let them just sleep for 12 hours.
+
+00:45:17.320 --> 00:45:19.080
+ You have to wake them up frequently.
+
+00:45:19.080 --> 00:45:23.120
+ You're waking them up to assess for subtle shifts in that level of consciousness we talked
+
+00:45:23.120 --> 00:45:24.120
+ about earlier.
+
+00:45:24.120 --> 00:45:25.400
+ Are they easily arousal?
+
+00:45:25.400 --> 00:45:27.680
+ Do they know who you are?
+
+00:45:27.680 --> 00:45:32.480
+ And with children, especially, you are watching like a hawk for sudden repeated vomiting,
+
+00:45:32.480 --> 00:45:37.200
+ which can be an early sign of spiking intracranial pressure and can also compromise their airway
+
+00:45:37.200 --> 00:45:38.200
+ if they're sleepy.
+
+00:45:38.200 --> 00:45:44.480
+ But on the far opposite end of the trauma spectrum, past concussion, past coma is brain
+
+00:45:44.480 --> 00:45:45.480
+ death.
+
+00:45:45.480 --> 00:45:49.180
+ The study guide is incredibly rigorous about how this is legally and medically determined.
+
+00:45:49.180 --> 00:45:50.180
+ It's not subjective.
+
+00:45:50.180 --> 00:45:51.840
+ No, it is very objective.
+
+00:45:51.840 --> 00:45:58.560
+ It requires three absolute clinical findings, a state of deep coma with known cause, an absolute
+
+00:45:58.560 --> 00:46:03.520
+ absence of all brainstem reflexes, meaning no pupil reaction to light, no gag reflex
+
+00:46:03.520 --> 00:46:07.840
+ if you touch the back of the throat, and crucially, a positive apnea test.
+
+00:46:07.840 --> 00:46:12.720
+ The apnea test is the ultimate definitive proof that the primitive basement generator,
+
+00:46:12.720 --> 00:46:15.400
+ the brainstem, has completely failed.
+
+00:46:15.400 --> 00:46:20.080
+ Remember, the brainstem's most fundamental job is to force you to breathe.
+
+00:46:20.080 --> 00:46:24.400
+ To perform the apnea test, the physician will temporarily disconnect the comatose patient
+
+00:46:24.400 --> 00:46:29.480
+ from the mechanical ventilator, while continuing to supply oxygen down the tube.
+
+00:46:29.480 --> 00:46:33.800
+ So they are getting oxygen, but the machine is no longer breathing for them.
+
+00:46:33.800 --> 00:46:34.960
+ Exactly.
+
+00:46:34.960 --> 00:46:39.120
+ The medical team watches the patient's blood monitors, as the carbon dioxide levels begin
+
+00:46:39.120 --> 00:46:41.120
+ to rise in the bloodstream.
+
+00:46:41.120 --> 00:46:47.680
+ In any functioning brainstem, a high level of CO2 triggers an overwhelming, primal, irresistible
+
+00:46:47.680 --> 00:46:50.140
+ biological drive to take a breath.
+
+00:46:50.140 --> 00:46:52.440
+ It is the strongest reflex we have.
+
+00:46:52.440 --> 00:46:53.440
+ Right.
+
+00:46:53.440 --> 00:46:57.320
+ If the CO2 levels rise significantly past the normal threshold and the patient's chest
+
+00:46:57.320 --> 00:47:03.080
+ does not move, if they make absolutely no spontaneous effort to pull in air, it proves
+
+00:47:03.080 --> 00:47:06.440
+ the respiratory center in the brainstem is dead.
+
+00:47:06.440 --> 00:47:09.440
+ The physical shell remains, but the brain is gone.
+
+00:47:09.440 --> 00:47:14.200
+ It is a profound, incredibly definitive clinical protocol.
+
+00:47:14.200 --> 00:47:16.880
+ Let's move to a different kind of trauma, hematomas.
+
+00:47:16.880 --> 00:47:20.620
+ This is blood collecting outside the brain tissue, but inside the skull.
+
+00:47:20.620 --> 00:47:24.320
+ We have subdural hematomas, which happen below the dura mater.
+
+00:47:24.320 --> 00:47:29.120
+ These are usually slow, venous bleeds, often seen in older adults who fall and hit their
+
+00:47:29.120 --> 00:47:30.120
+ head.
+
+00:47:30.120 --> 00:47:32.480
+ It can take days or weeks for the pressure to build.
+
+00:47:32.480 --> 00:47:36.640
+ But the epidural hematoma is the one that reads like a ticking time bomb.
+
+00:47:36.640 --> 00:47:41.440
+ An epidural hematoma occurs between the hard skull bone and the tough outer membrane of
+
+00:47:41.440 --> 00:47:43.840
+ the brain, the dura mater.
+
+00:47:43.840 --> 00:47:48.960
+ And crucially, it's usually caused by a tear in a high pressure artery, often the middle
+
+00:47:48.960 --> 00:47:53.420
+ meningeal artery, usually after a direct blow to the side of the head.
+
+00:47:53.420 --> 00:47:59.160
+ And what makes it so terrifying is the classic clinical presentation, the lucid interval.
+
+00:47:59.160 --> 00:48:00.920
+ Let's picture the scenario.
+
+00:48:00.920 --> 00:48:04.280
+ A teenager gets hit in the side of the head with a baseball.
+
+00:48:04.280 --> 00:48:08.640
+ He goes down, loses consciousness for a minute or two, but then he wakes up, he pops right
+
+00:48:08.640 --> 00:48:09.640
+ back up.
+
+00:48:09.640 --> 00:48:13.000
+ He says he feels fine, maybe just a little headache.
+
+00:48:13.000 --> 00:48:17.320
+ He refuses an ambulance, he talks normally, walks normally.
+
+00:48:17.320 --> 00:48:19.160
+ This is the lucid interval.
+
+00:48:19.160 --> 00:48:22.440
+ The brain is quickly recovered from the initial concussion.
+
+00:48:22.440 --> 00:48:27.680
+ But meanwhile, underneath the skull, that torn artery is pumping high pressure arterial
+
+00:48:27.680 --> 00:48:31.360
+ blood into the tight space between the bone and the brain.
+
+00:48:31.360 --> 00:48:35.640
+ The pool of blood is growing by the second, taking up the shoes and toiletries in the
+
+00:48:35.640 --> 00:48:37.440
+ Monroe-Kelly suitcase.
+
+00:48:37.440 --> 00:48:40.560
+ And because it's arterial, it expands rapidly.
+
+00:48:40.560 --> 00:48:42.320
+ Suddenly the suitcase runs out of room.
+
+00:48:42.320 --> 00:48:44.200
+ The compensation fails.
+
+00:48:44.200 --> 00:48:48.680
+ The teenager, who was laughing and talking five minutes ago, suddenly grabs his head,
+
+00:48:48.680 --> 00:48:49.680
+ vomits.
+
+00:48:49.680 --> 00:48:53.240
+ His pupil blows wide open on one side and he crashes into a deep coma.
+
+00:48:53.240 --> 00:48:54.280
+ He's herniating.
+
+00:48:54.280 --> 00:48:55.680
+ He is herniating.
+
+00:48:55.680 --> 00:49:00.880
+ The expanding blood clot is violently shifting the entire brain structure sideways and down.
+
+00:49:00.880 --> 00:49:05.240
+ An epidural hematoma is a drop everything, life or death surgical emergency, requiring
+
+00:49:05.240 --> 00:49:09.760
+ the neurosurgeon to immediately drill bur holes in the skull to evacuate the blood before
+
+00:49:09.760 --> 00:49:11.320
+ the brain stem is crushed.
+
+00:49:11.320 --> 00:49:14.200
+ It is an incredible physiological trap.
+
+00:49:14.200 --> 00:49:18.800
+ Now as the neurological signals travel down from the brain, they enter the spinal cord.
+
+00:49:18.800 --> 00:49:23.760
+ And if trauma hits the spine, the rules of engagement for the medical team change entirely.
+
+00:49:23.760 --> 00:49:29.400
+ The absolute non-negotiable number one rule for a suspected spinal cord injury, or SCI,
+
+00:49:29.400 --> 00:49:31.080
+ is stabilization.
+
+00:49:31.080 --> 00:49:33.240
+ Keep the spine perfectly straight.
+
+00:49:33.240 --> 00:49:37.480
+ If you encounter someone who has fallen from a roof or been thrown from a car, you do not
+
+00:49:37.480 --> 00:49:38.480
+ pull them up.
+
+00:49:38.480 --> 00:49:39.960
+ You do not twist their body.
+
+00:49:39.960 --> 00:49:43.920
+ You must manually immobilize the head and neck in a neutral position.
+
+00:49:43.920 --> 00:49:47.840
+ Because right after the accident of fractured vertebrae in their back might simply be a
+
+00:49:47.840 --> 00:49:49.080
+ broken bone.
+
+00:49:49.080 --> 00:49:52.360
+ The spinal cord inside might still be intact.
+
+00:49:52.360 --> 00:49:56.520
+ But if you twist the patient, or let their head flop forward, that jagged broken edge
+
+00:49:56.520 --> 00:49:58.760
+ of bone can act like a guillotine.
+
+00:49:58.760 --> 00:50:03.400
+ It can slice right through the delicate spinal cord tissue, instantly turning a painful,
+
+00:50:03.400 --> 00:50:08.920
+ but recoverable bone injury into permanent irreversible quadriplegia.
+
+00:50:08.920 --> 00:50:12.400
+ Let's assume the worst has happened, and the cord has severed.
+
+00:50:12.400 --> 00:50:16.640
+ The general rule is that the higher the injury on the spine, the more bodily function is
+
+00:50:16.640 --> 00:50:17.640
+ lost.
+
+00:50:17.640 --> 00:50:23.800
+ But the guide dives deeply into a specific, highly volatile emergency that happens specifically
+
+00:50:23.800 --> 00:50:29.040
+ to patients who have injuries at the T6 vertebrae or higher, meaning injuries in the upper
+
+00:50:29.040 --> 00:50:30.480
+ chest or neck.
+
+00:50:30.480 --> 00:50:34.880
+ This complication is called autonomic dysreflexia.
+
+00:50:34.880 --> 00:50:40.080
+ Autonomic dysreflexia is a fascinating, dangerous malfunction of the nervous system that can
+
+00:50:40.080 --> 00:50:45.160
+ occur months or even years after the initial spinal cord injury is healed.
+
+00:50:45.160 --> 00:50:49.480
+ To understand why it happens, you have to recall the tug-of-war between the sympathetic,
+
+00:50:49.480 --> 00:50:54.600
+ the fight or flight, and parasympathetic, the rest and digest systems.
+
+00:50:54.600 --> 00:50:59.080
+ Normally, the brain up in the skull keeps the sympathetic nervous system tightly controlled
+
+00:50:59.080 --> 00:51:00.080
+ and regulated.
+
+00:51:00.080 --> 00:51:03.800
+ Okay, let's use an analogy to figure out how this breaks down.
+
+00:51:03.800 --> 00:51:10.000
+ I picture autonomic dysreflexia like a misrouted 911 call during a massive, citywide blackout.
+
+00:51:10.000 --> 00:51:11.560
+ Unlike where this is going.
+
+00:51:11.560 --> 00:51:15.680
+ Let's say our patient with a high spinal cord injury has a completely full bladder that needs
+
+00:51:15.680 --> 00:51:21.160
+ to be emptied, or perhaps a severe fecal impaction, or even just a wrinkled bed sheet pinching
+
+00:51:21.160 --> 00:51:22.280
+ their skin.
+
+00:51:22.280 --> 00:51:27.440
+ They can't feel it consciously, but the sensory nerves down in their body definitely feel it.
+
+00:51:27.440 --> 00:51:32.640
+ The bladder is stretched tight, it is painful, and it sends a frantic distress signal, a 911
+
+00:51:32.640 --> 00:51:37.000
+ call, racing up the spinal cord toward the brain shouting, "Hey, we are in pain down
+
+00:51:37.000 --> 00:51:38.000
+ here.
+
+00:51:38.000 --> 00:51:39.000
+ Please fix this."
+
+00:51:39.000 --> 00:51:40.440
+ But the phone lines are cut.
+
+00:51:40.440 --> 00:51:43.600
+ The physical injury at the neck acts as a complete roadblock.
+
+00:51:43.600 --> 00:51:47.800
+ The distress signal hits the scar tissue of the spinal cord injury and cannot get through
+
+00:51:47.800 --> 00:51:48.800
+ to the brain.
+
+00:51:48.800 --> 00:51:49.800
+ Right.
+
+00:51:49.800 --> 00:51:55.080
+ The brain remains completely unaware, but the signal bounces back and sets off alarms
+
+00:51:55.080 --> 00:51:57.320
+ in the lower half of the spinal cord.
+
+00:51:57.320 --> 00:52:00.000
+ The sympathetic nervous system down below the injury panics.
+
+00:52:00.000 --> 00:52:04.960
+ It doesn't know what's wrong, it just knows there's an emergency it can't resolve.
+
+00:52:04.960 --> 00:52:06.920
+ So it hits the big red button.
+
+00:52:06.920 --> 00:52:11.240
+ It triggers a massive localized fight or flight response in the lower half of the body.
+
+00:52:11.240 --> 00:52:16.600
+ It sends the SWAT team and the main weapon of the sympathetic nervous system is massive
+
+00:52:16.600 --> 00:52:18.120
+ vasoconstriction.
+
+00:52:18.120 --> 00:52:21.960
+ It violently squeezes all the blood vessels below the level of the injury.
+
+00:52:21.960 --> 00:52:26.560
+ And when you forcefully constrict the blood vessels in half of an adult human body, you
+
+00:52:26.560 --> 00:52:30.240
+ drastically reduce the space the blood has to flow in.
+
+00:52:30.240 --> 00:52:34.560
+ The overall systemic blood pressure skyrockets instantly.
+
+00:52:34.560 --> 00:52:40.920
+ We are talking severe stroke level hypertension, sometimes pushing 300 systolic.
+
+00:52:40.920 --> 00:52:43.840
+ Now here's where the brain finally gets involved.
+
+00:52:43.840 --> 00:52:48.840
+ The brain didn't get the pain signal from the bladder, but the baroreceptors, the pressure
+
+00:52:48.840 --> 00:52:54.200
+ sensors and the carotid arteries in the neck suddenly feel this massive terrifying surge
+
+00:52:54.200 --> 00:52:56.400
+ of blood pressure blasting up from the body.
+
+00:52:56.400 --> 00:52:57.600
+ It feels the pressure wave.
+
+00:52:57.600 --> 00:52:58.600
+ Yeah.
+
+00:52:58.600 --> 00:53:01.240
+ The brain realizes whoa, BP is dangerously high.
+
+00:53:01.240 --> 00:53:03.520
+ We are going to blow a vessel in the skull.
+
+00:53:03.520 --> 00:53:06.560
+ So the brain desperately tries to call off the response.
+
+00:53:06.560 --> 00:53:07.800
+ It does two things.
+
+00:53:07.800 --> 00:53:12.760
+ First, it uses the vagus nerve to slam the breaks on the heart rate, slowing the heart
+
+00:53:12.760 --> 00:53:15.080
+ down significantly to reduce the pressure.
+
+00:53:15.080 --> 00:53:20.160
+ And second, it sends a powerful message down the spinal cord saying vasodilate, open the
+
+00:53:20.160 --> 00:53:21.720
+ blood vessels.
+
+00:53:21.720 --> 00:53:22.720
+ Everyone calm down.
+
+00:53:22.720 --> 00:53:25.480
+ But again, the phone lines are cut.
+
+00:53:25.480 --> 00:53:30.400
+ The brain's parasympathetic message to relax travels down the cord and crashes into the
+
+00:53:30.400 --> 00:53:31.840
+ injury at the neck.
+
+00:53:31.840 --> 00:53:34.280
+ It cannot reach the lower half of the body.
+
+00:53:34.280 --> 00:53:40.000
+ So you end up with a patient whose body is physiologically split into at the level of
+
+00:53:40.000 --> 00:53:41.000
+ the injury.
+
+00:53:41.000 --> 00:53:44.320
+ Below the injury, the sympathetic nervous system is running wild.
+
+00:53:44.320 --> 00:53:46.400
+ The blood vessels remain clamped tight.
+
+00:53:46.400 --> 00:53:49.800
+ The skin is pale, cool, and they're not sweating.
+
+00:53:49.800 --> 00:53:54.200
+ But above the injury, where the brain can still communicate, the blood vessels are forced
+
+00:53:54.200 --> 00:53:57.800
+ wide open in a desperate attempt to lower the pressure.
+
+00:53:57.800 --> 00:54:00.760
+ The patient's face and neck are flushed bright red.
+
+00:54:00.760 --> 00:54:05.920
+ They are sweating profusely, they have a pounding, throbbing headache from the dilated vessels
+
+00:54:05.920 --> 00:54:10.400
+ inside their skull, and their heart is beating incredibly slowly.
+
+00:54:10.400 --> 00:54:14.680
+ High blood pressure, very low heart rate, and a pounding headache.
+
+00:54:14.680 --> 00:54:18.160
+ It is an absolute critical emergency.
+
+00:54:18.160 --> 00:54:23.600
+ If left untreated, the soaring blood pressure will inevitably cause a hemorrhagic stroke,
+
+00:54:23.600 --> 00:54:26.800
+ or a retinal hemorrhage, or a heart attack.
+
+00:54:26.800 --> 00:54:30.880
+ So what on earth is the nursing protocol in this chaotic storm?
+
+00:54:30.880 --> 00:54:35.160
+ You can't just give them a pain killer because the brain can't feel the pain anyway.
+
+00:54:35.160 --> 00:54:40.320
+ The beauty of the nursing intervention here is the strict logical sequence.
+
+00:54:40.320 --> 00:54:44.160
+ Step one relies entirely on physics, gravity.
+
+00:54:44.160 --> 00:54:45.320
+ Just set them up.
+
+00:54:45.320 --> 00:54:46.320
+ Yes.
+
+00:54:46.320 --> 00:54:51.000
+ The absolute first action before you call the doctor, before you grab medication, is to
+
+00:54:51.000 --> 00:54:56.720
+ immediately sit the patient straight up in bed dangling their legs over the edge if possible.
+
+00:54:56.720 --> 00:55:00.920
+ When sitting up, naturally causes the blood to pool in the legs, which physically lowers
+
+00:55:00.920 --> 00:55:03.880
+ the blood pressure in the upper body, buying you precious minutes.
+
+00:55:03.880 --> 00:55:04.880
+ Exactly.
+
+00:55:04.880 --> 00:55:07.880
+ You mitigate the immediate threat of a stroke using gravity.
+
+00:55:07.880 --> 00:55:11.480
+ Step two is playing detective to find and remove the trigger.
+
+00:55:11.480 --> 00:55:16.360
+ You know that 80 to 90 percent of the time, the trigger is a full bladder or a full bowel.
+
+00:55:16.360 --> 00:55:20.440
+ So you immediately check the urinary catheter, is the tubing kinked under their leg?
+
+00:55:20.440 --> 00:55:22.240
+ Is it clogged with sediment?
+
+00:55:22.240 --> 00:55:24.040
+ You have to find the source.
+
+00:55:24.040 --> 00:55:28.400
+ If they don't have a catheter, the nurse must immediately perform a straight catheterization
+
+00:55:28.400 --> 00:55:32.000
+ to drain the bladder and turn off that original 911 call.
+
+00:55:32.000 --> 00:55:37.840
+ And if it's not the bladder, you check for a fecal impaction or you loosen tight clothing.
+
+00:55:37.840 --> 00:55:42.440
+ Once you find and remove the physical trigger, the sensory nerve stops screaming, the chaotic
+
+00:55:42.440 --> 00:55:46.920
+ reflex loop breaks, the sympathetic nervous system stands down, and the blood pressure
+
+00:55:46.920 --> 00:55:48.840
+ rapidly normalizes.
+
+00:55:48.840 --> 00:55:54.360
+ It is a mechanical, elegant fix to a terrifying physiological storm.
+
+00:55:54.360 --> 00:55:57.680
+ It requires a deep understanding of the wiring.
+
+00:55:57.680 --> 00:56:02.480
+ Speaking of wiring, we've covered external trauma breaking the wires, but physical impact
+
+00:56:02.480 --> 00:56:05.800
+ isn't the only way the nervous system gets attacked.
+
+00:56:05.800 --> 00:56:09.440
+ Sometimes the threat is microscopic or it comes from within.
+
+00:56:09.440 --> 00:56:12.600
+ Let's look at infections and autoimmune betrayals.
+
+00:56:12.600 --> 00:56:17.280
+ This area of neurology is where we see external invaders breaching the fortress of the brain.
+
+00:56:17.280 --> 00:56:21.400
+ Or worse, the body's own defense mechanisms turning against the very system they're
+
+00:56:21.400 --> 00:56:23.560
+ supposed to protect.
+
+00:56:23.560 --> 00:56:26.120
+ Let's start with the external invaders.
+
+00:56:26.120 --> 00:56:27.280
+ Meningitis.
+
+00:56:27.280 --> 00:56:31.000
+ This is an inflammation of the meninges, the protective layers that surround the brain
+
+00:56:31.000 --> 00:56:32.280
+ and spinal cord.
+
+00:56:32.280 --> 00:56:37.720
+ The guide focuses heavily on bacterial meningitis, which is incredibly dangerous, highly contagious,
+
+00:56:37.720 --> 00:56:41.840
+ and notorious for sweeping through crowded living situations like college dormitories
+
+00:56:41.840 --> 00:56:43.920
+ or military barracks.
+
+00:56:43.920 --> 00:56:46.560
+ The clinical presentation is intense.
+
+00:56:46.560 --> 00:56:53.680
+ The classic triad of symptoms includes a sudden spiking high fever, a severe unrelenting headache,
+
+00:56:53.680 --> 00:56:58.920
+ and nucal rigidity, which is a painfully stiff neck that the patient cannot bend forward.
+
+00:56:58.920 --> 00:57:03.480
+ They also experience severe photophobia and extreme sensitivity to light.
+
+00:57:03.480 --> 00:57:07.720
+ The guide details to very specific, almost bizarre physical test nurses used to assess
+
+00:57:07.720 --> 00:57:12.320
+ for this meningial irritation, kernig sign and redzinsky sign.
+
+00:57:12.320 --> 00:57:15.040
+ I had to look at videos of these to understand the mechanics.
+
+00:57:15.040 --> 00:57:16.040
+ You're very visual.
+
+00:57:16.040 --> 00:57:21.760
+ Mening sign is when the patient is lying flat, you bring their thigh up to a 90 degree angle
+
+00:57:21.760 --> 00:57:24.440
+ and then try to straighten their lower leg.
+
+00:57:24.440 --> 00:57:29.080
+ If they have meningitis, they physically cannot straighten the leg without excruciating pain
+
+00:57:29.080 --> 00:57:30.400
+ in their back.
+
+00:57:30.400 --> 00:57:34.120
+ Because straightening the leg violently stretches the sciatic nerve, which pulls directly on
+
+00:57:34.120 --> 00:57:36.600
+ the inflamed infected spinal cord.
+
+00:57:36.600 --> 00:57:39.640
+ And redzinsky sign is even wilder.
+
+00:57:39.640 --> 00:57:44.800
+ The patient is lying flat, the nurse places a hand behind the patient's head, and forcefully
+
+00:57:44.800 --> 00:57:48.680
+ bends their neck forward, talking their chin to their chest.
+
+00:57:48.680 --> 00:57:53.480
+ If it's positive, the patient's hips and knees will instantly and involuntarily violently
+
+00:57:53.480 --> 00:57:55.040
+ pull up to their chest.
+
+00:57:55.040 --> 00:57:57.600
+ Again, it's a protective reflex.
+
+00:57:57.600 --> 00:58:01.200
+ Bending the neck stretches the inflamed spinal cord from the top.
+
+00:58:01.200 --> 00:58:05.400
+ To relieve that agonizing tension, the body automatically flexes the hips and knees to
+
+00:58:05.400 --> 00:58:08.080
+ create slack in the lower spinal nerves.
+
+00:58:08.080 --> 00:58:13.360
+ To treat bacterial meningitis, you obviously need powerful antibiotics, but getting drugs
+
+00:58:13.360 --> 00:58:18.360
+ into the brain is notoriously difficult because of the blood brain barrier, a tight security
+
+00:58:18.360 --> 00:58:22.600
+ checkpoint that keeps most chemicals in the blood from entering the brain tissue.
+
+00:58:22.600 --> 00:58:28.260
+ You need specific antibiotics that can cross that barrier, but the most crucial nursing
+
+00:58:28.260 --> 00:58:31.840
+ detail in the guide isn't about the antibiotic itself.
+
+00:58:31.840 --> 00:58:33.920
+ It's about the timing of a different drug.
+
+00:58:33.920 --> 00:58:39.120
+ The nurse must administer a powerful steroid, dexamethasone, before hanging the first dose
+
+00:58:39.120 --> 00:58:40.960
+ of the antibiotic.
+
+00:58:40.960 --> 00:58:43.280
+ Talk me through the biological logic there.
+
+00:58:43.280 --> 00:58:45.480
+ Why delay the lifesaving antibiotic?
+
+00:58:45.480 --> 00:58:48.720
+ Because of how the antibiotic actually works.
+
+00:58:48.720 --> 00:58:52.600
+ When that powerful antibiotic finally crosses the barrier and hits the bacteria floating
+
+00:58:52.600 --> 00:58:58.640
+ in the cerebrospinal fluid, it doesn't just quietly poison them, it blows them apart.
+
+00:58:58.640 --> 00:59:00.920
+ It laces the bacterial cell walls.
+
+00:59:00.920 --> 00:59:03.360
+ A microscopic massacre.
+
+00:59:03.360 --> 00:59:09.160
+ A massacre that releases millions of dead bacterial fragments and toxins into the enclosed base
+
+00:59:09.160 --> 00:59:10.520
+ of the skull.
+
+00:59:10.520 --> 00:59:15.720
+ The patient's immune system detects this sudden flood of debris and launches a massive, violent,
+
+00:59:15.720 --> 00:59:16.880
+ inflammatory response.
+
+00:59:16.880 --> 00:59:19.200
+ Oh, and that causes swelling.
+
+00:59:19.200 --> 00:59:23.720
+ That sudden inflammation causes the brain tissue to swell rapidly, which, as we know from
+
+00:59:23.720 --> 00:59:28.720
+ our Monroe-Kelli suitcase, spikes the intracranial pressure to lethal levels.
+
+00:59:28.720 --> 00:59:31.760
+ So the cure actually causes the lethal complication.
+
+00:59:31.760 --> 00:59:34.200
+ Unless you pre-medicate.
+
+00:59:34.200 --> 00:59:39.320
+ By giving the potent steroid dexamethasone 15 to 20 minutes before the antibiotic, you
+
+00:59:39.320 --> 00:59:43.440
+ preemptively suppress and calm the immune system, you put it to sleep.
+
+00:59:43.440 --> 00:59:47.800
+ So that when the bacterial massacre begins, the immune system doesn't overreact.
+
+00:59:47.800 --> 00:59:51.560
+ The brain doesn't swell, and the patient survives the cure.
+
+00:59:51.560 --> 00:59:53.080
+ That is brilliant pharmacology.
+
+00:59:53.080 --> 00:59:55.920
+ Okay, so that's an external infection.
+
+00:59:55.920 --> 00:59:58.880
+ But what if the immune system isn't reacting to bacteria?
+
+00:59:58.880 --> 01:00:02.340
+ What if it just decides to attack the nervous system on its own?
+
+01:00:02.340 --> 01:00:05.080
+ That leads us to the autoimmune disorders.
+
+01:00:05.080 --> 01:00:11.080
+ The guide focuses on three major ones; multiple sclerosis, myasthenia gravis, and Guillain-Barre
+
+01:00:11.080 --> 01:00:12.080
+ syndrome.
+
+01:00:12.080 --> 01:00:14.560
+ Let's start with multiple sclerosis, or MS.
+
+01:00:14.560 --> 01:00:19.320
+ MS is a demyelinating disease of the central nervous system.
+
+01:00:19.320 --> 01:00:22.760
+ Understand this, you have to look at the structure of a nerve.
+
+01:00:22.760 --> 01:00:28.360
+ The nerve fiber, the axon, acts like an electrical wire, transmitting signals.
+
+01:00:28.360 --> 01:00:33.080
+ To make those signals travel blazingly fast, the nerve is wrapped in a fatty insulating
+
+01:00:33.080 --> 01:00:35.320
+ layer called the myelin sheath.
+
+01:00:35.320 --> 01:00:38.400
+ It's literally the rubber coating on the electrical wire.
+
+01:00:38.400 --> 01:00:39.720
+ Exactly.
+
+01:00:39.720 --> 01:00:45.640
+ In MS, for reasons we still don't fully understand, the patient's own immune T-cells cross the
+
+01:00:45.640 --> 01:00:50.720
+ blood brain barrier, identify this myelin as a foreign enemy, and relentlessly attack
+
+01:00:50.720 --> 01:00:52.360
+ and destroy it.
+
+01:00:52.360 --> 01:00:56.440
+ Stripping the rubber coating off the wires in the brain and spinal cord.
+
+01:00:56.440 --> 01:01:02.320
+ When the wire is exposed, the electrical signals slow down, short circuit, misfire, or stop
+
+01:01:02.320 --> 01:01:03.600
+ entirely.
+
+01:01:03.600 --> 01:01:08.440
+ This leads to a massive array of symptoms depending on which wires are stripped.
+
+01:01:08.440 --> 01:01:11.480
+ Profound crushing fatigue is a hallmark.
+
+01:01:11.480 --> 01:01:16.560
+ Patients experience muscle weakness, numbness, and very frequently, vision problems, like
+
+01:01:16.560 --> 01:01:22.560
+ blurry vision or pain when moving the eye, because the optic nerve is heavily myelinated.
+
+01:01:22.560 --> 01:01:25.920
+ The disease is often described as relapsing and remitting.
+
+01:01:25.920 --> 01:01:29.880
+ It flares up the immune system attacks, and then it calms down.
+
+01:01:29.880 --> 01:01:35.120
+ The body tries to repair the myelin, but it often leaves behind hard scars or plaques,
+
+01:01:35.120 --> 01:01:40.080
+ the sclerais, and multiple sclerosis, permanently damaging the pathway.
+
+01:01:40.080 --> 01:01:46.480
+ Now let's contrast that central nervous system attack with myasthenia gravis, or MG.
+
+01:01:46.480 --> 01:01:48.800
+ MG doesn't attack the wire itself.
+
+01:01:48.800 --> 01:01:51.360
+ It targets the myoneural junction.
+
+01:01:51.360 --> 01:01:56.360
+ This is the exact microscopic gap, where the end of a motor nerve meets a muscle fiber
+
+01:01:56.360 --> 01:01:58.040
+ to tell it to contract.
+
+01:01:58.040 --> 01:01:59.360
+ The chemical handoff.
+
+01:01:59.360 --> 01:02:00.360
+ That's right.
+
+01:02:00.360 --> 01:02:04.680
+ When you want to move your arm, the nerve releases a chemical messenger called acetylcholine
+
+01:02:04.680 --> 01:02:06.360
+ into the gap.
+
+01:02:06.360 --> 01:02:11.280
+ The acetylcholine floats across, locks into specific receptors on the muscle, and the muscle
+
+01:02:11.280 --> 01:02:12.680
+ contracts.
+
+01:02:12.680 --> 01:02:18.080
+ In myasthenia gravis, the immune system produces rogue antibodies that physically cover up and
+
+01:02:18.080 --> 01:02:21.760
+ block those acetylcholine receptors on the muscle side.
+
+01:02:21.760 --> 01:02:26.560
+ So the nerve is screaming "move" contract, dumping acetylcholine into the gap, but the
+
+01:02:26.560 --> 01:02:30.080
+ muscle is wearing earplugs, it cannot receive the message.
+
+01:02:30.080 --> 01:02:35.120
+ The result is profound, fluctuating muscle weakness that worsens with activity and improves
+
+01:02:35.120 --> 01:02:36.120
+ with rest.
+
+01:02:36.120 --> 01:02:41.240
+ And the hallmark presentation is that this weakness almost always starts in the small,
+
+01:02:41.240 --> 01:02:43.880
+ delicate muscles of the face and eyes.
+
+01:02:43.880 --> 01:02:48.080
+ A patient will present with deplopia, which is double vision, because the eye muscles
+
+01:02:48.080 --> 01:02:49.560
+ can't coordinate.
+
+01:02:49.560 --> 01:02:53.960
+ Antosis, a severe drooping of one or both eyelids.
+
+01:02:53.960 --> 01:02:57.320
+ The medical treatment involves anticholinesterase medications.
+
+01:02:57.320 --> 01:02:59.360
+ I look this up to understand the mechanism.
+
+01:02:59.360 --> 01:03:04.600
+ There's normally an enzyme in the gap that cleans up the acetylcholine after it fires.
+
+01:03:04.600 --> 01:03:07.040
+ These medications inhibit that clean up enzyme.
+
+01:03:07.040 --> 01:03:11.800
+ They basically allow the acetylcholine to flood the gap and hang around longer, increasing
+
+01:03:11.800 --> 01:03:15.880
+ the chances that a message will eventually slip past the blocking antibodies and trigger
+
+01:03:15.880 --> 01:03:17.440
+ a contraction.
+
+01:03:17.440 --> 01:03:21.520
+ It's an effective treatment, but it creates an incredibly dangerous balancing act for the
+
+01:03:21.520 --> 01:03:23.440
+ patient and the nurse.
+
+01:03:23.440 --> 01:03:27.600
+ The guide highlights the critical need for nurses to differentiate between two opposite
+
+01:03:27.600 --> 01:03:33.160
+ life-threatening crises in MG patients that look terrifyingly similar on the surface.
+
+01:03:33.160 --> 01:03:35.320
+ Let's puzzle through these.
+
+01:03:35.320 --> 01:03:37.920
+ First you have a myasthenic crisis.
+
+01:03:37.920 --> 01:03:42.200
+ This happens when the patient isn't getting enough medication or they have a severe disease
+
+01:03:42.200 --> 01:03:46.160
+ flare, often triggered by a random respiratory infection.
+
+01:03:46.160 --> 01:03:49.440
+ In a myasthenic crisis, the disease is winning.
+
+01:03:49.440 --> 01:03:54.480
+ The muscles become profoundly dangerously weak, progressing beyond the eyes down to the throat
+
+01:03:54.480 --> 01:03:59.600
+ and chest, to the point where the patient physically cannot swallow their saliva or pull
+
+01:03:59.600 --> 01:04:01.560
+ air into their lungs.
+
+01:04:01.560 --> 01:04:06.320
+ They require immediate respiratory support, perhaps a ventilator, and an increase in their
+
+01:04:06.320 --> 01:04:07.320
+ medication.
+
+01:04:07.320 --> 01:04:11.160
+ But then you have the exact opposite problem, a colonergic crisis.
+
+01:04:11.160 --> 01:04:14.360
+ This happens when the patient has taken too much of their medication.
+
+01:04:14.360 --> 01:04:16.880
+ It's an overdose of acetylcholine.
+
+01:04:16.880 --> 01:04:21.400
+ The muscles are being overstimulated to the point of exhaustion and failure, and the symptoms
+
+01:04:21.400 --> 01:04:28.200
+ of this colonergic toxicity create a very visceral, gross acronym, sludge.
+
+01:04:28.200 --> 01:04:32.200
+ Sludge perfectly paints the picture of what excessive parasympathetic stimulation looks
+
+01:04:32.200 --> 01:04:33.200
+ like.
+
+01:04:33.200 --> 01:04:39.880
+ It stands for salivation, drooling uncontrollably, lacrimation, tears streaming from the eyes,
+
+01:04:39.880 --> 01:04:46.360
+ urination, loss of bladder control, defecation, severe diarrhea, gastrointestinal upset,
+
+01:04:46.360 --> 01:04:49.760
+ damping, and emesis vomiting.
+
+01:04:49.760 --> 01:04:53.200
+ The patient is practically leaking fluid from every orifice.
+
+01:04:53.200 --> 01:04:56.720
+ Everything is wet, hyperactive, and overstimulated.
+
+01:04:56.720 --> 01:05:01.160
+ And the nursing intervention is the exact reverse of the other crisis.
+
+01:05:01.160 --> 01:05:06.200
+ You must immediately stop their normal MG medications and administer atropine, a powerful
+
+01:05:06.200 --> 01:05:10.760
+ anti-colonergic drug, to dry them out and block the excessive signaling before their
+
+01:05:10.760 --> 01:05:13.800
+ respiratory muscles fail from exhaustion.
+
+01:05:13.800 --> 01:05:19.480
+ It is a razor-thin line to walk, but perhaps the most urgent, terrifying autoimmune condition
+
+01:05:19.480 --> 01:05:22.600
+ in this entire guide is Guillain-Barre syndrome.
+
+01:05:22.600 --> 01:05:27.560
+ I really had to stop and process the mechanics of Guillain-Barre because it sounds like a
+
+01:05:27.560 --> 01:05:29.360
+ nightmare scenario.
+
+01:05:29.360 --> 01:05:34.560
+ It's a peripheral nerve demyelinating disease, meaning it strips the wires in the body, not
+
+01:05:34.560 --> 01:05:35.560
+ the brain.
+
+01:05:35.560 --> 01:05:37.520
+ But the onset is what's crazy.
+
+01:05:37.520 --> 01:05:42.520
+ It frequently happens a few weeks after a completely mundane viral infection, like a mild stomach
+
+01:05:42.520 --> 01:05:44.120
+ bug or cold.
+
+01:05:44.120 --> 01:05:47.280
+ The prevailing theory is molecular mimicry.
+
+01:05:47.280 --> 01:05:50.640
+ The immune system builds specific antibodies to fight off the stomach virus.
+
+01:05:50.640 --> 01:05:52.840
+ It successfully kills the virus.
+
+01:05:52.840 --> 01:05:57.600
+ But unfortunately, the molecular structure of that specific virus happens to look almost
+
+01:05:57.600 --> 01:06:01.880
+ identical to the molecular structure of the myelin sheath covering the patient's peripheral
+
+01:06:01.880 --> 01:06:03.040
+ nerves.
+
+01:06:03.040 --> 01:06:08.200
+ The immune system gets confused, stays active, and begins aggressively attacking the patient's
+
+01:06:08.200 --> 01:06:11.640
+ own healthy nerves, thinking they are the virus.
+
+01:06:11.640 --> 01:06:16.520
+ And the signature defining feature of Guillain-Barre is how the paralysis spreads, it's ascending
+
+01:06:16.520 --> 01:06:17.520
+ weakness.
+
+01:06:17.520 --> 01:06:18.520
+ Yes.
+
+01:06:18.520 --> 01:06:21.760
+ It almost universally starts in the feet and lower legs.
+
+01:06:21.760 --> 01:06:26.480
+ The patient might feel a tingling, a numbness or a heaviness, it might stumble.
+
+01:06:26.480 --> 01:06:31.200
+ And then over days or even hours, the paralysis creeps relentlessly upward.
+
+01:06:31.200 --> 01:06:35.200
+ To the knees, the thighs, the hips, the abdomen.
+
+01:06:35.200 --> 01:06:37.640
+ Okay if it's ascending, let's think about where it's headed.
+
+01:06:37.640 --> 01:06:41.080
+ The ultimate fear for a nurse monitoring this patient isn't that they won't be able
+
+01:06:41.080 --> 01:06:42.080
+ to walk.
+
+01:06:42.080 --> 01:06:44.800
+ The fear is what happens when the paralysis reaches the chest.
+
+01:06:44.800 --> 01:06:49.320
+ It is headed directly for the diaphragm and the intercostal muscles.
+
+01:06:49.320 --> 01:06:54.440
+ The absolute priority for a critical care nurse managing a Guillain-Barre patient is obsessive
+
+01:06:54.440 --> 01:06:57.000
+ monitoring of the respiratory function.
+
+01:06:57.000 --> 01:07:01.520
+ You are measuring their vital capacity, how much air they can forcefully exhale every
+
+01:07:01.520 --> 01:07:03.180
+ few hours.
+
+01:07:03.180 --> 01:07:06.960
+ You are in a race against the ascending paralysis.
+
+01:07:06.960 --> 01:07:11.760
+ Because if that weakness reaches the chest, the patient loses the physical, mechanical
+
+01:07:11.760 --> 01:07:14.600
+ ability to pull air into their lungs.
+
+01:07:14.600 --> 01:07:17.640
+ They will suffocate while fully conscious.
+
+01:07:17.640 --> 01:07:22.640
+ The aha moment for me was realizing that the nurse isn't just passively watching them get
+
+01:07:22.640 --> 01:07:23.640
+ weaker.
+
+01:07:23.640 --> 01:07:26.080
+ The nurse is actively preparing to intubate.
+
+01:07:26.080 --> 01:07:31.360
+ The clinical goal is to identify the impending respiratory failure before the patient actually
+
+01:07:31.360 --> 01:07:36.560
+ stops breathing, secure their airway with a mechanical ventilator, and then use treatments
+
+01:07:36.560 --> 01:07:42.560
+ like plasmafaresis, filtering the blood, or IV immunoglobulin to calm the immune system
+
+01:07:42.560 --> 01:07:43.760
+ down.
+
+01:07:43.760 --> 01:07:47.800
+ The good news about Guillain-Barre is that because it affects the peripheral nerves which
+
+01:07:47.800 --> 01:07:52.920
+ can regenerate myelin, the vast majority of patients fully recover, but they might spend
+
+01:07:52.920 --> 01:07:58.000
+ weeks or months on a ventilator, locked inside a paralyzed body, waiting for the immune storm
+
+01:07:58.000 --> 01:07:59.760
+ to pass and the nerves to heal.
+
+01:07:59.760 --> 01:08:05.160
+ It is an exercise in intense anticipation and supportive care.
+
+01:08:05.160 --> 01:08:09.500
+ Working with nerves acting strangely, the guide shifts to localized issues, specifically
+
+01:08:09.500 --> 01:08:14.560
+ touching on two cranial nerves, cranial nerve 5 and cranial nerve 7.
+
+01:08:14.560 --> 01:08:19.800
+ Trigeminal neuralgia involves cranial nerve 5, the trigeminal nerve, which branches out
+
+01:08:19.800 --> 01:08:22.920
+ to supply sensation to the face.
+
+01:08:22.920 --> 01:08:28.160
+ The pathology is often a nearby blood vessel looping around the nerve and physically compressing
+
+01:08:28.160 --> 01:08:29.160
+ it.
+
+01:08:29.160 --> 01:08:34.960
+ The pressure causes the nerve's insulation to wear down, making it misfire violently.
+
+01:08:34.960 --> 01:08:39.320
+ And the pain is famously described as one of the most severe pains known to medicine.
+
+01:08:39.320 --> 01:08:45.560
+ Sudden, extreme, electrical shocks are stabbing burning sensations on one side of the face.
+
+01:08:45.560 --> 01:08:50.680
+ But it's the triggers that are so insidious, it's not triggered by a punch to the face.
+
+01:08:50.680 --> 01:08:57.600
+ The triggers are incredibly, tragically minor, a light touch, washing your face, brushing
+
+01:08:57.600 --> 01:09:03.320
+ your teeth, chewing a piece of soft food, or even just a cool draft of air from an open
+
+01:09:03.320 --> 01:09:09.780
+ window blowing across the cheek can trigger agonizing, paralyzing pain.
+
+01:09:09.780 --> 01:09:12.760
+ Patients live in absolute terror of the next attack.
+
+01:09:12.760 --> 01:09:15.600
+ They will stop eating, leading to severe weight loss.
+
+01:09:15.600 --> 01:09:19.320
+ They will stop brushing their teeth, leading to dental decay.
+
+01:09:19.320 --> 01:09:21.720
+ They isolate themselves completely.
+
+01:09:21.720 --> 01:09:24.520
+ So the nursing care isn't just about handing out pain pills.
+
+01:09:24.520 --> 01:09:29.960
+ It's highly focused on environmental prevention, providing soft, pureed foods served exactly
+
+01:09:29.960 --> 01:09:34.880
+ at room temperature so it isn't too hot or cold, teaching them to chew only on the unaffected
+
+01:09:34.880 --> 01:09:38.440
+ side of their mouth, minimizing drafts in the hospital room.
+
+01:09:38.440 --> 01:09:44.240
+ Contrast that sensory pain with Bell's palsy, which affects cranial nerve seven, the facial
+
+01:09:44.240 --> 01:09:45.240
+ motor nerve.
+
+01:09:45.240 --> 01:09:48.840
+ This is the one where a person wakes up, looks in the mirror, and one side of their face
+
+01:09:48.840 --> 01:09:50.640
+ is completely drooping.
+
+01:09:50.640 --> 01:09:54.720
+ They can't smile on that side, their mouth sags, and they can't close their eye.
+
+01:09:54.720 --> 01:10:00.080
+ The immediate terrifying assumption for the patient is that they are having a massive stroke.
+
+01:10:00.080 --> 01:10:03.200
+ And ruling out a stroke is the medical priority.
+
+01:10:03.200 --> 01:10:08.760
+ But once a stroke is ruled out, the primary nursing intervention becomes reassurance.
+
+01:10:08.760 --> 01:10:13.440
+ The nurse must assure the panicked patient that Bell's palsy is a localized, usually
+
+01:10:13.440 --> 01:10:16.600
+ viral-induced inflammation of just that one nerve.
+
+01:10:16.600 --> 01:10:22.400
+ It is not a brain injury, and with a course of oral steroids, it is highly curable, often
+
+01:10:22.400 --> 01:10:25.800
+ resolving completely in three to five weeks.
+
+01:10:25.800 --> 01:10:29.640
+ But because it's a motor nerve issue, they can't close their eyelid on that side.
+
+01:10:29.640 --> 01:10:34.200
+ The muscle is paralyzed, so the biggest physical risk isn't actually to the face itself, it's
+
+01:10:34.200 --> 01:10:38.680
+ the risk of permanent blindness in that eye from corneal scratching and drying out.
+
+01:10:38.680 --> 01:10:41.480
+ The nurse must vigorously teach eye protection.
+
+01:10:41.480 --> 01:10:45.040
+ The patient has to learn to manually close their own eyelid with their finger.
+
+01:10:45.040 --> 01:10:50.280
+ They must apply hydrating eye drops constantly during the day, use a thick protective ointment
+
+01:10:50.280 --> 01:10:54.600
+ at night, and tape the eye shut or wear an eye patch to sleep.
+
+01:10:54.600 --> 01:11:00.160
+ It is a perfect microcosm of nursing care, identifying the primary issue, anticipating
+
+01:11:00.160 --> 01:11:05.520
+ the secondary complication, blindness, and educating the patient to prevent it while
+
+01:11:05.520 --> 01:11:07.120
+ the primary issue heals.
+
+01:11:07.120 --> 01:11:10.200
+ Which brings us to the final chapter of this deep dive.
+
+01:11:10.200 --> 01:11:15.080
+ We've dealt with the rigid physics of pressure, we've dealt with sudden pipe bursts, trauma,
+
+01:11:15.080 --> 01:11:20.800
+ and acute immune attacks, now we must look at the long game, the slow invaders.
+
+01:11:20.800 --> 01:11:25.800
+ This section covers oncology and degenerative disorders, the slow, inevitable changes that
+
+01:11:25.800 --> 01:11:31.080
+ happen when the nervous system grows unwanted structures or slowly degrades over time.
+
+01:11:31.080 --> 01:11:33.880
+ Let's begin with oncology, brain tumors.
+
+01:11:33.880 --> 01:11:39.480
+ What makes brain tumors unique is that whether the tumor is benign, non-cancerous, or malignant,
+
+01:11:39.480 --> 01:11:43.560
+ it causes a massive, life-threatening problem simply by existing.
+
+01:11:43.560 --> 01:11:47.320
+ It goes right back to the Monroe-Kelly suitcase, the rigid box.
+
+01:11:47.320 --> 01:11:52.640
+ A tumor is a solid, expanding mass, taking up space where there is no space to give.
+
+01:11:52.640 --> 01:11:53.640
+ Exactly.
+
+01:11:53.640 --> 01:11:59.160
+ Even a perfectly benign, slow-growing tumor will eventually kill the patient if left untreated,
+
+01:11:59.160 --> 01:12:03.200
+ because it will eventually compress the brain tissue and cause herniation.
+
+01:12:03.200 --> 01:12:08.160
+ Therefore, the clinical symptoms of a brain tumor often perfectly mimic the symptoms of
+
+01:12:08.160 --> 01:12:10.680
+ increased intracranial pressure we discussed earlier.
+
+01:12:10.680 --> 01:12:15.120
+ Right, patients present with dull, constant, morning headaches that might improve when
+
+01:12:15.120 --> 01:12:17.640
+ they stand up in the blood drains from their head.
+
+01:12:17.640 --> 01:12:21.320
+ They might have unexpected projectile vomiting unrelated to food.
+
+01:12:21.320 --> 01:12:26.040
+ They have vision changes as the optic nerve is compressed, or new onset seizures as the
+
+01:12:26.040 --> 01:12:29.080
+ tumor irritates the electrical pathways of the cortex.
+
+01:12:29.080 --> 01:12:34.080
+ The study guide stresses that for brain tumors, the medical treatment is surgical removal,
+
+01:12:34.080 --> 01:12:39.480
+ radiation, or chemo, but the nursing care is largely supportive.
+
+01:12:39.480 --> 01:12:43.440
+ The nurse is managing the downstream symptoms of the mass.
+
+01:12:43.440 --> 01:12:48.680
+ If the tumor causes seizures, the nurse administers prophylactic anti-convulsants and maintains
+
+01:12:48.680 --> 01:12:50.040
+ strict seizure precautions.
+
+01:12:50.040 --> 01:12:55.680
+ If the tumor causes localized brain swelling, the nurse administers dexamethasone to shrink
+
+01:12:55.680 --> 01:12:57.280
+ the tissue around the mass.
+
+01:12:57.280 --> 01:13:01.680
+ But if they do go in surgically to remove it, the post-operative care can be wild, especially
+
+01:13:01.680 --> 01:13:03.760
+ depending on the surgical approach.
+
+01:13:03.760 --> 01:13:10.040
+ The guide details a specific surgery for pituitary tumors called a transphenoidal hypofyctomy.
+
+01:13:10.040 --> 01:13:15.400
+ The pituitary gland sits in a tiny bony saddle right at the base of the brain directly behind
+
+01:13:15.400 --> 01:13:16.400
+ the nasal cavity.
+
+01:13:16.400 --> 01:13:20.460
+ When the past surgeons had to open the top of the skull and retract the entire front
+
+01:13:20.460 --> 01:13:24.440
+ lobe of the brain just to reach it, which was incredibly damaging.
+
+01:13:24.440 --> 01:13:27.480
+ So instead of going through the roof, they go through the basement.
+
+01:13:27.480 --> 01:13:32.320
+ The transphenoidal approach means the neurosurgeon goes in through the nose or they make an incision
+
+01:13:32.320 --> 01:13:34.600
+ right under the upper lip at the gumline.
+
+01:13:34.600 --> 01:13:38.840
+ They break through this phenoid sinus bone and they are looking directly at the pituitary
+
+01:13:38.840 --> 01:13:42.240
+ tumor without ever touching the major lobes of the brain.
+
+01:13:42.240 --> 01:13:45.600
+ It is an elegant, minimally invasive surgery.
+
+01:13:45.600 --> 01:13:51.100
+ But from a nursing perspective, the post-operative rules are intense and unforgiving.
+
+01:13:51.100 --> 01:13:55.320
+ By going through the nose or mouth, the surgeon has created a direct artificial pathway from
+
+01:13:55.320 --> 01:13:59.640
+ the non-sterile outside world straight into the sterile brain case.
+
+01:13:59.640 --> 01:14:03.520
+ The zipper on the suitcase is essentially broken at the bottom.
+
+01:14:03.520 --> 01:14:06.080
+ And the patch holding it together is fragile.
+
+01:14:06.080 --> 01:14:10.120
+ Post-operatively, the patient absolutely cannot do anything that spikes the pressure inside
+
+01:14:10.120 --> 01:14:15.200
+ their head because a pressure spike could blow out that delicate surgical seal.
+
+01:14:15.200 --> 01:14:17.160
+ They cannot vigorously cough.
+
+01:14:17.160 --> 01:14:18.400
+ They cannot sneeze.
+
+01:14:18.400 --> 01:14:21.840
+ They are taught to sneeze with their mouth wide open to dissipate the pressure.
+
+01:14:21.840 --> 01:14:23.600
+ They cannot blow their nose.
+
+01:14:23.600 --> 01:14:27.480
+ They are given heavy stool softeners so they do not strain in the bathroom.
+
+01:14:27.480 --> 01:14:33.680
+ And if the surgeon went in through the gumline under the lip, the oral care rules are crazy.
+
+01:14:33.680 --> 01:14:38.080
+ The patient is not allowed to brush their teeth with a toothbrush for 10 to 14 days.
+
+01:14:38.080 --> 01:14:41.680
+ You cannot risk the hard bristles tearing the incision stitches.
+
+01:14:41.680 --> 01:14:44.520
+ They have to use gentle mouth washes instead.
+
+01:14:44.520 --> 01:14:49.200
+ But the most critical monitoring parameter for the nurse involves nasal drainage.
+
+01:14:49.200 --> 01:14:52.360
+ It is normal to have some bloody mucus after nasal surgery.
+
+01:14:52.360 --> 01:14:56.560
+ But if the nurse notices clear, watery fluid dripping from the patient's nose, they don't
+
+01:14:56.560 --> 01:14:57.960
+ just handle the tissue.
+
+01:14:57.960 --> 01:14:59.120
+ They have to test it.
+
+01:14:59.120 --> 01:15:03.520
+ Because that clear fluid might be cerebrospinal fluid leaking from the brain case.
+
+01:15:03.520 --> 01:15:06.680
+ And the trick to testing it is glucose.
+
+01:15:06.680 --> 01:15:10.080
+ Normal nasal mucus does not contain significant amounts of sugar.
+
+01:15:10.080 --> 01:15:14.440
+ But cerebrospinal fluid, which feeds the brain, is packed with glucose.
+
+01:15:14.440 --> 01:15:19.140
+ If the nurse tests that clear nasal drip with a glucose drip and it reads over 30 milligrams
+
+01:15:19.140 --> 01:15:21.680
+ per deciliter, it is brain fluid.
+
+01:15:21.680 --> 01:15:25.760
+ They have a CSF leak and the risk of meningitis just skyrocketed.
+
+01:15:25.760 --> 01:15:28.120
+ This requires intense vigilance.
+
+01:15:28.120 --> 01:15:37.000
+ Now moving from tumors that add mass to degenerative conditions that slowly subtract function, Parkinson's disease.
+
+01:15:37.000 --> 01:15:43.520
+ Parkinson's is characterized by a slow, progressive, unrelenting death of specific cells in the
+
+01:15:43.520 --> 01:15:48.720
+ substantia nigra, a region deep in the basal ganglia of the brain.
+
+01:15:48.720 --> 01:15:52.040
+ These cells are responsible for producing dopamine.
+
+01:15:52.040 --> 01:15:57.640
+ And dopamine is the essential neurotransmitter for initiating and controlling smooth, coordinated,
+
+01:15:57.640 --> 01:15:59.480
+ purposeful muscle movement.
+
+01:15:59.480 --> 01:16:01.480
+ It's the grease in the gears.
+
+01:16:01.480 --> 01:16:04.640
+ Without adequate dopamine, the gears grind to a halt.
+
+01:16:04.640 --> 01:16:09.280
+ You see the cardinal sides of Parkinson's, resting tremors often starting in one hand
+
+01:16:09.280 --> 01:16:16.720
+ like a pill-rolling motion, severe muscle rigidity where the limbs feel like stiff lead pipes,
+
+01:16:16.720 --> 01:16:21.640
+ bradykinesia, which means incredibly slow execution of movement.
+
+01:16:21.640 --> 01:16:26.840
+ The characteristics shuffling gait where they take tiny, rapid steps and struggle to initiate
+
+01:16:26.840 --> 01:16:28.840
+ walking or turn around.
+
+01:16:28.840 --> 01:16:33.000
+ The physiological treatment revolves around replacing that missing dopamine, but you can't
+
+01:16:33.000 --> 01:16:34.840
+ just give a patient a dopamine pill.
+
+01:16:34.840 --> 01:16:37.520
+ It won't cross the blood brain barrier.
+
+01:16:37.520 --> 01:16:43.360
+ The gold standard pharmacological treatment is a combination drug called levodopa carbidopa,
+
+01:16:43.360 --> 01:16:45.320
+ and the mechanism here is fascinating.
+
+01:16:45.320 --> 01:16:49.640
+ It is a brilliant piece of drug engineering.
+
+01:16:49.640 --> 01:16:52.960
+ levodopa is the metabolic precursor to dopamine.
+
+01:16:52.960 --> 01:16:57.960
+ Unlike pyridopa, levodopa has the chemical key to cross the blood brain barrier.
+
+01:16:57.960 --> 01:17:02.280
+ Once inside the brain, it is converted into the dopamine the patient desperately needs.
+
+01:17:02.280 --> 01:17:05.960
+ So levodopa is the hero, but there is a massive problem.
+
+01:17:05.960 --> 01:17:10.200
+ If you just give levodopa by itself, the enzymes circulating the patient's bloodstream
+
+01:17:10.200 --> 01:17:14.520
+ will attack it and metabolize it in the periphery long before it ever reaches the brain.
+
+01:17:14.520 --> 01:17:16.800
+ It gets destroyed in transit.
+
+01:17:16.800 --> 01:17:19.960
+ Which is why it is almost always paired with carbidopa.
+
+01:17:19.960 --> 01:17:22.220
+ I love the analogy for this.
+
+01:17:22.220 --> 01:17:25.400
+ Think of levodopa as a very important VIP.
+
+01:17:25.400 --> 01:17:30.760
+ The VIP needs to get inside the exclusive club, the brain, to deliver the dopamine payload
+
+01:17:30.760 --> 01:17:36.120
+ and get the party started, but the city streets, the bloodstream are full of aggressive paparazzi
+
+01:17:36.120 --> 01:17:41.720
+ and dangerous enzymes that will tear the VIP apart before they even reach the club doors.
+
+01:17:41.720 --> 01:17:44.280
+ Enter carbidopa.
+
+01:17:44.280 --> 01:17:47.720
+ Viva is the massive, heavily armed bodyguard.
+
+01:17:47.720 --> 01:17:51.440
+ Carbidopa travels through the bloodstream linked to the levodopa VIP.
+
+01:17:51.440 --> 01:17:56.040
+ The bodyguard's only job is to fight off the enzymes in the blood, taking all the hits,
+
+01:17:56.040 --> 01:18:01.000
+ acting as a decoy so that the levodopa safely reaches the blood brain barrier.
+
+01:18:01.000 --> 01:18:03.880
+ The bodyguard, carbidopa, cannot cross the barrier.
+
+01:18:03.880 --> 01:18:08.360
+ It stays outside on the street while the VIP levodopa slips safely inside the brain to
+
+01:18:08.360 --> 01:18:09.640
+ do the work.
+
+01:18:09.640 --> 01:18:12.520
+ It is a highly effective delivery system.
+
+01:18:12.520 --> 01:18:17.560
+ It restores smooth movement for many patients for years, but the nurse must constantly monitor
+
+01:18:17.560 --> 01:18:19.480
+ for drug toxicity.
+
+01:18:19.480 --> 01:18:25.240
+ As Parkinson's progresses and more brain cells die, the therapeutic window, the space between
+
+01:18:25.240 --> 01:18:29.440
+ an effective dose and a toxic overdose, shrinks dramatically.
+
+01:18:29.440 --> 01:18:32.320
+ And what does levodopa toxicity look like?
+
+01:18:32.320 --> 01:18:34.080
+ It doesn't look like Parkinson's.
+
+01:18:34.080 --> 01:18:41.040
+ It looks like excessive, uncontrolled movement, dyskinetic movements, facial grimacing, spasmodic
+
+01:18:41.040 --> 01:18:45.800
+ eye-winking, sudden jerking of the shoulders or random muscle twitching.
+
+01:18:45.800 --> 01:18:50.840
+ If a nurse sees that, they know the dose is tipped from therapeutic to toxic.
+
+01:18:50.840 --> 01:18:54.040
+ Parkinson's is a cruel, slow disease.
+
+01:18:54.040 --> 01:18:58.000
+ But perhaps the most physically tragic of the degenerative disorders in this entire
+
+01:18:58.000 --> 01:19:00.800
+ guide is ALS.
+
+01:19:00.800 --> 01:19:04.880
+ Amiotrophic lateral sclerosis, also known as Lou Gehrig's disease.
+
+01:19:04.880 --> 01:19:10.520
+ In ALS, the pathology is devastatingly simple and entirely unstoppable.
+
+01:19:10.520 --> 01:19:14.960
+ The motor neurons, the specific nerves in the brainstem and spinal cord that carry the
+
+01:19:14.960 --> 01:19:19.440
+ signals for voluntary muscle movement simply to generate and die.
+
+01:19:19.440 --> 01:19:23.000
+ It leads to progressive, symmetrical weakness.
+
+01:19:23.000 --> 01:19:26.280
+ The muscles, deprived of their nerve signals, begin to waste away.
+
+01:19:26.280 --> 01:19:31.960
+ It usually starts in the extremities, causing tripping or dropping items, and relentlessly
+
+01:19:31.960 --> 01:19:33.560
+ marches inward.
+
+01:19:33.560 --> 01:19:39.440
+ Eventually, the patient loses the ability to walk, to move their arms, to speak clearly
+
+01:19:39.440 --> 01:19:41.400
+ and to swallow food.
+
+01:19:41.400 --> 01:19:45.880
+ The life expectancy is typically just two to three years from the onset of symptoms.
+
+01:19:45.880 --> 01:19:51.040
+ But the true tragedy of ALS, the thing that makes it so uniquely horrifying, is what the
+
+01:19:51.040 --> 01:19:53.200
+ disease does not touch.
+
+01:19:53.200 --> 01:19:58.600
+ While the motor nerves die and the physical body degrades into total paralysis, the sensory
+
+01:19:58.600 --> 01:20:04.120
+ nerves and the cerebral cortex remain completely, sharply intact.
+
+01:20:04.120 --> 01:20:07.160
+ The upper floors of the house are perfectly fine.
+
+01:20:07.160 --> 01:20:11.800
+ The patient's memory, their intellect, their personality, their ability to feel pain or
+
+01:20:11.800 --> 01:20:15.160
+ an itch, none of it is diminished.
+
+01:20:15.160 --> 01:20:20.400
+ They are fully, consciously aware of exactly what is happening to them as they are slowly
+
+01:20:20.400 --> 01:20:23.160
+ trapped inside a failing biological shell.
+
+01:20:23.160 --> 01:20:25.920
+ Which fundamentally changes the focus of nursing care.
+
+01:20:25.920 --> 01:20:30.320
+ In a disease like Parkinson's, the nursing focuses heavily on rehabilitation, physical
+
+01:20:30.320 --> 01:20:34.800
+ therapy and maintaining independence and mobility for a decade or more.
+
+01:20:34.800 --> 01:20:41.040
+ In ALS, the timeline is compressed and the ultimate physiological failure is always inevitably
+
+01:20:41.040 --> 01:20:42.640
+ respiratory.
+
+01:20:42.640 --> 01:20:47.680
+ When the motor neurons controlling the diaphragm die, the patient can no longer pull an air.
+
+01:20:47.680 --> 01:20:51.200
+ The study guide highlights this grim reality with a specific testing scenario to drill
+
+01:20:51.200 --> 01:20:52.800
+ home the nursing priority.
+
+01:20:52.800 --> 01:20:58.640
+ If an ALS patient is admitted and is experiencing dipnea, real physical trouble breathing, the
+
+01:20:58.640 --> 01:21:03.680
+ nurse does not pause to elevate the head of the bed or assess their pedal pulses.
+
+01:21:03.680 --> 01:21:07.540
+ The immediate overriding intervention is to administer oxygen.
+
+01:21:07.540 --> 01:21:12.280
+ You treat the most lethal symptom first, respecting the airway above all else.
+
+01:21:12.280 --> 01:21:15.440
+ Because the respiratory failure is the mechanism of death.
+
+01:21:15.440 --> 01:21:18.960
+ Because without an airway, without oxygen, absolutely nothing else matters.
+
+01:21:18.960 --> 01:21:20.800
+ The brain dies.
+
+01:21:20.800 --> 01:21:25.000
+ And speaking of the airway, the study guide finishes this massive neurological journey
+
+01:21:25.000 --> 01:21:30.520
+ not with the brain, but with the structural column holding it up, spinal disc disease.
+
+01:21:30.520 --> 01:21:34.840
+ Specifically, the nursing care for cervical or neck surgeries.
+
+01:21:34.840 --> 01:21:38.880
+ When a patient has a severely herniated disc in their neck that is compressing the spinal
+
+01:21:38.880 --> 01:21:43.680
+ cord and causing pain or weakness, the neurosurgeon must go in and remove it.
+
+01:21:43.680 --> 01:21:47.240
+ But they generally cannot go through the back of the neck because the delicate spinal cord
+
+01:21:47.240 --> 01:21:48.760
+ sits right in the way.
+
+01:21:48.760 --> 01:21:56.360
+ So they do a procedure called an ACDF, anterior cervical discectomy and fusion, anterior meaning
+
+01:21:56.360 --> 01:21:58.960
+ they go in through the front of the neck.
+
+01:21:58.960 --> 01:22:03.760
+ The surgeon makes an incision in the front of the throat, gently pushes the trachea,
+
+01:22:03.760 --> 01:22:07.720
+ the windpipe, and the esophagus, the foodpipe, to the side.
+
+01:22:07.720 --> 01:22:12.920
+ And accesses the spine from the front to remove the bad disc and fuse the bones.
+
+01:22:12.920 --> 01:22:17.800
+ Which logically means the post-operative nursing care for this major spine surgery isn't just
+
+01:22:17.800 --> 01:22:22.720
+ about checking if the patient can wiggle their fingers or if their arm numbness is gone.
+
+01:22:22.720 --> 01:22:27.360
+ The primary nursing focus is heavily localized on the throat.
+
+01:22:27.360 --> 01:22:32.880
+ The nurse must monitor obsessive leaver complications related to moving those vital neck structures.
+
+01:22:32.880 --> 01:22:35.680
+ Is the patient having severe new trouble swallowing?
+
+01:22:35.680 --> 01:22:40.600
+ Is their voice suddenly hoarse, indicating damage to the laryngeal nerve?
+
+01:22:40.600 --> 01:22:45.600
+ But the most lethal complication the nurse is hunting for is the formation of a hematoma,
+
+01:22:45.600 --> 01:22:50.000
+ a pooling blood clot deep under the incision in the front of the neck.
+
+01:22:50.000 --> 01:22:55.040
+ Because if a hematoma forms and expands in that tight space in the anterior neck, it
+
+01:22:55.040 --> 01:23:00.040
+ has nowhere to go but backward, it will quickly press against the trachea, physically crushing
+
+01:23:00.040 --> 01:23:03.800
+ the windpipe shut and choke the patient to death before they can even get back to the
+
+01:23:03.800 --> 01:23:04.800
+ operating room.
+
+01:23:04.800 --> 01:23:09.760
+ It is the ultimate nursing vigilance, assessing the surgical site not just for bleeding on
+
+01:23:09.760 --> 01:23:14.240
+ the bandage, but for subtle swelling of the neck or the patient complaining of a sudden
+
+01:23:14.240 --> 01:23:18.520
+ feeling of pressure in their throat, it always comes back to the airway, the plumbing, and
+
+01:23:18.520 --> 01:23:19.840
+ the pressure.
+
+01:23:19.840 --> 01:23:24.040
+ What an incredible, heavy, deeply fascinating journey.
+
+01:23:24.040 --> 01:23:28.120
+ We have covered a massive amount of ground today unpacking the density of this neurology
+
+01:23:28.120 --> 01:23:29.520
+ study guide.
+
+01:23:29.520 --> 01:23:34.440
+ We really have traversed the entire nervous system, from the delicate invisible balancing
+
+01:23:34.440 --> 01:23:40.120
+ act of homeostasis, the autonomic tug of war, and the rigid unforgiving physics of
+
+01:23:40.120 --> 01:23:42.840
+ the Monroe-Kelly hypothesis inside the skull.
+
+01:23:42.840 --> 01:23:47.320
+ To the critical plumbing failures of ischemic and hemorrhagic strokes, the mechanical traumas
+
+01:23:47.320 --> 01:23:52.320
+ of skull fractures and epidural hematomas, the bizarre physiological storms of spinal
+
+01:23:52.320 --> 01:23:57.280
+ emergencies like autonomic dysreflexia, the autoimmune betrayals of multiple sclerosis
+
+01:23:57.280 --> 01:24:02.440
+ and Guillain-Barre, where the body attacks its own wiring, and finally, the slow, inevitable
+
+01:24:02.440 --> 01:24:06.400
+ decline of degenerative diseases like Parkinson's and ALS.
+
+01:24:06.400 --> 01:24:10.960
+ Reviewing this material truly highlights the core philosophy of critical care nursing.
+
+01:24:10.960 --> 01:24:15.720
+ It is never just about memorizing a list of symptoms or passively following doctor's
+
+01:24:15.720 --> 01:24:16.720
+ orders.
+
+01:24:16.720 --> 01:24:21.320
+ It relies entirely on understanding the underlying why and how.
+
+01:24:21.320 --> 01:24:23.860
+ Why does a lumbar puncture cause a headache?
+
+01:24:23.860 --> 01:24:26.480
+ How does hyperventilation shrink the brain?
+
+01:24:26.480 --> 01:24:32.160
+ It is about anticipating the physiological cascade of events and intervening with gravity,
+
+01:24:32.160 --> 01:24:36.320
+ fluids, or positioning to prevent the next disaster from happening.
+
+01:24:36.320 --> 01:24:40.760
+ And as we wrap up, I want you, yes, you sitting in traffic or doing the dishes or studying
+
+01:24:40.760 --> 01:24:46.000
+ for your exams, to take a moment right now to appreciate the invisible automated magic
+
+01:24:46.000 --> 01:24:48.760
+ happening inside your own head.
+
+01:24:48.760 --> 01:24:53.960
+ Everything from your steady, rhythmic breathing to the storage of your childhood memories,
+
+01:24:53.960 --> 01:24:59.600
+ to your personality, to your physical ability to process the sound of my voice right now,
+
+01:24:59.600 --> 01:25:04.600
+ it all relies on a flawless, silent balance of pressures, fluids, and electrical signals
+
+01:25:04.600 --> 01:25:07.400
+ that we just spent the last hour dissecting.
+
+01:25:07.400 --> 01:25:10.640
+ It is a fragile, beautiful miracle of biology.
+
+01:25:10.640 --> 01:25:13.560
+ It is indeed a miracle of engineering.
+
+01:25:13.560 --> 01:25:17.440
+ And to leave you with a final lingering thought to mull over, something that builds on what
+
+01:25:17.440 --> 01:25:20.400
+ we discussed at the very beginning of our conversation.
+
+01:25:20.400 --> 01:25:26.760
+ We talked about the anatomy hierarchy, how the brain dies from the outside in, in degenerative
+
+01:25:26.760 --> 01:25:32.720
+ conditions or severe oxygen deprivation, the newer outer layers, the cerebral cortex,
+
+01:25:32.720 --> 01:25:37.840
+ which hold our memories, our complex thoughts, our humor, our entire personality.
+
+01:25:37.840 --> 01:25:39.800
+ Those layers are the most vulnerable.
+
+01:25:39.800 --> 01:25:41.240
+ They die first.
+
+01:25:41.240 --> 01:25:45.960
+ Meanwhile, the primitive brainstem clings tenaciously to life, keeping the heart beating
+
+01:25:45.960 --> 01:25:49.860
+ in the lungs breathing long after the mind has entirely gone.
+
+01:25:49.860 --> 01:25:52.920
+ The basement generator outlasting the house.
+
+01:25:52.920 --> 01:25:53.920
+ Exactly.
+
+01:25:53.920 --> 01:25:58.800
+ It raises a profound philosophical question hidden right there in the stark reality of
+
+01:25:58.800 --> 01:26:01.000
+ medical anatomy.
+
+01:26:01.000 --> 01:26:04.720
+ If our cognitive essence, our memories, our loves, everything that makes us uniquely
+
+01:26:04.720 --> 01:26:10.240
+ us, resides on the most vulnerable, easily damaged outer layer of the brain.
+
+01:26:10.240 --> 01:26:16.260
+ While our deepest, most protected core prioritizes mere biological function, does that mean
+
+01:26:16.260 --> 01:26:21.720
+ our physical anatomy fundamentally values basic survival over our actual identity?
+
+01:26:21.720 --> 01:26:27.320
+ Are we biologically wired to be a beating heart first in a person's second?
+
+01:26:27.320 --> 01:26:32.320
+ That is an incredible, haunting physiological paradox to end on.
+
+01:26:32.320 --> 01:26:38.080
+ The architecture of pure survival versus the fragile architecture of the soul.
+
+01:26:38.080 --> 01:26:41.720
+ Thank you all so much for joining us on this deep dive into the source material.
+
+01:26:41.720 --> 01:26:46.400
+ We hope it gave you a new profound lens through which to view your own brilliant, complicated
+
+01:26:46.400 --> 01:26:47.400
+ brain.
+
+01:26:47.400 --> 01:26:52.200
+ Keep learning, stay insanely curious, and we will catch you on the next deep dive.
+

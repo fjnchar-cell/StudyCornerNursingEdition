@@ -1,0 +1,2023 @@
+- So usually when we talk about a medical diagnosis,
+there's an expectation of precision.
+- Right, it feels a lot like engineering.
+- Exactly, like you break your arm,
+the X-ray shows that stark jagged white line
+right through the bone of the doctor just points to it.
+- Yeah, it's broken or it's not broken.
+- Right, it's a clean, comforting binary.
+We love things to be visible and easily categorized.
+But then you step into the world of neurology.
+- And all that comfort just goes out the window.
+- Oh, completely.
+You cross the blood-brain barrier
+and simply that comforting X-ray machine
+is just utterly useless.
+- Yeah, you're looking at a diagnostic landscape
+that is incredibly murky.
+The signs are hidden and the consequences
+of misreading them are, well, they're instant.
+- Which is exactly why today's deep dive is so critical.
+We are decoding the ultimate control center
+of the human body for you.
+- And our source material today is fantastic.
+- It really is.
+We're looking at a massive, highly detailed set
+of medical surgical nursing notes on neurology.
+Specifically, Professor Marpol's week two breakdown
+of chapters 60 through 65.
+- But, you know, we aren't just here to cram
+for a nursing exam.
+- No, not at all.
+Whether you're a medical professional standing
+at the bedside or just someone who is insanely curious
+about how those three pounds of electrified jelly
+inside your skull keep you alive, this is for you.
+- We're talking about the frontline of life and death here,
+the survival mechanics of the brain
+from the outside in and the inside out.
+- So, to navigate those mechanics,
+we really need to understand the fundamental triage philosophy
+that the notes establish right out of the gate.
+- Right, because in neurology, doing the right thing
+at the wrong time isn't just a simple error.
+- It can literally be fatal.
+- Exactly.
+So the framework provided is this four step method
+for prioritizing action.
+It's grounded in a concept called AdPy.
+- AdPy.
+That's assess, diagnose, plan, implement, and evaluate, right?
+- You got it.
+But the absolute critical modification for neuro is this.
+If you do not have a complete clinical picture,
+you assess first.
+- You assess first.
+- Yeah, you never, ever act blindly on a neurological patient.
+- Okay, I want to push back on that just slightly
+'cause it seems kind of contrary to what we're all taught
+in basic first aid.
+- Also.
+- Well, we've all had it drilled into our heads, right?
+ABCs, airway breathing circulation.
+- Right, right.
+- If someone collapses, you secure the airway immediately.
+But the notes specifically weren't against picking
+the airway intervention by default.
+Why would we delay securing an airway to do an assessment?
+- Well, because a neurological emergency
+often masquerades at something else entirely,
+or it presents multiple simultaneous crises.
+- Okay, that makes sense.
+- The rule is that an active problem
+always supersedes a potential risk.
+- An active problem beats a risk.
+- Exactly.
+So imagine you're the ER nurse and a patient is brought in
+with a massive bleeding scalp laceration from the fall.
+- Oh, wow, okay.
+- They're awake, they're crying, yelling in pain.
+The inexperienced instinct is to panic and think,
+"Head trauma, check the airway."
+- Right, because that's the ABCs kicking in.
+- But if they are yelling at you,
+their airway is perfectly open.
+It's patent.
+- Uh-huh, right.
+You can't yell if you can't breathe.
+- Exactly, so the active life-threatening problem
+right the second is the profound blood loss
+from that highly vascular scalp wound.
+- You deal with the fire currently burning.
+- Yes.
+- The hemorrhage.
+- You deal with that before you worry about
+the theoretical risk of them losing their airway later.
+- So it prevents cognitive tunnel vision.
+You don't just blindly follow an acronym.
+You evaluate the immediate physics of the situation.
+- Perfectly said, and that leads to the fourth step
+of this triage method, which is choosing the safest,
+least invasive intervention first.
+- Right, you don't drill a hole in the skull
+if just elevating the head of the bed
+fixes the pressure problem.
+- Exactly, it is all about preserving homeostasis.
+- Homeostasis, that really is the key
+to everything we are discussing today, isn't it?
+- It is, the nervous system does not operate on magic.
+It operates on a desperate, relentless balancing act
+of fluid pressures, chemical gradients,
+and electrical potentials.
+- A constant steady state.
+- Right, but when that balance tips,
+the body reveals a terrifying ruthless prioritization.
+- Yeah, the notes highlight a grim reality here.
+The brain dies for the outside in.
+- From the outside in.
+And from an evolutionary standpoint, it makes sense.
+The cortex, the outer wrinkled layers
+is a massive energy drain.
+- Which is wild because when we think of the brain,
+we think of the cortex.
+- Oh, for sure.
+- Like the frontal lobe handling our complex decision-making,
+our personality, the parietal lobe mapping
+our physical space, the things that make you both you.
+- But the body considers all of that
+to be an expendable luxury.
+- Wow, expendable.
+- Deep down at the base of the brain,
+right where it meets the spinal cord is the brainstem,
+the medulla, the pawns.
+- The primitive core.
+- Exactly.
+It doesn't care about your memories,
+it doesn't care about your ability to speak
+or your capacity to do math.
+The brainstem controls the absolute bare minimum
+for biological survival.
+- Breathing and heart rate.
+- Yes, the rhythm of your heart
+and the drive to inflate your lungs.
+- So if we look at this mechanically,
+is the brain basically functioning like a sinking battleship?
+- Oh, I like where this is going.
+- Okay, so imagine a mass of dreadnought
+takes a torpedo to the hull.
+Water's flooding the upper decks.
+- Right.
+- The captain, which is the brainstem in this scenario,
+retreats to the deepest, most heavily armored bunker
+at the very bottom of the ship.
+- Yes.
+- And the captain's only objective
+is to keep the diesel engines running
+and the bilge pumps working
+until the absolute last second.
+- Right, whatever it takes.
+- So the captain will seal the blast doors
+and happily sacrifice the grand ballroom,
+the radar array, the officer's quarters.
+If it means the engine runs for one more hour.
+- That is a phenomenal analogy.
+The physiological ruthlessness of the human body
+mirrors that exact scenario.
+- It's just so calculating.
+- It really is.
+The body will sacrifice the higher level traits
+to save the core.
+We actually see this clinically
+in severe, late stage dementia.
+- Oh really, how so?
+- Well, the outer layers of the cortex degrade first,
+the patient's personality fades, their memories vanish,
+and they lose the ability to speak
+or recognize faces long, long
+before their basic bodily functions fail.
+- Because the brainstem is holding the line.
+- Exactly, keeping the heart beating for years
+after the cortex is essentially gone.
+- And we're gonna see this ruthlessness play out
+in the emergency room too.
+The notes dive into these permissive states,
+which we'll get into a bit later.
+- Right, where we let things get bad
+to prevent them from getting worse.
+- Exactly.
+Like the idea that a medical team
+will intentionally let a patient's blood pressure skyrocket
+to terrifying levels, risking blown blood vessels
+in the kidneys or the eyes just to force oxygenated blood
+down into that bunker to save the captain.
+- But you know, to save that captain,
+we have to know what is actually happening
+inside the bunker.
+- Which brings us to the core diagnostic dilemma.
+- Right, the skull is an evolutionary marvel
+designed to protect the brain from blunt force trauma.
+It is a closed, solid bone box.
+- And we cannot see through it.
+- We can't.
+So when the ship is sinking, how do we find the leak?
+- We have to rely on imaging
+because we can't just take a standard X-ray, right?
+- No, because brain tissue and blood all look like
+a blurry gray cloud behind the bright white bone of the skull.
+- So the absolute workhorse in a neuro emergency
+is the CT scan, computed tomography.
+- Yeah, a CT scan is essentially a three-dimensional X-ray.
+It spins around the head, calculating the density
+of the tissues it passes through.
+- And it's fast.
+- Incredibly fast, which is its primary advantage
+in an emergency, it takes minutes.
+- And because it measures density,
+it is exceptionally good at finding fresh,
+clotted blood, right?
+- Yes, acute hemorrhage is very dense.
+So it shows up as a bright, hyper-dense white mass
+on the scan against the darker gray
+of the normal brain tissue.
+- But the notes highlight a massive blind spot
+with CT scans that I think most people just don't realize.
+- The thick slices?
+- Yes, the machine takes cross-sectional images slices
+of the brain, but in a standard rapid emergency CT,
+it uses thick slices.
+- Right, there are literal physical gaps
+between the images and captures.
+- So if the scanner is taking a slice every five millimeters,
+but the patient has a tiny three millimeter microannurism
+that just ruptured.
+That bleed can literally hide in the physical gap
+between slice two and slice three.
+- That's terrifying.
+- It is.
+A physician might look at that CT scan and say it's clear,
+but a negative CT scan does not mean
+the brain is perfectly fine.
+It just means there is no massive
+catastrophic structural abnormality.
+- And to make those structures more visible,
+they often inject an intravenous contrast eye,
+usually iodine-based?
+- Right, to light up the blood vessels.
+- But this is where the nursing role becomes so paramount.
+The machine does the imaging,
+but the nurse manages the physiological fallout.
+- Because contrast eye is highly nephrotoxic.
+- Meaning it's incredibly hard on the kidneys.
+- Extremely, it's a thick viscous substance
+that the renal system struggles to filter out.
+- So as a nurse, you aren't diagnosing
+the pixel density on the monitor.
+- No, your job is to keep the patient safe
+during the aftermath.
+- How do you do that?
+- Well, if the patient is alert and going home,
+you instruct them to drink massive amounts of water.
+- And if they're Nakoma?
+- Then you are hanging leaders
+of normal saline IV fluids.
+You have to create hydraulic pressure
+in the vascular system to physically flush
+that heavy iodine dye through the kidneys
+before it crystallizes.
+- Before it causes acute renal failure.
+- Exactly.
+- Wow.
+- We also have PET scans, which are fascinating
+because they don't look at structure,
+they look at metabolism.
+- Right, they measure how the brain is using glucose.
+- But they require injecting
+or inhaling radioactive tracers.
+So there is a strict contraindication
+for pregnant women and children,
+unless it's a literal life or death necessity.
+- Right.
+But if we want the absolute gold standard
+for structural detail, we skip the radiation entirely
+and move to the MRI.
+- Magnetic resonance imaging.
+- Yes.
+Unlike a CT scan, which relies on ionizing radiation,
+an MRI uses a giant superconducting magnet and radio waves
+to align the protons in the water molecules of your body.
+- It creates just breathtaking crystal clear,
+incredibly thin slices of tissue.
+- It can spot the tiniest lesions, tumors,
+or areas of demyelination.
+- But the trade-off is brutal.
+- It takes 30 to 60 minutes.
+- Yeah, and the patient is slid
+into a tiny claustrophobic tube
+that sounds like a jackhammer.
+- If the patient is confused, agitated, or claustrophobic,
+they simply cannot hold still long enough.
+The images will be completely blurry.
+- Which requires anticipation from the staff.
+- Absolutely.
+A skilled neuro nurse recognizes an agitated patient
+and advocates for a sedative or anti-anxiety medication
+before transport to radiology.
+- But the true danger of an MRI isn't the claustrophobia, is it?
+- No, it is the physics of the machine itself.
+- The magnet.
+- The magnetic field is immensely powerful,
+usually 1.5 to 3 Tesla, which is tens of thousands
+of times stronger than the Earth's magnetic field.
+- And it is always on.
+- Always.
+You don't just flip a switch to turn off an MRI.
+- So any ferromagnetic metal brought into that room,
+scissors, an oxygen tank, a hairpin,
+instantly becomes a lethal projectile.
+- Accelerating at terrifying speeds
+toward the center of the tube.
+- This creates a critical safety checkpoint.
+- You have to screen for internal hardware.
+- Old pacemaker is certain aneurysm clips, shrapnel.
+- Because if a pacemaker is pulled by that magnet?
+- It can literally be torn from the chest wall.
+Or the electronics will just fry instantly.
+- The notes have a very specific, almost cynical warning here.
+Never trust a patient who says a piercing is titanium.
+- I love that rule.
+Pure titanium is non-ferrous, meaning it isn't magnetic,
+but body jewelry is notoriously unregulated.
+- So if a patient has a dermal piercing
+and they assure you it's surgical grade titanium,
+you just can't take that risk.
+- You cannot.
+If that metal is actually an alloy containing iron or nickel,
+the moment they enter the magnetic field,
+the MRI will violently rip the jewelry
+straight out of their skin and tissue.
+- Oh, that's horrific.
+- You have to tape it, remove it,
+or use a strong hand magnet to test it
+before they ever cross the threshold of the MRI suite.
+- Okay, so that covers looking through the skull.
+But sometimes we need to actually analyze
+the fluid inside it.
+- Right, the cerebrospinal fluid or CSF.
+- This is the clear fluid that bays the brain
+and spinal cord, bringing nutrients and removing waste.
+And to get it, we do a lumbar puncture,
+often called a spinal tap.
+- Exactly.
+The brain and spinal cord are wrapped
+in a protective membrane called the dura motor.
+To access the CSF, a physician inserts a long hollow needle
+between the vertebrae and the lower back,
+piercing the dura and drawing out a few vials of fluid.
+- And they test that for meningitis,
+multiple sclerosis markers, or subarachnoid hemorrhage.
+- Yes.
+- But the mechanics of getting the needle in
+require very specific positioning.
+- The patient has to curl into a tight fetal position
+on their side.
+Or sit up and lean heavily over a tray table,
+arching their back like an angry cat.
+- Right.
+You're physically trying to open up the spaces
+between the spinous processes of the vertebrae,
+so the needle can slide through without hitting bone.
+- But the real physiological drama happens
+after the needle is removed.
+- It really does.
+- When you puncture the dura, you create a microscopic hole.
+- Usually it seals itself.
+- But sometimes it doesn't.
+- And the CSF, which is under pressure,
+continues to leak out internally
+into the surrounding epidural space.
+- I want to trace the mechanics of this
+because it perfectly sets up our next major topic.
+- Okay, let's do it.
+- The brain weighs about three pounds,
+but it floats in a bath of about 150 milliliters of CSF.
+- Right.
+- That buoyancy makes the brain effectively weigh
+only a couple of ounces inside the skull.
+- Yes.
+- So if the CSF leaks out of that puncture hole
+in the lower back, the fluid volume drops system wide.
+- Exactly, the brain loses its buoyant cushion.
+Gravity takes over.
+- The entire three pound mass of the brain
+literally sags downward.
+- As it sags, it pulls on the meninges,
+the sensitive tissues wrapping the brain
+and anchoring it to the skull.
+- And the meninges are highly innervated
+with pain receptors.
+- So when the brain sags and stretches those anchors,
+the patient experiences a severe blinding headache.
+- Known as a post-lumbar puncture headache,
+or a spinal headache.
+- Yes.
+- And the defining characteristic
+is that it is strictly positional.
+- Right.
+If they lie down, gravity stops pulling the brain down,
+the tension releases and the pain improves.
+- But the second they sit or stand up,
+the brain drops, the anchors pull tight
+and the agony returns.
+- Which dictates the nursing intervention.
+It is brilliantly simple physics.
+- First, you keep them perfectly flat
+for several hours post-procedure
+to prevent gravity from pulling fluid
+out of the puncture site.
+- And to keep the brain supported.
+- Second, you aggressively rehydrate them.
+- Pushing IV fluids in oral water.
+- You are trying to increase their overall fluid volume
+to stimulate the rapid production of more CSF,
+refilling the tank and floating the brain back up
+to its proper position.
+- That dynamic, the delicate balance of fluid
+and pressure inside the skull
+is the absolute crux of neurology.
+- It really is.
+- We just saw what happens when fluid leaks out
+and pressure drops, the brain sags.
+But what happens when the fluid or blood or swelling
+builds up inside that impenetrable black box
+and the pressure rises?
+- That brings us to one of the most critical concepts
+in all of critical care medicine.
+- Intracranial pressure or ICP.
+- And the Monroe-Kelly doctrine.
+- The Monroe-Kelly doctrine.
+This is the fundamental law of the skull.
+- The adult skull is rigid bone.
+The fontanel is the soft spots we have as babies
+are fused solid.
+- The box cannot expand.
+- Exactly.
+- Inside this fixed, unyielding box,
+you have exactly three components.
+- Brain tissue, which takes up about 80% of the space.
+- Blood volume within the vessels takes up about 10%.
+- And the cerebrospinal fluid takes up the remaining 10%.
+- The doctrine states a simple truth of physics
+because the total volume of the skull cannot change
+if any one of those three components increases in volume.
+- One or both of the other two must decrease to make room.
+- They have to.
+If they don't, the pressure inside the skull
+will rise exponentially.
+- I picture this like a popular nightclub,
+operating at absolute maximum fire code capacity.
+- Okay, I like this.
+- The walls of the club are solid steel.
+They cannot bend or stretch.
+- Right.
+- Inside, you have 80 regular patrons
+representing the brain tissue.
+You have 10 bartenders representing the blood
+and you have 10 bouncers representing the CSF.
+- The club is completely full.
+- Yes.
+Now, let's say a massive fight breaks out outside
+and 10 more regular patrons rush into the club to hide.
+- That's a tumor growing or brain tissue swelling.
+- According to the doctrine,
+to prevent the steel walls from rupturing,
+the club must eject someone.
+- It will try to kick out 10 bouncers.
+The body will shunt CSF down into the spinal column
+to make room.
+- And if that isn't enough,
+- It will start kicking out the bartenders.
+The body will compress the veins in the brain
+to squeeze blood out.
+- But what happens when there are no more bouncers
+or bartenders to kick out?
+- The tumor keeps growing.
+The swelling keeps expanding.
+- The pressure inside the club builds and builds,
+but the steel walls won't break.
+- So the pressure looks for the only exit available.
+- And in the human skull, there is only one exit.
+- A hole at the very base of the skull
+called the foramen magnum.
+- Where the spinal cord attaches to the brainstem.
+- Exactly.
+When the pressure exhausts all compensatory mechanisms,
+the brain tissue is violently squeezed downward.
+- Extruding through that hole
+like tooth base being crushed out of a tube.
+- This is called herniation.
+- And what sits right above the foramen magnum?
+- Our captain.
+- The brainstem.
+- Exactly.
+- The herniating brain tissue crashes directly
+into the brainstem, crushing the centers
+that control breathing and heart rate.
+- Herniation is a fatal irreversible event.
+- Brain death is instantaneous.
+So measuring and managing this pressure
+is literally the difference between life and death.
+- Normal intracranial pressure is strictly defined
+as between 10 and 20 millimeters of mercury.
+- Anything above 20 is a crisis.
+- But the notes make a crucial point.
+ICP doesn't exist in a vacuum.
+It is in a constant battle
+with the blood trying to pump into the head.
+- Right.
+The pressure of the blood pushing into the brain
+is your mean arterial pressure or map.
+- It's an average of your overall blood pressure.
+- And the relationship
+between the blood pushing and the map
+and the swelling pushing back out, the ICP,
+gives us the most important equation in neurocritical care.
+- Cerebral perfusion pressure or CPP.
+- Perfusion means the actual physical delivery
+of oxygenated blood into the microscopic capillary beds
+of the brain tissue.
+- Right.
+And the equation is simple.
+Map minus ICP equals CPP.
+- The force of the pump
+minus the resistance of the box.
+- Exactly.
+- Normal CPP is between 70 and 100 millimeters of mercury.
+- If the CPP drops below 50,
+the brain tissue is actively starving for oxygen
+and irreversible is schematic damage begins.
+- The absolute floor for human survival,
+the magic number you must fight for, is a CPP of 60.
+- Let's put you, the listener,
+in the shoes of an ICU nurse
+and walk through the math of a dying brain
+because this is where the theory becomes terrifyingly real.
+- Let's do it.
+- Imagine you were standing at the bedside.
+Your patient is a young woman who's in a car crash.
+She has traumatic brain swelling.
+- Okay.
+- You look at the monitor,
+the doctors have set a goal for her map to be 65,
+which is a very standard, healthy target
+in an intensive care unit.
+- Very normal.
+- Her map is exactly 65.
+Her blood pressure looks perfectly stable.
+Now you look at her intracranial pressure monitor.
+Her ICP is 18.
+- Let's analyze that.
+- An ICP of 18 is technically normal, correct?
+It is under the danger threshold of 20.
+- Right, it's under 20.
+So a casual observer might think her blood pressure is fine,
+her brain pressure is normal.
+She's doing great.
+- But let's do the math.
+- Map is 65, minus the ICP of 18.
+That leaves a cerebral perfusion pressure of 47.
+- 47 is below the survival threshold of 50.
+Even though both individual numbers, the map and the ICP
+are technically within acceptable limits.
+- The relationship between them is lethal.
+- The pressure inside the skull, while not quite 20,
+is still too strong for a map of 65 to overcome.
+- The heart is trying to push blood up into the skull,
+but the resistance is just too high.
+The blood simply cannot perfuse the tissue.
+- The patient's brain is literally suffocating
+while the monitor shows normal vitals.
+- This is exactly why you have to treat the patient
+and the entire clinical picture,
+not just a single green number on a screen.
+- To fix the CPP of 47, you only have two mathematical options.
+- You either have to lower the ICP or you have to raise the map.
+- And this brings us back to the concept
+of permissive states we mentioned earlier.
+- Right, if you cannot get the brain swelling down fast enough,
+you have to raise the blood pressure.
+- You will deliberately administer massive doses
+of vasopressor medications like norepinephrine
+to intentionally skyrocket the patient's blood pressure.
+- You are using brute hydraulic force
+to batter down the resistance of the swollen brain
+and force oxygen into the tissue.
+- But outside of an ICU with a probe drilled directly
+into the skull, you don't have a screen
+telling you the exact ICP number.
+- No, you don't.
+- So how do you know the pressure is rising
+before herniation happens?
+What does the patient physically look like?
+- The absolute earliest sign, the very first domino to fall
+when ICP begins to rise is always a subtle change
+in the level of consciousness or LOC.
+- Long before they go into a coma, they become restless.
+- They start picking at their IV lines,
+they become irritable or confused about where they are.
+- Their speech might slur just slightly.
+- The notes emphasize that altered LOC is not
+a disorder itself, it is the ultimate symptom.
+- It is the smoke alarm going off in the house.
+- Exactly.
+And as the pressure climbs, the signs become more severe
+and bizarre.
+- The patient develops a constant pounding headache
+that worsens if they cough or strain.
+- And then projectile vomiting.
+But crucially, it's vomiting without any prior nausea.
+- Wait, really? Without nausea?
+- Yeah, the vomiting isn't caused
+by a gastrointestinal issue, it is a neurological reflex.
+- Because of the pressure.
+- Right, as the ICP rises, it physically squeezes
+the vomiting center in the medulla.
+- So the patient will be talking to you one second
+and without any warning or feeling sick,
+violently vomit across the room.
+- Those are the early to moderate signs.
+But if you see late signs,
+it means the compensatory mechanisms have completely failed.
+- The nightclub walls are bending.
+- The brainstem, our captain at the bottom
+of the sinking ship, is actively getting crushed
+by herniating tissue.
+- And the hallmark of this late stage disaster
+is Cushing's Triad.
+- Cushing's Triad is the physiological death rattle
+of the nervous system.
+It consists of three specific terrifying vital sign changes.
+First, severe bradycardia,
+the heart rate plummets to 40 or 30 beats per minute.
+- Second, irregular respirations,
+usually a pattern called Shane's Stokes Breathing.
+- That's where the patient takes rapid deep breaths
+and then just stops breathing entirely for 30 seconds
+before starting again.
+- Right, and third, a massively widened pulse pressure.
+- I wanna break down the why of Cushing's Triad,
+'cause it is a masterclass in how interconnected the body is.
+- It really is.
+- Why does crushing the brain make the heart slow down?
+- It is a desperate failing feedback loop.
+As ICP rises to critical levels,
+the brain realizes it is starving for blood.
+- It's choking.
+- Yes, so it sends massive sympathetic signals to the body.
+Clamp down all blood vessels.
+We need more pressure to force blood into the head.
+- And the systemic blood pressure shoots through the roof.
+The systolic pressure, the top number,
+might hit 190 or 200.
+- Okay, so the blood pressure spikes.
+But then the baroreceptors,
+the pressure sensors in the carotid arteries in your neck
+detect this massive, dangerous spike in blood pressure.
+- They panic, thinking we are going to blow an aneurysm.
+- Precisely.
+So the baroreceptors send a signal via the vagus nerve,
+part of the parasympathetic system,
+directly to the heart, ordering it to slow down
+to drop the pressure.
+- The vagus nerve physically acts
+on the sinohedral node, slamming the breaks.
+- And the heart rate plummets to 35.
+- But the vagus nerve only controls the heart rate,
+not the blood vessels.
+- Right, so the heart slows down to a crawl,
+but the blood vessels in the body remain clamped tight.
+- This is what causes the widened pulse pressure.
+- Yes, the systolic top number stays sky high at 190,
+but the diastolic bottom number stays normal,
+or drops to 60.
+The gap between them widens massively.
+- And finally, the irregular breathing happens
+because the physical compression of the brain stem
+destroys the medulla's ability
+to maintain a steady respiratory rhythm.
+- When you see Cushing's triad, the slow heart,
+the erratic breathing, the huge blood pressure gap,
+you are minutes away from brain death.
+- So medical science has developed
+a desperate four-stage escalation protocol
+to stop the brain from crushing itself.
+- The notes outline tiered interventions for managing ICP.
+- The guiding principle is always to start
+with the safest, least invasive method
+to manipulate fluid dynamics.
+- Tier one starts purely with positioning.
+- You elevate the head of the bed to exactly 30 degrees.
+- Why exactly 30 degrees?
+- Why not 45 or 90?
+- If the patient is completely flat,
+gravity allows Venus blood to pull on the head,
+raising the pressure.
+- Okay, that makes sense.
+- But if you sit them straight up at 90 degrees,
+you create a sharp bend at the hips,
+which increases intra-abdominal pressure.
+- And that pressure transfers up?
+- It transfers up the vascular system
+and ironically increases ICP.
+Furthermore, sitting straight up requires the heart to work
+too hard to pump blood vertically to the brain,
+which can drop that precious CPP we calculated earlier.
+- Wow.
+So 30 degrees is the perfect geometric sweet spot
+for drainage and perfusion.
+- You also have to keep their neck perfectly straight,
+perfectly midline.
+- Because if their head flops to the side,
+it literally kinks the jugular veins,
+trapping the blood inside the skull like a dam.
+- It's plumbing.
+You also eliminate all environmental stress.
+Keep the room dark, keep it quiet.
+- You give them stool softeners
+because if they bear down to have a bowel movement,
+the strain spikes their ICP.
+- Even suctioning a breathing tube is dangerous
+because the reflex cough acts like a bomb going off
+inside the skull.
+- But if tier one environmental controls fail,
+we move to tier two, pharmacology and physics.
+- We might insert an external ventricular drain, an EVD.
+- This is a catheter drilled directly
+into the ventricles of the brain
+to physically drain off cerebrospinal fluid.
+- Returning to our nightclub analogy,
+we are actively grabbing bouncers
+and throwing them out the door to make room.
+- We also deploy osmotic diuretics like manatol
+or highly concentrated 3% hypertonic saline.
+- Wait, I'm confused by the saline intervention.
+If the brain is already swollen with too much fluid,
+how does pumping the patient's vascular system
+full of 3% saline,
+which is basically concentrated seawater,
+not make the swelling worse?
+- Would the sodium make them retain water?
+- It relies on the physics of osmosis
+across the intact blood brain barrier.
+- Okay, osmosis.
+- The 3% saline is injected directly into the bloodstream,
+making the blood plasma extremely hypertonic, very salty.
+- Right.
+- The fluid inside the swollen brain cells
+is relatively less salty.
+In nature, water always moves toward
+the higher concentration of salt to dilute it.
+- Ah.
+So this hyper salty blood circulates
+through the microscopic capillaries in the brain,
+and it acts like a molecular vacuum.
+- Exactly.
+It physically sucks the excess water
+out of the swollen brain tissue,
+across the membrane and into the bloodstream,
+where it can be peed out.
+- It shrinks the brain cells from the inside.
+- It is brilliant biochemical engineering.
+- But if the pressure continues to rise,
+we escalate to tier three,
+which introduces a terrifying physiological trade-off
+called permissive hypocaptia.
+- Permissive hypocaptia.
+The patient is placed on a mechanical ventilator
+and the respiratory therapist
+intentionally makes them hyperventilate.
+- Fast deep breaths.
+- Yes.
+The machine takes fast deep breaths
+to blow off massive amounts of carbon dioxide,
+dropping the CO2 levels in the blood far below normal.
+- Why do we care about CO2?
+- Because carbon dioxide is a potent vasodilator.
+When CO2 levels are high,
+the blood vessels in the brain relax
+and open wide to flush it out.
+- But wide open vessels take up precious physical space
+inside the skull.
+- Exactly.
+By hyperventilating the patient and dropping the CO2,
+the blood vessels in the brain
+undergo profound vasoconstriction.
+They clamp down tight.
+- You shrink the pipes to make more room in the box.
+- Yes.
+- But wait, if you clamp the blood vessels down tight,
+you are radically reducing the amount of blood
+and oxygen reaching the brain tissue.
+- You are literally starving the brain of oxygen
+to make room so it doesn't crush the brain stem.
+- It is a desperate, dangerous trade-off.
+- You are risking ischemic stroke to prevent herniation.
+- Which is why it's a higher tier intervention.
+- If all of that fails, tier four is the last resort.
+- The patient is put into a deep barbiturate coma
+to shut down all electrical and metabolic demand
+in the brain.
+- They require almost zero oxygen at that point.
+- And finally, a decompressive craniectomy.
+- The neurosurgeon literally takes a bone saw,
+cuts off a massive piece of the skull,
+sometimes half of it,
+and completely removes the rigid wall of the box.
+- Oh my God.
+- They allow the swollen brain to just expand outward
+under the soft tissue of the scalp.
+- So the brain bulges out,
+relieving the pressure on the brain stem.
+- And the piece of skull bone that was removed
+is often sterilized and surgically implanted
+into a pouch in the patient's own abdomen.
+- Wait, they're abdomen?
+- Yeah, where the body's tissues will keep the bone alive
+and healthy for months until the swelling subsides
+and they can put the skull back together.
+- It is barbaric and beautiful all at once.
+So, we've explored what happens when the pressure builds
+globally in the closed box.
+Let's shift gears.
+- What happens when the electrical grid goes haywire
+or when the plumbing, the individual pipes,
+get blocked or burst entirely?
+- Right, let's dive into seizures and strokes.
+- We'll start with the electrical storms.
+A seizure is a sudden, abnormal, uncontrolled
+and synchronous electrical discharge
+of neurons in the brain.
+- Because the brain is normally a symphony
+of localized controlled electrical impulses.
+- A seizure is when a million neurons suddenly scream
+at the exact same time.
+- They can be focal,
+starting in one specific localized area,
+causing maybe just a twitching arm or a strange smell.
+- Or they can be generalized,
+sweeping across both hemispheres simultaneously,
+causing the classic tonic-clonic presentation.
+- That's the whole body stiffening, the tonic part,
+followed by violent rhythmic jerking, the clonic part.
+- The notes emphasize a critical point for nurses
+or anyone witnessing a seizure.
+In the moment it is happening,
+the type of seizure doesn't matter.
+- The cause doesn't matter either.
+- Do not try to diagnose the epilepsy
+while the patient is convulsing.
+- Your sole singular priority is to protect them
+from mechanical injury and oxygen deprivation.
+- There are strict, non-negotiable rules
+for seizure precautions.
+If a person starts seizing, first,
+you lower them gently to the floor
+or the bed to prevent a fall injury.
+- Second, you turn them onto their side,
+specifically the left side, if possible.
+- This is a mechanical airway protection maneuver.
+- During a generalized seizure,
+the patient loses all coordinated muscle control,
+including the ability to swallow.
+They produce excessive saliva,
+and the violent contractions of the abdominal muscles
+can cause them to vomit.
+- If they are lying flat on their back,
+gravity will pull that vomit directly down their trachea.
+They will aspirate into their lungs,
+which can cause lethal chemical pneumonia.
+- Okay, so side lying allows gravity
+to drain the fluid safely out the side of their mouth.
+- Which leads us to perhaps the most persistent
+and dangerous Hollywood myth about seizures.
+- Oh, the spoon.
+- People constantly believe that you must put a wallet,
+a spoon, or a plastic bite block into a seizing person's mouth
+to prevent them from swallowing their tongue.
+- Let's debunk this completely.
+It is anatomically impossible to swallow your own tongue.
+- It is firmly anchored to the floor of your mouth
+and your jaw bone by the frenulum.
+It physically cannot go down your throat.
+- What is highly possible and incredibly common
+is that the jaw muscles, the masseters,
+which are among the strongest muscles in the human body,
+will violently clamp down during the tonic phase
+of the seizure.
+- If you have jammed a wooden spoon
+or a plastic block into their mouth,
+they will bite down with enough force
+to shatter their own teeth.
+- They will then choke on the broken fragments
+of tooth and plastic.
+- Or in your panicked attempt to force their rigid jaw open,
+you will dislocate their temporal mandibular joint,
+or they will bite your fingers down to the bone.
+- Never, ever put anything into a seizing patient's mouth.
+- You also cannot restrain them.
+If you try to hold a seizing limb down to stop the shaking,
+the muscle contractions are so violent,
+they will snap their own bones
+or tear their ligaments against your resistance.
+- You simply clear the area of hard objects,
+pad the bed rails,
+loosen restrictive clothing around their neck
+and wait it out.
+- You also need suction equipment ready
+for the exact moment the seizure stops
+to clear their airway of pooled saliva.
+- The vast majority of seizures
+end on their own within two to three minutes.
+- The patient then enters the post-ictal state.
+The electrical storm has passed,
+leaving the brain utterly exhausted.
+- They will be deeply confused.
+- The lethargic, difficult to wake,
+and usually have no memory of the event.
+- But if a seizure does not stop,
+or if they have back-to-back seizures
+without waking up in between,
+and it approaches the 30-minute mark.
+- The enter state called status epilepticus.
+- It is a profound medical emergency.
+- The brain is firing so rapidly and violently
+that it burns through its entire supply of oxygen,
+ATP and glucose in minutes.
+The neurons switch to anaerobic metabolism,
+producing lactic acid, which poisons the brain.
+- Furthermore, the constant spasms
+of the chest muscles prevent effective breathing,
+leading to systemic hypoxia.
+- If status epilepticus isn't stopped rapidly
+with intravenous medications like lorazepam or diazepam,
+the neurons physically burn themselves out and die.
+- Leading to permanent brain damage or death.
+- From the electrical storms,
+we move to the broken pipes.
+Strokes, or cerevascular accidents, CVA's.
+- A stroke means blood flow,
+and therefore oxygen has been cut off to a distinct territory
+of the brain tissue.
+- And there are two fundamentally opposite ways
+this can happen.
+- The vast majority, around 85%, are ischemic strokes.
+- This occurs when a blood clot, a thrombus or an embolus,
+travels up the carotid arteries
+and wedges itself tightly into a narrowing vessel
+in the brain, completely blocking blood flow downstream.
+- The other 15% are hemorrhagic strokes.
+- This is when a weakened blood vessel,
+perhaps from years of untreated high blood pressure
+or a congenital aneurysm, physically bursts open,
+bleeding arterial blood directly into the brain tissue
+under high pressure.
+- Here is the terrifying diagnostic trap.
+From the outside, standing at the bedside,
+an ischemic clot and a hemorrhagic bleed
+look absolutely identical.
+- The patient has unilateral weakness.
+One side of their face troops, one arm is paralyzed.
+Their speech is garbled or absent, they are confused.
+- You cannot tell if their pipe is blocked
+or if their pipe has burst.
+- Which dictates the absolute first rule
+of stroke management.
+The CT scanner is the gatekeeper.
+- The moment a stroke patient hits the ER doors,
+the singular goal is to get them into the CT scanner
+to figure out the diagnosis.
+- The standard non-contrast CT scan
+is incredibly sensitive to fresh blood.
+- If the scan shows a bright white pool of density,
+a hemorrhage, you have your answer.
+- If the scan is completely clear,
+it means the stroke is ischemic.
+The clot itself won't show up yet
+and the brain tissue hasn't died enough
+to look dark on the scan.
+- This distinction is paramount
+because the treatment for an ischemic stroke
+is a miraculous terrifying drug called TPA.
+Tissue plus menogen activator.
+- It is the ultimate clot buster.
+- TPA doesn't just thin the blood,
+it actively seeks out the fiber and mesh
+holding the clot together and enzymatically dissolves it,
+restoring blood flow and saving the dying brain tissue.
+- It is biochemical magic.
+- But the stakes are impossibly high.
+If a doctor misdiagnoses the patient
+and gives TPA to someone having a hemorrhagic stroke,
+a bleed, the drug will instantly dissolve
+whatever fragile clots the body has managed
+to form at the rupture site.
+- The patient will bleed out massively
+inside their own skull and die within minutes.
+- And even if you confirm it is an ischemic stroke,
+TPA has brutal, unforgiving rules.
+It is tightly bound by time.
+- It must be administered within a three
+to 4.5 hour window from the patient's last known normal.
+- If a patient wakes up at 6 a.m. with stroke symptoms,
+but they went to bed at 10 p.m. the night before,
+their last known normal was 10 p.m.
+- You are eight hours out.
+- Why the strict time limit?
+Why not try to dissolve the clot anyway?
+- Because after about four hours of zero oxygen,
+the brain tissue supplied by that blocked vessel
+physically dies.
+- As it dies, the tiny capillary blood vessels
+in that area also rot and become incredibly fragile,
+the blood brain barrier breaks down.
+- If you dissolve the main clot at hour five,
+a massive wave of high pressure blood rushes back
+into those dead fragile capillaries.
+- They will all rupture.
+You will turn an ischemic stroke
+into a massive hemorrhagic stroke.
+- It is a terrifying tightrope.
+You also have to strictly control their blood pressure
+before giving TPA.
+The systolic cannot be over 185
+and the diastolic cannot be over 110.
+If the pressure is too high,
+when you open the floodgates,
+the rush of blood will cause a reperfusion hemorrhage.
+- They also ask screening questions.
+Have you had major surgery or a baby in the last two weeks?
+- Because TPA is systemic.
+- It circulates everywhere.
+- It will dissolve the lifesaving clots,
+holding your surgical incisions closed
+and you will hemorrhage internally.
+- Now let's reverse the scenario.
+The patient comes in, they go to the CT scanner
+and the scan lights up white.
+It is a hemorrhagic stroke, a bleed.
+- You cannot use TPA.
+The prognosis is generally much worse
+and the immediate treatment is mostly supportive.
+- You have to aggressively lower their blood pressure
+to stop the arterial pumping at the rupture site.
+- You place them on strict aneurysm precautions,
+a dark room, head elevated to 30 degrees,
+no straining, absolutely zero caffeine or stress.
+- But there was a secondary delayed killer
+hiding in hemorrhagic strokes that emerges days later.
+Vazosfasm.
+- Vazosfasm is a fascinating, deadly reaction.
+The blood inside your veins and arteries is life giving.
+- But when a vessel ruptures
+and that blood spills directly onto the raw brain tissue
+and the meninges, it is highly toxic and irritating.
+- As the red blood cells break down
+over the next several days, they release chemicals
+that act as severe irritants.
+The surrounding healthy blood vessels
+in the brain react to this toxic bath
+by violently spasming.
+The muscular walls of the vessels cramp up and clamp shut.
+- So ironically, a stroke caused by a bleeding vessel
+triggers the surrounding healthy vessels to clench shut
+cutting off blood flow.
+- A hemorrhagic stroke causes a secondary ischemic stroke
+days later.
+- Exactly.
+And the treatment for Vazosfasm brings us back
+to that wild physiological concept we discussed earlier,
+permissive states.
+- To force blood past these spasming narrowed vessels,
+the neurocritical care team utilizes triple H therapy.
+- Hypervalemia, hemodilution and hypertension.
+- Let's break the mechanics of this down.
+- First, hypervalemia.
+You pump the patient full of IV fluids
+to vastly increase the volume of liquid
+in their vascular system.
+- Second, hemodilution.
+By adding all that fluid, you are watering down the blood.
+You make it thinner, less viscous,
+so it can slip through the narrowed vessels more easily.
+- And third, the most controversial sounding one.
+- Permissive hypertension.
+You purposefully administer drugs
+to make their blood pressure run artificially high.
+- You are using brute hydraulic force.
+- I just wanna pause and appreciate the paradox of this.
+A patient comes into the hospital
+because high blood pressure caused a vessel
+in their brain diverse.
+- Three days later, the medical team
+is intentionally giving them high blood pressure
+to save their brain from vasospasm.
+- Medicine is wild, but it is deeply grounded
+in fluid dynamics.
+- You are sacrificing the long-term safety of the vessels
+to ensure the immediate perfusion of the tissue.
+They also administer a highly specific calcium channel blocker
+called nemotopein, which crosses the blood brain barrier
+and specifically targets the smooth muscle
+of the cerebral arteries, coaxing them to relax
+and stops spasming.
+- But you only give nemotopein
+after the initial bleeding has completely stopped.
+- The physical aftermath of surviving any stroke,
+ischemic or hemorrhagic,
+these patients dealing with a bizarre
+and tragic vocabulary of deficits.
+- We are all familiar with hemoplasia,
+the physical paralysis on one side of the body.
+- But the cognitive deficits
+where the brain's internal mapping breaks down are haunting.
+- The notes list several specific agnocias and apraxias.
+Let's look at apraxia.
+- This is a motor planning failure.
+- The patient has perfect physical strength in their arm,
+their muscles work,
+but the cortex has forgotten how to execute
+a previously learned, complex sequence of movements.
+- You hand the patient a toothbrush.
+They know it's a toothbrush.
+They have the strength to hold it.
+- But they just stare at it
+or they start trying to comb their hair with it.
+- The motor command center simply cannot sequence the steps
+of lift arm, open mouth, brush teeth.
+- The physical wires are fine,
+but the software running the routine is corrupted.
+- Then there is agnosia.
+This is a sensory recognition failure.
+- Their eyes work perfectly.
+Their optic nerve is intact.
+But when the visual signal reaches the damaged cortex,
+the brain cannot attach meaning to the image.
+- You hold up a key.
+They can describe that it is made of silver metal.
+It has jagged edges.
+It is three inches long.
+- But they cannot tell you it is a key
+or that it is used to open a door.
+The object has lost its identity.
+- And perhaps the most disorienting
+is homonymous heminopia.
+- This is a visual field cut.
+It is not blindness in one eye.
+It is blindness in half of the visual field of both eyes.
+If they look straight ahead,
+everything to the right of their nose is a void.
+They only perceive the left half of the world.
+- They will eat only the food on the left side
+of their plate completely ignoring the right side
+because to their brain it doesn't exist.
+- This creates an immense safety risk.
+The nursing intervention requires a dual approach.
+- Initially you must always approach the patient
+from their unaffected side, the side they can see.
+So you don't terrify them by appearing out of nowhere.
+- But for rehabilitation, you have to teach them
+to consciously manually turn their neck to scan the room.
+- They have to logically relearn how to perceive space
+that their brain no longer maps automatically.
+- We just saw how a single blocked or ruptured vessel
+can starve and destroy the brain from the inside out.
+- But the brain is just as vulnerable to physics
+from the outside in.
+- What happens when the skull itself,
+the very thing designed to protect the brain
+becomes the weapon.
+Let's explore trauma and the horror of this effort connection.
+- Head trauma is the leading cause of death
+from traumatic injuries.
+The kinetic force is involved in a high speed car crash
+or a major fall or immense.
+- When the skull fractures,
+it doesn't always just crack like an eggshell.
+- Specifically fractures at the base of the skull.
+Basal are skull fractures involve the dense bone
+where the spinal cord exits and the cranial nerves run.
+- These deep fractures create telltale,
+delayed clinical signs that nurses are trained to hunt for.
+- The most famous is the battle sign.
+It sounds like medieval warfare,
+but it's a clinical term for severe dark bruising
+directly over the mastoid bone right behind the ear.
+- Another is raccoon eyes, periorbital ecomosis,
+where blood pools darkly around both eyes,
+looking like a mask.
+- But the most dangerous complication
+of a basal arm fracture is that the jagged edges
+of the broken bone often tear through the dura mater,
+that protective membrane holding
+in the cerebrospinal fluid.
+- We talked about dual tears during lumbar punctures,
+but here, the fluid isn't leaking into the back.
+It's leaking out of the face.
+- The patient will have a clear watery fluid dripping
+steadily from their nose, rhinorrhea,
+or out of their ear canal, otorrhea.
+- It looks exactly like a runny nose from a cold,
+but it is brain fluid.
+- To test it, you catch a drop
+on a piece of white filter paper or gauze.
+CSF and blood separate differently.
+- It forms the halo sign, a central red spot of blood
+surrounded by a lighter yellowish ring of CSF,
+literally looking like a halo.
+- Inside the cranial vault, trauma causes hematomas,
+pooling collections of blood that act exactly
+like the tumors in our nightclub analogy,
+rapidly raising ICP.
+- There are subdural hematomas
+which occur beneath the dura.
+These are usually venous bleeds.
+- Vains are low pressure systems, so they bleed slowly.
+An elderly patient might bump their head on a cabinet,
+tear a bridging vein, and the subdural hematoma
+might take weeks to slowly expand before symptoms appear.
+- But the epidural hematoma is a different beast entirely.
+It occurs above the dura between the dura and the skull bone.
+- And critically, epidural hematomas
+are almost always arterial tears,
+typically the middle meningial artery
+right under the temporal bone,
+the thinnest part of the skull.
+- Because it is arterial,
+the blood is pumping out under massive systemic pressure
+with every heartbeat.
+- The hematoma expands rapidly,
+violently stripping the dura away from the skull bone
+and crushing the brain tissue inward.
+- This precise anatomical setup creasy,
+terrifying clinical presentation
+called the lucid interval.
+- Let's put you at the scene.
+- A teenager gets hit in the side of the head
+with a baseball bat or falls off a skateboard
+without a helmet.
+- The initial kinetic impact causes a brief concussion.
+They get knocked unconscious for a minute or two.
+But then they wake up, they open their eyes,
+they know their name, they are walking around,
+talking completely lucid.
+- They insist they feel fine, maybe just a headache,
+and they refuse to go to the hospital.
+- But this is the trap.
+During that perfectly lucid interval,
+the torn artery is steadily pumping.
+- The hematoma is expanding.
+The pressure is building inside the rigid box.
+- The brain is compensating,
+shifting fluids around to make room,
+but eventually the hematoma gets too big.
+- The compensation mechanisms fail completely.
+The ICP spikes to fail levels, the brain herniates,
+and the patient who was joking with you
+10 minutes ago suddenly collapses,
+their pupils blow wide open, they enter a deep coma,
+and they die.
+- It is the classic talk and die syndrome.
+The only treatment is immediate emergent neurosurgery.
+- They must drill bur holes through the skull
+to evacuate the pooling arterial blood
+and relieve the pressure before herniation occurs.
+- To track a trauma patient's trajectory
+and catch them before herniation,
+medicine uses the Glasgow Coma Scale, or GCS.
+- It is a universal scoring system from three to 15
+that rapidly evaluates the integrity of the cortex
+and the brain stem by scoring three things.
+Eye opening, verbal response, and motor response.
+- The highest score is a 15.
+You are spontaneously opening your eyes,
+oriented and conversing, and obeying motor commands.
+- The lowest possible score is a three.
+Even a deceased person scores a three.
+There is no zero on the GCS.
+- And there is a critical threshold
+burned into the brain of every medical professional.
+Less than eight, intubate.
+- Less than eight, intubate.
+If your GCS drops to seven or below,
+you are in a profound coma.
+- Your brain stem is compromised to the point
+that you have lost the basic gag and cough reflexes
+required to protect your own airway from your own saliva.
+- You must be put on a mechanical ventilator.
+- The most revealing part of the GCS is the motor response,
+specifically looking for abnormal posturing.
+- If you apply a painful stimulus to an unconscious patient,
+like pressing hard on the nail bed,
+a healthy brain will try to swat your hand away.
+- But a damaged brain exhibits stereotype
+to reflex postures.
+- The first is decordicate posturing.
+When pain is applied, the patient's arms flex inward,
+wrists curled tight,
+pulling tightly against their chest to their core.
+- Their legs extend straight out.
+- Decordicate, arms to the core.
+Decordicate posturing indicates severe damage
+to the cerebral hemispheres, the cortex,
+but it means the deeper brain stem structures
+are still somewhat intact.
+- It is bad, but it is not the worst.
+- The worst is deseribrate posturing.
+Here upon pain stimulation,
+the arms extend stiffly outward and backward,
+rotated away from the body with the wrists flared out.
+- Why is extending the arms worse than pulling them in?
+- Because of the anatomical level of the lesion.
+Deseribrate posturing indicates that the damage
+has descended deep into the midbrain and the upper brain stem,
+knocking out the red nucleus,
+which normally helps coordinate limb flexion.
+- When the arms extend and rigidly pronate like that,
+it means the captain's bunker is taking direct fire.
+- Deceribrate is a much more ominous sign than decordicate.
+- Trauma can crush the brain,
+but trauma to the spinal cord introduces
+a completely different kind of physiological horror.
+- The brain might be perfectly healthy,
+but the connection to the body is physically severed.
+- This is why the absolute golden rule
+of emergency medicine in the field is,
+keep the spine straight.
+- If someone falls from a ladder
+or is in a high speed collision,
+you do not move their neck.
+You immobilize them on a rigid backboard
+with a cervical collar.
+- Because if a vertebrae is fractured,
+moving the neck even a fraction of an inch
+can cause the jagged bone to slice like a guillotine
+right through the delicate spinal cord.
+- A momentary lapse in care can turn a temporary bone injury
+into permanent quadriplegia.
+- When the spinal cord is completely severed high up
+in the cervical spine at the neck,
+it disconnects the brain from the entire body.
+- If it's high enough around C3 to C5,
+it knocks out the phrenic nerve,
+which controls the diaphragm.
+- The patient instantly loses the ability to breathe
+and requires permanent mechanical ventilation.
+- But surviving the initial horrific trauma
+of a spinal cord injury isn't the end of the danger.
+- Years or decades later,
+patients with injuries in their mid back or higher
+live with a ticking time bomb inside their own nervous system.
+- It's a condition called autonomic dysreflexia.
+- Autonomic dysreflexia is perhaps one of the most
+fascinating and terrifying physiological chain reactions
+in all of human biology.
+- It occurs exclusively in patients with spinal cord injuries
+at or above the level of the sixth thoracic vertebra, T6,
+which is roughly the mid chest level.
+- Let's spend some time tracing the nerve signals here
+because it is literally a civil war inside the body
+and understanding the mechanics is mind-blowing.
+- It almost always starts with something completely mundane
+happening in the lower half of the body, a full bladder.
+- Let's say the patient's fully catheter
+that gets kinked under their leg in a wheelchair.
+The bladder continues to fill with urine,
+stretching to maximum capacity.
+- Step one, the profoundly stretched bladder wall
+generates massive sensory pain signals.
+- Those signals travel along sensory nerves
+to the base of the spinal cord
+and they begin racing upward toward the brain
+to deliver the message, we are in agony,
+we need to empty the bladder.
+- Step two, that sensory signal races up the spinal cord,
+but it hits a literal brick wall.
+- The side of the old spinal cord injury at T6.
+- The scar tissue physically prevents the signal
+from reaching the brain.
+The brain has no idea the bladder is full.
+- The patient feels absolutely no pain,
+but the signal doesn't just evaporate, it rebounds.
+- Step three, the blocked distress signal
+triggers a massive localized reflex action
+in the sympathetic nervous system, the fight or flight system,
+in the spinal cord below the level of the injury.
+- Without the brain there to regulate it,
+the sympathetic nervous system goes completely eroke.
+It floods the lower half of the body with norepinephrine,
+causing profound violent vasoconstriction.
+All the blood vessels in the legs and abdomen
+clamp down hard.
+- Step four, because all those massive blood vessels
+in the lower half of the body just clamped shut,
+the blood is violently squeezed upward
+into the top half of the body.
+- The systemic blood pressure, absolutely skyrockets.
+We are talking lethal hemorrhagic stroke level hypertension,
+a blood pressure of 250 over 150 in seconds.
+- Step five, the brain, sitting safely up above the injury,
+suddenly detects this massive spike in blood pressure.
+- The baroreceptors in the next screen, pressure is critical.
+We are going to blow an aneurysm, the brain panics.
+- Step six, the brain launches a massive counterattack
+to lower the blood pressure.
+It activates the parasympathetic nervous system,
+the rest and digest side.
+- First it uses the vagus nerve,
+because the vagus nerve runs outside the spinal cord
+directly from the brain stem to the heart.
+Its signal gets through perfectly.
+- The brain orders the heart to slow down
+to drop the pressure.
+The heart rate plummets to 40 beats per minute,
+severe bradycardia.
+- Step seven, the brain also sends signals
+down the spinal cord, telling all the blood vessels
+in the body to dilate and relax to relieve the pressure.
+- But those descending signals
+hit the exact same roadblock at T6.
+The relaxation signals cannot reach
+the lower half of the body.
+- So look at the absolute chaos happening.
+You have a body cleanly divided in half at the chest.
+- Above the T6 injury, the parasympathetic system
+is in full control.
+The blood vessels are dilated,
+causing the patient's face and chest to become bright red,
+flushed and dripping with sweat.
+- They have a pounding, terrifying headache
+from the high blood pressure.
+Their heart is barely beating.
+- And below the injury,
+the rogue sympathetic system is still raging.
+- The blood vessels are clamped tight.
+- The skin below the chest is pale,
+cool to the touch, and completely dry.
+And the systemic blood pressure remains lethally high
+because the massive vascular bed of the lower body
+refuses to open.
+- A full bladder can cause a fatal stroke
+in a paralyzed person,
+all because the communication line is cut
+and the systems are fighting each other.
+It is astounding.
+- So imagine you are the nurse.
+- Your paraplegic patient suddenly says
+they have a blinding headache
+and you see sweat pouring off their face.
+What is the very first thing you do?
+- You do not run to get blood pressure medication.
+You use gravity.
+- You immediately elevate the head of the bed
+or sit them straight up at 90 degrees.
+- By sitting them up,
+you force the blood to pool in their legs against gravity,
+instantly dropping the blood pressure in their head
+to prevent a stroke.
+- And once they are upright,
+you go hunting for the trigger below the injury
+to stop the civil war.
+You check the Foley catheter.
+- You unkink the tube.
+The bladder drains.
+The sensory signal stops.
+The sympathetic nervous system calms down
+and the blood pressure normalizes in minutes.
+- If it isn't the bladder,
+you check for a bowel impaction.
+Sometimes the trigger is as small as a wrinkled bed sheet
+pressing hard into their skin or an ingrown toenail.
+You must remove the painful stimulus.
+- Trauma physically severs the nurse,
+which is brutal and mechanical.
+But sometimes the body's own defense system
+does the severing, it attacks itself.
+- This brings us to infections
+and the bizarre world of autoimmune mysteries.
+- Let's look at meningitis first.
+We mentioned the meninges earlier,
+the protective membranes
+wrapping the brain and spinal cord.
+- Meningitis is an infection
+and severe inflammation of those membranes.
+Bacterial meningitis is incredibly dangerous
+and highly contagious,
+spreading rapidly through respiratory droplets
+and crowded environments like military barracks
+or college dormitories.
+- The signs are classic and aggressive.
+- A high fever, photophobia,
+which is a severe painful sensitivity to light,
+and an incredibly stiff neck,
+known as nucal rigidity.
+The patient physically cannot touch their chin
+to their chest.
+Furthermore, the inflammation causes extra fluid production,
+which raises our old enemy intracranial pressure,
+leading to an agonizing headache.
+- The notes detail two physical tests for meningitis
+that rely entirely on the mechanics
+of the inflamed spinal cord.
+The first is kerning sign.
+- You lie the patient flat,
+bend their hip and knee to 90 degrees,
+and then try to straighten their leg.
+It causes severe pain in the lower back and resistance.
+- The more reliable test is Brudzinski sign.
+If you lie the patient flat
+and physically bend their neck forward,
+pulling their chin toward their chest,
+their hips and knees will reflexively pull upward.
+- Why does bending the neck make the knees bend?
+- It's a mechanical tethering issue.
+The meningies wrap all the way down the spinal cord.
+When they're infected, they become swollen, rigid,
+and exquisitely sensitive to stretching.
+- Bending the neck forward
+pulls the entire spinal cord upward,
+stretching those inflamed meninges.
+The body reflexively bends the knees and hips
+to introduce slack into the spinal nerve roots,
+relieving the agonizing tension on the cord.
+- The treatment for bacterial meningitis
+requires massive IV antibiotics
+that are capable of crossing the blood brain barrier.
+- But the notes highlight a very specific
+critical sequence of medication administration.
+You must give a potent steroid, dexamethasone,
+before or at the exact same time
+as the first dose of antibiotics.
+- Why would we suppress the immune system
+with a steroid when we are fighting a massive infection?
+- Because of how the antibiotics work.
+When the antibiotic hits the bacteria,
+it doesn't just neatly poison them.
+It causes bacterial lysis.
+- The bacteria violently burst open,
+spilling all their toxic internal contents
+and endotoxins directly into the cerebral spinal fluid.
+- The immune system detects this massive dump of toxins
+and launches a cytokine storm,
+a catastrophic inflammatory response.
+The meningies swell so rapidly
+that the brain herniates and the patient dies.
+- By giving the dexamethasone first,
+you preemptively blunt the immune system's inflammatory
+response, preventing the fatal swelling
+when the bacteria explode.
+- That is incredible pharmacological choreography.
+While infections attack the nervous system
+from the outside, auto immune diseases
+are a betrayal from within.
+- The immune system suddenly misidentifies normal,
+healthy parts of the nervous system as foreign invaders
+and systematically destroys them.
+- The notes cover three major auto immune conditions,
+each targeting a different mechanism.
+Let's start with multiple sclerosis or MS.
+- MS is a demyelinating disease
+at the central nervous system,
+the brain and the spinal cord.
+- I find the easiest way to picture MS
+is to look at the electrical wiring in a house.
+The actual nerve fibers, the axons are the copper wires.
+- But copper wires need to be insulated
+or the electricity leaks out.
+In the body, that insulation is a fatty substance
+called myelin.
+- The myelin sheath wraps around the axon and segments,
+allowing the electrical signal to jump rapidly
+from gap to gap, a process called saltatory conduction.
+- It is what makes human reflexes
+and thoughts so lightning fast.
+In multiple sclerosis,
+the immune system distaches T-cells
+across the blood brain barrier.
+- They mistakenly identify the myelin as a virus
+and chew it off, leaving the bare copper wire exposed.
+- When the insulation is gone,
+the electrical signals don't just stop, they short circuit.
+They leak into surrounding tissues
+or they slow down to a crawl.
+- This short-circuiting causes the vast array
+of MS symptoms, profound fatigue, muscle weakness,
+severe nerve pain, poor coordination and vision problems.
+- And because the attacks happen
+in different areas of the brain at different times,
+the symptoms are wildly unpredictable.
+- Furthermore, MS is often characterized
+by a relapsing remitting pattern.
+The immune system attacks,
+causing a massive flare-up of symptoms, then it retreats.
+- The body manages to repair some of the myelin
+or reroute the signals
+and the patient recovers some function, remission.
+- But over years of repeated attacks,
+the bare axons eventually scar over, sclerosis,
+and the nerve dies permanently.
+- Next is myasthenia gravis.
+Here, the immune system doesn't attack the wire itself,
+it attacks the connection point.
+- It attacks the neuromuscular junction,
+the exact microscopic gap where the nerve talks to the muscle.
+- For a muscle to contract,
+the nerve terminal releases a chemical messenger
+called acetylcholine.
+- The acetylcholine floats across the gap
+and binds to specialized receptors on the muscle fiber,
+triggering the contraction.
+- In myasthenia gravis,
+the immune system produces rogue antibodies
+that physically bind to and block
+those acetylcholine receptors.
+- The nerve is shouting the command,
+releasing plenty of acetylcholine,
+but the muscle has earplugs in,
+the signal never gets through.
+- And because it is a receptor problem,
+the defining characteristic of this disease
+is use-dependent fatigue.
+- The muscles that get used the most
+constantly run out of available receptors
+and fatigue the fastest.
+- Which is why the very first signs
+are almost always ocular.
+The tiny muscles controlling the eyes
+are constantly making micro-adjustments all day long.
+- So the patient develops deplopia, double vision,
+and ptosis, a severe drooping of one
+or both islands as the day progresses.
+- The weakness then descends to the facial muscles,
+causing dangerous difficulty swallowing and speaking.
+- The treatment involves giving
+anti-colonous to race medications.
+These drugs inhibit the enzyme
+that cleans up acetylcholine,
+essentially flooding the neuromuscular junction
+with excess chemical,
+brute forcing the signal through the blocked receptors.
+- But this creates a dangerous
+pharmacological tightrope for the patient.
+- If the patient doesn't take enough medication,
+they slip into a myasthenic crisis.
+The weakness becomes so profound
+that the intercostal muscles of the chest fail
+and they physically cannot breathe.
+- But if they take too much medication,
+they go into a colonergic crisis.
+And the acronym for this crisis is delightfully gross,
+but perfectly descriptive of the physiology.
+Sludge.
+- Acetylcholine isn't just used for skeletal muscles,
+it is the primary neurotransmitter
+for the entire parasympathetic
+rest and digest nervous system.
+- If you flood the body with too much of it,
+the parasympathetic system goes into massive overdrive.
+Sludge stands for salivation, lacrimation,
+which is uncontrollable tearing from the eyes,
+urination, defecation,
+gastrointestinal cramping and emesis, vomiting.
+- Everything is wet.
+Everything is leaking.
+Everything is contracting.
+If a patient presents with weakness
+and is dripping with saliva and tears,
+you know they took too much medication.
+- You have to withhold their daily dose
+and administer an antidote called atropene
+to block the parasympathetic receptors
+and dry them out.
+The third major autoimmune disorder is Guillain-Barre syndrome.
+This one is uniquely terrifying
+because of how fast it moves.
+- It frequently occurs a week or two
+after a completely mild routine viral infection
+or sometimes a vaccination.
+- The theory is molecular mimicry.
+The immune system successfully fights off
+the mild stomach bug or the flu.
+- But the proteins on that virus
+look structurally very similar
+to the myelin on the peripheral nervous system,
+the nerves outside the brain and spinal cord.
+- The immune system gets confused,
+fails to stand down,
+and starts destroying the peripheral myelin.
+- And the hallmark of Guillain-Barre
+is the direction of the attack.
+It causes an acute rapidly ascending weakness.
+- Ascending.
+It always starts at the floor and climbs up.
+The patient notices tingling and weakness
+in their toes and feet.
+- A day later, their legs are paralyzed.
+Then it climbs to the hips, the trunk, the arms.
+It is a creeping upward paralysis.
+- The critical nursing goal here
+is anticipation of respiratory failure.
+As that paralysis creeps up the chest wall,
+you have to monitor their vital capacity.
+How much air they can forcefully exhale obsessively.
+- You do not wait for them to turn blue.
+You must intubate them and place them
+on a mechanical ventilator before the paralysis reaches
+the diaphragm and they suffocate while wide awake.
+- The good news is that because peripheral nerves
+can regenerate myelin, the vast majority
+of Guillain-Barre patients eventually recover fully,
+though it takes months of intense physical therapy.
+- Finally, in the realm of nerve disorders,
+the notes cover the cranial nerves.
+The most painful condition mentioned
+is trigeminal neuralgia, affecting the fifth cranial nerve,
+which provides all the sensory input
+from the face to the brain.
+- The pain of trigeminal neuralgia is legendary in medicine.
+It is often described as one of the most intense,
+unbearable pains known to humanity.
+It is believed to be caused by a blood vessel
+physically pulsing against the nerve root
+at the base of the brain,
+wearing away the myelin insulation.
+- This causes the nerve to misfire spontaneously.
+The patient experiences sudden shock-like
+stabbing bursts of agony,
+radiating through their jaw, cheek or eye.
+- And the triggers are so mundane, it's heartbreaking
+because the nerve is raw and hypersensitive.
+Ectopic firing can be triggered by washing the face,
+brushing the teeth, chewing, talking
+or even just a gentle draft of cool air hitting the cheek.
+- The nursing care requires immense empathy.
+You must ensure their environment is free of drafts.
+You provide room temperature, very soft foods
+and teach them to chew exclusively
+on the unaffected side of their mouth.
+- These patients will often completely stop eating
+and abandon all basic facial hygiene
+out of pure paralyzing fear of triggering an attack.
+- We also have bells palsy, which affects the seventh
+cranial nerve, the facial nerve that controls motor movement.
+This causes a rapid unilateral facial paralysis.
+- One entire side of the face goes completely slack.
+The eyelid won't close, the cheek droops,
+the corner of the mouth sags.
+- Visually, it looks exactly like a stroke,
+which is utterly terrifying for the patient.
+But the notes provide a strict warning.
+Even if it looks like classic bells palsy,
+any facial paralysis warrants a full stroke workup in the ER.
+You never assume it's just the nerve.
+- But once a stroke is ruled out,
+bells palsy is generally a temporary inflammation,
+often viral and is very treatable
+with a short course of oral steroids.
+- The biggest nursing priority isn't the drooping mouth,
+it's the eye.
+Because the eyelid is paralyzed open,
+they cannot blink to lubricate the cornea.
+- If left exposed, the cornea will dry out,
+ulcerate and cause permanent blindness.
+You have to manually administer lubricating eye drops
+all day and physically tape the eyelid shut at night.
+- I don't immune diseases and infections
+are often sudden and aggressive.
+But there is another category of neurological threats
+that move slowly, insidiously,
+fundamentally altering how a person moves
+and exists over years.
+- This brings us to our final exploration,
+the slow fades, tumors and generative diseases.
+- Brain tumors, whether they are benign meningiomas
+or highly malignant glial blastomas,
+all cause neurological deficits
+for the exact same fundamental reason
+we discussed in the beginning, the Munro Kelly doctrine.
+- A tumor is a solid mass taking up space in a rigid box.
+It steadily raises intracranial pressure.
+- So the symptoms look exactly like a slow moving head bleed,
+morning headaches that get worse when they bear down,
+unexplained vomiting, visual changes
+and new onset seizures as the tumor irritates the cortex.
+- The primary treatment prior to surgery or radiation
+is entirely supportive, managing the ICP symptoms
+with steroids to reduce surrounding edema
+and anti-seizure medications.
+- One highly specific surgical intervention,
+the notes highlight is the transphenoidal hypofisectomy.
+- This is a procedure to remove a tumor
+on the pituitary gland, which sits in a tiny bony saddle
+right at the absolute base of the brain behind the eyes.
+- To get to it, the neurosurgeon doesn't cut
+through the top of the skull.
+They go up through the nasal cavity
+or they make an incision under the upper lip
+through the gum line and drill straight back
+through the sphenoid sinus into the base of the skull.
+- The post-operative rules for this are intense
+because they just punch the hole
+through the floor of the cranial vault.
+The barrier between the unsterile airway
+and the sterile brain is breached.
+- The patient cannot do anything
+that raises pressure in the head or sinuses.
+Absolutely no coughing, no sneezing,
+no blowing the nose, no bending over.
+- If they sneeze forcefully,
+the pressure can blow out the surgical graft sealing the hole
+and they will develop a massive cerebral spinal fluid leak
+directly down their throat.
+- And if the surgeon went through the gum line
+under the upper lip, the patient is strictly forbidden
+from brushing their teeth with a toothbrush
+for at least 10 days.
+The bristles will catch the sutures
+and tear the incision wide open.
+- If the patient complains of a constant salty taste
+in the back of their throat
+or has clear fluid dripping from their nose,
+the nurse must catch it and test it for glucose.
+- Standard nasal mucus contains almost zero glucose,
+but CSF is packed with it to feed the brain.
+If the nasal drainage tests positive for high glucose,
+the floor of the skull is leaking.
+- From the structural masses of tumors,
+we move to the degenerative diseases.
+These are the slow, relentless fades of the nervous system.
+- The notes contrast to the most tragic,
+Parkinson's disease and ALS, Lou Gehrig's disease.
+- They are both profoundly debilitating,
+but their physiological mechanisms
+are almost perfect opposites.
+- Let's examine Parkinson's disease first.
+- Parkinson's is a failure of chemistry
+in the brain's motor command center.
+Specifically, the cells in a deep brain structure
+called the substantia nigra slowly die off.
+These cells are responsible for producing
+the neurotransmitter dopamine.
+- Dopamine gets a lot of presses the reward chemical,
+but in the extra-paramidal motor system,
+it acts like the fine-tuning oil in an engine.
+- Without enough dopamine,
+the cortex can generate the command to move,
+but the basal ganglia cannot smooth out
+the execution of that movement.
+- The result is the cardinal signs of Parkinson's,
+arresting pill-rolling tremor in the hands.
+Severe muscle rigidity, like a cogwheel
+when you try to bend their arm.
+Bradykinesia, which means terribly slow hesitant movement,
+and a shuffling gate with poor balance.
+- The physical wiring is intact.
+The command to walk is there,
+but the chemical oil is missing,
+so the engine stutters, freezes, and shakes.
+- The primary pharmacological treatment is elegant,
+but inherently flawed over time.
+We replace the missing chemical with a synthetic drug
+called levodopa, combined with carbodopa
+to help it cross the blood brain barrier.
+- It literally gives the surviving brain cells
+the raw dopamine they need to execute smooth movement.
+When a patient first starts taking it,
+the reversal of symptoms can seem miraculous.
+They go from frozen in the chair
+to walking across the room.
+- But there is a dark side to this treatment.
+The notes emphasize the critical need to monitor
+for levodopa toxicity.
+As the years pass, the disease progresses,
+and more dopamine-producing cells die.
+- The brain's therapeutic window,
+the margin between just enough dopamine to move
+and too much dopamine,
+gets incredibly dangerously narrow.
+Furthermore, the remaining dopamine receptors
+in the brain become hypersensitive.
+- This creates a cruel irony.
+The very dose of levodopa that allows the patient to walk
+suddenly becomes slightly too high for the facial nerves.
+Though overstimulation causes uncontrolled
+involuntary writhing movements called dyskinesias.
+The grimacing, the spasmodic eye-winking,
+the constant twitching,
+it isn't the Parkinson's disease itself.
+It is the toxicity of the synthetic dopamine
+overstimulating the sensitive receptors.
+- Parkinson's is a loss of the chemical signal,
+but the wiring from the brain to the muscles
+remains completely intact.
+ALS, emiotrophic lateral sclerosis
+is the devastating opposite.
+- In ALS, the chemical signals in the brain are fine,
+but the motor neurons themselves,
+the actual physical, upper and lower wires
+running from the brain down the spinal cord
+out to the muscles, wither and die.
+It is a relentless progressive paralysis.
+- But the true tragedy of ALS
+is that it is purely a motor neuron disease.
+It does not affect sensory nerves
+and it does not affect the cortex.
+- The patient's mind stays perfectly devastatingly intact.
+They can feel a fly land on their arm.
+They can process complex emotions.
+Their intellect is untouched.
+- The signals are generated perfectly in the brain,
+but the wires are dead.
+The commands never reach the muscles.
+The muscles weaken, waste away from disuse, atrophy,
+and twitch uncontrollably in fasciculations
+as the nerves die.
+- The patient becomes trapped inside a failing body.
+Life expectancy is typically just two to three years
+from diagnosis.
+- Because the paralysis eventually
+reaches the intercostal muscles of the chest
+and the diaphragm, the ultimate cause of death
+is usually respiratory failure.
+- This is why Professor Marpol specifically
+highlights a clinical priority.
+If an ALS patient is experiencing dyspnea,
+difficulty breathing, the absolute first intervention
+is always to administer oxygen.
+- In a normal patient, if they are short of breath,
+you sit them up to expand their lungs.
+But with ALS, elevating the head of the bed isn't enough
+because the actual physical mechanics of the diaphragm
+are failing.
+- They cannot pull the air in.
+You must supplement the oxygen concentration
+of whatever shallow breaths they can take.
+- We have covered an immense amount
+of physiological ground today.
+Looking back over Professor Marpol's notes
+from the massive kinetic trauma of a severed spinal cord
+causing a sympathetic civil war
+to the microscopic auto-immune attack
+stripping the myelin off an axon and MS.
+- The overarching theme is the sheer mechanical reality
+of the nervous system.
+- It is delicate yet incredibly resilient.
+- We've explored the desperate math
+of cerebral perfusion pressure,
+calculating how to keep blood flowing
+into a rigid skull against rising intracranial swelling.
+- We've seen the strict physical rules
+of keeping a spine perfectly straight
+and the chemical type ropes of treating ischemic strokes
+with clot busters and Parkinson's with synthetic dopamine.
+It is the ultimate balancing act of homeostasis.
+But before we wrap up this deep dive,
+I wanna look back at one of the very first things mentioned
+in the notes regarding altered levels of consciousness
+and pose a final thought.
+- Yes, please.
+In those early slides, the professor mentions
+two specific, terrifying neurological states
+that challenge everything we assume
+about what it means to be human.
+A-kinetic mutism and locked-in syndrome.
+In A-kinetic mutism, often caused by frontal lobe damage,
+the patient is awake, their eyes are open,
+they will physically track you as you walk across the room.
+- But they are entirely unresponsive to the environment.
+They lack the will or the internal drive to speak or move.
+The engine is running, but the driver is gone.
+- And the other side of that coin is locked-in syndrome.
+- Exactly, locked-in syndrome, which is often caused
+by a very specific ischemic stroke
+in the pawns of the brainstem is the inverse.
+- The patient is fully conscious.
+Their cortex is pristine.
+They are processing every sight, every sound,
+every conversation happening around their bed perfectly.
+- But the stroke has severed all descending motor pathways.
+They are entirely disconnected
+from every motor output in their body.
+- They cannot move a single muscle,
+except usually the ability to blink
+or move their eyes vertically.
+They are buried alive inside their own skull.
+- It challenges our deepest philosophical assumptions.
+- It's humans, we tend to define ourselves by our actions,
+our speech, our physical impact on the world around us.
+We are what we do, but if your brain is perfectly awake,
+containing a vibrant, infinite universe of thought,
+emotion and memory, yet you are entirely silent
+to the outside world, unable to affect
+a single change upon it, where does the self exist?
+- It leaves you to wonder about the profound,
+silent inner worlds of those whose neurological pathways
+have gone dark, and the absolute sanctity of the organ
+that generates that world.
+- That is heavy and absolutely fascinating.
+We think we are our bodies, but we are really
+just the electricity inside them,
+experiencing the world through a delicate web of wires.
+We started this deep dive talking about broken bones
+and x-rays, about the comfort of a clear, jagged white line
+and a simple diagnosis.
+- But we've seen today that the nervous system
+is not binary.
+It is a constantly shifting sea of pressures,
+a desperate dance of chemistry, physics and electricity,
+hiding inside an impenetrable bone box.
+- The diagnostic waters are murky,
+and the stakes are life and death.
+But hopefully after today, the mechanics of how we survive
+are a little easier to navigate.
+Thank you for joining us on this deep dive.
+Keep learning, keep the synapses firing,
+and we will see you next time.
