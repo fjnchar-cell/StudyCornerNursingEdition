@@ -1,3 +1,30 @@
 [
-
+    {
+        "id":  "respiratory",
+        "title":  "Respiratory",
+        "folder":  "Med-Surg Prep",
+        "file":  "respiratory.pdf",
+        "kb":  2899
+    },
+    {
+        "id":  "template",
+        "title":  "Template",
+        "folder":  "Med-Surg Prep",
+        "file":  "template.pdf",
+        "kb":  176
+    },
+    {
+        "id":  "getting-started",
+        "title":  "Getting Started",
+        "folder":  "Welcome",
+        "file":  "getting-started.pdf",
+        "kb":  15872
+    },
+    {
+        "id":  "tools-guide",
+        "title":  "Tools Guide",
+        "folder":  "Welcome",
+        "file":  "tools-guide.pdf",
+        "kb":  618
+    }
 ]
